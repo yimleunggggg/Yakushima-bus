@@ -1,0 +1,33 @@
+# Yakushima Bus Now / 屋久岛公交即时查询
+
+> Independent trilingual bus timetable and ferry access tool for Yakushima Island (Kagoshima, Japan). Built for travelers at the port, on mountain roads, and in the rain. Data sourced from official operator PDFs; not affiliated with Tanegashima Yakushima Kotsu.
+
+## Pages
+
+- [Bus timetable & next departure](https://yakushimabus.com/): Search routes, day types (weekday/Saturday/sunday-holiday), next bus in JST, embedded official PDF.
+- [Routes & fares](https://yakushimabus.com/map.html): Official route map PDF, stop lookup, adult one-way fares, day pass info.
+- [Ferry & island access](https://yakushimabus.com/access.html): Jetfoil and ferry schedules, fares Kagoshima–Yakushima, seasonal notes.
+- [About this site](https://yakushimabus.com/about.html): Maintainer background, data sources, contact.
+
+## Languages
+
+Japanese (primary), Simplified Chinese, English — switch in-page; stop names always show Japanese for on-site recognition.
+
+## Official data sources
+
+- Bus timetables: Tanegashima Yakushima Kotsu / Yakushima Tourism Association PDFs (yakukan.jp)
+- Fares: official route map fare table (2024 revision)
+- Ferry: TYKousoku / operator sites (see access page)
+
+## Coverage
+
+Yakushima Island bus network including Miyanoura Port, Anbo, Shiratani Unsuikyo, Arakawa trail bus (Mar–Nov), Kigen Sugi line, Matsubanda winter routes.
+
+## Contact
+
+- Email: yimleung.ly@gmail.com
+- Site: https://yakushimabus.com/
+
+## Optional
+
+Full sitemap: https://yakushimabus.com/sitemap.xml
