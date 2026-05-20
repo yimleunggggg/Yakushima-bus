@@ -34,7 +34,7 @@ const OperatorUI = {
 
   paymentTagsHtml(opOrId, lang) {
     return this.paymentTags(opOrId, lang).map((tag) =>
-      `<span class="tag${tag.positive ? " ok" : " warn"}">${tag.text}</span>`
+      `<span class="tag season" title="${tag.text}">${tag.text}</span>`
     ).join("");
   },
 

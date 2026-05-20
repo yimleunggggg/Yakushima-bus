@@ -459,9 +459,11 @@
       const s = BUS_DATA.stops[id] || MAP_DATA.stops[id];
       if (!s) return;
       els.panelNo.textContent = `No.${s.no}`;
-      els.panelTags.innerHTML = (s.tags || []).map((tg) =>
-        `<span class="tag">${pick(MAP_DATA.tagLabels[tg]) || tg}</span>`
-      ).join("");
+      els.panelTags.innerHTML = (s.tags || []).map((tg) => {
+        const label = pick(MAP_DATA.tagLabels[tg]) || tg;
+        const cls = tg === "pass" ? "tag season" : (s.group === "arakawa" ? "tag moss" : "tag");
+        return `<span class="${cls}">${label}</span>`;
+      }).join("");
       syncPanelActionState();
     }
 

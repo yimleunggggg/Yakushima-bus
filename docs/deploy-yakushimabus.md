@@ -2,7 +2,58 @@
 
 纯静态站，无构建步骤；推送 `main` 分支根目录即可。
 
-## 1. 首次推送到 GitHub
+## 阶段 A：实名审核期间（现在就能做）
+
+域名在腾讯云实名审核时，**先用 GitHub 默认地址上线**，不耽误开发。
+
+1. **推送最新代码**
+   ```bash
+   cd "/Users/yimleung/手搓程序/Yakushima-bus"
+   git add -A && git commit -m "design v3 + deploy notes"   # 有改动时
+   git push origin main
+   ```
+
+2. **开启 Pages**  
+   仓库 `yimleunggggg/Yakushima-bus` → **Settings → Pages**  
+   - Source：`Deploy from a branch`  
+   - Branch：`main` / **/** (root)  
+   - Custom domain：**先可留空**（填了 `yakushimabus.com` 会报 DNS 错，正常，等阶段 B）
+
+3. **预览地址**（约 1～2 分钟生效）  
+   **https://yimleunggggg.github.io/Yakushima-bus/**
+
+4. Custom domain 报 `InvalidDNSError` → **忽略**，等域名实名通过后再配 DNS。
+
+---
+
+## 阶段 B：腾讯云实名通过 + 域名生效后
+
+### 1. 完成购买
+
+腾讯云 → 域名注册 → 确认 `yakushimabus.com` 状态为 **已注册**。
+
+### 2. DNSPod 解析（腾讯云控制台 → 域名 → 解析）
+
+| 记录类型 | 主机记录 | 记录值 | TTL |
+|----------|----------|--------|-----|
+| A | @ | 185.199.108.153 | 600 |
+| A | @ | 185.199.109.153 | 600 |
+| A | @ | 185.199.110.153 | 600 |
+| A | @ | 185.199.111.153 | 600 |
+
+可选 www：
+
+| CNAME | www | yimleunggggg.github.io | 600 |
+
+### 3. GitHub 绑定域名
+
+Settings → Pages → Custom domain 填 **`yakushimabus.com`** → **Save** → 等 10～30 分钟 **Check again** 变绿 → 勾选 **Enforce HTTPS**。
+
+仓库根目录已有 `CNAME`（内容为 `yakushimabus.com`），与 Pages 设置一致即可。
+
+---
+
+## 1. 首次推送到 GitHub（已完成可跳过）
 
 ```bash
 cd "/Users/yimleung/手搓程序/Yakushima-bus"

@@ -129,6 +129,7 @@
     <details class="aux-block pdf-panel" id="timetablePdfPanel">
       <summary class="aux-summary">
         <span data-i18n="pdfViewer">公式時刻表 PDF</span>
+        <span class="expand-badge" data-i18n="expandable">展開可</span>
         <span class="aux-chevron" aria-hidden="true"></span>
       </summary>
       <div class="aux-body">
@@ -481,11 +482,13 @@
 
     function tripTags(item) {
       const tags = [];
-      if (item.route.season === "3-11") tags.push({ season: true, text: t("season") });
+      if (item.route.season === "3-11") tags.push({ moss: true, text: t("season") });
       if (item.route.season === "12-2") tags.push({ season: true, text: t("winterSeason") });
       if (item.trip.note) tags.push({ warn: true, text: pick(item.trip.note) });
       if (item.trip.suspended) tags.push({ warn: true, text: t("suspended") });
-      OperatorUI.paymentTags(item.route.operator, lang).forEach((tag) => tags.push(tag));
+      OperatorUI.paymentTags(item.route.operator, lang).forEach((tag) =>
+        tags.push({ season: true, text: tag.text })
+      );
       return tags;
     }
 
@@ -670,8 +673,10 @@
         const tags = tripTags(item);
         const tagHtml = tags.map((tg) => {
           if (typeof tg === "string") return `<span class="tag">${tg}</span>`;
+          if (tg.moss) return `<span class="tag moss">${tg.text}</span>`;
           if (tg.season) return `<span class="tag season">${tg.text}</span>`;
-          return `<span class="tag${tg.positive ? " ok" : " warn"}">${tg.text}</span>`;
+          if (tg.warn) return `<span class="tag warn">${tg.text}</span>`;
+          return `<span class="tag">${tg.text}</span>`;
         }).join("");
         return `<article class="trip ${isNext ? "next" : ""}" aria-expanded="false">
           <div class="trip-top">
