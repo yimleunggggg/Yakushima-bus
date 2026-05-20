@@ -1,0 +1,27 @@
+{
+  "note": {
+    "ja": "繁忙期（GW・お盆・年末年始）は運賃・ダイヤが異なる場合あり。",
+    "zh": "黄金周、盂兰盆、年末年初运价/班次可能不同。",
+    "en": "Fares/schedules may differ in peak seasons (GW, Obon, New Year)."
+  },
+  "rows": [
+    {
+      "dir": "to_yakushima",
+      "dep": "08:30",
+      "arr": "12:30",
+      "from": { "ja": "鹿児島本港南ふ頭", "zh": "鹿儿岛本港南码头", "en": "Kagoshima Minami Port" },
+      "to": { "ja": "宮之浦港", "zh": "宫之浦港", "en": "Miyanoura Port" }
+    },
+    {
+      "dir": "to_kagoshima",
+      "dep": "13:30",
+      "arr": "17:40",
+      "from": { "ja": "宮之浦港", "zh": "宫之浦港", "en": "Miyanoura Port" },
+      "to": { "ja": "鹿児島本港南ふ頭", "zh": "鹿儿岛本港南码头", "en": "Kagoshima Minami Port" }
+    }
+  ],
+  "fares": [
+    { "type": { "ja": "二等", "zh": "二等", "en": "Standard" }, "adult": 6500, "child": 3200 },
+    { "type": { "ja": "一等", "zh": "一等", "en": "First" }, "adult": 9000, "child": 4500 }
+  ]
+}

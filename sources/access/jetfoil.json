@@ -1,0 +1,88 @@
+{
+  "fares": {
+    "effectiveFrom": "2026-05-11",
+    "sourceNote": {
+      "ja": "2026年5月11日～（種子島・屋久島交通 公式）。往復割引は7日間有効。",
+      "zh": "2026年5月11日起（种子岛·屋久岛交通官网）。往返优惠 7 日内有效。",
+      "en": "From 11 May 2026 (TaneYaku official). Round-trip discount valid 7 days."
+    },
+    "rows": [
+      {
+        "route": {
+          "ja": "鹿児島↔屋久島（宮之浦/安房）",
+          "zh": "鹿儿岛↔屋久岛（宫之浦/安房）",
+          "en": "Kagoshima ↔ Yakushima (Miyanoura/Anbo)"
+        },
+        "adultOneWay": 14000,
+        "childOneWay": 7000,
+        "adultRoundTrip": 25900,
+        "childRoundTrip": 12950
+      },
+      {
+        "route": {
+          "ja": "鹿児島↔種子島（参考）",
+          "zh": "鹿儿岛↔种子岛（参考）",
+          "en": "Kagoshima ↔ Tanegashima (reference)"
+        },
+        "adultOneWay": 12000,
+        "childOneWay": 6000,
+        "adultRoundTrip": 22200,
+        "childRoundTrip": 11100
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "id": "summer_2026",
+      "label": { "ja": "夏ダイヤ", "zh": "夏季班次", "en": "Summer schedule" },
+      "validFrom": "2026-04-01",
+      "validTo": "2026-06-30",
+      "note": {
+        "ja": "2026/4/1–6/30 夏ダイヤ（公式）。出発：鹿児島本港新港ふ頭。",
+        "zh": "2026/4/1–6/30 夏季时刻（官网）。出发：鹿儿岛本港新港码头。",
+        "en": "Summer 2026 (1 Apr–30 Jun, official). Departs Kagoshima Shin-ko."
+      },
+      "toYakushima": [
+        { "no": "111", "dep": "07:30", "arr": "10:20", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } },
+        { "no": "112", "dep": "07:45", "arr": "09:35", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "直航", "zh": "直航", "en": "Direct" } },
+        { "no": "114", "dep": "10:10", "arr": "12:55", "port": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } },
+        { "no": "127", "dep": "13:00", "arr": "15:35", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } },
+        { "no": "117", "dep": "13:35", "arr": "15:25", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "直航", "zh": "直航", "en": "Direct" } },
+        { "no": "118", "dep": "15:45", "arr": "18:20", "port": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } }
+      ],
+      "toKagoshima": [
+        { "no": "121", "dep": "07:00", "arr": "09:40", "from": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "西之表経由", "zh": "经西之表", "en": "Via Nishinoomote" } },
+        { "no": "112", "dep": "10:00", "arr": "12:45", "from": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "西之表経由", "zh": "经西之表", "en": "Via Nishinoomote" } },
+        { "no": "111", "dep": "10:40", "arr": "12:30", "from": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "直航", "zh": "直航", "en": "Direct" } },
+        { "no": "128", "dep": "13:10", "arr": "15:55", "from": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "西之表経由", "zh": "经西之表", "en": "Via Nishinoomote" } },
+        { "no": "117", "dep": "15:45", "arr": "18:20", "from": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "西之表経由", "zh": "经西之表", "en": "Via Nishinoomote" } },
+        { "no": "127", "dep": "16:00", "arr": "17:50", "from": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "直航", "zh": "直航", "en": "Direct" } }
+      ]
+    },
+    {
+      "id": "winter_2025",
+      "label": { "ja": "冬ダイヤ", "zh": "冬季班次", "en": "Winter schedule" },
+      "validFrom": "2025-10-01",
+      "validTo": "2026-02-28",
+      "note": {
+        "ja": "2025/10/1–2026/2/28 冬ダイヤ（公式）。",
+        "zh": "2025/10/1–2026/2/28 冬季时刻（官网）。",
+        "en": "Winter 2025–26 (official)."
+      },
+      "toYakushima": [
+        { "no": "111", "dep": "07:30", "arr": "10:20", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } },
+        { "no": "112", "dep": "07:45", "arr": "09:45", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "指宿経由", "zh": "经指宿", "en": "Via Ibusuki" } },
+        { "no": "114", "dep": "10:10", "arr": "12:55", "port": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } },
+        { "no": "127", "dep": "13:00", "arr": "15:35", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } },
+        { "no": "117", "dep": "13:35", "arr": "15:25", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "直航", "zh": "直航", "en": "Direct" } },
+        { "no": "118", "dep": "15:45", "arr": "18:20", "port": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } }
+      ],
+      "toKagoshima": [
+        { "no": "121", "dep": "07:00", "arr": "09:40", "from": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "—", "zh": "—", "en": "—" } },
+        { "no": "112", "dep": "10:00", "arr": "12:45", "from": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "—", "zh": "—", "en": "—" } },
+        { "no": "128", "dep": "13:10", "arr": "15:55", "from": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "—", "zh": "—", "en": "—" } },
+        { "no": "117", "dep": "15:45", "arr": "18:30", "from": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "—", "zh": "—", "en": "—" } }
+      ]
+    }
+  ]
+}

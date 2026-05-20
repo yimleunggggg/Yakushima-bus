@@ -1,0 +1,12 @@
+{
+  "note": {
+    "ja": "荒川登山バス・観光バス・まつばんだ便は対象外。自然館等4施設で100円割引券付。",
+    "zh": "不含荒川登山巴士、观光巴士、松ばんだ班次。附自然馆等4处100日元折扣券。",
+    "en": "Excludes Arakawa bus, tour buses & Matsubanda. Includes ¥100-off coupons at 4 sites."
+  },
+  "rows": [
+    { "days": 1, "adult": 2500, "child": 1250 },
+    { "days": 3, "adult": 4000, "child": 2000 },
+    { "days": 4, "adult": 5000, "child": 2500 }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "revision": "2026-03-01",
+  "validFrom": "2026-03-01",
+  "validTo": "2026-11-30",
+  "updatedAt": "2026-05-20",
+  "sources": {
+    "taneyaku": {
+      "url": "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301.pdf",
+      "file": "assets/taneyaku-20260301.pdf",
+      "role": "timetable",
+      "operator": "taneyaku"
+    },
+    "taneyakuEn": {
+      "url": "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301-en.pdf",
+      "file": "assets/taneyaku-en-20260301.pdf",
+      "role": "timetable-i18n",
+      "operator": "taneyaku"
+    },
+    "matsubanda": {
+      "url": "https://yakukan.jp/wp-content/uploads/2026/03/matsubanda-timetable-20260301.pdf",
+      "file": "assets/matsubanda-20260301.pdf",
+      "role": "timetable",
+      "operator": "matsubanda"
+    },
+    "fare": {
+      "url": "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin.pdf",
+      "file": "assets/fare-20240301.pdf",
+      "role": "fare",
+      "revision": "2024-03-01"
+    },
+    "fareEn": {
+      "url": "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin-en.pdf",
+      "file": "assets/fare-en-20240301.pdf",
+      "role": "fare-i18n",
+      "revision": "2024-03-01"
+    },
+    "notice": {
+      "url": "https://yakukan.jp/trans/",
+      "role": "index"
+    },
+    "serviceStatus": {
+      "url": "https://yakushima.co.jp/route_bus/",
+      "role": "status"
+    },
+    "arakawaX": {
+      "url": "https://x.com/yakusansharyou",
+      "role": "status-arakawa"
+    },
+    "pass": {
+      "url": "https://yakushima.co.jp/yuttari/",
+      "role": "pass"
+    }
+  },
+  "outputs": {
+    "timetable": "data.js",
+    "map": "map-data.js"
+  },
+  "overridesDir": "sources/overrides"
+}

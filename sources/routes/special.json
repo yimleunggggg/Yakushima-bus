@@ -1,0 +1,134 @@
+{
+  "comment": "PDF 解析无法可靠提取的特殊路线；更新时刻后改此文件并运行 build_all.py",
+  "routes": [
+    {
+      "id": "shiratani",
+      "operator": "taneyaku",
+      "name": { "ja": "白谷雲水峡線", "zh": "白谷云水峡线", "en": "Shiratani Unsuikyo" },
+      "directions": [
+        {
+          "id": "to",
+          "label": { "ja": "白谷雲水峡行", "zh": "往白谷", "en": "To Shiratani" },
+          "stops": ["miyanoura_port", "miyanoura_port_entrance", "miyanoura", "kobara", "ushiroka_park", "shiratani"],
+          "trips": [
+            {
+              "days": ["weekday", "saturday", "sunday_holiday"],
+              "times": { "miyanoura_port": "8:20", "miyanoura_port_entrance": "8:21", "miyanoura": "8:23", "kobara": "8:25", "ushiroka_park": "8:27", "shiratani": "8:55" },
+              "note": { "ja": "小原町で安房方面行きに乗換", "zh": "在小原町换乘往安房方向", "en": "Transfer at Kobara for Anbo-bound buses" }
+            },
+            {
+              "days": ["weekday", "saturday", "sunday_holiday"],
+              "times": { "miyanoura_port": "10:05", "miyanoura_port_entrance": "10:06", "miyanoura": "10:08", "kobara": "10:10", "ushiroka_park": "10:12", "shiratani": "10:40" }
+            },
+            {
+              "days": ["weekday", "saturday", "sunday_holiday"],
+              "times": { "miyanoura_port": "13:10", "miyanoura_port_entrance": "13:11", "miyanoura": "13:13", "kobara": "13:15", "ushiroka_park": "13:17", "shiratani": "13:45" }
+            },
+            {
+              "days": ["weekday", "saturday", "sunday_holiday"],
+              "times": { "miyanoura_port": "15:30", "miyanoura_port_entrance": "15:31", "miyanoura": "15:33", "kobara": "15:35", "ushiroka_park": "15:37", "shiratani": "16:05" }
+            }
+          ]
+        },
+        {
+          "id": "from",
+          "label": { "ja": "宮之浦港行", "zh": "往宫之浦港", "en": "To Miyanoura Port" },
+          "stops": ["shiratani", "ushiroka_park", "kobara", "miyanoura", "miyanoura_port_entrance", "miyanoura_port"],
+          "trips": [
+            {
+              "days": ["weekday", "saturday", "sunday_holiday"],
+              "times": { "shiratani": "9:00", "ushiroka_park": "9:23", "kobara": "9:25", "miyanoura": "9:27", "miyanoura_port_entrance": "9:29", "miyanoura_port": "9:35" }
+            },
+            {
+              "days": ["weekday", "saturday", "sunday_holiday"],
+              "times": { "shiratani": "10:40", "ushiroka_park": "11:03", "kobara": "11:05", "miyanoura": "11:07", "miyanoura_port_entrance": "11:09", "miyanoura_port": "11:15" }
+            },
+            {
+              "days": ["weekday", "saturday", "sunday_holiday"],
+              "times": { "shiratani": "13:45", "ushiroka_park": "14:08", "kobara": "14:10", "miyanoura": "14:12", "miyanoura_port_entrance": "14:14", "miyanoura_port": "14:20" }
+            },
+            {
+              "days": ["weekday", "saturday", "sunday_holiday"],
+              "times": { "shiratani": "16:10", "ushiroka_park": "16:33", "kobara": "16:35", "miyanoura": "16:37", "miyanoura_port_entrance": "16:39", "miyanoura_port": "16:45" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arakawa",
+      "operator": "taneyaku",
+      "name": { "ja": "荒川登山バス", "zh": "荒川登山巴士", "en": "Arakawa Trail Bus" },
+      "season": "3-11",
+      "directions": [
+        {
+          "id": "up",
+          "label": { "ja": "登山口行", "zh": "往登山口", "en": "To trailhead" },
+          "stops": ["yakusugi_museum", "arakawa_trailhead"],
+          "trips": [
+            {
+              "days": ["weekday", "saturday", "sunday_holiday"],
+              "times": { "yakusugi_museum": "5:00", "arakawa_trailhead": "5:35" },
+              "season": "3-11",
+              "note": { "ja": "3～11月運行。自然館で荒川登山バスに乗換", "zh": "3–11月运行，在自然馆换乘登山巴士", "en": "Mar–Nov. Transfer at Yakusugi Museum" }
+            },
+            { "days": ["weekday", "saturday", "sunday_holiday"], "times": { "yakusugi_museum": "5:20", "arakawa_trailhead": "5:55" }, "season": "3-11" },
+            { "days": ["weekday", "saturday", "sunday_holiday"], "times": { "yakusugi_museum": "5:40", "arakawa_trailhead": "6:15" }, "season": "3-11" },
+            { "days": ["weekday", "saturday", "sunday_holiday"], "times": { "yakusugi_museum": "14:00", "arakawa_trailhead": "14:35" }, "season": "3-11" }
+          ]
+        },
+        {
+          "id": "down",
+          "label": { "ja": "自然館行", "zh": "往自然馆", "en": "To museum" },
+          "stops": ["arakawa_trailhead", "yakusugi_museum"],
+          "trips": [
+            { "days": ["weekday", "saturday", "sunday_holiday"], "times": { "arakawa_trailhead": "6:20", "yakusugi_museum": "6:55" }, "season": "3-11" },
+            { "days": ["weekday", "saturday", "sunday_holiday"], "times": { "arakawa_trailhead": "15:00", "yakusugi_museum": "15:35" }, "season": "3-11" },
+            { "days": ["weekday", "saturday", "sunday_holiday"], "times": { "arakawa_trailhead": "16:00", "yakusugi_museum": "16:35" }, "season": "3-11" },
+            { "days": ["weekday", "saturday", "sunday_holiday"], "times": { "arakawa_trailhead": "16:30", "yakusugi_museum": "17:05" }, "season": "3-11" },
+            { "days": ["weekday", "saturday", "sunday_holiday"], "times": { "arakawa_trailhead": "17:00", "yakusugi_museum": "17:35" }, "season": "3-11" },
+            { "days": ["weekday", "saturday", "sunday_holiday"], "times": { "arakawa_trailhead": "17:45", "yakusugi_museum": "18:20" }, "season": "3-11" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kigen",
+      "operator": "taneyaku",
+      "name": { "ja": "紀元杉線", "zh": "纪元杉线", "en": "Kigen Sugi" },
+      "directions": [
+        {
+          "id": "to",
+          "label": { "ja": "紀元杉行", "zh": "往纪元杉", "en": "To Kigen Sugi" },
+          "stops": ["gocho_mae", "anbo_port", "anbo", "makino", "yakusugi_museum", "arakawa_sancho", "yakusugiland", "kigen_sugi"],
+          "trips": [
+            {
+              "days": ["weekday", "saturday", "sunday_holiday"],
+              "times": { "gocho_mae": "9:20", "anbo_port": "9:26", "anbo": "9:28", "makino": "9:29", "yakusugi_museum": "9:34", "arakawa_sancho": "10:01", "yakusugiland": "10:07", "kigen_sugi": "10:27" },
+              "note": { "ja": "合庁前で紀元杉行きに接続", "zh": "在县厅前换乘往纪元杉", "en": "Connect at Govt Office for Kigen Sugi" }
+            },
+            {
+              "days": ["weekday", "saturday", "sunday_holiday"],
+              "times": { "gocho_mae": "13:30", "anbo_port": "13:36", "anbo": "13:38", "makino": "13:39", "yakusugi_museum": "13:44", "arakawa_sancho": "14:11", "yakusugiland": "14:17", "kigen_sugi": "14:37" }
+            }
+          ]
+        },
+        {
+          "id": "from",
+          "label": { "ja": "安房方面", "zh": "往安房", "en": "Toward Anbo" },
+          "stops": ["kigen_sugi", "yakusugiland", "arakawa_sancho", "yakusugi_museum", "makino", "anbo", "gocho_mae"],
+          "trips": [
+            {
+              "days": ["weekday", "saturday", "sunday_holiday"],
+              "times": { "kigen_sugi": "10:45", "yakusugiland": "11:05", "arakawa_sancho": "11:11", "yakusugi_museum": "11:38", "makino": "11:43", "anbo": "11:44", "gocho_mae": "11:48" }
+            },
+            {
+              "days": ["weekday", "saturday", "sunday_holiday"],
+              "times": { "kigen_sugi": "14:55", "yakusugiland": "15:15", "arakawa_sancho": "15:21", "yakusugi_museum": "15:48", "makino": "15:53", "anbo": "15:54", "gocho_mae": "15:58" }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

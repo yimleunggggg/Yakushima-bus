@@ -1,0 +1,34 @@
+{
+  "revision": "2026-04-01",
+  "updatedAt": "2026-05-20",
+  "dataDir": "sources/access",
+  "sources": {
+    "jetfoil": {
+      "url": "https://www.tykousoku.jp/fare_time/",
+      "file": null,
+      "label": { "ja": "種子屋久高速船（トッピー・ロケット）", "zh": "种子屋久高速船（Toppy/Rocket）", "en": "TaneYaku Jetfoil (Toppy/Rocket)" }
+    },
+    "ferry": {
+      "url": "https://ferryyakusima2.com/timetable",
+      "label": { "ja": "フェリー屋久島2（折田汽船）", "zh": "屋久岛2号渡轮（折田汽船）", "en": "Ferry Yakushima 2 (Orita Steamship)" }
+    },
+    "airportShuttle": {
+      "url": "https://nangoku-kotsu.com/ashuttle/kagoshima/",
+      "label": { "ja": "南国交通 空港連絡バス", "zh": "南国交通 机场联络巴士", "en": "Nangoku Kotsu Airport Shuttle" }
+    },
+    "pass": {
+      "url": "https://www.iwasaki-corp.com/kagoshima_kotsu/route-bus/yakushima-free-pass/",
+      "label": { "ja": "屋久島ゆったり満喫乗車券", "zh": "屋久岛悠享乘车券", "en": "Yakushima day pass" }
+    },
+    "yakukan": {
+      "url": "https://yakukan.jp/trans/",
+      "label": { "ja": "屋久島観光協会 交通", "zh": "屋久岛观光协会 交通", "en": "Yakushima tourism — transport" }
+    },
+    "yakukanAbout": {
+      "url": "https://yakukan.jp/about/",
+      "label": { "ja": "屋久島観光協会", "zh": "屋久岛观光协会", "en": "Yakushima tourism association" }
+    }
+  },
+  "outputs": { "access": "access-data.js" },
+  "overridesDir": "sources/overrides"
+}

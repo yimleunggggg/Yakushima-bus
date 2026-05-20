@@ -1,0 +1,9 @@
+*.pdf
+_pdf_raw.txt
+_pdf_extract.txt
+_pdf_full.txt
+_map_pdf_p*.txt
+.DS_Store
+__pycache__/
+*.pyc
+.cursor/
