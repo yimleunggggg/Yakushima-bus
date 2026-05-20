@@ -76,7 +76,14 @@ const StopPicker = {
 
     let currentLang = lang;
     let selectedId = hidden.value || "";
+    const touchPick = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
     const listIds = (q) => this.ids(filterIds).filter((id) => this.matches(id, q));
+
+    if (touchPick) {
+      input.readOnly = true;
+      input.setAttribute("inputmode", "none");
+      input.classList.add("picker-input-touch");
+    }
 
     const syncDisplay = () => {
       input.value = selectedId ? this.label(selectedId, currentLang) : "";
@@ -109,6 +116,8 @@ const StopPicker = {
       resetListFloat();
       window.removeEventListener("scroll", onListReflow, true);
       window.removeEventListener("resize", onListReflow);
+      window.visualViewport?.removeEventListener("resize", onListReflow);
+      window.visualViewport?.removeEventListener("scroll", onListReflow);
     };
 
     const resetListFloat = () => {
@@ -119,18 +128,23 @@ const StopPicker = {
     };
 
     const floatList = () => {
+      const vv = window.visualViewport;
       const r = input.getBoundingClientRect();
       const gap = 4;
       const margin = 8;
-      const spaceBelow = window.innerHeight - r.bottom - gap - margin;
-      const spaceAbove = r.top - gap - margin;
+      const viewTop = vv?.offsetTop ?? 0;
+      const viewLeft = vv?.offsetLeft ?? 0;
+      const viewHeight = vv?.height ?? window.innerHeight;
+      const viewWidth = vv?.width ?? window.innerWidth;
+      const spaceBelow = viewTop + viewHeight - r.bottom - gap - margin;
+      const spaceAbove = r.top - viewTop - gap - margin;
       const preferBelow = spaceBelow >= 120 || spaceBelow >= spaceAbove;
-      const maxH = Math.min(window.innerHeight * 0.48, 300, preferBelow ? spaceBelow : spaceAbove);
+      const maxH = Math.min(viewHeight * 0.48, 300, preferBelow ? spaceBelow : spaceAbove);
 
       list.classList.add("is-floating");
       list.style.position = "fixed";
-      list.style.left = `${Math.max(margin, Math.min(r.left, window.innerWidth - r.width - margin))}px`;
-      list.style.width = `${Math.min(r.width, window.innerWidth - margin * 2)}px`;
+      list.style.left = `${Math.max(viewLeft + margin, Math.min(r.left, viewLeft + viewWidth - r.width - margin))}px`;
+      list.style.width = `${Math.min(r.width, viewWidth - margin * 2)}px`;
       list.style.maxHeight = `${Math.max(120, maxH)}px`;
       list.style.zIndex = "120";
       if (preferBelow) {
@@ -138,8 +152,15 @@ const StopPicker = {
         list.style.bottom = "auto";
       } else {
         list.style.top = "auto";
-        list.style.bottom = `${window.innerHeight - r.top + gap}px`;
+        list.style.bottom = `${viewTop + viewHeight - r.top + gap}px`;
       }
+    };
+
+    const bindListReflow = () => {
+      window.addEventListener("scroll", onListReflow, true);
+      window.addEventListener("resize", onListReflow);
+      window.visualViewport?.addEventListener("resize", onListReflow);
+      window.visualViewport?.addEventListener("scroll", onListReflow);
     };
 
     const onListReflow = () => {
@@ -150,11 +171,14 @@ const StopPicker = {
       renderList(q);
       root.classList.add("is-open");
       floatList();
-      window.addEventListener("scroll", onListReflow, true);
-      window.addEventListener("resize", onListReflow);
+      bindListReflow();
     };
 
     const beginBrowse = () => {
+      if (touchPick) {
+        openList("");
+        return;
+      }
       const current = selectedId ? this.label(selectedId, currentLang) : "";
       input.value = "";
       input.placeholder = current || placeholder || "";
@@ -226,13 +250,20 @@ const StopPicker = {
       if (list.hidden) {
         e.preventDefault();
         beginBrowse();
-        input.focus({ preventScroll: true });
+        if (!touchPick) input.focus({ preventScroll: true });
       }
     });
     input.addEventListener("focus", () => {
+      if (touchPick) {
+        input.blur();
+        return;
+      }
       if (list.hidden) beginBrowse();
     });
-    input.addEventListener("input", () => renderList(input.value));
+    input.addEventListener("input", () => {
+      if (touchPick) return;
+      renderList(input.value);
+    });
     input.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         closeList();
@@ -248,6 +279,7 @@ const StopPicker = {
       }
     });
     input.addEventListener("blur", () => {
+      if (touchPick) return;
       setTimeout(() => {
         input.placeholder = placeholder || "";
         pickFromInput();
@@ -256,6 +288,13 @@ const StopPicker = {
     });
 
     list.addEventListener("mousedown", (e) => {
+      const li = e.target.closest("li.picker-option");
+      if (!li) return;
+      e.preventDefault();
+      setValue(li.dataset.id);
+    });
+    list.addEventListener("click", (e) => {
+      if (!touchPick) return;
       const li = e.target.closest("li.picker-option");
       if (!li) return;
       e.preventDefault();

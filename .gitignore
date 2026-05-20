@@ -1,4 +1,5 @@
 *.pdf
+!assets/pdf/*.pdf
 _pdf_raw.txt
 _pdf_extract.txt
 _pdf_full.txt

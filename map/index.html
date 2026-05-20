@@ -38,7 +38,7 @@
     "about": { "@type": "Place", "name": "Yakushima Island", "addressCountry": "JP" }
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=rainforest-preview">
+  <link rel="stylesheet" href="/styles.css?v=desktop-v4">
   <script src="/analytics.js"></script>
 </head>
 <body>
@@ -50,24 +50,29 @@
     </nav>
 
     <header class="header header-compact">
-      <div class="header-main">
-        <h1 id="appTitle">路線図・運賃</h1>
-      </div>
+      <h1 id="appTitle">路線図・運賃</h1>
       <div class="header-actions">
         <div class="lang-switch" id="langSwitch">
-          <button type="button" data-lang="ja">日</button>
-          <button type="button" data-lang="zh">中</button>
+          <button type="button" data-lang="ja">JA</button>
+          <button type="button" data-lang="zh">ZH</button>
           <button type="button" data-lang="en">EN</button>
         </div>
       </div>
     </header>
 
+    <div class="map-layout">
+    <div class="map-layout-primary">
     <div class="panel">
       <div class="sec">
         <div class="sec-title" data-i18n="routeMap">公式路線図</div>
         <div class="pdf-lang-tabs" id="pdfLangTabs">
           <button type="button" data-pdf-lang="ja" data-i18n="pdfJa">日本語 PDF</button>
           <button type="button" data-pdf-lang="en" data-i18n="pdfEn">English PDF</button>
+        </div>
+        <div class="pdf-fallback" id="pdfFallback" hidden>
+          <p class="pdf-fallback-lead" data-i18n="pdfMobileLead">スマホではブラウザで PDF を開くと、ピンチ拡大・スクロールが快適です。</p>
+          <a class="pdf-fallback-btn" id="pdfOpenPrimary" href="#" target="_blank" rel="noopener" data-i18n="pdfOpenPrimary">公式 PDF を開く</a>
+          <span class="pdf-fallback-name" id="pdfFallbackName"></span>
         </div>
         <div class="pdf-stage" id="pdfStage">
         <div class="pdf-viewport" id="pdfViewport">
@@ -80,16 +85,19 @@
           </div>
           <button type="button" class="pdf-fs-close" id="pdfFsClose" data-i18n="pdfExitFullscreen">終了</button>
           <div class="pdf-loading" id="pdfLoading" data-i18n="pdfLoading">読み込み中…</div>
-          <iframe id="pdfEmbed" class="pdf-frame" title="Yakushima bus route map" loading="lazy"></iframe>
+          <iframe id="pdfEmbed" class="pdf-frame" title="Yakushima bus route map"></iframe>
         </div>
         </div>
         <p class="pdf-slow-hint" id="pdfSlowHint" hidden data-i18n="pdfSlowHint">English PDF may load slowly — open in new tab if blank.</p>
-        <p class="map-hint" data-i18n="pdfHint">ピンチまたは +/- で拡大 · 表示できない場合は新しいタブで開く</p>
+        <p class="map-hint pdf-hint-desktop" data-i18n="pdfHint">ビューア内でスクロール · +/- で拡大 · 表示できない場合は新しいタブ</p>
+        <p class="map-hint pdf-hint-mobile" data-i18n="pdfHintMobile">上のボタンから公式 PDF を開いてください（読み込みが速く、ピンチ操作できます）</p>
         <p class="pdf-source" id="pdfSourceNote"></p>
       </div>
     </div>
+    </div>
 
-    <div class="panel">
+    <div class="map-layout-secondary">
+    <div class="panel map-sidebar-tool">
       <div class="sec">
         <div class="sec-title" data-i18n="stopLookup">停留所を選ぶ</div>
         <div class="stop-panel show" id="stopPanel">
@@ -112,7 +120,7 @@
       </div>
     </div>
 
-    <div class="panel" id="farePanel">
+    <div class="panel map-sidebar-tool" id="farePanel">
       <div class="sec">
         <div class="sec-title" data-i18n="fareLookup">運賃検索（大人片道）</div>
         <div class="fare-form">
@@ -138,23 +146,26 @@
         <div class="fare-result" id="fareResult">—</div>
         <p class="fare-disclaimer" id="fareDisclaimer"></p>
       </div>
-      <div class="sec">
+      <div class="sec sec-map-ref">
         <div class="sec-title" data-i18n="fareNotes">運賃の注意</div>
-        <ul class="info-list" id="fareNotes"></ul>
+        <ul class="info-list info-list-compact" id="fareNotes"></ul>
       </div>
     </div>
 
-    <div class="panel" id="passPanel">
+    <div class="map-sidebar-ref">
+    <div class="panel map-sidebar-ref-panel" id="passPanel">
       <div class="sec" id="passSection"></div>
     </div>
 
-    <details class="panel aux-block" id="passOfficesPanel">
+    <details class="panel aux-block map-sidebar-ref-panel" id="passOfficesPanel" open>
       <summary class="aux-summary">
         <span data-i18n="passOffices">乗車券発売窓口</span>
         <span class="aux-chevron" aria-hidden="true"></span>
       </summary>
-      <div class="aux-body"><ul class="info-list" id="passList"></ul></div>
+      <div class="aux-body"><ul class="info-list info-list-compact" id="passList"></ul></div>
     </details>
+    </div>
+    </div>
 
     <footer class="app-footer">
       <a href="/about/" data-i18n="navAbout">このサイトについて</a>
@@ -180,20 +191,20 @@
 
   <script src="/data.js"></script>
   <script src="/meta-data.js"></script>
-  <script src="/app-core.js"></script>
+  <script src="/app-core.js?v=picker-v2"></script>
   <script src="/access-data.js"></script>
   <script src="/map-data.js"></script>
   <script src="/operator-ui.js"></script>
-  <script src="/stop-picker.js"></script>
+  <script src="/stop-picker.js?v=picker-v2"></script>
   <script src="/pdf-fullscreen.js"></script>
-  <script src="/pdf-viewer.js"></script>
+  <script src="/pdf-viewer.js?v=pdf-pan-v1"></script>
   <script>
     const UI = {
       ja: {
         navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "路線・運賃", sub: "種子島・屋久島交通",
         routeMap: "公式路線図", fareLookup: "運賃検索（大人片道）", fareNotes: "運賃の注意",
         passInfo: "屋久島ゆったり満喫乗車券", passOffices: "発売窓口", source: "出典",
-        pdfLoading: "読み込み中…", pdfSlowHint: "英語PDFは読み込みに時間がかかることがあります。表示されない場合は新しいタブで開いてください。",
+        pdfLoading: "読み込み中…", pdfSlowHint: "表示されない場合は新しいタブで開いてください。",
         from: "出発", to: "到着",
         setFrom: "出発に設定", setTo: "到着に設定", setFromDone: "出発に設定しました：{stop}",
         setToDone: "到着に設定しました：{stop}", showTimetable: "時刻表を見る",
@@ -202,7 +213,10 @@
         weekday: "平日", saturday: "土曜", sunday: "日祝",
         pdfJa: "日本語 PDF", pdfEn: "English PDF",
         pdfFullscreen: "全画面", pdfExitFullscreen: "終了", pdfOpenNew: "新しいタブ",
-        pdfHint: "ピンチまたは +/- で拡大 · 表示できない場合は新しいタブで開く",
+        pdfOpenPrimary: "公式 PDF を開く",
+        pdfMobileLead: "スマホではブラウザで PDF を開くと、ピンチ拡大・スクロールが快適です。",
+        pdfHint: "ビューア内でスクロール · +/- で拡大 · 表示できない場合は新しいタブ",
+        pdfHintMobile: "上のボタンから公式 PDF を開いてください（読み込みが速く、ピンチ操作できます）",
         pdfSourceNote: "公式 PDF を直接読み込み（更新は公式と同期）",
         yen: "円", noFare: "区間データなし（公式PDF参照）", sameStop: "異なる停留所を選んでください",
         fareEstimate: "目安（主要停留所区間）",
@@ -213,7 +227,7 @@
         navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "路线及价格", sub: "种子岛·屋久岛交通",
         routeMap: "官方路线图", fareLookup: "运价查询（成人单程）", fareNotes: "运价说明",
         passInfo: "屋久岛悠享乘车券", passOffices: "发售点", source: "来源",
-        pdfLoading: "加载中…", pdfSlowHint: "英文 PDF 加载可能较慢，若空白请用新窗口打开。",
+        pdfLoading: "加载中…", pdfSlowHint: "若显示空白，请用新窗口打开。",
         from: "出发", to: "到达",
         setFrom: "设为出发", setTo: "设为到达", setFromDone: "已设为出发：{stop}",
         setToDone: "已设为到达：{stop}", showTimetable: "查看时刻表",
@@ -222,7 +236,10 @@
         weekday: "工作日", saturday: "周六", sunday: "周日·节假日",
         pdfJa: "日文 PDF", pdfEn: "英文 PDF",
         pdfFullscreen: "全屏", pdfExitFullscreen: "退出全屏", pdfOpenNew: "新窗口打开",
-        pdfHint: "双指或 +/- 缩放 · 若无法显示请新窗口打开",
+        pdfOpenPrimary: "打开官方 PDF",
+        pdfMobileLead: "手机端建议在系统浏览器打开 PDF，双指缩放和滑动更流畅，加载也更快。",
+        pdfHint: "在预览框内滚动 · 用 +/- 缩放 · 无法显示请新窗口打开",
+        pdfHintMobile: "请点上方按钮打开官方 PDF（加载更快，支持双指缩放）",
         pdfSourceNote: "直接加载官方 PDF 原址，官网更新后此处同步",
         yen: "日元", noFare: "暂无该区间的数据（见官方 PDF）", sameStop: "请选择不同的站点",
         fareEstimate: "预估（主要站点区间）",
@@ -233,7 +250,7 @@
         navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access", navAbout: "About", title: "Routes & fares", sub: "Tanegashima Yakushima Kotsu",
         routeMap: "Official route map", fareLookup: "Fare lookup (adult one-way)", fareNotes: "Fare notes",
         passInfo: "Yakushima day pass", passOffices: "Sales offices", source: "Source",
-        pdfLoading: "Loading…", pdfSlowHint: "English PDF may load slowly — open in a new tab if blank.",
+        pdfLoading: "Loading…", pdfSlowHint: "If blank, open in a new tab.",
         from: "From", to: "To",
         setFrom: "Set origin", setTo: "Set destination", setFromDone: "Origin set: {stop}",
         setToDone: "Destination set: {stop}", showTimetable: "View departures",
@@ -242,7 +259,10 @@
         weekday: "Weekday", saturday: "Sat", sunday: "Sun & holidays",
         pdfJa: "Japanese PDF", pdfEn: "English PDF",
         pdfFullscreen: "Fullscreen", pdfExitFullscreen: "Exit", pdfOpenNew: "Open in new tab",
-        pdfHint: "Pinch or +/- to zoom · open in new tab if blank",
+        pdfOpenPrimary: "Open official PDF",
+        pdfMobileLead: "On phones, open the PDF in your browser for smooth pinch-zoom and scrolling.",
+        pdfHint: "Scroll inside the viewer · +/- to zoom · open in new tab if blank",
+        pdfHintMobile: "Use the button above to open the official PDF (faster load, native pinch-zoom)",
         pdfSourceNote: "Loads the official PDF URL directly — updates when the source updates",
         yen: "yen", noFare: "No fare data (see official PDF)", sameStop: "Pick different stops",
         fareEstimate: "Estimate (major stops)",
@@ -253,7 +273,6 @@
 
     let lang = AppCore.getLang();
     let pdfLang = localStorage.getItem("yakushima-bus-pdf-lang") || "ja";
-    let pdfLoadTimer = null;
     let selectedStop = "miyanoura_port";
     let modalDay = AppCore.detectDayType();
     let pdfZoomCtl = null;
@@ -293,6 +312,9 @@
       langSwitch: document.getElementById("langSwitch"),
       appTitle: document.getElementById("appTitle"),
       pdfStage: document.getElementById("pdfStage"),
+      pdfFallback: document.getElementById("pdfFallback"),
+      pdfOpenPrimary: document.getElementById("pdfOpenPrimary"),
+      pdfFallbackName: document.getElementById("pdfFallbackName"),
       pdfEmbed: document.getElementById("pdfEmbed"),
       pdfViewport: document.getElementById("pdfViewport"),
       pdfLangTabs: document.getElementById("pdfLangTabs"),
@@ -401,34 +423,37 @@
       return pdfLang === "en" ? u.en : u.ja;
     }
 
-    function pdfInlineSrc(url) {
-      return `${url.split("#")[0]}#toolbar=0&navpanes=0&view=FitH`;
-    }
-
-    function hidePdfLoading() {
-      els.pdfLoading.hidden = true;
-    }
-
-    function initPdf() {
+    function syncPdfLinks() {
       const url = pdfUrl();
-      els.pdfLoading.textContent = t("pdfLoading");
-      els.pdfLoading.hidden = false;
-      els.pdfSlowHint.hidden = pdfLang !== "en";
-      if (pdfLoadTimer) clearTimeout(pdfLoadTimer);
-      els.pdfEmbed.onload = hidePdfLoading;
-      els.pdfEmbed.onerror = () => {
-        els.pdfLoading.textContent = t("pdfSlowHint");
-        pdfLoadTimer = setTimeout(hidePdfLoading, 2500);
-      };
-      els.pdfEmbed.src = pdfInlineSrc(url);
       els.pdfOpenNew.href = url;
+      els.pdfOpenPrimary.href = url;
+      els.pdfFallbackName.textContent = url.split("/").pop();
       els.pdfSourceNote.innerHTML = `${t("pdfSourceNote")} <a href="${url}" target="_blank" rel="noopener">${url.split("/").pop()}</a>`;
       els.pdfLangTabs.querySelectorAll("button").forEach((b) =>
         b.classList.toggle("active", b.dataset.pdfLang === pdfLang)
       );
-      pdfZoomCtl?.reset();
-      pdfLoadTimer = setTimeout(hidePdfLoading, 2500);
-      setTimeout(() => { if (!els.pdfLoading.hidden) els.pdfSlowHint.hidden = false; }, 5000);
+    }
+
+    function initPdf() {
+      syncPdfLinks();
+      if (preferNativePdf()) {
+        els.pdfStage.hidden = true;
+        els.pdfFallback.hidden = false;
+        els.pdfEmbed.removeAttribute("src");
+        els.pdfLoading.hidden = true;
+        return;
+      }
+      els.pdfStage.hidden = false;
+      els.pdfFallback.hidden = true;
+      initPdfViewer({
+        embed: els.pdfEmbed,
+        url: pdfUrl(),
+        loadingEl: els.pdfLoading,
+        slowHintEl: els.pdfSlowHint,
+        loadingText: t("pdfLoading"),
+        slowText: t("pdfSlowHint"),
+        resetZoom: () => pdfZoomCtl?.reset(),
+      });
     }
 
     function renderPassInfo() {
@@ -508,12 +533,14 @@
       );
       renderModalBody();
       els.timeModal.hidden = false;
-      document.body.classList.add("modal-open");
+      AppCore.lockScroll();
+      AppCore.pinOverlay(els.timeModal);
     }
 
     function closeTimetableModal() {
       els.timeModal.hidden = true;
-      document.body.classList.remove("modal-open");
+      AppCore.unpinOverlay();
+      AppCore.unlockScroll();
     }
 
     function renderModalBody() {
@@ -610,6 +637,7 @@
 
     els.modalClose.addEventListener("click", closeTimetableModal);
     els.modalBackdrop.addEventListener("click", closeTimetableModal);
+    els.modalBackdrop.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
     els.modalDayTabs.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-day]");
       if (!btn) return;
@@ -621,24 +649,28 @@
     els.fareFrom.addEventListener("change", updateFare);
     els.fareTo.addEventListener("change", updateFare);
 
-    pdfZoomCtl = bindPdfZoom({
-      viewport: els.pdfViewport,
-      embed: els.pdfEmbed,
-      zoomIn: els.pdfZoomIn,
-      zoomOut: els.pdfZoomOut,
-      zoomReset: els.pdfZoomReset,
-    });
-    pdfFsCtl = bindPdfFullscreen({
-      stage: els.pdfStage,
-      toggleBtn: els.pdfFullscreen,
-      getLabel: (mode) => t(mode === "exit" ? "pdfExitFullscreen" : "pdfFullscreen"),
-      onFallback: () => window.open(pdfUrl(), "_blank"),
-    });
+    function bindPdfControls() {
+      if (pdfZoomCtl || pdfFsCtl || preferNativePdf()) return;
+      pdfZoomCtl = bindPdfZoom({
+        viewport: els.pdfViewport,
+        embed: els.pdfEmbed,
+        zoomIn: els.pdfZoomIn,
+        zoomOut: els.pdfZoomOut,
+        zoomReset: els.pdfZoomReset,
+      });
+      pdfFsCtl = bindPdfFullscreen({
+        stage: els.pdfStage,
+        toggleBtn: els.pdfFullscreen,
+        getLabel: (mode) => t(mode === "exit" ? "pdfExitFullscreen" : "pdfFullscreen"),
+        onFallback: () => window.open(pdfUrl(), "_blank"),
+      });
+    }
 
     const params = new URLSearchParams(location.search);
     if (params.get("lang")) lang = params.get("lang");
     modalDay = detectDayType();
     applyI18n();
+    bindPdfControls();
     if (params.get("stop") && MAP_DATA.stops[params.get("stop")]) {
       lookupPicker.setValue(params.get("stop"), false);
       selectedStop = params.get("stop");

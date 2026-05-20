@@ -90,6 +90,64 @@ const AppCore = {
       el.hidden = true;
     }, 2200);
   },
+
+  modalScrollY: 0,
+  _modalPinEl: null,
+  _modalPinHandler: null,
+
+  lockScroll() {
+    this.modalScrollY = window.scrollY;
+    document.body.style.top = `-${this.modalScrollY}px`;
+    document.body.classList.add("modal-open");
+  },
+
+  unlockScroll() {
+    document.body.classList.remove("modal-open");
+    document.body.style.top = "";
+    window.scrollTo(0, this.modalScrollY);
+  },
+
+  pinOverlay(el) {
+    this.unpinOverlay();
+    this._modalPinEl = el;
+    const pin = () => {
+      const vv = window.visualViewport;
+      if (!el || el.hidden) return;
+      if (!vv) return;
+      el.style.top = `${vv.offsetTop}px`;
+      el.style.left = `${vv.offsetLeft}px`;
+      el.style.width = `${vv.width}px`;
+      el.style.height = `${vv.height}px`;
+    };
+    this._modalPinHandler = pin;
+    pin();
+    window.visualViewport?.addEventListener("resize", pin);
+    window.visualViewport?.addEventListener("scroll", pin);
+  },
+
+  unpinOverlay() {
+    if (this._modalPinHandler) {
+      window.visualViewport?.removeEventListener("resize", this._modalPinHandler);
+      window.visualViewport?.removeEventListener("scroll", this._modalPinHandler);
+    }
+    if (this._modalPinEl) {
+      this._modalPinEl.style.top = "";
+      this._modalPinEl.style.left = "";
+      this._modalPinEl.style.width = "";
+      this._modalPinEl.style.height = "";
+    }
+    this._modalPinEl = null;
+    this._modalPinHandler = null;
+  },
+
+  preferNativePdf() {
+    return window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+  },
 };
 
 AppCore.applyDocLang(AppCore.getLang());
+
+/** @deprecated use AppCore.preferNativePdf — kept for inline scripts & cached pdf-viewer.js */
+function preferNativePdf() {
+  return AppCore.preferNativePdf();
+}

@@ -60,7 +60,7 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
-  <link rel="stylesheet" href="styles.css?v=rainforest-preview">
+  <link rel="stylesheet" href="styles.css?v=desktop-v4">
   <script src="analytics.js"></script>
 </head>
 <body>
@@ -71,22 +71,21 @@
       <a href="/access/" data-i18n="navAccess">上島</a>
     </nav>
     <header class="header header-compact">
-      <div class="header-main">
-        <h1 id="appTitle">屋久島バス</h1>
-        <p class="sub" id="appSub">次のバスを検索</p>
-        <div class="meta meta-inline" id="metaBar"></div>
-      </div>
+      <h1 id="appTitle">屋久島バス</h1>
       <div class="header-actions">
-        <span class="live-clock-time" id="liveClockTime" aria-live="polite" title="JST">--:--</span>
+        <time class="live-clock-time" id="liveClockTime" aria-live="polite" title="JST">--:--</time>
         <div class="lang-switch" id="langSwitch">
-          <button type="button" data-lang="ja">日</button>
-          <button type="button" data-lang="zh">中</button>
+          <button type="button" data-lang="ja">JA</button>
+          <button type="button" data-lang="zh">ZH</button>
           <button type="button" data-lang="en">EN</button>
         </div>
       </div>
     </header>
+    <p class="app-meta" id="metaBar"></p>
 
     <div class="panel">
+      <div class="panel-grid">
+      <div class="panel-grid-controls">
       <div class="sec">
         <div class="sec-title" data-i18n="presets">よく使う区間</div>
         <div class="presets" id="presets"></div>
@@ -160,7 +159,9 @@
         </div>
       </div>
 
-      <div class="sec">
+      </div>
+      <div class="panel-grid-results">
+      <div class="sec sec-results">
         <div class="results-head">
           <span class="sec-title" style="margin:0" data-i18n="results">便一覧</span>
           <span class="count" id="resultsCount"></span>
@@ -168,6 +169,8 @@
         <div class="op-legend" id="opLegend" aria-label="operators"></div>
         <div class="results-notice" id="resultsNotice" hidden></div>
         <div id="results"></div>
+      </div>
+      </div>
       </div>
 
     <div class="aux-sections aux-in-panel">
@@ -192,6 +195,11 @@
           <button type="button" data-pdf-lang="ja" data-i18n="pdfJa">日本語 PDF</button>
           <button type="button" data-pdf-lang="en" data-i18n="pdfEn">English PDF</button>
         </div>
+        <div class="pdf-fallback" id="ttPdfFallback" hidden>
+          <p class="pdf-fallback-lead" data-i18n="pdfMobileLead">スマホではブラウザで PDF を開くと、ピンチ拡大・スクロールが快適です。</p>
+          <a class="pdf-fallback-btn" id="ttPdfOpenPrimary" href="#" target="_blank" rel="noopener" data-i18n="pdfOpenPrimary">公式 PDF を開く</a>
+          <span class="pdf-fallback-name" id="ttPdfFallbackName"></span>
+        </div>
         <div class="pdf-stage" id="ttPdfStage">
         <div class="pdf-viewport" id="ttPdfViewport">
           <div class="pdf-toolbar">
@@ -202,10 +210,13 @@
             <a id="ttPdfOpenNew" href="#" target="_blank" rel="noopener" data-i18n="pdfOpenNew">新しいタブ</a>
           </div>
           <button type="button" class="pdf-fs-close" id="ttPdfFsClose" data-i18n="pdfExitFullscreen">終了</button>
-          <iframe id="ttPdfEmbed" class="pdf-frame" title="Yakushima bus timetable" loading="lazy"></iframe>
+          <div class="pdf-loading" id="ttPdfLoading" data-i18n="pdfLoading">読み込み中…</div>
+          <iframe id="ttPdfEmbed" class="pdf-frame" title="Yakushima bus timetable"></iframe>
         </div>
         </div>
-        <p class="map-hint" data-i18n="pdfHint">ピンチまたは +/- で拡大 · 表示できない場合は新しいタブで開く</p>
+        <p class="map-hint pdf-hint-desktop" data-i18n="pdfHint">ビューア内でスクロール · +/- で拡大 · 表示できない場合は新しいタブ</p>
+        <p class="map-hint pdf-hint-mobile" data-i18n="pdfHintMobile">上のボタンから公式 PDF を開いてください（読み込みが速く、ピンチ操作できます）</p>
+        <p class="pdf-slow-hint" id="ttPdfSlowHint" hidden data-i18n="pdfSlowHint">表示されない場合は新しいタブで開いてください。</p>
         <p class="pdf-source" id="ttPdfSourceNote"></p>
       </div>
     </details>
@@ -236,15 +247,15 @@
 
   <script src="data.js"></script>
   <script src="meta-data.js"></script>
-  <script src="app-core.js"></script>
+  <script src="app-core.js?v=picker-v2"></script>
   <script src="operator-ui.js"></script>
-  <script src="stop-picker.js"></script>
+  <script src="stop-picker.js?v=picker-v2"></script>
   <script src="pdf-fullscreen.js"></script>
-  <script src="pdf-viewer.js"></script>
+  <script src="pdf-viewer.js?v=pdf-pan-v1"></script>
   <script>
     const UI = {
       ja: {
-        navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "Yakushima Bus", sub: "屋久島バス時刻表", presets: "よく使う区間",
+        navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "屋久島バス", sub: "次のバスを検索", presets: "よく使う区間",
         swapped: "出発と到着を入れ替えました",
         from: "出発", to: "到着", weekday: "平日", saturday: "土曜",         sunday: "日祝",
         tzLabel: "日本時間 (JST)", arriveEta: "着 {time}",
@@ -257,6 +268,14 @@
         valid: "適用", updated: "更新", stopCount: "{n} 停留所", arrive: "到着", dest: "行先",
         sameStop: "出発と到着を別々に選んでください",
         noTrips: "該当する便がありません", noTripsHint: "日種別を変えるか公式PDFを確認",
+        noTripsReverse: "この方向の直通便はありません",
+        noTripsReverseHint: "逆方向 {from} → {to} には {n} 便あります。",
+        noTripsDayType: "選択した日種ではこの区間に便がありません",
+        noTripsDayTypeHint: "土曜・日祝タブを試すか、公式PDFをご確認ください。",
+        noTripsNoRoute: "この区間の直通便はデータ上見つかりません",
+        noTripsUpcoming: "このあとの便はありません",
+        noTripsUpcomingHint: "本日最終便は {time} 発です。「以降のみ」のチェックを外すと全日程が見えます。",
+        swapRoute: "方向を入れ替える",
         noMoreToday: "本日のこの区間の便は終了しました。全日程を表示しています。",
         dataStale: "データ更新が必要な可能性",
         tripCount: "{n}便", nextBus: "次のバス", operatorLegend: "運行会社",
@@ -268,7 +287,12 @@
         pdfViewer: "公式時刻表 PDF", expandable: "展開可",
         pdfJa: "日本語 PDF", pdfEn: "English PDF",
         pdfFullscreen: "全画面", pdfExitFullscreen: "終了", pdfOpenNew: "新しいタブ",
-        pdfHint: "ピンチまたは +/- で拡大 · 表示できない場合は新しいタブで開く",
+        pdfOpenPrimary: "公式 PDF を開く",
+        pdfMobileLead: "スマホではブラウザで PDF を開くと、ピンチ拡大・スクロールが快適です。",
+        pdfHint: "ビューア内でスクロール · +/- で拡大 · 表示できない場合は新しいタブ",
+        pdfHintMobile: "上のボタンから公式 PDF を開いてください（読み込みが速く、ピンチ操作できます）",
+        pdfLoading: "読み込み中…",
+        pdfSlowHint: "表示されない場合は新しいタブで開いてください。",
         pdfMatsubanda: "まつばんだ交通 PDF", pageNotice: "観光協会 交通ページ",
         serviceStatus: "当日運行状況", passLink: "ゆったり満喫乗車券",
         arakawaXTitle: "荒川登山バス運行状況（公式 X）",
@@ -280,7 +304,7 @@
         pdfFare: "運賃表 PDF", pdfFareEn: "Fare table PDF (EN)",
       },
       zh: {
-        navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "Yakushima Bus", sub: "屋久岛公交查询", presets: "常用区间",
+        navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "屋久岛公交", sub: "屋久岛公交查询", presets: "常用区间",
         swapped: "已交换出发与到达",
         from: "出发", to: "到达", weekday: "工作日", saturday: "周六",         sunday: "周日·节假日",
         tzLabel: "日本时间 (JST)", arriveEta: "到站 {time}",
@@ -293,6 +317,14 @@
         valid: "有效", updated: "更新", stopCount: "共 {n} 站", arrive: "到达", dest: "终点",
         sameStop: "请选择不同的出发站和到达站",
         noTrips: "没有找到班次", noTripsHint: "试试切换日期类型或查看官方PDF",
+        noTripsReverse: "这个方向没有直达班次",
+        noTripsReverseHint: "反向 {from} → {to} 有 {n} 班。",
+        noTripsDayType: "所选日种（工作日/周六/日祝）此区间无班次",
+        noTripsDayTypeHint: "可切换上方日种标签，或查看官方 PDF。",
+        noTripsNoRoute: "数据中未找到此区间的直达车",
+        noTripsUpcoming: "当前时间之后没有班次",
+        noTripsUpcomingHint: "今日末班 {time} 已发。「只看之后」取消勾选可查看全天。",
+        swapRoute: "交换出发与到达",
         noMoreToday: "今日此区间班次已结束，已显示全天时刻。",
         dataStale: "数据可能需更新",
         tripCount: "{n}班", nextBus: "下一班", operatorLegend: "运营公司",
@@ -304,7 +336,12 @@
         pdfViewer: "官方时刻表 PDF", expandable: "可展开",
         pdfJa: "日文 PDF", pdfEn: "英文 PDF",
         pdfFullscreen: "全屏", pdfExitFullscreen: "退出全屏", pdfOpenNew: "新窗口打开",
-        pdfHint: "双指或 +/- 缩放 · 若无法显示请新窗口打开",
+        pdfOpenPrimary: "打开官方 PDF",
+        pdfMobileLead: "手机端建议在系统浏览器打开 PDF，双指缩放和滑动更流畅，加载也更快。",
+        pdfHint: "在预览框内滚动 · 用 +/- 缩放 · 无法显示请新窗口打开",
+        pdfHintMobile: "请点上方按钮打开官方 PDF（加载更快，支持双指缩放）",
+        pdfLoading: "加载中…",
+        pdfSlowHint: "若显示空白，请用新窗口打开。",
         pdfMatsubanda: "松ばんだ交通 PDF", pageNotice: "观光协会交通页",
         serviceStatus: "当日运行状况", passLink: "悠享乘车券",
         arakawaXTitle: "荒川登山巴士运行状况（官方 X）",
@@ -329,6 +366,14 @@
         valid: "Valid", updated: "Updated", stopCount: "{n} stops", arrive: "Arrive", dest: "Destination",
         sameStop: "Pick different origin and destination",
         noTrips: "No buses found", noTripsHint: "Try another day type or check the official PDF",
+        noTripsReverse: "No direct buses in this direction",
+        noTripsReverseHint: "Reverse {from} → {to} has {n} trip(s).",
+        noTripsDayType: "No buses on this route for the selected day type",
+        noTripsDayTypeHint: "Try Sat / Sun & holidays tabs, or check the official PDF.",
+        noTripsNoRoute: "No direct route found in our timetable data",
+        noTripsUpcoming: "No later buses today",
+        noTripsUpcomingHint: "Last bus today departs at {time}. Uncheck “upcoming only” to see the full day.",
+        swapRoute: "Swap origin & destination",
         noMoreToday: "No more buses today on this route. Showing the full day.",
         dataStale: "Data may need refresh",
         tripCount: "{n} trips", nextBus: "Next bus", operatorLegend: "Operators",
@@ -340,7 +385,12 @@
         pdfViewer: "Official timetable PDF", expandable: "Expand",
         pdfJa: "Japanese PDF", pdfEn: "English PDF",
         pdfFullscreen: "Fullscreen", pdfExitFullscreen: "Exit", pdfOpenNew: "Open in new tab",
-        pdfHint: "Pinch or +/- to zoom · open in new tab if blank",
+        pdfOpenPrimary: "Open official PDF",
+        pdfMobileLead: "On phones, open the PDF in your browser for smooth pinch-zoom and scrolling.",
+        pdfHint: "Scroll inside the viewer · +/- to zoom · open in new tab if blank",
+        pdfHintMobile: "Use the button above to open the official PDF (faster load, native pinch-zoom)",
+        pdfLoading: "Loading…",
+        pdfSlowHint: "If blank, open in a new tab.",
         pdfMatsubanda: "Matsubanda PDF", pageNotice: "Transit info page",
         serviceStatus: "Today's service status", passLink: "Day pass info",
         arakawaXTitle: "Arakawa bus status (official X)",
@@ -371,7 +421,6 @@
 
     const els = {
       appTitle: document.getElementById("appTitle"),
-      appSub: document.getElementById("appSub"),
       appToast: document.getElementById("appToast"),
       langSwitch: document.getElementById("langSwitch"),
       liveClockTime: document.getElementById("liveClockTime"),
@@ -404,6 +453,9 @@
       disclaimer: document.getElementById("disclaimer"),
       timetablePdfPanel: document.getElementById("timetablePdfPanel"),
       ttPdfLangTabs: document.getElementById("ttPdfLangTabs"),
+      ttPdfFallback: document.getElementById("ttPdfFallback"),
+      ttPdfOpenPrimary: document.getElementById("ttPdfOpenPrimary"),
+      ttPdfFallbackName: document.getElementById("ttPdfFallbackName"),
       ttPdfStage: document.getElementById("ttPdfStage"),
       ttPdfEmbed: document.getElementById("ttPdfEmbed"),
       ttPdfViewport: document.getElementById("ttPdfViewport"),
@@ -412,6 +464,8 @@
       ttPdfZoomReset: document.getElementById("ttPdfZoomReset"),
       ttPdfFullscreen: document.getElementById("ttPdfFullscreen"),
       ttPdfOpenNew: document.getElementById("ttPdfOpenNew"),
+      ttPdfLoading: document.getElementById("ttPdfLoading"),
+      ttPdfSlowHint: document.getElementById("ttPdfSlowHint"),
       ttPdfSourceNote: document.getElementById("ttPdfSourceNote"),
     };
 
@@ -504,15 +558,16 @@
 
     function initMeta() {
       const m = BUS_DATA.meta;
-      const chips = [
-        `<span class="chip">${t("valid")} ${m.validFrom}–${m.validTo}</span>`,
-        `<span class="chip">${t("updated")} ${m.updatedAt}</span>`,
-        `<span class="chip">${t("stopCount").replace("{n}", Object.keys(BUS_DATA.stops).length)}</span>`,
+      const n = Object.keys(BUS_DATA.stops).length;
+      const parts = [
+        `${t("valid")} ${m.validFrom}–${m.validTo}`,
+        `${t("updated")} ${m.updatedAt}`,
+        t("stopCount").replace("{n}", n),
       ];
       if (META_DATA?.warnings?.length) {
-        chips.push(`<span class="chip chip-warn" title="${META_DATA.warnings.join(" · ")}">${t("dataStale")}</span>`);
+        parts.push(`<span class="meta-warn">${t("dataStale")}</span>`);
       }
-      els.metaBar.innerHTML = chips.join("");
+      els.metaBar.innerHTML = parts.join('<span class="meta-sep" aria-hidden="true">·</span>');
     }
 
     function findTrips(from, to, dayType) {
@@ -533,6 +588,56 @@
         }
       }
       return found.sort((a, b) => parseMinutes(a.dep) - parseMinutes(b.dep));
+    }
+
+    function explainEmpty(from, to, dayType, allTrips, trips, upcoming, refMins) {
+      const reverse = findTrips(to, from, dayType);
+      const otherDay = ["weekday", "saturday", "sunday_holiday"]
+        .filter((d) => d !== dayType)
+        .some((d) => findTrips(from, to, d).length);
+
+      if (allTrips.length && upcoming && refMins != null && !trips.length) {
+        const last = allTrips[allTrips.length - 1];
+        return {
+          title: t("noTripsUpcoming"),
+          hint: t("noTripsUpcomingHint", { time: last.dep }),
+          action: null,
+        };
+      }
+      if (reverse.length) {
+        return {
+          title: t("noTripsReverse"),
+          hint: t("noTripsReverseHint", {
+            n: reverse.length,
+            from: stopName(to),
+            to: stopName(from),
+          }),
+          action: "swap",
+        };
+      }
+      if (otherDay) {
+        return {
+          title: t("noTripsDayType"),
+          hint: t("noTripsDayTypeHint"),
+          action: null,
+        };
+      }
+      return {
+        title: t("noTripsNoRoute"),
+        hint: t("noTripsHint"),
+        action: null,
+      };
+    }
+
+    function renderEmptyHtml(info) {
+      const btn = info.action === "swap"
+        ? `<button type="button" class="empty-action" data-empty-swap>${t("swapRoute")}</button>`
+        : "";
+      return `<div class="empty">
+        <p class="empty-title">${info.title}</p>
+        <small>${info.hint}</small>
+        ${btn}
+      </div>`;
     }
 
     function tripTags(item) {
@@ -710,11 +815,18 @@
         return;
       }
       if (!trips.length) {
-        els.resultsNotice.hidden = true;
+        const empty = explainEmpty(from, to, selectedDay, allTrips, trips, upcoming, refMins);
         els.resultsCount.textContent = "";
-        els.results.innerHTML = `<div class="empty">${t("noTrips")}<br><small>${t("noTripsHint")}</small></div>`;
-        els.nextBar.classList.remove("show");
-        els.nextBarWrap.classList.remove("has-next");
+        els.results.innerHTML = renderEmptyHtml(empty);
+        els.results.querySelector("[data-empty-swap]")?.addEventListener("click", () => {
+          els.swapBtn.click();
+        });
+        if (!allTrips.length) {
+          els.nextBar.classList.remove("show");
+          els.nextBarWrap.classList.remove("has-next");
+        } else {
+          updateNextBar(allTrips, refMins);
+        }
         return;
       }
 
@@ -759,7 +871,6 @@
       AppCore.setLang(lang);
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
       els.appTitle.textContent = t("title");
-      els.appSub.textContent = t("sub");
       els.liveClockTime.title = lang === "zh" ? "日本时间 (JST)" : "JST";
       document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
       ttPdfFsCtl?.sync();
@@ -784,19 +895,33 @@
       return ttPdfLang === "en" ? s.taneyakuEn : s.taneyaku;
     }
 
-    function pdfInlineSrc(url) {
-      return `${url.split("#")[0]}#toolbar=0&navpanes=0&view=FitH`;
-    }
-
     function initTimetablePdf() {
       const url = ttPdfUrl();
-      els.ttPdfEmbed.src = pdfInlineSrc(url);
       els.ttPdfOpenNew.href = url;
+      els.ttPdfOpenPrimary.href = url;
+      els.ttPdfFallbackName.textContent = url.split("/").pop();
       els.ttPdfSourceNote.innerHTML = `${t("pdfTaneyaku")} · <a href="${url}" target="_blank" rel="noopener">${url.split("/").pop()}</a>`;
       els.ttPdfLangTabs.querySelectorAll("button").forEach((b) =>
         b.classList.toggle("active", b.dataset.pdfLang === ttPdfLang)
       );
-      ttPdfZoomCtl?.reset();
+      if (preferNativePdf()) {
+        els.ttPdfStage.hidden = true;
+        els.ttPdfFallback.hidden = false;
+        els.ttPdfEmbed.removeAttribute("src");
+        if (els.ttPdfLoading) els.ttPdfLoading.hidden = true;
+      } else {
+        els.ttPdfStage.hidden = false;
+        els.ttPdfFallback.hidden = true;
+        initPdfViewer({
+          embed: els.ttPdfEmbed,
+          url,
+          loadingEl: els.ttPdfLoading,
+          slowHintEl: els.ttPdfSlowHint,
+          loadingText: t("pdfLoading"),
+          slowText: t("pdfSlowHint"),
+          resetZoom: () => ttPdfZoomCtl?.reset(),
+        });
+      }
       ttPdfLoaded = true;
     }
 
@@ -811,7 +936,7 @@
         localStorage.setItem("yakushima-bus-tt-pdf-lang", ttPdfLang);
         if (ttPdfLoaded || els.timetablePdfPanel.open) initTimetablePdf();
       });
-      if (!ttPdfZoomCtl) {
+      if (!ttPdfZoomCtl && !preferNativePdf()) {
         ttPdfZoomCtl = bindPdfZoom({
           viewport: els.ttPdfViewport,
           embed: els.ttPdfEmbed,
@@ -820,7 +945,7 @@
           zoomReset: els.ttPdfZoomReset,
         });
       }
-      ttPdfFsCtl = bindPdfFullscreen({
+      ttPdfFsCtl = preferNativePdf() ? null : bindPdfFullscreen({
         stage: els.ttPdfStage,
         toggleBtn: els.ttPdfFullscreen,
         getLabel: (mode) => t(mode === "exit" ? "pdfExitFullscreen" : "pdfFullscreen"),
@@ -890,10 +1015,10 @@
     initDayTabs();
     setLiveClock();
     bindEvents();
-    bindTtPdfEvents();
     const urlParams = new URLSearchParams(location.search);
     if (urlParams.get("lang")) lang = urlParams.get("lang");
     applyI18n();
+    bindTtPdfEvents();
     if (urlParams.get("from")) fromPicker.setValue(urlParams.get("from"), false);
     if (urlParams.get("to")) toPicker.setValue(urlParams.get("to"), false);
     renderResults();
