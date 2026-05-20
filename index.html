@@ -5,9 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="屋久島バス時刻表・次のバス検索。宮之浦港・安房・白谷・荒川など全路線。公式PDF準拠。日中英三语。">
   <meta name="keywords" content="屋久島,バス,時刻表,屋久岛,公交,Yakushima,bus,timetable,Miyanoura">
-  <meta name="author" content="Yakushima Bus Now">
+  <meta name="author" content="Yakushima Bus">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#143a35">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+  <link rel="manifest" href="/site.webmanifest">
   <meta name="geo.region" content="JP-46">
   <meta name="geo.placename" content="Yakushima, Kagoshima, Japan">
   <meta name="ICBM" content="30.4286, 130.6694">
@@ -17,23 +24,28 @@
   <link rel="alternate" hreflang="en" href="https://yakushimabus.com/?lang=en">
   <link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Yakushima Bus Now">
-  <meta property="og:title" content="屋久岛公交即时查询 | Yakushima Bus Timetable">
+  <meta property="og:site_name" content="Yakushima Bus">
+  <meta property="og:title" content="Yakushima Bus | 屋久岛公交查询 | 屋久島バス時刻表">
   <meta property="og:description" content="Next bus, route search, official timetables. Trilingual tool for Yakushima Island travelers.">
   <meta property="og:url" content="https://yakushimabus.com/">
+  <meta property="og:image" content="https://yakushimabus.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Yakushima Bus — 屋久岛公交时刻表 · 屋久島バス時刻表">
   <meta property="og:locale" content="ja_JP">
   <meta property="og:locale:alternate" content="zh_CN">
   <meta property="og:locale:alternate" content="en_US">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Yakushima Bus Now">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Yakushima Bus">
   <meta name="twitter:description" content="屋久岛公交时刻表 · 查下一班 · 日中英">
-  <title>屋久岛公交即时查询 | 屋久島バス時刻表 | Yakushima Bus</title>
+  <meta name="twitter:image" content="https://yakushimabus.com/og-image.png">
+  <title>Yakushima Bus | 屋久岛公交查询 | 屋久島バス時刻表</title>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Yakushima Bus Now",
-    "alternateName": ["屋久岛公交即时查询", "屋久島バス", "Yakushima Bus Timetable"],
+    "name": "Yakushima Bus",
+    "alternateName": ["屋久岛公交查询", "屋久島バス", "yakushimabus.com"],
     "url": "https://yakushimabus.com/",
     "applicationCategory": "TravelApplication",
     "operatingSystem": "Any",
@@ -231,7 +243,7 @@
   <script>
     const UI = {
       ja: {
-        navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "屋久島バス", sub: "屋久島バス リアルタイム検索", presets: "よく使う区間",
+        navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "Yakushima Bus", sub: "屋久島バス時刻表", presets: "よく使う区間",
         swapped: "出発と到着を入れ替えました",
         from: "出発", to: "到着", weekday: "平日", saturday: "土曜",         sunday: "日祝",
         tzLabel: "日本時間 (JST)", arriveEta: "着 {time}",
@@ -267,7 +279,7 @@
         pdfFare: "運賃表 PDF", pdfFareEn: "Fare table PDF (EN)",
       },
       zh: {
-        navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "屋久岛公交", sub: "屋久岛公交即时查询", presets: "常用区间",
+        navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "Yakushima Bus", sub: "屋久岛公交查询", presets: "常用区间",
         swapped: "已交换出发与到达",
         from: "出发", to: "到达", weekday: "工作日", saturday: "周六",         sunday: "周日·节假日",
         tzLabel: "日本时间 (JST)", arriveEta: "到站 {time}",
@@ -303,7 +315,7 @@
         pdfFare: "运价表 PDF", pdfFareEn: "运价表 PDF（英文）",
       },
       en: {
-        navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access", navAbout: "About", title: "Yakushima Bus", sub: "Yakushima Bus Now", presets: "Quick routes",
+        navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access", navAbout: "About", title: "Yakushima Bus", sub: "Yakushima Bus Timetable", presets: "Quick routes",
         swapped: "Origin and destination swapped",
         from: "From", to: "To", weekday: "Weekday", saturday: "Sat",         sunday: "Sun & holidays",
         tzLabel: "Japan time (JST)", arriveEta: "Arr. {time}",

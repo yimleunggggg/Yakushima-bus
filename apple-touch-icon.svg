@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180" role="img" aria-label="Yakushima Bus">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a4a42"/>
+      <stop offset="100%" stop-color="#143a35"/>
+    </linearGradient>
+    <linearGradient id="peak" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a9a88"/>
+      <stop offset="100%" stop-color="#24584d"/>
+    </linearGradient>
+    <linearGradient id="mist" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2f8c7a" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#2f8c7a" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#2f8c7a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="180" height="180" rx="40" fill="url(#sky)"/>
+  <path d="M0 118 Q45 108 90 116 T180 118 V180 H0Z" fill="#24584d" opacity="0.5"/>
+  <path d="M0 128 Q55 118 90 126 T180 128 V180 H0Z" fill="url(#mist)"/>
+  <path d="M12 132 L58 68 88 132Z" fill="#1e4f46" opacity="0.95"/>
+  <path d="M52 132 L92 28 132 132Z" fill="url(#peak)"/>
+  <path d="M92 28 L84 52 L100 44Z" fill="#dcece6" opacity="0.78"/>
+  <path d="M0 133 C22 129 44 135 66 131 C88 127 110 134 132 130 C154 126 166 132 180 129" fill="none" stroke="#8f9a3a" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/>
+  <g transform="translate(128 46)" opacity="0.55">
+    <circle r="14" fill="none" stroke="#2f8c7a" stroke-width="1.2"/>
+    <circle r="9" fill="none" stroke="#24584d" stroke-width="1.1"/>
+    <circle r="4.5" fill="none" stroke="#dcece6" stroke-width="1"/>
+  </g>
+</svg>

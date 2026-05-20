@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Yakushima Bus">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f2e29"/>
+      <stop offset="45%" stop-color="#143a35"/>
+      <stop offset="100%" stop-color="#1f5248"/>
+    </linearGradient>
+    <linearGradient id="peak" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4aad98"/>
+      <stop offset="100%" stop-color="#24584d"/>
+    </linearGradient>
+    <linearGradient id="mist" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#5a8299" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#5a8299" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#5a8299" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="topo" width="120" height="120" patternUnits="userSpaceOnUse">
+      <path d="M0 60 Q30 40 60 60 T120 60" fill="none" stroke="#2f8c7a" stroke-width="0.6" opacity="0.12"/>
+      <path d="M0 90 Q30 70 60 90 T120 90" fill="none" stroke="#2f8c7a" stroke-width="0.6" opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#topo)"/>
+
+  <!-- landscape mark -->
+  <g transform="translate(0 0)">
+    <path d="M0 420 Q200 380 400 410 T800 400 T1200 420 V630 H0Z" fill="#1a4038" opacity="0.45"/>
+    <path d="M0 460 Q180 430 360 450 T720 440 T1200 455 V630 H0Z" fill="url(#mist)"/>
+    <path d="M120 470 L280 220 L380 470Z" fill="#1e4f46" opacity="0.85"/>
+    <path d="M300 470 L480 120 L660 470Z" fill="url(#peak)"/>
+    <path d="M480 120 L440 210 L520 185Z" fill="#dcece6" opacity="0.82"/>
+    <path d="M520 470 L680 260 L820 470Z" fill="#24584d" opacity="0.72"/>
+    <path d="M0 472 C120 458 240 482 360 468 C480 454 600 478 720 464 C840 450 960 474 1080 460 C1140 453 1170 466 1200 461" fill="none" stroke="#8f9a3a" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+  </g>
+
+  <!-- cedar rings accent -->
+  <g transform="translate(248 318)" opacity="0.92">
+    <circle r="88" fill="none" stroke="#2f8c7a" stroke-width="1.8" opacity="0.35"/>
+    <circle r="60" fill="none" stroke="#24584d" stroke-width="2" opacity="0.55"/>
+    <circle r="34" fill="none" stroke="#dcece6" stroke-width="2.2" opacity="0.85"/>
+    <circle r="12" fill="none" stroke="#dcece6" stroke-width="1.6" opacity="0.7"/>
+  </g>
+
+  <text x="520" y="248" fill="#fffdf8" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="68" font-weight="700" letter-spacing="-0.5">Yakushima Bus</text>
+  <text x="520" y="308" fill="#dcece6" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="28" font-weight="500" letter-spacing="0.2">&#23627;&#20037;&#23798;&#12496;&#12473;&#26178;&#21051;&#34920; &#183; &#23627;&#20037;&#23707;&#20844;&#20132;&#26597;&#35810;</text>
+  <text x="520" y="358" fill="#8f9a3a" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="24" font-weight="500" letter-spacing="0.15">Bus times &#183; Routes &#183; Fares</text>
+  <line x1="520" y1="388" x2="680" y2="388" stroke="#2f8c7a" stroke-width="2" opacity="0.5"/>
+  <text x="520" y="548" fill="#5a8299" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" letter-spacing="0.08">yakushimabus.com</text>
+</svg>
