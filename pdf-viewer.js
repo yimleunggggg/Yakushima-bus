@@ -11,6 +11,38 @@
       "/assets/pdf/yakushimabus-map-unchin-en.pdf",
   };
 
+  /** 移动端内嵌预览（由 PDF 导出，每页一张） */
+  const PDF_PREVIEW = {
+    "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin.pdf": [
+      "/assets/pdf-preview/yakushimabus-map-unchin-1.jpg",
+      "/assets/pdf-preview/yakushimabus-map-unchin-2.jpg",
+    ],
+    "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin-en.pdf": [
+      "/assets/pdf-preview/yakushimabus-map-unchin-en-1.jpg",
+      "/assets/pdf-preview/yakushimabus-map-unchin-en-2.jpg",
+    ],
+  };
+
+  global.pdfPreviewPages = function (url) {
+    const clean = String(url || "").split("#")[0];
+    return PDF_PREVIEW[clean] || [];
+  };
+
+  global.renderPdfMobilePreview = function (container, url) {
+    if (!container) return false;
+    const pages = global.pdfPreviewPages(url);
+    if (!pages.length) {
+      container.innerHTML = "";
+      container.hidden = true;
+      return false;
+    }
+    container.hidden = false;
+    container.innerHTML = pages.map((src, i) =>
+      `<img src="${src}" alt="" class="pdf-mobile-page" loading="${i ? "lazy" : "eager"}" decoding="async">`
+    ).join("");
+    return true;
+  };
+
   global.preferNativePdf = function () {
     return global.AppCore?.preferNativePdf?.()
       ?? global.matchMedia("(hover: none) and (pointer: coarse)").matches;

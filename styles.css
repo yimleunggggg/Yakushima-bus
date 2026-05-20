@@ -697,16 +697,43 @@ input[type="time"] {
 .pdf-fallback {
   border: 1px solid var(--border); border-radius: var(--radius);
   background: linear-gradient(165deg, var(--surface-tint), var(--surface));
-  padding: 18px 14px; text-align: center;
+  padding: 12px 12px 14px;
+}
+.pdf-mobile-pages {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: #fff;
+}
+.pdf-mobile-page {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: top;
 }
 .pdf-fallback-lead {
-  margin: 0 0 12px; font-size: 0.8125rem; line-height: 1.55; color: var(--muted);
+  margin: 0 0 10px; font-size: 0.8125rem; line-height: 1.55; color: var(--muted);
 }
 .pdf-fallback-btn {
   display: flex; align-items: center; justify-content: center; width: 100%;
   padding: 12px 16px; border-radius: var(--radius-sm);
   background: var(--primary); color: #fff; font-size: 0.9375rem; font-weight: 600;
   text-decoration: none; touch-action: manipulation;
+}
+.pdf-fallback-btn-secondary {
+  background: transparent;
+  color: var(--primary-dark);
+  border: 1px solid var(--border);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 9px 12px;
+}
+.pdf-fallback-btn-secondary:active {
+  background: var(--surface-tint);
 }
 .pdf-fallback-btn:active { background: var(--primary-dark); }
 .pdf-fallback-name {

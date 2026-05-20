@@ -38,7 +38,7 @@
     "about": { "@type": "Place", "name": "Yakushima Island", "addressCountry": "JP" }
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=desktop-v4">
+  <link rel="stylesheet" href="/styles.css?v=desktop-v6">
   <script src="/analytics.js"></script>
 </head>
 <body>
@@ -70,8 +70,9 @@
           <button type="button" data-pdf-lang="en" data-i18n="pdfEn">English PDF</button>
         </div>
         <div class="pdf-fallback" id="pdfFallback" hidden>
-          <p class="pdf-fallback-lead" data-i18n="pdfMobileLead">スマホではブラウザで PDF を開くと、ピンチ拡大・スクロールが快適です。</p>
-          <a class="pdf-fallback-btn" id="pdfOpenPrimary" href="#" target="_blank" rel="noopener" data-i18n="pdfOpenPrimary">公式 PDF を開く</a>
+          <div class="pdf-mobile-pages" id="pdfMobilePages"></div>
+          <p class="pdf-fallback-lead" data-i18n="pdfMobileImgLead">路線図は下の画像で確認できます。ページ全体をピンチで拡大できます。</p>
+          <a class="pdf-fallback-btn pdf-fallback-btn-secondary" id="pdfOpenPrimary" href="#" target="_blank" rel="noopener" data-i18n="pdfOpenPrimary">公式 PDF を開く</a>
           <span class="pdf-fallback-name" id="pdfFallbackName"></span>
         </div>
         <div class="pdf-stage" id="pdfStage">
@@ -90,7 +91,7 @@
         </div>
         <p class="pdf-slow-hint" id="pdfSlowHint" hidden data-i18n="pdfSlowHint">English PDF may load slowly — open in new tab if blank.</p>
         <p class="map-hint pdf-hint-desktop" data-i18n="pdfHint">ビューア内でスクロール · +/- で拡大 · 表示できない場合は新しいタブ</p>
-        <p class="map-hint pdf-hint-mobile" data-i18n="pdfHintMobile">上のボタンから公式 PDF を開いてください（読み込みが速く、ピンチ操作できます）</p>
+        <p class="map-hint pdf-hint-mobile" data-i18n="pdfHintMobile">下の画像で路線図を確認 · 必要なら PDF リンク</p>
         <p class="pdf-source" id="pdfSourceNote"></p>
       </div>
     </div>
@@ -197,7 +198,7 @@
   <script src="/operator-ui.js"></script>
   <script src="/stop-picker.js?v=picker-v2"></script>
   <script src="/pdf-fullscreen.js"></script>
-  <script src="/pdf-viewer.js?v=pdf-pan-v1"></script>
+  <script src="/pdf-viewer.js?v=pdf-preview-v1"></script>
   <script>
     const UI = {
       ja: {
@@ -215,8 +216,9 @@
         pdfFullscreen: "全画面", pdfExitFullscreen: "終了", pdfOpenNew: "新しいタブ",
         pdfOpenPrimary: "公式 PDF を開く",
         pdfMobileLead: "スマホではブラウザで PDF を開くと、ピンチ拡大・スクロールが快適です。",
+        pdfMobileImgLead: "路線図は下の画像で確認できます。ページ全体をピンチで拡大できます。",
         pdfHint: "ビューア内でスクロール · +/- で拡大 · 表示できない場合は新しいタブ",
-        pdfHintMobile: "上のボタンから公式 PDF を開いてください（読み込みが速く、ピンチ操作できます）",
+        pdfHintMobile: "下の画像で路線図を確認 · 必要なら PDF リンク",
         pdfSourceNote: "公式 PDF を直接読み込み（更新は公式と同期）",
         yen: "円", noFare: "区間データなし（公式PDF参照）", sameStop: "異なる停留所を選んでください",
         fareEstimate: "目安（主要停留所区間）",
@@ -238,8 +240,9 @@
         pdfFullscreen: "全屏", pdfExitFullscreen: "退出全屏", pdfOpenNew: "新窗口打开",
         pdfOpenPrimary: "打开官方 PDF",
         pdfMobileLead: "手机端建议在系统浏览器打开 PDF，双指缩放和滑动更流畅，加载也更快。",
+        pdfMobileImgLead: "路线图见下方图片，可双指缩放页面查看细节。",
         pdfHint: "在预览框内滚动 · 用 +/- 缩放 · 无法显示请新窗口打开",
-        pdfHintMobile: "请点上方按钮打开官方 PDF（加载更快，支持双指缩放）",
+        pdfHintMobile: "见下方路线图图片 · 需要可点 PDF 链接",
         pdfSourceNote: "直接加载官方 PDF 原址，官网更新后此处同步",
         yen: "日元", noFare: "暂无该区间的数据（见官方 PDF）", sameStop: "请选择不同的站点",
         fareEstimate: "预估（主要站点区间）",
@@ -261,8 +264,9 @@
         pdfFullscreen: "Fullscreen", pdfExitFullscreen: "Exit", pdfOpenNew: "Open in new tab",
         pdfOpenPrimary: "Open official PDF",
         pdfMobileLead: "On phones, open the PDF in your browser for smooth pinch-zoom and scrolling.",
+        pdfMobileImgLead: "Route map is shown below as images — pinch the page to zoom in.",
         pdfHint: "Scroll inside the viewer · +/- to zoom · open in new tab if blank",
-        pdfHintMobile: "Use the button above to open the official PDF (faster load, native pinch-zoom)",
+        pdfHintMobile: "Route map images below · PDF link if needed",
         pdfSourceNote: "Loads the official PDF URL directly — updates when the source updates",
         yen: "yen", noFare: "No fare data (see official PDF)", sameStop: "Pick different stops",
         fareEstimate: "Estimate (major stops)",
@@ -313,6 +317,7 @@
       appTitle: document.getElementById("appTitle"),
       pdfStage: document.getElementById("pdfStage"),
       pdfFallback: document.getElementById("pdfFallback"),
+      pdfMobilePages: document.getElementById("pdfMobilePages"),
       pdfOpenPrimary: document.getElementById("pdfOpenPrimary"),
       pdfFallbackName: document.getElementById("pdfFallbackName"),
       pdfEmbed: document.getElementById("pdfEmbed"),
@@ -439,6 +444,7 @@
       if (preferNativePdf()) {
         els.pdfStage.hidden = true;
         els.pdfFallback.hidden = false;
+        renderPdfMobilePreview(els.pdfMobilePages, pdfUrl());
         els.pdfEmbed.removeAttribute("src");
         els.pdfLoading.hidden = true;
         return;
