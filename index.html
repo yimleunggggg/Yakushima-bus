@@ -66,9 +66,9 @@
 <body>
   <div class="app">
     <nav class="nav nav-main">
-      <a href="index.html" class="active" data-i18n="navTime">時刻表</a>
-      <a href="map.html" data-i18n="navMap">路線図</a>
-      <a href="access.html" data-i18n="navAccess">上島</a>
+      <a href="/" class="active" data-i18n="navTime">時刻表</a>
+      <a href="/map/" data-i18n="navMap">路線図</a>
+      <a href="/access/" data-i18n="navAccess">上島</a>
     </nav>
     <header class="header header-compact">
       <div class="header-main">
@@ -228,7 +228,7 @@
     </div>
 
     <footer class="app-footer">
-      <a href="about.html" data-i18n="navAbout">このサイトについて</a>
+      <a href="/about/" data-i18n="navAbout">このサイトについて</a>
     </footer>
   </div>
 
@@ -489,7 +489,7 @@
         `<a href="${s.fareEn || "#"}" target="_blank" rel="noopener">${t("pdfFareEn")}</a>`,
         `<a href="${s.serviceStatus}" target="_blank" rel="noopener">${t("serviceStatus")}</a>`,
         `<a href="${s.arakawaX || "https://x.com/yakusansharyou"}" target="_blank" rel="noopener">${t("arakawaXTitle")}</a>`,
-        `<a href="map.html">${t("passLink")}</a>`,
+        `<a href="/map/">${t("passLink")}</a>`,
         `<a href="${s.notice}" target="_blank" rel="noopener">${t("pageNotice")}</a>`,
         `<a href="tel:${p.taneyaku}">${BUS_DATA.operators.taneyaku.ja} ${p.taneyaku}</a>`,
         `<a href="tel:${p.matsubanda}">${BUS_DATA.operators.matsubanda?.ja || "まつばんだ"} ${p.matsubanda}</a>`,

@@ -10,17 +10,17 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://yakushimabus.com/map.html</loc>
+    <loc>https://yakushimabus.com/map/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yakushimabus.com/access.html</loc>
+    <loc>https://yakushimabus.com/access/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yakushimabus.com/about.html</loc>
+    <loc>https://yakushimabus.com/about/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
