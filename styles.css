@@ -951,6 +951,14 @@ body.modal-open {
   border-color: var(--rain);
   background: color-mix(in srgb, var(--rain) 14%, var(--surface));
 }
+.aux-body-scroll {
+  max-height: min(280px, 42vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 12px;
+}
+.arakawa-status-body .arakawa-status-link { margin-bottom: 2px; }
 .aux-block.pdf-panel > .aux-summary { color: var(--primary-dark); }
 .aux-block.pdf-panel > .aux-summary .expand-badge { margin-left: auto; margin-right: 6px; }
 .aux-body { padding: 0 12px 14px; }

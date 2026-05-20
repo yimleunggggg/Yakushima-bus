@@ -60,7 +60,7 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
-  <link rel="stylesheet" href="styles.css?v=desktop-v4">
+  <link rel="stylesheet" href="styles.css?v=desktop-v5">
   <script src="analytics.js"></script>
 </head>
 <body>
@@ -179,7 +179,7 @@
         <span data-i18n="arakawaXTitle">荒川登山バス運行状況（公式 X）</span>
         <span class="aux-chevron" aria-hidden="true"></span>
       </summary>
-      <div class="aux-body">
+      <div class="aux-body aux-body-scroll arakawa-status-body">
         <p class="arakawa-status-note" data-i18n="arakawaXNote">当日の運休・遅延は公式 X で速報されます（3～11月）。</p>
         <a class="arakawa-status-link" id="arakawaXLink" href="https://x.com/yakusansharyou" target="_blank" rel="noopener noreferrer">@yakusansharyou</a>
       </div>
@@ -221,14 +221,14 @@
       </div>
     </details>
 
-    <details class="aux-block">
+    <details class="aux-block" open>
       <summary class="aux-summary"><span data-i18n="travelTips">乗車のポイント</span><span class="aux-chevron" aria-hidden="true"></span></summary>
       <div class="aux-body">
         <div class="info-grid" id="infoGrid"></div>
       </div>
     </details>
 
-    <details class="aux-block">
+    <details class="aux-block" open>
       <summary class="aux-summary"><span data-i18n="sources">公式情報</span><span class="aux-chevron" aria-hidden="true"></span></summary>
       <div class="aux-body">
         <div class="links" id="sourceLinks"></div>
