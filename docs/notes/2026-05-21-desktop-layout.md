@@ -1,13 +1,15 @@
-# PC 双栏布局（2026-05-21）
+# PC 布局（2026-05-21，已回滚双栏）
 
 ## 决策
-- 移动端（<768px）样式与 DOM 顺序不变
-- PC（≥768px）通过 `@media (min-width: 768px)` 启用双栏
+- **PC 与移动端同列排版**，不再使用 ≥768px 双栏 grid
+- 出发/到达仍保持左右并排（`route-row` / `fare-form` 不变）
+- 地图页：查询工具在上、PDF 在下（`flex` + `order`，全端一致）
 
 ## 实现
-- **时刻表**：左栏 sticky 控件；右栏班次列表；**aux 全宽在双栏下方**（非左栏内嵌）
-- **路线图**：`map-layout-primary`（PDF）+ `map-layout-secondary`（站点/运价/乘车券）
-- **上岛/关于**：仅容器加宽至 720px（`app-page-narrow`）
+- 删除 `@media (min-width:768px)` 内 `.panel:has(.panel-grid)` 双栏与 `.map-layout` 左右分栏
+- 新增 `.panel-grid { flex-direction: column }` 兜底
+- PC 仅加宽至 **1040px**（`@media min-width:768px`），全站一致；**不再**对 `app-page-narrow` 单独 720px
+- 移动端（<768px）仍为 `--app-width: 560px`，字号/间距规则未改
 
 ## 缓存
-`styles.css?v=desktop-v4`
+全站 `styles.css?v=layout-v10`

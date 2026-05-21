@@ -12,5 +12,7 @@
 - `pdf-viewer.js` — `PDF_PREVIEW` / `renderPdfMobilePreview`
 - `map/index.html` / `styles.css`
 
-## 待办
-时刻表 PDF 页数多，暂不导出；若需要可只做首页缩略图。
+## 时刻表 PDF（2026-05-21 补充）
+- 日/英各 1 页 JPG → `assets/pdf-preview/taneyakubus-timetable-*-1.jpg`
+- 首页 `/` 与 `/map/` 触屏均内嵌 JPG，次要「打开 PDF」链接
+- 修复：触屏 CSS 曾 `display:none` 隐藏 `.pdf-mobile-pages`

@@ -1,0 +1,15 @@
+{
+  "name": "yakushima-bus-demo-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "record": "node scripts/record.mjs",
+    "narrate": "node scripts/narrate.mjs",
+    "compose": "node scripts/compose.mjs",
+    "build": "npm run record && npm run narrate && npm run compose"
+  },
+  "devDependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "playwright": "^1.52.0"
+  }
+}
