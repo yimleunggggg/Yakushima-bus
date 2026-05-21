@@ -1,8 +1,27 @@
 {
   "fetched_at": "2026-05-21",
   "ok": false,
-  "gsc": null,
-  "ga4": null,
-  "setup_hint": "/Users/yimleung/手搓程序/Yakushima-bus/docs/seo/GOOGLE_SETUP.md",
-  "error": "未找到凭证：设置 GOOGLE_SERVICE_ACCOUNT_JSON 或 secrets/google-sa.json"
+  "gsc": {
+    "site_url": "https://yakushimabus.com/",
+    "impressions": 0,
+    "clicks": 0,
+    "ctr": 0.0,
+    "position": 0.0,
+    "top_queries": [],
+    "top_pages": [],
+    "index_status": {},
+    "error": "<HttpError 403 when requesting https://searchconsole.googleapis.com/webmasters/v3/sites/https%3A%2F%2Fyakushimabus.com%2F/searchAnalytics/query?alt=json returned \"User does not have sufficient permission for site 'https://yakushimabus.com/'. See also: https://support.google.com/webmasters/answer/2451999.\". Details: \"[{'message': \"User does not have sufficient permission for site 'https://yakushimabus.com/'. See also: https://support.google.com/webmasters/answer/2451999.\", 'domain': 'global', 'reason': 'forbidden'}]\">",
+    "period": {
+      "start": "2026-04-21",
+      "end": "2026-05-18"
+    }
+  },
+  "ga4": {
+    "property_id": "538426834",
+    "users_28d": null,
+    "organic_users_28d": null,
+    "sessions_28d": null,
+    "error": "403 Google Analytics Data API has not been used in project 843460914663 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/analyticsdata.googleapis.com/overview?project=843460914663 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: \"SERVICE_DISABLED\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"analyticsdata.googleapis.com\"\n}\nmetadata {\n  key: \"serviceTitle\"\n  value: \"Google Analytics Data API\"\n}\nmetadata {\n  key: \"containerInfo\"\n  value: \"843460914663\"\n}\nmetadata {\n  key: \"consumer\"\n  value: \"projects/843460914663\"\n}\nmetadata {\n  key: \"activationUrl\"\n  value: \"https://console.developers.google.com/apis/api/analyticsdata.googleapis.com/overview?project=843460914663\"\n}\n, locale: \"en-US\"\nmessage: \"Google Analytics Data API has not been used in project 843460914663 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/analyticsdata.googleapis.com/overview?project=843460914663 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.\"\n, links {\n  description: \"Google developers console API activation\"\n  url: \"https://console.developers.google.com/apis/api/analyticsdata.googleapis.com/overview?project=843460914663\"\n}\n]"
+  },
+  "setup_hint": "/home/runner/work/Yakushima-bus/Yakushima-bus/docs/seo/GOOGLE_SETUP.md"
 }
