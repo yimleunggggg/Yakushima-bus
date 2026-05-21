@@ -9,3 +9,8 @@ _map_pdf_p*.txt
 __pycache__/
 *.pyc
 .cursor/
+secrets/
+video/node_modules/
+video/work/
+video/raw/
+video/audio/

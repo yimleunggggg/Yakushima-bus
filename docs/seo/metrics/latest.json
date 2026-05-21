@@ -1,0 +1,8 @@
+{
+  "fetched_at": "2026-05-21",
+  "ok": false,
+  "gsc": null,
+  "ga4": null,
+  "setup_hint": "/Users/yimleung/手搓程序/Yakushima-bus/docs/seo/GOOGLE_SETUP.md",
+  "error": "未找到凭证：设置 GOOGLE_SERVICE_ACCOUNT_JSON 或 secrets/google-sa.json"
+}

@@ -1,0 +1,98 @@
+# 每半月 SEO：自检 → 自动拉 GSC/GA4 → 报告 → Issue → 通知
+name: SEO review (biweekly)
+
+on:
+  schedule:
+    - cron: "0 9 1,15 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  seo-round:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install SEO dependencies
+        run: pip install -r scripts/requirements-seo.txt
+
+      - name: Static SEO checks
+        run: bash scripts/seo_check.sh 2>&1 | tee /tmp/seo-check.log
+
+      - name: Fetch GSC + GA4 metrics
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+        run: python3 scripts/seo_fetch_metrics.py
+
+      - name: Generate report
+        id: report
+        run: |
+          REPORT=$(bash scripts/seo_report.sh reminder)
+          echo "path=$REPORT" >> "$GITHUB_OUTPUT"
+
+      - name: Commit report and metrics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/seo/reports/ docs/seo/metrics/ docs/seo/TRACKING.md
+          git diff --staged --quiet || git commit -m "docs(seo): biweekly report and metrics $(date +%Y-%m-%d)"
+          git push
+
+      - name: Open review issue (if none open)
+        id: issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const label = "seo-round";
+            const { data: open } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              labels: label,
+              per_page: 5,
+            });
+            const today = new Date().toISOString().slice(0, 10);
+            const report = fs.readFileSync(process.env.REPORT_PATH, "utf8");
+            const tail = "\n\n---\n**下一步**：在 Cursor 说「跑一轮 SEO 优化」。GSC/GA4 已尝试自动拉取（见 §2）。";
+            if (open.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: open[0].number,
+                body: `## 定时更新 — ${today}\n\n${report}${tail}`,
+              });
+              core.setOutput("number", open[0].number);
+              return;
+            }
+            const { data: issue } = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `SEO Round — ${today}`,
+              body: report + tail,
+              labels: [label],
+              assignees: [context.repo.owner],
+            });
+            core.setOutput("number", issue.number);
+        env:
+          REPORT_PATH: ${{ steps.report.outputs.path }}
+
+      - name: Send notifications
+        env:
+          SEO_NOTIFY_EMAIL: ${{ secrets.SEO_NOTIFY_EMAIL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          SUBJ="[YakuBus SEO] $(date +%Y-%m-%d) 展示/流量报告 — Issue #${{ steps.issue.outputs.number }}"
+          bash scripts/seo_notify.sh "${{ steps.report.outputs.path }}" "$SUBJ"
