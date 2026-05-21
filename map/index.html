@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="屋久島バス路線図・運賃表。公式PDF、停留所別運賃、ゆったり満喫乗車券。日中英。">
+  <meta name="description" content="屋久島バス路線図・停留所別運賃表。公式PDF、ゆったり満喫乗車券。宮之浦・安房など全停留所。日中英。">
+  <meta name="keywords" content="屋久島,バス,運賃,路線図,屋久岛,公交,票价,Yakushima,bus,fare,route map">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#143a35">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -15,6 +16,7 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="geo.placename" content="Yakushima, Kagoshima, Japan">
   <link rel="canonical" href="https://yakushimabus.com/map/">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://yakushimabus.com/sitemap.xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Yakushima Bus">
   <meta property="og:title" content="屋久岛公交路线与运价 | Yakushima Bus Routes &amp; Fares">
@@ -25,20 +27,33 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Yakushima Bus — 屋久岛公交路线与运价">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="屋久岛公交路线与运价 | Yakushima Bus Map">
+  <meta name="twitter:description" content="官方路线 PDF · 停留所运价查询 · 日中英">
   <meta name="twitter:image" content="https://yakushimabus.com/og-image.png">
-  <title>路线与运价 | 屋久島バス路線図 | Yakushima Bus Map</title>
+  <title>屋久島バス路線図・運賃 | 屋久岛公交票价 | Yakushima Bus Fares</title>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Yakushima Bus Routes and Fares",
-    "url": "https://yakushimabus.com/map/",
-    "description": "Official Yakushima bus route map and adult one-way fare lookup.",
-    "isPartOf": { "@type": "WebSite", "name": "Yakushima Bus", "url": "https://yakushimabus.com/" },
-    "about": { "@type": "Place", "name": "Yakushima Island", "addressCountry": "JP" }
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "Yakushima Bus Routes and Fares",
+        "url": "https://yakushimabus.com/map/",
+        "description": "Official Yakushima bus route map and adult one-way fare lookup.",
+        "isPartOf": { "@type": "WebSite", "name": "Yakushima Bus", "url": "https://yakushimabus.com/" },
+        "about": { "@type": "Place", "name": "Yakushima Island", "addressCountry": "JP" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Yakushima Bus", "item": "https://yakushimabus.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Routes & Fares", "item": "https://yakushimabus.com/map/" }
+        ]
+      }
+    ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=desktop-v6">
+  <link rel="stylesheet" href="/styles.css?v=layout-v23">
   <script src="/analytics.js"></script>
 </head>
 <body>
@@ -59,6 +74,7 @@
         </div>
       </div>
     </header>
+    <p class="page-lead" data-i18n="pageLead">屋久島路線バスの公式路線図・停留所別運賃。PDF内蔵、ゆったり満喫乗車券情報。日本語・中文・English。</p>
 
     <div class="map-layout">
     <div class="map-layout-primary">
@@ -69,7 +85,7 @@
           <button type="button" data-pdf-lang="ja" data-i18n="pdfJa">日本語 PDF</button>
           <button type="button" data-pdf-lang="en" data-i18n="pdfEn">English PDF</button>
         </div>
-        <div class="pdf-fallback" id="pdfFallback" hidden>
+        <div class="pdf-fallback pdf-fallback-native" id="pdfFallback" hidden>
           <div class="pdf-mobile-pages" id="pdfMobilePages"></div>
           <p class="pdf-fallback-lead" data-i18n="pdfMobileImgLead">路線図は下の画像で確認できます。ページ全体をピンチで拡大できます。</p>
           <a class="pdf-fallback-btn pdf-fallback-btn-secondary" id="pdfOpenPrimary" href="#" target="_blank" rel="noopener" data-i18n="pdfOpenPrimary">公式 PDF を開く</a>
@@ -107,11 +123,11 @@
             <input type="hidden" id="lookupStop" value="miyanoura_port">
             <ul class="picker-list" role="listbox" hidden></ul>
           </div>
-          <div class="stop-sub" id="lookupStopSub"></div>
-          <div class="stop-panel-meta">
-            <span class="no" id="panelNo"></span>
+          <div class="stop-panel-head">
+            <p class="stop-panel-alt" id="lookupStopSub"></p>
+            <div class="stop-panel-badges" id="panelBadges"></div>
+            <p class="stop-panel-tag-hint" id="panelTagHint" hidden></p>
           </div>
-          <div class="tags" id="panelTags"></div>
           <div class="actions">
             <button type="button" class="primary" id="panelTimeBtn" data-i18n="showTimetable">時刻表を見る</button>
             <button type="button" id="panelFromBtn" data-i18n="setFrom">出発に設定</button>
@@ -154,18 +170,18 @@
     </div>
 
     <div class="map-sidebar-ref">
-    <div class="panel map-sidebar-ref-panel" id="passPanel">
+    <div class="panel map-sidebar-ref-panel pass-block" id="passBlock">
       <div class="sec" id="passSection"></div>
     </div>
-
-    <details class="panel aux-block map-sidebar-ref-panel" id="passOfficesPanel" open>
-      <summary class="aux-summary">
-        <span data-i18n="passOffices">乗車券発売窓口</span>
-        <span class="aux-chevron" aria-hidden="true"></span>
-      </summary>
-      <div class="aux-body"><ul class="info-list info-list-compact" id="passList"></ul></div>
-    </details>
     </div>
+    </div>
+    </div>
+
+    <div class="panel map-official-links">
+      <div class="sec">
+        <div class="sec-title" data-i18n="officialLinks">公式情報</div>
+        <div class="links" id="mapSourceLinks"></div>
+      </div>
     </div>
 
     <footer class="app-footer">
@@ -198,18 +214,19 @@
   <script src="/operator-ui.js"></script>
   <script src="/stop-picker.js?v=picker-v2"></script>
   <script src="/pdf-fullscreen.js"></script>
-  <script src="/pdf-viewer.js?v=pdf-preview-v1"></script>
+  <script src="/pdf-viewer.js?v=pdf-preview-v2"></script>
   <script>
     const UI = {
       ja: {
-        navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "路線・運賃", sub: "種子島・屋久島交通",
+        navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "路線・運賃", pageLead: "屋久島路線バスの公式路線図・停留所別運賃。PDF内蔵、ゆったり満喫乗車券情報。日本語・中文・English。", sub: "種子島・屋久島交通",
         routeMap: "公式路線図", fareLookup: "運賃検索（大人片道）", fareNotes: "運賃の注意",
-        passInfo: "屋久島ゆったり満喫乗車券", passOffices: "発売窓口", source: "出典",
+        passInfo: "屋久島ゆったり満喫乗車券", passOffices: "購入窓口", source: "出典",
         pdfLoading: "読み込み中…", pdfSlowHint: "表示されない場合は新しいタブで開いてください。",
         from: "出発", to: "到着",
         setFrom: "出発に設定", setTo: "到着に設定", setFromDone: "出発に設定しました：{stop}",
         setToDone: "到着に設定しました：{stop}", showTimetable: "時刻表を見る",
         stopLookup: "停留所を選ぶ", stopTap: "タップして停留所を選択",
+        stopTagHint: "停留所の目印（フェリー接続・観光など）",
         searchPlaceholder: "停留所名（日/中/英）",
         weekday: "平日", saturday: "土曜", sunday: "日祝",
         pdfJa: "日本語 PDF", pdfEn: "English PDF",
@@ -218,15 +235,18 @@
         pdfMobileLead: "スマホではブラウザで PDF を開くと、ピンチ拡大・スクロールが快適です。",
         pdfMobileImgLead: "路線図は下の画像で確認できます。ページ全体をピンチで拡大できます。",
         pdfHint: "ビューア内でスクロール · +/- で拡大 · 表示できない場合は新しいタブ",
-        pdfHintMobile: "下の画像で路線図を確認 · 必要なら PDF リンク",
+        pdfHintMobile: "下のボタンから公式 PDF を開いてください",
         pdfSourceNote: "公式 PDF を直接読み込み（更新は公式と同期）",
         yen: "円", noFare: "区間データなし（公式PDF参照）", sameStop: "異なる停留所を選んでください",
         fareEstimate: "目安（主要停留所区間）",
         noDeps: "この日種の発車便はありません", openRouteSearch: "区間で検索（時刻表ページ）",
         openInMaps: "Maps", modalTitle: "発車時刻", toward: "方面",
+        officialLinks: "公式情報",
+        pdfFare: "運賃表 PDF", pdfFareEn: "Fare table PDF (EN)",
+        passOfficial: "ゆったり満喫乗車券（公式）",
       },
       zh: {
-        navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "路线及价格", sub: "种子岛·屋久岛交通",
+        navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "路线及价格", pageLead: "屋久岛公交官方路线图与各站票价查询。内置 PDF、悠享乘车券信息。日中英三语。", sub: "种子岛·屋久岛交通",
         routeMap: "官方路线图", fareLookup: "运价查询（成人单程）", fareNotes: "运价说明",
         passInfo: "屋久岛悠享乘车券", passOffices: "发售点", source: "来源",
         pdfLoading: "加载中…", pdfSlowHint: "若显示空白，请用新窗口打开。",
@@ -234,6 +254,7 @@
         setFrom: "设为出发", setTo: "设为到达", setFromDone: "已设为出发：{stop}",
         setToDone: "已设为到达：{stop}", showTimetable: "查看时刻表",
         stopLookup: "选择站点", stopTap: "点击选择站点",
+        stopTagHint: "站点特征（如接驳渡轮、观光相关）",
         searchPlaceholder: "输入站名（中/日/英）",
         weekday: "工作日", saturday: "周六", sunday: "周日·节假日",
         pdfJa: "日文 PDF", pdfEn: "英文 PDF",
@@ -242,15 +263,18 @@
         pdfMobileLead: "手机端建议在系统浏览器打开 PDF，双指缩放和滑动更流畅，加载也更快。",
         pdfMobileImgLead: "路线图见下方图片，可双指缩放页面查看细节。",
         pdfHint: "在预览框内滚动 · 用 +/- 缩放 · 无法显示请新窗口打开",
-        pdfHintMobile: "见下方路线图图片 · 需要可点 PDF 链接",
+        pdfHintMobile: "请点下方按钮打开官方 PDF",
         pdfSourceNote: "直接加载官方 PDF 原址，官网更新后此处同步",
         yen: "日元", noFare: "暂无该区间的数据（见官方 PDF）", sameStop: "请选择不同的站点",
         fareEstimate: "预估（主要站点区间）",
         noDeps: "该日期类型无发车", openRouteSearch: "按区间查询（时刻表页）",
         openInMaps: "地图", modalTitle: "发车时刻", toward: "方向",
+        officialLinks: "官方信息",
+        pdfFare: "运价表 PDF", pdfFareEn: "运价表 PDF（英文）",
+        passOfficial: "悠享乘车券（官网）",
       },
       en: {
-        navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access", navAbout: "About", title: "Routes & fares", sub: "Tanegashima Yakushima Kotsu",
+        navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access", navAbout: "About", title: "Routes & fares", pageLead: "Official Yakushima bus route map and stop-by-stop fares. Embedded PDF and day-pass info. JA/ZH/EN.", sub: "Tanegashima Yakushima Kotsu",
         routeMap: "Official route map", fareLookup: "Fare lookup (adult one-way)", fareNotes: "Fare notes",
         passInfo: "Yakushima day pass", passOffices: "Sales offices", source: "Source",
         pdfLoading: "Loading…", pdfSlowHint: "If blank, open in a new tab.",
@@ -258,6 +282,7 @@
         setFrom: "Set origin", setTo: "Set destination", setFromDone: "Origin set: {stop}",
         setToDone: "Destination set: {stop}", showTimetable: "View departures",
         stopLookup: "Pick a stop", stopTap: "Tap to choose a stop",
+        stopTagHint: "Stop traits (ferry link, sightseeing, etc.)",
         searchPlaceholder: "Search stops (JP/ZH/EN)",
         weekday: "Weekday", saturday: "Sat", sunday: "Sun & holidays",
         pdfJa: "Japanese PDF", pdfEn: "English PDF",
@@ -266,12 +291,15 @@
         pdfMobileLead: "On phones, open the PDF in your browser for smooth pinch-zoom and scrolling.",
         pdfMobileImgLead: "Route map is shown below as images — pinch the page to zoom in.",
         pdfHint: "Scroll inside the viewer · +/- to zoom · open in new tab if blank",
-        pdfHintMobile: "Route map images below · PDF link if needed",
+        pdfHintMobile: "Tap the button below to open the official PDF",
         pdfSourceNote: "Loads the official PDF URL directly — updates when the source updates",
         yen: "yen", noFare: "No fare data (see official PDF)", sameStop: "Pick different stops",
         fareEstimate: "Estimate (major stops)",
         noDeps: "No departures on this day type", openRouteSearch: "Search by route (timetable page)",
         openInMaps: "Maps", modalTitle: "Departures", toward: "Direction",
+        officialLinks: "Official links",
+        pdfFare: "Fare table PDF", pdfFareEn: "Fare table PDF (EN)",
+        passOfficial: "Day pass (official)",
       },
     };
 
@@ -331,9 +359,9 @@
       pdfOpenNew: document.getElementById("pdfOpenNew"),
       lookupStop: document.getElementById("lookupStop"),
       stopPanel: document.getElementById("stopPanel"),
-      panelNo: document.getElementById("panelNo"),
+      panelBadges: document.getElementById("panelBadges"),
+      panelTagHint: document.getElementById("panelTagHint"),
       lookupStopSub: document.getElementById("lookupStopSub"),
-      panelTags: document.getElementById("panelTags"),
       panelTimeBtn: document.getElementById("panelTimeBtn"),
       panelFromBtn: document.getElementById("panelFromBtn"),
       panelToBtn: document.getElementById("panelToBtn"),
@@ -346,8 +374,8 @@
       fareResult: document.getElementById("fareResult"),
       fareDisclaimer: document.getElementById("fareDisclaimer"),
       fareNotes: document.getElementById("fareNotes"),
-      passList: document.getElementById("passList"),
       passSection: document.getElementById("passSection"),
+      mapSourceLinks: document.getElementById("mapSourceLinks"),
       pdfLoading: document.getElementById("pdfLoading"),
       pdfSlowHint: document.getElementById("pdfSlowHint"),
       timeModal: document.getElementById("timeModal"),
@@ -441,14 +469,14 @@
 
     function initPdf() {
       syncPdfLinks();
-      if (preferNativePdf()) {
-        els.pdfStage.hidden = true;
-        els.pdfFallback.hidden = false;
-        renderPdfMobilePreview(els.pdfMobilePages, pdfUrl());
-        els.pdfEmbed.removeAttribute("src");
-        els.pdfLoading.hidden = true;
-        return;
-      }
+      if (initPdfMobileFallback({
+        mobilePagesEl: els.pdfMobilePages,
+        url: pdfUrl(),
+        stageEl: els.pdfStage,
+        fallbackEl: els.pdfFallback,
+        embedEl: els.pdfEmbed,
+        loadingEl: els.pdfLoading,
+      })) return;
       els.pdfStage.hidden = false;
       els.pdfFallback.hidden = true;
       initPdfViewer({
@@ -467,18 +495,29 @@
       if (!sec || !els.passSection) return;
       const srcUrl = ACCESS_DATA.meta.sources[sec.sourceKey];
       const srcLabel = pick(ACCESS_DATA.meta.sourceLabels[sec.sourceKey] || {});
-      const note = sec.note ? `<p class="table-note">${pick(sec.note)}</p>` : "";
+      const intro = sec.intro ? `<p class="pass-intro">${pick(sec.intro)}</p>` : "";
+      const note = sec.note ? `<p class="pass-note">${pick(sec.note)}</p>` : "";
       const sourceLine = srcUrl
-        ? `<p class="table-source">${t("source")}: <a href="${srcUrl}" target="_blank" rel="noopener">${srcLabel || srcUrl}</a></p>`
+        ? `<p class="table-source pass-source">${t("source")}: <a href="${srcUrl}" target="_blank" rel="noopener">${srcLabel || srcUrl}</a></p>`
         : "";
       const head = sec.columns.map((c) => `<th>${pick(c.label)}</th>`).join("");
       const body = sec.rows.map((row) =>
         `<tr>${sec.columns.map((c) => `<td>${pick(row[c.key])}</td>`).join("")}</tr>`
       ).join("");
+      const offices = MAP_DATA.passOffices.map((o) => {
+        const label = pick(o);
+        const href = googleMapsUrl(o);
+        return `<li><a class="map-link" href="${href}" target="_blank" rel="noopener" aria-label="${t("openInMaps")}: ${label}"><span class="map-link-label">${label}</span><span class="map-link-badge">${t("openInMaps")}</span></a></li>`;
+      }).join("");
       els.passSection.innerHTML = `
-        <div class="sec-title">${pick(sec.title)}</div>
+        <div class="sec-title pass-title">${pick(sec.title)}</div>
+        ${intro}
         ${note}
-        <div class="table-wrap"><table class="data-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>
+        <div class="table-wrap pass-table-wrap"><table class="data-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>
+        <div class="pass-offices">
+          <div class="pass-offices-head">${t("passOffices")}</div>
+          <ul class="info-list info-list-compact pass-offices-list">${offices}</ul>
+        </div>
         ${sourceLine}`;
     }
 
@@ -523,12 +562,18 @@
       const id = selectedStop;
       const s = BUS_DATA.stops[id] || MAP_DATA.stops[id];
       if (!s) return;
-      els.panelNo.textContent = `No.${s.no}`;
-      els.panelTags.innerHTML = (s.tags || []).map((tg) => {
+      const alt = StopPicker.subLabel(id, lang);
+      els.lookupStopSub.textContent = alt;
+      els.lookupStopSub.hidden = !alt;
+      const tagHtml = (s.tags || []).map((tg) => {
         const label = pick(MAP_DATA.tagLabels[tg]) || tg;
         const cls = tg === "pass" ? "tag season" : (s.group === "arakawa" ? "tag moss" : "tag");
         return `<span class="${cls}">${label}</span>`;
       }).join("");
+      els.panelBadges.innerHTML = `<span class="tag tag-no">No.${s.no}</span>${tagHtml}`;
+      const hasTraits = (s.tags || []).length > 0;
+      els.panelTagHint.textContent = hasTraits ? t("stopTagHint") : "";
+      els.panelTagHint.hidden = !hasTraits;
       syncPanelActionState();
     }
 
@@ -598,12 +643,14 @@
       return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
     }
 
-    function renderPassOffices() {
-      els.passList.innerHTML = MAP_DATA.passOffices.map((o) => {
-        const label = pick(o);
-        const href = googleMapsUrl(o);
-        return `<li><a class="map-link" href="${href}" target="_blank" rel="noopener" aria-label="${t("openInMaps")}: ${label}"><span class="map-link-label">${label}</span><span class="map-link-badge">${t("openInMaps")}</span></a></li>`;
-      }).join("");
+    function initMapSources() {
+      const s = BUS_DATA.meta?.sources || {};
+      if (!els.mapSourceLinks) return;
+      els.mapSourceLinks.innerHTML = [
+        `<a href="${s.fare || "#"}" target="_blank" rel="noopener">${t("pdfFare")}</a>`,
+        `<a href="${s.fareEn || "#"}" target="_blank" rel="noopener">${t("pdfFareEn")}</a>`,
+        `<a href="${s.pass || "#"}" target="_blank" rel="noopener">${t("passOfficial")}</a>`,
+      ].join("");
     }
 
     function applyI18n() {
@@ -617,7 +664,7 @@
       initPickers();
       els.fareNotes.innerHTML = Object.values(MAP_DATA.fareNotes).map((n) => `<li>${pick(n)}</li>`).join("");
       renderPassInfo();
-      renderPassOffices();
+      initMapSources();
       if (!els.timeModal.hidden) renderModalBody();
     }
 

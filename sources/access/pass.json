@@ -1,4 +1,9 @@
 {
+  "intro": {
+    "ja": "種子島・屋久島交通など島内主要路線バスが、購入日から1・3・4日間乗り放題になるフリーパスです。下記の窓口で購入できます。",
+    "zh": "种子岛·屋久岛交通等岛内主要公交线路通票，自购买日起 1 / 3 / 4 天内可无限次乘坐。可在下列发售点购买。",
+    "en": "A multi-day pass for unlimited rides on main Yakushima route buses (Tanegashima Yakushima Kotsu, etc.). Valid 1, 3, or 4 calendar days from purchase. Buy at the offices below."
+  },
   "note": {
     "ja": "荒川登山バス・観光バス・まつばんだ便は対象外。自然館等4施設で100円割引券付。",
     "zh": "不含荒川登山巴士、观光巴士、松ばんだ班次。附自然馆等4处100日元折扣券。",

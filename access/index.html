@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="屋久島上島交通：鹿児島↔宮之浦 高速船・フェリー時刻・運賃。2026夏季表。日中英。">
+  <meta name="description" content="鹿児島↔屋久島 高速船・フェリー時刻表・運賃。宮之浦港上島。2026夏季ダイヤ。種子屋久高速船・屋久島2号。日中英。">
+  <meta name="keywords" content="屋久島,高速船,フェリー,鹿児島,上島,屋久岛,渡轮,船票,Yakushima,ferry,jetfoil">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#143a35">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -15,6 +16,7 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="geo.placename" content="Yakushima, Kagoshima, Japan">
   <link rel="canonical" href="https://yakushimabus.com/access/">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://yakushimabus.com/sitemap.xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Yakushima Bus">
   <meta property="og:title" content="屋久岛上岛交通 | Yakushima Ferry &amp; Jetfoil">
@@ -25,19 +27,32 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Yakushima Bus — 屋久岛上岛交通">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="屋久岛上岛交通 | Yakushima Ferry">
+  <meta name="twitter:description" content="鹿儿岛↔屋久岛 高速船/渡轮时刻与运价 · 日中英">
   <meta name="twitter:image" content="https://yakushimabus.com/og-image.png">
-  <title>上岛交通 | 屋久島フェリー | Yakushima Access</title>
+  <title>屋久島 上岛交通 | 鹿儿岛↔屋久岛 船票时刻表 | Yakushima Ferry</title>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Yakushima Island Access — Ferry and Jetfoil",
-    "url": "https://yakushimabus.com/access/",
-    "description": "Ferry and jetfoil timetables and fares between Kagoshima and Yakushima.",
-    "isPartOf": { "@type": "WebSite", "name": "Yakushima Bus", "url": "https://yakushimabus.com/" }
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "Yakushima Island Access — Ferry and Jetfoil",
+        "url": "https://yakushimabus.com/access/",
+        "description": "Ferry and jetfoil timetables and fares between Kagoshima and Yakushima.",
+        "isPartOf": { "@type": "WebSite", "name": "Yakushima Bus", "url": "https://yakushimabus.com/" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Yakushima Bus", "item": "https://yakushimabus.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Ferry & Access", "item": "https://yakushimabus.com/access/" }
+        ]
+      }
+    ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=desktop-v1">
+  <link rel="stylesheet" href="/styles.css?v=layout-v23">
   <script src="/analytics.js"></script>
 </head>
 <body class="app-page-narrow">
@@ -60,10 +75,12 @@
     </header>
 
     <p class="app-meta" id="metaBar"></p>
+    <p class="intro-text access-intro" id="introText">鹿児島から屋久島へは高速船（約2–3時間）かフェリー（約4時間）が一般的です。島内は路線バス（時刻表タブ）が中心。最新ダイヤ・運休は各社公式を確認してください。</p>
 
-    <div class="panel">
+    <div class="panel" id="bookingPanel">
       <div class="sec">
-        <p class="intro-text" id="introText"></p>
+        <div class="sec-title" id="bookingTitle"></div>
+        <div class="access-booking" id="bookingCards"></div>
       </div>
     </div>
 
@@ -82,12 +99,12 @@
     </footer>
   </div>
 
-  <script src="/access-data.js"></script>
+  <script src="/access-data.js?v=booking-v2"></script>
   <script>
     const UI = {
-      ja: { navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "フェリー・上島", sources: "公式リンク", updated: "更新", source: "出典" },
-      zh: { navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "轮渡·上岛", sources: "官方链接", updated: "更新", source: "来源" },
-      en: { navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access", navAbout: "About", title: "Ferry & access", sources: "Official links", updated: "Updated", source: "Source" },
+      ja: { navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "フェリー・上島", sources: "公式リンク", updated: "更新", source: "出典", adult: "大人", child: "小児", fareColRoute: "区間", fareColType: "区分", kindSchedule: "時刻表", kindFare: "運賃" },
+      zh: { navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "轮渡·上岛", sources: "官方链接", updated: "更新", source: "来源", adult: "成人", child: "儿童", fareColRoute: "区间", fareColType: "类型", kindSchedule: "时刻表", kindFare: "运价" },
+      en: { navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access", navAbout: "About", title: "Ferry & access", sources: "Official links", updated: "Updated", source: "Source", adult: "Adult", child: "Child", fareColRoute: "Route", fareColType: "Class", kindSchedule: "Timetable", kindFare: "Fares" },
     };
 
     let lang = localStorage.getItem("yakushima-bus-lang") || "ja";
@@ -97,6 +114,8 @@
       appTitle: document.getElementById("appTitle"),
       metaBar: document.getElementById("metaBar"),
       introText: document.getElementById("introText"),
+      bookingTitle: document.getElementById("bookingTitle"),
+      bookingCards: document.getElementById("bookingCards"),
       sections: document.getElementById("sections"),
       sourceLinks: document.getElementById("sourceLinks"),
       disclaimer: document.getElementById("disclaimer"),
@@ -113,7 +132,30 @@
       return pick(val);
     }
 
-    function renderSection(sec) {
+    function renderBooking() {
+      const b = ACCESS_DATA.booking;
+      if (!b || !els.bookingCards) return;
+      els.bookingTitle.textContent = pick(b.title);
+      els.bookingCards.innerHTML = b.items.map((item) => {
+        const badge = item.badge ? `<span class="access-booking-badge">${pick(item.badge)}</span>` : "";
+        const duration = item.duration ? `<span class="access-booking-duration">${pick(item.duration)}</span>` : "";
+        return `<article class="access-booking-card">
+          <div class="access-booking-head">
+            <div class="access-booking-name-row">
+              <h3 class="access-booking-name">${pick(item.title)}</h3>
+              ${duration}
+            </div>
+            ${badge}
+          </div>
+          <p class="access-booking-body">${pick(item.body)}</p>
+          <div class="access-booking-actions">
+            <a class="access-booking-btn access-booking-btn-primary" href="${item.ctaUrl}" target="_blank" rel="noopener">${pick(item.ctaLabel)}</a>
+          </div>
+        </article>`;
+      }).join("") + (b.footerHint ? `<p class="access-booking-hint">${pick(b.footerHint)}</p>` : "");
+    }
+
+    function renderScheduleSection(sec) {
       const srcKey = sec.sourceKey;
       const srcUrl = ACCESS_DATA.meta.sources[srcKey];
       const srcLabel = pick(ACCESS_DATA.meta.sourceLabels[srcKey] || {});
@@ -125,14 +167,45 @@
       const body = sec.rows.map((row) =>
         `<tr>${sec.columns.map((c) => `<td>${renderCell(row[c.key])}</td>`).join("")}</tr>`
       ).join("");
-      return `<div class="panel">
+      return `<div class="panel access-schedule-panel">
         <div class="sec">
+          <p class="access-sec-kind">${t("kindSchedule")}</p>
           <div class="sec-title">${pick(sec.title)}</div>
           ${note}
           <div class="table-wrap"><table class="data-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>
           ${sourceLine}
         </div>
       </div>`;
+    }
+
+    function renderFareSection(sec) {
+      const srcKey = sec.sourceKey;
+      const srcUrl = ACCESS_DATA.meta.sources[srcKey];
+      const srcLabel = pick(ACCESS_DATA.meta.sourceLabels[srcKey] || {});
+      const note = sec.note ? `<p class="table-note">${pick(sec.note)}</p>` : "";
+      const sourceLine = srcUrl
+        ? `<p class="table-source">${t("source")}: <a href="${srcUrl}" target="_blank" rel="noopener">${srcLabel || srcUrl}</a></p>`
+        : "";
+      const labelKey = sec.fareKey || "route";
+      const colLabel = labelKey === "type" ? t("fareColType") : t("fareColRoute");
+      const body = sec.rows.map((row) => {
+        const sub = row.sub ? ' class="fare-sub"' : "";
+        return `<tr${sub}><td>${pick(row[labelKey])}</td><td>${row.adult}</td><td>${row.child}</td></tr>`;
+      }).join("");
+      return `<div class="panel access-fare-panel">
+        <div class="sec">
+          <p class="access-sec-kind">${t("kindFare")}</p>
+          <div class="sec-title">${pick(sec.title)}</div>
+          ${note}
+          <div class="table-wrap"><table class="data-table access-fare-table"><thead><tr><th>${colLabel}</th><th>${t("adult")}</th><th>${t("child")}</th></tr></thead><tbody>${body}</tbody></table></div>
+          ${sourceLine}
+        </div>
+      </div>`;
+    }
+
+    function renderSection(sec) {
+      if (sec.kind === "fare") return renderFareSection(sec);
+      return renderScheduleSection(sec);
     }
 
     function applyI18n() {
@@ -142,6 +215,7 @@
       els.appTitle.textContent = t("title");
       els.metaBar.textContent = `${t("updated")} ${ACCESS_DATA.meta.updatedAt}`;
       els.introText.textContent = pick(ACCESS_DATA.intro);
+      renderBooking();
       els.sections.innerHTML = ACCESS_DATA.sections.filter((s) => s.id !== "pass").map(renderSection).join("");
       els.sourceLinks.innerHTML = ACCESS_DATA.links.map((l) =>
         `<a href="${ACCESS_DATA.meta.sources[l.key]}" target="_blank" rel="noopener">${pick(l.label)}</a>`

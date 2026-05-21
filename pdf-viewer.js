@@ -13,6 +13,12 @@
 
   /** 移动端内嵌预览（由 PDF 导出，每页一张） */
   const PDF_PREVIEW = {
+    "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301.pdf": [
+      "/assets/pdf-preview/taneyakubus-timetable-20260301-1.jpg",
+    ],
+    "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301-en.pdf": [
+      "/assets/pdf-preview/taneyakubus-timetable-20260301-en-1.jpg",
+    ],
     "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin.pdf": [
       "/assets/pdf-preview/yakushimabus-map-unchin-1.jpg",
       "/assets/pdf-preview/yakushimabus-map-unchin-2.jpg",
@@ -46,6 +52,24 @@
   global.preferNativePdf = function () {
     return global.AppCore?.preferNativePdf?.()
       ?? global.matchMedia("(hover: none) and (pointer: coarse)").matches;
+  };
+
+  /** 触屏：内嵌 JPG 预览 + 次要「打开 PDF」链接 */
+  global.initPdfMobileFallback = function ({
+    mobilePagesEl,
+    url,
+    stageEl,
+    fallbackEl,
+    embedEl,
+    loadingEl,
+  }) {
+    if (!global.preferNativePdf()) return false;
+    if (stageEl) stageEl.hidden = true;
+    if (fallbackEl) fallbackEl.hidden = false;
+    if (embedEl) embedEl.removeAttribute("src");
+    if (loadingEl) loadingEl.hidden = true;
+    global.renderPdfMobilePreview(mobilePagesEl, url);
+    return true;
   };
 
   global.pdfEmbedSrc = function (url) {

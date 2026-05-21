@@ -3,12 +3,14 @@ const ABOUT_DATA = {
   meta: { updatedAt: "2026-05-21" },
   sections: [
     {
-      id: "hello",
-      title: { ja: "はじめまして", zh: "你好", en: "Hello" },
+      id: "trust",
+      tone: "trust",
+      title: { ja: "このサイトについて", zh: "本站说明", en: "What this site is" },
+      showContact: true,
       body: {
-        zh: "你好，我是 Yim Leung。\n\n独自旅行十多年了。潜水、冲浪、越野跑、马拉松、露营、徒步——只要是户外、自然、阳光下的活动，基本都喜欢。室内也行，但是优先级低一点。\n\n夏天 wild ale 和西海岸 IPA，冬天 Whisky，春秋都要。",
-        ja: "Yim Leung です。\n\nひとり旅を続けて十数年。ダイビング、サーフィン、トレイルラン、マラソン、キャンプ、ハイキング——屋外で、自然の中で、太陽の下でやることなら、だいたい好きです。屋内でもいいですが、優先度は低め。\n\n夏は wild ale と west coast IPA、冬は Whisky、春と秋も。",
-        en: "I'm Yim Leung.\n\nI've been traveling solo for over a decade. Diving, surfing, trail running, marathons, camping, hiking — basically anything outdoors, in nature, under the sun. Indoor activities are fine too, just lower priority.\n\nWild ales and west coast IPAs in summer, Whisky in winter — spring and fall, all of the above.",
+        zh: "YakuBus（yakushimabus.com）是独立的屋久岛公交查询工具，帮助在岛旅客查下一班车、路线与运价。数据整理自屋久岛观光协会等官方 PDF，本站非巴士公司或观光协会运营。\n\n更新频率：随官方 PDF 更新而同步；页脚日期为最近一次数据核对。\n\n仅供参考，请以站牌与官方最新公告为准。发现错误或有好建议，欢迎邮件联系。",
+        ja: "YakuBus（yakushimabus.com）は、島内の旅人向けに次のバス・路線・運賃を調べる独立ツールです。データは屋久島観光協会などの公式 PDF をもとに整理しています。バス会社・観光協会の公式サイトではありません。\n\n更新：公式 PDF の更新に合わせて同期。フッターの日付は最終確認日です。\n\n参考情報です。バス停掲示と公式の最新情報を優先してください。誤りやご提案はメールでどうぞ。",
+        en: "YakuBus (yakushimabus.com) is an independent tool to find the next bus, routes, and fares on Yakushima. Data is compiled from official PDFs (e.g. the tourism association). This is not run by the bus operators or the tourism board.\n\nUpdates: synced when official PDFs change; the footer date is the last data check.\n\nReference only — confirm at the bus stop and official notices. Email me if you spot errors or have suggestions.",
       },
     },
     {
@@ -21,16 +23,18 @@ const ABOUT_DATA = {
       },
     },
     {
-      id: "tool",
-      title: { ja: "データについて", zh: "关于数据", en: "About the data" },
+      id: "hello",
+      tone: "personal",
+      title: { ja: "はじめまして", zh: "你好", en: "Hello" },
       body: {
-        zh: "数据来自最新官方 PDF。若发现时刻或站名有误，或有任何建议，欢迎发邮件。",
-        ja: "データは最新の公式 PDF をもとにしています。時刻や停留所名に誤り、またはご意見があれば、メールで教えてください。",
-        en: "Data sourced from the latest official PDF. If you spot any errors in times or stop names, or have any suggestions, just send me an email.",
+        zh: "你好，我是 Yim Leung。\n\n独自旅行十多年了。潜水、冲浪、越野跑、马拉松、露营、徒步——只要是户外、自然、阳光下的活动，基本都喜欢。室内也行，但是优先级低一点。\n\n夏天 wild ale 和西海岸 IPA，冬天 Whisky，春秋都要。",
+        ja: "Yim Leung です。\n\nひとり旅を続けて十数年。ダイビング、サーフィン、トレイルラン、マラソン、キャンプ、ハイキング——屋外で、自然の中で、太陽の下でやることなら、だいたい好きです。屋内でもいいですが、優先度は低め。\n\n夏は wild ale と west coast IPA、冬は Whisky、春と秋も。",
+        en: "I'm Yim Leung.\n\nI've been traveling solo for over a decade. Diving, surfing, trail running, marathons, camping, hiking — basically anything outdoors, in nature, under the sun. Indoor activities are fine too, just lower priority.\n\nWild ales and west coast IPAs in summer, Whisky in winter — spring and fall, all of the above.",
       },
     },
     {
       id: "collab",
+      tone: "personal",
       title: { ja: "その他", zh: "还有这些", en: "A bit more" },
       body: {
         zh: "运营背景出身，也开放项目合作——有想法可以聊。有时候也帮人做中国的旅行规划和行程，有需要可以找我。之后会陆续分享旅行和数字游民相关的内容（清迈、斯里兰卡、国内各地……），照片和视频会上社交媒体，欢迎来打招呼。",
@@ -40,6 +44,7 @@ const ABOUT_DATA = {
     },
     {
       id: "contact",
+      tone: "personal",
       title: { ja: "乾杯", zh: "干杯", en: "Cheers" },
       body: {
         zh: "最后——酒大概是世界上最小的游乐园。愿你在酒里找到自己的快乐。干杯！🍻",

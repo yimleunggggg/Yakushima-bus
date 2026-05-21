@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="屋久島バス時刻表・次のバス検索。宮之浦港・安房・白谷・荒川など全路線。公式PDF準拠。日中英三语。">
+  <meta name="description" content="屋久島バス時刻表・次の便検索。宮之浦港・安房・白谷・荒川登山バスなど全路線。公式PDF準拠。日本語・中文・English。">
   <meta name="keywords" content="屋久島,バス,時刻表,屋久岛,公交,Yakushima,bus,timetable,Miyanoura">
   <meta name="author" content="Yakushima Bus">
   <meta name="robots" content="index, follow">
@@ -19,6 +19,7 @@
   <meta name="geo.placename" content="Yakushima, Kagoshima, Japan">
   <meta name="ICBM" content="30.4286, 130.6694">
   <link rel="canonical" href="https://yakushimabus.com/">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://yakushimabus.com/sitemap.xml">
   <link rel="alternate" hreflang="ja" href="https://yakushimabus.com/?lang=ja">
   <link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/?lang=zh">
   <link rel="alternate" hreflang="en" href="https://yakushimabus.com/?lang=en">
@@ -26,7 +27,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Yakushima Bus">
   <meta property="og:title" content="Yakushima Bus | 屋久岛公交查询 | 屋久島バス時刻表">
-  <meta property="og:description" content="Next bus, route search, official timetables. Trilingual tool for Yakushima Island travelers.">
+  <meta property="og:description" content="屋久岛公交时刻表 · 查下一班 · 全路线。Official Yakushima bus timetables in JA/ZH/EN.">
   <meta property="og:url" content="https://yakushimabus.com/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -37,30 +38,50 @@
   <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Yakushima Bus">
-  <meta name="twitter:description" content="屋久岛公交时刻表 · 查下一班 · 日中英">
+  <meta name="twitter:description" content="屋久岛公交时刻表 · 查下一班 · 全路线 · 日中英">
   <meta name="twitter:image" content="https://yakushimabus.com/og-image.png">
-  <title>Yakushima Bus | 屋久岛公交查询 | 屋久島バス時刻表</title>
+  <title>屋久島バス時刻表 | 屋久岛公交查询 | Yakushima Bus Timetable</title>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Yakushima Bus",
-    "alternateName": ["屋久岛公交查询", "屋久島バス", "yakushimabus.com"],
-    "url": "https://yakushimabus.com/",
-    "applicationCategory": "TravelApplication",
-    "operatingSystem": "Any",
-    "inLanguage": ["ja", "zh-CN", "en"],
-    "description": "Trilingual bus timetable and next-departure search for Yakushima Island, Japan. Data from official operator PDFs.",
-    "areaServed": {
-      "@type": "Place",
-      "name": "Yakushima Island",
-      "address": { "@type": "PostalAddress", "addressRegion": "Kagoshima", "addressCountry": "JP" },
-      "geo": { "@type": "GeoCoordinates", "latitude": 30.4286, "longitude": 130.6694 }
-    },
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Yakushima Bus",
+        "alternateName": ["屋久岛公交查询", "屋久島バス", "yakushimabus.com"],
+        "url": "https://yakushimabus.com/",
+        "inLanguage": ["ja", "zh-CN", "en"],
+        "description": "Trilingual bus timetable and next-departure search for Yakushima Island, Japan.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://yakushimabus.com/?from={from}&to={to}"
+          },
+          "query-input": ["required name=from", "optional name=to"]
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Yakushima Bus",
+        "alternateName": ["屋久岛公交查询", "屋久島バス", "yakushimabus.com"],
+        "url": "https://yakushimabus.com/",
+        "applicationCategory": "TravelApplication",
+        "operatingSystem": "Any",
+        "inLanguage": ["ja", "zh-CN", "en"],
+        "description": "Trilingual bus timetable and next-departure search for Yakushima Island, Japan. Data from official operator PDFs.",
+        "areaServed": {
+          "@type": "Place",
+          "name": "Yakushima Island",
+          "address": { "@type": "PostalAddress", "addressRegion": "Kagoshima", "addressCountry": "JP" },
+          "geo": { "@type": "GeoCoordinates", "latitude": 30.4286, "longitude": 130.6694 }
+        },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    ]
   }
   </script>
-  <link rel="stylesheet" href="styles.css?v=desktop-v5">
+  <link rel="stylesheet" href="styles.css?v=layout-v23">
   <script src="analytics.js"></script>
 </head>
 <body>
@@ -81,6 +102,7 @@
         </div>
       </div>
     </header>
+    <p class="page-lead" data-i18n="pageLead">屋久島全線バスの時刻表・次の便検索。宮之浦港・安房・白谷・荒川登山バスなど。公式PDF準拠・日本語・中文・English。</p>
     <p class="app-meta" id="metaBar"></p>
 
     <div class="panel">
@@ -174,6 +196,12 @@
       </div>
 
     <div class="aux-sections aux-in-panel">
+    <details class="aux-block">
+      <summary class="aux-summary"><span data-i18n="travelTips">乗車のポイント</span><span class="aux-chevron" aria-hidden="true"></span></summary>
+      <div class="aux-body">
+        <div class="info-grid" id="infoGrid"></div>
+      </div>
+    </details>
     <details class="aux-block arakawa-status">
       <summary class="aux-summary">
         <span data-i18n="arakawaXTitle">荒川登山バス運行状況（公式 X）</span>
@@ -195,9 +223,10 @@
           <button type="button" data-pdf-lang="ja" data-i18n="pdfJa">日本語 PDF</button>
           <button type="button" data-pdf-lang="en" data-i18n="pdfEn">English PDF</button>
         </div>
-        <div class="pdf-fallback" id="ttPdfFallback" hidden>
-          <p class="pdf-fallback-lead" data-i18n="pdfMobileLead">スマホではブラウザで PDF を開くと、ピンチ拡大・スクロールが快適です。</p>
-          <a class="pdf-fallback-btn" id="ttPdfOpenPrimary" href="#" target="_blank" rel="noopener" data-i18n="pdfOpenPrimary">公式 PDF を開く</a>
+        <div class="pdf-fallback pdf-fallback-native" id="ttPdfFallback" hidden>
+          <div class="pdf-mobile-pages" id="ttPdfMobilePages"></div>
+          <p class="pdf-fallback-lead" data-i18n="pdfMobileImgLead">時刻表は下の画像で確認できます。ページ全体をピンチで拡大できます。</p>
+          <a class="pdf-fallback-btn pdf-fallback-btn-secondary" id="ttPdfOpenPrimary" href="#" target="_blank" rel="noopener" data-i18n="pdfOpenPrimary">公式 PDF を開く</a>
           <span class="pdf-fallback-name" id="ttPdfFallbackName"></span>
         </div>
         <div class="pdf-stage" id="ttPdfStage">
@@ -215,19 +244,11 @@
         </div>
         </div>
         <p class="map-hint pdf-hint-desktop" data-i18n="pdfHint">ビューア内でスクロール · +/- で拡大 · 表示できない場合は新しいタブ</p>
-        <p class="map-hint pdf-hint-mobile" data-i18n="pdfHintMobile">上のボタンから公式 PDF を開いてください（読み込みが速く、ピンチ操作できます）</p>
+        <p class="map-hint pdf-hint-mobile" data-i18n="pdfHintMobile">下の画像で時刻表を確認 · 必要なら PDF リンク</p>
         <p class="pdf-slow-hint" id="ttPdfSlowHint" hidden data-i18n="pdfSlowHint">表示されない場合は新しいタブで開いてください。</p>
         <p class="pdf-source" id="ttPdfSourceNote"></p>
       </div>
     </details>
-
-    <details class="aux-block" open>
-      <summary class="aux-summary"><span data-i18n="travelTips">乗車のポイント</span><span class="aux-chevron" aria-hidden="true"></span></summary>
-      <div class="aux-body">
-        <div class="info-grid" id="infoGrid"></div>
-      </div>
-    </details>
-
     <details class="aux-block" open>
       <summary class="aux-summary"><span data-i18n="sources">公式情報</span><span class="aux-chevron" aria-hidden="true"></span></summary>
       <div class="aux-body">
@@ -251,11 +272,11 @@
   <script src="operator-ui.js"></script>
   <script src="stop-picker.js?v=picker-v2"></script>
   <script src="pdf-fullscreen.js"></script>
-  <script src="pdf-viewer.js?v=pdf-pan-v1"></script>
+  <script src="pdf-viewer.js?v=pdf-preview-v2"></script>
   <script>
     const UI = {
       ja: {
-        navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "屋久島バス", sub: "次のバスを検索", presets: "よく使う区間",
+        navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "屋久島バス", pageLead: "屋久島全線バスの時刻表・次の便検索。宮之浦港・安房・白谷・荒川登山バスなど。公式PDF準拠・日本語・中文・English。", sub: "次のバスを検索", presets: "よく使う区間",
         swapped: "出発と到着を入れ替えました",
         from: "出発", to: "到着", weekday: "平日", saturday: "土曜",         sunday: "日祝",
         tzLabel: "日本時間 (JST)", arriveEta: "着 {time}",
@@ -282,15 +303,15 @@
         departFrom: "{stop}発",
         payment: "運賃・整理券", change: "両替", ic: "ICカード", pass: "乗車券",
         transfer: "乗換", weather: "運休", arakawaSeason: "荒川バス",
-        disclaimer: "<strong>参考情報です。</strong>バス停掲示および <a href=\"https://yakukan.jp/trans/\" target=\"_blank\" rel=\"noopener\">屋久島観光協会</a> の最新PDFをご確認ください。",
+        disclaimer: "参考情報です。バス停掲示および <a href=\"https://yakukan.jp/trans/\" target=\"_blank\" rel=\"noopener\">屋久島観光協会</a> の最新 PDF をご確認ください。",
         pdfTaneyaku: "時刻表 PDF（日本語）", pdfTaneyakuEn: "Timetable PDF (English)",
         pdfViewer: "公式時刻表 PDF", expandable: "展開可",
         pdfJa: "日本語 PDF", pdfEn: "English PDF",
         pdfFullscreen: "全画面", pdfExitFullscreen: "終了", pdfOpenNew: "新しいタブ",
         pdfOpenPrimary: "公式 PDF を開く",
-        pdfMobileLead: "スマホではブラウザで PDF を開くと、ピンチ拡大・スクロールが快適です。",
+        pdfMobileImgLead: "時刻表は下の画像で確認できます。ページ全体をピンチで拡大できます。",
         pdfHint: "ビューア内でスクロール · +/- で拡大 · 表示できない場合は新しいタブ",
-        pdfHintMobile: "上のボタンから公式 PDF を開いてください（読み込みが速く、ピンチ操作できます）",
+        pdfHintMobile: "下の画像で時刻表を確認 · 必要なら PDF リンク",
         pdfLoading: "読み込み中…",
         pdfSlowHint: "表示されない場合は新しいタブで開いてください。",
         pdfMatsubanda: "まつばんだ交通 PDF", pageNotice: "観光協会 交通ページ",
@@ -304,7 +325,7 @@
         pdfFare: "運賃表 PDF", pdfFareEn: "Fare table PDF (EN)",
       },
       zh: {
-        navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "屋久岛公交", sub: "屋久岛公交查询", presets: "常用区间",
+        navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "屋久岛公交", pageLead: "屋久岛全线公交时刻表与下一班查询。宫之浦港、安房、白谷、荒川登山巴士等。官方 PDF · 日中英三语。", sub: "屋久岛公交查询", presets: "常用区间",
         swapped: "已交换出发与到达",
         from: "出发", to: "到达", weekday: "工作日", saturday: "周六",         sunday: "周日·节假日",
         tzLabel: "日本时间 (JST)", arriveEta: "到站 {time}",
@@ -331,15 +352,15 @@
         departFrom: "从{stop}发车",
         payment: "车费", change: "找零", ic: "IC卡", pass: "乘车券",
         transfer: "换乘", weather: "停运", arakawaSeason: "荒川巴士",
-        disclaimer: "<strong>仅供参考。</strong>请以站牌和 <a href=\"https://yakukan.jp/trans/\" target=\"_blank\" rel=\"noopener\">屋久岛观光协会</a> 最新PDF为准。",
+        disclaimer: "仅供参考。请以站牌和 <a href=\"https://yakukan.jp/trans/\" target=\"_blank\" rel=\"noopener\">屋久岛观光协会</a> 最新 PDF 为准。",
         pdfTaneyaku: "时刻表 PDF（日文）", pdfTaneyakuEn: "Timetable PDF (English)",
         pdfViewer: "官方时刻表 PDF", expandable: "可展开",
         pdfJa: "日文 PDF", pdfEn: "英文 PDF",
         pdfFullscreen: "全屏", pdfExitFullscreen: "退出全屏", pdfOpenNew: "新窗口打开",
         pdfOpenPrimary: "打开官方 PDF",
-        pdfMobileLead: "手机端建议在系统浏览器打开 PDF，双指缩放和滑动更流畅，加载也更快。",
+        pdfMobileImgLead: "时刻表见下方图片，可双指缩放页面查看细节。",
         pdfHint: "在预览框内滚动 · 用 +/- 缩放 · 无法显示请新窗口打开",
-        pdfHintMobile: "请点上方按钮打开官方 PDF（加载更快，支持双指缩放）",
+        pdfHintMobile: "见下方图片查看时刻表 · 需要时可点 PDF 链接",
         pdfLoading: "加载中…",
         pdfSlowHint: "若显示空白，请用新窗口打开。",
         pdfMatsubanda: "松ばんだ交通 PDF", pageNotice: "观光协会交通页",
@@ -353,7 +374,7 @@
         pdfFare: "运价表 PDF", pdfFareEn: "运价表 PDF（英文）",
       },
       en: {
-        navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access", navAbout: "About", title: "Yakushima Bus", sub: "Yakushima Bus Timetable", presets: "Quick routes",
+        navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access", navAbout: "About", title: "Yakushima Bus", pageLead: "Yakushima bus timetables and next-departure search for all routes — Miyanoura, Anbo, Shiratani, Arakawa trail bus. Official PDF data · JA/ZH/EN.", sub: "Yakushima Bus Timetable", presets: "Quick routes",
         swapped: "Origin and destination swapped",
         from: "From", to: "To", weekday: "Weekday", saturday: "Sat",         sunday: "Sun & holidays",
         tzLabel: "Japan time (JST)", arriveEta: "Arr. {time}",
@@ -380,15 +401,15 @@
         departFrom: "From {stop}",
         payment: "Payment", change: "Change", ic: "IC cards", pass: "Day pass",
         transfer: "Transfers", weather: "Disruptions", arakawaSeason: "Arakawa bus",
-        disclaimer: "<strong>Reference only.</strong> Confirm at the bus stop and the <a href=\"https://yakukan.jp/trans/\" target=\"_blank\" rel=\"noopener\">tourism association</a> PDF.",
+        disclaimer: "Reference only. Confirm at the bus stop and the <a href=\"https://yakukan.jp/trans/\" target=\"_blank\" rel=\"noopener\">tourism association</a> PDF.",
         pdfTaneyaku: "Timetable PDF (Japanese)", pdfTaneyakuEn: "Timetable PDF (English)",
         pdfViewer: "Official timetable PDF", expandable: "Expand",
         pdfJa: "Japanese PDF", pdfEn: "English PDF",
         pdfFullscreen: "Fullscreen", pdfExitFullscreen: "Exit", pdfOpenNew: "Open in new tab",
         pdfOpenPrimary: "Open official PDF",
-        pdfMobileLead: "On phones, open the PDF in your browser for smooth pinch-zoom and scrolling.",
+        pdfMobileImgLead: "Timetable is shown below as an image — pinch the page to zoom in.",
         pdfHint: "Scroll inside the viewer · +/- to zoom · open in new tab if blank",
-        pdfHintMobile: "Use the button above to open the official PDF (faster load, native pinch-zoom)",
+        pdfHintMobile: "View the timetable below · open PDF link if needed",
         pdfLoading: "Loading…",
         pdfSlowHint: "If blank, open in a new tab.",
         pdfMatsubanda: "Matsubanda PDF", pageNotice: "Transit info page",
@@ -454,6 +475,7 @@
       timetablePdfPanel: document.getElementById("timetablePdfPanel"),
       ttPdfLangTabs: document.getElementById("ttPdfLangTabs"),
       ttPdfFallback: document.getElementById("ttPdfFallback"),
+      ttPdfMobilePages: document.getElementById("ttPdfMobilePages"),
       ttPdfOpenPrimary: document.getElementById("ttPdfOpenPrimary"),
       ttPdfFallbackName: document.getElementById("ttPdfFallbackName"),
       ttPdfStage: document.getElementById("ttPdfStage"),
@@ -539,11 +561,8 @@
         `<a href="${s.taneyaku}" target="_blank" rel="noopener">${t("pdfTaneyaku")}</a>`,
         `<a href="${s.taneyakuEn}" target="_blank" rel="noopener">${t("pdfTaneyakuEn")}</a>`,
         `<a href="${s.matsubanda}" target="_blank" rel="noopener">${t("pdfMatsubanda")}</a>`,
-        `<a href="${s.fare || "#"}" target="_blank" rel="noopener">${t("pdfFare")}</a>`,
-        `<a href="${s.fareEn || "#"}" target="_blank" rel="noopener">${t("pdfFareEn")}</a>`,
         `<a href="${s.serviceStatus}" target="_blank" rel="noopener">${t("serviceStatus")}</a>`,
         `<a href="${s.arakawaX || "https://x.com/yakusansharyou"}" target="_blank" rel="noopener">${t("arakawaXTitle")}</a>`,
-        `<a href="/map/">${t("passLink")}</a>`,
         `<a href="${s.notice}" target="_blank" rel="noopener">${t("pageNotice")}</a>`,
         `<a href="tel:${p.taneyaku}">${BUS_DATA.operators.taneyaku.ja} ${p.taneyaku}</a>`,
         `<a href="tel:${p.matsubanda}">${BUS_DATA.operators.matsubanda?.ja || "まつばんだ"} ${p.matsubanda}</a>`,
@@ -904,24 +923,28 @@
       els.ttPdfLangTabs.querySelectorAll("button").forEach((b) =>
         b.classList.toggle("active", b.dataset.pdfLang === ttPdfLang)
       );
-      if (preferNativePdf()) {
-        els.ttPdfStage.hidden = true;
-        els.ttPdfFallback.hidden = false;
-        els.ttPdfEmbed.removeAttribute("src");
-        if (els.ttPdfLoading) els.ttPdfLoading.hidden = true;
-      } else {
-        els.ttPdfStage.hidden = false;
-        els.ttPdfFallback.hidden = true;
-        initPdfViewer({
-          embed: els.ttPdfEmbed,
-          url,
-          loadingEl: els.ttPdfLoading,
-          slowHintEl: els.ttPdfSlowHint,
-          loadingText: t("pdfLoading"),
-          slowText: t("pdfSlowHint"),
-          resetZoom: () => ttPdfZoomCtl?.reset(),
-        });
+      if (initPdfMobileFallback({
+        mobilePagesEl: els.ttPdfMobilePages,
+        url,
+        stageEl: els.ttPdfStage,
+        fallbackEl: els.ttPdfFallback,
+        embedEl: els.ttPdfEmbed,
+        loadingEl: els.ttPdfLoading,
+      })) {
+        ttPdfLoaded = true;
+        return;
       }
+      els.ttPdfStage.hidden = false;
+      els.ttPdfFallback.hidden = true;
+      initPdfViewer({
+        embed: els.ttPdfEmbed,
+        url,
+        loadingEl: els.ttPdfLoading,
+        slowHintEl: els.ttPdfSlowHint,
+        loadingText: t("pdfLoading"),
+        slowText: t("pdfSlowHint"),
+        resetZoom: () => ttPdfZoomCtl?.reset(),
+      });
       ttPdfLoaded = true;
     }
 

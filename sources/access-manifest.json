@@ -8,6 +8,10 @@
       "file": null,
       "label": { "ja": "種子屋久高速船（トッピー・ロケット）", "zh": "种子屋久高速船（Toppy/Rocket）", "en": "TaneYaku Jetfoil (Toppy/Rocket)" }
     },
+    "jetfoilBook": {
+      "url": "https://www.tykousoku.jp/reserve/",
+      "label": { "ja": "高速船 オンライン予約", "zh": "高速船 在线预约", "en": "Jetfoil online booking" }
+    },
     "ferry": {
       "url": "https://ferryyakusima2.com/timetable",
       "label": { "ja": "フェリー屋久島2（折田汽船）", "zh": "屋久岛2号渡轮（折田汽船）", "en": "Ferry Yakushima 2 (Orita Steamship)" }

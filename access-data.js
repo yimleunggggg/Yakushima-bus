@@ -10,6 +10,7 @@ const ACCESS_DATA = {
     },
     "sources": {
       "jetfoil": "https://www.tykousoku.jp/fare_time/",
+      "jetfoilBook": "https://www.tykousoku.jp/reserve/",
       "ferry": "https://ferryyakusima2.com/timetable",
       "airportShuttle": "https://nangoku-kotsu.com/ashuttle/kagoshima/",
       "pass": "https://www.iwasaki-corp.com/kagoshima_kotsu/route-bus/yakushima-free-pass/",
@@ -21,6 +22,11 @@ const ACCESS_DATA = {
         "ja": "種子屋久高速船（トッピー・ロケット）",
         "zh": "种子屋久高速船（Toppy/Rocket）",
         "en": "TaneYaku Jetfoil (Toppy/Rocket)"
+      },
+      "jetfoilBook": {
+        "ja": "高速船 オンライン予約",
+        "zh": "高速船 在线预约",
+        "en": "Jetfoil online booking"
       },
       "ferry": {
         "ja": "フェリー屋久島2（折田汽船）",
@@ -54,9 +60,82 @@ const ACCESS_DATA = {
     "zh": "从鹿儿岛到屋久岛通常乘高速船（约2–3小时）或渡轮（约4小时）。岛上以公交为主（见时刻表页）。请以各运营商最新公告为准。",
     "en": "Reach Yakushima from Kagoshima by jetfoil (~2–3h) or ferry (~4h). On-island travel is mostly by route bus (Timetable tab). Check each operator for latest schedules."
   },
+  "booking": {
+    "title": {
+      "ja": "チケットの買い方",
+      "zh": "如何购票",
+      "en": "How to buy tickets"
+    },
+    "footerHint": {
+      "ja": "当季の具体便・運賃は下の時刻表をご覧ください。",
+      "zh": "当季具体班次与运价见下方，可直接往下查看。",
+      "en": "Seasonal timetables and fares are below — scroll down."
+    },
+    "items": [
+      {
+        "id": "jetfoil",
+        "badge": {
+          "ja": "オンライン可",
+          "zh": "可网上预约",
+          "en": "Online booking"
+        },
+        "duration": {
+          "ja": "約2–3時間",
+          "zh": "约 2–3 小时",
+          "en": "~2–3 hr"
+        },
+        "title": {
+          "ja": "高速船（トッピー・ロケット）",
+          "zh": "高速船（Toppy / Rocket）",
+          "en": "Jetfoil (Toppy / Rocket)"
+        },
+        "body": {
+          "ja": "公式サイトからオンライン予約・購入できます（T&Rフレンド登録、クレジット・コンビニ払い）。乗船2ヶ月前の同一日9:00から予約開始。繁忙期は早めの予約を。港窓口・旅行代理店でも購入可。",
+          "zh": "可在官网在线预约购票（需注册 T&R 会员，支持信用卡/便利店支付）。一般于乘船日 2 个月前同日上午 9:00 起开放预约，旺季建议尽早订。也可到鹿儿岛/屋久岛港窗口或部分旅行社购买。",
+          "en": "Book and pay on the official site (T&R Friend signup; card or convenience-store payment). Opens ~2 months before sailing at 9:00. Book early in peak season. Also sold at port counters and some travel agencies."
+        },
+        "ctaUrl": "https://www.tykousoku.jp/reserve/",
+        "ctaLabel": {
+          "ja": "オンライン予約（公式）",
+          "zh": "在线预约（官网）",
+          "en": "Book online (official)"
+        }
+      },
+      {
+        "id": "ferry",
+        "badge": {
+          "ja": "窓口当日",
+          "zh": "码头当日购",
+          "en": "Counter on day"
+        },
+        "duration": {
+          "ja": "約4時間",
+          "zh": "约 4 小时",
+          "en": "~4 hr"
+        },
+        "title": {
+          "ja": "フェリー屋久島2",
+          "zh": "屋久岛2号渡轮",
+          "en": "Ferry Yakushima 2"
+        },
+        "body": {
+          "ja": "個人（12名以下）は予約不要。ネット販売はなく、出港当日に窓口で購入。出港約1時間前までにご来港ください。団体・車両航送は電話予約（公式サイト参照）。",
+          "zh": "普通乘客（12 人以下）无需预约，不支持线上购票，请在出发当天到码头窗口购买，建议提前约 1 小时办理。团体/运车需电话预约（见官网）。",
+          "en": "Walk-on passengers (≤12) need no reservation; no online sales — buy at the port counter on sailing day, arrive ~1 hour early. Groups/vehicle shipping: phone reservation (see official site)."
+        },
+        "ctaUrl": "https://ferryyakusima2.com/terminal",
+        "ctaLabel": {
+          "ja": "乗り場・窓口（公式）",
+          "zh": "码头窗口（官网）",
+          "en": "Terminals (official)"
+        }
+      }
+    ]
+  },
   "sections": [
     {
       "id": "jetfoil_out",
+      "kind": "schedule",
       "sourceKey": "jetfoil",
       "title": {
         "ja": "高速船：鹿児島 → 屋久島",
@@ -64,9 +143,9 @@ const ACCESS_DATA = {
         "en": "Jetfoil: Kagoshima → Yakushima"
       },
       "note": {
-        "ja": "夏ダイヤ（2026-04-01–2026-06-30）。2026/4/1–6/30 夏ダイヤ（公式）。出発：鹿児島本港新港ふ頭。",
-        "zh": "夏季班次（2026-04-01–2026-06-30）。2026/4/1–6/30 夏季时刻（官网）。出发：鹿儿岛本港新港码头。",
-        "en": "Summer schedule (2026-04-01–2026-06-30). Summer 2026 (1 Apr–30 Jun, official). Departs Kagoshima Shin-ko."
+        "ja": "夏ダイヤ（2026-04-01–2026-06-30）。鹿児島発：本港新港ふ頭（同一ターミナル）。屋久島側は宮之浦または安房着（着港欄）。",
+        "zh": "夏季班次（2026-04-01–2026-06-30）。鹿儿岛出发：本港新港码头（同一码头）。屋久岛侧到达宫之浦或安房（见「到达港」）。",
+        "en": "Summer schedule (2026-04-01–2026-06-30). Departs Kagoshima Honko Shin-ko (one terminal). Arrives Miyanoura or Anbo on Yakushima (see Port)."
       },
       "columns": [
         {
@@ -205,6 +284,7 @@ const ACCESS_DATA = {
     },
     {
       "id": "jetfoil_in",
+      "kind": "schedule",
       "sourceKey": "jetfoil",
       "title": {
         "ja": "高速船：屋久島 → 鹿児島",
@@ -212,9 +292,9 @@ const ACCESS_DATA = {
         "en": "Jetfoil: Yakushima → Kagoshima"
       },
       "note": {
-        "ja": "夏ダイヤ（2026-04-01–2026-06-30）。2026/4/1–6/30 夏ダイヤ（公式）。出発：鹿児島本港新港ふ頭。",
-        "zh": "夏季班次（2026-04-01–2026-06-30）。2026/4/1–6/30 夏季时刻（官网）。出发：鹿儿岛本港新港码头。",
-        "en": "Summer schedule (2026-04-01–2026-06-30). Summer 2026 (1 Apr–30 Jun, official). Departs Kagoshima Shin-ko."
+        "ja": "夏ダイヤ（2026-04-01–2026-06-30）。屋久島発：宮之浦または安房（発港欄）。鹿児島着：本港新港ふ頭。",
+        "zh": "夏季班次（2026-04-01–2026-06-30）。屋久岛出发：宫之浦或安房（见「出发港」）。到达鹿儿岛本港新港码头。",
+        "en": "Summer schedule (2026-04-01–2026-06-30). Departs Miyanoura or Anbo on Yakushima (see From). Arrives Kagoshima Honko Shin-ko."
       },
       "columns": [
         {
@@ -353,6 +433,7 @@ const ACCESS_DATA = {
     },
     {
       "id": "jetfoil_fare",
+      "kind": "fare",
       "sourceKey": "jetfoil",
       "title": {
         "ja": "高速船：運賃（片道・往復割引）",
@@ -364,32 +445,7 @@ const ACCESS_DATA = {
         "zh": "2026年5月11日起（种子岛·屋久岛交通官网）。往返优惠 7 日内有效。",
         "en": "From 11 May 2026 (TaneYaku official). Round-trip discount valid 7 days."
       },
-      "columns": [
-        {
-          "key": "route",
-          "label": {
-            "ja": "区間",
-            "zh": "区间",
-            "en": "Route"
-          }
-        },
-        {
-          "key": "adult",
-          "label": {
-            "ja": "大人",
-            "zh": "成人",
-            "en": "Adult"
-          }
-        },
-        {
-          "key": "child",
-          "label": {
-            "ja": "小児",
-            "zh": "儿童",
-            "en": "Child"
-          }
-        }
-      ],
+      "fareKey": "route",
       "rows": [
         {
           "route": {
@@ -398,16 +454,18 @@ const ACCESS_DATA = {
             "en": "Kagoshima ↔ Yakushima (Miyanoura/Anbo)"
           },
           "adult": "¥14,000",
-          "child": "¥7,000"
+          "child": "¥7,000",
+          "sub": false
         },
         {
           "route": {
-            "ja": "往復割引（鹿児島↔屋久島（宮之浦/安房）・大人）",
-            "zh": "往返优惠（鹿儿岛↔屋久岛（宫之浦/安房）·成人）",
-            "en": "Round-trip (Kagoshima ↔ Yakushima (Miyanoura/Anbo), adult)"
+            "ja": "↳ 往復割引（鹿児島↔屋久島（宮之浦/安房））",
+            "zh": "↳ 往返优惠（鹿儿岛↔屋久岛（宫之浦/安房））",
+            "en": "↳ Round-trip (Kagoshima ↔ Yakushima (Miyanoura/Anbo))"
           },
           "adult": "¥25,900",
-          "child": "¥12,950"
+          "child": "¥12,950",
+          "sub": true
         },
         {
           "route": {
@@ -416,21 +474,24 @@ const ACCESS_DATA = {
             "en": "Kagoshima ↔ Tanegashima (reference)"
           },
           "adult": "¥12,000",
-          "child": "¥6,000"
+          "child": "¥6,000",
+          "sub": false
         },
         {
           "route": {
-            "ja": "往復割引（鹿児島↔種子島（参考）・大人）",
-            "zh": "往返优惠（鹿儿岛↔种子岛（参考）·成人）",
-            "en": "Round-trip (Kagoshima ↔ Tanegashima (reference), adult)"
+            "ja": "↳ 往復割引（鹿児島↔種子島（参考））",
+            "zh": "↳ 往返优惠（鹿儿岛↔种子岛（参考））",
+            "en": "↳ Round-trip (Kagoshima ↔ Tanegashima (reference))"
           },
           "adult": "¥22,200",
-          "child": "¥11,100"
+          "child": "¥11,100",
+          "sub": true
         }
       ]
     },
     {
       "id": "ferry",
+      "kind": "schedule",
       "sourceKey": "ferry",
       "title": {
         "ja": "フェリー屋久島2（1日1便）",
@@ -511,38 +572,14 @@ const ACCESS_DATA = {
     },
     {
       "id": "ferry_fare",
+      "kind": "fare",
       "sourceKey": "ferry",
       "title": {
         "ja": "フェリー：運賃目安（片道・通常期）",
         "zh": "渡轮：运价参考（单程·平季）",
         "en": "Ferry: sample one-way fares (regular season)"
       },
-      "columns": [
-        {
-          "key": "type",
-          "label": {
-            "ja": "区分",
-            "zh": "类型",
-            "en": "Class"
-          }
-        },
-        {
-          "key": "adult",
-          "label": {
-            "ja": "大人",
-            "zh": "成人",
-            "en": "Adult"
-          }
-        },
-        {
-          "key": "child",
-          "label": {
-            "ja": "小児",
-            "zh": "儿童",
-            "en": "Child"
-          }
-        }
-      ],
+      "fareKey": "type",
       "rows": [
         {
           "type": {
@@ -571,6 +608,11 @@ const ACCESS_DATA = {
         "ja": "屋久島ゆったり満喫乗車券",
         "zh": "屋久岛悠享乘车券",
         "en": "Yakushima day pass"
+      },
+      "intro": {
+        "ja": "種子島・屋久島交通など島内主要路線バスが、購入日から1・3・4日間乗り放題になるフリーパスです。下記の窓口で購入できます。",
+        "zh": "种子岛·屋久岛交通等岛内主要公交线路通票，自购买日起 1 / 3 / 4 天内可无限次乘坐。可在下列发售点购买。",
+        "en": "A multi-day pass for unlimited rides on main Yakushima route buses (Tanegashima Yakushima Kotsu, etc.). Valid 1, 3, or 4 calendar days from purchase. Buy at the offices below."
       },
       "note": {
         "ja": "荒川登山バス・観光バス・まつばんだ便は対象外。自然館等4施設で100円割引券付。",
@@ -649,6 +691,14 @@ const ACCESS_DATA = {
         "ja": "高速船 予約・時刻表",
         "zh": "高速船 预约·时刻表",
         "en": "Jetfoil booking & timetable"
+      }
+    },
+    {
+      "key": "jetfoilBook",
+      "label": {
+        "ja": "高速船 オンライン予約",
+        "zh": "高速船 在线预约",
+        "en": "Jetfoil online booking"
       }
     },
     {

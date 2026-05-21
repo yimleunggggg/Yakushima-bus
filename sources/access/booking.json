@@ -1,0 +1,72 @@
+{
+  "title": {
+    "ja": "チケットの買い方",
+    "zh": "如何购票",
+    "en": "How to buy tickets"
+  },
+  "footerHint": {
+    "ja": "当季の具体便・運賃は下の時刻表をご覧ください。",
+    "zh": "当季具体班次与运价见下方，可直接往下查看。",
+    "en": "Seasonal timetables and fares are below — scroll down."
+  },
+  "items": [
+    {
+      "id": "jetfoil",
+      "badge": {
+        "ja": "オンライン可",
+        "zh": "可网上预约",
+        "en": "Online booking"
+      },
+      "duration": {
+        "ja": "約2–3時間",
+        "zh": "约 2–3 小时",
+        "en": "~2–3 hr"
+      },
+      "title": {
+        "ja": "高速船（トッピー・ロケット）",
+        "zh": "高速船（Toppy / Rocket）",
+        "en": "Jetfoil (Toppy / Rocket)"
+      },
+      "body": {
+        "ja": "公式サイトからオンライン予約・購入できます（T&Rフレンド登録、クレジット・コンビニ払い）。乗船2ヶ月前の同一日9:00から予約開始。繁忙期は早めの予約を。港窓口・旅行代理店でも購入可。",
+        "zh": "可在官网在线预约购票（需注册 T&R 会员，支持信用卡/便利店支付）。一般于乘船日 2 个月前同日上午 9:00 起开放预约，旺季建议尽早订。也可到鹿儿岛/屋久岛港窗口或部分旅行社购买。",
+        "en": "Book and pay on the official site (T&R Friend signup; card or convenience-store payment). Opens ~2 months before sailing at 9:00. Book early in peak season. Also sold at port counters and some travel agencies."
+      },
+      "ctaUrl": "https://www.tykousoku.jp/reserve/",
+      "ctaLabel": {
+        "ja": "オンライン予約（公式）",
+        "zh": "在线预约（官网）",
+        "en": "Book online (official)"
+      }
+    },
+    {
+      "id": "ferry",
+      "badge": {
+        "ja": "窓口当日",
+        "zh": "码头当日购",
+        "en": "Counter on day"
+      },
+      "duration": {
+        "ja": "約4時間",
+        "zh": "约 4 小时",
+        "en": "~4 hr"
+      },
+      "title": {
+        "ja": "フェリー屋久島2",
+        "zh": "屋久岛2号渡轮",
+        "en": "Ferry Yakushima 2"
+      },
+      "body": {
+        "ja": "個人（12名以下）は予約不要。ネット販売はなく、出港当日に窓口で購入。出港約1時間前までにご来港ください。団体・車両航送は電話予約（公式サイト参照）。",
+        "zh": "普通乘客（12 人以下）无需预约，不支持线上购票，请在出发当天到码头窗口购买，建议提前约 1 小时办理。团体/运车需电话预约（见官网）。",
+        "en": "Walk-on passengers (≤12) need no reservation; no online sales — buy at the port counter on sailing day, arrive ~1 hour early. Groups/vehicle shipping: phone reservation (see official site)."
+      },
+      "ctaUrl": "https://ferryyakusima2.com/terminal",
+      "ctaLabel": {
+        "ja": "乗り場・窓口（公式）",
+        "zh": "码头窗口（官网）",
+        "en": "Terminals (official)"
+      }
+    }
+  ]
+}

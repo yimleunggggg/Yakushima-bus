@@ -38,9 +38,9 @@
       "validFrom": "2026-04-01",
       "validTo": "2026-06-30",
       "note": {
-        "ja": "2026/4/1–6/30 夏ダイヤ（公式）。出発：鹿児島本港新港ふ頭。",
-        "zh": "2026/4/1–6/30 夏季时刻（官网）。出发：鹿儿岛本港新港码头。",
-        "en": "Summer 2026 (1 Apr–30 Jun, official). Departs Kagoshima Shin-ko."
+        "ja": "公式時刻表に基づく。",
+        "zh": "依据官网时刻表。",
+        "en": "Based on official timetable."
       },
       "toYakushima": [
         { "no": "111", "dep": "07:30", "arr": "10:20", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } },
