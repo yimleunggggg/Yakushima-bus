@@ -22,6 +22,8 @@
 | 能力 | 说明 |
 |------|------|
 | 自动读数 | 每半月拉 GSC（28 天展示/点击/排名、Top 词、索引）+ GA4（28 天用户、自然搜索） |
+| **日报** | 每天 GA4 昨日/7 日 + GSC + 自检 → `reports/daily/YYYY-MM-DD.md` |
+| **周报方案** | 每周一 → `proposals/YYYY-WW-proposal.md` + Issue `seo-round YYYY-WW` |
 | 长期存档 | `docs/seo/metrics/latest.json`、`reports/YYYY-MM-DD-reminder.md`、`TRACKING.md` 自动写入 Git |
 | 定期提醒 | GitHub Issue（标签 `seo-round`）；可叠加邮件或 ntfy |
 | 专业优化 | 在 Cursor 说「跑一轮 SEO 优化」→ 读数据、改 meta、写 Round 报告（**定时任务默认不改 HTML**） |
@@ -186,6 +188,25 @@ python3 scripts/seo_fetch_metrics.py
 
 ---
 
+## 5b. 怎么看日报和周报
+
+| 类型 | 去哪看 | 说明 |
+|------|--------|------|
+| **日报** | [`docs/seo/reports/daily/`](reports/daily/) 最新 `YYYY-MM-DD.md` | 每天 UTC 09:00（北京 **17:00**）自动生成；Actions → **SEO daily report** |
+| **日报数据** | `docs/seo/metrics/daily-YYYY-MM-DD.json`、`daily-latest.json` | 原始 API 快照 |
+| **飞书** | `docs/seo/feishu-links.json` 或 Actions 日志 `✓ Feishu doc:` | 需配 [FEISHU_SETUP.md](FEISHU_SETUP.md) 三个 Secret |
+| **周报方案** | [`docs/seo/proposals/`](proposals/) 最新 `YYYY-WW-proposal.md` | 每周一 UTC 09:30；Actions → **SEO weekly proposal** |
+| **确认执行** | GitHub Issue 标签 **`seo-round`**，标题 `seo-round YYYY-WW` | 评论 **`approve`** 后执行 §2 改动（或 Cursor 说「执行本周 SEO 方案」） |
+
+本地预览：
+
+```bash
+bash scripts/seo_report_daily.sh          # 用 daily-latest 或 latest.json
+bash scripts/seo_report_weekly.sh         # 生成本周方案
+```
+
+---
+
 ## 6. 阶段 E：收到报告之后做什么
 
 ### E1 每月例行（约 10 分钟）
@@ -244,6 +265,9 @@ Agent 将（见 `.cursor/skills/seo-round/SKILL.md`）：
 | GSC Associations | ⏳ | 界面无 Cloud 项；改 **OAuth**（见下） |
 | GSC OAuth | ⏳ | 跑 `seo_setup_gsc_oauth.py` + 2 个 Secret |
 | 报告 + Issue | ✅ | `docs/seo/reports/2026-05-22-reminder.md`，Issue #1 |
+| **日报 workflow** | ✅ | `seo-daily.yml` + `seo_report_daily.sh` + `seo_fetch_daily.py` |
+| **周报 workflow** | ✅ | `seo-weekly.yml` + `proposals/` + Issue `seo-round YYYY-WW` |
+| **飞书归档** | ⏳ | 脚本就绪；待配 `FEISHU_*` Secrets（见 FEISHU_SETUP.md） |
 | 邮件/ntfy | — | 未配置；看 Issue 或仓库报告 |
 
 **实操日志**

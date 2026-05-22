@@ -62,14 +62,11 @@ def load_service_account_credentials():
 
 
 def load_gsc_credentials():
-    """GSC：优先 OAuth（服务账号邮箱无法加入 GSC）；无 token 时再试 SA。"""
+    """GSC：仅用 OAuth（服务账号无法加入 GSC，勿回退 SA）。"""
     creds, err = seo_oauth_util.load_user_credentials([seo_oauth_util.GSC_READONLY])
     if creds:
         return creds, None, "oauth"
-    sa, sa_err = load_service_account_credentials()
-    if sa:
-        return sa, None, "service_account"
-    return None, err or sa_err, None
+    return None, err or "OAuth 未配置", None
 
 
 def gsc_dates():
@@ -176,6 +173,13 @@ def fetch_gsc(credentials, site_url: str) -> dict:
 
     except Exception as e:
         out["error"] = str(e)
+        if "403" in str(e) and "permission" in str(e).lower():
+            try:
+                sites = svc.sites().list().execute().get("siteEntry") or []
+                urls = [s.get("siteUrl") for s in sites[:8]]
+                out["error"] += f" | 此账号可见 GSC 资源: {urls}"
+            except Exception:
+                pass
     out["period"] = {"start": start, "end": end}
     return out
 
@@ -294,6 +298,7 @@ def main() -> int:
     site = os.environ.get("GSC_SITE_URL", "https://yakushimabus.com/")
     ga4_id = os.environ.get("GA4_PROPERTY_ID", "").strip()
 
+    seo_oauth_util.oauth_preflight_log()
     print(f"GSC site: {site}")
     print(f"GSC auth: {gsc_via or 'none'}")
     print(f"GA4 property: {ga4_id or '(未设置)'}")
@@ -301,6 +306,7 @@ def main() -> int:
     if gsc_creds:
         gsc = fetch_gsc(gsc_creds, site)
     else:
+        print(f"⚠ GSC OAuth: {gsc_err}", file=sys.stderr)
         gsc = {
             "site_url": site,
             "impressions": 0,
@@ -321,6 +327,9 @@ def main() -> int:
 
     if gsc.get("error"):
         print(f"⚠ GSC: {gsc['error']}", file=sys.stderr)
+        if gsc_via != "oauth":
+            print(f"⚠ GSC OAuth 未生效（auth={gsc_via}）: {gsc_err}", file=sys.stderr)
+            print("  → 检查 Secrets: GOOGLE_OAUTH_REFRESH_TOKEN + GOOGLE_OAUTH_CLIENT_JSON", file=sys.stderr)
     else:
         print(f"✓ GSC 28d: 展示 {gsc['impressions']} 点击 {gsc['clicks']} 排名 {gsc['position']}")
 

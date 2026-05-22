@@ -28,15 +28,17 @@ fi
 last_changelog="$(grep -E '^## Round' "$ROOT/docs/seo/CHANGELOG.md" 2>/dev/null | head -1 || echo '（尚无）')"
 
 cat > "$OUT" << EOF
-# SEO 报告 — ${DATE}
+# SEO 半月报 · ${DATE}
 
-- **类型**：${MODE}
-- **站点**：https://yakushimabus.com
-- **上一轮记录**：${last_changelog}
+| | |
+|---|---|
+| 类型 | ${MODE}（每半月 1/15 日） |
+| 站点 | https://yakushimabus.com |
+| 上一轮 | ${last_changelog} |
 
 ---
 
-## 1. 本轮结论
+## 1. 本期摘要
 
 EOF
 
@@ -145,11 +147,23 @@ ${CHECK_LOG}
 
 ---
 
-## 6. 下一步
+EOF
 
-- 数据已自动拉取 → Cursor：**跑一轮 SEO 优化**（我会根据 Top 查询词改 meta）
-- 未拉取成功 → 完成 \`docs/seo/GOOGLE_SETUP.md\` 第 5 步 Secrets
-- 新页或大改版 → GSC **URL 检查** → 请求编入索引
+export SEO_DAILY_METRICS="$ROOT/docs/seo/metrics/latest.json"
+python3 "$ROOT/scripts/seo_insight_blocks.py" daily >> "$OUT"
+
+cat >> "$OUT" << 'EOF'
+
+---
+
+## 9. 存档
+
+| 位置 | 说明 |
+|------|------|
+| Git | `docs/seo/reports/*-reminder.md`、`metrics/latest.json` |
+| Issue | 标签 `seo-round`，可 Watch 收邮件 |
+
+*半月报不改代码；复杂改版用 Cursor「跑一轮 SEO 优化」。*
 
 EOF
 

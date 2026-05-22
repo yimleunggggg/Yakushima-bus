@@ -170,26 +170,43 @@ flowchart LR
 
 | v2 需求 | 现状 | 待建 |
 |---------|------|------|
-| 日报 | 仅半月 reminder | `seo-daily.yml` + `seo_daily_report.sh` + GA4 扩展字段 |
-| 周报方案 | 无 | `seo-weekly.yml` + `proposals/` + approve workflow |
+| 日报 | ✅ `seo-daily.yml` + `seo_fetch_daily.py` + `seo_report_daily.sh` | 飞书 Secrets（可选） |
+| 周报方案 | ✅ `seo-weekly.yml` + `proposals/` + Issue | `approve` → PR 的执行 workflow |
 | GSC 读数 | OAuth 脚本已写，待你配 Secret | 配完后日报/周报共用 |
 | 执行层 | Cursor skill `seo-round` | GitHub `approve` → PR 的 Actions |
-| 洞察 | CHANGELOG 手工 | 方案模板 § 洞察 + 可选 Trends 脚本 |
+| 洞察 | 方案模板 § 洞察 + 2026-05 基线 | 可选 Trends 脚本 |
 
 ---
 
 ## 7. 建议实施顺序
 
-1. **你**：完成 GSC OAuth Secrets → 验证 `✓ GSC 28d`
-2. **开发**：日报 workflow + GA4 扩展指标（1–2 天）
-3. **开发**：周报「只出方案、不执行」+ Issue 模板（1 天）
+1. ~~**你**：完成 GSC OAuth Secrets → 验证 `✓ GSC 28d`~~（GA4 ✅；GSC OAuth 仍待配）
+2. ~~**开发**：日报 workflow + GA4 扩展指标~~ ✅ 2026-05-22
+3. ~~**开发**：周报「只出方案、不执行」+ Issue 模板~~ ✅ 2026-05-22
 4. **开发**：`approve` 触发 PR 的执行 workflow（1 天）
 5. **开发**：PDF 变更检测 + GA4 关键事件（可选）
+6. **你**（可选）：飞书三个 Secret → 日报同步云文档
 
 ---
 
-## 8. 文档索引
+## 8. 实施进度（2026-05-22）
 
+| 项 | 状态 |
+|----|------|
+| `scripts/seo_fetch_daily.py` | ✅ daily-*.json + daily-latest.json |
+| `scripts/seo_report_daily.sh` | ✅ 修复 heredoc；支持 latest.json 回退 |
+| `scripts/seo_report_weekly.sh` | ✅ proposals + Issue 标题 `seo-round YYYY-WW` |
+| `scripts/seo_feishu_doc.py` | ✅ 可选飞书；未配 Secret 则跳过 |
+| `.github/workflows/seo-daily.yml` | ✅ 每天 UTC 09:00 |
+| `.github/workflows/seo-weekly.yml` | ✅ 每周一 UTC 09:30 |
+| `docs/seo/FEISHU_SETUP.md` | ✅ |
+| `approve` 自动执行 PR | ⏳ 下一迭代 |
+
+## 9. 文档索引
+
+- **教程（公开）**：[tutorial/README.md](tutorial/README.md)
+- **私人清单**：[PRIVATE_SETUP.md](PRIVATE_SETUP.md)
 - 授权：[GOOGLE_SETUP.md](GOOGLE_SETUP.md)
 - 总流程：[RUNBOOK.md](RUNBOOK.md)
+- 通知：[NOTIFICATIONS.md](NOTIFICATIONS.md)
 - v1 变更：[CHANGELOG.md](CHANGELOG.md)

@@ -8,18 +8,20 @@
 #   NTFY_SERVER          默认 https://ntfy.sh
 set -euo pipefail
 
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 REPORT_FILE="${1:?usage: seo_notify.sh path/to/report.md}"
 SUBJECT="${2:-Yakushima Bus SEO 报告}"
 [[ -f "$REPORT_FILE" ]] || { echo "Report not found: $REPORT_FILE"; exit 1; }
 
-PREVIEW="$(head -n 25 "$REPORT_FILE" | sed 's/^#\+ //g' | head -c 900)"
+NTFY_BODY="$(python3 "$ROOT/scripts/seo_notify_format.py" ntfy "$REPORT_FILE")"
 sent=0
 
 if [[ -n "${NTFY_TOPIC:-}" ]]; then
   SERVER="${NTFY_SERVER:-https://ntfy.sh}"
-  if curl -fsS -d "$PREVIEW" \
+  if curl -fsS -d "$NTFY_BODY" \
     -H "Title: $SUBJECT" \
     -H "Tags: mag" \
+    -H "Priority: default" \
     "${SERVER}/${NTFY_TOPIC}" >/dev/null; then
     echo "✓ ntfy → ${NTFY_TOPIC}"
     sent=1
@@ -32,14 +34,16 @@ if [[ -n "${SEO_NOTIFY_EMAIL:-}" && -n "${RESEND_API_KEY:-}" ]]; then
   export REPORT_FILE SUBJECT
   export RESEND_FROM="${RESEND_FROM:-YakuBus SEO <onboarding@resend.dev>}"
   PAYLOAD="$(python3 << 'PY'
-import html, json, os, pathlib
-body = pathlib.Path(os.environ["REPORT_FILE"]).read_text(encoding="utf-8")
-html_body = (
-    '<pre style="font-family:sans-serif;font-size:14px;line-height:1.5;'
-    'white-space:pre-wrap">'
-    + html.escape(body)
-    + "</pre>"
+import json, os, pathlib, subprocess, sys
+root = pathlib.Path(__file__).resolve().parent.parent
+report = pathlib.Path(os.environ["REPORT_FILE"])
+proc = subprocess.run(
+    [sys.executable, str(root / "scripts/seo_notify_format.py"), "html", str(report)],
+    capture_output=True,
+    text=True,
+    check=True,
 )
+html_body = proc.stdout
 print(json.dumps({
     "from": os.environ["RESEND_FROM"],
     "to": [os.environ["SEO_NOTIFY_EMAIL"]],

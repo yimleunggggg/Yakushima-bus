@@ -39,6 +39,21 @@ def oauth_installed_config() -> dict | None:
     return None
 
 
+def oauth_preflight_log() -> None:
+    rt = os.environ.get("GOOGLE_OAUTH_REFRESH_TOKEN", "").strip()
+    cj = os.environ.get("GOOGLE_OAUTH_CLIENT_JSON", "").strip()
+    print(f"OAuth refresh set: {bool(rt)} (len={len(rt)})")
+    print(f"OAuth client set: {bool(cj)} (len={len(cj)})")
+    if not cj:
+        print("OAuth client JSON: missing")
+        return
+    try:
+        json.loads(cj)
+        print("OAuth client JSON: parse OK")
+    except json.JSONDecodeError as e:
+        print(f"OAuth client JSON: parse FAIL ({e})")
+
+
 def oauth_refresh_token() -> str:
     tok = os.environ.get("GOOGLE_OAUTH_REFRESH_TOKEN", "").strip()
     if tok:
