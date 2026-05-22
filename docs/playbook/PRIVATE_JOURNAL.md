@@ -49,6 +49,9 @@
 - [ ] 清理 `2026-05-22-test-reminder.md`、根目录 QA 截图  
 - [ ] 社媒发：playbook + seo/tutorial 链接  
 
+**教程库 push**（维护者）：`cd vibe-coding-static-site-guide && git push origin main`  
+分享链：https://github.com/yimleunggggg/vibe-coding-static-site-guide
+
 ---
 
 ## 社媒可用素材（脱敏）
