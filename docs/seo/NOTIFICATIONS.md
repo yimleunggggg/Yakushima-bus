@@ -1,34 +1,119 @@
-# SEO 通知与平台对接
+# 通知配置教程
 
-跑完定时任务后：**报告 + GSC/GA4 数字（已授权时）+ GitHub Issue + 可选邮件/推送**。
+> 定时任务跑完后，默认会：**写报告到 Git** + **开/更新 GitHub Issue**。  
+> 本章配置 **邮件** 或 **手机推送**（可选）。
 
-## 必做：Google 自动读数（一次性）
+前置：已完成 [GOOGLE_SETUP.md](GOOGLE_SETUP.md) 且 workflow 能跑通。
 
-👉 **[GOOGLE_SETUP.md](GOOGLE_SETUP.md)** — 6 步配好 Secrets 后，每半月自动拉：
+---
 
-- GSC：28 天展示/点击/排名、Top 查询词、4 页索引状态  
-- GA4：28 天用户、自然搜索用户  
+## 1. 零配置也能收到什么
 
-写入 `docs/seo/metrics/latest.json` 和 `TRACKING.md` 指标表。
+| 渠道 | 做法 | 收到什么 |
+|------|------|----------|
+| GitHub Issue | 仓库 **Watch → All Activity** 或 Custom → Issues | Issue 邮件 |
+| 仓库文件 | 拉最新 main | `docs/seo/reports/YYYY-MM-DD-reminder.md` |
 
-| Secret | 必填 |
-|--------|------|
-| `GOOGLE_SERVICE_ACCOUNT_JSON` | ✅ |
-| `GA4_PROPERTY_ID` | ✅（数字 ID，不是 G-BX2P31GEHW） |
-| `GSC_SITE_URL` | 建议 `https://yakushimabus.com/` |
+Workflow 步骤 **Send notifications** 未配 Secret 时会输出：
 
-## 可选：推送通知
+```text
+ℹ 未配置通知 — 报告在 docs/seo/reports/ 与 GitHub Issue
+```
 
-| Secret | 用途 |
-|--------|------|
-| `NTFY_TOPIC` | 手机 ntfy 推送 |
-| `SEO_NOTIFY_EMAIL` + `RESEND_API_KEY` | 邮件 |
+---
 
-## 零配置也能收到
+## 2. 手机推送（ntfy.sh）
 
-- GitHub **Watch** 仓库 → Issue 邮件  
-- 报告 `docs/seo/reports/YYYY-MM-DD-reminder.md`
+### 2.1 安装 ntfy  app
 
-## Cursor 手动一轮
+- iOS / Android 搜索 **ntfy** 安装
 
-说「跑一轮 SEO 优化」→ 先跑 `seo_fetch_metrics.py`，再改 meta + 写 Round 报告。
+### 2.2 订阅主题
+
+1. 打开 app → 右上角 **+**
+2. 主题名自定，如 `yakushimabus-seo`（勿用易猜的敏感词作唯一防护）
+3. 订阅
+
+### 2.3 添加 GitHub Secret
+
+| Secret | 值 |
+|--------|-----|
+| `NTFY_TOPIC` | 与 app 里订阅的主题名 **完全一致** |
+
+可选 `NTFY_SERVER`（自建 ntfy 时改，默认 `https://ntfy.sh`）。
+
+### 2.4 验证
+
+Actions → Run workflow → 步骤 **Send notifications** 应出现：
+
+```text
+✓ ntfy → yakushimabus-seo
+```
+
+手机收到推送，标题形如 `[YakuBus SEO] 2026-05-21 展示/流量报告 — Issue #N`。
+
+---
+
+## 3. 邮件（Resend）
+
+### 3.1 注册 Resend
+
+1. [resend.com](https://resend.com) 注册
+2. **API Keys** → 创建 Key → 复制
+
+### 3.2 发件域名（可选）
+
+- 测试可用 Resend 默认发件 `onboarding@resend.dev`
+- 正式建议验证自己的域名
+
+### 3.3 添加 GitHub Secrets
+
+| Secret | 值 |
+|--------|-----|
+| `RESEND_API_KEY` | `re_...` |
+| `SEO_NOTIFY_EMAIL` | 你的收件邮箱 |
+| `RESEND_FROM` | 如 `YakuBus SEO <onboarding@resend.dev>` 或已验证域名发件人 |
+
+### 3.4 验证
+
+**Send notifications** 日志：
+
+```text
+✓ email → your@email.com
+```
+
+邮件正文为报告 Markdown 的 HTML 预览。
+
+---
+
+## 4. 同时配置 ntfy + 邮件
+
+Secrets 都填即可；`seo_notify.sh` 会 **两个都发**（任一成功即 `sent=1`）。
+
+---
+
+## 5. Issue 内容是什么
+
+Workflow 会：
+
+1. 若无 open 的 `seo-round` Issue → 创建 `SEO Round — YYYY-MM-DD`
+2. 若已有 → 在该 Issue **追加评论**
+
+正文 = 当日 `reports/*-reminder.md` 全文 + 文末提示「在 Cursor 说跑一轮 SEO 优化」。
+
+---
+
+## 6. 排错
+
+| 现象 | 处理 |
+|------|------|
+| ntfy 无推送 | 查主题名与 Secret；app 是否订阅 |
+| 邮件失败 | Resend Key、发件人域名验证、收件是否在垃圾箱 |
+| 有 Issue 无推送 | 正常；Issue 即默认通知 |
+
+---
+
+## 7. 相关
+
+- 总教程：[RUNBOOK.md](RUNBOOK.md)
+- 报告样例：`docs/seo/reports/2026-05-21-reminder.md`

@@ -15,11 +15,17 @@ from __future__ import annotations
 
 import json
 import sys
+import time
 from pathlib import Path
+
+import google.auth.transport.requests
+import requests
+from google_auth_oauthlib.flow import InstalledAppFlow
 
 ROOT = Path(__file__).resolve().parents[1]
 SA_EMAIL = "seo-metrics-reader@yakushimabus-seo.iam.gserviceaccount.com"
 SCOPES = ["https://www.googleapis.com/auth/analytics.manage.users"]
+ADMIN_API = "https://analyticsadmin.googleapis.com/v1alpha"
 
 
 def load_oauth_client() -> dict:
@@ -32,7 +38,6 @@ def load_oauth_client() -> dict:
     if "installed" in data:
         return data
     if "web" in data:
-        # 桌面 flow 需要 installed 结构
         w = data["web"]
         return {
             "installed": {
@@ -46,28 +51,56 @@ def load_oauth_client() -> dict:
     raise SystemExit("oauth-client.json 格式不对，请用「桌面应用」类型重新下载")
 
 
+def create_access_binding_rest(creds, prop: str) -> None:
+    """REST 调用，避免 gRPC 在部分网络下 503。"""
+    body = {"roles": ["predefinedRoles/viewer"], "user": SA_EMAIL}
+    url = f"{ADMIN_API}/properties/{prop}/accessBindings"
+    last_err: Exception | None = None
+
+    for attempt in range(1, 4):
+        creds.refresh(google.auth.transport.requests.Request())
+        try:
+            resp = requests.post(
+                url,
+                headers={"Authorization": f"Bearer {creds.token}"},
+                json=body,
+                timeout=90,
+            )
+        except requests.RequestException as e:
+            last_err = e
+            print(f"⚠ 网络错误（{attempt}/3）: {e}")
+            time.sleep(3 * attempt)
+            continue
+
+        if resp.status_code in (200, 201):
+            return
+        if resp.status_code == 409 or "ALREADY_EXISTS" in resp.text:
+            print(f"ℹ {SA_EMAIL} 已在属性 {prop} 中（跳过）")
+            return
+
+        last_err = RuntimeError(f"HTTP {resp.status_code}: {resp.text[:500]}")
+        if resp.status_code >= 500 and attempt < 3:
+            print(f"⚠ 服务端错误（{attempt}/3）: {resp.status_code}")
+            time.sleep(3 * attempt)
+            continue
+        raise last_err
+
+    if last_err:
+        raise last_err
+
+
 def main() -> int:
     prop = (sys.argv[1] if len(sys.argv) > 1 else input("GA4 属性 ID（纯数字）: ")).strip()
     if not prop.isdigit():
         print("请输入数字属性 ID")
         return 1
 
-    try:
-        from google.analytics.admin import AnalyticsAdminServiceClient
-        from google.analytics.admin_v1alpha.types import AccessBinding
-        from google_auth_oauthlib.flow import InstalledAppFlow
-    except ImportError:
-        print("请先安装: pip3 install google-analytics-admin google-auth-oauthlib")
-        return 1
-
     print("即将打开浏览器，请用 GA4 管理员 Google 账号登录（须为 OAuth 测试用户）…")
     flow = InstalledAppFlow.from_client_config(load_oauth_client(), SCOPES)
     creds = flow.run_local_server(port=0)
 
-    client = AnalyticsAdminServiceClient(credentials=creds)
-    parent = f"properties/{prop}"
-    binding = AccessBinding(roles=["predefinedRoles/viewer"], user=SA_EMAIL)
-    client.create_access_binding(parent=parent, access_binding=binding)
+    print("正在通过 REST API 添加服务账号（无需 gRPC）…")
+    create_access_binding_rest(creds, prop)
     print(f"✓ 已添加 {SA_EMAIL} 为查看者 → 属性 {prop}")
     return 0
 

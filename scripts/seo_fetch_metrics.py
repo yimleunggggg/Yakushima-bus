@@ -10,6 +10,8 @@ from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import seo_oauth_util  # noqa: E402
 METRICS_DIR = ROOT / "docs" / "seo" / "metrics"
 METRICS_FILE = METRICS_DIR / "latest.json"
 TRACKING_FILE = ROOT / "docs" / "seo" / "TRACKING.md"
@@ -22,7 +24,7 @@ SITE_PAGES = [
 ]
 
 SCOPES = [
-    "https://www.googleapis.com/auth/webmasters.readonly",
+    seo_oauth_util.GSC_READONLY,
     "https://www.googleapis.com/auth/analytics.readonly",
 ]
 
@@ -42,18 +44,32 @@ def creds_path() -> Path | None:
     return None
 
 
-def load_credentials():
+def load_service_account_credentials():
     from google.oauth2 import service_account
 
     path = creds_path()
     if not path:
-        return None, "未找到凭证：设置 GOOGLE_SERVICE_ACCOUNT_JSON 或 secrets/google-sa.json"
+        return None, "未找到服务账号：GOOGLE_SERVICE_ACCOUNT_JSON 或 secrets/google-sa.json"
     try:
-        return service_account.Credentials.from_service_account_file(
-            str(path), scopes=SCOPES
-        ), None
+        return (
+            service_account.Credentials.from_service_account_file(
+                str(path), scopes=["https://www.googleapis.com/auth/analytics.readonly"]
+            ),
+            None,
+        )
     except Exception as e:
-        return None, f"凭证加载失败: {e}"
+        return None, f"服务账号加载失败: {e}"
+
+
+def load_gsc_credentials():
+    """GSC：优先 OAuth（服务账号邮箱无法加入 GSC）；无 token 时再试 SA。"""
+    creds, err = seo_oauth_util.load_user_credentials([seo_oauth_util.GSC_READONLY])
+    if creds:
+        return creds, None, "oauth"
+    sa, sa_err = load_service_account_credentials()
+    if sa:
+        return sa, None, "service_account"
+    return None, err or sa_err, None
 
 
 def gsc_dates():
@@ -266,7 +282,7 @@ def main() -> int:
         "setup_hint": str(ROOT / "docs" / "seo" / "GOOGLE_SETUP.md"),
     }
 
-    creds, err = load_credentials()
+    creds, err = load_service_account_credentials()
     if err:
         payload["error"] = err
         METRICS_FILE.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -274,13 +290,29 @@ def main() -> int:
         print(f"  → 见 {payload['setup_hint']}")
         return 0
 
+    gsc_creds, gsc_err, gsc_via = load_gsc_credentials()
     site = os.environ.get("GSC_SITE_URL", "https://yakushimabus.com/")
     ga4_id = os.environ.get("GA4_PROPERTY_ID", "").strip()
 
     print(f"GSC site: {site}")
+    print(f"GSC auth: {gsc_via or 'none'}")
     print(f"GA4 property: {ga4_id or '(未设置)'}")
 
-    gsc = fetch_gsc(creds, site)
+    if gsc_creds:
+        gsc = fetch_gsc(gsc_creds, site)
+    else:
+        gsc = {
+            "site_url": site,
+            "impressions": 0,
+            "clicks": 0,
+            "ctr": 0.0,
+            "position": 0.0,
+            "top_queries": [],
+            "top_pages": [],
+            "index_status": {},
+            "error": gsc_err,
+            "period": {"start": gsc_dates()[0], "end": gsc_dates()[1]},
+        }
     ga4 = fetch_ga4(creds, ga4_id)
 
     payload["gsc"] = gsc

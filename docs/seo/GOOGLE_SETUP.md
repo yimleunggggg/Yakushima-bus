@@ -1,106 +1,331 @@
-# Google 授权一次性配置（GSC + GA4 自动读数）
+# Google 授权配置教程（GSC + GA4 自动读数）
 
-做完下面 **7 步**，GitHub 定时任务和 Cursor「跑一轮 SEO」都会自动拉搜索/流量数据，写进 `docs/seo/metrics/latest.json` 和 `TRACKING.md`。
+> 本文是 [SEO 自动化总教程](RUNBOOK.md) 的 **阶段 B2**，逐步点击即可完成。  
+> 完成后：GitHub Actions 与 `python3 scripts/seo_fetch_metrics.py` 自动写入 `docs/seo/metrics/latest.json` 和 `TRACKING.md`。
 
-## 第 1 步：Google Cloud 项目
+**示例值（Yakushima Bus，请换成你的）**
+
+| 变量 | 示例 |
+|------|------|
+| 域名 / GSC 资源 | `https://yakushimabus.com/` |
+| Cloud 项目名 | `yakushimabus-seo` |
+| 服务账号名 | `seo-metrics-reader` |
+| 服务账号邮箱 | `seo-metrics-reader@yakushimabus-seo.iam.gserviceaccount.com` |
+| GA4 属性 ID | `538426834`（数字，非 `G-xxx`） |
+| GA4 管理员 Gmail | `yimleung.ly@gmail.com` |
+
+**总耗时**：约 30–60 分钟。
+
+---
+
+## 开始之前
+
+- [ ] GSC 已验证你的站点（见 [RUNBOOK §A1](RUNBOOK.md#a1-search-console)）
+- [ ] GA4 属性已创建（见 [RUNBOOK §A2](RUNBOOK.md#a2-google-analytics-4)）
+- [ ] 已记下 GA4 **数字属性 ID**
+- [ ] 本地已 clone 仓库，存在 `secrets/` 目录（可 `mkdir secrets`）
+
+---
+
+## 第 1 步：创建 Cloud 项目并启用 API
+
+### 1.1 创建项目
 
 1. 打开 [Google Cloud Console](https://console.cloud.google.com/)
-2. 顶部选/新建项目，例如 `yakushimabus-seo`
-3. **API 和服务 → 库**，分别启用：
-   - **Google Search Console API**
-   - **Google Analytics Data API**
-   - **Google Analytics Admin API**（GA4 脚本授权用）
+2. 顶部项目下拉 → **新建项目**
+3. 项目名称：`yakushimabus-seo`（或你的项目名）→ **创建**
+4. 等待创建完成 → 顶部切换到该项目
 
-## 第 2 步：创建服务账号 + 下载 JSON
+![Cloud 项目选择](images/cloud-project-select.png)
 
-1. **IAM 和管理 → 服务账号 → 创建**
-2. 名称随意，如 `seo-metrics-reader`
-3. 创建完成后 → **密钥 → 添加密钥 → JSON** → 下载到本机  
-   ⚠️ 此文件只存 GitHub Secrets 或本地 `secrets/google-sa.json`，**不要 commit**
+### 1.2 启用 3 个 API
 
-## 第 3 步：Search Console ↔ Cloud 项目关联
+1. 左侧 **API 和服务 → 库**（或直接 [API 库](https://console.cloud.google.com/apis/library)）
+2. 依次搜索并 **启用**：
 
-GSC **「添加用户」不接受** `@...iam.gserviceaccount.com`（会报「邮箱不存在」）——正常，改用关联：
+| API 名称 | 用途 |
+|----------|------|
+| **Google Search Console API** | 拉搜索展示/点击 |
+| **Google Analytics Data API** | 拉 GA4 流量 |
+| **Google Analytics Admin API** | grant 脚本给 SA 加权限 |
 
-1. 打开 [Search Console](https://search.google.com/search-console) → 选 **https://yakushimabus.com/** 资源
-2. **设置 Settings → Associations / 关联**
-3. **Associate with a Google Cloud project** → 选 **`yakushimabus-seo`**
-4. 确认关联成功（列表里出现该项目名）
+3. 每个 API 页点 **启用** → 返回库搜下一个
 
-关联后，同项目里的服务账号 `seo-metrics-reader@...` 即可调用 Search Console API，**无需**在用户列表里添加该邮箱。
+![API 已启用列表](images/cloud-apis-enabled.png)
 
-`GSC_SITE_URL` Secret 填：`https://yakushimabus.com/`（与资源一致，末尾带 `/`）
+**检查点**：**API 和服务 → 已启用的 API** 里能看到上述 3 个。
 
-## 第 4 步：GA4 授权
+**常见错误**：Actions 报 `SERVICE_DISABLED` / `analyticsdata.googleapis.com` → 漏启 **Analytics Data API**，启用后等 2–5 分钟。
 
-**方式 A（网页）**  
-管理 → **属性**列 → 属性访问权限管理 → 添加用户 → 同一邮箱 → **查看者** → **不要勾选**邮件通知
+---
 
-**方式 B（网页报错时用）**
+## 第 2 步：创建服务账号并下载 JSON
 
-1. Cloud Console → **API 库** → 启用 **Google Analytics Admin API**
-2. **OAuth 同意屏幕** → 用户类型 **外部** → 保存  
-   → **测试用户** → 添加 **你的 Gmail**  
-   → **添加或移除范围** → 手动加 `.../auth/analytics.manage.users`（若列表没有可跳过，登录时再授权）
-3. **凭据 → 创建凭据 → OAuth 客户端 ID** → 应用类型 **桌面应用** → 创建 → **下载 JSON**
-4. 保存为项目内 `secrets/oauth-client.json`（勿 commit，已在 .gitignore）
-5. 运行：
+### 2.1 创建服务账号
 
-```bash
-cd "/Users/yimleung/手搓程序/Yakushima-bus"
-python3 scripts/seo_grant_ga4_access.py 538426834
+1. **IAM 和管理 → 服务账号** → **创建服务账号**
+2. 名称：`seo-metrics-reader`
+3. 说明可填：`Read GSC and GA4 for SEO reports`
+4. **创建并继续** → 角色可 **跳过**（不赋 IAM 角色）→ **完成**
+
+### 2.2 下载 JSON 密钥
+
+1. 点击刚创建的服务账号邮箱
+2. **密钥** 标签 → **添加密钥 → 创建新密钥**
+3. 类型 **JSON** → **创建** → 浏览器下载 `.json` 文件
+4. 重命名并移到仓库：
+
+```text
+你的仓库/secrets/google-sa.json
 ```
 
-若仍显示 **This app is blocked**：确认 OAuth 为 **Testing** 且你的 Gmail 在 **测试用户** 列表里。
+⚠️ **切勿** commit 到 Git（已在 `.gitignore`）。
 
-**pip 超时时** 加镜像：`-i https://pypi.tuna.tsinghua.edu.cn/simple`
+![服务账号密钥](images/service-account-key.png)
 
-或用 [Cloud Shell](https://console.cloud.google.com/?cloudshell=true) 克隆仓库后运行同上命令。
+### 2.3 记下服务账号邮箱
 
-## 第 5 步：查 GA4 属性 ID
+打开 JSON，找到 `"client_email"`，形如：
 
-**管理 → 属性设置** → 复制 **属性 ID**（纯数字）  
-❌ 不是衡量 ID `G-BX2P31GEHW`
+```text
+seo-metrics-reader@yakushimabus-seo.iam.gserviceaccount.com
+```
 
-## 第 6 步：GitHub Secrets
+后面 GA4 grant 脚本会用到（已写在脚本里，换项目需改脚本中的 `SA_EMAIL`）。
 
-仓库 **Settings → Secrets → Actions**：
+**检查点**：`secrets/google-sa.json` 存在且为合法 JSON。
+
+---
+
+## 第 3 步：GSC 授权（OAuth）
+
+### 为什么不用服务账号 / Cloud 关联？
+
+| 方式 | 结果 |
+|------|------|
+| Users 添加 `@...iam.gserviceaccount.com` | **`email not found`**（你已遇到） |
+| Associations 关联 Cloud 项目 | 许多账号**只有 GA4**，无 Cloud 选项 |
+| **OAuth + refresh token** | ✅ 推荐：用 **你的 Gmail**（GSC 所有者）读数 |
+
+### 3.1 准备 OAuth 客户端
+
+与第 4 步 GA4 共用 **`secrets/oauth-client.json`**（桌面应用）。  
+Auth Platform → **External** → **Test users** 含你的 Gmail。
+
+可选：在 **Data Access** 手动加范围 `https://www.googleapis.com/auth/webmasters.readonly`（登录时也会提示）。
+
+### 3.2 运行脚本
+
+```bash
+pip3 install google-auth-oauthlib -i https://pypi.tuna.tsinghua.edu.cn/simple
+python3 scripts/seo_setup_gsc_oauth.py
+```
+
+1. 浏览器 **Continue** → 用 **GSC 所有者 Gmail** 登录 → 允许  
+2. 终端打印 **refresh token**  
+3. 本地另存 `secrets/gsc-oauth-token.json`（勿 commit）
+
+![GSC OAuth 成功](images/gsc-oauth-token.png)
+
+### 3.3 GitHub Secrets
 
 | Secret | 值 |
 |--------|-----|
-| `GOOGLE_SERVICE_ACCOUNT_JSON` | JSON 整份粘贴 |
-| `GA4_PROPERTY_ID` | 数字属性 ID |
+| `GOOGLE_OAUTH_REFRESH_TOKEN` | 脚本输出的 token |
+| `GOOGLE_OAUTH_CLIENT_JSON` | `oauth-client.json` 全文 |
+| `GSC_SITE_URL` | `https://yakushimabus.com/`（与 GSC 资源完全一致） |
+
+**检查点**：Actions 日志 `GSC auth: oauth` 且 `✓ GSC 28d`。
+
+### 3.4 （可选）Cloud 关联
+
+若你的 Associations 里**有**「Google Cloud project」且能关联，可额外做；**没有则跳过**，不影响 OAuth 方案。
+
+---
+
+## 第 4 步：GA4 授权服务账号（查看者）
+
+GA4 网页「添加用户」填服务账号 **常会失败**，推荐 **OAuth + 脚本**（一次性）。
+
+### 4.1 配置 OAuth 同意屏幕
+
+1. Cloud Console → **Google Auth Platform**（或 **API 和服务 → OAuth 同意屏幕**）
+2. 若提示创建应用 → 应用名可填 `Yakushima-bus SEO`
+3. **Audience / 受众**：
+   - 用户类型选 **External（外部）** → **Next**
+   - 联系邮箱填你的 Gmail → **Next** → **Save**
+4. **Publishing status** 保持 **Testing（测试中）** — **不要 Publish**
+
+![OAuth Audience 选 External](images/oauth-audience-external.png)
+
+5. **Test users / 测试用户** → **Add users** → 输入 **GA4 属性管理员的 Gmail**（须与后面浏览器登录 **完全一致**）→ Save
+
+**常见错误 `403 access_denied`**：登录 Gmail 不在 Test users 列表。
+
+### 4.2 创建 OAuth 桌面客户端
+
+1. **Clients / 客户端** → **Create client / 创建客户端**
+2. 应用类型：**Desktop app / 桌面应用**
+3. 名称随意 → **Create**
+4. **Download JSON** → 保存为：
+
+```text
+你的仓库/secrets/oauth-client.json
+```
+
+![OAuth 桌面客户端](images/oauth-desktop-client.png)
+
+### 4.3 运行 grant 脚本
+
+```bash
+cd "/path/to/your-repo"
+pip3 install google-auth-oauthlib requests
+# 国内可选：-i https://pypi.tuna.tsinghua.edu.cn/simple
+
+python3 scripts/seo_grant_ga4_access.py 538426834
+# 最后一个参数 = 你的 GA4 数字属性 ID
+```
+
+**浏览器流程**（按顺序）：
+
+1. 自动打开 Google 登录
+2. 若显示 **Google hasn't verified this app** → 点 **Continue**（Testing 正常，无需 Publish）
+3. 选择 **Test users 里的那个 Gmail**
+4. 允许 **Manage Google Analytics users** 权限
+5. 出现 *The authentication flow has completed* → 可关浏览器
+
+**终端成功标志**（必须看到，不能只看浏览器）：
+
+```text
+正在通过 REST API 添加服务账号（无需 gRPC）…
+✓ 已添加 seo-metrics-reader@yakushimabus-seo.iam.gserviceaccount.com 为查看者 → 属性 538426834
+```
+
+### 4.4 在 GA4 网页确认
+
+1. [GA4](https://analytics.google.com) → **管理**
+2. **属性** 列 → **属性访问权限管理**
+3. 列表中应出现 `seo-metrics-reader@...`，角色 **查看者**
+
+![GA4 服务账号已添加](images/ga4-service-account-viewer.png)
+
+**说明**：OAuth 登录的是 **你的 Gmail**，脚本代你把 **服务账号** 加进 GA4；两者不是同一个邮箱。
+
+**常见错误 `503 grpc`**：请用仓库内最新 `seo_grant_ga4_access.py`（REST 版）。仍失败 → VPN 或 [Cloud Shell](https://console.cloud.google.com/?cloudshell=true) 克隆仓库后运行同一命令。
+
+---
+
+## 第 5 步：确认 GA4 属性 ID
+
+1. GA4 → **管理 → 属性设置**
+2. 复制 **属性 ID**（Property ID）— **纯数字**
+
+| 字段 | 示例 | 能否用于 Secret |
+|------|------|-----------------|
+| 属性 ID | `538426834` | ✅ `GA4_PROPERTY_ID` |
+| 衡量 ID | `G-BX2P31GEHW` | ❌ 仅用于 `analytics.js` |
+
+![GA4 属性 ID](images/ga4-property-id.png)
+
+---
+
+## 第 6 步：写入 GitHub Secrets
+
+1. GitHub 仓库 → **Settings → Secrets and variables → Actions**
+2. **New repository secret**，逐个创建：
+
+| Name | Secret value |
+|------|--------------|
+| `GOOGLE_SERVICE_ACCOUNT_JSON` | 打开 `google-sa.json`，**全选复制** 整份 JSON（GA4 用） |
+| `GOOGLE_OAUTH_REFRESH_TOKEN` | 第 3 步 `seo_setup_gsc_oauth.py` 输出（GSC 用） |
+| `GOOGLE_OAUTH_CLIENT_JSON` | `oauth-client.json` 全文（GSC 用） |
+| `GA4_PROPERTY_ID` | `538426834` |
 | `GSC_SITE_URL` | `https://yakushimabus.com/` |
+
+![GitHub Secrets](images/github-secrets.png)
+
+**注意**：
+
+- JSON 粘贴时不要少括号、不要加多余引号
+- `GSC_SITE_URL` 与 GSC 资源完全一致（含 `https://`、末尾 `/`）
+
+---
 
 ## 第 7 步：验证
 
+### 7.1 确认 workflow 已 push
+
+仓库需含 `.github/workflows/seo-review.yml`。  
+Actions 页应出现 **SEO review (biweekly)**。
+
+### 7.2 手动 Run workflow
+
+1. **Actions → SEO review (biweekly) → Run workflow**
+2. 等约 1–3 分钟 → 点开 run → job **seo-round**
+
+![Run workflow](images/actions-run-workflow.png)
+
+### 7.3 逐步验收
+
+| 步骤 | 期望 |
+|------|------|
+| Install SEO dependencies | Successfully installed |
+| Static SEO checks | `All checks passed` |
+| Fetch GSC + GA4 metrics | `✓ GSC 28d` 与 `✓ GA4 28d` |
+| Commit report and metrics | `docs(seo): biweekly report...` |
+| Open review issue | Issue 标签 `seo-round` |
+
+![Workflow 成功](images/actions-workflow-success.png)
+
+![拉数日志](images/fetch-metrics-ok.png)
+
+### 7.4 本地对照（可选）
+
 ```bash
-pip3 install -r scripts/requirements-seo.txt
-export GA4_PROPERTY_ID=你的数字ID
+export GOOGLE_APPLICATION_CREDENTIALS=secrets/google-sa.json
+export GA4_PROPERTY_ID=538426834
 export GSC_SITE_URL='https://yakushimabus.com/'
+pip3 install -r scripts/requirements-seo.txt
 python3 scripts/seo_fetch_metrics.py
 ```
 
-成功会看到 `✓ GSC 28d` / `✓ GA4 28d`，并生成 `docs/seo/metrics/latest.json`。
+国内 Mac 可能超时；**以 Actions 结果为准**。
 
-GitHub：**Actions → SEO review (biweekly) → Run workflow** 手动跑一次。
+### 7.5 检查仓库文件
+
+- `docs/seo/metrics/latest.json` — `"ok": true` 且无 gsc/ga4 error
+- `docs/seo/reports/YYYY-MM-DD-reminder.md` — §2 有数据
+- GitHub **Issues** — 新 Issue 或评论
 
 ---
 
 ## 常见报错
 
-| 报错 | 原因 | 处理 |
-|------|------|------|
-| `403 User does not have sufficient permission` (GSC) | 未关联 Cloud 项目或 API 未启用 | 设置 → **Associations** 关联 `yakushimabus-seo` |
-| `403 GA4` | 服务账号未加进 GA4 属性 | 重做第 4 步 |
-| `404 site not found` | `GSC_SITE_URL` 和资源类型不一致 | 换 `sc-domain:` 或 `https://` 前缀 |
-| GA4 全空 | 用了 `G-xxx` 而不是属性 ID | 改用数字 ID |
+| 日志 / 现象 | 原因 | 处理 |
+|-------------|------|------|
+| GSC `403` / SA `email not found` | 第 3 步 OAuth + `GOOGLE_OAUTH_*` Secrets |
+| GA4 `SERVICE_DISABLED` | Data API 未启用 | 第 1.2 步；等 2–5 分钟 |
+| GA4 `403 property` | SA 未进属性 | 第 4 步 grant；GA4 权限页确认 |
+| OAuth `access_denied` | 非 Test user | 第 4.1 步加 Gmail |
+| OAuth 要求 Publish | 误解 | Testing 即可，点 Continue |
+| grant `503 grpc` | 旧脚本 / 网络 | REST 版脚本 / VPN / Cloud Shell |
+| 浏览器 completed 但 GA4 无 SA | API 步骤失败 | 看终端有无 `✓ 已添加` |
+| Actions 无 workflow | 未 push | push `.github/` |
+| 指标全 0 | 新站 | 正常；GSC 滞后 2–3 天 |
 
-## 自动读什么
+---
 
-| 来源 | 数据 | 写入 |
+## 自动读取的数据
+
+| 来源 | 字段 | 写入 |
 |------|------|------|
-| GSC | 28 天展示/点击/排名、Top 查询词、4 页索引状态 | `latest.json` + TRACKING 表 |
+| GSC | 28 天展示、点击、CTR、平均排名、Top 查询词、Top 页面、4 URL 索引抽查 | `latest.json` + `TRACKING.md` |
 | GA4 | 28 天活跃用户、自然搜索用户 | 同上 |
 
-GSC 数据通常滞后 **2–3 天**，新站前几周为 0 正常。
+---
+
+## 下一步
+
+- 总流程与日常用法 → [RUNBOOK.md](RUNBOOK.md) §5–§6  
+- 邮件/推送 → [NOTIFICATIONS.md](NOTIFICATIONS.md)  
+- 截图清单 → [images/README.md](images/README.md)

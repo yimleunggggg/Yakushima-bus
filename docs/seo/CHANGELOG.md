@@ -1,5 +1,12 @@
 # SEO 优化日志
 
+## 自动化流水线 — 2026-05-21
+
+- **目标**：定期自动读 GSC/GA4 → 报告存档 → Issue/邮件通知 → Cursor「跑一轮 SEO 优化」
+- **主文档**：`docs/seo/RUNBOOK.md`（实际操作、踩坑、已废弃的错误指引）
+- **GA4**：`seo_grant_ga4_access.py` 改为 REST（解决国内 gRPC 503）
+- **待办**：GSC Associations 关联 Cloud 项目；push 本地 commit；workflow 验证 GA4 拉数
+
 ## Round 1 — 2026-05-21
 
 **背景**：上线约 1 天，自然流量为 0；GSC 用户尚未自行查看数据。
