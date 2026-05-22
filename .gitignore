@@ -15,3 +15,7 @@ video/node_modules/
 video/work/
 video/raw/
 video/audio/
+video/out/
+desktop-*.png
+mobile-*.png
+*-audit.json
