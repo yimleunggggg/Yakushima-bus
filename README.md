@@ -75,6 +75,7 @@ python3 -m http.server 8765
 | 文档 | 读者 |
 |------|------|
 | [**Playbook**（流程 / 架构 / 踩坑 / 复用）](docs/playbook/README.md) | 自己复盘、vibe coding 分享 |
+| [**教程独立仓库**（可分享链接）](https://github.com/yimleunggggg/Yakushima-bus-guides) | 社媒 / 给朋友；脱敏版 |
 | [产品介绍（非技术）](docs/product-intro.md) | 访客 / 社媒 |
 | [SEO 自动化教程（脱敏）](docs/seo/tutorial/README.md) | 跟做 Actions 日报 |
 
