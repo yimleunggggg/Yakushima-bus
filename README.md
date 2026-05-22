@@ -70,6 +70,14 @@ python3 scripts/build_all.py --timetable  # 只重建时刻表
 python3 -m http.server 8765
 ```
 
+## 文档
+
+| 文档 | 读者 |
+|------|------|
+| [**Playbook**（流程 / 架构 / 踩坑 / 复用）](docs/playbook/README.md) | 自己复盘、vibe coding 分享 |
+| [产品介绍（非技术）](docs/product-intro.md) | 访客 / 社媒 |
+| [SEO 自动化教程（脱敏）](docs/seo/tutorial/README.md) | 跟做 Actions 日报 |
+
 ## 部署（yakushimabus.com）
 
 **GitHub Pages + 自定义域名**。详细步骤见 [`docs/deploy-yakushimabus.md`](docs/deploy-yakushimabus.md)。
