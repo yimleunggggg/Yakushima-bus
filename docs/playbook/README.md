@@ -31,7 +31,7 @@ docs/seo/tutorial/      ← SEO 自动化教程（脱敏、可分享）
 docs/notes/             ← 开发日记（按日碎片记录）
 ```
 
-**发社媒推荐链**：[独立教程仓库](https://github.com/yimleunggggg/Yakushima-bus-guides)（脱敏，可分享）  
+**发社媒推荐链**：[独立教程仓库](https://github.com/yimleunggggg/vibe-coding-static-site-guide)（Vibe Coding 静态工具站使用教程）  
 **本仓库副本**：`docs/playbook/` + `docs/seo/tutorial/`  
 **勿公开**：`PRIVATE_JOURNAL.md`、`docs/seo/GOOGLE_SETUP.md`（含真实 ID/邮箱）
 
