@@ -37,6 +37,23 @@ def compute_priorities(d: dict) -> dict[str, Any]:
     human_u = (analysis.get("bot_summary") or {}).get("human_users") or l7.get("active_users", 0)
 
     items: list[dict[str, str]] = []
+    uptime = d.get("uptime") or {}
+    if uptime and not uptime.get("ok", True):
+        bad = [u for u in (uptime.get("urls") or []) if u.get("status") != 200]
+        detail = " · ".join(f"{u.get('path')}→{u.get('status')}" for u in bad[:4])
+        items.append(
+            {
+                "priority": "P0",
+                "area": "站点不可用",
+                "action": (
+                    f"线上 HTTP 异常（{detail}）。先 GitHub → Settings → Pages / 腾讯云 DNS；"
+                    "修好前 GSC 编入索引无效"
+                ),
+                "owner": "👤 立即",
+                "evidence": f"uptime check {uptime.get('checked_at', '?')}",
+            }
+        )
+
     gsc_err = gsc.get("error")
 
     if gsc_err:

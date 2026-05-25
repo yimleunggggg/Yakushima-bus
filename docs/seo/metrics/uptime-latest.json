@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-05-25T08:12:10Z",
+  "site": "https://yakushimabus.com",
+  "ok": false,
+  "urls": [
+    {
+      "path": "/",
+      "url": "https://yakushimabus.com/",
+      "status": 404
+    },
+    {
+      "path": "/map/",
+      "url": "https://yakushimabus.com/map/",
+      "status": 404
+    },
+    {
+      "path": "/access/",
+      "url": "https://yakushimabus.com/access/",
+      "status": 404
+    },
+    {
+      "path": "/about/",
+      "url": "https://yakushimabus.com/about/",
+      "status": 404
+    }
+  ]
+}

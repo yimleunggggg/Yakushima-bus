@@ -200,6 +200,9 @@ def _todo_section(gsc: dict, priorities: dict) -> list[str]:
 
 def build_report(date_str: str, metrics_path: Path, check_ok: bool) -> str:
     d = json.loads(metrics_path.read_text(encoding="utf-8"))
+    uptime_path = ROOT / "docs/seo/metrics/uptime-latest.json"
+    if uptime_path.is_file():
+        d["uptime"] = json.loads(uptime_path.read_text(encoding="utf-8"))
     ga4 = get_ga4_payload(d)
     gsc = d.get("gsc_28d") or d.get("gsc") or {}
     analysis = analyze_ga4(ga4, gsc)
@@ -240,6 +243,17 @@ def build_report(date_str: str, metrics_path: Path, check_ok: bool) -> str:
     elif organic_pct == 0:
         verdict_bits.append("搜索流量尚未起量，社交/直达为主")
     lines.append(" · ".join(verdict_bits) if verdict_bits else "数据平稳，继续观察。")
+    uptime = d.get("uptime") or {}
+    if uptime and not uptime.get("ok", True):
+        bad = [u for u in (uptime.get("urls") or []) if u.get("status") != 200]
+        detail = " · ".join(f"`{u.get('path')}` HTTP **{u.get('status')}**" for u in bad)
+        lines.append("")
+        lines.append(f"⚠ **线上站点异常**（{uptime.get('checked_at', '?')} UTC）：{detail}")
+        lines.append("")
+        lines.append(
+            "> 此前 GSC「已编入索引」是历史快照；**Live test 404** 表示现在打不开。"
+            "日报/GA4 不会自动发现，现已加 HTTP 探测 + ntfy  urgent 告警。"
+        )
     if priorities.get("p0_headlines"):
         lines.append("")
         lines.append("**本周优先（GSC/GA4 自动）：**")

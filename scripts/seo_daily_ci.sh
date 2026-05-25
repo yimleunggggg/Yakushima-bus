@@ -7,6 +7,10 @@ cd "$ROOT"
 ATTEMPT="${1:-1}"
 echo "=== SEO daily job · attempt ${ATTEMPT}/2 ==="
 
+if ! python3 scripts/seo_site_uptime.py; then
+  bash scripts/seo_notify_uptime.sh || true
+fi
+
 bash scripts/seo_check.sh 2>&1 | tee /tmp/seo-check.log
 
 fetch_ok=0
