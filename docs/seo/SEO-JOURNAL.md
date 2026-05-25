@@ -101,6 +101,16 @@
 
 ---
 
+## 四·附、线上故障记录
+
+| 日期 | 现象 | 根因 | 处理 | 文档 |
+|------|------|------|------|------|
+| 2026-05-25 | 四页 404；GSC Live 404；Deployments 仍显示成功 | 仓库 **Private** → 免费版 GitHub Pages 不可用 | 改 **Public** + Settings → Pages 重新启用 main/root | [deploy-yakushimabus.md](../deploy-yakushimabus.md) §6.1 |
+
+恢复后：GSC 对 NEUTRAL 页重新「请求编入索引」；`seo_site_uptime.py` 应四页 200。
+
+---
+
 ## 五、下一步优化方向（按 GSC 查询词）
 
 | 优先级 | 针对词/页 | 建议 | 谁做 |
@@ -124,4 +134,4 @@
 
 ---
 
-*最后更新：2026-05-25*
+*最后更新：2026-05-25（补录 Pages Private→404 故障）*

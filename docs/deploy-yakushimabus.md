@@ -136,10 +136,43 @@ Pages 约 1～2 分钟自动更新。
 
 | 问题 | 处理 |
 |------|------|
-| 404 | 确认 Pages 源为 `main` 根目录；`index.html` 在仓库根 |
+| 404 | 见下方 **§6.1 全站 404 排查** |
 | 域名未生效 | 等 DNS；不要用 Cloudflare「仅 DNS」以外的错误代理模式（可先 DNS only） |
 | HTTPS 灰掉 | 等 DNS 全生效后再开 Enforce HTTPS |
 | PDF 本地 assets | `.gitignore` 已忽略 `*.pdf`；线上 PDF 走官方 URL，正常 |
+
+### 6.1 全站 404 排查（给 Agent / 日后自用）
+
+**典型现象**：`yakushimabus.com` 四页均 404；浏览器标题 **「Site not found · GitHub Pages」**；GSC「测试实际网址」Live 404；Deployments 仍显示几天前成功（历史记录，不代表当前可访问）。
+
+**诊断命令**（任意 Agent 可跑）：
+
+```bash
+curl -sI https://yakushimabus.com/ | head -3
+curl -sI "https://raw.githubusercontent.com/yimleunggggg/Yakushima-bus/main/index.html" | head -3
+python3 scripts/seo_site_uptime.py
+```
+
+| 结果组合 | 含义 |
+|----------|------|
+| 自定义域 404 + raw **200** | 代码在 GitHub，**Pages 未发布**（常见：仓库曾改 Private） |
+| 自定义域 404 + raw **404** | 仓库仍 Private，或分支/路径不对 |
+| 均 200 | 正常 |
+
+**根因（2026-05 实际案例）**：免费版 GitHub **Private 仓库不能托管 Pages**。改 Public 后 **不会自动恢复**，须手动重新启用。
+
+**修复步骤**：
+
+1. 仓库 → **Settings → General → Danger Zone** → 确认 **Public**
+2. **Settings → Pages** → Source：`Deploy from a branch` → Branch：**main** / **/ (root)** → **Save**
+3. Custom domain 填 **`yakushimabus.com`** → Save（根目录 `CNAME` 已存在）
+4. 等 2～5 分钟，顶部出现绿色 **Your site is live at…**
+5. 再跑 `python3 scripts/seo_site_uptime.py`，四页应 **200**
+6. GSC → URL 检查 →「测试实际网址」确认 Live 200；必要时重新请求编入索引
+
+**监控**：SEO 日报 Actions 第一步会跑 `seo_site_uptime.py`，非 200 发 ntfy **urgent**。见 `docs/seo/tutorial/06-日报与优化追踪.md`。
+
+**DNS 说明**：腾讯云仅 2 条 A 记录（`185.199.108/109.153`）通常够用，**不是**本次 404 主因。
 
 ## 7. 备选（不用 GitHub Pages 时）
 
