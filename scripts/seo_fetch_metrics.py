@@ -128,6 +128,7 @@ def fetch_gsc(credentials, site_url: str) -> dict:
                 "query": r["keys"][0],
                 "clicks": int(r.get("clicks", 0)),
                 "impressions": int(r.get("impressions", 0)),
+                "position": round(float(r.get("position", 0)), 1),
             }
             for r in qrows
         ]

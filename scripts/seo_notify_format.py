@@ -64,7 +64,7 @@ def ntfy_summary(path: Path, max_lines: int = 10) -> str:
             if c not in out and not c.startswith("⚠"):
                 out.append(c[:120])
 
-    for heading in ("四、优化方向",):
+    for heading in ("本周优先", "四、优化方向"):
         if len(out) >= max_lines - 1:
             break
         capture = False

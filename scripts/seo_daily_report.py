@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from seo_ga4_analysis import analyze_ga4, get_ga4_payload, partition_human_bot  # noqa: E402
+from seo_priorities import compute_priorities, priorities_markdown, query_landing  # noqa: E402
 
 LEARNINGS = [
     "**活跃用户 vs 会话**：用户 = 去重访客；会话 = 一次访问。会话远高于用户说明同一人反复查路线。",
@@ -172,125 +173,24 @@ def _why_section(
     return lines
 
 
-def _optimization_section(gsc: dict, analysis: dict, ga4: dict, organic_pct: int) -> list[str]:
-    lines = ["## 四、优化方向", ""]
-    directions: list[tuple[str, str, str, str]] = []  # 领域, 建议, 优先级, 执行方
-
-    st = gsc.get("index_status") or {} if not gsc.get("error") else {}
-    neutral = [u.replace("https://yakushimabus.com", "") or "/" for u, v in st.items() if v != "PASS"]
-    imp = gsc.get("impressions", 0) if not gsc.get("error") else 0
-    queries = gsc.get("top_queries") or []
-
-    if neutral:
-        directions.append(
-            (
-                "SEO · 收录",
-                f"GSC 对 **{'、'.join(neutral[:3])}** 各做一次 URL 检查 → 请求编入索引",
-                "P0",
-                "👤 你手动",
-            )
-        )
-    if imp == 0:
-        directions.append(
-            (
-                "SEO · 长尾",
-                "保持 title/description 含「屋久島 バス 時刻表 / 屋久岛 公交 / Yakushima bus timetable」；"
-                "不改页面堆砌关键词",
-                "P0",
-                "⏳ 观察 2–4 周",
-            )
-        )
-    elif imp > 0 and gsc.get("clicks", 0) == 0:
-        directions.append(
-            (
-                "SEO · 点击率",
-                f"已有 {imp} 展示无点击：对照 GSC「查询」看展示词，微调 title 是否匹配搜索意图",
-                "P0",
-                "👤 批准后改 meta",
-            )
-        )
-    if queries:
-        q = queries[0].get("query", "")
-        directions.append(
-            (
-                "SEO · 查询词",
-                f"已开始出现「{q}」等词，下周可在 CHANGELOG 记录并核对落地页是否回答该意图",
-                "P1",
-                "⏳ 观察",
-            )
-        )
-    if organic_pct == 0 and (ga4.get("last_7d") or {}).get("active_users", 0) > 10:
-        directions.append(
-            (
-                "产品 · 留存",
-                "Direct 流量在涨说明工具有人用；优先保证时刻表/PDF 与官方一致，比加攻略页更重要",
-                "P1",
-                "🤖 数据准即可",
-            )
-        )
-    landing = ga4.get("landing_pages_7d") or []
-    if landing:
-        top = (landing[0].get("dimension") or "/").replace("https://yakushimabus.com", "") or "/"
-        if top == "/" and len(landing) == 1:
-            directions.append(
-                (
-                    "SEO · 内链",
-                    "入口几乎只有首页：在首页/页脚强化链到 /map/，帮地图页也进索引与搜索",
-                    "P2",
-                    "👤 approve 后改",
-                )
-            )
-    bs = analysis.get("bot_summary") or {}
-    if bs.get("users", 0) > 3:
-        directions.append(
-            (
-                "分析 · 数据质量",
-                "GA4 开启「排除已知机器人」；自测/VPN 用 `?ga_internal=1`，避免污染国家维度",
-                "P1",
-                "👤 GA4 后台一次",
-            )
-        )
-    directions.append(
-        (
-            "GEO · AI 发现",
-            "保持 `llms.txt`、JSON-LD、静态 page-lead；AI 爬虫已 Allow，利于被引用而非靠 PV",
-            "P2",
-            "🤖 已配置",
-        )
-    )
-
-    lines.extend(
-        _md_table(
-            ["领域", "建议", "优先级", "谁来做"],
-            [[a, b, c, d] for a, b, c, d in directions],
-        )
-    )
-    lines.append(
-        "> **P0** = 建议本周做 · **P1** = 有数据支撑时做 · **P2** = 锦上添花 · "
-        "带 approve 的改动走周一周报，不自动改站。"
-    )
-    lines.append("")
-    return lines
-
-
-def _todo_section(gsc: dict, analysis: dict) -> list[str]:
+def _todo_section(gsc: dict, priorities: dict) -> list[str]:
     lines = ["## 六、待办清单", ""]
     todos: list[tuple[str, str]] = []
 
     if gsc.get("error"):
         todos.append(("👤 手动", "检查 GitHub Secrets / GSC OAuth → `docs/seo/GOOGLE_SETUP.md`"))
-    st = gsc.get("index_status") or {} if not gsc.get("error") else {}
-    neutral = [u.replace("https://yakushimabus.com", "") or "/" for u, v in st.items() if v != "PASS"]
-    if neutral:
-        todos.append(
-            ("👤 手动", f"GSC URL 检查：{', '.join(neutral[:3])} → 请求编入索引（各一次）")
-        )
-    if (analysis.get("bot_summary") or {}).get("users", 0) > 0:
-        todos.append(
-            ("👤 手动", "GA4 → 数据流 → 开启「排除已知机器人和蜘蛛程序」")
-        )
-    todos.append(("⏳ 观察", "周一查看 `docs/seo/proposals/` 周报；P0 项再 Issue 回复 approve"))
-    todos.append(("🤖 自动", "日报拉数、自检、ntfy 推送（Actions 已配置）"))
+
+    for it in priorities.get("items") or []:
+        if it["priority"] != "P0":
+            continue
+        if it["owner"].startswith("👤"):
+            todos.append(("👤 手动", f"{it['area']}：{it['action'][:100]}"))
+        if len(todos) >= 4:
+            break
+
+    if len(todos) <= 1:
+        todos.append(("⏳ 观察", "周一查看 `docs/seo/proposals/` 周报；P0 项 Issue 回复 approve"))
+    todos.append(("🤖 自动", "日报拉数、优先级、ntfy（Actions）"))
 
     for tag, text in todos:
         lines.append(f"- **{tag}** — {text}")
@@ -303,6 +203,7 @@ def build_report(date_str: str, metrics_path: Path, check_ok: bool) -> str:
     ga4 = get_ga4_payload(d)
     gsc = d.get("gsc_28d") or d.get("gsc") or {}
     analysis = analyze_ga4(ga4, gsc)
+    priorities = compute_priorities(d)
 
     y = ga4.get("yesterday") or {}
     db = ga4.get("day_before") or {}
@@ -339,6 +240,11 @@ def build_report(date_str: str, metrics_path: Path, check_ok: bool) -> str:
     elif organic_pct == 0:
         verdict_bits.append("搜索流量尚未起量，社交/直达为主")
     lines.append(" · ".join(verdict_bits) if verdict_bits else "数据平稳，继续观察。")
+    if priorities.get("p0_headlines"):
+        lines.append("")
+        lines.append("**本周优先（GSC/GA4 自动）：**")
+        for h in priorities["p0_headlines"][:3]:
+            lines.append(f"- {h}")
     lines.append("")
 
     summary_rows = []
@@ -483,7 +389,7 @@ def build_report(date_str: str, metrics_path: Path, check_ok: bool) -> str:
         f"{r.get('dimension', '?')}({r.get('active_users', 0)})" for r in bot_c
     ]
     lines.extend(_why_section(analysis, gsc, organic_pct, direct_pct, human_u, raw_u, bot_labels))
-    lines.extend(_optimization_section(gsc, analysis, ga4, organic_pct))
+    lines.extend(priorities_markdown(priorities, _md_table))
 
     lines.extend(["## 五、Google 搜索（GSC）", ""])
     if gsc.get("error"):
@@ -495,10 +401,11 @@ def build_report(date_str: str, metrics_path: Path, check_ok: bool) -> str:
             f"展示 **{gsc.get('impressions', 0)}** · 点击 **{gsc.get('clicks', 0)}** · "
             f"均排 **{gsc.get('position', 0)}**"
         )
-        for q in (gsc.get("top_queries") or [])[:5]:
+        for q in (gsc.get("top_queries") or [])[:8]:
             lines.append(
-                f"- 查询「**{q.get('query', '?')}**」展示 {q.get('impressions', 0)} · "
-                f"点击 {q.get('clicks', 0)} · 排名 {q.get('position', 0)}"
+                f"- 「**{q.get('query', '?')}**」展示 {q.get('impressions', 0)} · "
+                f"点击 {q.get('clicks', 0)} · 均排 {q.get('position', '—')} · "
+                f"建议落地 **{query_landing(q.get('query', ''))[0]}**"
             )
         if not gsc.get("top_queries"):
             lines.append("- Top 查询词：暂无（等有展示后会出现）")
@@ -512,7 +419,7 @@ def build_report(date_str: str, metrics_path: Path, check_ok: bool) -> str:
                 lines.append(f"- {'✓' if v == 'PASS' else '○'} `{path}` → **{v}**（{note}）")
     lines.append("")
 
-    lines.extend(_todo_section(gsc, analysis))
+    lines.extend(_todo_section(gsc, priorities))
 
     day_idx = int(datetime.now().strftime("%j")) % len(LEARNINGS)
     lines.extend(
