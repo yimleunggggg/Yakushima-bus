@@ -40,21 +40,31 @@
 | 03 | GitHub Secrets + 三个 workflow |
 | 04 | Resend + DNSPod + ntfy |
 | 05 | 怎么看报告、Issue approve |
+| 06 | **日报 v2**、自动 P0–P2、失败重跑、飞书追踪 |
 | 排错 | [TROUBLESHOOTING.md](../seo/tutorial/TROUBLESHOOTING.md) |
 
 私人填表：[PRIVATE_SETUP.md](../seo/PRIVATE_SETUP.md)
 
 ---
 
-## 报告里新增的「学习板块」
+## 报告里有什么（2026-05 v2）
 
-每份日报/半月报含：
+日报含：
 
-- **洞察** — 结合数字解读（0 展示也会教「新站正常」）  
-- **学一点** — 1～2 条概念（如 Organic vs Direct）  
-- **下一步** — 标 `[自动]` / `[你手动]`
+- **§一 本周优先** — 从 GSC `top_queries` / `index_status` + GA4 **自动**算 P0  
+- **§二～§五** — 全量数据、为什么、优化方向（带数据依据）  
+- **§六 待办** — 从 P0 抽出你要手动做的  
+- **§七 学一点** — 轮换概念  
 
-适合边做项目边学 SEO，不用另买课。
+长期追踪：`docs/seo/SEO-JOURNAL.md` + 飞书「SEO 优化追踪」。见 [tutorial/06](../seo/tutorial/06-日报与优化追踪.md)。
+
+失败 **自动重跑一轮**；两轮仍失败 ntfy 告警（与电脑开不开无关）。
+
+---
+
+## 报告里旧版「学习板块」
+
+半月报/周报仍含：洞察、学一点、下一步（自动/手动标签）。
 
 ---
 
@@ -62,7 +72,7 @@
 
 | 项 | 状态 |
 |----|------|
-| 飞书云文档自动归档 | 脚本有，Secret 未配 |
+| 飞书云文档 | 日报每天一篇 + **SEO 优化追踪**长文档 | Secret 配好后自动 |
 | Issue `approve` → 自动 PR | 待做 |
 | GA4 自定义事件（查路线、开 PDF） | 待做 |
 

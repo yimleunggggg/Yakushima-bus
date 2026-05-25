@@ -10,7 +10,10 @@
 | 日报 GA4 无渠道维度 | 用了 `latest.json` 半月数据 | 等 daily fetch 成功或本地跑 `seo_fetch_daily.py` |
 | ntfy 收不到 | 主题名不一致、未订阅 | Secret 与 app 主题一致 |
 | DNS 邮件进垃圾箱 | DKIM 未生效 | DNSPod 等 24h 再测 |
-| Actions commit 失败 | 无 write 权限 / 分支保护 | 检查 `permissions` 与 main 保护规则 |
-| 飞书跳过 | 未配三个 FEISHU Secret | 正常；见 FEISHU_SETUP |
+| Actions commit 失败 | 无 write 权限 / `feishu-links.json` 不存在 / push 冲突 | 已修复可选 add；重试 job 内 pull --rebase |
+| ntfy 有、Actions 红 | notify 在 commit 前；邮件 HTML 或 push 失败 | 看失败步骤；整 job 会自动第 2 轮 |
+| 两轮仍失败 | GA4/GSC 网络 / Secrets | 收 ntfy「请人工处理」；Re-run workflow |
+| 日报无 P0 查询词 | GSC fetch 失败或 0 展示 | 看 §五；仍会有索引类 P0 |
+| 飞书跳过 | 未配 FEISHU Secret | 正常；见 FEISHU_SETUP |
 
 更多：[GOOGLE_SETUP.md](../GOOGLE_SETUP.md) 文末、[RUNBOOK.md](../RUNBOOK.md) §排错。

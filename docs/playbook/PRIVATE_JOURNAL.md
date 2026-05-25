@@ -14,7 +14,8 @@
 | 2026-05-21 | 演示视频脚本 | [product-demo-video](../notes/2026-05-21-product-demo-video.md) |
 | 2026-05-21～22 | GSC OAuth 打通；SEO Actions v1 | [GOOGLE_SETUP](../seo/GOOGLE_SETUP.md) · [RUNBOOK §8](../seo/RUNBOOK.md) |
 | 2026-05-22 | 日报/周报 workflow；报告格式；教程体系 | [seo-reports-notify](../notes/2026-05-22-seo-reports-notify.md) |
-| 2026-05-22 | Resend 域名 Verified；ntfy+邮件双通 | 对话记录；[NOTIFICATIONS](../seo/NOTIFICATIONS.md) |
+| 2026-05-25 | 日报 v2、自动 P0–P2、失败重跑、SEO-JOURNAL、飞书追踪 | [tutorial/06](../seo/tutorial/06-日报与优化追踪.md) · [CHANGELOG](../seo/CHANGELOG.md) |
+| 2026-05-22 | Resend 域名 Verified；ntfy+邮件双通 | [NOTIFICATIONS](../seo/NOTIFICATIONS.md) |
 | 待定 | access booking 部署；approve→PR | [ROADMAP](../seo/ROADMAP.md) |
 
 **密集开发窗口**：约 5/20 中午 → 5/21 凌晨（见 [cost-ledger](../notes/cost-ledger.md)）。
@@ -43,7 +44,7 @@
 ## 当前待办（给自己）
 
 - [ ] GSC OAuth Secrets 在 Actions 稳定（若仍 timeout 查日志）  
-- [ ] 飞书三 Secret（可选）  
+- [ ] 飞书：`FEISHU_FOLDER_TOKEN` + `python3 scripts/seo_feishu_journal.py init`（SEO 优化追踪）  
 - [ ] `approve` 自动 PR workflow  
 - [ ] commit + 部署 access booking  
 - [ ] 清理 `2026-05-22-test-reminder.md`、根目录 QA 截图  
