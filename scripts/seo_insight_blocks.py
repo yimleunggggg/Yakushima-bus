@@ -19,8 +19,8 @@ LEARNINGS = [
         "新站长期展示≈0 正常；有展示无点击时优先改 title/description 是否含「屋久島 バス 時刻表」等意图词。"
     ),
     (
-        "**Organic Search 渠道**：GA4 里自然搜索会话上涨，说明 SEO 起量；与 GSC 点击交叉验证。"
-        "Direct 多可能是书签、微信分享链接直达。"
+        "**Direct vs 来源/媒介**：Direct = 无 referrer；`google / organic` = 搜索。"
+        "界面「有国家没来源」时先看 **渠道** 是否 Direct/Unassigned，再看 **sessionSourceMedium** 表。"
     ),
     (
         "**索引 PASS / NEUTRAL**：PASS 表示 Google 已收录可用；NEUTRAL 常是新页或次要页，"
@@ -58,45 +58,36 @@ def load_metrics() -> dict:
     p = _metrics_path()
     if not p:
         return {}
-    return json.loads(p.read_text(encoding="utf-8"))
+    d = json.loads(p.read_text(encoding="utf-8"))
+    # 若 daily 拉数失败，尝试合并 latest.json 的 biweekly ga4
+    g = d.get("ga4_daily") or {}
+    if g.get("error") and not d.get("ga4"):
+        for candidate in (
+            pathlib.Path("docs/seo/metrics/latest.json"),
+            pathlib.Path("docs/seo/metrics/daily-latest.json"),
+        ):
+            if candidate.is_file() and candidate != p:
+                alt = json.loads(candidate.read_text(encoding="utf-8"))
+                if alt.get("ga4") and not alt["ga4"].get("error"):
+                    d["ga4"] = alt["ga4"]
+                    if alt.get("gsc_28d"):
+                        d["gsc_28d"] = alt["gsc_28d"]
+                    break
+    return d
 
 
 def daily_insight(d: dict) -> list[str]:
-    g = d.get("ga4_daily") or {}
+    from seo_ga4_analysis import daily_insight_bullets
+
+    bullets = daily_insight_bullets(d)
     gs = d.get("gsc_28d") or d.get("gsc") or {}
-    if not g and d.get("ga4"):
-        g = {"last_7d": {"active_users": d["ga4"].get("users_28d", 0)}}
-    lines = []
-    imp = gs.get("impressions", 0) if gs and not gs.get("error") else None
-    users = (g.get("last_7d") or {}).get("active_users") or g.get("yesterday", {}).get("active_users")
-    if imp == 0:
-        lines.append(
-            "GSC 展示仍为 0：新站 1–8 周内常见。此时应盯 **GA4 是否有人用工具**、"
-            "**四 URL 索引是否 PASS**，而不是焦虑「没排名」。"
-        )
-    elif imp and imp > 0:
-        lines.append(
-            f"已有搜索展示 **{imp}**：开始记录 Top 查询词，下周方案可对齐 title/description。"
-        )
-    if users is not None:
-        if users == 0:
-            lines.append("GA4 近 7 日用户为 0：检查埋点是否部署、或是否仅本地测试环境。")
-        else:
-            lines.append(f"近 7 日约 **{users}** 位用户在使用站点——说明工具链有人打开，SEO 与产品都有效。")
-    ch = g.get("channels_7d") or []
-    if ch:
-        organic = next((c for c in ch if c.get("dimension") == "Organic Search"), None)
-        if organic and organic.get("sessions", 0) == 0:
-            lines.append("自然搜索渠道仍为 0：符合新站；继续等收录，勿为抢词堆旅游攻略。")
     st = gs.get("index_status") or {} if gs else {}
     neutral = [u for u, v in (st or {}).items() if v != "PASS"]
-    if neutral:
-        lines.append(
+    if neutral and not any("NEUTRAL" in b for b in bullets):
+        bullets.append(
             f"索引 NEUTRAL 页 {len(neutral)} 个：属正常跟进项，**手动**在 GSC 做 URL 检查并请求编入索引。"
         )
-    if not lines:
-        lines.append("数据平稳：维持工具定位，等周一周报方案再决定是否改 meta。")
-    return lines
+    return bullets
 
 
 def weekly_insight(d: dict) -> list[str]:
@@ -127,6 +118,9 @@ def next_steps_daily(d: dict) -> list[tuple[str, str]]:
     steps.append(("wait", "本周一查看 `proposals/` 周报；有 P1 项再 Issue 回复 approve"))
     if (g.get("last_7d") or {}).get("active_users", 0) > 5:
         steps.append(("auto", "着陆页有数据后，周报将建议对齐 ferry/バス 长尾 meta（批准后执行）"))
+    ga4 = d.get("ga4_daily") or {}
+    if ga4.get("country_channel_7d") or ga4.get("source_medium_7d"):
+        steps.append(("manual", "自测时用 `?ga_internal=1`，避免 VPN/欧盟节点污染国家与渠道数据"))
     else:
         steps.append(("auto", "无需改代码；日报与自检已由 Actions 自动完成"))
     return steps

@@ -63,6 +63,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/seo/reports/daily/ docs/seo/metrics/daily-*.json docs/seo/feishu-links.json
+          git add docs/seo/reports/daily/ docs/seo/metrics/
+          if [[ -f docs/seo/feishu-links.json ]]; then
+            git add docs/seo/feishu-links.json
+          fi
           git diff --staged --quiet || git commit -m "docs(seo): daily report and metrics $(date +%Y-%m-%d)"
           git push

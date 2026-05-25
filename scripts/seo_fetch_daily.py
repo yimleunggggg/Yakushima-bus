@@ -16,8 +16,24 @@ import seo_oauth_util  # noqa: E402
 
 METRICS_DIR = ROOT / "docs" / "seo" / "metrics"
 
+GA4_METRICS = [
+    "activeUsers",
+    "newUsers",
+    "sessions",
+    "engagementRate",
+    "averageSessionDuration",
+    "screenPageViews",
+]
 
-def ga4_report(client, prop: str, start: str, end: str, dims=None, limit=10):
+
+def ga4_report(
+    client,
+    prop: str,
+    start: str,
+    end: str,
+    dims: list[str] | None = None,
+    limit: int = 10,
+):
     from google.analytics.data_v1beta.types import (
         DateRange,
         Dimension,
@@ -30,13 +46,7 @@ def ga4_report(client, prop: str, start: str, end: str, dims=None, limit=10):
         property=prop,
         date_ranges=[DateRange(start_date=start, end_date=end)],
         dimensions=[Dimension(name=d) for d in dims],
-        metrics=[
-            Metric(name="activeUsers"),
-            Metric(name="newUsers"),
-            Metric(name="sessions"),
-            Metric(name="engagementRate"),
-            Metric(name="averageSessionDuration"),
-        ],
+        metrics=[Metric(name=n) for n in GA4_METRICS],
         limit=limit,
     )
     resp = client.run_report(req)
@@ -48,8 +58,11 @@ def ga4_report(client, prop: str, start: str, end: str, dims=None, limit=10):
             "sessions": int(row.metric_values[2].value or 0),
             "engagement_rate": round(float(row.metric_values[3].value or 0) * 100, 1),
             "avg_session_sec": round(float(row.metric_values[4].value or 0), 1),
+            "pageviews": int(row.metric_values[5].value or 0),
         }
-        if dims:
+        for i, dname in enumerate(dims):
+            rec[dname] = row.dimension_values[i].value
+        if len(dims) == 1:
             rec["dimension"] = row.dimension_values[0].value
         rows.append(rec)
     if not dims and rows:
@@ -61,6 +74,7 @@ def ga4_report(client, prop: str, start: str, end: str, dims=None, limit=10):
             "sessions": 0,
             "engagement_rate": 0.0,
             "avg_session_sec": 0.0,
+            "pageviews": 0,
         }
     return rows
 
@@ -70,7 +84,7 @@ def fetch_ga4_daily(credentials, property_id: str) -> dict:
 
     out = {"property_id": property_id, "error": None}
     if not property_id:
-        out["error"] = "未设置 GA4_PROPERTY_ID"
+        out["error"] = "未设置 GA4_PROPERTY_ID（GA4 管理→属性设置里的数字 ID，不是 G-xxx）"
         return out
     prop = f"properties/{property_id}"
     try:
@@ -83,16 +97,30 @@ def fetch_ga4_daily(credentials, property_id: str) -> dict:
         out["day_before"] = ga4_report(client, prop, day_before, day_before)
         out["last_7d"] = ga4_report(client, prop, wk_start, yday)
         out["channels_7d"] = ga4_report(
-            client, prop, wk_start, yday, dims=["sessionDefaultChannelGroup"], limit=8
+            client, prop, wk_start, yday, dims=["sessionDefaultChannelGroup"], limit=12
+        )
+        out["sources_7d"] = ga4_report(
+            client, prop, wk_start, yday, dims=["sessionSource"], limit=12
+        )
+        out["source_medium_7d"] = ga4_report(
+            client, prop, wk_start, yday, dims=["sessionSourceMedium"], limit=12
         )
         out["landing_pages_7d"] = ga4_report(
-            client, prop, wk_start, yday, dims=["landingPage"], limit=8
+            client, prop, wk_start, yday, dims=["landingPage"], limit=10
         )
         out["countries_7d"] = ga4_report(
-            client, prop, wk_start, yday, dims=["country"], limit=5
+            client, prop, wk_start, yday, dims=["country"], limit=10
         )
         out["devices_7d"] = ga4_report(
-            client, prop, wk_start, yday, dims=["deviceCategory"], limit=3
+            client, prop, wk_start, yday, dims=["deviceCategory"], limit=4
+        )
+        out["country_channel_7d"] = ga4_report(
+            client,
+            prop,
+            wk_start,
+            yday,
+            dims=["country", "sessionDefaultChannelGroup"],
+            limit=25,
         )
         out["period"] = {"yesterday": yday, "last_7d": f"{wk_start}~{yday}"}
     except Exception as e:
@@ -118,7 +146,7 @@ def main() -> int:
 
     gsc_creds, gsc_err, gsc_via = m.load_gsc_credentials()
     site = os.environ.get("GSC_SITE_URL", "https://yakushimabus.com/")
-    ga4_id = os.environ.get("GA4_PROPERTY_ID", "").strip()
+    ga4_id = os.environ.get("GA4_PROPERTY_ID", "538426834").strip()
 
     seo_oauth_util.oauth_preflight_log()
     print(f"GSC auth: {gsc_via or 'none'}")
@@ -143,8 +171,14 @@ def main() -> int:
         print(
             f"✓ GA4 昨日 {g['period']['yesterday']}: "
             f"用户 {y['active_users']} ({delta_pct(y['active_users'], db['active_users'])}) · "
-            f"会话 {y['sessions']}"
+            f"会话 {y['sessions']} · PV {y.get('pageviews', 0)}"
         )
+        ch = g.get("channels_7d") or []
+        if ch:
+            print("  渠道7d:", ", ".join(f"{r.get('dimension')}({r.get('sessions')})" for r in ch[:4]))
+        src = g.get("source_medium_7d") or []
+        if src:
+            print("  来源7d:", ", ".join(f"{r.get('dimension')}({r.get('sessions')})" for r in src[:3]))
     gs = payload["gsc_28d"]
     if gs.get("error"):
         print(f"⚠ GSC: {gs['error']}", file=sys.stderr)

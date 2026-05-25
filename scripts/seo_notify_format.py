@@ -19,57 +19,91 @@ def _lines(path: Path) -> list[str]:
     return path.read_text(encoding="utf-8").splitlines()
 
 
-def ntfy_summary(path: Path, max_lines: int = 8) -> str:
+def _section_lines(lines: list[str], heading: str, max_items: int = 4) -> list[str]:
+    out: list[str] = []
+    capture = False
+    for raw in lines:
+        line = raw.strip()
+        if line.startswith("## ") and heading in line:
+            capture = True
+            continue
+        if capture and (line.startswith("## ") or line == "---"):
+            break
+        if not capture:
+            continue
+        if line.startswith("|") or not line or line.startswith(">"):
+            continue
+        if line.startswith("- "):
+            out.append(_strip_md(line[2:])[:130])
+        elif not line.startswith("#"):
+            out.append(_strip_md(line)[:130])
+        if len(out) >= max_items:
+            break
+    return out
+
+
+def ntfy_summary(path: Path, max_lines: int = 10) -> str:
     lines = _lines(path)
     out: list[str] = []
     title = _strip_md(lines[0].lstrip("# ").strip()) if lines else "SEO 报告"
     out.append(title[:80])
 
-    in_summary = False
-    for raw in lines:
-        line = raw.strip()
-        if line.startswith("## ") and "摘要" in line or "30 秒" in line:
-            in_summary = True
-            continue
-        if in_summary and line.startswith("## "):
+    for heading in ("一、今日结论", "30 秒结论", "摘要"):
+        chunk = _section_lines(lines, heading, max_items=3)
+        for c in chunk:
+            if c not in out:
+                out.append(c)
+        if len(out) >= 4:
             break
-        if in_summary and line.startswith("- "):
-            out.append(_strip_md(line[2:])[:120])
-            if len(out) >= max_lines:
-                break
 
-    for section in ("今日洞察", "本期洞察", "下一步"):
-        if len(out) >= max_lines:
+    for heading in ("三、为什么会这样",):
+        if len(out) >= max_lines - 2:
+            break
+        chunk = _section_lines(lines, heading, max_items=1)
+        for c in chunk:
+            if c not in out and not c.startswith("⚠"):
+                out.append(c[:120])
+
+    for heading in ("四、优化方向",):
+        if len(out) >= max_lines - 1:
             break
         capture = False
         for raw in lines:
             line = raw.strip()
-            if line.startswith("## ") and section in line:
+            if line.startswith("## ") and heading in line:
                 capture = True
                 continue
             if capture and line.startswith("## "):
-                capture = False
                 break
-            if capture and line.startswith("- "):
-                text = _strip_md(line[2:])
-                if not any(x in text for x in ("🤖", "👤", "⏳")):
-                    if "自动" in text:
-                        text = "[自动] " + text
-                    elif "手动" in text:
-                        text = "[手动] " + text
-                out.append(text[:100])
-                if len(out) >= max_lines:
+            if capture and line.startswith("|") and "P0" in line:
+                cells = [c.strip() for c in line.strip("|").split("|")]
+                if len(cells) >= 3 and cells[0] not in ("领域", "---"):
+                    out.append(f"[{cells[2]}] {cells[0]}: {_strip_md(cells[1])[:80]}")
                     break
+
+    seen: set[str] = set()
+    for heading in ("六、待办清单", "今天一件事", "待办"):
+        if len(out) >= max_lines:
+            break
+        chunk = _section_lines(lines, heading, max_items=2)
+        for c in chunk:
+            text = _strip_md(c.lstrip("👤 ").lstrip("⏳ ").lstrip("🤖 "))
+            if text in seen:
+                continue
+            seen.add(text)
+            out.append(text[:100])
+            if len(out) >= max_lines:
+                break
 
     if len(out) < 3:
         for raw in lines:
-            if raw.strip().startswith("- **GA4") or raw.strip().startswith("- **GSC"):
+            if raw.strip().startswith("- **"):
                 out.append(_strip_md(raw.strip().lstrip("- "))[:120])
             if len(out) >= max_lines:
                 break
 
     if len(out) < 2:
-        out.append("详见仓库 docs/seo/reports/ 或 GitHub Actions 日志")
+        out.append("详见 docs/seo/reports/daily/")
 
     return "\n".join(out[:max_lines])
 
@@ -77,6 +111,7 @@ def ntfy_summary(path: Path, max_lines: int = 8) -> str:
 def _md_table_to_html(rows: list[str]) -> str:
     if len(rows) < 2:
         return ""
+
     def split_row(r: str) -> list[str]:
         return [c.strip() for c in r.strip("|").split("|")]
 
@@ -98,7 +133,7 @@ def email_html(path: Path) -> str:
     parts: list[str] = []
     site = "https://yakushimabus.com"
     for raw in lines[:5]:
-        if "站点" in raw or "yakushimabus" in raw:
+        if "yakushimabus" in raw:
             m = re.search(r"https?://[^\s·]+", raw)
             if m:
                 site = m.group(0)
@@ -177,6 +212,13 @@ def email_html(path: Path) -> str:
 
         if line in ("---", "***"):
             parts.append('<hr style="border:none;border-top:1px solid #eee;margin:20px 0">')
+            i += 1
+            continue
+
+        if line.startswith(">"):
+            parts.append(
+                f'<p style="margin:8px 0;font-size:13px;color:#555">{html.escape(_strip_md(line.lstrip("> ")))}</p>'
+            )
             i += 1
             continue
 

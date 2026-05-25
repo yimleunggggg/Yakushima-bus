@@ -186,50 +186,51 @@ def fetch_gsc(credentials, site_url: str) -> dict:
 
 def fetch_ga4(credentials, property_id: str) -> dict:
     from google.analytics.data_v1beta import BetaAnalyticsDataClient
-    from google.analytics.data_v1beta.types import (
-        DateRange,
-        Dimension,
-        Metric,
-        RunReportRequest,
-    )
+
+    from seo_fetch_daily import ga4_report
 
     out = {
         "property_id": property_id,
         "users_28d": None,
         "organic_users_28d": None,
         "sessions_28d": None,
+        "channels_28d": [],
+        "countries_28d": [],
+        "source_medium_28d": [],
         "error": None,
     }
     if not property_id:
         out["error"] = "未设置 GA4_PROPERTY_ID（GA4 管理→属性设置里的数字 ID，不是 G-xxx）"
         return out
-    prop = property_id if property_id.startswith("properties/") else f"properties/{property_id}"
+    prop = f"properties/{property_id}" if not property_id.startswith("properties/") else property_id
     try:
         client = BetaAnalyticsDataClient(credentials=credentials)
-        req = RunReportRequest(
-            property=prop,
-            date_ranges=[DateRange(start_date="28daysAgo", end_date="yesterday")],
-            dimensions=[Dimension(name="sessionDefaultChannelGroup")],
-            metrics=[
-                Metric(name="activeUsers"),
-                Metric(name="sessions"),
-            ],
+        summary = ga4_report(client, prop, "28daysAgo", "yesterday")
+        out["users_28d"] = summary.get("active_users", 0)
+        out["sessions_28d"] = summary.get("sessions", 0)
+        out["pageviews_28d"] = summary.get("pageviews", 0)
+
+        channels = ga4_report(
+            client, prop, "28daysAgo", "yesterday", dims=["sessionDefaultChannelGroup"], limit=12
         )
-        resp = client.run_report(req)
-        total_users = 0
-        total_sessions = 0
-        organic = 0
-        for row in resp.rows:
-            channel = row.dimension_values[0].value
-            users = int(row.metric_values[0].value)
-            sessions = int(row.metric_values[1].value)
-            total_users += users
-            total_sessions += sessions
-            if channel == "Organic Search":
-                organic = users
-        out["users_28d"] = total_users
-        out["sessions_28d"] = total_sessions
-        out["organic_users_28d"] = organic
+        out["channels_28d"] = channels
+        organic = next((c for c in channels if c.get("dimension") == "Organic Search"), {})
+        out["organic_users_28d"] = organic.get("active_users", 0)
+
+        out["countries_28d"] = ga4_report(
+            client, prop, "28daysAgo", "yesterday", dims=["country"], limit=10
+        )
+        out["source_medium_28d"] = ga4_report(
+            client, prop, "28daysAgo", "yesterday", dims=["sessionSourceMedium"], limit=10
+        )
+        out["country_channel_28d"] = ga4_report(
+            client,
+            prop,
+            "28daysAgo",
+            "yesterday",
+            dims=["country", "sessionDefaultChannelGroup"],
+            limit=20,
+        )
     except Exception as e:
         out["error"] = str(e)
     return out

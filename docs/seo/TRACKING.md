@@ -17,8 +17,9 @@ Google 不会立刻爬完你刚上线的每个页面。**URL 检查** = 在 GSC 
 
 | 机制 | 作用 |
 |------|------|
-| `.github/workflows/seo-review.yml` | 每月 1/15 日：自检 + **自动拉 GSC/GA4** + 报告 + Issue |
-| `scripts/seo_fetch_metrics.py` | GSC + GA4 读数（需 `GOOGLE_SETUP.md`） |
+| `scripts/seo_fetch_daily.py` | 拉 GA4 昨日/7日：**渠道、来源/媒介、国家、国家×渠道、着陆页、设备** |
+| `scripts/seo_ga4_analysis.py` | 根据数据自动生成 §2.5 解读（Direct/欧盟真实性/Organic） |
+| `scripts/seo_report_daily.sh` | 生成 `docs/seo/reports/daily/YYYY-MM-DD.md` |
 
 **你需要做的**：按 [`RUNBOOK.md`](RUNBOOK.md) / [`GOOGLE_SETUP.md`](GOOGLE_SETUP.md) 配好 3 个 Secrets 并 push → 全自动读数；可选 ntfy/邮件见 `NOTIFICATIONS.md`。
 
@@ -49,6 +50,77 @@ Google 不会立刻爬完你刚上线的每个页面。**URL 检查** = 在 GSC 
 | 5 | 若有新页面或 PDF 大更新 → 改 `sitemap.xml` 的 `<lastmod>` 并在 GSC 重新抓取 |
 
 在 Cursor 可说：**「跑一轮 SEO 优化」**（或等 GitHub Issue `seo-round` 提醒）→ Agent 按 `.cursor/skills/seo-round/SKILL.md` 执行。
+
+## GA4：用户 / PV / Cookie（2026-05-22）
+
+### 没有 Cookie 横幅，还算「独立用户」吗？
+
+| 概念 | 实际含义 |
+|------|----------|
+| **浏览量（PV）** | 每打开/刷新一页 +1，≠ 新用户 |
+| **用户** | GA4 用浏览器里的 **`_ga` 第一方 Cookie**（客户端 ID）区分，**不是 IP** |
+| **没有授权弹窗** | 站点仍会默认写 `_ga`（除非浏览器/插件拦截 Cookie） |
+| **VPN** | 换节点**通常不会**单独算新用户；**无痕 / 清 Cookie / 换浏览器** 会 |
+| **是不是真人** | 否 — 是「设备+浏览器」近似，同一人两台手机 = 2 用户 |
+
+**欧盟访客**：严格合规应上 Consent Mode + 横幅；未做时法律与 Google 政策另说，技术上仍可能写 Cookie。
+
+### 排除自测（代码 + GA4 后台）
+
+**1. 本地**：`127.0.0.1` / `localhost` **不再发送** GA（已改 `analytics.js`）。
+
+**2. 线上自测时**（任选）：
+
+- 访问一次：`https://yakushimabus.com/?ga_internal=1` → 本浏览器后续访问都带 `traffic_type=internal`
+- 取消：`?ga_internal=0`
+- 调试：`?ga_debug=1` → GA4 **DebugView** 可见事件（管理 → DebugView）
+
+**3. GA4 后台（一次性，过滤 internal）**
+
+1. [GA4](https://analytics.google.com) → **管理** → **数据流** → 你的网站 → **配置标记设置** → **显示全部**
+2. **定义内部流量** → 规则名 `internal` → 条件：`traffic_type` **等于** `internal` → 保存
+3. **管理 → 数据设置 → 数据过滤条件** → **创建** → 类型 **内部流量** → 选择刚建的规则 → 过滤行为 **排除** → 状态 **测试**（先看报告）→ 确认无误后改 **有效**
+
+**4. （可选）按 IP 排除**：同上「定义内部流量」里加 IP 规则（填你 VPN/家里常用出口 IP）。
+
+**5. 排除已知爬虫（GA4 内置，建议开启）**
+
+1. **管理 → 数据流** → 你的网站 → **配置标记设置** → **显示全部**
+2. 打开 **排除已知机器人和蜘蛛程序的流量** → 保存
+
+仍会有 SEO 工具、云机房探测等漏网之鱼；日报 §2.3–§2.5 已用 **互动 0% + 均时 0s** 从国家维度剔除，不当作真实旅客。
+
+## 爬虫流量：怎么读、有没有用
+
+### 为什么「互动 0s + Boardman」≈ 不是真人？
+
+| 信号 | 含义 |
+|------|------|
+| **互动 0s / 互动率 0%** | GA4 认定会话未「参与」：通常 <10s 即走、只打 1 次 page_view、无滚动/二次点击 |
+| **Boardman, Oregon** | 美国 AWS 等 **机房 IP** 的常见地理定位，不是旅客会「路过」的城市 |
+| **美国 16 人全 0 互动** | 批量扫描/索引/安全探测，不是 16 个美国旅客 |
+| **中国 ~1m43s** | 像朋友圈点开、真在用时刻表 — 与 bot 行对比即筛噪声 |
+
+爱沙尼亚 3 人 0 互动：多半是你 **VPN 自测**（塔林节点）或同类探测，已从「欧盟旅客」判定里排除。
+
+### 被爬到 = 有用吗？
+
+**不等于**「已经有很多人在用」，但 **对发现性有用**：
+
+| 爬虫类型 | 对你站的意义 |
+|----------|----------------|
+| **Googlebot / Bingbot** | 收录 → 以后 Organic 才有量；GSC「已编入索引」即证明 |
+| **GPTBot / Claude / Perplexity**（`robots.txt` 已 Allow） | AI 问答可能引用你的时刻表/票价 — 长尾发现 |
+| **SEO 审计、安全扫描** | 噪声，可忽略；别当 KPI |
+
+**可做的利用**（你站已基本具备）：
+
+1. **保持可爬**：静态 HTML、`sitemap.xml`、各页 title/description、JSON-LD
+2. **`llms.txt`**：告诉 AI 站点结构与用途（已有）
+3. **GSC**：索引正常后盯 **查询词 / 展示**，比 GA4 国家分布更准
+4. **不要**为爬虫优化 PV；真人指标看 **可分析用户**（有互动、多页、中国/日本时长）
+
+微信 **不加 UTM** 没问题；朋友圈仍是 Direct，用国家+互动区分即可。
 
 ## 指标表
 
