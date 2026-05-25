@@ -143,6 +143,7 @@ Google 不会立刻爬完你刚上线的每个页面。**URL 检查** = 在 GSC 
 
 ## 相关文件
 
+- **优化追踪（飞书主读）**：`docs/seo/SEO-JOURNAL.md` → 飞书「YakuBus SEO 优化追踪」
 - **主教程**：`docs/seo/RUNBOOK.md`
 - 技术清单：`docs/notes/seo-geo.md`
 - 每轮变更：`docs/seo/CHANGELOG.md`

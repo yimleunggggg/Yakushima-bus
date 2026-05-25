@@ -49,3 +49,36 @@ export FEISHU_APP_SECRET=...
 export FEISHU_FOLDER_TOKEN=...
 python3 scripts/seo_feishu_doc.py docs/seo/reports/daily/2026-05-22.md
 ```
+
+---
+
+## 6. SEO 优化追踪（长文档，推荐）
+
+与「每天一篇日报」分开，**一篇飞书文档长期滚动**，对应 Git：`docs/seo/SEO-JOURNAL.md`
+
+| 内容 | 说明 |
+|------|------|
+| GSC 查询词 / 索引状态 | 怎么读、其他页面怎么请求编入索引 |
+| 优化过程时间线 | Round 1/2 做了什么 |
+| 效果快照表 | 每日 Actions 自动追加一行 |
+
+### 首次创建飞书文档
+
+```bash
+export FEISHU_APP_ID=...
+export FEISHU_APP_SECRET=...
+export FEISHU_FOLDER_TOKEN=...   # 建议文件夹：YakuBus SEO
+python3 scripts/seo_feishu_journal.py init
+```
+
+成功后写入 `docs/seo/feishu-journal.json`（含文档 URL）。  
+若你**已在飞书建好文档**，只填 Secret **`FEISHU_JOURNAL_DOC_ID`**（URL 里 docx 后面那段），再跑 `init` 只会往该 doc 追加内容。
+
+### 日常行为
+
+- 每日日报成功后 → 自动在追踪文档 **顶部** 追加「YYYY-MM-DD 快照」
+- 大改追踪文档后 → `python3 scripts/seo_feishu_journal.py sync-full` 把 Git 全文 prepend 到飞书
+
+### 文档放哪
+
+飞书云空间 → 文件夹 **`YakuBus SEO`** → 文档 **`YakuBus SEO 优化追踪`**（与日报同文件夹即可，**两个 doc**：日报每天新建，追踪只这一篇）

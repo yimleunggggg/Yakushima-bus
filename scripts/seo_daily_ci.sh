@@ -33,9 +33,11 @@ if [[ "$ATTEMPT" -gt 1 ]]; then
 fi
 bash scripts/seo_notify.sh "$REPORT" "$SUBJ"
 
+python3 scripts/seo_feishu_journal.py checkpoint "$REPORT" || true
+
 git config user.name "github-actions[bot]"
 git config user.email "github-actions[bot]@users.noreply.github.com"
-git add docs/seo/reports/daily/ docs/seo/metrics/
+git add docs/seo/reports/daily/ docs/seo/metrics/ docs/seo/SEO-JOURNAL.md
 [[ -f docs/seo/feishu-links.json ]] && git add docs/seo/feishu-links.json
 git diff --staged --quiet || git commit -m "docs(seo): daily report and metrics $(date +%Y-%m-%d)"
 
