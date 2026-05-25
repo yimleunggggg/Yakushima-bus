@@ -1,4 +1,5 @@
 # 每日 SEO/GA4 日报 → Git 存档 + 可选飞书
+# 失败自动重跑 1 次（job 内）；两次均失败 → 高优先级 ntfy 告警
 name: SEO daily report
 
 on:
@@ -23,49 +24,21 @@ jobs:
       - name: Install SEO dependencies
         run: pip install -r scripts/requirements-seo.txt
 
-      - name: Static SEO checks
-        run: bash scripts/seo_check.sh 2>&1 | tee /tmp/seo-check.log
-
-      - name: Fetch daily GA4 + GSC metrics
-        continue-on-error: true
+      - name: Run daily pipeline (up to 2 attempts)
         env:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           GOOGLE_OAUTH_CLIENT_JSON: ${{ secrets.GOOGLE_OAUTH_CLIENT_JSON }}
           GOOGLE_OAUTH_REFRESH_TOKEN: ${{ secrets.GOOGLE_OAUTH_REFRESH_TOKEN }}
           GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
-        run: python3 scripts/seo_fetch_daily.py
-
-      - name: Generate daily report
-        id: report
-        run: |
-          REPORT=$(bash scripts/seo_report_daily.sh)
-          echo "path=$REPORT" >> "$GITHUB_OUTPUT"
-
-      - name: Publish to Feishu (optional)
-        env:
-          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
-          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
-          FEISHU_FOLDER_TOKEN: ${{ secrets.FEISHU_FOLDER_TOKEN }}
-        run: python3 scripts/seo_feishu_doc.py "${{ steps.report.outputs.path }}"
-
-      - name: Send notifications
-        env:
           SEO_NOTIFY_EMAIL: ${{ secrets.SEO_NOTIFY_EMAIL }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           RESEND_FROM: ${{ secrets.RESEND_FROM }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        run: |
-          SUBJ="[YakuBus] 日报 $(date +%Y-%m-%d) GA4/GSC"
-          bash scripts/seo_notify.sh "${{ steps.report.outputs.path }}" "$SUBJ"
-
-      - name: Commit report, metrics, and Feishu links
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/seo/reports/daily/ docs/seo/metrics/
-          if [[ -f docs/seo/feishu-links.json ]]; then
-            git add docs/seo/feishu-links.json
-          fi
-          git diff --staged --quiet || git commit -m "docs(seo): daily report and metrics $(date +%Y-%m-%d)"
-          git push
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_FOLDER_TOKEN: ${{ secrets.FEISHU_FOLDER_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+        run: bash scripts/seo_daily_ci_with_retry.sh
