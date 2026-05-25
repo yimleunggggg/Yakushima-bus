@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="屋久島バス時刻表・次の便検索。宮之浦港・安房・白谷・荒川登山バスなど全路線。公式PDF準拠。日本語・中文・English。">
+  <meta name="description" content="屋久島バス時刻表・次の便検索。宮之浦港・安房・白谷・荒川登山口・荒川登山バスなど全路線。公式PDF準拠。日本語・中文・English。">
   <meta name="keywords" content="屋久島,バス,時刻表,屋久岛,公交,Yakushima,bus,timetable,Miyanoura">
   <meta name="author" content="Yakushima Bus">
   <meta name="robots" content="index, follow">
@@ -52,6 +52,11 @@
         "url": "https://yakushimabus.com/",
         "inLanguage": ["ja", "zh-CN", "en"],
         "description": "Trilingual bus timetable and next-departure search for Yakushima Island, Japan.",
+        "hasPart": [
+          { "@type": "WebPage", "name": "Routes and Fares", "url": "https://yakushimabus.com/map/" },
+          { "@type": "WebPage", "name": "Ferry and Island Access", "url": "https://yakushimabus.com/access/" },
+          { "@type": "WebPage", "name": "About Yakushima Bus", "url": "https://yakushimabus.com/about/" }
+        ],
         "potentialAction": {
           "@type": "SearchAction",
           "target": {
@@ -81,7 +86,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="styles.css?v=layout-v23">
+  <link rel="stylesheet" href="styles.css?v=layout-v25">
   <script src="analytics.js"></script>
 </head>
 <body>
@@ -102,7 +107,7 @@
         </div>
       </div>
     </header>
-    <p class="page-lead" data-i18n="pageLead">屋久島全線バスの時刻表・次の便検索。宮之浦港・安房・白谷・荒川登山バスなど。公式PDF準拠・日本語・中文・English。</p>
+    <p class="page-lead" data-i18n="pageLead">屋久島全線バスの時刻表・次の便検索。宮之浦港・安房・白谷・荒川登山口・荒川登山バスなど。公式PDF準拠・日本語・中文・English。</p>
     <p class="app-meta" id="metaBar"></p>
 
     <div class="panel">
@@ -260,7 +265,13 @@
     </div>
 
     <footer class="app-footer">
-      <a href="/about/" data-i18n="navAbout">このサイトについて</a>
+      <nav class="app-footer-links" aria-label="Site pages">
+        <a href="/map/" data-i18n="navMap">路線・運賃</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="/access/" data-i18n="navAccess">フェリー等</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="/about/" data-i18n="navAbout">このサイトについて</a>
+      </nav>
     </footer>
   </div>
 
@@ -276,7 +287,7 @@
   <script>
     const UI = {
       ja: {
-        navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "屋久島バス", pageLead: "屋久島全線バスの時刻表・次の便検索。宮之浦港・安房・白谷・荒川登山バスなど。公式PDF準拠・日本語・中文・English。", sub: "次のバスを検索", presets: "よく使う区間",
+        navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "屋久島バス", pageLead: "屋久島全線バスの時刻表・次の便検索。宮之浦港・安房・白谷・荒川登山口・荒川登山バスなど。公式PDF準拠・日本語・中文・English。", sub: "次のバスを検索", presets: "よく使う区間",
         swapped: "出発と到着を入れ替えました",
         from: "出発", to: "到着", weekday: "平日", saturday: "土曜",         sunday: "日祝",
         tzLabel: "日本時間 (JST)", arriveEta: "着 {time}",
@@ -325,7 +336,7 @@
         pdfFare: "運賃表 PDF", pdfFareEn: "Fare table PDF (EN)",
       },
       zh: {
-        navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "屋久岛公交", pageLead: "屋久岛全线公交时刻表与下一班查询。宫之浦港、安房、白谷、荒川登山巴士等。官方 PDF · 日中英三语。", sub: "屋久岛公交查询", presets: "常用区间",
+        navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "屋久岛公交", pageLead: "屋久岛全线公交时刻表与下一班查询。宫之浦港、安房、白谷、荒川登山口、荒川登山巴士等。官方 PDF · 日中英三语。", sub: "屋久岛公交查询", presets: "常用区间",
         swapped: "已交换出发与到达",
         from: "出发", to: "到达", weekday: "工作日", saturday: "周六",         sunday: "周日·节假日",
         tzLabel: "日本时间 (JST)", arriveEta: "到站 {time}",
@@ -374,7 +385,7 @@
         pdfFare: "运价表 PDF", pdfFareEn: "运价表 PDF（英文）",
       },
       en: {
-        navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access", navAbout: "About", title: "Yakushima Bus", pageLead: "Yakushima bus timetables and next-departure search for all routes — Miyanoura, Anbo, Shiratani, Arakawa trail bus. Official PDF data · JA/ZH/EN.", sub: "Yakushima Bus Timetable", presets: "Quick routes",
+        navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access", navAbout: "About", title: "Yakushima Bus", pageLead: "Yakushima bus timetables and next-departure search — Miyanoura Port, Anbo, Shiratani, Arakawa trailhead (Mar–Nov). Official PDF data · JA/ZH/EN.", sub: "Yakushima Bus Timetable", presets: "Quick routes",
         swapped: "Origin and destination swapped",
         from: "From", to: "To", weekday: "Weekday", saturday: "Sat",         sunday: "Sun & holidays",
         tzLabel: "Japan time (JST)", arriveEta: "Arr. {time}",

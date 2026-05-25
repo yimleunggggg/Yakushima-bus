@@ -46,7 +46,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v23">
+  <link rel="stylesheet" href="/styles.css?v=layout-v25">
   <script src="/analytics.js"></script>
 </head>
 <body class="app-page-narrow">
@@ -75,7 +75,13 @@
     </div>
 
     <footer class="app-footer">
-      <a href="/" id="backLink" data-i18n="backHome">時刻表に戻る</a>
+      <nav class="app-footer-links" aria-label="Site pages">
+        <a href="/" data-i18n="navTime">バス時刻表</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="/map/" data-i18n="navMap">路線・運賃</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="/access/" data-i18n="navAccess">フェリー等</a>
+      </nav>
     </footer>
   </div>
 

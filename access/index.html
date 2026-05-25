@@ -52,7 +52,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v23">
+  <link rel="stylesheet" href="/styles.css?v=layout-v25">
   <script src="/analytics.js"></script>
 </head>
 <body class="app-page-narrow">
@@ -95,7 +95,13 @@
     </div>
 
     <footer class="app-footer">
-      <a href="/about/" data-i18n="navAbout">このサイトについて</a>
+      <nav class="app-footer-links" aria-label="Site pages">
+        <a href="/" data-i18n="navTime">バス時刻表</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="/map/" data-i18n="navMap">路線図</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="/about/" data-i18n="navAbout">このサイトについて</a>
+      </nav>
     </footer>
   </div>
 
@@ -214,7 +220,8 @@
       els.langSwitch.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
       els.appTitle.textContent = t("title");
       els.metaBar.textContent = `${t("updated")} ${ACCESS_DATA.meta.updatedAt}`;
-      els.introText.textContent = pick(ACCESS_DATA.intro);
+      if (ACCESS_DATA.introHtml) els.introText.innerHTML = pick(ACCESS_DATA.introHtml);
+      else els.introText.textContent = pick(ACCESS_DATA.intro);
       renderBooking();
       els.sections.innerHTML = ACCESS_DATA.sections.filter((s) => s.id !== "pass").map(renderSection).join("");
       els.sourceLinks.innerHTML = ACCESS_DATA.links.map((l) =>

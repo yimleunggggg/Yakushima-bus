@@ -53,7 +53,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v23">
+  <link rel="stylesheet" href="/styles.css?v=layout-v25">
   <script src="/analytics.js"></script>
 </head>
 <body>
@@ -185,7 +185,13 @@
     </div>
 
     <footer class="app-footer">
-      <a href="/about/" data-i18n="navAbout">このサイトについて</a>
+      <nav class="app-footer-links" aria-label="Site pages">
+        <a href="/" data-i18n="navTime">バス時刻表</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="/access/" data-i18n="navAccess">フェリー等</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="/about/" data-i18n="navAbout">このサイトについて</a>
+      </nav>
     </footer>
   </div>
 

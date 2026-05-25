@@ -1,5 +1,11 @@
 # SEO 优化日志
 
+## 站内内链与索引恢复 — 2026-05-25
+
+- 站点 Private→Public 恢复后：四页 footer 互链、`hasPart` JSON-LD、sitemap lastmod
+- 首页 meta/page-lead 强化「荒川登山口」；`/access/` intro 链到 `/` 与 `/map/`
+- **待你手动**：GSC 四页 Live 200 确认 + NEUTRAL 三页请求编入索引
+
 ## 日报剔除 bot 流量 — 2026-05-20
 
 - `seo_ga4_analysis.py`：国家行 **互动 0% + 均时 0s** 不纳入 geo/欧盟/质量判定

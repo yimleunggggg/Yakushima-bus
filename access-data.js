@@ -56,9 +56,14 @@ const ACCESS_DATA = {
     }
   },
   "intro": {
-    "ja": "鹿児島から屋久島へは高速船（約2–3時間）かフェリー（約4時間）が一般的です。島内は路線バス（時刻表タブ）が中心。最新ダイヤ・運休は各社公式を確認してください。",
+    "ja": "鹿児島から屋久島へは高速船（約2–3時間）かフェリー（約4時間）が一般的です。島内は路線バス（時刻表）が中心。最新ダイヤ・運休は各社公式を確認してください。",
     "zh": "从鹿儿岛到屋久岛通常乘高速船（约2–3小时）或渡轮（约4小时）。岛上以公交为主（见时刻表页）。请以各运营商最新公告为准。",
     "en": "Reach Yakushima from Kagoshima by jetfoil (~2–3h) or ferry (~4h). On-island travel is mostly by route bus (Timetable tab). Check each operator for latest schedules."
+  },
+  "introHtml": {
+    "ja": "鹿児島から屋久島へは高速船（約2–3時間）かフェリー（約4時間）が一般的です。島内は<a href=\"/\">路線バス（時刻表）</a>が中心。運賃は<a href=\"/map/\">路線図・運賃</a>。最新ダイヤ・運休は各社公式を確認してください。",
+    "zh": "从鹿儿岛到屋久岛通常乘高速船（约2–3小时）或渡轮（约4小时）。岛上以<a href=\"/\">公交时刻表</a>为主，票价见<a href=\"/map/\">路线与运价</a>。请以各运营商最新公告为准。",
+    "en": "Reach Yakushima from Kagoshima by jetfoil (~2–3h) or ferry (~4h). On-island travel is mostly by <a href=\"/\">route bus (timetable)</a>; fares on the <a href=\"/map/\">routes &amp; fares</a> page. Check each operator for latest schedules."
   },
   "booking": {
     "title": {
