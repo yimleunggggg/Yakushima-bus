@@ -8,22 +8,21 @@
 
 | 你收到什么 | 什么时候 | 要不要你操作 |
 |------------|----------|--------------|
-| 手机 ntfy 推送 | 日报 17:00 / 半月 17:00 / 周报 17:30（北京） | 不用 |
+| 手机 ntfy 推送 | 日报 17:00（北京） | 不用 |
 | Gmail 邮件 | 同上（配了 Resend 后） | 不用 |
-| GitHub Issue | 周报方案、半月提醒 | 周报可回 `approve` |
-| 仓库 Markdown | `docs/seo/reports/` 永久存档 | 不用 |
+| 仓库 Markdown | `docs/seo/reports/daily/` 永久存档 | 不用 |
 
 **不用 Cursor，不用电脑开机** — 全是 GitHub Actions 云端 cron。
 
 ---
 
-## 三层报告分工
+## 报告分工
 
 ```text
-日报     → 今天站点健康吗？学一点 GA4/GSC
-半月报   → 28 天汇总 + 提醒「可以跑优化了」
-周报方案 → 建议改哪些 title/meta → 你批准再动
+日报 → 站点健康、GSC/GA4 表格、P0 待办、学一点
 ```
+
+需要周报时本地跑 `scripts/seo_report_weekly.sh`（不再 cron）。
 
 日报**不改代码**；避免 AI 每天乱改 meta。
 
@@ -37,7 +36,7 @@
 |----|------|
 | 01 | 目标与五阶段 |
 | 02 | Google 授权（OAuth + 服务账号） |
-| 03 | GitHub Secrets + 三个 workflow |
+| 03 | GitHub Secrets + daily workflow |
 | 04 | Resend + DNSPod + ntfy |
 | 05 | 怎么看报告、Issue approve |
 | 06 | **日报 v2**、自动 P0–P2、失败重跑、飞书追踪 |

@@ -21,12 +21,11 @@
 
 | 能力 | 说明 |
 |------|------|
-| 自动读数 | 每半月拉 GSC（28 天展示/点击/排名、Top 词、索引）+ GA4（28 天用户、自然搜索） |
-| **日报** | 每天 GA4 昨日/7 日 + GSC + 自检 → `reports/daily/YYYY-MM-DD.md` |
-| **周报方案** | 每周一 → `proposals/YYYY-WW-proposal.md` + Issue `seo-round YYYY-WW` |
-| 长期存档 | `docs/seo/metrics/latest.json`、`reports/YYYY-MM-DD-reminder.md`、`TRACKING.md` 自动写入 Git |
-| 定期提醒 | GitHub Issue（标签 `seo-round`）；可叠加邮件或 ntfy |
-| 专业优化 | 在 Cursor 说「跑一轮 SEO 优化」→ 读数据、改 meta、写 Round 报告（**定时任务默认不改 HTML**） |
+| 自动读数 | 每天拉 GSC（28 天展示/点击/排名、Top 词、索引）+ GA4（昨日/7 日） |
+| **日报** | → `reports/daily/YYYY-MM-DD.md` + 邮件/ntfy 摘要 |
+| 长期存档 | `docs/seo/metrics/daily-*.json`、`TRACKING.md` 等自动写入 Git |
+| 定期提醒 | ntfy / Resend（可选）；**不再**自动开 Issue |
+| 专业优化 | 在 Cursor 说「跑一轮 SEO 优化」→ 读数据、改 meta（**定时任务默认不改 HTML**） |
 
 ---
 
@@ -40,7 +39,7 @@
 | 2 | 代码在 GitHub 仓库 | 能 push、能开 Actions |
 | 3 | [Search Console](https://search.google.com/search-console) 已验证站点 | 左侧能看到你的资源 |
 | 4 | [GA4](https://analytics.google.com) 已创建属性 | 管理里能看到数据流 |
-| 5 | 本仓库已含 SEO 脚本 | 存在 `scripts/seo_*.py`、`/.github/workflows/seo-review.yml` |
+| 5 | 本仓库已含 SEO 脚本 | 存在 `scripts/seo_*.py`、`/.github/workflows/seo-daily.yml` |
 
 **需要的账号**：Google 账号（GSC/GA4 管理员）、GitHub 仓库管理员。
 
@@ -84,17 +83,17 @@
 push 后，仓库应包含：
 
 ```
-.github/workflows/seo-review.yml
+.github/workflows/seo-daily.yml
+scripts/seo_daily_ci_with_retry.sh
+scripts/seo_fetch_daily.py
+scripts/seo_daily_report.py
 scripts/seo_check.sh
-scripts/seo_fetch_metrics.py
-scripts/seo_report.sh
 scripts/seo_notify.sh
-scripts/seo_grant_ga4_access.py
 scripts/requirements-seo.txt
 docs/seo/
 ```
 
-若 Actions 页只有 `pages-build-deployment`、没有 **SEO review (biweekly)** → 说明 workflow **尚未 push**。
+若 Actions 页只有 `pages-build-deployment`、没有 **SEO daily report** → 说明 workflow **尚未 push**。
 
 ### B2 配置 Google 授权（核心）
 
@@ -131,35 +130,26 @@ docs/seo/
 ### C1 手动触发 Workflow
 
 1. GitHub 仓库 → **Actions**
-2. 左侧 **SEO review (biweekly)**
+2. 左侧 **SEO daily report**
 3. 右侧 **Run workflow** → 分支 `main` → **Run workflow**
-
-![Run workflow](images/actions-run-workflow.png)
 
 ### C2 逐步检查日志
 
-点开最新一次 run →  job **seo-round**：
+点开最新一次 run → job **seo-daily**：
 
 | 步骤 | 期望结果 | 失败时 |
 |------|----------|--------|
-| **Static SEO checks** | `All checks passed` | 修 sitemap/meta/robots |
-| **Fetch GSC + GA4 metrics** | `✓ GSC 28d` 与 `✓ GA4 28d` | 见 [GOOGLE_SETUP 常见报错](GOOGLE_SETUP.md#常见报错) |
-| **Commit report and metrics** | 新 commit `docs(seo): biweekly report...` | 检查 `contents: write` 权限 |
-| **Open review issue** | Issue 标签 `seo-round` | 可忽略 Octokit 弃用警告 |
-| **Send notifications** | 已配 Secret 则 ✓；否则跳过 | 见 NOTIFICATIONS |
-
-![Workflow 全部成功](images/actions-workflow-success.png)
-
-![拉数成功日志](images/fetch-metrics-ok.png)
+| **Run daily pipeline** | 日志含 `✓` 日报路径 | 见 [GOOGLE_SETUP 常见报错](GOOGLE_SETUP.md#常见报错) |
+| **（自动 commit）** | 新 commit `docs(seo): daily...` | 检查 `contents: write` 权限 |
+| **Send notifications** | 已配 Secret 则收到邮件/ntfy | 见 NOTIFICATIONS |
 
 ### C3 检查仓库产物
 
 | 路径 | 内容 |
 |------|------|
-| `docs/seo/metrics/latest.json` | 最近一次 API 原始数据 |
-| `docs/seo/reports/YYYY-MM-DD-reminder.md` | 可读报告（含 §2 数据、§4 学习说明） |
-| `docs/seo/TRACKING.md` | 指标表（有数据时会更新一行） |
-| GitHub **Issues** | `SEO Round — 日期` |
+| `docs/seo/metrics/daily-latest.json` | 最近一次 API 原始数据 |
+| `docs/seo/reports/daily/YYYY-MM-DD.md` | 可读日报（表格化 §一–§六） |
+| `docs/seo/TRACKING.md` | 指标表（有数据时会更新） |
 
 ### C4 本地验证（可选）
 
@@ -180,23 +170,21 @@ python3 scripts/seo_fetch_metrics.py
 
 | 项 | 值 |
 |----|-----|
-| Workflow 文件 | `.github/workflows/seo-review.yml` |
-| 定时 | 每月 **1 日、15 日** UTC 09:00（北京时间约 17:00） |
-| 手动 | Actions → Run workflow 随时可跑 |
-| 会改代码吗 | **默认不会**；只自检、拉数、写 `docs/seo/`、开 Issue |
-| 会改 meta 吗 | 需你在 Cursor 触发「跑一轮 SEO 优化」 |
+| Workflow 文件 | `.github/workflows/seo-daily.yml` |
+| 定时 | 每天 UTC 09:00（北京时间约 **17:00**） |
+| 手动 | Actions → **SEO daily report** → Run workflow |
+| 会改代码吗 | **默认不会**；只自检、拉数、写 `docs/seo/`、通知 |
 
 ---
 
-## 5b. 怎么看日报和周报
+## 5b. 怎么看日报
 
 | 类型 | 去哪看 | 说明 |
 |------|--------|------|
-| **日报** | [`docs/seo/reports/daily/`](reports/daily/) 最新 `YYYY-MM-DD.md` | 每天 UTC 09:00（北京 **17:00**）自动生成；Actions → **SEO daily report** |
+| **日报** | [`docs/seo/reports/daily/`](reports/daily/) 最新 `YYYY-MM-DD.md` | 每天 UTC 09:00（北京 **17:00**）；Actions → **SEO daily report** |
 | **日报数据** | `docs/seo/metrics/daily-YYYY-MM-DD.json`、`daily-latest.json` | 原始 API 快照 |
 | **飞书** | `docs/seo/feishu-links.json` 或 Actions 日志 `✓ Feishu doc:` | 需配 [FEISHU_SETUP.md](FEISHU_SETUP.md) 三个 Secret |
-| **周报方案** | [`docs/seo/proposals/`](proposals/) 最新 `YYYY-WW-proposal.md` | 每周一 UTC 09:30；Actions → **SEO weekly proposal** |
-| **确认执行** | GitHub Issue 标签 **`seo-round`**，标题 `seo-round YYYY-WW` | 评论 **`approve`** 后执行 §2 改动（或 Cursor 说「执行本周 SEO 方案」） |
+| **周报（手动）** | `bash scripts/seo_report_weekly.sh` → `proposals/` | 不再定时；需要时本地生成 |
 
 本地预览：
 
@@ -265,8 +253,8 @@ Agent 将（见 `.cursor/skills/seo-round/SKILL.md`）：
 | GSC Associations | ⏳ | 界面无 Cloud 项；改 **OAuth**（见下） |
 | GSC OAuth | ⏳ | 跑 `seo_setup_gsc_oauth.py` + 2 个 Secret |
 | 报告 + Issue | ✅ | `docs/seo/reports/2026-05-22-reminder.md`，Issue #1 |
-| **日报 workflow** | ✅ | `seo-daily.yml` + `seo_report_daily.sh` + `seo_fetch_daily.py` |
-| **周报 workflow** | ✅ | `seo-weekly.yml` + `proposals/` + Issue `seo-round YYYY-WW` |
+| **日报 workflow** | ✅ | `seo-daily.yml` + `seo_daily_report.py` |
+| **半月/周报 workflow** | ❌ 已移除 | 与 daily 重复；周报可本地 `seo_report_weekly.sh` |
 | **飞书归档** | ⏳ | 脚本就绪；待配 `FEISHU_*` Secrets（见 FEISHU_SETUP.md） |
 | 邮件/ntfy | — | 未配置；看 Issue 或仓库报告 |
 
@@ -285,7 +273,7 @@ Agent 将（见 `.cursor/skills/seo-round/SKILL.md`）：
 
 | 现象 | 处理 |
 |------|------|
-| Actions 无 SEO workflow | push `.github/workflows/seo-review.yml` |
+| Actions 无 SEO workflow | push `.github/workflows/seo-daily.yml` |
 | GSC `403 permission` | [GOOGLE_SETUP §3](GOOGLE_SETUP.md#第-3-步gsc--cloud-项目关联) Associations |
 | GA4 `SERVICE_DISABLED` | 启用 Analytics Data API，等 2–5 分钟 |
 | GA4 `403 property` | 跑 `seo_grant_ga4_access.py` |
@@ -308,7 +296,7 @@ Agent 将（见 `.cursor/skills/seo-round/SKILL.md`）：
 
 ## 10. 复用到你的网站
 
-1. Fork 或复制 `scripts/seo_*`、`.github/workflows/seo-review.yml`、`docs/seo/`
+1. Fork 或复制 `scripts/seo_*`、`.github/workflows/seo-daily.yml`、`docs/seo/`
 2. 在 `seo_fetch_metrics.py` 改 `SITE_PAGES` 列表
 3. 报告脚本里的域名文案改为你的站
 4. 按 [GOOGLE_SETUP.md](GOOGLE_SETUP.md) 为你的域名重做授权

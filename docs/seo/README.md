@@ -25,22 +25,19 @@ RUNBOOK.md          ← 总流程（阶段 A→E）
 GOOGLE_SETUP.md     ← Cloud / GSC / GA4（最细）
 NOTIFICATIONS.md
 reports/daily/      ← 日报
-reports/*-reminder  ← 半月
-proposals/          ← 周报方案
 metrics/            ← API JSON
 ```
+（`reports/*-reminder`、`proposals/` 仍可用于**手动**脚本，已无定时 workflow。）
 
 ## 定时任务一览
 
 | 任务 | UTC | 北京 | 产出 |
 |------|-----|------|------|
 | 日报 | 09:00 每天 | 17:00 | `reports/daily/` + ntfy/邮件 |
-| 半月 | 09:00 每月 1/15 | 17:00 | `*-reminder.md` + Issue |
-| 周报 | 09:30 每周一 | 17:30 | `proposals/` + Issue |
 
 ## Cursor 优化轮
 
-定时任务 **默认不改** meta。有数据后可在 Cursor 说「跑一轮 SEO 优化」，或周报 Issue 回复 `approve`（自动 PR workflow 待接）。
+定时任务 **默认不改** meta。有数据后可在 Cursor 说「跑一轮 SEO 优化」。
 
 ## 维护
 

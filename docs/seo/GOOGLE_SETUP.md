@@ -255,24 +255,21 @@ python3 scripts/seo_grant_ga4_access.py 538426834
 
 ### 7.1 确认 workflow 已 push
 
-仓库需含 `.github/workflows/seo-review.yml`。  
-Actions 页应出现 **SEO review (biweekly)**。
+仓库需含 `.github/workflows/seo-daily.yml`。  
+Actions 页应出现 **SEO daily report**。
 
 ### 7.2 手动 Run workflow
 
-1. **Actions → SEO review (biweekly) → Run workflow**
-2. 等约 1–3 分钟 → 点开 run → job **seo-round**
-
-![Run workflow](images/actions-run-workflow.png)
+1. **Actions → SEO daily report → Run workflow**
+2. 等约 1–3 分钟 → 点开 run → job **seo-daily**
 
 ### 7.3 逐步验收
 
 | 步骤 | 期望 |
 |------|------|
 | Install SEO dependencies | Successfully installed |
-| Static SEO checks | `All checks passed` |
-| Fetch GSC + GA4 metrics | `✓ GSC 28d` 与 `✓ GA4 28d` |
-| Commit report and metrics | `docs(seo): biweekly report...` |
+| Run daily pipeline | 日志含日报路径、`✓` 拉数 |
+| （自动 commit） | `docs/seo/reports/daily/`、`metrics/` 更新 |
 | Open review issue | Issue 标签 `seo-round` |
 
 ![Workflow 成功](images/actions-workflow-success.png)

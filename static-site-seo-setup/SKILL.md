@@ -22,7 +22,7 @@ description: >-
 1. **Google**：Cloud 项目 → GSC OAuth（Search Console API）→ GA4 服务账号只读 → 见教程 `02-Google授权.md`。
 2. **GitHub Secrets**（名称与案例仓一致）：`GSC_*`、`GA4_*`、`RESEND_*`、`NTFY_*` 等；勿写入 Skill 或提交到 git。
 3. **复制脚本**：`seo_fetch_daily.py`、`seo_daily_report.py`、`seo_priorities.py`、`seo_notify*.sh`、`seo_site_uptime.py` 及 `seo_daily_ci*.sh`。
-4. **Workflow**：`seo-daily.yml`（cron + 失败重跑）、可选 `seo-weekly.yml`；`permissions: contents: write` 仅用于写 `docs/seo/metrics/`。
+4. **Workflow**：`seo-daily.yml`（cron + 失败重跑）；`permissions: contents: write` 写 `docs/seo/metrics/`。
 5. **首次验证**：本地 `python3 scripts/seo_fetch_daily.py` → `seo_daily_report.py` → 检查 `docs/seo/reports/daily/`。
 6. **通知**：Resend 域名 DNS；ntfy 主题勿公开；邮件默认 `SEO_EMAIL_DIGEST=1` 发摘要表格式 HTML。
 
