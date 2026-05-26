@@ -12,6 +12,7 @@
 | [04-通知.md](04-通知.md) | Resend、DNSPod、ntfy |
 | [05-报告与审批.md](05-报告与审批.md) | 怎么看日报、Issue approve |
 | [06-日报与优化追踪.md](06-日报与优化追踪.md) | **v2 日报**、自动 P0–P2、失败重跑、飞书追踪 |
+| [07-Agent-Skills安装.md](07-Agent-Skills安装.md) | **公开 Skill** · `npx skills add` |
 | [TROUBLESHOOTING.md](TROUBLESHOOTING.md) | 排错表 |
 | [../PRIVATE_SETUP.md](../PRIVATE_SETUP.md) | **私人版**：你的真实值填表（勿提交含密钥的文件） |
 

@@ -114,61 +114,49 @@ def _why_section(
     bot_labels: list[str],
 ) -> list[str]:
     lines = ["## 三、为什么会这样", ""]
+    rows: list[list[str]] = []
     imp = gsc.get("impressions", 0) if not gsc.get("error") else None
 
     if direct_pct >= 50:
-        lines.append(
-            "- **为什么渠道几乎全是 Direct？** "
-            "微信/朋友圈/书签打开链接**不带 referrer**，GA4 只能记成 Direct 或 Unassigned，"
-            "**不是**统计坏了，也**不代表**没人从社交来。看「国家 + 均时」判断真人。"
-        )
+        rows.append([
+            "渠道几乎全是 Direct",
+            "微信/朋友圈/书签不带 referrer，GA4 记成 Direct；看国家+均时判断真人，不是统计坏了。",
+        ])
     if organic_pct == 0:
         if imp == 0 or imp is None:
-            lines.append(
-                "- **为什么 Organic = 0、GSC 展示也低/为 0？** "
-                "新站 Google 尚未给排名或展示很少；首页 **索引 PASS** 只说明「能收录」，"
-                "不等于已经在「屋久島 バス」等词上有曝光。"
-            )
+            rows.append([
+                "Organic=0、GSC 展示低",
+                "新站正常；索引 PASS ≠ 已在目标词上有排名。",
+            ])
         else:
-            lines.append(
-                f"- **为什么 GSC 有 {imp} 展示但 GA4 Organic 仍为 0？** "
-                "可能展示在很靠后的排名、或用户从图片/品牌词看到但未点击；"
-                "也可能 GA4 与 GSC 窗口/归因差 1–2 天，继续观察。"
-            )
+            rows.append([
+                f"GSC 有 {imp} 展示但 Organic=0",
+                "排名靠后或未点击；GA4/GSC 窗口差 1–2 天，继续观察。",
+            ])
     if bot_labels:
-        lines.append(
-            f"- **为什么有美国/欧洲用户但互动 0 秒？** "
-            f"常见是 **机房爬虫、SEO 扫描、VPN 自测**（如 Boardman=AWS 节点）。"
-            f"已从可分析访客扣除：**{', '.join(bot_labels[:5])}**。"
-            "真人自测请加 `?ga_internal=1`。"
-        )
+        rows.append([
+            "美国/欧洲用户但互动 0s",
+            f"多为爬虫/VPN（已剔除：{', '.join(bot_labels[:3])}…）。自测加 ?ga_internal=1。",
+        ])
     if raw_u > human_u and human_u > 0:
-        lines.append(
-            f"- **为什么 GA4 总用户 {raw_u}，可分析只有 {human_u}？** "
-            "总用户含 bot 与零互动噪声；**可分析** = 去掉「互动 0% + 均时 0s」的国家行后估算，"
-            "更接近真实旅客/朋友圈访客。"
-        )
+        rows.append([
+            f"GA4 总用户 {raw_u} vs 可分析 {human_u}",
+            "总用户含 bot；可分析=去掉互动0%+均时0s的国家行。",
+        ])
     v = analysis.get("verdict_traffic_quality")
     if v == "real_usage":
-        lines.append(
-            "- **为什么判断「有人在用工具」？** "
-            "近 7 日多个着陆页 + 互动率不低，说明不是误点就走，而是在查时刻表/地图。"
-        )
+        rows.append(["判断「有人在用」", "多着陆页+互动率不低，在查时刻表/地图。"])
     elif v == "mostly_bounce":
-        lines.append(
-            "- **为什么互动偏低？** "
-            "可能 bot 占比高、或移动端首屏加载慢、或用户只确认链接可用即关。"
-            "样本够大后再看均时是否 >30s。"
-        )
+        rows.append(["互动偏低", "可能 bot 多、首屏慢、或只确认链接即关。"])
 
     for w in analysis.get("warnings") or []:
-        lines.append(f"- ⚠ {w}")
+        rows.append(["⚠ 告警", w])
     for i in analysis.get("insights") or []:
-        if i not in lines:
-            lines.append(f"- {i}")
+        rows.append(["洞察", i])
 
-    if len(lines) == 2:
-        lines.append("- 数据平稳，暂无异常模式需要特别解释。")
+    if not rows:
+        rows.append(["—", "数据平稳，暂无异常模式。"])
+    lines.extend(_md_table(["现象", "说明"], rows))
     lines.append("")
     return lines
 
@@ -178,22 +166,25 @@ def _todo_section(gsc: dict, priorities: dict) -> list[str]:
     todos: list[tuple[str, str]] = []
 
     if gsc.get("error"):
-        todos.append(("👤 手动", "检查 GitHub Secrets / GSC OAuth → `docs/seo/GOOGLE_SETUP.md`"))
+        todos.append(("👤 手动", "检查 GitHub Secrets / GSC OAuth → GOOGLE_SETUP.md"))
 
+    seen: set[str] = set()
     for it in priorities.get("items") or []:
-        if it["priority"] != "P0":
+        if it["priority"] != "P0" or not it["owner"].startswith("👤"):
             continue
-        if it["owner"].startswith("👤"):
-            todos.append(("👤 手动", f"{it['area']}：{it['action'][:100]}"))
-        if len(todos) >= 4:
+        key = it["area"]
+        if key in seen:
+            continue
+        seen.add(key)
+        todos.append((it["owner"], f"{it['area']}：{it['action'][:90]}"))
+        if len(todos) >= 3:
             break
 
     if len(todos) <= 1:
-        todos.append(("⏳ 观察", "周一查看 `docs/seo/proposals/` 周报；P0 项 Issue 回复 approve"))
+        todos.append(("⏳ 观察", "数据平稳则无需改代码；NEUTRAL 页在 GSC 手动请求编入索引"))
     todos.append(("🤖 自动", "日报拉数、优先级、ntfy（Actions）"))
 
-    for tag, text in todos:
-        lines.append(f"- **{tag}** — {text}")
+    lines.extend(_md_table(["负责", "待办"], [[a, b] for a, b in todos]))
     lines.append("")
     return lines
 
@@ -254,11 +245,16 @@ def build_report(date_str: str, metrics_path: Path, check_ok: bool) -> str:
             "> 此前 GSC「已编入索引」是历史快照；**Live test 404** 表示现在打不开。"
             "日报/GA4 不会自动发现，现已加 HTTP 探测 + ntfy  urgent 告警。"
         )
-    if priorities.get("p0_headlines"):
-        lines.append("")
-        lines.append("**本周优先（GSC/GA4 自动）：**")
-        for h in priorities["p0_headlines"][:3]:
-            lines.append(f"- {h}")
+    if priorities.get("items"):
+        p0 = [it for it in priorities["items"] if it["priority"] == "P0"][:4]
+        if p0:
+            lines.append("")
+            lines.extend(
+                _md_table(
+                    ["优先级", "事项", "建议"],
+                    [[it["priority"], it["area"], it["action"][:100]] for it in p0],
+                )
+            )
     lines.append("")
 
     summary_rows = []
@@ -334,8 +330,8 @@ def build_report(date_str: str, metrics_path: Path, check_ok: bool) -> str:
     lines.extend(_channel_table(ga4.get("channels_7d") or []))
 
     src = ga4.get("source_medium_7d") or ga4.get("sources_7d") or []
-    lines.extend(["### 2.2 来源 / 媒介 Top（7 日）", ""])
     if src:
+        lines.extend(["### 2.2 来源 / 媒介 Top（7 日）", ""])
         body = [
             [
                 f"`{r.get('dimension', '?')}`",
@@ -346,36 +342,28 @@ def build_report(date_str: str, metrics_path: Path, check_ok: bool) -> str:
             for r in src[:10]
         ]
         lines.extend(_md_table(["来源 / 媒介", "用户", "会话", "互动率"], body))
-    else:
-        lines.extend(["*（暂无；需 Actions 成功跑 `seo_fetch_daily.py`）*", ""])
 
     countries_raw = ga4.get("countries_7d") or []
     human_c, bot_c = partition_human_bot(countries_raw)
-    lines.extend(["### 2.3 国家 · 可分析访客（7 日）", ""])
     if human_c:
+        lines.extend(["### 2.3 国家 · 可分析访客（7 日）", ""])
         lines.extend(_dim_table(human_c[:10], "国家"))
-    else:
-        lines.extend(["*（暂无国家明细，或全部被判为 bot 行）*", ""])
 
-    lines.extend(["### 2.4 国家 · 已排除噪声（7 日）", ""])
     if bot_c:
+        lines.extend(["### 2.4 国家 · 已排除噪声（7 日）", ""])
         lines.extend(_dim_table(bot_c, "国家"))
         lines.append("> 规则：互动 0% 且均时 0s → 不计入 §一 的「可分析」。")
         lines.append("")
-    else:
-        lines.extend(["*（无，或暂无国家维度数据）*", ""])
 
     cc_raw = ga4.get("country_channel_7d") or []
     cc_human, _ = partition_human_bot(cc_raw)
-    lines.extend(["### 2.5 国家 × 渠道（7 日，可分析）", ""])
     if cc_human:
+        lines.extend(["### 2.5 国家 × 渠道（7 日，可分析）", ""])
         lines.extend(_country_channel_table(cc_human[:15]))
-    else:
-        lines.extend(["*（暂无）*", ""])
 
     landing = ga4.get("landing_pages_7d") or []
-    lines.extend(["### 2.6 着陆页 Top（7 日）", ""])
     if landing:
+        lines.extend(["### 2.6 着陆页 Top（7 日）", ""])
         body = [
             [
                 (r.get("dimension") or "/").replace("https://yakushimabus.com", "") or "/",
@@ -386,15 +374,15 @@ def build_report(date_str: str, metrics_path: Path, check_ok: bool) -> str:
             for r in landing[:8]
         ]
         lines.extend(_md_table(["路径", "用户", "会话", "PV"], body))
-    else:
-        lines.extend(["*（暂无）*", ""])
 
     devices = ga4.get("devices_7d") or []
-    lines.extend(["### 2.7 设备（7 日）", ""])
     if devices:
+        lines.extend(["### 2.7 设备（7 日）", ""])
         lines.extend(_dim_table(devices, "设备"))
-    else:
-        lines.extend(["*（暂无）*", ""])
+
+    has_detail = bool(src or human_c or bot_c or cc_human or landing or devices)
+    if not has_detail and not (ga4.get("channels_7d") or []):
+        lines.extend(["*（渠道/国家等明细需 Actions 成功跑 `seo_fetch_daily.py`；见 §一 汇总即可）*", ""])
 
     lines.append("---")
     lines.append("")
@@ -407,30 +395,58 @@ def build_report(date_str: str, metrics_path: Path, check_ok: bool) -> str:
 
     lines.extend(["## 五、Google 搜索（GSC）", ""])
     if gsc.get("error"):
-        lines.append(f"- ⚠ 拉数失败：{gsc['error']}")
+        lines.extend(_md_table(["状态", "说明"], [["⚠ 拉数失败", str(gsc["error"])[:120]]]))
     else:
         period = gsc.get("period") or {}
-        lines.append(
-            f"- 窗口 **{period.get('start', '?')} ~ {period.get('end', '?')}**："
-            f"展示 **{gsc.get('impressions', 0)}** · 点击 **{gsc.get('clicks', 0)}** · "
-            f"均排 **{gsc.get('position', 0)}**"
-        )
-        for q in (gsc.get("top_queries") or [])[:8]:
-            lines.append(
-                f"- 「**{q.get('query', '?')}**」展示 {q.get('impressions', 0)} · "
-                f"点击 {q.get('clicks', 0)} · 均排 {q.get('position', '—')} · "
-                f"建议落地 **{query_landing(q.get('query', ''))[0]}**"
+        lines.extend(
+            _md_table(
+                ["指标", "数值"],
+                [
+                    ["窗口", f"{period.get('start', '?')} ~ {period.get('end', '?')}"],
+                    ["展示", str(gsc.get("impressions", 0))],
+                    ["点击", str(gsc.get("clicks", 0))],
+                    ["CTR", f"{gsc.get('ctr', 0)}%"],
+                    ["均排", str(gsc.get("position", 0))],
+                ],
             )
-        if not gsc.get("top_queries"):
-            lines.append("- Top 查询词：暂无（等有展示后会出现）")
+        )
+        queries = gsc.get("top_queries") or []
+        if queries:
+            lines.append("")
+            lines.extend(
+                _md_table(
+                    ["查询词", "展示", "点击", "均排", "落地页"],
+                    [
+                        [
+                            q.get("query", "?"),
+                            str(q.get("impressions", 0)),
+                            str(q.get("clicks", 0)),
+                            str(q.get("position", "—")),
+                            query_landing(q.get("query", ""))[0],
+                        ]
+                        for q in queries[:8]
+                    ],
+                )
+            )
+        else:
+            lines.append("")
+            lines.append("*Top 查询词：暂无（等有展示后会出现）*")
         st = gsc.get("index_status") or {}
         if st:
             lines.append("")
-            lines.append("**索引状态：**")
-            for u, v in st.items():
-                path = u.replace("https://yakushimabus.com", "") or "/"
-                note = "已收录可用" if v == "PASS" else "建议手动请求编入索引"
-                lines.append(f"- {'✓' if v == 'PASS' else '○'} `{path}` → **{v}**（{note}）")
+            lines.extend(
+                _md_table(
+                    ["路径", "状态", "说明"],
+                    [
+                        [
+                            u.replace("https://yakushimabus.com", "") or "/",
+                            v,
+                            "已收录" if v == "PASS" else "建议 GSC 请求编入索引",
+                        ]
+                        for u, v in st.items()
+                    ],
+                )
+            )
     lines.append("")
 
     lines.extend(_todo_section(gsc, priorities))

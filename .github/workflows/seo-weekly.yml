@@ -1,4 +1,4 @@
-# 每周 SEO/GEO 优化方案 → Git 存档 + GitHub Issue
+# 每周 SEO 摘要 → Git 存档 + 邮件/ntfy（无需 approve）
 name: SEO weekly proposal
 
 on:
@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: write
-  issues: write
 
 jobs:
   seo-weekly:
@@ -16,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate weekly proposal
+      - name: Generate weekly summary
         id: proposal
         run: |
           PROPOSAL=$(bash scripts/seo_report_weekly.sh)
@@ -29,7 +28,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/seo/proposals/
-          git diff --staged --quiet || git commit -m "docs(seo): weekly proposal ${{ steps.proposal.outputs.week }}"
+          git diff --staged --quiet || git commit -m "docs(seo): weekly summary ${{ steps.proposal.outputs.week }}"
           git push
 
       - name: Send notifications
@@ -39,43 +38,5 @@ jobs:
           RESEND_FROM: ${{ secrets.RESEND_FROM }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: |
-          SUBJ="[YakuBus] 周报方案 ${{ steps.proposal.outputs.week }} 待确认"
+          SUBJ="[YakuBus] 周报 ${{ steps.proposal.outputs.week }}"
           bash scripts/seo_notify.sh "${{ steps.proposal.outputs.path }}" "$SUBJ"
-
-      - name: Open weekly review issue
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require("fs");
-            const week = "${{ steps.proposal.outputs.week }}";
-            const label = "seo-round";
-            const title = `seo-round ${week}`;
-            const body = fs.readFileSync("${{ steps.proposal.outputs.path }}", "utf8")
-              + "\n\n---\n**下一步**：Issue 评论 **`approve`** 执行 §2；或 Cursor 说「执行本周 SEO 方案 " + week + "」。";
-            const { data: existing } = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: "open",
-              labels: label,
-              per_page: 10,
-            });
-            const dup = existing.find((i) => i.title === title);
-            if (dup) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: dup.number,
-                body: `## 定时更新 — ${new Date().toISOString().slice(0, 10)}\n\n` + body,
-              });
-              core.setOutput("number", dup.number);
-              return;
-            }
-            const { data: issue } = await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title,
-              body,
-              labels: [label],
-              assignees: [context.repo.owner],
-            });
-            core.setOutput("number", issue.number);
