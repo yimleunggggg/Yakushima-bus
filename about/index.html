@@ -46,16 +46,18 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v25">
+  <link rel="stylesheet" href="/styles.css?v=layout-v44">
   <script src="/analytics.js"></script>
 </head>
 <body class="app-page-narrow">
   <div class="app">
-    <nav class="nav nav-main">
-      <a href="/" data-i18n="navTime">時刻表</a>
-      <a href="/map/" data-i18n="navMap">路線図</a>
-      <a href="/access/" data-i18n="navAccess">上島</a>
-    </nav>
+    <div class="app-nav-sticky">
+      <nav class="nav nav-main" id="mainNav">
+        <a href="/" data-i18n="navTime">時刻表</a>
+        <a href="/map/" data-i18n="navMap">路線・運賃</a>
+        <a href="/access/" data-i18n="navAccess">上島</a>
+      </nav>
+    </div>
 
     <header class="header header-compact">
       <h1 id="appTitle">このサイトについて</h1>
@@ -85,21 +87,24 @@
     </footer>
   </div>
 
-  <script src="/about-data.js"></script>
+  <script src="/about-data.js?v=about-v2"></script>
   <script>
     const UI = {
       ja: {
-        navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等",
+        navAria: "メインメニュー",
+        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島",
         title: "このサイトについて", sub: "データ出典・連絡先",
         updated: "更新", contactHeading: "連絡先", contactEmail: "Email", contactInstagram: "Instagram", backHome: "時刻表に戻る",
       },
       zh: {
-        navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛",
+        navAria: "主菜单",
+        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛",
         title: "关于本站", sub: "说明、数据来源与联系方式",
         updated: "更新", contactHeading: "联系方式", contactEmail: "Email", contactInstagram: "Instagram", backHome: "返回时刻表",
       },
       en: {
-        navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access",
+        navAria: "Main menu",
+        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry",
         title: "About", sub: "What this is, sources & contact",
         updated: "Updated", contactHeading: "Contact", contactEmail: "Email", contactInstagram: "Instagram", backHome: "Back to timetable",
       },
@@ -169,9 +174,11 @@
     }
 
     function renderSections() {
-      els.aboutSections.innerHTML = ABOUT_DATA.sections.map((sec) => {
-        const toneClass = sec.tone === "trust" ? " about-section-trust"
-          : sec.tone === "personal" ? " about-section-personal" : "";
+      const leadHtml = ABOUT_DATA.lead
+        ? `<div class="about-lead about-prose">${formatBody(ABOUT_DATA.lead)}</div>`
+        : "";
+      const sectionsHtml = ABOUT_DATA.sections.map((sec) => {
+        const toneClass = sec.tone === "trust" ? " about-section-trust" : "";
         const contactHtml = sec.showContact ? renderContact() : "";
         return `<section class="about-section${toneClass}">
           <h2>${pick(sec.title)}</h2>
@@ -179,6 +186,7 @@
           ${contactHtml}
         </section>`;
       }).join("");
+      els.aboutSections.innerHTML = leadHtml + sectionsHtml;
     }
 
     function applyI18n() {
@@ -186,6 +194,8 @@
       document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
       els.langSwitch.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
       els.appTitle.textContent = t("title");
+      const mainNav = document.getElementById("mainNav");
+      if (mainNav) mainNav.setAttribute("aria-label", t("navAria"));
       els.metaBar.textContent = `${t("updated")} ${ABOUT_DATA.meta.updatedAt}`;
       renderSections();
     }

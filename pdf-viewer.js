@@ -152,8 +152,14 @@
 
     function apply(nextScale) {
       scale = Math.min(max, Math.max(min, nextScale));
-      const ratioX = (viewport.scrollLeft + viewport.clientWidth / 2) / Math.max(viewport.scrollWidth, 1);
-      const ratioY = (viewport.scrollTop + viewport.clientHeight / 2) / Math.max(viewport.scrollHeight, 1);
+      const cw = viewport.clientWidth;
+      const ch = viewport.clientHeight;
+      const sl = viewport.scrollLeft;
+      const st = viewport.scrollTop;
+      const sw = Math.max(viewport.scrollWidth, 1);
+      const sh = Math.max(viewport.scrollHeight, 1);
+      const ratioX = (sl + cw / 2) / sw;
+      const ratioY = (st + ch / 2) / sh;
       const h = embedHeight();
 
       embed.style.width = `${Math.round(scale * 100)}%`;
@@ -162,8 +168,8 @@
       if (zoomReset) zoomReset.textContent = `${Math.round(scale * 100)}%`;
 
       requestAnimationFrame(() => {
-        viewport.scrollLeft = Math.max(0, ratioX * viewport.scrollWidth - viewport.clientWidth / 2);
-        viewport.scrollTop = Math.max(0, ratioY * viewport.scrollHeight - viewport.clientHeight / 2);
+        viewport.scrollLeft = Math.max(0, ratioX * viewport.scrollWidth - cw / 2);
+        viewport.scrollTop = Math.max(0, ratioY * viewport.scrollHeight - ch / 2);
       });
     }
 

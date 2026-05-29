@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="屋久島バス時刻表・次の便検索。宮之浦港・安房・白谷・荒川登山口・荒川登山バスなど全路線。公式PDF準拠。日本語・中文・English。">
+  <meta name="description" content="屋久島バス時刻表・次の便検索（2026年3月改正）。宮之浦港・安房・白谷・荒川登山口・縄文杉。公式PDF準拠。">
   <meta name="keywords" content="屋久島,バス,時刻表,屋久岛,公交,Yakushima,bus,timetable,Miyanoura">
   <meta name="author" content="Yakushima Bus">
   <meta name="robots" content="index, follow">
@@ -27,7 +27,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Yakushima Bus">
   <meta property="og:title" content="Yakushima Bus | 屋久岛公交查询 | 屋久島バス時刻表">
-  <meta property="og:description" content="屋久岛公交时刻表 · 查下一班 · 全路线。Official Yakushima bus timetables in JA/ZH/EN.">
+  <meta property="og:description" content="屋久岛公交时刻表 · 查下一班 · 全路线。">
   <meta property="og:url" content="https://yakushimabus.com/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -38,7 +38,7 @@
   <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Yakushima Bus">
-  <meta name="twitter:description" content="屋久岛公交时刻表 · 查下一班 · 全路线 · 日中英">
+  <meta name="twitter:description" content="屋久岛公交时刻表 · 查下一班 · 全路线">
   <meta name="twitter:image" content="https://yakushimabus.com/og-image.png">
   <title>屋久島バス時刻表 | 屋久岛公交查询 | Yakushima Bus Timetable</title>
   <script type="application/ld+json">
@@ -86,20 +86,30 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="styles.css?v=layout-v25">
-  <script src="analytics.js"></script>
+  <link rel="stylesheet" href="styles.css?v=layout-v44">
 </head>
 <body>
   <div class="app">
-    <nav class="nav nav-main">
-      <a href="/" class="active" data-i18n="navTime">時刻表</a>
-      <a href="/map/" data-i18n="navMap">路線図</a>
-      <a href="/access/" data-i18n="navAccess">上島</a>
-    </nav>
+    <div class="app-nav-sticky">
+      <nav class="nav nav-main" id="mainNav">
+        <a href="/" class="active" aria-current="page" data-i18n="navTime">時刻表</a>
+        <a href="/map/" data-i18n="navMap">路線・運賃</a>
+        <a href="/access/" data-i18n="navAccess">上島</a>
+      </nav>
+    </div>
     <header class="header header-compact">
-      <h1 id="appTitle">屋久島バス</h1>
+      <div class="header-main">
+        <h1 id="appTitle">屋久島バス</h1>
+        <p class="header-sub" data-i18n="pageLead">屋久島バス時刻表・次の便（2026/3）。宮之浦港・安房・白谷・荒川登山口。</p>
+      </div>
       <div class="header-actions">
-        <time class="live-clock-time" id="liveClockTime" aria-live="polite" title="JST">--:--</time>
+        <div class="clock-wrap" role="group" aria-label="Japan Standard Time">
+          <span class="tz-mark" title="Japan Standard Time · UTC+9" aria-hidden="true">
+            <svg class="tz-mark-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span class="tz-mark-text">JST</span>
+          </span>
+          <span class="live-clock-time" id="liveClockTime" role="timer" aria-live="polite">--:--</span>
+        </div>
         <div class="lang-switch" id="langSwitch">
           <button type="button" data-lang="ja">JA</button>
           <button type="button" data-lang="zh">ZH</button>
@@ -107,49 +117,67 @@
         </div>
       </div>
     </header>
-    <p class="page-lead" data-i18n="pageLead">屋久島全線バスの時刻表・次の便検索。宮之浦港・安房・白谷・荒川登山口・荒川登山バスなど。公式PDF準拠・日本語・中文・English。</p>
-    <p class="app-meta" id="metaBar"></p>
+    <script>
+    (function () {
+      function tick() {
+        var el = document.getElementById("liveClockTime");
+        if (!el || typeof AppCore === "undefined") return;
+        var jp = AppCore.japanParts();
+        el.textContent = jp.hour + ":" + jp.minute;
+      }
+      document.addEventListener("DOMContentLoaded", tick);
+      setInterval(tick, 30000);
+    })();
+    </script>
+    <p class="app-meta" id="metaBar">適用 2026-03-01–2026-11-30 · 更新 2026-05-20 · 48 停留所</p>
 
     <div class="panel">
       <div class="panel-grid">
       <div class="panel-grid-controls">
       <div class="sec">
         <div class="sec-title" data-i18n="presets">よく使う区間</div>
-        <div class="presets" id="presets"></div>
+        <div class="presets" id="presets">
+          <button type="button" data-from="miyanoura_port" data-to="anbo">宮之浦港 → 安房・自然館</button>
+          <button type="button" data-from="miyanoura_port" data-to="airport">宮之浦港 → 空港</button>
+          <button type="button" data-from="miyanoura_port" data-to="yakusugi_museum">宮之浦港 → 屋久杉自然館</button>
+          <button type="button" data-from="miyanoura_port" data-to="shiratani">宮之浦港 → 白谷雲水峡</button>
+          <button type="button" data-from="anbo_port" data-to="miyanoura_port">安房港 → 宮之浦港</button>
+          <button type="button" data-from="airport" data-to="miyanoura_port">空港 → 宮之浦港</button>
+          <button type="button" data-from="yakusugi_museum" data-to="arakawa_trailhead">屋久杉自然館 → 荒川登山口</button>
+          <button type="button" data-from="miyanoura_port" data-to="okawa_falls">宮之浦港 → 大川の滝</button>
+          <button type="button" data-from="gocho_mae" data-to="kigen_sugi">合庁前 → 紀元杉</button>
+        </div>
       </div>
 
       <div class="sec sec-route">
         <div class="route-row">
           <div class="field">
-            <div class="field-core">
-              <label for="fromStopInput" data-i18n="from">出発</label>
-              <div class="stop-picker" id="fromPicker">
-                <input type="text" id="fromStopInput" class="picker-input" autocomplete="off" spellcheck="false">
-                <input type="hidden" id="fromStop" value="miyanoura_port">
-                <ul class="picker-list" role="listbox" hidden></ul>
-              </div>
+            <label for="fromStopInput" data-i18n="from">出発</label>
+            <div class="stop-alt" id="fromAlt" hidden></div>
+            <div class="stop-picker" id="fromPicker">
+              <input type="text" id="fromStopInput" class="picker-input" autocomplete="off" spellcheck="false" value="宮之浦港">
+              <input type="hidden" id="fromStop" value="miyanoura_port">
+              <ul class="picker-list" role="listbox" hidden></ul>
             </div>
-            <div class="stop-sub" id="fromSub"></div>
           </div>
           <div class="route-swap">
             <button type="button" class="swap" id="swapBtn" aria-label="swap">&#8644;</button>
           </div>
           <div class="field">
-            <div class="field-core">
-              <label for="toStopInput" data-i18n="to">到着</label>
-              <div class="stop-picker" id="toPicker">
-                <input type="text" id="toStopInput" class="picker-input" autocomplete="off" spellcheck="false">
-                <input type="hidden" id="toStop" value="anbo">
-                <ul class="picker-list" role="listbox" hidden></ul>
-              </div>
+            <label for="toStopInput" data-i18n="to">到着</label>
+            <div class="stop-alt" id="toAlt" hidden></div>
+            <div class="stop-picker" id="toPicker">
+              <input type="text" id="toStopInput" class="picker-input" autocomplete="off" spellcheck="false" value="安房・自然館">
+              <input type="hidden" id="toStop" value="anbo">
+              <ul class="picker-list" role="listbox" hidden></ul>
             </div>
-            <div class="stop-sub" id="toSub"></div>
           </div>
         </div>
+        <p class="route-hint" id="routeHint" hidden></p>
       </div>
 
-      <div class="sec sec-next" id="nextBarWrap">
-        <div class="next-bar" id="nextBar">
+      <div class="sec sec-next has-next" id="nextBarWrap">
+        <div class="next-bar show" id="nextBar">
         <div class="next-bar-head">
           <div class="label" id="nextLabel">次のバス</div>
           <span id="nextOpBadge"></span>
@@ -193,9 +221,13 @@
           <span class="sec-title" style="margin:0" data-i18n="results">便一覧</span>
           <span class="count" id="resultsCount"></span>
         </div>
-        <div class="op-legend" id="opLegend" aria-label="operators"></div>
+        <div class="op-legend" id="opLegend" aria-label="operators"><span class="op-legend-label">運行会社</span></div>
         <div class="results-notice" id="resultsNotice" hidden></div>
-        <div id="results"></div>
+        <div id="results" class="results-list">
+          <article class="trip trip-placeholder" aria-hidden="true"><div class="trip-top"><div class="trip-time">&nbsp;</div></div></article>
+          <article class="trip trip-placeholder" aria-hidden="true"><div class="trip-top"><div class="trip-time">&nbsp;</div></div></article>
+          <article class="trip trip-placeholder" aria-hidden="true"><div class="trip-top"><div class="trip-time">&nbsp;</div></div></article>
+        </div>
       </div>
       </div>
       </div>
@@ -265,6 +297,7 @@
     </div>
 
     <footer class="app-footer">
+      <p class="app-footer-meta meta-links" id="footerMetaLinks" aria-label="Related links"></p>
       <nav class="app-footer-links" aria-label="Site pages">
         <a href="/map/" data-i18n="navMap">路線・運賃</a>
         <span class="footer-sep" aria-hidden="true">·</span>
@@ -277,24 +310,29 @@
 
   <div class="app-toast" id="appToast" role="status" aria-live="polite" hidden></div>
 
-  <script src="data.js"></script>
-  <script src="meta-data.js"></script>
-  <script src="app-core.js?v=picker-v2"></script>
-  <script src="operator-ui.js"></script>
-  <script src="stop-picker.js?v=picker-v2"></script>
-  <script src="pdf-fullscreen.js"></script>
-  <script src="pdf-viewer.js?v=pdf-preview-v2"></script>
+  <script src="data.js" defer></script>
+  <script src="meta-data.js" defer></script>
+  <script src="app-core.js?v=picker-v2" defer></script>
+  <script src="operator-ui.js" defer></script>
+  <script src="stop-picker.js?v=picker-v5" defer></script>
+  <script src="pdf-fullscreen.js" defer></script>
+  <script src="pdf-viewer.js?v=pdf-preview-v2" defer></script>
   <script>
+    document.addEventListener("DOMContentLoaded", () => {
     const UI = {
       ja: {
-        navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "屋久島バス", pageLead: "屋久島全線バスの時刻表・次の便検索。宮之浦港・安房・白谷・荒川登山口・荒川登山バスなど。公式PDF準拠・日本語・中文・English。", sub: "次のバスを検索", presets: "よく使う区間",
+        navAria: "メインメニュー", siteBrand: "屋久島バス",
+        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navAbout: "このサイトについて", title: "屋久島バス", pageLead: "屋久島バス時刻表・次の便（2026/3）。宮之浦港・安房・白谷・荒川登山口。", sub: "次のバスを検索", presets: "よく使う区間",
+        metaLinks: '<a href="https://yakushima.co.jp/route_bus/" target="_blank" rel="noopener">運休</a> · <a href="http://yakushima-tozan.com/" target="_blank" rel="noopener">荒川登山バス</a> · <a href="/map/?lang=ja">路線・運賃</a>',
         swapped: "出発と到着を入れ替えました",
         from: "出発", to: "到着", weekday: "平日", saturday: "土曜",         sunday: "日祝",
         tzLabel: "日本時間 (JST)", arriveEta: "着 {time}",
         countdownSoon: "まもなく発車", countdownMin: "あと{n}分で発車",
         countdownHour: "あと{h}時間{n}分で発車", countdownHourOnly: "あと{h}時間で発車",
         upcoming: "以降のみ", filterTime: "時刻", filterHint: "タップで変更 · 未設定時は右上の現在時刻",
-        filterLive: "現在", filterCustom: "指定", todayEnded: "本日終了", lastBusAt: "最終 {time}",
+        filterLive: "現在", filterCustom: "指定", todayEnded: "本日終了", lastBusAt: "最終 {time}", lastBusDay: "（{day}）",
+        routePortHint: "フェリー接続は「宮之浦港」を選ぶと便が多くなります。",
+        endedOtherDayHint: "日祝は末班が遅い場合があります。上の「日祝」を試してください。",
         results: "便一覧", travelTips: "乗車のポイント", sources: "公式情報",
         searchPlaceholder: "停留所名（日/中/英）",
         valid: "適用", updated: "更新", stopCount: "{n} 停留所", arrive: "到着", dest: "行先",
@@ -336,14 +374,18 @@
         pdfFare: "運賃表 PDF", pdfFareEn: "Fare table PDF (EN)",
       },
       zh: {
-        navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "屋久岛公交", pageLead: "屋久岛全线公交时刻表与下一班查询。宫之浦港、安房、白谷、荒川登山口、荒川登山巴士等。官方 PDF · 日中英三语。", sub: "屋久岛公交查询", presets: "常用区间",
+        navAria: "主菜单", siteBrand: "屋久岛公交",
+        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navAbout: "关于本站", title: "屋久岛公交", pageLead: "屋久岛公交时刻表与下一班（2026年3月）。宫之浦港、安房、白谷、荒川登山口。", sub: "屋久岛公交查询", presets: "常用区间",
+        metaLinks: '<a href="https://yakushima.co.jp/route_bus/" target="_blank" rel="noopener">停运</a> · <a href="http://yakushima-tozan.com/" target="_blank" rel="noopener">荒川登山巴士</a> · <a href="/map/?lang=zh">路线运价</a>',
         swapped: "已交换出发与到达",
         from: "出发", to: "到达", weekday: "工作日", saturday: "周六",         sunday: "周日·节假日",
         tzLabel: "日本时间 (JST)", arriveEta: "到站 {time}",
         countdownSoon: "即将发车", countdownMin: "还有 {n} 分钟发车",
         countdownHour: "还有 {h} 小时 {n} 分发车", countdownHourOnly: "还有 {h} 小时发车",
         upcoming: "只看之后", filterTime: "时间", filterHint: "点击选时间 · 未选则用右上角当前时间",
-        filterLive: "当前", filterCustom: "指定", todayEnded: "今日已结束", lastBusAt: "末班 {time}",
+        filterLive: "当前", filterCustom: "指定", todayEnded: "今日已结束", lastBusAt: "末班 {time}", lastBusDay: "（{day}）",
+        routePortHint: "衔接渡轮请选「宫之浦港」，班次比镇上「宫之浦」更多。",
+        endedOtherDayHint: "日祝末班更晚时可切换上方「周日·节假日」查看。",
         results: "班次", travelTips: "乘车须知", sources: "官方信息",
         searchPlaceholder: "输入站名（中/日/英）",
         valid: "有效", updated: "更新", stopCount: "共 {n} 站", arrive: "到达", dest: "终点",
@@ -385,14 +427,18 @@
         pdfFare: "运价表 PDF", pdfFareEn: "运价表 PDF（英文）",
       },
       en: {
-        navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access", navAbout: "About", title: "Yakushima Bus", pageLead: "Yakushima bus timetables and next-departure search — Miyanoura Port, Anbo, Shiratani, Arakawa trailhead (Mar–Nov). Official PDF data · JA/ZH/EN.", sub: "Yakushima Bus Timetable", presets: "Quick routes",
+        navAria: "Main menu", siteBrand: "Yakushima Bus",
+        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navAbout: "About", title: "Yakushima Bus", pageLead: "Yakushima bus timetables & next bus (Mar 2026). Miyanoura, Anbo, Shiratani, Arakawa trailhead.", sub: "Yakushima Bus Timetable", presets: "Quick routes",
+        metaLinks: '<a href="https://yakushima.co.jp/route_bus/" target="_blank" rel="noopener">Disruptions</a> · <a href="http://yakushima-tozan.com/" target="_blank" rel="noopener">Arakawa shuttle</a> · <a href="/map/?lang=en">Routes & fares</a>',
         swapped: "Origin and destination swapped",
         from: "From", to: "To", weekday: "Weekday", saturday: "Sat",         sunday: "Sun & holidays",
         tzLabel: "Japan time (JST)", arriveEta: "Arr. {time}",
         countdownSoon: "Departing soon", countdownMin: "Departs in {n} min",
         countdownHour: "Departs in {h}h {n}m", countdownHourOnly: "Departs in {h}h",
         upcoming: "Upcoming", filterTime: "Time", filterHint: "Tap to pick · uses live clock if unset",
-        filterLive: "Now", filterCustom: "Set", todayEnded: "Done for today", lastBusAt: "Last {time}",
+        filterLive: "Now", filterCustom: "Set", todayEnded: "Done for today", lastBusAt: "Last {time}", lastBusDay: " ({day})",
+        routePortHint: "For ferries, pick Miyanoura Port — more departures than town stop “Miyanoura”.",
+        endedOtherDayHint: "Try the Sun & holidays tab if you need later last buses.",
         results: "Departures", travelTips: "Travel tips", sources: "Official links",
         searchPlaceholder: "Search stops (JP/ZH/EN)",
         valid: "Valid", updated: "Updated", stopCount: "{n} stops", arrive: "Arrive", dest: "Destination",
@@ -457,6 +503,7 @@
       langSwitch: document.getElementById("langSwitch"),
       liveClockTime: document.getElementById("liveClockTime"),
       metaBar: document.getElementById("metaBar"),
+      footerMetaLinks: document.getElementById("footerMetaLinks"),
       nextBar: document.getElementById("nextBar"),
       nextBarWrap: document.getElementById("nextBarWrap"),
       nextLabel: document.getElementById("nextLabel"),
@@ -467,8 +514,9 @@
       presets: document.getElementById("presets"),
       fromStop: document.getElementById("fromStop"),
       toStop: document.getElementById("toStop"),
-      fromSub: document.getElementById("fromSub"),
-      toSub: document.getElementById("toSub"),
+      fromAlt: document.getElementById("fromAlt"),
+      toAlt: document.getElementById("toAlt"),
+      routeHint: document.getElementById("routeHint"),
       swapBtn: document.getElementById("swapBtn"),
       dayTabs: document.getElementById("dayTabs"),
       queryTime: document.getElementById("queryTime"),
@@ -512,7 +560,8 @@
 
     function stopName(id) { return StopPicker.label(id, lang); }
 
-    function stopAlt(id) { return StopPicker.altNames(id, lang); }
+    function stopAlt(id) { return StopPicker.altLine(id, lang); }
+    let openTripKey = null;
 
     function japanParts(date = new Date()) { return AppCore.japanParts(date); }
 
@@ -529,18 +578,22 @@
 
     function initPickers() {
       const ph = t("searchPlaceholder");
-      const opts = { lang, onChange: () => { upcomingUserOverride = false; renderResults(); }, placeholder: ph };
+      const opts = {
+        lang,
+        onChange: () => { upcomingUserOverride = false; syncRouteHint(); renderResults(); },
+        placeholder: ph,
+      };
       if (!fromPicker) {
         fromPicker = StopPicker.mount({
           root: document.getElementById("fromPicker"),
           hidden: els.fromStop,
-          subEl: els.fromSub,
+          subEl: els.fromAlt,
           ...opts,
         });
         toPicker = StopPicker.mount({
           root: document.getElementById("toPicker"),
           hidden: els.toStop,
-          subEl: els.toSub,
+          subEl: els.toAlt,
           ...opts,
         });
       } else {
@@ -562,7 +615,7 @@
         ["matsubandaPass", "matsubandaPass"], ["matsubandaIc", "matsubandaIc"],
       ];
       els.infoGrid.innerHTML = keys.map(([k, label]) =>
-        `<div class="info-item"><strong>${t(label)}</strong>${pick(BUS_DATA.info[k])}</div>`
+        `<div class="info-item"><span class="info-item-label">${t(label)}</span>${pick(BUS_DATA.info[k])}</div>`
       ).join("");
     }
 
@@ -598,6 +651,7 @@
         parts.push(`<span class="meta-warn">${t("dataStale")}</span>`);
       }
       els.metaBar.innerHTML = parts.join('<span class="meta-sep" aria-hidden="true">·</span>');
+      if (els.footerMetaLinks) els.footerMetaLinks.innerHTML = t("metaLinks");
     }
 
     function findTrips(from, to, dayType) {
@@ -761,7 +815,7 @@
       const route = `<span class="trip-route">${pick(item.route.name)}</span>`;
       const arr = `<span class="trip-arrival">${formatArrival(item.arr)}</span>`;
       let line = `${route}<span class="trip-sep"> · </span>${arr}`;
-      if (isNext && refMins != null) line += ` · <strong class="trip-countdown">${fmtCountdown(depM - refMins)}</strong>`;
+      if (isNext && refMins != null) line += ` · <span class="trip-countdown">${fmtCountdown(depM - refMins)}</span>`;
       return line;
     }
 
@@ -773,11 +827,48 @@
     function renderTimeline(item, from, to) {
       return item.dir.stops.slice(item.fi, item.ti + 1).map((sid) => {
         const alt = stopAlt(sid);
+        const altHtml = alt ? `<div class="tl-sub">${alt}</div>` : "";
         return `<div class="tl-row ${sid === from || sid === to ? "hl" : ""}">
-          <div><div class="tl-ja">${stopName(sid)}</div>${alt ? `<div class="tl-sub">${alt}</div>` : ""}</div>
+          <div class="tl-name">${altHtml}<div class="tl-primary">${stopName(sid)}</div></div>
           <div class="tl-time">${item.trip.times[sid] || "—"}</div>
         </div>`;
       }).join("");
+    }
+
+    function dayTypeLabel(dayType) {
+      if (dayType === "saturday") return t("saturday");
+      if (dayType === "sunday_holiday") return t("sunday");
+      return t("weekday");
+    }
+
+    function laterLastBusHint(from, to, dayType) {
+      if (dayType === "sunday_holiday" || !t("endedOtherDayHint")) return "";
+      const sun = findTrips(from, to, "sunday_holiday");
+      const sat = findTrips(from, to, "saturday");
+      const wkLast = findTrips(from, to, "weekday").at(-1)?.dep;
+      const sunLast = sun.at(-1)?.dep;
+      const satLast = sat.at(-1)?.dep;
+      const pm = (x) => (x ? parseMinutes(x) : -1);
+      if (sunLast && pm(sunLast) > pm(wkLast)) return t("endedOtherDayHint");
+      if (dayType === "weekday" && satLast && pm(satLast) > pm(wkLast)) {
+        return lang === "ja"
+          ? "土曜は末班が遅い場合があります。上の「土曜」を試してください。"
+          : (lang === "zh"
+            ? "周六末班可能更晚，可切换上方「周六」。"
+            : "Saturday may have a later last bus — try the Sat tab.");
+      }
+      return "";
+    }
+
+    function syncRouteHint() {
+      if (!els.routeHint) return;
+      const from = els.fromStop.value;
+      if (lang !== "ja" && from === "miyanoura") {
+        els.routeHint.textContent = t("routePortHint");
+        els.routeHint.hidden = false;
+      } else {
+        els.routeHint.hidden = true;
+      }
     }
 
     function updateNextBar(allTrips, refMins) {
@@ -792,19 +883,24 @@
       const ended = !next;
       const item = next || allTrips[allTrips.length - 1];
       const depM = parseMinutes(item.dep);
+      const dayLbl = dayTypeLabel(selectedDay);
+      const viewingToday = selectedDay === AppCore.detectDayType(new Date());
       els.nextBar.classList.add("show");
       els.nextBarWrap.classList.add("has-next");
-      if (!ended) els.nextBar.classList.add("is-live");
+      if (!ended && viewingToday) els.nextBar.classList.add("is-live");
       else els.nextBar.classList.remove("is-live");
       els.nextLabel.textContent = ended ? t("todayEnded") : t("nextBus");
       els.nextOpBadge.innerHTML = OperatorUI.badge(item.route.operator, lang, { invert: true });
       const fromName = stopName(els.fromStop.value);
-      els.nextTime.textContent = ended ? t("lastBusAt", { time: item.dep }) : item.dep;
+      els.nextTime.textContent = ended
+        ? `${t("lastBusAt", { time: item.dep })}${t("lastBusDay", { day: dayLbl })}`
+        : item.dep;
       els.nextDepartStop.textContent = ended
         ? `${fromName} → ${stopName(els.toStop.value)}`
         : t("departFrom", { stop: fromName });
+      const extraEnded = ended ? laterLastBusHint(els.fromStop.value, els.toStop.value, selectedDay) : "";
       els.nextDetail.innerHTML = ended
-        ? `<div class="next-meta">${t("noMoreToday")}</div>`
+        ? `<div class="next-meta">${t("noMoreToday")}${extraEnded ? ` ${extraEnded}` : ""}</div>`
         : formatNextDetail(fromName, stopName(els.toStop.value), item.arr, depM, refMins);
     }
 
@@ -837,6 +933,7 @@
       if (showPastTodayNotice) els.resultsNotice.textContent = t("noMoreToday");
 
       if (from === to) {
+        openTripKey = null;
         els.resultsNotice.hidden = true;
         els.resultsCount.textContent = "";
         els.results.innerHTML = `<div class="empty">${t("sameStop")}</div>`;
@@ -845,6 +942,7 @@
         return;
       }
       if (!trips.length) {
+        openTripKey = null;
         const empty = explainEmpty(from, to, selectedDay, allTrips, trips, upcoming, refMins);
         els.resultsCount.textContent = "";
         els.results.innerHTML = renderEmptyHtml(empty);
@@ -875,7 +973,9 @@
           if (tg.warn) return `<span class="tag warn">${tg.text}</span>`;
           return `<span class="tag">${tg.text}</span>`;
         }).join("");
-        return `<article class="trip ${isNext ? "next" : ""}" aria-expanded="false">
+        const tripKey = `${item.dep}|${item.route.id}|${item.dir.id || ""}|${idx}`;
+        const isOpen = openTripKey === tripKey;
+        return `<article class="trip ${isNext ? "next" : ""}${isOpen ? " open" : ""}" data-trip-key="${tripKey}" aria-expanded="${isOpen ? "true" : "false"}">
           <div class="trip-top">
             <div class="trip-time">${item.dep}</div>
             <div class="trip-top-end">
@@ -890,9 +990,38 @@
       }).join("");
 
       els.results.querySelectorAll(".trip").forEach((el) => {
-        el.addEventListener("click", () => {
-          const open = el.classList.toggle("open");
-          el.setAttribute("aria-expanded", open ? "true" : "false");
+        const toggle = () => {
+          const key = el.dataset.tripKey;
+          const willOpen = !el.classList.contains("open");
+          els.results.querySelectorAll(".trip").forEach((t) => {
+            t.classList.remove("open");
+            t.setAttribute("aria-expanded", "false");
+          });
+          if (willOpen) {
+            el.classList.add("open");
+            el.setAttribute("aria-expanded", "true");
+            openTripKey = key;
+            requestAnimationFrame(() => el.scrollIntoView({ block: "nearest", behavior: "smooth" }));
+          } else {
+            openTripKey = null;
+          }
+        };
+        let blockClick = false;
+        el.addEventListener("touchend", (e) => {
+          if (e.target.closest("a, button")) return;
+          blockClick = true;
+          e.preventDefault();
+          toggle();
+          setTimeout(() => { blockClick = false; }, 450);
+        }, { passive: false });
+        el.addEventListener("click", (e) => {
+          if (e.target.closest("a, button")) return;
+          if (blockClick) {
+            e.preventDefault();
+            return;
+          }
+          e.stopPropagation();
+          toggle();
         });
       });
     }
@@ -900,12 +1029,14 @@
     function applyI18n() {
       AppCore.setLang(lang);
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
-      els.appTitle.textContent = t("title");
+      els.appTitle.textContent = t("siteBrand");
+      const mainNav = document.getElementById("mainNav");
+      if (mainNav) mainNav.setAttribute("aria-label", t("navAria"));
       els.liveClockTime.title = lang === "zh" ? "日本时间 (JST)" : "JST";
       document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
       ttPdfFsCtl?.sync();
       els.langSwitch.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
-      initMeta(); initPresets(); initPickers(); initInfo(); initSources(); renderOperatorLegend(); renderResults();
+      initMeta(); initPresets(); initPickers(); syncRouteHint(); initInfo(); initSources(); renderOperatorLegend(); renderResults();
     }
 
     function initDayTabs() {
@@ -991,6 +1122,9 @@
       const jp = japanParts();
       const val = `${jp.hour}:${jp.minute}`;
       els.liveClockTime.textContent = val;
+      els.liveClockTime.title = lang === "zh"
+        ? "日本标准时间 (JST · UTC+9)"
+        : (lang === "en" ? "Japan Standard Time (JST · UTC+9)" : "日本標準時 (JST · UTC+9)");
       syncTimeFilterDisplay();
     }
 
@@ -1057,6 +1191,8 @@
     if (urlParams.get("to")) toPicker.setValue(urlParams.get("to"), false);
     renderResults();
     setInterval(() => { setLiveClock(); renderResults(); }, 30000);
+    });
   </script>
+  <script src="analytics.js" defer></script>
 </body>
 </html>

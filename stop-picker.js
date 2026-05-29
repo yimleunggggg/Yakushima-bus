@@ -25,11 +25,12 @@ const StopPicker = {
     return lang === "ja" ? s.ja : (lang === "zh" ? s.zh : s.en);
   },
 
-  altNames(id, lang) {
+  /** 输入框上方副行：主语言已在输入框；此处为其余语言（日/英/中），与主名去重 */
+  altLine(id, lang) {
     const s = BUS_DATA.stops[id];
     if (!s) return "";
     const primary = this.label(id, lang);
-    const order = lang === "ja" ? ["zh", "en"] : lang === "zh" ? ["ja", "en"] : ["ja", "zh"];
+    const order = lang === "ja" ? ["en"] : lang === "en" ? ["ja"] : ["ja", "en"];
     const seen = new Set([primary]);
     const parts = [];
     for (const key of order) {
@@ -42,12 +43,14 @@ const StopPicker = {
     return parts.join(" · ");
   },
 
+  /** @deprecated 使用 altLine */
   subLabel(id, lang) {
-    return this.altNames(id, lang);
+    return this.altLine(id, lang);
   },
 
-  hint(id, lang) {
-    return this.altNames(id, lang);
+  /** 下拉列表：与输入框 altLine 一致 */
+  listHint(id, lang) {
+    return this.altLine(id, lang);
   },
 
   matches(id, q) {
@@ -87,7 +90,11 @@ const StopPicker = {
 
     const syncDisplay = () => {
       input.value = selectedId ? this.label(selectedId, currentLang) : "";
-      if (subEl) subEl.textContent = selectedId ? this.subLabel(selectedId, currentLang) : "";
+      if (subEl) {
+        const sub = selectedId ? this.subLabel(selectedId, currentLang) : "";
+        subEl.textContent = sub;
+        subEl.hidden = !sub;
+      }
       if (selectedId && typeof AppCore !== "undefined") {
         input.setAttribute("aria-label", AppCore.stopAriaLabel(selectedId, currentLang));
       } else {
@@ -204,16 +211,16 @@ const StopPicker = {
           rows.push(`<li class="picker-group" role="presentation">${this.groupLabel(s.group, currentLang)}</li>`);
         }
         const name = this.label(id, currentLang);
-        const hint = this.hint(id, currentLang);
+        const hint = this.listHint(id, currentLang);
         const active = id === selectedId ? " active" : "";
-        const hintHtml = hint && hint !== name
+        const hintHtml = hint
           ? `<span class="picker-hint">${hint}</span>` : "";
         const aria = typeof AppCore !== "undefined" ? AppCore.stopAriaLabel(id, currentLang) : name;
         rows.push(`<li role="option" data-id="${id}" class="picker-option${active}" aria-selected="${id === selectedId}" aria-label="${aria.replace(/"/g, "&quot;")}">
           <span class="picker-no">${s.no}</span>
           <span class="picker-body">
-            <span class="picker-name">${name}</span>
             ${hintHtml}
+            <span class="picker-name">${name}</span>
           </span>
         </li>`);
       });

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="屋久島バス路線図・停留所別運賃表。公式PDF、ゆったり満喫乗車券。宮之浦・安房など全停留所。日中英。">
-  <meta name="keywords" content="屋久島,バス,運賃,路線図,屋久岛,公交,票价,Yakushima,bus,fare,route map">
+  <meta name="description" content="屋久島バス路線図・運賃。宮之浦港・白谷雲水峡・屋久杉自然館・荒川登山口・縄文杉アクセス。2026年3月改正PDF。">
+  <meta name="keywords" content="屋久島,バス,運賃,路線図,白谷,荒川登山,縄文杉,屋久岛,公交,票价,Yakushima,bus,fare,Jomon Sugi,Shiratani">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#143a35">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -20,7 +20,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Yakushima Bus">
   <meta property="og:title" content="屋久岛公交路线与运价 | Yakushima Bus Routes &amp; Fares">
-  <meta property="og:description" content="Official route map PDF, stop fare lookup, day pass offices.">
+  <meta property="og:description" content="Official route map & fares. Bus access to Shiratani, Yakusugi Museum, Arakawa trailhead & Jomon Sugi. Mar 2026 PDF.">
   <meta property="og:url" content="https://yakushimabus.com/map/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -28,7 +28,7 @@
   <meta property="og:image:alt" content="Yakushima Bus — 屋久岛公交路线与运价">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="屋久岛公交路线与运价 | Yakushima Bus Map">
-  <meta name="twitter:description" content="官方路线 PDF · 停留所运价查询 · 日中英">
+  <meta name="twitter:description" content="官方路线 PDF · 停留所运价查询">
   <meta name="twitter:image" content="https://yakushimabus.com/og-image.png">
   <title>屋久島バス路線図・運賃 | 屋久岛公交票价 | Yakushima Bus Fares</title>
   <script type="application/ld+json">
@@ -53,20 +53,32 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v25">
+  <link rel="stylesheet" href="/styles.css?v=layout-v44">
   <script src="/analytics.js"></script>
 </head>
 <body>
   <div class="app">
-    <nav class="nav nav-main">
-      <a href="/" data-i18n="navTime">時刻表</a>
-      <a href="/map/" class="active" data-i18n="navMap">路線図</a>
-      <a href="/access/" data-i18n="navAccess">上島</a>
-    </nav>
+    <div class="app-nav-sticky">
+      <nav class="nav nav-main" id="mainNav">
+        <a href="/" data-i18n="navTime">時刻表</a>
+        <a href="/map/" class="active" aria-current="page" data-i18n="navMap">路線・運賃</a>
+        <a href="/access/" data-i18n="navAccess">上島</a>
+      </nav>
+    </div>
 
     <header class="header header-compact">
-      <h1 id="appTitle">路線図・運賃</h1>
+      <div class="header-main">
+        <h1 id="appTitle">路線図・運賃</h1>
+        <p class="header-sub" data-i18n="pageLead">公式路線図・運賃（2026/3）。宮之浦港・白谷・自然館・荒川登山口。</p>
+      </div>
       <div class="header-actions">
+        <div class="clock-wrap" role="group" aria-label="Japan Standard Time">
+          <span class="tz-mark" title="Japan Standard Time · UTC+9" aria-hidden="true">
+            <svg class="tz-mark-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span class="tz-mark-text">JST</span>
+          </span>
+          <span class="live-clock-time" id="liveClockTime" role="timer" aria-live="polite">--:--</span>
+        </div>
         <div class="lang-switch" id="langSwitch">
           <button type="button" data-lang="ja">JA</button>
           <button type="button" data-lang="zh">ZH</button>
@@ -74,7 +86,6 @@
         </div>
       </div>
     </header>
-    <p class="page-lead" data-i18n="pageLead">屋久島路線バスの公式路線図・停留所別運賃。PDF内蔵、ゆったり満喫乗車券情報。日本語・中文・English。</p>
 
     <div class="map-layout">
     <div class="map-layout-primary">
@@ -114,20 +125,17 @@
     </div>
 
     <div class="map-layout-secondary">
-    <div class="panel map-sidebar-tool">
-      <div class="sec">
-        <div class="sec-title" data-i18n="stopLookup">停留所を選ぶ</div>
+    <div class="panel map-tools-panel">
+      <div class="sec map-tools-sec map-tools-stop">
+        <div class="sec-title sec-title-inset" data-i18n="stopLookup">停留所</div>
         <div class="stop-panel show" id="stopPanel">
+          <div class="stop-alt" id="lookupAlt" hidden></div>
           <div class="stop-picker" id="lookupPicker">
             <input type="text" id="lookupStopInput" class="picker-input" autocomplete="off" spellcheck="false">
             <input type="hidden" id="lookupStop" value="miyanoura_port">
             <ul class="picker-list" role="listbox" hidden></ul>
           </div>
-          <div class="stop-panel-head">
-            <p class="stop-panel-alt" id="lookupStopSub"></p>
-            <div class="stop-panel-badges" id="panelBadges"></div>
-            <p class="stop-panel-tag-hint" id="panelTagHint" hidden></p>
-          </div>
+          <div class="stop-panel-badges" id="panelBadges"></div>
           <div class="actions">
             <button type="button" class="primary" id="panelTimeBtn" data-i18n="showTimetable">時刻表を見る</button>
             <button type="button" id="panelFromBtn" data-i18n="setFrom">出発に設定</button>
@@ -135,41 +143,40 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="panel map-sidebar-tool" id="farePanel">
-      <div class="sec">
-        <div class="sec-title" data-i18n="fareLookup">運賃検索（大人片道）</div>
+      <div class="map-tools-split" aria-hidden="true"></div>
+      <div class="sec map-tools-sec map-tools-fare" id="farePanel">
+        <div class="sec-title sec-title-inset" data-i18n="fareLookup">運賃検索（大人片道）</div>
         <div class="fare-form">
-          <div>
+          <div class="fare-field">
             <label data-i18n="from">出発</label>
+            <div class="stop-alt" id="fareFromAlt" hidden></div>
             <div class="stop-picker" id="fareFromPicker">
               <input type="text" class="picker-input" autocomplete="off" spellcheck="false">
               <input type="hidden" id="fareFrom" value="miyanoura_port">
               <ul class="picker-list" role="listbox" hidden></ul>
             </div>
-            <div class="stop-sub" id="fareFromSub"></div>
           </div>
-          <div>
+          <div class="fare-field">
             <label data-i18n="to">到着</label>
+            <div class="stop-alt" id="fareToAlt" hidden></div>
             <div class="stop-picker" id="fareToPicker">
               <input type="text" class="picker-input" autocomplete="off" spellcheck="false">
               <input type="hidden" id="fareTo" value="anbo">
               <ul class="picker-list" role="listbox" hidden></ul>
             </div>
-            <div class="stop-sub" id="fareToSub"></div>
           </div>
         </div>
         <div class="fare-result" id="fareResult">—</div>
         <p class="fare-disclaimer" id="fareDisclaimer"></p>
       </div>
-      <div class="sec sec-map-ref">
-        <div class="sec-title" data-i18n="fareNotes">運賃の注意</div>
-        <ul class="info-list info-list-compact" id="fareNotes"></ul>
+      <div class="sec sec-map-ref map-tools-sec">
+        <div class="sec-title sec-title-inset" data-i18n="fareNotes">運賃の注意</div>
+        <ul class="info-list info-list-plain" id="fareNotes"></ul>
       </div>
     </div>
 
     <div class="map-sidebar-ref">
+    <div id="mapPassDivider" class="map-scene-gap" aria-hidden="true"></div>
     <div class="panel map-sidebar-ref-panel pass-block" id="passBlock">
       <div class="sec" id="passSection"></div>
     </div>
@@ -218,21 +225,25 @@
   <script src="/access-data.js"></script>
   <script src="/map-data.js"></script>
   <script src="/operator-ui.js"></script>
-  <script src="/stop-picker.js?v=picker-v2"></script>
+  <script src="/section-divider.js"></script>
+  <script src="/stop-picker.js?v=picker-v5"></script>
   <script src="/pdf-fullscreen.js"></script>
   <script src="/pdf-viewer.js?v=pdf-preview-v2"></script>
   <script>
     const UI = {
       ja: {
-        navTime: "バス時刻表", navMap: "路線・運賃", navAccess: "フェリー等", navAbout: "このサイトについて", title: "路線・運賃", pageLead: "屋久島路線バスの公式路線図・停留所別運賃。PDF内蔵、ゆったり満喫乗車券情報。日本語・中文・English。", sub: "種子島・屋久島交通",
+        navAria: "メインメニュー", siteBrand: "屋久島バス",
+        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navAbout: "このサイトについて", title: "路線・運賃", pageLead: "公式路線図・運賃（2026/3）。宮之浦港・白谷・自然館・荒川登山口。", sub: "種子島・屋久島交通",
+        stopLookup: "停留所",
+        linkNotice: "運休・遅延は",
+        linkTaneyaku: "種屋時刻表", linkMatsubanda: "まつばんだ", linkTozan: "荒川登山バス",
         routeMap: "公式路線図", fareLookup: "運賃検索（大人片道）", fareNotes: "運賃の注意",
         passInfo: "屋久島ゆったり満喫乗車券", passOffices: "購入窓口", source: "出典",
         pdfLoading: "読み込み中…", pdfSlowHint: "表示されない場合は新しいタブで開いてください。",
         from: "出発", to: "到着",
         setFrom: "出発に設定", setTo: "到着に設定", setFromDone: "出発に設定しました：{stop}",
         setToDone: "到着に設定しました：{stop}", showTimetable: "時刻表を見る",
-        stopLookup: "停留所を選ぶ", stopTap: "タップして停留所を選択",
-        stopTagHint: "停留所の目印（フェリー接続・観光など）",
+        stopTap: "タップして停留所を選択",
         searchPlaceholder: "停留所名（日/中/英）",
         weekday: "平日", saturday: "土曜", sunday: "日祝",
         pdfJa: "日本語 PDF", pdfEn: "English PDF",
@@ -250,17 +261,21 @@
         officialLinks: "公式情報",
         pdfFare: "運賃表 PDF", pdfFareEn: "Fare table PDF (EN)",
         passOfficial: "ゆったり満喫乗車券（公式）",
+        dividerPass: "島内バス・乗車券",
       },
       zh: {
-        navTime: "公交时刻表", navMap: "路线及价格", navAccess: "轮渡·上岛", navAbout: "关于本站", title: "路线及价格", pageLead: "屋久岛公交官方路线图与各站票价查询。内置 PDF、悠享乘车券信息。日中英三语。", sub: "种子岛·屋久岛交通",
+        navAria: "主菜单", siteBrand: "屋久岛公交",
+        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navAbout: "关于本站", title: "路线及价格", pageLead: "官方路线图与运价（2026年3月）。宫之浦港、白谷、自然馆、荒川登山口。", sub: "种子岛·屋久岛交通",
+        stopLookup: "站点",
+        linkNotice: "停运延误见",
+        linkTaneyaku: "种屋时刻表", linkMatsubanda: "松ばんだ", linkTozan: "荒川登山巴士",
         routeMap: "官方路线图", fareLookup: "运价查询（成人单程）", fareNotes: "运价说明",
         passInfo: "屋久岛悠享乘车券", passOffices: "发售点", source: "来源",
         pdfLoading: "加载中…", pdfSlowHint: "若显示空白，请用新窗口打开。",
         from: "出发", to: "到达",
         setFrom: "设为出发", setTo: "设为到达", setFromDone: "已设为出发：{stop}",
         setToDone: "已设为到达：{stop}", showTimetable: "查看时刻表",
-        stopLookup: "选择站点", stopTap: "点击选择站点",
-        stopTagHint: "站点特征（如接驳渡轮、观光相关）",
+        stopTap: "点击选择站点",
         searchPlaceholder: "输入站名（中/日/英）",
         weekday: "工作日", saturday: "周六", sunday: "周日·节假日",
         pdfJa: "日文 PDF", pdfEn: "英文 PDF",
@@ -278,17 +293,21 @@
         officialLinks: "官方信息",
         pdfFare: "运价表 PDF", pdfFareEn: "运价表 PDF（英文）",
         passOfficial: "悠享乘车券（官网）",
+        dividerPass: "岛内公交 · 乘车券",
       },
       en: {
-        navTime: "Bus timetable", navMap: "Routes & fares", navAccess: "Ferry access", navAbout: "About", title: "Routes & fares", pageLead: "Official Yakushima bus route map and stop-by-stop fares. Embedded PDF and day-pass info. JA/ZH/EN.", sub: "Tanegashima Yakushima Kotsu",
+        navAria: "Main menu", siteBrand: "Yakushima Bus",
+        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navAbout: "About", title: "Routes & fares", pageLead: "Official map & fares (Mar 2026). Miyanoura Port, Shiratani, museum, Arakawa trailhead.", sub: "Tanegashima Yakushima Kotsu",
+        stopLookup: "Stop",
+        linkNotice: "Disruptions:",
+        linkTaneyaku: "Taneyaku PDF", linkMatsubanda: "Matsubanda", linkTozan: "Arakawa shuttle",
         routeMap: "Official route map", fareLookup: "Fare lookup (adult one-way)", fareNotes: "Fare notes",
         passInfo: "Yakushima day pass", passOffices: "Sales offices", source: "Source",
         pdfLoading: "Loading…", pdfSlowHint: "If blank, open in a new tab.",
         from: "From", to: "To",
         setFrom: "Set origin", setTo: "Set destination", setFromDone: "Origin set: {stop}",
         setToDone: "Destination set: {stop}", showTimetable: "View departures",
-        stopLookup: "Pick a stop", stopTap: "Tap to choose a stop",
-        stopTagHint: "Stop traits (ferry link, sightseeing, etc.)",
+        stopTap: "Tap to choose a stop",
         searchPlaceholder: "Search stops (JP/ZH/EN)",
         weekday: "Weekday", saturday: "Sat", sunday: "Sun & holidays",
         pdfJa: "Japanese PDF", pdfEn: "English PDF",
@@ -306,6 +325,7 @@
         officialLinks: "Official links",
         pdfFare: "Fare table PDF", pdfFareEn: "Fare table PDF (EN)",
         passOfficial: "Day pass (official)",
+        dividerPass: "Island bus · day pass",
       },
     };
 
@@ -348,6 +368,7 @@
 
     const els = {
       langSwitch: document.getElementById("langSwitch"),
+      liveClockTime: document.getElementById("liveClockTime"),
       appTitle: document.getElementById("appTitle"),
       pdfStage: document.getElementById("pdfStage"),
       pdfFallback: document.getElementById("pdfFallback"),
@@ -366,8 +387,6 @@
       lookupStop: document.getElementById("lookupStop"),
       stopPanel: document.getElementById("stopPanel"),
       panelBadges: document.getElementById("panelBadges"),
-      panelTagHint: document.getElementById("panelTagHint"),
-      lookupStopSub: document.getElementById("lookupStopSub"),
       panelTimeBtn: document.getElementById("panelTimeBtn"),
       panelFromBtn: document.getElementById("panelFromBtn"),
       panelToBtn: document.getElementById("panelToBtn"),
@@ -375,12 +394,13 @@
       mapToast: document.getElementById("mapToast"),
       fareFrom: document.getElementById("fareFrom"),
       fareTo: document.getElementById("fareTo"),
-      fareFromSub: document.getElementById("fareFromSub"),
-      fareToSub: document.getElementById("fareToSub"),
+      fareFromAlt: document.getElementById("fareFromAlt"),
+      fareToAlt: document.getElementById("fareToAlt"),
       fareResult: document.getElementById("fareResult"),
       fareDisclaimer: document.getElementById("fareDisclaimer"),
       fareNotes: document.getElementById("fareNotes"),
       passSection: document.getElementById("passSection"),
+      mapPassDivider: document.getElementById("mapPassDivider"),
       mapSourceLinks: document.getElementById("mapSourceLinks"),
       pdfLoading: document.getElementById("pdfLoading"),
       pdfSlowHint: document.getElementById("pdfSlowHint"),
@@ -516,7 +536,7 @@
         return `<li><a class="map-link" href="${href}" target="_blank" rel="noopener" aria-label="${t("openInMaps")}: ${label}"><span class="map-link-label">${label}</span><span class="map-link-badge">${t("openInMaps")}</span></a></li>`;
       }).join("");
       els.passSection.innerHTML = `
-        <div class="sec-title pass-title">${pick(sec.title)}</div>
+        <div class="pass-title">${pick(sec.title)}</div>
         ${intro}
         ${note}
         <div class="table-wrap pass-table-wrap"><table class="data-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>
@@ -533,7 +553,7 @@
         lookupPicker = StopPicker.mount({
           root: document.getElementById("lookupPicker"),
           hidden: els.lookupStop,
-          subEl: els.lookupStopSub,
+          subEl: document.getElementById("lookupAlt"),
           lang,
           placeholder: searchPh,
           onChange: (id) => { selectedStop = id; updateStopPanel(); },
@@ -541,7 +561,7 @@
         fareFromPicker = StopPicker.mount({
           root: document.getElementById("fareFromPicker"),
           hidden: els.fareFrom,
-          subEl: els.fareFromSub,
+          subEl: els.fareFromAlt,
           lang,
           placeholder: searchPh,
           onChange: () => updateFare(),
@@ -549,7 +569,7 @@
         fareToPicker = StopPicker.mount({
           root: document.getElementById("fareToPicker"),
           hidden: els.fareTo,
-          subEl: els.fareToSub,
+          subEl: els.fareToAlt,
           lang,
           placeholder: searchPh,
           onChange: () => updateFare(),
@@ -568,18 +588,12 @@
       const id = selectedStop;
       const s = BUS_DATA.stops[id] || MAP_DATA.stops[id];
       if (!s) return;
-      const alt = StopPicker.subLabel(id, lang);
-      els.lookupStopSub.textContent = alt;
-      els.lookupStopSub.hidden = !alt;
       const tagHtml = (s.tags || []).map((tg) => {
         const label = pick(MAP_DATA.tagLabels[tg]) || tg;
         const cls = tg === "pass" ? "tag season" : (s.group === "arakawa" ? "tag moss" : "tag");
         return `<span class="${cls}">${label}</span>`;
       }).join("");
       els.panelBadges.innerHTML = `<span class="tag tag-no">No.${s.no}</span>${tagHtml}`;
-      const hasTraits = (s.tags || []).length > 0;
-      els.panelTagHint.textContent = hasTraits ? t("stopTagHint") : "";
-      els.panelTagHint.hidden = !hasTraits;
       syncPanelActionState();
     }
 
@@ -631,16 +645,19 @@
       els.fareDisclaimer.textContent = pick(MAP_DATA.fareDisclaimer) || "";
       syncPanelActionState();
       if (from === to) {
-        els.fareResult.innerHTML = `<small>${t("sameStop")}</small>`;
+        els.fareResult.className = "fare-result";
+        els.fareResult.textContent = t("sameStop");
         return;
       }
       const { fare, kind } = getFare(from, to);
       const fromName = stopName(from), toName = stopName(to);
       if (fare) {
         const est = kind === "estimate" ? ` · ${t("fareEstimate")}` : "";
+        els.fareResult.className = "fare-result has-price";
         els.fareResult.innerHTML = `¥${fare.toLocaleString()}<small>${fromName} → ${toName}${est}</small>`;
       } else {
-        els.fareResult.innerHTML = `<small>${t("noFare")}</small>`;
+        els.fareResult.className = "fare-result";
+        els.fareResult.textContent = t("noFare");
       }
     }
 
@@ -652,7 +669,13 @@
     function initMapSources() {
       const s = BUS_DATA.meta?.sources || {};
       if (!els.mapSourceLinks) return;
+      const notice = s.notice || "https://yakukan.jp/trans/";
+      const status = s.serviceStatus || "https://yakushima.co.jp/route_bus/";
+      const tozan = "http://yakushima-tozan.com/";
       els.mapSourceLinks.innerHTML = [
+        `<a href="${notice}" target="_blank" rel="noopener">${t("linkTaneyaku")}</a>`,
+        `<a href="${status}" target="_blank" rel="noopener">${t("linkMatsubanda")}</a>`,
+        `<a href="${tozan}" target="_blank" rel="noopener">${t("linkTozan")}</a>`,
         `<a href="${s.fare || "#"}" target="_blank" rel="noopener">${t("pdfFare")}</a>`,
         `<a href="${s.fareEn || "#"}" target="_blank" rel="noopener">${t("pdfFareEn")}</a>`,
         `<a href="${s.pass || "#"}" target="_blank" rel="noopener">${t("passOfficial")}</a>`,
@@ -665,10 +688,22 @@
       document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
       pdfFsCtl?.sync();
       els.langSwitch.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
-      els.appTitle.textContent = t("title");
+      els.appTitle.textContent = t("siteBrand");
+      const mainNav = document.getElementById("mainNav");
+      if (mainNav) mainNav.setAttribute("aria-label", t("navAria"));
+      if (els.liveClockTime && typeof AppCore !== "undefined") {
+        const jp = AppCore.japanParts();
+        els.liveClockTime.textContent = `${jp.hour}:${jp.minute}`;
+        els.liveClockTime.title = lang === "zh"
+          ? "日本标准时间 (JST · UTC+9)"
+          : (lang === "en" ? "Japan Standard Time (JST · UTC+9)" : "日本標準時 (JST · UTC+9)");
+      }
       initPdf();
       initPickers();
       els.fareNotes.innerHTML = Object.values(MAP_DATA.fareNotes).map((n) => `<li>${pick(n)}</li>`).join("");
+      if (els.mapPassDivider) {
+        els.mapPassDivider.innerHTML = SectionDivider.html("bus", t("dividerPass"));
+      }
       renderPassInfo();
       initMapSources();
       if (!els.timeModal.hidden) renderModalBody();
@@ -729,6 +764,11 @@
     if (params.get("lang")) lang = params.get("lang");
     modalDay = detectDayType();
     applyI18n();
+    setInterval(() => {
+      if (!els.liveClockTime || typeof AppCore === "undefined") return;
+      const jp = AppCore.japanParts();
+      els.liveClockTime.textContent = `${jp.hour}:${jp.minute}`;
+    }, 30000);
     bindPdfControls();
     if (params.get("stop") && MAP_DATA.stops[params.get("stop")]) {
       lookupPicker.setValue(params.get("stop"), false);
