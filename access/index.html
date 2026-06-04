@@ -58,10 +58,11 @@
 <body class="app-page-narrow">
   <div class="app">
     <div class="app-nav-sticky">
-      <nav class="nav nav-main" id="mainNav">
+      <nav class="nav nav-main nav-main--4" id="mainNav">
         <a href="/" data-i18n="navTime">時刻表</a>
         <a href="/map/" data-i18n="navMap">路線・運賃</a>
         <a href="/access/" class="active" aria-current="page" data-i18n="navAccess">上島</a>
+        <a href="/intro/" data-i18n="navIntro">紹介</a>
       </nav>
     </div>
 
@@ -122,11 +123,11 @@
   <script>
     const UI = {
       ja: { navAria: "メインメニュー", siteBrand: "屋久島バス", pageLead: "鹿児島↔屋久島 高速船・フェリー",
-        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navAbout: "このサイトについて", title: "フェリー・上島", sources: "公式リンク", updated: "更新", source: "出典", adult: "大人", child: "小児", fareColRoute: "区間", fareColType: "区分", kindSchedule: "時刻表", kindFare: "運賃", dividerJetfoil: "高速船", dividerFerry: "フェリー" },
+        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navIntro: "紹介", navAbout: "このサイトについて", title: "フェリー・上島", sources: "公式リンク", updated: "更新", source: "出典", adult: "大人", child: "小児", fareColRoute: "区間", fareColType: "区分", kindSchedule: "時刻表", kindFare: "運賃", dividerJetfoil: "高速船", dividerFerry: "フェリー" },
       zh: { navAria: "主菜单", siteBrand: "屋久岛公交", pageLead: "鹿儿岛↔屋久岛 高速船与渡轮",
-        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navAbout: "关于本站", title: "轮渡·上岛", sources: "官方链接", updated: "更新", source: "来源", adult: "成人", child: "儿童", fareColRoute: "区间", fareColType: "类型", kindSchedule: "时刻表", kindFare: "运价", dividerJetfoil: "高速船", dividerFerry: "渡轮" },
+        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navIntro: "介绍", navAbout: "关于本站", title: "轮渡·上岛", sources: "官方链接", updated: "更新", source: "来源", adult: "成人", child: "儿童", fareColRoute: "区间", fareColType: "类型", kindSchedule: "时刻表", kindFare: "运价", dividerJetfoil: "高速船", dividerFerry: "渡轮" },
       en: { navAria: "Main menu", siteBrand: "Yakushima Bus", pageLead: "Kagoshima ↔ Yakushima jetfoil & ferry",
-        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navAbout: "About", title: "Ferry & access", sources: "Official links", updated: "Updated", source: "Source", adult: "Adult", child: "Child", fareColRoute: "Route", fareColType: "Class", kindSchedule: "Timetable", kindFare: "Fares", dividerJetfoil: "Jetfoil", dividerFerry: "Ferry" },
+        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About", title: "Ferry & access", sources: "Official links", updated: "Updated", source: "Source", adult: "Adult", child: "Child", fareColRoute: "Route", fareColType: "Class", kindSchedule: "Timetable", kindFare: "Fares", dividerJetfoil: "Jetfoil", dividerFerry: "Ferry" },
     };
 
     let lang = localStorage.getItem("yakushima-bus-lang") || "ja";

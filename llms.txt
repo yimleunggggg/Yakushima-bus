@@ -7,6 +7,7 @@
 - [Bus timetable & next departure](https://yakushimabus.com/): Search routes (incl. Arakawa trailhead Mar–Nov), day types, next bus in JST, embedded official PDF.
 - [Routes & fares](https://yakushimabus.com/map/): Official route map PDF, stop lookup, adult one-way fares, day pass info.
 - [Ferry & island access](https://yakushimabus.com/access/): Jetfoil and ferry schedules, fares Kagoshima–Yakushima, seasonal notes.
+- [Product intro](https://yakushimabus.com/intro/): Feature overview and English-narrated demo video.
 - [About this site](https://yakushimabus.com/about/): Maintainer background, data sources, contact.
 
 ## Languages

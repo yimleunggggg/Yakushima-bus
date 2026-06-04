@@ -91,10 +91,11 @@
 <body>
   <div class="app">
     <div class="app-nav-sticky">
-      <nav class="nav nav-main" id="mainNav">
+      <nav class="nav nav-main nav-main--4" id="mainNav">
         <a href="/" class="active" aria-current="page" data-i18n="navTime">時刻表</a>
         <a href="/map/" data-i18n="navMap">路線・運賃</a>
         <a href="/access/" data-i18n="navAccess">上島</a>
+        <a href="/intro/" data-i18n="navIntro">紹介</a>
       </nav>
     </div>
     <header class="header header-compact">
@@ -322,7 +323,7 @@
     const UI = {
       ja: {
         navAria: "メインメニュー", siteBrand: "屋久島バス",
-        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navAbout: "このサイトについて", title: "屋久島バス", pageLead: "屋久島バス時刻表・次の便（2026/3）。宮之浦港・安房・白谷・荒川登山口。", sub: "次のバスを検索", presets: "よく使う区間",
+        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navIntro: "紹介", navAbout: "このサイトについて", title: "屋久島バス", pageLead: "屋久島バス時刻表・次の便（2026/3）。宮之浦港・安房・白谷・荒川登山口。", sub: "次のバスを検索", presets: "よく使う区間",
         metaLinks: '<a href="https://yakushima.co.jp/route_bus/" target="_blank" rel="noopener">運休</a> · <a href="http://yakushima-tozan.com/" target="_blank" rel="noopener">荒川登山バス</a> · <a href="/map/?lang=ja">路線・運賃</a>',
         swapped: "出発と到着を入れ替えました",
         from: "出発", to: "到着", weekday: "平日", saturday: "土曜",         sunday: "日祝",
@@ -375,7 +376,7 @@
       },
       zh: {
         navAria: "主菜单", siteBrand: "屋久岛公交",
-        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navAbout: "关于本站", title: "屋久岛公交", pageLead: "屋久岛公交时刻表与下一班（2026年3月）。宫之浦港、安房、白谷、荒川登山口。", sub: "屋久岛公交查询", presets: "常用区间",
+        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navIntro: "介绍", navAbout: "关于本站", title: "屋久岛公交", pageLead: "屋久岛公交时刻表与下一班（2026年3月）。宫之浦港、安房、白谷、荒川登山口。", sub: "屋久岛公交查询", presets: "常用区间",
         metaLinks: '<a href="https://yakushima.co.jp/route_bus/" target="_blank" rel="noopener">停运</a> · <a href="http://yakushima-tozan.com/" target="_blank" rel="noopener">荒川登山巴士</a> · <a href="/map/?lang=zh">路线运价</a>',
         swapped: "已交换出发与到达",
         from: "出发", to: "到达", weekday: "工作日", saturday: "周六",         sunday: "周日·节假日",
@@ -428,7 +429,7 @@
       },
       en: {
         navAria: "Main menu", siteBrand: "Yakushima Bus",
-        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navAbout: "About", title: "Yakushima Bus", pageLead: "Yakushima bus timetables & next bus (Mar 2026). Miyanoura, Anbo, Shiratani, Arakawa trailhead.", sub: "Yakushima Bus Timetable", presets: "Quick routes",
+        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About", title: "Yakushima Bus", pageLead: "Yakushima bus timetables & next bus (Mar 2026). Miyanoura, Anbo, Shiratani, Arakawa trailhead.", sub: "Yakushima Bus Timetable", presets: "Quick routes",
         metaLinks: '<a href="https://yakushima.co.jp/route_bus/" target="_blank" rel="noopener">Disruptions</a> · <a href="http://yakushima-tozan.com/" target="_blank" rel="noopener">Arakawa shuttle</a> · <a href="/map/?lang=en">Routes & fares</a>',
         swapped: "Origin and destination swapped",
         from: "From", to: "To", weekday: "Weekday", saturday: "Sat",         sunday: "Sun & holidays",

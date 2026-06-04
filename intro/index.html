@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Yakushima Bus product tour — trilingual bus timetable, routes, fares and ferry access for Yakushima Island.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#143a35">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://yakushimabus.com/intro/">
+  <meta property="og:title" content="Yakushima Bus — Product tour">
+  <meta property="og:url" content="https://yakushimabus.com/intro/">
+  <meta property="og:image" content="https://yakushimabus.com/og-image.png">
+  <title>製品紹介 | 产品介绍 | Yakushima Bus Intro</title>
+  <link rel="stylesheet" href="/styles.css?v=intro-v3">
+  <script src="/analytics.js"></script>
+</head>
+<body class="app-page-narrow">
+  <div class="app intro-page">
+    <div class="app-nav-sticky">
+      <nav class="nav nav-main nav-main--4" id="mainNav" aria-label="Main">
+        <a href="/" data-i18n="navTime">時刻表</a>
+        <a href="/map/" data-i18n="navMap">路線</a>
+        <a href="/access/" data-i18n="navAccess">上島</a>
+        <a href="/intro/" class="active" aria-current="page" data-i18n="navIntro">紹介</a>
+      </nav>
+    </div>
+
+    <header class="intro-hero">
+      <div class="intro-hero-top">
+        <p class="intro-hero-eyebrow">yakushimabus.com</p>
+        <div class="lang-switch" id="langSwitch">
+          <button type="button" data-lang="ja">JA</button>
+          <button type="button" data-lang="zh">ZH</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+      <h1 id="introTitle">Yakushima Bus とは</h1>
+      <p class="intro-hero-lead" id="introLead"></p>
+    </header>
+
+    <section class="intro-video-block panel" aria-labelledby="introVideoTitle">
+      <h2 class="intro-section-title" id="introVideoTitle">デモ動画</h2>
+      <p class="intro-video-hint" id="introVideoHint"></p>
+      <div class="intro-video-wrap">
+        <video
+          id="introVideo"
+          class="intro-video-player"
+          controls
+          playsinline
+          preload="auto"
+          poster="/assets/video/yakushima-bus-demo-poster.jpg"
+        >
+          <source id="introVideoSource" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <section class="intro-features" id="introFeatures" aria-label="Features"></section>
+
+    <footer class="app-footer">
+      <nav class="app-footer-links" aria-label="Site pages">
+        <a href="/" data-i18n="navTime">バス時刻表</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="/map/" data-i18n="navMap">路線・運賃</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="/access/" data-i18n="navAccess">フェリー等</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="/about/" data-i18n="navAbout">About</a>
+      </nav>
+    </footer>
+  </div>
+
+  <script src="/intro-data.js?v=intro-v3"></script>
+  <script>
+    const NAV_UI = {
+      ja: { navAria: "メインメニュー", navTime: "時刻表", navMap: "路線", navAccess: "上島", navIntro: "紹介", navAbout: "About" },
+      zh: { navAria: "主菜单", navTime: "时刻表", navMap: "路线", navAccess: "上岛", navIntro: "介绍", navAbout: "关于" },
+      en: { navAria: "Main menu", navTime: "Times", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About" },
+    };
+
+    let lang = localStorage.getItem("yakushima-bus-lang") || "ja";
+    let introVideoSec = 0;
+    const t = (key) => (NAV_UI[lang] && NAV_UI[lang][key]) || NAV_UI.ja[key] || key;
+
+    function formatDuration(sec, l) {
+      if (!sec || !Number.isFinite(sec)) return "";
+      const min = Math.floor(sec / 60);
+      const s = sec % 60;
+      if (min > 0) {
+        if (l === "en") return `${min} min ${s}s`;
+        if (l === "zh") return `${min} 分 ${s} 秒`;
+        return `${min}分${s}秒`;
+      }
+      if (l === "en") return `${sec}s`;
+      if (l === "zh") return `${sec} 秒`;
+      return `${sec}秒`;
+    }
+
+    function videoHintText(c, l) {
+      const base = c.videoHintBase || "";
+      if (!introVideoSec) return base.replace("{duration}", "…");
+      return base.replace("{duration}", formatDuration(introVideoSec, l));
+    }
+
+    function render() {
+      const c = INTRO_DATA.content[lang] || INTRO_DATA.content.ja;
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+      document.getElementById("introTitle").textContent = c.title;
+      document.getElementById("introLead").textContent = c.lead;
+      document.getElementById("introVideoTitle").textContent = c.videoTitle;
+      document.getElementById("introVideoHint").textContent = videoHintText(c, lang);
+      document.getElementById("introFeatures").innerHTML = c.features
+        .map(
+          (f) => `
+        <a class="intro-feature panel" href="${f.href}">
+          <span class="intro-feature-icon" aria-hidden="true">${f.icon}</span>
+          <h3 class="intro-feature-title">${f.title}</h3>
+          <p class="intro-feature-body">${f.body}</p>
+        </a>`
+        )
+        .join("");
+
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (NAV_UI[lang][key]) el.textContent = NAV_UI[lang][key];
+      });
+      document.getElementById("mainNav").setAttribute("aria-label", t("navAria"));
+    }
+
+    document.getElementById("langSwitch").addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-lang]");
+      if (!btn) return;
+      lang = btn.dataset.lang;
+      localStorage.setItem("yakushima-bus-lang", lang);
+      document.querySelectorAll("#langSwitch [data-lang]").forEach((b) => {
+        b.classList.toggle("active", b.dataset.lang === lang);
+      });
+      render();
+    });
+    document.querySelector(`#langSwitch [data-lang="${lang}"]`)?.classList.add("active");
+
+    (async function initIntroVideo() {
+      const v = INTRO_DATA.video;
+      const video = document.getElementById("introVideo");
+      const src = document.getElementById("introVideoSource");
+      if (v.poster) video.poster = v.poster;
+      src.type = v.type || "video/mp4";
+      if (v.src) src.src = v.src;
+      video.addEventListener(
+        "loadedmetadata",
+        () => {
+          introVideoSec = Math.round(video.duration);
+          render();
+        },
+        { once: true }
+      );
+      video.load();
+    })();
+
+    render();
+  </script>
+</body>
+</html>
