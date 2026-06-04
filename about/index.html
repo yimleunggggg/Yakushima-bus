@@ -46,7 +46,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v44">
+  <link rel="stylesheet" href="/styles.css?v=layout-v45">
   <script src="/analytics.js"></script>
 </head>
 <body class="app-page-narrow">
@@ -88,7 +88,7 @@
     </footer>
   </div>
 
-  <script src="/about-data.js?v=about-v2"></script>
+  <script src="/about-data.js?v=about-v3"></script>
   <script>
     const UI = {
       ja: {
@@ -174,6 +174,34 @@
         .join("");
     }
 
+    function renderSourceGroups(sec) {
+      const intro = sec.intro
+        ? `<p class="about-sources-intro">${pick(sec.intro)}</p>`
+        : "";
+      const groups = (sec.sourceGroups || [])
+        .map((g) => {
+          const items = (g.items || [])
+            .map((item) => {
+              const note = item.note ? pick(item.note) : "";
+              const noteHtml = note
+                ? ` <span class="about-source-note">${note}</span>`
+                : "";
+              const isTel = String(item.url).startsWith("tel:");
+              const ext = isTel
+                ? ""
+                : ' target="_blank" rel="noopener noreferrer"';
+              return `<a href="${item.url}"${ext}>${pick(item.label)}${noteHtml}</a>`;
+            })
+            .join("");
+          return `<div class="about-sources-group">
+            <h3 class="about-sources-heading">${pick(g.title)}</h3>
+            <div class="links about-sources-links">${items}</div>
+          </div>`;
+        })
+        .join("");
+      return intro + groups;
+    }
+
     function renderSections() {
       const leadHtml = ABOUT_DATA.lead
         ? `<div class="about-lead about-prose">${formatBody(ABOUT_DATA.lead)}</div>`
@@ -181,7 +209,14 @@
       const sectionsHtml = ABOUT_DATA.sections.map((sec) => {
         const toneClass = sec.tone === "trust" ? " about-section-trust" : "";
         const contactHtml = sec.showContact ? renderContact() : "";
-        return `<section class="about-section${toneClass}">
+        const idAttr = sec.id ? ` id="${sec.id}"` : "";
+        if (sec.sourceGroups) {
+          return `<section class="about-section about-section-sources"${idAttr}>
+            <h2>${pick(sec.title)}</h2>
+            ${renderSourceGroups(sec)}
+          </section>`;
+        }
+        return `<section class="about-section${toneClass}"${idAttr}>
           <h2>${pick(sec.title)}</h2>
           <div class="about-prose">${formatBody(sec.body)}</div>
           ${contactHtml}

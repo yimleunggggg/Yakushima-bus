@@ -1438,6 +1438,34 @@ body.modal-open {
 .about-section p:last-child { margin-bottom: 0; }
 .about-prose + .contact-block { margin-top: 14px; }
 .contact-block { margin-top: 12px; }
+
+.about-section-sources { scroll-margin-top: 72px; }
+.about-sources-intro {
+  margin: 0 0 14px;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.about-sources-group { margin-bottom: 16px; }
+.about-sources-group:last-child { margin-bottom: 0; }
+.about-sources-heading {
+  margin: 0 0 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  letter-spacing: 0.02em;
+}
+.about-sources-links.links {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--surface);
+}
+.about-source-note {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: var(--muted);
+}
 .contact-heading {
   margin: 0 0 8px;
   font-size: 0.6875rem;
