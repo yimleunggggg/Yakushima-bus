@@ -16,13 +16,17 @@ echo
 [[ -f robots.txt ]] && ok robots.txt || die "missing robots.txt"
 grep -q 'Sitemap: https://yakushimabus.com/sitemap.xml' robots.txt && ok robots.txt sitemap line || die "robots.txt sitemap URL"
 [[ -f sitemap.xml ]] && ok sitemap.xml || die "missing sitemap.xml"
-grep -c '<loc>' sitemap.xml | grep -q '^4$' && ok "sitemap.xml (4 URLs)" || warn "sitemap.xml URL count ≠ 4"
+grep -c '<loc>' sitemap.xml | grep -qE '^[0-9]+$' && ok "sitemap.xml ($(grep -c '<loc>' sitemap.xml) URLs)" || die "sitemap.xml parse error"
+for path in "/" "/map/" "/access/" "/intro/" "/about/"; do
+  grep -q "<loc>https://yakushimabus.com${path}</loc>" sitemap.xml \
+    && ok "sitemap ${path}" || warn "sitemap missing ${path}"
+done
 
 # verification
 [[ -f googlef464172b97bd6d41.html ]] && ok GSC verification file || warn "missing google verification html"
 
 # pages
-PAGES=(index.html map/index.html access/index.html about/index.html)
+PAGES=(index.html map/index.html access/index.html intro/index.html about/index.html)
 for p in "${PAGES[@]}"; do
   [[ -f "$p" ]] || { die "missing $p"; continue; }
   grep -q '<title>' "$p" && grep -q 'name="description"' "$p" && grep -q 'rel="canonical"' "$p" \
