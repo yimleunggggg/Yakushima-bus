@@ -52,7 +52,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v44">
+  <link rel="stylesheet" href="/styles.css?v=layout-v48">
   <script src="/analytics.js"></script>
 </head>
 <body class="app-page-narrow">
@@ -88,7 +88,6 @@
     </header>
 
     <p class="app-meta" id="metaBar"></p>
-    <p class="intro-text access-intro" id="introText">鹿児島から屋久島へは高速船（約2–3時間）かフェリー（約4時間）が一般的です。島内の<a href="/">屋久島バス時刻表</a>で次の便を検索。運賃は<a href="/map/">路線図・運賃</a>。最新ダイヤ・運休は各社公式を確認してください。</p>
     <div class="panel" id="bookingPanel">
       <div class="sec">
         <div class="sec-title" id="bookingTitle"></div>
@@ -137,7 +136,6 @@
       appTitle: document.getElementById("appTitle"),
       liveClockTime: document.getElementById("liveClockTime"),
       metaBar: document.getElementById("metaBar"),
-      introText: document.getElementById("introText"),
       bookingTitle: document.getElementById("bookingTitle"),
       bookingCards: document.getElementById("bookingCards"),
       sections: document.getElementById("sections"),
@@ -268,9 +266,10 @@
       els.appTitle.textContent = t("siteBrand");
       const mainNav = document.getElementById("mainNav");
       if (mainNav) mainNav.setAttribute("aria-label", t("navAria"));
-      els.metaBar.textContent = `${t("updated")} ${ACCESS_DATA.meta.updatedAt}`;
-      if (ACCESS_DATA.introHtml) els.introText.innerHTML = pick(ACCESS_DATA.introHtml);
-      else els.introText.textContent = pick(ACCESS_DATA.intro);
+      els.metaBar.innerHTML = [
+        `${t("updated")} ${ACCESS_DATA.meta.updatedAt}`,
+        `<span class="meta-links"><a href="/">${t("navTime")}</a> · <a href="/map/">${t("navMap")}</a></span>`,
+      ].join('<span class="meta-sep" aria-hidden="true">·</span> ');
       tickClock();
       renderBooking();
       const blocks = [];

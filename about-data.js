@@ -27,7 +27,7 @@ const ABOUT_DATA = {
       },
       intro: {
         ja: "本サイトの時刻・運賃・上島情報は、次の公式資料・各社サイトを参照しています（2026年5月時点）。最新情報は必ず各リンク先でご確認ください。",
-        zh: "本站时刻、运价与上岛信息均参考下列官方 PDF 与各运营商页面（截至 2026 年 5 月）。出行前请以链接中的最新公告为准。",
+        zh: "本站时刻、运价与上岛信息均参考下列官方资料与各运营商页面（截至 2026 年 5 月）。出行前请以链接中的最新公告为准。",
         en: "Timetables, fares, and access info on this site are compiled from the official sources below (as of May 2026). Always confirm the latest schedules on each operator’s site before you travel.",
       },
       sourceGroups: [
@@ -36,27 +36,27 @@ const ABOUT_DATA = {
           items: [
             {
               label: {
-                ja: "種子島・屋久島交通 時刻表 PDF（日本語）",
-                zh: "种子岛·屋久岛交通 时刻表 PDF（日文）",
-                en: "Tanegashima Yakushima Kotsu timetable PDF (Japanese)",
+                ja: "種子島・屋久島交通 時刻表（日本語）",
+                zh: "种子岛·屋久岛交通 时刻表（日文）",
+                en: "Tanegashima Yakushima Kotsu timetable (Japanese)",
               },
               url: "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301.pdf",
               note: { ja: "2026/3/1 改定", zh: "2026/3/1 改订", en: "Revised 2026-03-01" },
             },
             {
               label: {
-                ja: "種子島・屋久島交通 時刻表 PDF（英語）",
-                zh: "种子岛·屋久岛交通 时刻表 PDF（英文）",
-                en: "Tanegashima Yakushima Kotsu timetable PDF (English)",
+                ja: "種子島・屋久島交通 時刻表（英語）",
+                zh: "种子岛·屋久岛交通 时刻表（英文）",
+                en: "Tanegashima Yakushima Kotsu timetable (English)",
               },
               url: "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301-en.pdf",
               note: { ja: "2026/3/1 改定", zh: "2026/3/1 改订", en: "Revised 2026-03-01" },
             },
             {
               label: {
-                ja: "まつばんだ交通 時刻表 PDF",
-                zh: "松ばんだ交通 时刻表 PDF",
-                en: "Matsubanda Kotsu timetable PDF",
+                ja: "まつばんだ交通 時刻表",
+                zh: "松ばんだ交通 时刻表",
+                en: "Matsubanda Kotsu timetable",
               },
               url: "https://yakukan.jp/wp-content/uploads/2026/03/matsubanda-timetable-20260301.pdf",
               note: { ja: "2026/3/1 改定", zh: "2026/3/1 改订", en: "Revised 2026-03-01" },
@@ -68,18 +68,18 @@ const ABOUT_DATA = {
           items: [
             {
               label: {
-                ja: "屋久島バス路線図・運賃表 PDF（日本語）",
-                zh: "屋久岛公交路线图·运价表 PDF（日文）",
-                en: "Yakushima bus route map & fares PDF (Japanese)",
+                ja: "屋久島バス 路線図・運賃表（日本語）",
+                zh: "屋久岛公交 路线图·运价表（日文）",
+                en: "Yakushima bus route map & fares (Japanese)",
               },
               url: "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin.pdf",
               note: { ja: "2024/3 運賃改定", zh: "2024/3 运价改订", en: "Fares revised 2024-03" },
             },
             {
               label: {
-                ja: "屋久島バス路線図・運賃表 PDF（英語）",
-                zh: "屋久岛公交路线图·运价表 PDF（英文）",
-                en: "Yakushima bus route map & fares PDF (English)",
+                ja: "屋久島バス 路線図・運賃表（英語）",
+                zh: "屋久岛公交 路线图·运价表（英文）",
+                en: "Yakushima bus route map & fares (English)",
               },
               url: "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin-en.pdf",
               note: { ja: "2024/3 運賃改定", zh: "2024/3 运价改订", en: "Fares revised 2024-03" },

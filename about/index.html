@@ -46,7 +46,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v45">
+  <link rel="stylesheet" href="/styles.css?v=layout-v48">
   <script src="/analytics.js"></script>
 </head>
 <body class="app-page-narrow">
@@ -190,7 +190,7 @@
               const ext = isTel
                 ? ""
                 : ' target="_blank" rel="noopener noreferrer"';
-              return `<a href="${item.url}"${ext}>${pick(item.label)}${noteHtml}</a>`;
+              return `<a href="${item.url}"${ext}><span class="about-source-label">${pick(item.label)}</span>${noteHtml}</a>`;
             })
             .join("");
           return `<div class="about-sources-group">

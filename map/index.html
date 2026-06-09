@@ -53,7 +53,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v46">
+  <link rel="stylesheet" href="/styles.css?v=layout-v48">
   <script src="/analytics.js"></script>
 </head>
 <body>
@@ -70,7 +70,7 @@
     <header class="header header-compact">
       <div class="header-main">
         <h1 id="appTitle">路線図・運賃</h1>
-        <p class="header-sub" data-i18n="pageLead">屋久島バス路線図・運賃・料金（2026年3月改定）。宮之浦港・白谷・自然館・荒川登山口。</p>
+        <p class="header-sub" data-i18n="pageLead">2026年3月改定 · 区間運賃を検索</p>
       </div>
       <div class="header-actions">
         <div class="clock-wrap" role="group" aria-label="Japan Standard Time">
@@ -88,7 +88,7 @@
       </div>
     </header>
 
-    <p class="seo-lead intro-text">屋久島バスの<a href="/">バス時刻表</a>はトップページ。当ページで路線図・運賃（料金）の目安を区間検索できます。</p>
+    <p class="app-meta meta-links">2026年3月改定 · <a href="/">バス時刻表</a></p>
 
     <div class="map-layout">
     <div class="map-layout-primary">
@@ -188,15 +188,17 @@
     </div>
 
     <section class="seo-faq panel" aria-labelledby="mapFaqTitle">
-      <h2 class="sec-title" id="mapFaqTitle">よくある質問</h2>
-      <details class="seo-faq-item">
-        <summary>屋久島 バス 料金はどこで調べる？</summary>
-        <p>このページの「運賃検索」で出発・到着を選ぶと大人片道の目安が出ます。</p>
-      </details>
-      <details class="seo-faq-item">
-        <summary>バス時刻表はどこ？</summary>
-        <p><a href="/">屋久島バス時刻表</a>（トップ）で次の便と全便を検索できます。</p>
-      </details>
+      <div class="sec">
+        <h2 class="sec-title" id="mapFaqTitle">よくある質問</h2>
+        <details class="seo-faq-item">
+          <summary>屋久島 バス 料金はどこで調べる？</summary>
+          <p>このページの「運賃検索」で出発・到着を選ぶと大人片道の目安が出ます。</p>
+        </details>
+        <details class="seo-faq-item">
+          <summary>バス時刻表はどこ？</summary>
+          <p><a href="/">屋久島バス時刻表</a>（トップ）で次の便と全便を検索できます。</p>
+        </details>
+      </div>
     </section>
 
     <div class="panel map-official-links">
@@ -248,7 +250,7 @@
     const UI = {
       ja: {
         navAria: "メインメニュー", siteBrand: "屋久島バス",
-        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navIntro: "紹介", navAbout: "このサイトについて", title: "路線・運賃", pageLead: "屋久島バス路線図・運賃・料金（2026年3月改定）。宮之浦港・白谷・自然館・荒川登山口。", sub: "種子島・屋久島交通",
+        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navIntro: "紹介", navAbout: "このサイトについて", title: "路線・運賃", pageLead: "2026年3月改定 · 区間運賃を検索", sub: "種子島・屋久島交通",
         stopLookup: "停留所",
         linkNotice: "運休・遅延は",
         linkTaneyaku: "種屋時刻表", linkMatsubanda: "まつばんだ", linkTozan: "荒川登山バス",
@@ -280,7 +282,7 @@
       },
       zh: {
         navAria: "主菜单", siteBrand: "屋久岛公交",
-        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navIntro: "介绍", navAbout: "关于本站", title: "路线及价格", pageLead: "屋久岛公交路线图与运价（2026年3月改订）。宫之浦港、白谷、自然馆、荒川登山口。", sub: "种子岛·屋久岛交通",
+        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navIntro: "介绍", navAbout: "关于本站", title: "路线及价格", pageLead: "2026年3月改订 · 区间运价查询", sub: "种子岛·屋久岛交通",
         stopLookup: "站点",
         linkNotice: "停运延误见",
         linkTaneyaku: "种屋时刻表", linkMatsubanda: "松ばんだ", linkTozan: "荒川登山巴士",
@@ -312,7 +314,7 @@
       },
       en: {
         navAria: "Main menu", siteBrand: "Yakushima Bus",
-        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About", title: "Routes & fares", pageLead: "Route map and section fares (Mar 2026). Miyanoura Port, Shiratani, museum, Arakawa trailhead.", sub: "Tanegashima Yakushima Kotsu",
+        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About", title: "Routes & fares", pageLead: "Mar 2026 revision · section fare lookup", sub: "Tanegashima Yakushima Kotsu",
         stopLookup: "Stop",
         linkNotice: "Disruptions:",
         linkTaneyaku: "Taneyaku PDF", linkMatsubanda: "Matsubanda", linkTozan: "Arakawa shuttle",
