@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://yakushimabus.com/intro/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <title>製品紹介 | 产品介绍 | Yakushima Bus Intro</title>
-  <link rel="stylesheet" href="/styles.css?v=intro-v3">
+  <link rel="stylesheet" href="/styles.css?v=layout-v49">
   <script src="/analytics.js"></script>
 </head>
 <body class="app-page-narrow">
@@ -59,6 +59,11 @@
 
     <section class="intro-features" id="introFeatures" aria-label="Features"></section>
 
+    <section class="intro-sources panel" id="sources" aria-labelledby="introSourcesTitle">
+      <h2 class="intro-section-title" id="introSourcesTitle"></h2>
+      <div id="introSourcesBody"></div>
+    </section>
+
     <footer class="app-footer">
       <nav class="app-footer-links" aria-label="Site pages">
         <a href="/" data-i18n="navTime">バス時刻表</a>
@@ -72,7 +77,8 @@
     </footer>
   </div>
 
-  <script src="/intro-data.js?v=intro-v4"></script>
+  <script src="/sources-data.js?v=1"></script>
+  <script src="/intro-data.js?v=intro-v5"></script>
   <script>
     const NAV_UI = {
       ja: { navAria: "メインメニュー", navTime: "時刻表", navMap: "路線", navAccess: "上島", navIntro: "紹介", navAbout: "About" },
@@ -83,6 +89,39 @@
     let lang = localStorage.getItem("yakushima-bus-lang") || "ja";
     let introVideoSec = 0;
     const t = (key) => (NAV_UI[lang] && NAV_UI[lang][key]) || NAV_UI.ja[key] || key;
+
+    function pick(o) {
+      if (o == null) return "";
+      if (typeof o === "string" || typeof o === "number") return String(o);
+      return o[lang] || o.ja || o.en || o.zh || "";
+    }
+
+    function renderSources() {
+      const d = window.SOURCES_DATA;
+      const el = document.getElementById("introSourcesBody");
+      const titleEl = document.getElementById("introSourcesTitle");
+      if (!d || !el) return;
+      titleEl.textContent = pick(d.title);
+      const intro = d.intro ? `<p class="about-sources-intro">${pick(d.intro)}</p>` : "";
+      const groups = (d.sourceGroups || [])
+        .map((g) => {
+          const items = (g.items || [])
+            .map((item) => {
+              const note = item.note ? pick(item.note) : "";
+              const noteHtml = note ? `<span class="about-source-note">${note}</span>` : "";
+              const isTel = String(item.url).startsWith("tel:");
+              const ext = isTel ? "" : ' target="_blank" rel="noopener noreferrer"';
+              return `<a href="${item.url}"${ext}><span class="about-source-label">${pick(item.label)}</span>${noteHtml}</a>`;
+            })
+            .join("");
+          return `<div class="about-sources-group">
+            <h3 class="about-sources-heading">${pick(g.title)}</h3>
+            <div class="links about-sources-links">${items}</div>
+          </div>`;
+        })
+        .join("");
+      el.innerHTML = intro + groups;
+    }
 
     function formatDuration(sec, l) {
       if (!sec || !Number.isFinite(sec)) return "";
@@ -127,6 +166,7 @@
         if (NAV_UI[lang][key]) el.textContent = NAV_UI[lang][key];
       });
       document.getElementById("mainNav").setAttribute("aria-label", t("navAria"));
+      renderSources();
     }
 
     document.getElementById("langSwitch").addEventListener("click", (e) => {

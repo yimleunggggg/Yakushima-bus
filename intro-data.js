@@ -35,8 +35,8 @@ window.INTRO_DATA = {
         {
           icon: "🌐",
           title: "データ出典",
-          body: "公式 PDF・各社サイト・運行状況など、参考リンクを一覧で掲載。",
-          href: "/about/#sources",
+          body: "公式資料・各社サイト・運行状況など、参考リンクを下に一覧。",
+          href: "#sources",
         },
       ],
     },
@@ -68,8 +68,8 @@ window.INTRO_DATA = {
         {
           icon: "🌐",
           title: "数据来源",
-          body: "官方 PDF、船班、运行状况等参考链接，在关于页完整列出。",
-          href: "/about/#sources",
+          body: "官方资料、船班、运行状况等参考链接，见下方完整列表。",
+          href: "#sources",
         },
       ],
     },
@@ -102,8 +102,8 @@ window.INTRO_DATA = {
         {
           icon: "🌐",
           title: "Data sources",
-          body: "Full list of official PDFs, ferry operators, and status links on About.",
-          href: "/about/#sources",
+          body: "Official timetables, ferry operators, and status links — full list below.",
+          href: "#sources",
         },
       ],
     },

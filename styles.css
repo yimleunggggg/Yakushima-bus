@@ -1963,3 +1963,8 @@ button, .nav a, .lang-switch button, .presets button, .day-tabs button {
 .intro-feature-body {
   margin: 0; font-size: 0.8125rem; line-height: 1.55; color: var(--muted);
 }
+.intro-sources.panel {
+  padding: 12px 14px 14px;
+  scroll-margin-top: 72px;
+}
+.intro-sources .intro-section-title { margin-bottom: 8px; }

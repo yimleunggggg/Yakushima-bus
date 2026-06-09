@@ -50,6 +50,7 @@
   <script src="/analytics.js"></script>
 </head>
 <body class="app-page-narrow">
+  <script>if (location.hash === "#sources") location.replace("/intro/#sources");</script>
   <div class="app">
     <div class="app-nav-sticky">
       <a href="/" class="app-brand" data-i18n="siteBrand">屋久島バス</a>
@@ -175,34 +176,6 @@
         .join("");
     }
 
-    function renderSourceGroups(sec) {
-      const intro = sec.intro
-        ? `<p class="about-sources-intro">${pick(sec.intro)}</p>`
-        : "";
-      const groups = (sec.sourceGroups || [])
-        .map((g) => {
-          const items = (g.items || [])
-            .map((item) => {
-              const note = item.note ? pick(item.note) : "";
-              const noteHtml = note
-                ? ` <span class="about-source-note">${note}</span>`
-                : "";
-              const isTel = String(item.url).startsWith("tel:");
-              const ext = isTel
-                ? ""
-                : ' target="_blank" rel="noopener noreferrer"';
-              return `<a href="${item.url}"${ext}><span class="about-source-label">${pick(item.label)}</span>${noteHtml}</a>`;
-            })
-            .join("");
-          return `<div class="about-sources-group">
-            <h3 class="about-sources-heading">${pick(g.title)}</h3>
-            <div class="links about-sources-links">${items}</div>
-          </div>`;
-        })
-        .join("");
-      return intro + groups;
-    }
-
     function renderSections() {
       const leadHtml = ABOUT_DATA.lead
         ? `<div class="about-lead about-prose">${formatBody(ABOUT_DATA.lead)}</div>`
@@ -211,12 +184,6 @@
         const toneClass = sec.tone === "trust" ? " about-section-trust" : "";
         const contactHtml = sec.showContact ? renderContact() : "";
         const idAttr = sec.id ? ` id="${sec.id}"` : "";
-        if (sec.sourceGroups) {
-          return `<section class="about-section about-section-sources"${idAttr}>
-            <h2>${pick(sec.title)}</h2>
-            ${renderSourceGroups(sec)}
-          </section>`;
-        }
         return `<section class="about-section${toneClass}"${idAttr}>
           <h2>${pick(sec.title)}</h2>
           <div class="about-prose">${formatBody(sec.body)}</div>
