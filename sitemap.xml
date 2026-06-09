@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://yakushimabus.com/</loc>
-    <lastmod>2026-05-25</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/?lang=ja"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/?lang=zh"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/?lang=en"/>
@@ -12,25 +12,19 @@
   </url>
   <url>
     <loc>https://yakushimabus.com/map/</loc>
-    <lastmod>2026-05-25</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://yakushimabus.com/access/</loc>
-    <lastmod>2026-05-25</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yakushimabus.com/intro/</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://yakushimabus.com/about/</loc>
-    <lastmod>2026-05-25</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>

@@ -1131,6 +1131,36 @@ body.modal-open {
 .meta-links a { color: var(--link); text-decoration: none; }
 .meta-links a:hover { text-decoration: underline; }
 .intro-text { font-size: 0.8125rem; color: var(--muted); line-height: 1.55; }
+.seo-lead {
+  margin: 0 0 10px;
+  padding: 0 2px;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.seo-lead a { color: var(--link); font-weight: 500; }
+.seo-faq.panel { margin-top: 10px; margin-bottom: 10px; }
+.seo-faq .sec-title { margin-bottom: 8px; }
+.seo-faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+}
+.seo-faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+.seo-faq-item summary {
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+  list-style: none;
+}
+.seo-faq-item summary::-webkit-details-marker { display: none; }
+.seo-faq-item p {
+  margin: 6px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.seo-faq-item a { color: var(--link); }
 .access-intro { margin: 0 0 10px; padding: 0 2px; }
 .table-wrap { overflow-x: auto; margin-top: 6px; border: 1px solid var(--border); border-radius: 8px; }
 .data-table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }

@@ -17,7 +17,7 @@ echo
 grep -q 'Sitemap: https://yakushimabus.com/sitemap.xml' robots.txt && ok robots.txt sitemap line || die "robots.txt sitemap URL"
 [[ -f sitemap.xml ]] && ok sitemap.xml || die "missing sitemap.xml"
 grep -c '<loc>' sitemap.xml | grep -qE '^[0-9]+$' && ok "sitemap.xml ($(grep -c '<loc>' sitemap.xml) URLs)" || die "sitemap.xml parse error"
-for path in "/" "/map/" "/access/" "/intro/" "/about/"; do
+for path in "/" "/map/" "/access/" "/about/"; do
   grep -q "<loc>https://yakushimabus.com${path}</loc>" sitemap.xml \
     && ok "sitemap ${path}" || warn "sitemap missing ${path}"
 done
