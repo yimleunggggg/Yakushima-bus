@@ -53,12 +53,13 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v48">
+  <link rel="stylesheet" href="/styles.css?v=layout-v49">
   <script src="/analytics.js"></script>
 </head>
 <body>
   <div class="app">
     <div class="app-nav-sticky">
+      <a href="/" class="app-brand" data-i18n="siteBrand">屋久島バス</a>
       <nav class="nav nav-main nav-main--4" id="mainNav">
         <a href="/" data-i18n="navTime">時刻表</a>
         <a href="/map/" class="active" aria-current="page" data-i18n="navMap">路線・運賃</a>
@@ -187,19 +188,12 @@
     </div>
     </div>
 
-    <section class="seo-faq panel" aria-labelledby="mapFaqTitle">
-      <div class="sec">
-        <h2 class="sec-title" id="mapFaqTitle">よくある質問</h2>
-        <details class="seo-faq-item">
-          <summary>屋久島 バス 料金はどこで調べる？</summary>
-          <p>このページの「運賃検索」で出発・到着を選ぶと大人片道の目安が出ます。</p>
-        </details>
-        <details class="seo-faq-item">
-          <summary>バス時刻表はどこ？</summary>
-          <p><a href="/">屋久島バス時刻表</a>（トップ）で次の便と全便を検索できます。</p>
-        </details>
-      </div>
-    </section>
+    <div class="aux-sections">
+    <details class="aux-block seo-faq-block">
+      <summary class="aux-summary"><span data-i18n="faqTitle">よくある質問</span><span class="aux-chevron" aria-hidden="true"></span></summary>
+      <div class="aux-body" id="seoFaqBody"></div>
+    </details>
+    </div>
 
     <div class="panel map-official-links">
       <div class="sec">
@@ -275,7 +269,7 @@
         fareEstimate: "目安（主要停留所区間）",
         noDeps: "この日種の発車便はありません", openRouteSearch: "区間で検索（時刻表ページ）",
         openInMaps: "Maps", modalTitle: "発車時刻", toward: "方面",
-        officialLinks: "公式情報",
+        officialLinks: "公式情報", faqTitle: "よくある質問",
         pdfFare: "運賃表 PDF", pdfFareEn: "Fare table PDF (EN)",
         passOfficial: "ゆったり満喫乗車券（公式）",
         dividerPass: "島内バス・乗車券",
@@ -307,7 +301,7 @@
         fareEstimate: "预估（主要站点区间）",
         noDeps: "该日期类型无发车", openRouteSearch: "按区间查询（时刻表页）",
         openInMaps: "地图", modalTitle: "发车时刻", toward: "方向",
-        officialLinks: "官方信息",
+        officialLinks: "官方信息", faqTitle: "常见问题",
         pdfFare: "运价表 PDF", pdfFareEn: "运价表 PDF（英文）",
         passOfficial: "悠享乘车券（官网）",
         dividerPass: "岛内公交 · 乘车券",
@@ -339,11 +333,26 @@
         fareEstimate: "Estimate (major stops)",
         noDeps: "No departures on this day type", openRouteSearch: "Search by route (timetable page)",
         openInMaps: "Maps", modalTitle: "Departures", toward: "Direction",
-        officialLinks: "Official links",
+        officialLinks: "Official links", faqTitle: "FAQ",
         pdfFare: "Fare table PDF", pdfFareEn: "Fare table PDF (EN)",
         passOfficial: "Day pass (official)",
         dividerPass: "Island bus · day pass",
       },
+    };
+
+    const SEO_FAQ = {
+      ja: [
+        { q: "屋久島 バス 料金はどこで調べる？", a: "このページの「運賃検索」で出発・到着を選ぶと大人片道の目安が出ます。" },
+        { q: "バス時刻表はどこ？", a: "<a href=\"/\">屋久島バス時刻表</a>（トップ）で次の便と全便を検索できます。" },
+      ],
+      zh: [
+        { q: "哪里查巴士票价？", a: "在本页「运价查询」选出发与到达，可查看成人单程参考价。" },
+        { q: "巴士时刻表在哪？", a: "在<a href=\"/\">首页时刻表</a>可搜索下一班与全部班次。" },
+      ],
+      en: [
+        { q: "Where can I find bus fares?", a: "Use fare lookup on this page — pick origin and destination for an adult one-way estimate." },
+        { q: "Where is the bus timetable?", a: "On the <a href=\"/\">home timetable</a> — next departure and full schedule." },
+      ],
     };
 
     let lang = AppCore.getLang();
@@ -419,6 +428,7 @@
       passSection: document.getElementById("passSection"),
       mapPassDivider: document.getElementById("mapPassDivider"),
       mapSourceLinks: document.getElementById("mapSourceLinks"),
+      seoFaqBody: document.getElementById("seoFaqBody"),
       pdfLoading: document.getElementById("pdfLoading"),
       pdfSlowHint: document.getElementById("pdfSlowHint"),
       timeModal: document.getElementById("timeModal"),
@@ -699,13 +709,21 @@
       ].join("");
     }
 
+    function renderSeoFaq() {
+      if (!els.seoFaqBody) return;
+      const items = SEO_FAQ[lang] || SEO_FAQ.ja;
+      els.seoFaqBody.innerHTML = items.map(({ q, a }) =>
+        `<details class="seo-faq-item"><summary>${q}</summary><p>${a}</p></details>`
+      ).join("");
+    }
+
     function applyI18n() {
       AppCore.setLang(lang);
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
       document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
       pdfFsCtl?.sync();
       els.langSwitch.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
-      els.appTitle.textContent = t("siteBrand");
+      els.appTitle.textContent = t("title");
       const mainNav = document.getElementById("mainNav");
       if (mainNav) mainNav.setAttribute("aria-label", t("navAria"));
       if (els.liveClockTime && typeof AppCore !== "undefined") {
@@ -723,6 +741,7 @@
       }
       renderPassInfo();
       initMapSources();
+      renderSeoFaq();
       if (!els.timeModal.hidden) renderModalBody();
     }
 

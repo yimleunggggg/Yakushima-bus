@@ -86,11 +86,12 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="styles.css?v=layout-v48">
+  <link rel="stylesheet" href="styles.css?v=layout-v49">
 </head>
 <body>
   <div class="app">
     <div class="app-nav-sticky">
+      <a href="/" class="app-brand" data-i18n="siteBrand">屋久島バス</a>
       <nav class="nav nav-main nav-main--4" id="mainNav">
         <a href="/" class="active" aria-current="page" data-i18n="navTime">時刻表</a>
         <a href="/map/" data-i18n="navMap">路線・運賃</a>
@@ -100,7 +101,7 @@
     </div>
     <header class="header header-compact">
       <div class="header-main">
-        <h1 id="appTitle">屋久島バス</h1>
+        <h1 id="appTitle">時刻表</h1>
         <p class="header-sub" data-i18n="pageLead">2026年3月改定 · 次の便を検索</p>
       </div>
       <div class="header-actions">
@@ -294,23 +295,10 @@
         <p class="disclaimer" id="disclaimer"></p>
       </div>
     </details>
-    <section class="seo-faq panel" aria-labelledby="seoFaqTitle">
-      <div class="sec">
-        <h2 class="sec-title" id="seoFaqTitle">よくある質問</h2>
-        <details class="seo-faq-item">
-          <summary>屋久島バスの時刻表は最新ですか？</summary>
-          <p>2026年3月改定のダイヤです。上の区間検索で次の便を確認できます。駅の掲示と各社の最新情報を優先してください。</p>
-        </details>
-        <details class="seo-faq-item">
-          <summary>屋久島 バス 料金（運賃）はどこで見る？</summary>
-          <p>区間運賃の目安は<a href="/map/">路線図・運賃</a>ページで出発・到着を選んで確認できます。</p>
-        </details>
-        <details class="seo-faq-item">
-          <summary>屋久島空港から宮之浦港のバスは？</summary>
-          <p>よく使う区間に「宮之浦港 ↔ 空港」があります。出発を「屋久島空港」、到着を「宮之浦港」に選んでも検索できます。</p>
-        </details>
-      </div>
-    </section>
+    <details class="aux-block seo-faq-block">
+      <summary class="aux-summary"><span data-i18n="faqTitle">よくある質問</span><span class="aux-chevron" aria-hidden="true"></span></summary>
+      <div class="aux-body" id="seoFaqBody"></div>
+    </details>
     </div>
     </div>
 
@@ -351,7 +339,7 @@
         filterLive: "現在", filterCustom: "指定", todayEnded: "本日終了", lastBusAt: "最終 {time}", lastBusDay: "（{day}）",
         routePortHint: "フェリー接続は「宮之浦港」を選ぶと便が多くなります。",
         endedOtherDayHint: "日祝は末班が遅い場合があります。上の「日祝」を試してください。",
-        results: "便一覧", travelTips: "乗車のポイント", sources: "公式情報",
+        results: "便一覧", travelTips: "乗車のポイント", sources: "公式情報", faqTitle: "よくある質問",
         searchPlaceholder: "停留所名（日/中/英）",
         valid: "適用", updated: "更新", stopCount: "{n} 停留所", arrive: "到着", dest: "行先",
         sameStop: "出発と到着を別々に選んでください",
@@ -404,7 +392,7 @@
         filterLive: "当前", filterCustom: "指定", todayEnded: "今日已结束", lastBusAt: "末班 {time}", lastBusDay: "（{day}）",
         routePortHint: "衔接渡轮请选「宫之浦港」，班次比镇上「宫之浦」更多。",
         endedOtherDayHint: "日祝末班更晚时可切换上方「周日·节假日」查看。",
-        results: "班次", travelTips: "乘车须知", sources: "官方信息",
+        results: "班次", travelTips: "乘车须知", sources: "官方信息", faqTitle: "常见问题",
         searchPlaceholder: "输入站名（中/日/英）",
         valid: "有效", updated: "更新", stopCount: "共 {n} 站", arrive: "到达", dest: "终点",
         sameStop: "请选择不同的出发站和到达站",
@@ -457,7 +445,7 @@
         filterLive: "Now", filterCustom: "Set", todayEnded: "Done for today", lastBusAt: "Last {time}", lastBusDay: " ({day})",
         routePortHint: "For ferries, pick Miyanoura Port — more departures than town stop “Miyanoura”.",
         endedOtherDayHint: "Try the Sun & holidays tab if you need later last buses.",
-        results: "Departures", travelTips: "Travel tips", sources: "Official links",
+        results: "Departures", travelTips: "Travel tips", sources: "Official links", faqTitle: "FAQ",
         searchPlaceholder: "Search stops (JP/ZH/EN)",
         valid: "Valid", updated: "Updated", stopCount: "{n} stops", arrive: "Arrive", dest: "Destination",
         sameStop: "Pick different origin and destination",
@@ -502,6 +490,24 @@
     const TAG_I18N = {
       transfer: "tagTransfer", tourist: "tagTourist", ferry: "tagFerry",
       airport: "tagAirport", hotel: "tagHotel",
+    };
+
+    const SEO_FAQ = {
+      ja: [
+        { q: "屋久島バスの時刻表は最新ですか？", a: "2026年3月改定のダイヤです。上の区間検索で次の便を確認できます。駅の掲示と各社の最新情報を優先してください。" },
+        { q: "屋久島 バス 料金（運賃）はどこで見る？", a: "区間運賃の目安は<a href=\"/map/\">路線図・運賃</a>ページで出発・到着を選んで確認できます。" },
+        { q: "屋久島空港から宮之浦港のバスは？", a: "よく使う区間に「宮之浦港 ↔ 空港」があります。出発を「屋久島空港」、到着を「宮之浦港」に選んでも検索できます。" },
+      ],
+      zh: [
+        { q: "屋久岛公交时刻表是最新的吗？", a: "2026年3月改订班次。用上方区间搜索查下一班。请以站牌与各公司最新公告为准。" },
+        { q: "哪里看巴士票价？", a: "在<a href=\"/map/\">路线·运价</a>页选出发与到达，可查看区间运价。" },
+        { q: "屋久岛机场到宫之浦港的巴士？", a: "常用区间里有「宫之浦港 ↔ 机场」，也可手动选择这两站搜索。" },
+      ],
+      en: [
+        { q: "Is the bus timetable up to date?", a: "March 2026 revision. Use route search above for the next departure. Confirm at the stop and on each operator’s site." },
+        { q: "Where can I find bus fares?", a: "Section estimates on the <a href=\"/map/\">routes &amp; fares</a> page — pick origin and destination." },
+        { q: "Bus from Yakushima Airport to Miyanoura Port?", a: "Use the “Miyanoura Port ↔ Airport” preset, or pick those stops manually." },
+      ],
     };
 
     let lang = AppCore.getLang();
@@ -549,6 +555,7 @@
       infoGrid: document.getElementById("infoGrid"),
       sourceLinks: document.getElementById("sourceLinks"),
       disclaimer: document.getElementById("disclaimer"),
+      seoFaqBody: document.getElementById("seoFaqBody"),
       timetablePdfPanel: document.getElementById("timetablePdfPanel"),
       ttPdfLangTabs: document.getElementById("ttPdfLangTabs"),
       ttPdfFallback: document.getElementById("ttPdfFallback"),
@@ -1045,10 +1052,18 @@
       });
     }
 
+    function renderSeoFaq() {
+      if (!els.seoFaqBody) return;
+      const items = SEO_FAQ[lang] || SEO_FAQ.ja;
+      els.seoFaqBody.innerHTML = items.map(({ q, a }) =>
+        `<details class="seo-faq-item"><summary>${q}</summary><p>${a}</p></details>`
+      ).join("");
+    }
+
     function applyI18n() {
       AppCore.setLang(lang);
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
-      els.appTitle.textContent = t("siteBrand");
+      els.appTitle.textContent = t("navTime");
       const mainNav = document.getElementById("mainNav");
       if (mainNav) mainNav.setAttribute("aria-label", t("navAria"));
       els.liveClockTime.title = lang === "zh" ? "日本时间 (JST)" : "JST";
@@ -1056,6 +1071,7 @@
       ttPdfFsCtl?.sync();
       els.langSwitch.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
       initMeta(); initPresets(); initPickers(); syncRouteHint(); initInfo(); initSources(); renderOperatorLegend(); renderResults();
+      renderSeoFaq();
     }
 
     function initDayTabs() {
