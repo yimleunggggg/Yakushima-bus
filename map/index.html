@@ -53,7 +53,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v51">
+  <link rel="stylesheet" href="/styles.css?v=layout-v52">
   <script src="/analytics.js"></script>
 </head>
 <body>
@@ -70,7 +70,6 @@
     <header class="header header-compact">
       <div class="header-main">
         <h1 id="appTitle">路線図・運賃</h1>
-        <p class="header-sub" data-i18n="pageLead">2026年3月改定 · 区間運賃を検索</p>
       </div>
       <div class="header-actions">
         <div class="clock-wrap" role="group" aria-label="Japan Standard Time">
@@ -88,7 +87,7 @@
       </div>
     </header>
 
-    <p class="app-meta meta-links">2026年3月改定 · <a href="/">バス時刻表</a></p>
+    <p class="app-meta meta-links" id="metaBar"></p>
 
     <div class="map-layout">
     <div class="map-layout-primary">
@@ -243,7 +242,7 @@
     const UI = {
       ja: {
         navAria: "メインメニュー", siteBrand: "屋久島バス",
-        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navIntro: "紹介", navAbout: "このサイトについて", title: "路線・運賃", pageLead: "2026年3月改定 · 区間運賃を検索", sub: "種子島・屋久島交通",
+        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navIntro: "紹介", navAbout: "このサイトについて", title: "路線・運賃", pageLead: "2026年3月改定 · 区間運賃を検索", sub: "種子島・屋久島交通", valid: "適用",
         stopLookup: "停留所",
         linkNotice: "運休・遅延は",
         linkTaneyaku: "種屋時刻表", linkMatsubanda: "まつばんだ", linkTozan: "荒川登山バス",
@@ -275,7 +274,7 @@
       },
       zh: {
         navAria: "主菜单", siteBrand: "屋久岛公交",
-        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navIntro: "介绍", navAbout: "关于本站", title: "路线及价格", pageLead: "2026年3月改订 · 区间运价查询", sub: "种子岛·屋久岛交通",
+        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navIntro: "介绍", navAbout: "关于本站", title: "路线及价格", pageLead: "2026年3月改订 · 区间运价查询", sub: "种子岛·屋久岛交通", valid: "有效",
         stopLookup: "站点",
         linkNotice: "停运延误见",
         linkTaneyaku: "种屋时刻表", linkMatsubanda: "松ばんだ", linkTozan: "荒川登山巴士",
@@ -307,7 +306,7 @@
       },
       en: {
         navAria: "Main menu", siteBrand: "Yakushima Bus",
-        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About", title: "Routes & fares", pageLead: "Mar 2026 revision · section fare lookup", sub: "Tanegashima Yakushima Kotsu",
+        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About", title: "Routes & fares", pageLead: "Mar 2026 revision · section fare lookup", sub: "Tanegashima Yakushima Kotsu", valid: "Valid",
         stopLookup: "Stop",
         linkNotice: "Disruptions:",
         linkTaneyaku: "Taneyaku PDF", linkMatsubanda: "Matsubanda", linkTozan: "Arakawa shuttle",
@@ -395,6 +394,7 @@
       langSwitch: document.getElementById("langSwitch"),
       liveClockTime: document.getElementById("liveClockTime"),
       appTitle: document.getElementById("appTitle"),
+      metaBar: document.getElementById("metaBar"),
       pdfStage: document.getElementById("pdfStage"),
       pdfFallback: document.getElementById("pdfFallback"),
       pdfMobilePages: document.getElementById("pdfMobilePages"),
@@ -708,6 +708,15 @@
       ].join("");
     }
 
+    function initMeta() {
+      if (!els.metaBar || !BUS_DATA?.meta) return;
+      const m = BUS_DATA.meta;
+      els.metaBar.innerHTML = [
+        `${t("valid")} ${m.validFrom}–${m.validTo}`,
+        `<span class="meta-links"><a href="/?lang=${lang}">${t("navTime")}</a> · <a href="/access/?lang=${lang}">${t("navAccess")}</a></span>`,
+      ].join('<span class="meta-sep" aria-hidden="true">·</span>');
+    }
+
     function renderSeoFaq() {
       if (!els.seoFaqBody) return;
       const items = SEO_FAQ[lang] || SEO_FAQ.ja;
@@ -740,6 +749,7 @@
       }
       renderPassInfo();
       initMapSources();
+      initMeta();
       renderSeoFaq();
       if (!els.timeModal.hidden) renderModalBody();
     }

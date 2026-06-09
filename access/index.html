@@ -52,7 +52,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v51">
+  <link rel="stylesheet" href="/styles.css?v=layout-v52">
   <script src="/analytics.js"></script>
 </head>
 <body class="app-page-narrow">
@@ -266,10 +266,7 @@
       els.appTitle.textContent = t("title");
       const mainNav = document.getElementById("mainNav");
       if (mainNav) mainNav.setAttribute("aria-label", t("navAria"));
-      els.metaBar.innerHTML = [
-        `${t("updated")} ${ACCESS_DATA.meta.updatedAt}`,
-        `<span class="meta-links"><a href="/">${t("navTime")}</a> · <a href="/map/">${t("navMap")}</a></span>`,
-      ].join('<span class="meta-sep" aria-hidden="true">·</span> ');
+      els.metaBar.innerHTML = `<span class="meta-links"><a href="/?lang=${lang}">${t("navTime")}</a> · <a href="/access/?lang=${lang}">${t("navAccess")}</a></span>`;
       tickClock();
       renderBooking();
       const blocks = [];
