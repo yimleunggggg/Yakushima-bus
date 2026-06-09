@@ -86,7 +86,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="styles.css?v=layout-v52">
+  <link rel="stylesheet" href="/styles.css?v=layout-v56">
 </head>
 <body>
   <div class="app">
@@ -239,20 +239,9 @@
         <div class="info-grid" id="infoGrid"></div>
       </div>
     </details>
-    <details class="aux-block arakawa-status">
-      <summary class="aux-summary">
-        <span data-i18n="arakawaXTitle">荒川登山バス運行状況（公式 X）</span>
-        <span class="aux-chevron" aria-hidden="true"></span>
-      </summary>
-      <div class="aux-body aux-body-scroll arakawa-status-body">
-        <p class="arakawa-status-note" data-i18n="arakawaXNote">当日の運休・遅延は公式 X で速報されます（3～11月）。</p>
-        <a class="arakawa-status-link" id="arakawaXLink" href="https://x.com/yakusansharyou" target="_blank" rel="noopener noreferrer">@yakusansharyou</a>
-      </div>
-    </details>
-    <details class="aux-block pdf-panel" id="timetablePdfPanel">
+    <details class="aux-block pdf-panel" id="timetablePdfPanel" open>
       <summary class="aux-summary">
         <span data-i18n="pdfViewer">公式時刻表 PDF</span>
-        <span class="expand-badge" data-i18n="expandable">展開可</span>
         <span class="aux-chevron" aria-hidden="true"></span>
       </summary>
       <div class="aux-body">
@@ -286,7 +275,7 @@
         <p class="pdf-source" id="ttPdfSourceNote"></p>
       </div>
     </details>
-    <details class="aux-block" open>
+    <details class="aux-block">
       <summary class="aux-summary"><span data-i18n="sources">公式情報</span><span class="aux-chevron" aria-hidden="true"></span></summary>
       <div class="aux-body">
         <div class="links" id="sourceLinks"></div>
@@ -326,7 +315,7 @@
     const UI = {
       ja: {
         navAria: "メインメニュー", siteBrand: "屋久島バス",
-        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navIntro: "紹介", navAbout: "このサイトについて", title: "屋久島バス", pageLead: "2026年3月改定 · 次の便を検索", sub: "次のバスを検索", presets: "よく使う区間",
+        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navIntro: "紹介", navAbout: "このサイトについて", title: "屋久島バス", sub: "次のバスを検索", presets: "よく使う区間",
         metaLinks: '<a href="https://yakushima.co.jp/route_bus/" target="_blank" rel="noopener">運休</a> · <a href="http://yakushima-tozan.com/" target="_blank" rel="noopener">荒川登山バス</a> · <a href="/map/?lang=ja">路線・運賃</a>',
         swapped: "出発と到着を入れ替えました",
         from: "出発", to: "到着", weekday: "平日", saturday: "土曜",         sunday: "日祝",
@@ -379,7 +368,7 @@
       },
       zh: {
         navAria: "主菜单", siteBrand: "屋久岛公交",
-        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navIntro: "介绍", navAbout: "关于本站", title: "屋久岛公交", pageLead: "2026年3月改订 · 查询下一班", sub: "屋久岛公交查询", presets: "常用区间",
+        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navIntro: "介绍", navAbout: "关于本站", title: "屋久岛公交", sub: "屋久岛公交查询", presets: "常用区间",
         metaLinks: '<a href="https://yakushima.co.jp/route_bus/" target="_blank" rel="noopener">停运</a> · <a href="http://yakushima-tozan.com/" target="_blank" rel="noopener">荒川登山巴士</a> · <a href="/map/?lang=zh">路线运价</a>',
         swapped: "已交换出发与到达",
         from: "出发", to: "到达", weekday: "工作日", saturday: "周六",         sunday: "周日·节假日",
@@ -432,7 +421,7 @@
       },
       en: {
         navAria: "Main menu", siteBrand: "Yakushima Bus",
-        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About", title: "Yakushima Bus", pageLead: "Mar 2026 update · Find next bus", sub: "Yakushima Bus Timetable", presets: "Quick routes",
+        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About", title: "Yakushima Bus", sub: "Yakushima Bus Timetable", presets: "Quick routes",
         metaLinks: '<a href="https://yakushima.co.jp/route_bus/" target="_blank" rel="noopener">Disruptions</a> · <a href="http://yakushima-tozan.com/" target="_blank" rel="noopener">Arakawa shuttle</a> · <a href="/map/?lang=en">Routes & fares</a>',
         swapped: "Origin and destination swapped",
         from: "From", to: "To", weekday: "Weekday", saturday: "Sat",         sunday: "Sun & holidays",
@@ -655,11 +644,6 @@
         `<a href="tel:${p.matsubanda}">${BUS_DATA.operators.matsubanda?.ja || "まつばんだ"} ${p.matsubanda}</a>`,
       ].join("");
       els.disclaimer.innerHTML = t("disclaimer");
-      const ax = document.getElementById("arakawaXLink");
-      if (ax) {
-        ax.href = s.arakawaX || "https://x.com/yakusansharyou";
-        ax.textContent = t("arakawaXLink");
-      }
     }
 
     function initMeta() {
@@ -905,10 +889,9 @@
       const item = next || allTrips[allTrips.length - 1];
       const depM = parseMinutes(item.dep);
       const dayLbl = dayTypeLabel(selectedDay);
-      const viewingToday = selectedDay === AppCore.detectDayType(new Date());
       els.nextBar.classList.add("show");
       els.nextBarWrap.classList.add("has-next");
-      if (!ended && viewingToday) els.nextBar.classList.add("is-live");
+      if (!ended) els.nextBar.classList.add("is-live");
       else els.nextBar.classList.remove("is-live");
       els.nextLabel.textContent = ended ? t("todayEnded") : t("nextBus");
       els.nextOpBadge.innerHTML = OperatorUI.badge(item.route.operator, lang, { invert: true });
@@ -1217,6 +1200,7 @@
     if (urlParams.get("lang")) lang = urlParams.get("lang");
     applyI18n();
     bindTtPdfEvents();
+    if (els.timetablePdfPanel?.open) initTimetablePdf();
     if (urlParams.get("from")) fromPicker.setValue(urlParams.get("from"), false);
     if (urlParams.get("to")) toPicker.setValue(urlParams.get("to"), false);
     renderResults();

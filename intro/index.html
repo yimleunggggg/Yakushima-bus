@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://yakushimabus.com/intro/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <title>製品紹介 | 产品介绍 | Yakushima Bus Intro</title>
-  <link rel="stylesheet" href="/styles.css?v=layout-v51">
+  <link rel="stylesheet" href="/styles.css?v=layout-v56">
   <script src="/analytics.js"></script>
 </head>
 <body class="app-page-narrow">
@@ -108,7 +108,7 @@
           const items = (g.items || [])
             .map((item) => {
               const note = item.note ? pick(item.note) : "";
-              const noteHtml = note ? `<span class="about-source-note">${note}</span>` : "";
+              const noteHtml = `<span class="about-source-note">${note}</span>`;
               const isTel = String(item.url).startsWith("tel:");
               const ext = isTel ? "" : ' target="_blank" rel="noopener noreferrer"';
               return `<a href="${item.url}"${ext}><span class="about-source-label">${pick(item.label)}</span>${noteHtml}</a>`;

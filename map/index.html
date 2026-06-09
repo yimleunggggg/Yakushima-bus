@@ -53,7 +53,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v52">
+  <link rel="stylesheet" href="/styles.css?v=layout-v56">
   <script src="/analytics.js"></script>
 </head>
 <body>
@@ -186,18 +186,19 @@
     </div>
     </div>
 
-    <div class="aux-sections">
+    <div class="panel panel-aux">
+    <div class="aux-sections aux-in-panel">
+    <details class="aux-block">
+      <summary class="aux-summary"><span data-i18n="officialLinks">公式情報</span><span class="aux-chevron" aria-hidden="true"></span></summary>
+      <div class="aux-body">
+        <div class="links" id="mapSourceLinks"></div>
+      </div>
+    </details>
     <details class="aux-block seo-faq-block">
       <summary class="aux-summary"><span data-i18n="faqTitle">よくある質問</span><span class="aux-chevron" aria-hidden="true"></span></summary>
       <div class="aux-body" id="seoFaqBody"></div>
     </details>
     </div>
-
-    <div class="panel map-official-links">
-      <div class="sec">
-        <div class="sec-title" data-i18n="officialLinks">公式情報</div>
-        <div class="links" id="mapSourceLinks"></div>
-      </div>
     </div>
 
     <footer class="app-footer">
@@ -242,7 +243,7 @@
     const UI = {
       ja: {
         navAria: "メインメニュー", siteBrand: "屋久島バス",
-        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navIntro: "紹介", navAbout: "このサイトについて", title: "路線・運賃", pageLead: "2026年3月改定 · 区間運賃を検索", sub: "種子島・屋久島交通", valid: "適用",
+        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navIntro: "紹介", navAbout: "このサイトについて", title: "路線・運賃", sub: "種子島・屋久島交通", valid: "適用",
         stopLookup: "停留所",
         linkNotice: "運休・遅延は",
         linkTaneyaku: "種屋時刻表", linkMatsubanda: "まつばんだ", linkTozan: "荒川登山バス",
@@ -274,7 +275,7 @@
       },
       zh: {
         navAria: "主菜单", siteBrand: "屋久岛公交",
-        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navIntro: "介绍", navAbout: "关于本站", title: "路线及价格", pageLead: "2026年3月改订 · 区间运价查询", sub: "种子岛·屋久岛交通", valid: "有效",
+        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navIntro: "介绍", navAbout: "关于本站", title: "路线及价格", sub: "种子岛·屋久岛交通", valid: "有效",
         stopLookup: "站点",
         linkNotice: "停运延误见",
         linkTaneyaku: "种屋时刻表", linkMatsubanda: "松ばんだ", linkTozan: "荒川登山巴士",
@@ -306,7 +307,7 @@
       },
       en: {
         navAria: "Main menu", siteBrand: "Yakushima Bus",
-        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About", title: "Routes & fares", pageLead: "Mar 2026 revision · section fare lookup", sub: "Tanegashima Yakushima Kotsu", valid: "Valid",
+        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About", title: "Routes & fares", sub: "Tanegashima Yakushima Kotsu", valid: "Valid",
         stopLookup: "Stop",
         linkNotice: "Disruptions:",
         linkTaneyaku: "Taneyaku PDF", linkMatsubanda: "Matsubanda", linkTozan: "Arakawa shuttle",

@@ -52,7 +52,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v52">
+  <link rel="stylesheet" href="/styles.css?v=layout-v56">
   <script src="/analytics.js"></script>
 </head>
 <body class="app-page-narrow">
@@ -69,7 +69,6 @@
     <header class="header header-compact">
       <div class="header-main">
         <h1 id="appTitle">フェリー・上島</h1>
-        <p class="header-sub" data-i18n="pageLead">鹿児島↔屋久島 高速船・フェリー</p>
       </div>
       <div class="header-actions">
         <div class="clock-wrap" role="group" aria-label="Japan Standard Time">
@@ -90,18 +89,21 @@
     <p class="app-meta" id="metaBar"></p>
     <div class="panel" id="bookingPanel">
       <div class="sec">
-        <div class="sec-title" id="bookingTitle"></div>
         <div class="access-booking" id="bookingCards"></div>
       </div>
     </div>
 
     <div id="sections"></div>
 
-    <div class="panel">
-      <div class="sec">
-        <div class="sec-title" data-i18n="sources">公式リンク</div>
-        <div class="links" id="sourceLinks"></div>
-        <p class="disclaimer" id="disclaimer"></p>
+    <div class="panel panel-aux">
+      <div class="aux-sections aux-in-panel">
+        <details class="aux-block">
+          <summary class="aux-summary"><span data-i18n="sources">公式リンク</span><span class="aux-chevron" aria-hidden="true"></span></summary>
+          <div class="aux-body">
+            <div class="links" id="sourceLinks"></div>
+            <p class="disclaimer" id="disclaimer"></p>
+          </div>
+        </details>
       </div>
     </div>
 
@@ -121,11 +123,11 @@
   <script src="/app-core.js"></script>
   <script>
     const UI = {
-      ja: { navAria: "メインメニュー", siteBrand: "屋久島バス", pageLead: "鹿児島↔屋久島 高速船・フェリー",
+      ja: { navAria: "メインメニュー", siteBrand: "屋久島バス",
         navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navIntro: "紹介", navAbout: "このサイトについて", title: "フェリー・上島", sources: "公式リンク", updated: "更新", source: "出典", adult: "大人", child: "小児", fareColRoute: "区間", fareColType: "区分", kindSchedule: "時刻表", kindFare: "運賃", dividerJetfoil: "高速船", dividerFerry: "フェリー" },
-      zh: { navAria: "主菜单", siteBrand: "屋久岛公交", pageLead: "鹿儿岛↔屋久岛 高速船与渡轮",
+      zh: { navAria: "主菜单", siteBrand: "屋久岛公交",
         navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navIntro: "介绍", navAbout: "关于本站", title: "轮渡·上岛", sources: "官方链接", updated: "更新", source: "来源", adult: "成人", child: "儿童", fareColRoute: "区间", fareColType: "类型", kindSchedule: "时刻表", kindFare: "运价", dividerJetfoil: "高速船", dividerFerry: "渡轮" },
-      en: { navAria: "Main menu", siteBrand: "Yakushima Bus", pageLead: "Kagoshima ↔ Yakushima jetfoil & ferry",
+      en: { navAria: "Main menu", siteBrand: "Yakushima Bus",
         navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About", title: "Ferry & access", sources: "Official links", updated: "Updated", source: "Source", adult: "Adult", child: "Child", fareColRoute: "Route", fareColType: "Class", kindSchedule: "Timetable", kindFare: "Fares", dividerJetfoil: "Jetfoil", dividerFerry: "Ferry" },
     };
 
@@ -136,7 +138,6 @@
       appTitle: document.getElementById("appTitle"),
       liveClockTime: document.getElementById("liveClockTime"),
       metaBar: document.getElementById("metaBar"),
-      bookingTitle: document.getElementById("bookingTitle"),
       bookingCards: document.getElementById("bookingCards"),
       sections: document.getElementById("sections"),
       sourceLinks: document.getElementById("sourceLinks"),
@@ -157,7 +158,6 @@
     function renderBooking() {
       const b = ACCESS_DATA.booking;
       if (!b || !els.bookingCards) return;
-      els.bookingTitle.textContent = pick(b.title);
       const cards = [];
       b.items.forEach((item, i) => {
         const badge = item.badge ? `<span class="access-booking-badge">${pick(item.badge)}</span>` : "";
@@ -213,7 +213,6 @@
         `<tr>${sec.columns.map((c) => `<td>${renderCell(row[c.key])}</td>`).join("")}</tr>`
       ).join("");
       return `<section class="access-mode-part access-mode-part--schedule">
-          <p class="access-sec-kind">${t("kindSchedule")}</p>
           <div class="sec-title">${pick(sec.title)}</div>
           ${note}
           <div class="table-wrap"><table class="data-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>
@@ -236,7 +235,6 @@
         return `<tr${sub}><td>${pick(row[labelKey])}</td><td>${row.adult}</td><td>${row.child}</td></tr>`;
       }).join("");
       return `<section class="access-mode-part access-mode-part--fare">
-          <p class="access-sec-kind">${t("kindFare")}</p>
           <div class="sec-title">${pick(sec.title)}</div>
           ${note}
           <div class="table-wrap"><table class="data-table access-fare-table"><thead><tr><th>${colLabel}</th><th>${t("adult")}</th><th>${t("child")}</th></tr></thead><tbody>${body}</tbody></table></div>
@@ -266,7 +264,10 @@
       els.appTitle.textContent = t("title");
       const mainNav = document.getElementById("mainNav");
       if (mainNav) mainNav.setAttribute("aria-label", t("navAria"));
-      els.metaBar.innerHTML = `<span class="meta-links"><a href="/?lang=${lang}">${t("navTime")}</a> · <a href="/access/?lang=${lang}">${t("navAccess")}</a></span>`;
+      els.metaBar.innerHTML = [
+        `${t("updated")} ${ACCESS_DATA.meta.updatedAt}`,
+        `<span class="meta-links"><a href="/?lang=${lang}">${t("navTime")}</a> · <a href="/map/?lang=${lang}">${t("navMap")}</a></span>`,
+      ].join('<span class="meta-sep" aria-hidden="true">·</span>');
       tickClock();
       renderBooking();
       const blocks = [];
