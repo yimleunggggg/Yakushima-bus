@@ -25,7 +25,7 @@ if [[ $fetch_ok -eq 0 ]]; then
   exit 1
 fi
 
-python3 scripts/seo_feishu_weekly_sheet.py sync || true
+python3 scripts/seo_feishu_weekly_sheet.py sync || echo "⚠ 飞书表格同步失败，见上方日志"
 
 git config user.name "github-actions[bot]"
 git config user.email "github-actions[bot]@users.noreply.github.com"

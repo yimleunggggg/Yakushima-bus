@@ -287,13 +287,18 @@ def sync_sheet() -> int:
         return 0
 
     if not ss_token:
-        if not folder:
-            print("ℹ 未配置 FEISHU_FOLDER_TOKEN，跳过飞书表格")
-            return 0
-        ss_token, url = fu.create_spreadsheet(token, "YakuBus SEO 数据", folder)
+        try:
+            ss_token, url = fu.create_spreadsheet(token, "YakuBus SEO 数据", folder)
+        except RuntimeError as e:
+            print(f"✗ 飞书建表失败: {e}")
+            print(
+                "→ 请手动建表并填 FEISHU_SHEET_TOKEN："
+                "新建表格 → … → 添加文档应用(Cursor) → URL 里 shtcn…"
+            )
+            return 1
         meta = {"spreadsheet_token": ss_token, "url": url, "title": "YakuBus SEO 数据"}
         fu.save_sheet_meta(meta)
-        print(f"✓ 首次自动创建表格: {url}")
+        print(f"✓ 已创建表格: {url}")
     else:
         url = meta.get("url") or f"https://feishu.cn/sheets/{ss_token}"
 

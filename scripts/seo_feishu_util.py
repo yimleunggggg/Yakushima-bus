@@ -40,8 +40,12 @@ def auth_headers(token: str) -> dict[str, str]:
 
 def api_json(method: str, path: str, token: str, **kwargs) -> dict:
     r = requests.request(method, f"{API}{path}", headers=auth_headers(token), timeout=60, **kwargs)
-    r.raise_for_status()
-    data = r.json()
+    try:
+        data = r.json()
+    except Exception:
+        data = {"raw": r.text[:500]}
+    if not r.ok:
+        raise RuntimeError(f"HTTP {r.status_code}: {data}")
     if data.get("code") != 0:
         raise RuntimeError(data)
     return data
@@ -61,15 +65,27 @@ def save_sheet_meta(meta: dict) -> None:
     SHEET_META.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def create_spreadsheet(token: str, title: str, folder_token: str) -> tuple[str, str]:
-    data = api_json(
-        "POST",
-        "/sheets/v3/spreadsheets",
-        token,
-        json={"title": title, "folder_token": folder_token},
-    )
-    ss = data["data"]["spreadsheet"]
-    return ss["spreadsheet_token"], ss.get("url") or f"https://feishu.cn/sheets/{ss['spreadsheet_token']}"
+def create_spreadsheet(token: str, title: str, folder_token: str | None = None) -> tuple[str, str]:
+    """建表。个人云空间文件夹常因权限 400 → 回退应用云空间根目录。"""
+    attempts: list[tuple[str, dict]] = []
+    if folder_token:
+        attempts.append((f"文件夹 {folder_token[:8]}…", {"title": title, "folder_token": folder_token}))
+    attempts.append(("应用云空间", {"title": title}))
+
+    last_err: Exception | None = None
+    for label, body in attempts:
+        try:
+            data = api_json("POST", "/sheets/v3/spreadsheets", token, json=body)
+            ss = data["data"]["spreadsheet"]
+            tok = ss["spreadsheet_token"]
+            url = ss.get("url") or f"https://feishu.cn/sheets/{tok}"
+            if attempts and label != attempts[0][0]:
+                print(f"ℹ 已在{label}创建（个人文件夹需「添加文档应用」才有权限）")
+            return tok, url
+        except Exception as e:
+            last_err = e
+            print(f"⚠ 建表失败（{label}）: {e}", flush=True)
+    raise RuntimeError(f"飞书建表均失败: {last_err}")
 
 
 def ensure_sheet_tab(token: str, spreadsheet_token: str, title: str) -> None:
