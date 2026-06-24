@@ -171,7 +171,7 @@
 3. GitHub Secret（可选）`FEISHU_JOURNAL_DOC_ID`：若已有文档，填 document_id 只追加不新建
 4. 每日 Actions 会在该文档 **顶部** 追加当天数据快照；完整版以 Git 本文件为准定期 `sync-full`
 
-配置见 `docs/seo/FEISHU_SETUP.md` § SEO 优化追踪。
+配置见 [FEISHU_SETUP.md](FEISHU_SETUP.md) §6。
 
 ---
 

@@ -183,8 +183,9 @@ python3 scripts/seo_fetch_metrics.py
 |------|--------|------|
 | **日报** | [`docs/seo/reports/daily/`](reports/daily/) 最新 `YYYY-MM-DD.md` | 每天 UTC 09:00（北京 **17:00**）；Actions → **SEO daily report** |
 | **日报数据** | `docs/seo/metrics/daily-YYYY-MM-DD.json`、`daily-latest.json` | 原始 API 快照 |
-| **飞书** | `docs/seo/feishu-links.json` 或 Actions 日志 `✓ Feishu doc:` | 需配 [FEISHU_SETUP.md](FEISHU_SETUP.md) 三个 Secret |
-| **周报（手动）** | `bash scripts/seo_report_weekly.sh` → `proposals/` | 不再定时；需要时本地生成 |
+| **飞书** | 日报：`feishu-links.json`；周报表格：`feishu-sheet.json` | 见 [FEISHU_SETUP.md](FEISHU_SETUP.md) |
+| **周报（表格）** | Actions → **SEO weekly report**；`metrics/weekly-*.json` | 每周一北京 17:30；固定一张飞书表 |
+| **周报（方案）** | `bash scripts/seo_report_weekly.sh` → `proposals/` | 本地可选，SEO 优化参考 |
 
 本地预览：
 
@@ -254,8 +255,8 @@ Agent 将（见 `.cursor/skills/seo-round/SKILL.md`）：
 | GSC OAuth | ⏳ | 跑 `seo_setup_gsc_oauth.py` + 2 个 Secret |
 | 报告 + Issue | ✅ | `docs/seo/reports/2026-05-22-reminder.md`，Issue #1 |
 | **日报 workflow** | ✅ | `seo-daily.yml` + `seo_daily_report.py` |
-| **半月/周报 workflow** | ❌ 已移除 | 与 daily 重复；周报可本地 `seo_report_weekly.sh` |
-| **飞书归档** | ⏳ | 脚本就绪；待配 `FEISHU_*` Secrets（见 FEISHU_SETUP.md） |
+| **周报 workflow** | ✅ | `seo-weekly.yml` → GA4/GSC 日历周 + 飞书表格 |
+| **飞书** | ⏳ | 见 [FEISHU_SETUP.md](FEISHU_SETUP.md)（日报 doc + 周报表 + 追踪 doc） |
 | 邮件/ntfy | — | 未配置；看 Issue 或仓库报告 |
 
 **实操日志**

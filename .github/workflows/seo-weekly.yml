@@ -1,0 +1,44 @@
+# 每周 SEO 周报 → Git 存档 + 飞书电子表格
+name: SEO weekly report
+
+on:
+  schedule:
+    # 每周一 09:30 UTC（北京时间 17:30）
+    - cron: "30 9 * * 1"
+  workflow_dispatch:
+    inputs:
+      backfill_weeks:
+        description: "回填最近 N 个完整周（手动触发时）"
+        required: false
+        default: "1"
+
+permissions:
+  contents: write
+
+jobs:
+  seo-weekly:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install SEO dependencies
+        run: pip install -r scripts/requirements-seo.txt
+
+      - name: Run weekly pipeline
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GOOGLE_OAUTH_CLIENT_JSON: ${{ secrets.GOOGLE_OAUTH_CLIENT_JSON }}
+          GOOGLE_OAUTH_REFRESH_TOKEN: ${{ secrets.GOOGLE_OAUTH_REFRESH_TOKEN }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_FOLDER_TOKEN: ${{ secrets.FEISHU_FOLDER_TOKEN }}
+          FEISHU_SHEET_TOKEN: ${{ secrets.FEISHU_SHEET_TOKEN }}
+          SEO_WEEKLY_BACKFILL: ${{ github.event.inputs.backfill_weeks }}
+        run: bash scripts/seo_weekly_ci.sh

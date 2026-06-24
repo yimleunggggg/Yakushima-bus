@@ -1,7 +1,7 @@
 # 私人配置清单（勿提交真实密钥）
 
 > 在本地填写；可复制为 `PRIVATE_SETUP.local.md`（已在 `.gitignore`）。  
-> 公开步骤见 [tutorial/](tutorial/README.md)。
+> 公开步骤见 [vibe-coding-static-site-guide/seo/tutorial](https://github.com/yimleunggggg/vibe-coding-static-site-guide/tree/main/seo/tutorial/README.md)。
 
 ## 我的站点
 
@@ -31,7 +31,9 @@
 - [ ] `RESEND_API_KEY` = `re_...`
 - [ ] `RESEND_FROM` = `[显示名] <[发件地址]>`
 - [ ] `NTFY_TOPIC` = `[ntfy 主题名]`
-- [ ] （可选）`FEISHU_APP_ID` / `FEISHU_APP_SECRET` / `FEISHU_FOLDER_TOKEN`
+- [ ] `FEISHU_APP_ID` / `FEISHU_APP_SECRET` / `FEISHU_FOLDER_TOKEN`
+- [ ] `FEISHU_SHEET_TOKEN`（周报表，固定一张）
+- [ ] （可选）`FEISHU_JOURNAL_DOC_ID`
 
 ## 验证记录
 
@@ -48,4 +50,5 @@
 - [ ] GSC OAuth Secrets 全绿
 - [ ] `approve` → PR workflow
 - [ ] access booking 块部署上线
-- [ ] 飞书三 Secret（可选）
+- [ ] 飞书 Secrets + 周报表 `init`（见 FEISHU_SETUP.md §4）
+- [ ] Actions SEO weekly 绿 + 表格有数据

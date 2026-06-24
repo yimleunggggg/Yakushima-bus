@@ -185,7 +185,7 @@ flowchart LR
 3. ~~**开发**：周报「只出方案、不执行」+ Issue 模板~~ ✅ 2026-05-22
 4. **开发**：`approve` 触发 PR 的执行 workflow（1 天）
 5. **开发**：PDF 变更检测 + GA4 关键事件（可选）
-6. **你**（可选）：飞书三个 Secret → 日报同步云文档
+6. **你**（可选）：飞书 Secrets + 周报表 → 见 [FEISHU_SETUP.md](FEISHU_SETUP.md) §4
 
 ---
 
@@ -204,7 +204,7 @@ flowchart LR
 
 ## 9. 文档索引
 
-- **教程（公开）**：[tutorial/README.md](tutorial/README.md)
+- **教程（公开）**：[vibe-coding-static-site-guide/seo/tutorial](https://github.com/yimleunggggg/vibe-coding-static-site-guide/tree/main/seo/tutorial/README.md)
 - **私人清单**：[PRIVATE_SETUP.md](PRIVATE_SETUP.md)
 - 授权：[GOOGLE_SETUP.md](GOOGLE_SETUP.md)
 - 总流程：[RUNBOOK.md](RUNBOOK.md)
