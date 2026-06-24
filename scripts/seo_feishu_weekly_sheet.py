@@ -7,59 +7,37 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-METRICS_DIR = ROOT / "docs" / "seo" / "metrics"
+METRICS_DIR = ROOT / "docs/seo" / "metrics"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import seo_feishu_columns as cols  # noqa: E402
 import seo_feishu_util as fu  # noqa: E402
+import seo_metrics_derive as md  # noqa: E402
 
 SHEETS = [
     "周报汇总",
-    "渠道",
-    "国家",
-    "国家×渠道",
-    "来源媒介",
-    "着陆页",
-    "设备",
-    "GSC查询词",
-    "GSC页面",
+    "周报-维度明细",
+    "周报-国家×渠道",
+    "周报-GSC查询词",
+    "周报-GSC页面",
+    "周报-GSC国家",
+    "周报-GSC设备",
 ]
 
-SUMMARY_HEADERS = [
-    "周次",
-    "起始日",
-    "结束日",
-    "拉取日",
-    "GA4用户",
-    "GA4新用户",
-    "GA4会话",
-    "GA4 PV",
-    "互动率%",
-    "均时(s)",
-    "可分析用户",
-    "可分析会话",
-    "噪声用户",
-    "Organic用户",
-    "Organic会话",
-    "Direct用户",
-    "Direct会话",
-    "AI用户",
-    "Referral用户",
-    "GSC展示",
-    "GSC点击",
-    "GSC CTR%",
-    "GSC排名",
-    "用户WoW%",
-    "可分析WoW%",
-    "Organic WoW%",
-    "GSC点击WoW%",
-    "GSC展示WoW%",
+WEEKLY_DIM_SPECS = [
+    ("channels", "渠道(sessionDefaultChannelGroup)", "sessionDefaultChannelGroup"),
+    ("countries", "国家(country)", "country"),
+    ("source_medium", "来源/媒介(sessionSourceMedium)", "sessionSourceMedium"),
+    ("sources", "来源(sessionSource)", "sessionSource"),
+    ("landing_pages", "着陆页(landingPage)", "landingPage"),
+    ("pages", "页面(pagePath)", "pagePath"),
+    ("devices", "设备(deviceCategory)", "deviceCategory"),
 ]
 
 
 def load_weekly_files() -> list[dict]:
-    files = sorted(METRICS_DIR.glob("weekly-*.json"))
     out = []
-    for p in files:
+    for p in sorted(METRICS_DIR.glob("weekly-*.json")):
         if p.name == "weekly-latest.json":
             continue
         try:
@@ -70,11 +48,22 @@ def load_weekly_files() -> list[dict]:
     return out
 
 
+def _ga4_row(r: dict) -> list:
+    return [
+        md.cell(r.get("active_users")),
+        md.cell(r.get("new_users")),
+        md.cell(r.get("sessions")),
+        md.cell(r.get("engaged_sessions")),
+        md.cell(r.get("pageviews")),
+        md.cell(r.get("engagement_rate")),
+        md.cell(r.get("avg_session_sec")),
+    ]
+
+
 def summary_rows(weeks: list[dict]) -> list[list]:
-    rows = [SUMMARY_HEADERS]
+    rows = [cols.WEEKLY_SUMMARY]
     for w in weeks:
         g = w.get("ga4") or {}
-        s = g.get("summary") or {}
         gs = w.get("gsc") or {}
         d = w.get("derived") or {}
         wow = w.get("wow") or {}
@@ -85,95 +74,67 @@ def summary_rows(weeks: list[dict]) -> list[list]:
                 p.get("start", ""),
                 p.get("end", ""),
                 w.get("fetched_at", ""),
-                d.get("raw_users", s.get("active_users", "")),
-                s.get("new_users", ""),
-                d.get("raw_sessions", s.get("sessions", "")),
-                d.get("pageviews", s.get("pageviews", "")),
-                d.get("engagement_rate", s.get("engagement_rate", "")),
-                d.get("avg_session_sec", s.get("avg_session_sec", "")),
-                d.get("analyzable_users", ""),
-                d.get("analyzable_sessions", ""),
-                d.get("bot_users", ""),
-                d.get("organic_users", ""),
-                d.get("organic_sessions", ""),
-                d.get("direct_users", ""),
-                d.get("direct_sessions", ""),
-                d.get("ai_users", ""),
-                d.get("referral_users", ""),
-                gs.get("impressions", ""),
-                gs.get("clicks", ""),
-                gs.get("ctr", ""),
-                gs.get("position", ""),
-                wow.get("users", ""),
-                wow.get("analyzable_users", ""),
-                wow.get("organic_users", ""),
-                wow.get("gsc_clicks", ""),
-                wow.get("gsc_impressions", ""),
+                md.cell(g.get("property_id")),
+                md.cell(d.get("raw_users")),
+                md.cell(d.get("new_users")),
+                md.cell(d.get("raw_sessions")),
+                md.cell(d.get("engaged_sessions")),
+                md.cell(d.get("pageviews")),
+                md.cell(d.get("engagement_rate")),
+                md.cell(d.get("avg_session_sec")),
+                md.cell(d.get("analyzable_users")),
+                md.cell(d.get("analyzable_sessions")),
+                md.cell(d.get("bot_users")),
+                md.cell(d.get("organic_users")),
+                md.cell(d.get("organic_sessions")),
+                md.cell(d.get("direct_users")),
+                md.cell(d.get("direct_sessions")),
+                md.cell(d.get("referral_users")),
+                md.cell(d.get("referral_sessions")),
+                md.cell(d.get("ai_users")),
+                md.cell(d.get("unassigned_users")),
+                md.cell(gs.get("impressions") if not gs.get("error") else None),
+                md.cell(gs.get("clicks") if not gs.get("error") else None),
+                md.cell(gs.get("ctr") if not gs.get("error") else None),
+                md.cell(gs.get("position") if not gs.get("error") else None),
+                md.cell(wow.get("users")),
+                md.cell(wow.get("analyzable_users")),
+                md.cell(wow.get("organic_users")),
+                md.cell(wow.get("sessions")),
+                md.cell(wow.get("pageviews")),
+                md.cell(wow.get("gsc_clicks")),
+                md.cell(wow.get("gsc_impressions")),
+                md.cell(g.get("error") or ""),
+                md.cell(gs.get("error") or ""),
             ]
         )
     return rows
 
 
-def dim_rows(weeks: list[dict], key: str, dim_field: str, dim_label: str = "维度") -> list[list]:
-    rows = [["周次", "起始日", "结束日", dim_label, "用户", "会话", "PV", "互动率%", "均时(s)"]]
+def dim_rows(weeks: list[dict]) -> list[list]:
+    rows = [cols.WEEKLY_DIM]
     for w in weeks:
         p = w.get("period") or {}
-        for r in w.get("ga4", {}).get(key) or []:
-            rows.append(
-                [
-                    w.get("week", ""),
-                    p.get("start", ""),
-                    p.get("end", ""),
-                    r.get(dim_field) or r.get("dimension") or "",
-                    r.get("active_users", ""),
-                    r.get("sessions", ""),
-                    r.get("pageviews", ""),
-                    r.get("engagement_rate", ""),
-                    r.get("avg_session_sec", ""),
-                ]
-            )
-    return rows
-
-
-def gsc_query_rows(weeks: list[dict]) -> list[list]:
-    rows = [["周次", "起始日", "结束日", "查询词", "展示", "点击", "排名"]]
-    for w in weeks:
-        p = w.get("period") or {}
-        for q in (w.get("gsc") or {}).get("top_queries") or []:
-            rows.append(
-                [
-                    w.get("week", ""),
-                    p.get("start", ""),
-                    p.get("end", ""),
-                    q.get("query", ""),
-                    q.get("impressions", ""),
-                    q.get("clicks", ""),
-                    q.get("position", ""),
-                ]
-            )
-    return rows
-
-
-def gsc_page_rows(weeks: list[dict]) -> list[list]:
-    rows = [["周次", "起始日", "结束日", "页面", "展示", "点击"]]
-    for w in weeks:
-        p = w.get("period") or {}
-        for q in (w.get("gsc") or {}).get("top_pages") or []:
-            rows.append(
-                [
-                    w.get("week", ""),
-                    p.get("start", ""),
-                    p.get("end", ""),
-                    q.get("page", ""),
-                    q.get("impressions", ""),
-                    q.get("clicks", ""),
-                ]
-            )
+        g = w.get("ga4") or {}
+        if g.get("error"):
+            continue
+        for key, dim_type, dim_field in WEEKLY_DIM_SPECS:
+            for r in g.get(key) or []:
+                rows.append(
+                    [
+                        w.get("week", ""),
+                        p.get("start", ""),
+                        p.get("end", ""),
+                        dim_type,
+                        r.get(dim_field) or r.get("dimension") or "",
+                    ]
+                    + _ga4_row(r)
+                )
     return rows
 
 
 def country_channel_rows(weeks: list[dict]) -> list[list]:
-    rows = [["周次", "起始日", "结束日", "国家", "渠道", "用户", "会话", "互动率%", "均时(s)"]]
+    rows = [cols.WEEKLY_COUNTRY_CHANNEL]
     for w in weeks:
         p = w.get("period") or {}
         for r in (w.get("ga4") or {}).get("country_channel") or []:
@@ -184,10 +145,99 @@ def country_channel_rows(weeks: list[dict]) -> list[list]:
                     p.get("end", ""),
                     r.get("country", ""),
                     r.get("sessionDefaultChannelGroup", ""),
-                    r.get("active_users", ""),
-                    r.get("sessions", ""),
-                    r.get("engagement_rate", ""),
-                    r.get("avg_session_sec", ""),
+                    md.cell(r.get("active_users")),
+                    md.cell(r.get("sessions")),
+                    md.cell(r.get("engagement_rate")),
+                    md.cell(r.get("avg_session_sec")),
+                ]
+            )
+    return rows
+
+
+def gsc_query_rows(weeks: list[dict]) -> list[list]:
+    rows = [cols.WEEKLY_GSC_QUERY]
+    for w in weeks:
+        p = w.get("period") or {}
+        gs = w.get("gsc") or {}
+        if gs.get("error"):
+            continue
+        for q in gs.get("top_queries") or []:
+            rows.append(
+                [
+                    w.get("week", ""),
+                    p.get("start", ""),
+                    p.get("end", ""),
+                    q.get("query", ""),
+                    md.cell(q.get("impressions")),
+                    md.cell(q.get("clicks")),
+                    md.cell(q.get("ctr")),
+                    md.cell(q.get("position")),
+                ]
+            )
+    return rows
+
+
+def gsc_page_rows(weeks: list[dict]) -> list[list]:
+    rows = [cols.WEEKLY_GSC_PAGE]
+    for w in weeks:
+        p = w.get("period") or {}
+        gs = w.get("gsc") or {}
+        if gs.get("error"):
+            continue
+        for q in gs.get("top_pages") or []:
+            rows.append(
+                [
+                    w.get("week", ""),
+                    p.get("start", ""),
+                    p.get("end", ""),
+                    q.get("page", ""),
+                    md.cell(q.get("impressions")),
+                    md.cell(q.get("clicks")),
+                    md.cell(q.get("ctr")),
+                ]
+            )
+    return rows
+
+
+def gsc_country_rows(weeks: list[dict]) -> list[list]:
+    rows = [cols.WEEKLY_GSC_COUNTRY]
+    for w in weeks:
+        p = w.get("period") or {}
+        gs = w.get("gsc") or {}
+        if gs.get("error"):
+            continue
+        for q in gs.get("by_country") or []:
+            rows.append(
+                [
+                    w.get("week", ""),
+                    p.get("start", ""),
+                    p.get("end", ""),
+                    q.get("dimension", ""),
+                    md.cell(q.get("impressions")),
+                    md.cell(q.get("clicks")),
+                    md.cell(q.get("ctr")),
+                ]
+            )
+    return rows
+
+
+def gsc_device_rows(weeks: list[dict]) -> list[list]:
+    rows = [cols.WEEKLY_GSC_DEVICE]
+    for w in weeks:
+        p = w.get("period") or {}
+        gs = w.get("gsc") or {}
+        if gs.get("error"):
+            continue
+        for q in gs.get("by_device") or []:
+            rows.append(
+                [
+                    w.get("week", ""),
+                    p.get("start", ""),
+                    p.get("end", ""),
+                    q.get("dimension", ""),
+                    md.cell(q.get("impressions")),
+                    md.cell(q.get("clicks")),
+                    md.cell(q.get("ctr")),
                 ]
             )
     return rows
@@ -196,14 +246,12 @@ def country_channel_rows(weeks: list[dict]) -> list[list]:
 def sync_all(token: str, spreadsheet_token: str, weeks: list[dict]) -> None:
     builders = {
         "周报汇总": lambda: summary_rows(weeks),
-        "渠道": lambda: dim_rows(weeks, "channels", "sessionDefaultChannelGroup", "渠道"),
-        "国家": lambda: dim_rows(weeks, "countries", "country", "国家"),
-        "国家×渠道": country_channel_rows,
-        "来源媒介": lambda: dim_rows(weeks, "source_medium", "sessionSourceMedium", "来源/媒介"),
-        "着陆页": lambda: dim_rows(weeks, "landing_pages", "landingPage", "着陆页"),
-        "设备": lambda: dim_rows(weeks, "devices", "deviceCategory", "设备"),
-        "GSC查询词": gsc_query_rows,
-        "GSC页面": gsc_page_rows,
+        "周报-维度明细": lambda: dim_rows(weeks),
+        "周报-国家×渠道": lambda: country_channel_rows(weeks),
+        "周报-GSC查询词": lambda: gsc_query_rows(weeks),
+        "周报-GSC页面": lambda: gsc_page_rows(weeks),
+        "周报-GSC国家": lambda: gsc_country_rows(weeks),
+        "周报-GSC设备": lambda: gsc_device_rows(weeks),
     }
     for title in SHEETS:
         fu.ensure_sheet_tab(token, spreadsheet_token, title)
@@ -228,8 +276,8 @@ def _sync_to_sheet(allow_create: bool) -> int:
         return 0
 
     if not ss_token:
-        ss_token, url = fu.create_spreadsheet(token, "YakuBus SEO 周报", folder or "")
-        meta = {"spreadsheet_token": ss_token, "url": url, "title": "YakuBus SEO 周报"}
+        ss_token, url = fu.create_spreadsheet(token, "YakuBus SEO 数据", folder or "")
+        meta = {"spreadsheet_token": ss_token, "url": url, "title": "YakuBus SEO 数据"}
         fu.save_sheet_meta(meta)
         print(f"✓ 首次创建表格（仅此一次）: {url}")
         print("  → 请把 token 写入 FEISHU_SHEET_TOKEN，并 commit docs/seo/feishu-sheet.json")
@@ -237,7 +285,7 @@ def _sync_to_sheet(allow_create: bool) -> int:
         url = meta.get("url") or f"https://feishu.cn/sheets/{ss_token}"
 
     sync_all(token, ss_token, weeks)
-    print(f"✓ 已更新同一张表格（{len(weeks)} 周数据）: {url}")
+    print(f"✓ 已更新周报表（{len(weeks)} 周）: {url}")
     return 0
 
 
@@ -248,8 +296,6 @@ def main() -> int:
     if cmd == "sync":
         return _sync_to_sheet(allow_create=False)
     print("用法: seo_feishu_weekly_sheet.py init|sync", file=sys.stderr)
-    print("  init — 仅首次：创建表格并写入 token", file=sys.stderr)
-    print("  sync — 每周：更新已有表格，绝不新建", file=sys.stderr)
     return 1
 
 

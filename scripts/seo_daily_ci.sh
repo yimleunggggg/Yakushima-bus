@@ -29,7 +29,7 @@ fi
 REPORT="$(bash scripts/seo_report_daily.sh)"
 echo "report_path=$REPORT"
 
-python3 scripts/seo_feishu_doc.py "$REPORT" || true
+python3 scripts/seo_feishu_daily_sheet.py sync || true
 
 SUBJ="[YakuBus] 日报 $(date +%Y-%m-%d) GA4/GSC"
 if [[ "$ATTEMPT" -gt 1 ]]; then
@@ -42,7 +42,7 @@ python3 scripts/seo_feishu_journal.py checkpoint "$REPORT" || true
 git config user.name "github-actions[bot]"
 git config user.email "github-actions[bot]@users.noreply.github.com"
 git add docs/seo/reports/daily/ docs/seo/metrics/ docs/seo/SEO-JOURNAL.md
-[[ -f docs/seo/feishu-links.json ]] && git add docs/seo/feishu-links.json
+[[ -f docs/seo/feishu-sheet.json ]] && git add docs/seo/feishu-sheet.json
 git diff --staged --quiet || git commit -m "docs(seo): daily report and metrics $(date +%Y-%m-%d)"
 
 push_ok=0

@@ -183,7 +183,7 @@ python3 scripts/seo_fetch_metrics.py
 |------|--------|------|
 | **日报** | [`docs/seo/reports/daily/`](reports/daily/) 最新 `YYYY-MM-DD.md` | 每天 UTC 09:00（北京 **17:00**）；Actions → **SEO daily report** |
 | **日报数据** | `docs/seo/metrics/daily-YYYY-MM-DD.json`、`daily-latest.json` | 原始 API 快照 |
-| **飞书** | 日报：`feishu-links.json`；周报表格：`feishu-sheet.json` | 见 [FEISHU_SETUP.md](FEISHU_SETUP.md) |
+| **飞书表格** | `feishu-sheet.json` — **日报汇总** + **周报汇总** 同一张表 | 见 [FEISHU_SETUP.md](FEISHU_SETUP.md) |
 | **周报（表格）** | Actions → **SEO weekly report**；`metrics/weekly-*.json` | 每周一北京 17:30；固定一张飞书表 |
 | **周报（方案）** | `bash scripts/seo_report_weekly.sh` → `proposals/` | 本地可选，SEO 优化参考 |
 

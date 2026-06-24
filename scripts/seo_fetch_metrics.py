@@ -88,8 +88,10 @@ def fetch_gsc(credentials, site_url: str) -> dict:
         "top_pages": [],
         "index_status": {},
         "error": None,
+        "period": None,
     }
     start, end = gsc_dates()
+    out["period"] = {"start": start, "end": end}
     try:
         svc = build("searchconsole", "v1", credentials=credentials, cache_discovery=False)
         agg = (
@@ -116,7 +118,7 @@ def fetch_gsc(credentials, site_url: str) -> dict:
                     "startDate": start,
                     "endDate": end,
                     "dimensions": ["query"],
-                    "rowLimit": 8,
+                    "rowLimit": 20,
                 },
             )
             .execute()
@@ -128,6 +130,7 @@ def fetch_gsc(credentials, site_url: str) -> dict:
                 "query": r["keys"][0],
                 "clicks": int(r.get("clicks", 0)),
                 "impressions": int(r.get("impressions", 0)),
+                "ctr": round(float(r.get("ctr", 0)) * 100, 2),
                 "position": round(float(r.get("position", 0)), 1),
             }
             for r in qrows
@@ -141,7 +144,7 @@ def fetch_gsc(credentials, site_url: str) -> dict:
                     "startDate": start,
                     "endDate": end,
                     "dimensions": ["page"],
-                    "rowLimit": 8,
+                    "rowLimit": 15,
                 },
             )
             .execute()
@@ -153,6 +156,7 @@ def fetch_gsc(credentials, site_url: str) -> dict:
                 "page": r["keys"][0],
                 "clicks": int(r.get("clicks", 0)),
                 "impressions": int(r.get("impressions", 0)),
+                "ctr": round(float(r.get("ctr", 0)) * 100, 2),
             }
             for r in prows
         ]

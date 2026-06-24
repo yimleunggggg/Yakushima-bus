@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import seo_fetch_metrics as m  # noqa: E402
-import seo_ga4_analysis as analysis  # noqa: E402
+import seo_metrics_derive as md  # noqa: E402
 import seo_oauth_util  # noqa: E402
 from seo_fetch_daily import ga4_report  # noqa: E402
 from seo_week_util import iso_week_label, last_complete_iso_week, prev_iso_week, week_bounds, wow_pct  # noqa: E402
@@ -54,8 +54,10 @@ def fetch_gsc_range(credentials, site_url: str, start: str, end: str) -> dict:
             out["position"] = round(float(r.get("position", 0)), 1)
 
         for dim, key, limit in (
-            (["query"], "top_queries", 15),
-            (["page"], "top_pages", 10),
+            (["query"], "top_queries", 20),
+            (["page"], "top_pages", 15),
+            (["country"], "by_country", 15),
+            (["device"], "by_device", 5),
         ):
             qrows = (
                 svc.searchanalytics()
@@ -78,16 +80,28 @@ def fetch_gsc_range(credentials, site_url: str, start: str, end: str) -> dict:
                         "query": r["keys"][0],
                         "clicks": int(r.get("clicks", 0)),
                         "impressions": int(r.get("impressions", 0)),
+                        "ctr": round(float(r.get("ctr", 0)) * 100, 2),
                         "position": round(float(r.get("position", 0)), 1),
+                    }
+                    for r in qrows
+                ]
+            elif dim == ["page"]:
+                out[key] = [
+                    {
+                        "page": r["keys"][0],
+                        "clicks": int(r.get("clicks", 0)),
+                        "impressions": int(r.get("impressions", 0)),
+                        "ctr": round(float(r.get("ctr", 0)) * 100, 2),
                     }
                     for r in qrows
                 ]
             else:
                 out[key] = [
                     {
-                        "page": r["keys"][0],
+                        "dimension": r["keys"][0],
                         "clicks": int(r.get("clicks", 0)),
                         "impressions": int(r.get("impressions", 0)),
+                        "ctr": round(float(r.get("ctr", 0)) * 100, 2),
                     }
                     for r in qrows
                 ]
@@ -96,9 +110,12 @@ def fetch_gsc_range(credentials, site_url: str, start: str, end: str) -> dict:
     return out
 
 
-def channel_metric(rows: list[dict], name: str, field: str = "active_users") -> int:
-    row = next((r for r in rows if (r.get("dimension") or r.get("sessionDefaultChannelGroup")) == name), None)
-    return int(row.get(field) or 0) if row else 0
+def channel_metric(rows: list[dict], name: str, field: str = "active_users") -> int | None:
+    r = md.channel_row(rows, name)
+    if not r:
+        return None
+    v = r.get(field)
+    return int(v) if v is not None else None
 
 
 def fetch_ga4_week(credentials, property_id: str, start: str, end: str) -> dict:
@@ -112,26 +129,18 @@ def fetch_ga4_week(credentials, property_id: str, start: str, end: str) -> dict:
     try:
         client = BetaAnalyticsDataClient(credentials=credentials)
         out["summary"] = ga4_report(client, prop, start, end)
-        out["channels"] = ga4_report(
-            client, prop, start, end, dims=["sessionDefaultChannelGroup"], limit=12
-        )
-        out["sources"] = ga4_report(client, prop, start, end, dims=["sessionSource"], limit=12)
-        out["source_medium"] = ga4_report(
-            client, prop, start, end, dims=["sessionSourceMedium"], limit=12
-        )
-        out["landing_pages"] = ga4_report(
-            client, prop, start, end, dims=["landingPage"], limit=12
-        )
-        out["countries"] = ga4_report(client, prop, start, end, dims=["country"], limit=15)
-        out["devices"] = ga4_report(client, prop, start, end, dims=["deviceCategory"], limit=4)
-        out["country_channel"] = ga4_report(
-            client,
-            prop,
-            start,
-            end,
-            dims=["country", "sessionDefaultChannelGroup"],
-            limit=30,
-        )
+        specs = [
+            ("channels", ["sessionDefaultChannelGroup"], 15),
+            ("sources", ["sessionSource"], 15),
+            ("source_medium", ["sessionSourceMedium"], 15),
+            ("landing_pages", ["landingPage"], 15),
+            ("pages", ["pagePath"], 15),
+            ("countries", ["country"], 20),
+            ("devices", ["deviceCategory"], 5),
+            ("country_channel", ["country", "sessionDefaultChannelGroup"], 40),
+        ]
+        for key, dims, limit in specs:
+            out[key] = ga4_report(client, prop, start, end, dims=dims, limit=limit)
     except Exception as e:
         out["error"] = str(e)
     return out
@@ -139,24 +148,30 @@ def fetch_ga4_week(credentials, property_id: str, start: str, end: str) -> dict:
 
 def derive_metrics(ga4: dict) -> dict:
     countries = ga4.get("countries") or []
-    human, bot = analysis.partition_human_bot(countries)
+    analyzable_u, analyzable_s, bot_u = md.partition_countries(countries)
     channels = ga4.get("channels") or []
-    summary = ga4.get("summary") or {}
+    summary = ga4.get("summary") if not ga4.get("error") else None
+    base = md.summary_fields(summary)
     return {
-        "analyzable_users": sum(int(r.get("active_users") or 0) for r in human),
-        "analyzable_sessions": sum(int(r.get("sessions") or 0) for r in human),
-        "bot_users": sum(int(r.get("active_users") or 0) for r in bot),
+        **base,
+        "analyzable_users": analyzable_u,
+        "analyzable_sessions": analyzable_s,
+        "bot_users": bot_u,
         "organic_users": channel_metric(channels, "Organic Search"),
         "organic_sessions": channel_metric(channels, "Organic Search", "sessions"),
         "direct_users": channel_metric(channels, "Direct"),
         "direct_sessions": channel_metric(channels, "Direct", "sessions"),
-        "ai_users": channel_metric(channels, "AI Assistant"),
         "referral_users": channel_metric(channels, "Referral"),
-        "raw_users": int(summary.get("active_users") or 0),
-        "raw_sessions": int(summary.get("sessions") or 0),
-        "pageviews": int(summary.get("pageviews") or 0),
-        "engagement_rate": summary.get("engagement_rate"),
-        "avg_session_sec": summary.get("avg_session_sec"),
+        "referral_sessions": channel_metric(channels, "Referral", "sessions"),
+        "ai_users": channel_metric(channels, "AI Assistant"),
+        "unassigned_users": channel_metric(channels, "Unassigned"),
+        "raw_users": base.get("active_users"),
+        "new_users": base.get("new_users"),
+        "raw_sessions": base.get("sessions"),
+        "pageviews": base.get("pageviews"),
+        "engagement_rate": base.get("engagement_rate"),
+        "avg_session_sec": base.get("avg_session_sec"),
+        "engaged_sessions": base.get("engaged_sessions"),
     }
 
 

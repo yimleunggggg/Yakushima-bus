@@ -148,7 +148,7 @@ def resolve_spreadsheet_token(*, allow_create: bool = False) -> tuple[str, dict,
     if allow_create and folder:
         return "", meta, folder
     raise RuntimeError(
-        "未绑定周报表格。请先在飞书建好「YakuBus SEO 周报」，"
+        "未绑定数据表格。请先在飞书建好「YakuBus SEO 数据」，"
         "把 spreadsheet token 写入 GitHub Secret FEISHU_SHEET_TOKEN，"
-        "或本地运行一次: python3 scripts/seo_feishu_weekly_sheet.py init"
+        "或运行: python3 scripts/seo_feishu_weekly_sheet.py init"
     )
