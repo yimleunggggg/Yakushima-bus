@@ -258,7 +258,7 @@ def sync_all(token: str, spreadsheet_token: str, weeks: list[dict]) -> None:
         fu.write_range(token, spreadsheet_token, title, builders[title]())
 
 
-def _sync_to_sheet(allow_create: bool) -> int:
+def _sync_to_sheet() -> int:
     if not fu.cfg("FEISHU_APP_ID") or not fu.cfg("FEISHU_APP_SECRET"):
         print("ℹ 未配置飞书 App，跳过（见 docs/seo/FEISHU_SETUP.md）")
         return 0
@@ -270,17 +270,20 @@ def _sync_to_sheet(allow_create: bool) -> int:
 
     token = fu.tenant_token()
     try:
-        ss_token, meta, folder = fu.resolve_spreadsheet_token(allow_create=allow_create)
+        ss_token, meta, folder = fu.resolve_spreadsheet_token()
     except RuntimeError as e:
         print(f"ℹ {e}")
         return 0
 
     if not ss_token:
-        ss_token, url = fu.create_spreadsheet(token, "YakuBus SEO 数据", folder or "")
+        if not folder:
+            print("ℹ 未配置 FEISHU_FOLDER_TOKEN，跳过飞书表格")
+            return 0
+        ss_token, url = fu.create_spreadsheet(token, "YakuBus SEO 数据", folder)
         meta = {"spreadsheet_token": ss_token, "url": url, "title": "YakuBus SEO 数据"}
         fu.save_sheet_meta(meta)
-        print(f"✓ 首次创建表格（仅此一次）: {url}")
-        print("  → 请把 token 写入 FEISHU_SHEET_TOKEN，并 commit docs/seo/feishu-sheet.json")
+        print(f"✓ 首次自动创建表格: {url}")
+        print("  → 已写入 docs/seo/feishu-sheet.json，本次 job 会 commit")
     else:
         url = meta.get("url") or f"https://feishu.cn/sheets/{ss_token}"
 
@@ -291,11 +294,9 @@ def _sync_to_sheet(allow_create: bool) -> int:
 
 def main() -> int:
     cmd = sys.argv[1] if len(sys.argv) > 1 else "sync"
-    if cmd == "init":
-        return _sync_to_sheet(allow_create=True)
-    if cmd == "sync":
-        return _sync_to_sheet(allow_create=False)
-    print("用法: seo_feishu_weekly_sheet.py init|sync", file=sys.stderr)
+    if cmd in ("init", "sync"):
+        return _sync_to_sheet()
+    print("用法: seo_feishu_weekly_sheet.py sync", file=sys.stderr)
     return 1
 
 

@@ -138,17 +138,16 @@ def write_range(token: str, spreadsheet_token: str, sheet_title: str, values: li
         )
 
 
-def resolve_spreadsheet_token(*, allow_create: bool = False) -> tuple[str, dict, str | None]:
-    """返回 (token, meta, folder_token)。sync 时 allow_create=False，缺 token 则报错。"""
+def resolve_spreadsheet_token() -> tuple[str, dict, str | None]:
+    """返回 (token, meta, folder_token)。无表格 token 但有文件夹 token 时返回空 token，由调用方建表。"""
     meta = load_sheet_meta()
     ss_token = meta.get("spreadsheet_token") or cfg("FEISHU_SHEET_TOKEN")
     folder = cfg("FEISHU_FOLDER_TOKEN")
     if ss_token:
         return ss_token, meta, folder
-    if allow_create and folder:
+    if folder:
         return "", meta, folder
     raise RuntimeError(
-        "未绑定数据表格。请先在飞书建好「YakuBus SEO 数据」，"
-        "把 spreadsheet token 写入 GitHub Secret FEISHU_SHEET_TOKEN，"
-        "或运行: python3 scripts/seo_feishu_weekly_sheet.py init"
+        "未绑定数据表格：请配置 FEISHU_FOLDER_TOKEN（Actions 首次会自动建表），"
+        "或 FEISHU_SHEET_TOKEN（绑定已有表格）。"
     )
