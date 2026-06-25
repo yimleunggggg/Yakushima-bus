@@ -6,7 +6,7 @@
 
 - [Bus timetable & next departure](https://yakushimabus.com/): Search 48 stops, day types (weekday/Sat/sun-holiday), next departure in JST, presets (Miyanoura–Anbo, Shiratani, Arakawa trailhead Mar–Nov). Official PDF embedded.
 - [Routes & fares](https://yakushimabus.com/fare/): Official route map PDF (JA/EN), mobile image preview, stop picker, adult one-way fare lookup, day pass sales points.
-- [Island POI map](https://yakushimabus.com/guide/): Historic sites, hot springs, beaches, souvenirs, supermarkets, pharmacies, ATMs; verified bus stops with navigation and timetable links.
+- [Island POI map](https://yakushimabus.com/map/): Historic sites, hot springs, beaches, souvenirs, supermarkets, pharmacies, ATMs; verified bus stops with navigation and timetable links.
 - [Ferry & island access](https://yakushimabus.com/ferry/): Jetfoil and ferry Kagoshima–Yakushima, airport bus, fares and seasonal notes.
 - [Trekking reference](https://yakushimabus.com/trekking/): Jomon Sugi, Taikoiwa, Miyanoura-dake courses with bus connections and official PDFs.
 - [Travel without a car](https://yakushimabus.com/without-car/): How to cover Yakushima by bus and ferry; links to all tools above.

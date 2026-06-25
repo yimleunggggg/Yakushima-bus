@@ -3,7 +3,7 @@
   const LANG_KEY = "yakushima-bus-lang";
 
   const MAIN_NAV = [
-    { href: "/guide/", key: "navGuide", active: /^\/guide\/?$/i },
+    { href: "/map/", key: "navGuide", active: /^\/map\/?$/i },
     { href: "/", key: "navTime", active: /^\/$/ },
     { href: "/fare/", key: "navMap", active: /^\/fare\/?$/i },
     { href: "/ferry/", key: "navAccess", active: /^\/ferry\/?$/i },
@@ -77,9 +77,14 @@
   }
 
   function syncPageTitle(lang) {
-    if (!/^\/(fare|map)\/?$/i.test(location.pathname)) return;
+    const path = location.pathname;
     const titleEl = document.getElementById("appTitle");
-    if (titleEl) titleEl.textContent = t(lang, "navMapTitle");
+    if (!titleEl) return;
+    if (/^\/fare\/?$/i.test(path)) {
+      titleEl.textContent = t(lang, "navMapTitle");
+    } else if (/^\/map\/?$/i.test(path)) {
+      titleEl.textContent = t(lang, "navGuideTitle");
+    }
   }
 
   function renderMainNav(forcedLang) {

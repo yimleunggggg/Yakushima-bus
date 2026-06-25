@@ -567,7 +567,7 @@
 
   function applyPageHead() {
     if (!window.SiteChrome) return;
-    SiteChrome.applyPageHead("guide", {
+    SiteChrome.applyPageHead("map", {
       titleEl: document.getElementById("appTitle"),
       leadEl: els.lead,
       crossEl: document.getElementById("guideCross"),

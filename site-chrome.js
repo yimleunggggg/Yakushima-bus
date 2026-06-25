@@ -5,7 +5,7 @@
   const SKIP_FEEDBACK = /^\/(intro|about)\/?$/i.test(location.pathname);
 
   const MAIN_NAV = [
-    { href: "/guide/", key: "navGuide", active: /^\/guide\/?$/i },
+    { href: "/map/", key: "navGuide", active: /^\/map\/?$/i },
     { href: "/", key: "navTime", active: /^\/$/ },
     { href: "/fare/", key: "navMap", active: /^\/fare\/?$/i },
     { href: "/ferry/", key: "navAccess", active: /^\/ferry\/?$/i },
@@ -14,7 +14,7 @@
   ];
 
   const PAGE_HEAD = {
-    guide: {
+    map: {
       titleKey: "navGuideTitle",
       lead: {
         ja: "史跡・温泉・スーパー等と、確認済みバス停。ナビ・時刻表リンク付き。",
@@ -35,9 +35,9 @@
         en: "Official Yakushima bus timetables (Mar 2026). Find your next departure.",
       },
       crossHtml: {
-        ja: '<a href="/fare/?lang=ja">運賃計算</a> · <a href="/guide/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
-        zh: '<a href="/fare/?lang=zh">查票价</a> · <a href="/guide/?lang=zh">便利设施地图</a> · <a href="/ferry/?lang=zh">船运上岛</a> · <a href="/without-car/?lang=zh">不租车攻略</a>',
-        en: '<a href="/fare/?lang=en">Fares</a> · <a href="/guide/?lang=en">POI map</a> · <a href="/ferry/?lang=en">Ferry</a> · <a href="/without-car/?lang=en">Without a car</a>',
+        ja: '<a href="/fare/?lang=ja">運賃計算</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
+        zh: '<a href="/fare/?lang=zh">查票价</a> · <a href="/map/?lang=zh">便利设施地图</a> · <a href="/ferry/?lang=zh">船运上岛</a> · <a href="/without-car/?lang=zh">不租车攻略</a>',
+        en: '<a href="/fare/?lang=en">Fares</a> · <a href="/map/?lang=en">POI map</a> · <a href="/ferry/?lang=en">Ferry</a> · <a href="/without-car/?lang=en">Without a car</a>',
       },
     },
     fare: {
@@ -48,9 +48,9 @@
         en: "Official route map and section fares (Mar 2026). Tap a stop for timetables.",
       },
       crossHtml: {
-        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/guide/?lang=ja">スポット地図</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
-        zh: '<a href="/?lang=zh">查班次</a> · <a href="/guide/?lang=zh">便利设施地图</a> · <a href="/without-car/?lang=zh">不租车攻略</a>',
-        en: '<a href="/?lang=en">Timetable</a> · <a href="/guide/?lang=en">POI map</a> · <a href="/without-car/?lang=en">Without a car</a>',
+        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
+        zh: '<a href="/?lang=zh">查班次</a> · <a href="/map/?lang=zh">便利设施地图</a> · <a href="/without-car/?lang=zh">不租车攻略</a>',
+        en: '<a href="/?lang=en">Timetable</a> · <a href="/map/?lang=en">POI map</a> · <a href="/without-car/?lang=en">Without a car</a>',
       },
     },
     ferry: {
@@ -87,9 +87,9 @@
         en: "Trilingual bus timetables, fares, ferry access, and POI map — built from official sources.",
       },
       crossHtml: {
-        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/fare/?lang=ja">運賃</a> · <a href="/guide/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
-        zh: '<a href="/?lang=zh">时刻表</a> · <a href="/fare/?lang=zh">票价</a> · <a href="/guide/?lang=zh">便利设施地图</a> · <a href="/ferry/?lang=zh">船运上岛</a> · <a href="/without-car/?lang=zh">不租车攻略</a>',
-        en: '<a href="/?lang=en">Timetable</a> · <a href="/fare/?lang=en">Fares</a> · <a href="/guide/?lang=en">POI map</a> · <a href="/ferry/?lang=en">Ferry</a> · <a href="/without-car/?lang=en">Without a car</a>',
+        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/fare/?lang=ja">運賃</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
+        zh: '<a href="/?lang=zh">时刻表</a> · <a href="/fare/?lang=zh">票价</a> · <a href="/map/?lang=zh">便利设施地图</a> · <a href="/ferry/?lang=zh">船运上岛</a> · <a href="/without-car/?lang=zh">不租车攻略</a>',
+        en: '<a href="/?lang=en">Timetable</a> · <a href="/fare/?lang=en">Fares</a> · <a href="/map/?lang=en">POI map</a> · <a href="/ferry/?lang=en">Ferry</a> · <a href="/without-car/?lang=en">Without a car</a>',
       },
     },
   };
@@ -241,7 +241,7 @@
       <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/fare/")}">${t("navMap")}</a>
       <span class="footer-sep" aria-hidden="true">·</span>
-      <a href="${langQs("/guide/")}">${t("navGuide")}</a>
+      <a href="${langQs("/map/")}">${t("navGuide")}</a>
       <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/ferry/")}">${t("navAccess")}</a>
       <span class="footer-sep" aria-hidden="true">·</span>

@@ -30,7 +30,7 @@ window.INTRO_DATA = {
           icon: "📍",
           title: "スポット地図",
           body: "史跡・温泉・ビーチ・お土産・スーパー・薬局・ATM。確認済みバス停と紹介文、Google マップへ。",
-          href: "/guide/",
+          href: "/map/",
         },
         {
           icon: "⇄",
@@ -80,7 +80,7 @@ window.INTRO_DATA = {
           icon: "📍",
           title: "便利设施地图",
           body: "名胜古迹、温泉、海滩、纪念品、超市、药店、ATM；核实公交站、简介与 Google 地图导航。",
-          href: "/guide/",
+          href: "/map/",
         },
         {
           icon: "⇄",
@@ -131,7 +131,7 @@ window.INTRO_DATA = {
           icon: "📍",
           title: "Island guide map",
           body: "Historic sites, hot springs, beaches, shops, pharmacies & ATMs — verified bus stops, blurbs, and Google Maps links.",
-          href: "/guide/",
+          href: "/map/",
         },
         {
           icon: "⇄",

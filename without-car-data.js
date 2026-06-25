@@ -67,7 +67,7 @@ window.WITHOUT_CAR_DATA = {
         },
         {
           label: { ja: "観光・温泉・店舗マップ", zh: "景点·温泉·店铺地图", en: "Sights & shops map" },
-          href: "/guide/",
+          href: "/map/",
           note: { ja: "便利ガイド", zh: "便利指南", en: "Island guide" },
         },
         {

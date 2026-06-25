@@ -17,20 +17,20 @@
   <link rel="stylesheet" href="/styles.css?v=layout-v84">
   <script src="/analytics.js"></script>
   <script src="/analytics-events.js?v=analytics-v2" defer></script>
-  <script src="/site-chrome.js?v=chrome-v13" defer></script>
+  <script src="/site-chrome.js?v=chrome-v14" defer></script>
 </head>
 <body class="app-page-narrow">
   <div class="app intro-page">
     <div class="app-nav-sticky">
       <nav class="nav nav-main nav-main--6" id="mainNav" aria-label="Main">
-        <a href="/guide/">マップ</a>
+        <a href="/map/">マップ</a>
         <a href="/">時刻表</a>
         <a href="/fare/">運賃</a>
         <a href="/ferry/">フェリー</a>
         <a href="/trekking/">登山</a>
         <a href="/intro/" class="active" aria-current="page">紹介</a>
       </nav>
-      <script src="/site-chrome-nav-boot.js?v=chrome-v13"></script>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v14"></script>
     </div>
 
     <header class="intro-hero">
@@ -93,7 +93,7 @@
     }
 
     function setLang(next) {
-      if (next === lang && document.getElementById("introTitle").textContent) {
+      if (langBooted && next === lang) {
         syncLangSwitch();
         return;
       }
@@ -105,6 +105,7 @@
       if (window.__renderSiteChromeNav) window.__renderSiteChromeNav(lang);
       syncLangSwitch();
       render();
+      langBooted = true;
     }
 
     function pick(o) {
