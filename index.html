@@ -27,7 +27,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Yakushima Bus">
   <meta property="og:title" content="屋久島バス時刻表 2026｜屋久島交通・次の便検索">
-  <meta property="og:description" content="屋久島バス時刻表2026。宮之浦港・空港・白谷・荒川登山口の次の便。路線図・料金は /map/。">
+  <meta property="og:description" content="屋久島バス時刻表2026。宮之浦港・空港・白谷・荒川登山口の次の便。路線図・料金は /fare/。">
   <meta property="og:url" content="https://yakushimabus.com/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -53,8 +53,8 @@
         "inLanguage": ["ja", "zh-CN", "en"],
         "description": "Yakushima bus timetables and next-departure search for travelers on Yakushima Island.",
         "hasPart": [
-          { "@type": "WebPage", "name": "Yakushima Bus Map and Fares 2026", "url": "https://yakushimabus.com/map/" },
-          { "@type": "WebPage", "name": "Ferry and Island Access", "url": "https://yakushimabus.com/access/" },
+          { "@type": "WebPage", "name": "Yakushima Bus Map and Fares 2026", "url": "https://yakushimabus.com/fare/" },
+          { "@type": "WebPage", "name": "Ferry and Island Access", "url": "https://yakushimabus.com/ferry/" },
           { "@type": "WebPage", "name": "Travel Yakushima Without a Car", "url": "https://yakushimabus.com/without-car/" },
           { "@type": "WebPage", "name": "Island Guide Map", "url": "https://yakushimabus.com/guide/" },
           { "@type": "WebPage", "name": "About Yakushima Bus", "url": "https://yakushimabus.com/about/" }
@@ -88,7 +88,9 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v82">
+  <link rel="stylesheet" href="/styles.css?v=layout-v83">
+  <script src="/analytics.js"></script>
+  <script src="/analytics-events.js?v=analytics-v2" defer></script>
 </head>
 <body>
   <div class="app">
@@ -96,12 +98,12 @@
       <nav class="nav nav-main nav-main--6" id="mainNav">
         <a href="/guide/">マップ</a>
         <a href="/" class="active" aria-current="page">時刻表</a>
-        <a href="/map/">運賃</a>
-        <a href="/access/">フェリー</a>
+        <a href="/fare/">運賃</a>
+        <a href="/ferry/">フェリー</a>
         <a href="/trekking/">登山</a>
         <a href="/intro/">紹介</a>
       </nav>
-      <script src="/site-chrome-nav-boot.js?v=chrome-v10"></script>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v11"></script>
     </div>
     <header class="header header-compact">
       <div class="header-main">
@@ -480,17 +482,17 @@
     const SEO_FAQ = {
       ja: [
         { q: "屋久島バスの時刻表は最新ですか？", a: "2026年3月改定のダイヤです。上の区間検索で次の便を確認できます。駅の掲示と各社の最新情報を優先してください。" },
-        { q: "屋久島 バス 料金（運賃）はどこで見る？", a: "区間運賃の目安は<a href=\"/map/\">路線図・運賃</a>ページで出発・到着を選んで確認できます。" },
+        { q: "屋久島 バス 料金（運賃）はどこで見る？", a: "区間運賃の目安は<a href=\"/fare/\">路線図・運賃</a>ページで出発・到着を選んで確認できます。" },
         { q: "屋久島空港から宮之浦港のバスは？", a: "よく使う区間に「宮之浦港 ↔ 空港」があります。出発を「屋久島空港」、到着を「宮之浦港」に選んでも検索できます。" },
       ],
       zh: [
         { q: "屋久岛公交时刻表是最新的吗？", a: "2026年3月改订班次。用上方区间搜索查下一班。请以站牌与各公司最新公告为准。" },
-        { q: "哪里看巴士票价？", a: "在<a href=\"/map/\">路线·运价</a>页选出发与到达，可查看区间运价。" },
+        { q: "哪里看巴士票价？", a: "在<a href=\"/fare/\">路线·票价</a>页选出发与到达，可查看区间票价。" },
         { q: "屋久岛机场到宫之浦港的巴士？", a: "常用区间里有「宫之浦港 ↔ 机场」，也可手动选择这两站搜索。" },
       ],
       en: [
         { q: "Is the bus timetable up to date?", a: "March 2026 revision. Use route search above for the next departure. Confirm at the stop and on each operator’s site." },
-        { q: "Where can I find bus fares?", a: "Section estimates on the <a href=\"/map/\">routes &amp; fares</a> page — pick origin and destination." },
+        { q: "Where can I find bus fares?", a: "Section estimates on the <a href=\"/fare/\">routes &amp; fares</a> page — pick origin and destination." },
         { q: "Bus from Yakushima Airport to Miyanoura Port?", a: "Use the “Miyanoura Port ↔ Airport” preset, or pick those stops manually." },
       ],
     };
@@ -591,7 +593,17 @@
       const ph = t("searchPlaceholder");
       const opts = {
         lang,
-        onChange: () => { upcomingUserOverride = false; syncRouteHint(); renderResults(); },
+        onChange: () => {
+          upcomingUserOverride = false;
+          syncRouteHint();
+          window.BusAnalytics?.event("timetable_search", {
+            from: els.fromStop.value,
+            to: els.toStop.value,
+            day_type: selectedDay,
+            trigger: "picker",
+          });
+          renderResults();
+        },
         placeholder: ph,
       };
       if (!fromPicker) {
@@ -1062,6 +1074,7 @@
           selectedDay = btn.dataset.day;
           upcomingUserOverride = false;
           els.dayTabs.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.dataset.day === selectedDay));
+          window.BusAnalytics?.event("timetable_day_tab", { day_type: selectedDay });
           renderResults();
         });
       });
@@ -1193,6 +1206,7 @@
         upcomingUserOverride = false;
         AppCore.flashBtn(els.swapBtn);
         AppCore.showToast(els.appToast, t("swapped"), toastTimer);
+        window.BusAnalytics?.event("timetable_swap", { from: els.fromStop.value, to: els.toStop.value });
         renderResults();
       });
     }
@@ -1211,8 +1225,6 @@
     setInterval(() => { setLiveClock(); renderResults(); }, 30000);
     });
   </script>
-  <script src="analytics.js" defer></script>
-  <script src="analytics-events.js" defer></script>
-  <script src="/site-chrome.js?v=chrome-v10" defer></script>
+  <script src="/site-chrome.js?v=chrome-v11" defer></script>
 </body>
 </html>

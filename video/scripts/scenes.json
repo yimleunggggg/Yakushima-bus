@@ -50,7 +50,7 @@
     "durationHint": 9,
     "type": "record",
     "recordId": "map",
-    "url": "/map/?lang=en"
+    "url": "/fare/?lang=en"
   },
   {
     "id": "access",
@@ -61,7 +61,7 @@
     "durationHint": 6,
     "type": "record",
     "recordId": "access",
-    "url": "/access/?lang=en"
+    "url": "/ferry/?lang=en"
   },
   {
     "id": "outro",

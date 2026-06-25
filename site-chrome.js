@@ -7,8 +7,8 @@
   const MAIN_NAV = [
     { href: "/guide/", key: "navGuide", active: /^\/guide\/?$/i },
     { href: "/", key: "navTime", active: /^\/$/ },
-    { href: "/map/", key: "navMap", active: /^\/map\/?$/i },
-    { href: "/access/", key: "navAccess", active: /^\/access\/?$/i },
+    { href: "/fare/", key: "navMap", active: /^\/fare\/?$/i },
+    { href: "/ferry/", key: "navAccess", active: /^\/ferry\/?$/i },
     { href: "/trekking/", key: "navTrek", active: /^\/trekking\/?$/i },
     { href: "/intro/", key: "navIntro", active: /^\/intro\/?$/i },
   ];
@@ -22,9 +22,9 @@
         en: "Historic sites, hot springs, shops, and verified bus stops. Navigate or check timetables.",
       },
       crossHtml: {
-        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/map/?lang=ja">運賃計算</a>',
-        zh: '<a href="/?lang=zh">查班次</a> · <a href="/map/?lang=zh">算运价</a>',
-        en: '<a href="/?lang=en">Timetable</a> · <a href="/map/?lang=en">Fares</a>',
+        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/fare/?lang=ja">運賃計算</a>',
+        zh: '<a href="/?lang=zh">查班次</a> · <a href="/fare/?lang=zh">查票价</a>',
+        en: '<a href="/?lang=en">Timetable</a> · <a href="/fare/?lang=en">Fares</a>',
       },
     },
     time: {
@@ -35,12 +35,12 @@
         en: "Official Yakushima bus timetables (Mar 2026). Find your next departure.",
       },
       crossHtml: {
-        ja: '<a href="/map/?lang=ja">運賃計算</a> · <a href="/guide/?lang=ja">スポット地図</a> · <a href="/access/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
-        zh: '<a href="/map/?lang=zh">算运价</a> · <a href="/guide/?lang=zh">便利设施地图</a> · <a href="/access/?lang=zh">船运上岛</a> · <a href="/without-car/?lang=zh">不租车攻略</a>',
-        en: '<a href="/map/?lang=en">Fares</a> · <a href="/guide/?lang=en">POI map</a> · <a href="/access/?lang=en">Ferry</a> · <a href="/without-car/?lang=en">Without a car</a>',
+        ja: '<a href="/fare/?lang=ja">運賃計算</a> · <a href="/guide/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
+        zh: '<a href="/fare/?lang=zh">查票价</a> · <a href="/guide/?lang=zh">便利设施地图</a> · <a href="/ferry/?lang=zh">船运上岛</a> · <a href="/without-car/?lang=zh">不租车攻略</a>',
+        en: '<a href="/fare/?lang=en">Fares</a> · <a href="/guide/?lang=en">POI map</a> · <a href="/ferry/?lang=en">Ferry</a> · <a href="/without-car/?lang=en">Without a car</a>',
       },
     },
-    map: {
+    fare: {
       titleKey: "navMapTitle",
       lead: {
         ja: "公式路線図と区間運賃（2026年3月改定）。停留所タップで時刻表へ。",
@@ -53,7 +53,7 @@
         en: '<a href="/?lang=en">Timetable</a> · <a href="/guide/?lang=en">POI map</a> · <a href="/without-car/?lang=en">Without a car</a>',
       },
     },
-    access: {
+    ferry: {
       titleKey: "navAccessTitle",
       lead: {
         ja: "鹿児島・指宿からの高速船・フェリー時刻と運賃。上島後のバス接続は時刻表へ。",
@@ -83,13 +83,13 @@
       titleKey: "navIntroTitle",
       lead: {
         ja: "屋久島バス時刻表・運賃・フェリー・観光マップを三語で。公式 PDF をもとに港やバス停でサッと調べられる独立ツール。",
-        zh: "屋久岛公交时刻表、运价、船运与观光地图三语网站；基于官方 PDF，适合港口与公交站路边查询。",
+        zh: "屋久岛公交时刻表、票价、船运与观光地图三语网站；基于官方 PDF，适合港口与公交站路边查询。",
         en: "Trilingual bus timetables, fares, ferry access, and POI map — built from official PDFs for travelers on the island.",
       },
       crossHtml: {
-        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/map/?lang=ja">運賃</a> · <a href="/guide/?lang=ja">スポット地図</a> · <a href="/access/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
-        zh: '<a href="/?lang=zh">时刻表</a> · <a href="/map/?lang=zh">运价</a> · <a href="/guide/?lang=zh">便利设施地图</a> · <a href="/access/?lang=zh">船运上岛</a> · <a href="/without-car/?lang=zh">不租车攻略</a>',
-        en: '<a href="/?lang=en">Timetable</a> · <a href="/map/?lang=en">Fares</a> · <a href="/guide/?lang=en">POI map</a> · <a href="/access/?lang=en">Ferry</a> · <a href="/without-car/?lang=en">Without a car</a>',
+        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/fare/?lang=ja">運賃</a> · <a href="/guide/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
+        zh: '<a href="/?lang=zh">时刻表</a> · <a href="/fare/?lang=zh">票价</a> · <a href="/guide/?lang=zh">便利设施地图</a> · <a href="/ferry/?lang=zh">船运上岛</a> · <a href="/without-car/?lang=zh">不租车攻略</a>',
+        en: '<a href="/?lang=en">Timetable</a> · <a href="/fare/?lang=en">Fares</a> · <a href="/guide/?lang=en">POI map</a> · <a href="/ferry/?lang=en">Ferry</a> · <a href="/without-car/?lang=en">Without a car</a>',
       },
     },
   };
@@ -127,7 +127,7 @@
       navGuideTitle: "便利设施地图",
       navTime: "时刻表",
       navTimeTitle: "公交时刻表",
-      navMap: "运价",
+      navMap: "票价",
       navMapTitle: "公交票价查询",
       navAccess: "船运",
       navAccessTitle: "船运·上岛",
@@ -239,11 +239,11 @@
     }
     nav.innerHTML = `<a href="${langQs("/")}">${t("navTime")}</a>
       <span class="footer-sep" aria-hidden="true">·</span>
-      <a href="${langQs("/map/")}">${t("navMap")}</a>
+      <a href="${langQs("/fare/")}">${t("navMap")}</a>
       <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/guide/")}">${t("navGuide")}</a>
       <span class="footer-sep" aria-hidden="true">·</span>
-      <a href="${langQs("/access/")}">${t("navAccess")}</a>
+      <a href="${langQs("/ferry/")}">${t("navAccess")}</a>
       <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/about/")}">${t("navAbout")}</a>
       <span class="footer-sep" aria-hidden="true">·</span>

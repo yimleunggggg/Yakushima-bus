@@ -5,8 +5,8 @@
   const MAIN_NAV = [
     { href: "/guide/", key: "navGuide", active: /^\/guide\/?$/i },
     { href: "/", key: "navTime", active: /^\/$/ },
-    { href: "/map/", key: "navMap", active: /^\/map\/?$/i },
-    { href: "/access/", key: "navAccess", active: /^\/access\/?$/i },
+    { href: "/fare/", key: "navMap", active: /^\/fare\/?$/i },
+    { href: "/ferry/", key: "navAccess", active: /^\/ferry\/?$/i },
     { href: "/trekking/", key: "navTrek", active: /^\/trekking\/?$/i },
     { href: "/intro/", key: "navIntro", active: /^\/intro\/?$/i },
   ];
@@ -33,7 +33,7 @@
       navGuideTitle: "便利设施地图",
       navTime: "时刻表",
       navTimeTitle: "公交时刻表",
-      navMap: "运价",
+      navMap: "票价",
       navMapTitle: "公交票价查询",
       navAccess: "船运",
       navAccessTitle: "船运·上岛",
@@ -77,7 +77,7 @@
   }
 
   function syncPageTitle(lang) {
-    if (!/^\/map\/?$/i.test(location.pathname)) return;
+    if (!/^\/(fare|map)\/?$/i.test(location.pathname)) return;
     const titleEl = document.getElementById("appTitle");
     if (titleEl) titleEl.textContent = t(lang, "navMapTitle");
   }

@@ -18,8 +18,9 @@ TRACKING_FILE = ROOT / "docs" / "seo" / "TRACKING.md"
 
 SITE_PAGES = [
     "https://yakushimabus.com/",
-    "https://yakushimabus.com/map/",
-    "https://yakushimabus.com/access/",
+    "https://yakushimabus.com/fare/",
+    "https://yakushimabus.com/ferry/",
+    "https://yakushimabus.com/guide/",
     "https://yakushimabus.com/about/",
 ]
 

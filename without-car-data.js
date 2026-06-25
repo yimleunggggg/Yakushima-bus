@@ -57,12 +57,12 @@ window.WITHOUT_CAR_DATA = {
         },
         {
           label: { ja: "屋久島バス路線図・料金", zh: "路线图·票价", en: "Bus map & fares" },
-          href: "/map/",
+          href: "/fare/",
           note: { ja: "運賃検索", zh: "运价查询", en: "Fare lookup" },
         },
         {
           label: { ja: "鹿児島↔屋久島 上島交通", zh: "鹿儿岛↔屋久岛 上岛", en: "Kagoshima ↔ Yakushima access" },
-          href: "/access/",
+          href: "/ferry/",
           note: { ja: "船・飛行機", zh: "船班", en: "Ferry" },
         },
         {

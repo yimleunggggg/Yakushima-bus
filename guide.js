@@ -105,6 +105,10 @@
     return (UI[lang] && UI[lang][key]) || UI.ja[key] || key;
   }
 
+  function track(name, params) {
+    window.BusAnalytics?.event(name, params);
+  }
+
   function pick(o) {
     if (o == null) return "";
     if (typeof o === "string" || typeof o === "number") return String(o);
@@ -402,6 +406,7 @@
         const cat = btn.dataset.cat;
         if (cat === "__bus__") {
           showBusStops = !showBusStops;
+          track("guide_filter", { category: "__bus__", enabled: showBusStops });
           renderFilters(data);
           updateBusStops();
           renderList(data);
@@ -409,10 +414,13 @@
         }
         if (cat === "__all__") {
           cats.forEach((c) => enabledCats.add(c));
+          track("guide_filter", { category: "__all__" });
         } else if (enabledCats.has(cat)) {
           enabledCats.delete(cat);
+          track("guide_filter", { category: cat, enabled: false });
         } else {
           enabledCats.add(cat);
+          track("guide_filter", { category: cat, enabled: true });
         }
         ensureCatsEnabled(data);
         renderFilters(data);
@@ -521,7 +529,10 @@
     els.list.querySelectorAll('.guide-list-item[data-kind="poi"]').forEach((item) => {
       const id = item.dataset.id;
       const spot = data.spots.find((s) => s.id === id);
-      const go = () => focusSpot(spot, data);
+      const go = () => {
+        track("guide_poi_select", { poi_id: id, category: (spot.categories || [])[0] || "" });
+        focusSpot(spot, data);
+      };
       item.addEventListener("click", go);
       item.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -533,7 +544,10 @@
 
     els.list.querySelectorAll('.guide-list-item[data-kind="bus"]').forEach((item) => {
       const id = item.dataset.id;
-      const go = () => focusBusStop(id);
+      const go = () => {
+        track("guide_stop_select", { stop_id: id });
+        focusBusStop(id);
+      };
       item.addEventListener("click", go);
       item.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {

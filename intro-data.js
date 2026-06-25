@@ -24,7 +24,7 @@ window.INTRO_DATA = {
           icon: "🗺",
           title: "路線図・運賃",
           body: "公式 PDF／モバイル画像プレビュー。停留所から時刻表・大人片道運賃の目安・乗車券情報。",
-          href: "/map/",
+          href: "/fare/",
         },
         {
           icon: "📍",
@@ -36,7 +36,7 @@ window.INTRO_DATA = {
           icon: "⛴",
           title: "上島交通",
           body: "鹿児島・指宿↔屋久島の高速船・フェリー・空港バス。上島後は時刻表で接続便を検索。",
-          href: "/access/",
+          href: "/ferry/",
         },
         {
           icon: "🥾",
@@ -65,7 +65,7 @@ window.INTRO_DATA = {
     zh: {
       navIntro: "介绍",
       title: "产品介绍",
-      lead: "屋久岛公交时刻表、运价、船运与观光地图三语网站。基于官方 PDF 整理，适合在港口、公交站路边快速查询。",
+      lead: "屋久岛公交时刻表、票价、船运与观光地图三语网站。基于官方 PDF 整理，适合在港口、公交站路边快速查询。",
       videoTitle: "产品演示",
       videoHintBase: "时长 {duration} · 英文旁白",
       features: [
@@ -79,7 +79,7 @@ window.INTRO_DATA = {
           icon: "🗺",
           title: "路线图与运价",
           body: "官方 PDF / 手机高清图预览；选站点查时刻表、成人单程参考价与悠享乘车券说明。",
-          href: "/map/",
+          href: "/fare/",
         },
         {
           icon: "📍",
@@ -91,7 +91,7 @@ window.INTRO_DATA = {
           icon: "⛴",
           title: "船运·上岛",
           body: "鹿儿岛·指宿↔屋久岛 高速船、渡轮、机场巴士；上岛后用时刻表查接驳公交。",
-          href: "/access/",
+          href: "/ferry/",
         },
         {
           icon: "🥾",
@@ -135,7 +135,7 @@ window.INTRO_DATA = {
           icon: "🗺",
           title: "Routes & fares",
           body: "Official PDFs and mobile map previews; stop lookup, adult fare estimates, and day-pass info.",
-          href: "/map/",
+          href: "/fare/",
         },
         {
           icon: "📍",
@@ -147,7 +147,7 @@ window.INTRO_DATA = {
           icon: "⛴",
           title: "Ferry & access",
           body: "Jetfoil, ferry, and airport bus between Kagoshima, Ibusuki, and Yakushima. Bus connections after you land.",
-          href: "/access/",
+          href: "/ferry/",
         },
         {
           icon: "🥾",
