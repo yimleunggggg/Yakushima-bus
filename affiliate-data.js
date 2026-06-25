@@ -1,0 +1,202 @@
+/** 联盟链 — Klook + Viator；官方预约/时刻仍为主链 */
+window.AFFILIATE_DATA = {
+  disclosure: {
+    ja: "一部の外部リンクはアフィリエイトです（Klook・Viator 等）。交通の時刻・運賃は各公式情報を優先してください。",
+    zh: "部分外链为联盟营销链接（Klook、Viator 等）；交通时刻与票价请以各运营商官方信息为准。",
+    en: "Some links are affiliate links (Klook, Viator, etc.). Timetables and fares follow official operator sources.",
+  },
+  /** Viator 等 — 带评分，按 pages 出现在对应页面 */
+  experiences: [
+    {
+      id: "viator_jetfoil_day",
+      partner: "viator",
+      productCode: "43454P739",
+      placement: "viator_jetfoil_day",
+      pages: ["ferry", "trekking", "without-car"],
+      tags: ["day_trip", "jetfoil", "trekking", "shiratani"],
+      url: "https://www.viator.com/tours/Kagoshima-Prefecture/Day-trip-to-Yakushima-by-high-speed-Jetfoil-Toppy-from-Kagoshima/d50190-43454P739?pid=P00307180&mcid=42383&medium=link&medium_version=selector",
+      title: {
+        ja: "鹿児島発・高速船屋久島日帰り（白谷雲水峡ハイキング）",
+        zh: "鹿儿岛出发 · 高速船屋久岛一日游（白谷徒步）",
+        en: "Yakushima day trip by jetfoil from Kagoshima (Shiratani hike)",
+      },
+      body: {
+        ja: "トッピー往復＋英語ガイド付き森林ハイキング。時間がない方向けの定番コース。",
+        zh: "含 Toppy 往返高速船与英文向导森林徒步，适合时间紧的屋久岛一日游。",
+        en: "Round-trip Toppy jetfoil plus guided Shiratani forest hike — classic day tour.",
+      },
+      rating: 5.0,
+      reviewCount: 56,
+      statsUpdated: "2026-05-20",
+      cta: { ja: "Viator で見る", zh: "在 Viator 预订", en: "Book on Viator" },
+    },
+    {
+      id: "viator_private_sights",
+      partner: "viator",
+      productCode: "43454P373",
+      placement: "viator_private_sights",
+      pages: ["without-car", "map"],
+      tags: ["day_trip", "sightseeing", "private"],
+      url: "https://www.viator.com/tours/Kagoshima-Prefecture/Yakushima-Private-Island-Sights-Tour-with-ENGLISH-Speaking-Guide/d50190-43454P373?pid=P00307180&mcid=42383&medium=link&medium_version=selector",
+      title: {
+        ja: "屋久島プライベート島内観光（英語ガイド）",
+        zh: "屋久岛私人环岛观光（英文向导）",
+        en: "Private Yakushima sights tour (English guide)",
+      },
+      body: {
+        ja: "永田いなか浜・大川の滝など。貸切で柔軟な島内体験。",
+        zh: "永田海滩、大川瀑布等景点，私人团灵活安排当地体验。",
+        en: "Nagata beach, Ohko Falls & more — flexible private island tour.",
+      },
+      rating: 4.9,
+      reviewCount: 28,
+      statsUpdated: "2026-05-20",
+      cta: { ja: "Viator で見る", zh: "在 Viator 预订", en: "Book on Viator" },
+    },
+    {
+      id: "viator_snorkel_turtle",
+      partner: "viator",
+      productCode: "306889P1",
+      placement: "viator_snorkel_turtle",
+      pages: ["without-car", "map"],
+      tags: ["snorkeling", "marine", "turtle", "family", "day_trip"],
+      url: "https://www.viator.com/tours/Kagoshima-Prefecture/%E5%B1%8B%E4%B9%85%E5%B3%B6-%E3%82%B7%E3%83%A5%E3%83%8E%E3%82%B1%E3%83%AA%E3%83%B3%E3%82%AF-%E6%86%A7%E3%82%8C%E3%81%AE%E3%82%A6%E3%83%9F%E3%82%AB%E3%83%A1%E3%81%AB%E4%BC%9A%E3%81%84%E3%81%9F%E3%81%84-%E3%82%A6%E3%83%9F%E3%82%AB%E3%83%A1%E3%81%A8%E6%B3%B3%E3%81%8E%E3%82%B7%E3%83%A5%E3%83%8E%E3%82%B1%E3%83%AA%E3%83%B3%E3%82%AF%E3%83%84%E3%82%A2-3%E6%99%82%E9%96%93/d50190-306889P1?pid=P00307180&mcid=42383&medium=link&medium_version=selector",
+      title: {
+        ja: "ウミガメシュノーケリング（約3時間）",
+        zh: "与海龟同游浮潜体验（约 3 小时）",
+        en: "Sea turtle snorkeling tour (~3 hr)",
+      },
+      body: {
+        ja: "初心者向け。水中動画付き。遭遇は海況次第（保証なし）。",
+        zh: "适合初学者，含水下视频；能否遇到海龟视海况而定。",
+        en: "Beginner-friendly with underwater video; turtle sightings depend on conditions.",
+      },
+      rating: 4.9,
+      reviewCount: 24,
+      statsUpdated: "2026-05-20",
+      cta: { ja: "Viator で見る", zh: "在 Viator 预订", en: "Book on Viator" },
+    },
+  ],
+  items: {
+    jetfoil: {
+      partner: "klook",
+      adid: "1316221",
+      placement: "ferry_jetfoil",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316221&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F161058-round-trip-ticket-for-high-speed-jetfoil-toppy-or-rocket-to-yakushima",
+      image: "/images/affiliate/jetfoil-klook.png",
+      cta: {
+        ja: "Klook で予約（お得）",
+        zh: "Klook 预订（优惠）",
+        en: "Book on Klook (deals)",
+      },
+      hint: {
+        ja: "中国語・クレジットカード向け。料金・取消は Klook の規約に従います。",
+        zh: "支持中文界面与信用卡；价格与退改以 Klook 规则为准。",
+        en: "Chinese UI and cards; price and cancellation follow Klook.",
+      },
+    },
+    hiking: {
+      partner: "klook",
+      adid: "1316225",
+      placement: "trekking_jomon",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316225&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F150846-yakushima-hiking-tour",
+      image: "/images/affiliate/hiking-klook.png",
+      title: {
+        ja: "ガイド付き日帰り（縄文杉など）",
+        zh: "跟团一日游（绳文杉等）",
+        en: "Guided day hike (Jomon Sugi, etc.)",
+      },
+      body: {
+        ja: "小団（最大6名）・装備レンタル可。バス接続は上の時刻表・運賃ページで別途確認。",
+        zh: "小团（最多 6 人），可租装备。公交衔接请另查本站时刻表与票价。",
+        en: "Small groups (up to 6), gear rental available. Check our bus timetable for connections.",
+      },
+      cta: {
+        ja: "Klook で見る",
+        zh: "在 Klook 查看",
+        en: "View on Klook",
+      },
+    },
+    destYakushima: {
+      partner: "klook",
+      adid: "1316230",
+      placement: "dest_yakushima",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316230&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Fdestination%2Fc21043%2F",
+      label: {
+        ja: "屋久島の体験・チケット",
+        zh: "屋久岛活动与门票",
+        en: "Yakushima activities & tickets",
+      },
+    },
+    destKagoshima: {
+      partner: "klook",
+      adid: "1316233",
+      placement: "dest_kagoshima",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316233&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Fdestination%2Fc5209%2F",
+      label: {
+        ja: "鹿児島の体験・交通",
+        zh: "鹿儿岛活动与交通",
+        en: "Kagoshima activities & transport",
+      },
+    },
+    jrKyushu: {
+      partner: "klook",
+      adid: "1316236",
+      placement: "jr_kyushu",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316236&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F2371-jr-kyushu-jr-pass",
+      label: {
+        ja: "JR 九州パス（鹿児島まで）",
+        zh: "九州 JR Pass（到鹿儿岛）",
+        en: "JR Kyushu Pass (to Kagoshima)",
+      },
+      note: {
+        ja: "九州各地を鉄道で回る場合",
+        zh: "经九州多地火车到鹿儿岛时",
+        en: "If touring Kyushu by train before the island",
+      },
+    },
+    jrJapan7: {
+      partner: "klook",
+      adid: "1316237",
+      placement: "jr_japan_7",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316237&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F1420-7-day-whole-japan-rail-pass-jr-pass",
+      label: {
+        ja: "JR 全日本パス（7日）",
+        zh: "日本全境 JR Pass（7 日）",
+        en: "Japan Rail Pass (7 days)",
+      },
+      note: {
+        ja: "全国周遊の長期行程向け",
+        zh: "适合跨多地区的长行程",
+        en: "For multi-region trips across Japan",
+      },
+    },
+  },
+  blocks: {
+    experiencesTitle: {
+      ja: "屋久島の現地体験・日帰りツアー",
+      zh: "屋久岛当地体验 · 一日游",
+      en: "Yakushima tours & local experiences",
+    },
+    experiencesLead: {
+      ja: "Viator の高評価ツアー（英語ガイド・日帰り・ダイビング等）。バス時刻は本サイト、予約・取消は各プラットフォームの規約に従います。",
+      zh: "以下为 Viator 高评分当地体验：屋久岛一日游、徒步、潜水等。岛上公交时刻见本站；预订与退改以平台规则为准。",
+      en: "Top-rated Viator tours — day trips, trekking & diving. Bus times on this site; booking rules on each platform.",
+    },
+    experiencesStatsNote: {
+      ja: "評価・件数は Viator 表示（{date} 時点）",
+      zh: "评分与评价数来自 Viator（截至 {date}）",
+      en: "Rating & review count from Viator (as of {date})",
+    },
+    ferryBottomSummary: {
+      ja: "お得に購入（JR・チケット）",
+      zh: "优惠购票（JR · 船票等）",
+      en: "Deals (JR & tickets)",
+    },
+    ferryBottomLead: {
+      ja: "第三者サイトへのリンクです。島内に JR はありません。時刻・運賃は上記公式情報を優先してください。",
+      zh: "以下为第三方预订链接；岛上无 JR。船班时刻与票价请以上方官方信息为准。",
+      en: "Third-party booking links. No JR on the island — timetables above stay official.",
+    },
+  },
+};

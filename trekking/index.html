@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="屋久島トレッキングコース参考：縄文杉・太鼓岩・宮之浦岳など。難易度・所要時間とバス時刻表へのリンク。Yakushima trekking course reference with bus connections.">
+  <meta name="description" content="屋久島トレッキング参考：縄文杉・太鼓岩・宮之浦岳。難易度とバス接続。屋久岛徒步一日游・当地体验（Viator）参考。Yakushima trekking & guided day tours.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#143a35">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -13,10 +13,10 @@
   <meta property="og:url" content="https://yakushimabus.com/trekking/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <title>登山・トレッキング参考 | 屋久岛徒步 | Yakushima Trekking</title>
-  <link rel="stylesheet" href="/styles.css?v=layout-v84">
+  <link rel="stylesheet" href="/styles.css?v=layout-v87">
   <script src="/analytics.js"></script>
-  <script src="/analytics-events.js?v=analytics-v2" defer></script>
-  <script src="/site-chrome.js?v=chrome-v14" defer></script>
+  <script src="/analytics-events.js?v=analytics-v3" defer></script>
+  <script src="/site-chrome.js?v=chrome-v15" defer></script>
 </head>
 <body class="app-page-narrow">
   <div class="app trek-page">
@@ -73,6 +73,8 @@
     <footer class="app-footer"></footer>
   </div>
 
+  <script src="/affiliate-data.js?v=aff-v5"></script>
+  <script src="/affiliate-ui.js?v=aff-v5"></script>
   <script src="/trekking-data.js?v=trek-v4"></script>
   <script src="/app-core.js"></script>
   <script>
@@ -151,6 +153,8 @@
           ]
             .filter(Boolean)
             .join("");
+          const affiliate =
+            window.AffiliateUI ? AffiliateUI.trekkingOfferHtml(lang, c.id) : "";
           return `<article class="trek-card panel" id="${c.id}">
             <h3 class="trek-card-title">${pick(c.title)}</h3>
             <dl class="trek-stats">
@@ -161,6 +165,7 @@
               <div><dt>${pick(L.elevation)}</dt><dd>${pick(c.elevation)}</dd></div>
             </dl>
             <div class="trek-card-links">${links}</div>
+            ${affiliate}
           </article>`;
         })
         .join("");

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="屋久島をレンタカーなしで回る：バス時刻表・路線図・料金・上島交通。宮之浦港・白谷・荒川登山口。How to travel Yakushima without a car — bus timetable & map 2026.">
-  <meta name="keywords" content="屋久島,レンタカーなし,バス,交通,屋久岛,不租车,公交,Yakushima,without a car,bus">
+  <meta name="description" content="屋久島をレンタカーなしで回る：バス時刻表・路線図・料金・上島交通。現地体験・日帰りツアー（Viator）も参考掲載。How to travel Yakushima without a car — bus tools & day tours.">
+  <meta name="keywords" content="屋久島,レンタカーなし,バス,交通,屋久岛,不租车,公交,一日游,徒步,当地体验,潜水,Yakushima,without a car,bus,day trip,trekking">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#143a35">
   <meta name="geo.region" content="JP-46">
@@ -31,10 +31,10 @@
     "isPartOf": { "@type": "WebSite", "name": "Yakushima Bus", "url": "https://yakushimabus.com/" }
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v84">
+  <link rel="stylesheet" href="/styles.css?v=layout-v87">
   <script src="/analytics.js"></script>
-    <script src="/analytics-events.js?v=analytics-v2" defer></script>
-  <script src="/site-chrome.js?v=chrome-v14" defer></script>
+  <script src="/analytics-events.js?v=analytics-v3" defer></script>
+  <script src="/site-chrome.js?v=chrome-v15" defer></script>
 </head>
 <body class="app-page-narrow">
   <div class="app without-car-page">
@@ -67,11 +67,15 @@
 
     <div id="sections"></div>
 
+    <div id="affiliateExperiences"></div>
+
     <p class="without-car-note panel" id="passNote"></p>
 
     <footer class="app-footer"></footer>
   </div>
 
+  <script src="/affiliate-data.js?v=aff-v5"></script>
+  <script src="/affiliate-ui.js?v=aff-v5"></script>
   <script src="/without-car-data.js?v=1"></script>
   <script>
     const NAV_UI = {
@@ -111,6 +115,11 @@
           return `<section class="panel without-car-section"><h2 class="without-car-heading">${pick(sec.title)}</h2><ul class="without-car-list">${items}</ul></section>`;
         })
         .join("");
+
+      const affEl = document.getElementById("affiliateExperiences");
+      if (affEl && window.AffiliateUI) {
+        affEl.innerHTML = AffiliateUI.experiencesSectionHtml(lang, "without-car");
+      }
 
       document.querySelectorAll("[data-i18n]").forEach((el) => {
         const key = el.getAttribute("data-i18n");

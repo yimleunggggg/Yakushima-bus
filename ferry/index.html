@@ -52,10 +52,10 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v84">
+  <link rel="stylesheet" href="/styles.css?v=layout-v87">
   <script src="/analytics.js"></script>
-  <script src="/analytics-events.js?v=analytics-v2" defer></script>
-  <script src="/site-chrome.js?v=chrome-v14" defer></script>
+  <script src="/analytics-events.js?v=analytics-v3" defer></script>
+  <script src="/site-chrome.js?v=chrome-v15" defer></script>
 </head>
 <body class="app-page-narrow">
   <div class="app">
@@ -102,6 +102,8 @@
 
     <div id="sections"></div>
 
+    <div id="affiliateFerryBottom"></div>
+
     <div class="panel panel-aux">
       <div class="aux-sections aux-in-panel">
         <details class="aux-block">
@@ -117,6 +119,8 @@
     <footer class="app-footer"></footer>
   </div>
 
+  <script src="/affiliate-data.js?v=aff-v5"></script>
+  <script src="/affiliate-ui.js?v=aff-v5"></script>
   <script src="/access-data.js?v=booking-v3"></script>
   <script src="/section-divider.js"></script>
   <script src="/app-core.js"></script>
@@ -140,6 +144,7 @@
       pageSeoLead: document.getElementById("pageSeoLead"),
       pageCross: document.getElementById("pageCross"),
       bookingCards: document.getElementById("bookingCards"),
+      affiliateFerryBottom: document.getElementById("affiliateFerryBottom"),
       sections: document.getElementById("sections"),
       sourceLinks: document.getElementById("sourceLinks"),
       disclaimer: document.getElementById("disclaimer"),
@@ -160,9 +165,13 @@
       const b = ACCESS_DATA.booking;
       if (!b || !els.bookingCards) return;
       const cards = [];
-      b.items.forEach((item, i) => {
+      b.items.forEach((item) => {
         const badge = item.badge ? `<span class="access-booking-badge">${pick(item.badge)}</span>` : "";
         const duration = item.duration ? `<span class="access-booking-duration">${pick(item.duration)}</span>` : "";
+        const affiliate =
+          item.id === "jetfoil" && window.AffiliateUI
+            ? AffiliateUI.jetfoilSecondaryHtml(lang)
+            : "";
         cards.push(`<article class="access-booking-card access-booking-card--${item.id}">
           <div class="access-booking-head">
             <div class="access-booking-name-row">
@@ -174,6 +183,7 @@
           <p class="access-booking-body">${pick(item.body)}</p>
           <div class="access-booking-actions">
             <a class="access-booking-btn access-booking-btn-primary" href="${item.ctaUrl}" target="_blank" rel="noopener">${pick(item.ctaLabel)}</a>
+            ${affiliate}
           </div>
         </article>`);
       });
@@ -308,6 +318,9 @@
       });
       flushMode();
       els.sections.innerHTML = blocks.join("");
+      if (els.affiliateFerryBottom && window.AffiliateUI) {
+        els.affiliateFerryBottom.innerHTML = AffiliateUI.ferryBottomHtml(lang);
+      }
       els.sourceLinks.innerHTML = ACCESS_DATA.links.map((l) =>
         `<a href="${ACCESS_DATA.meta.sources[l.key]}" target="_blank" rel="noopener">${pick(l.label)}</a>`
       ).join("");

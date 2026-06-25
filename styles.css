@@ -1529,7 +1529,231 @@ body.modal-open {
   color: #fff;
   border-color: var(--primary);
 }
+.access-booking-btn-affiliate {
+  background: var(--bg);
+  color: var(--primary-dark);
+  border-color: var(--border);
+}
+.access-booking-affiliate-hint {
+  flex: 1 1 100%;
+  margin: 2px 0 0;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
 .access-booking-btn:active { opacity: 0.92; }
+
+.affiliate-foot {
+  margin-top: 10px;
+}
+.affiliate-foot-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  cursor: pointer;
+  list-style: none;
+}
+.affiliate-foot-summary::-webkit-details-marker {
+  display: none;
+}
+.affiliate-foot .aux-body {
+  padding: 0 12px 12px;
+}
+.affiliate-block {
+  margin-top: 10px;
+}
+.affiliate-block-title,
+.without-car-section .affiliate-block-lead:first-of-type {
+  margin: 0 0 6px;
+}
+.affiliate-block-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+.affiliate-block-lead {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.affiliate-link-list {
+  margin: 0;
+  padding: 0 0 0 1.1em;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+.affiliate-link-list li + li {
+  margin-top: 4px;
+}
+.affiliate-inline-note {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+.affiliate-link {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+.affiliate-offer {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.affiliate-offer-img {
+  flex: 0 0 auto;
+  width: 96px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  background: var(--bg-muted);
+}
+.affiliate-offer-body {
+  flex: 1;
+  min-width: 0;
+}
+.affiliate-offer-title {
+  margin: 0 0 4px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+.affiliate-offer-text {
+  margin: 0 0 6px;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+.affiliate-offer-btn {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--primary-dark);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.app-footer-affiliate {
+  margin: 8px 0 0;
+  font-size: 0.65rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.affiliate-section-title {
+  margin: 0 0 6px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+.affiliate-experiences {
+  margin-top: 10px;
+}
+.affiliate-card-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.affiliate-card {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+  background: var(--bg);
+}
+.affiliate-card-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.affiliate-card-title {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.affiliate-card-link {
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+.affiliate-card-link:hover {
+  text-decoration: underline;
+}
+.affiliate-card-body {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.affiliate-card-cta {
+  margin-top: 2px;
+}
+.affiliate-card-stats-date {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+.affiliate-trust {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  font-size: 0.68rem;
+  line-height: 1.3;
+}
+.affiliate-trust-stars {
+  color: #c9a227;
+  letter-spacing: -0.04em;
+}
+.affiliate-trust-dim {
+  color: color-mix(in srgb, var(--text-muted) 55%, transparent);
+}
+.affiliate-trust-score {
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+.affiliate-trust-count {
+  color: var(--text-muted);
+}
+.affiliate-trust-via {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  color: var(--primary-dark);
+  font-size: 0.62rem;
+  font-weight: 600;
+}
+.trek-affiliate-offer--viator .affiliate-card {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+#affiliateMapExperiences {
+  margin: 12px 10px 0;
+  max-width: min(56rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 768px) {
+  .affiliate-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 10px;
+  }
+}
 
 @media (min-width: 768px) {
   .access-booking {

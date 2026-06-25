@@ -25,6 +25,17 @@
         return;
       }
 
+      const aff = e.target.closest("a[data-affiliate-id]");
+      if (aff) {
+        event("affiliate_click", {
+          partner: aff.dataset.affiliatePartner || "klook",
+          adid: aff.dataset.affiliateId || "",
+          placement: aff.dataset.affiliatePlacement || "",
+          link_url: aff.getAttribute("href") || "",
+        });
+        return;
+      }
+
       const footerA = e.target.closest(".app-footer-links a[href]");
       if (footerA) {
         event("footer_click", { link_url: footerA.getAttribute("href") || "" });

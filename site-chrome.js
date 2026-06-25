@@ -120,8 +120,9 @@
       lowSubmit: "送信",
       thanks: "ありがとうございます！",
       thanksHigh: "うれしいです。ありがとうございます！",
+      affiliateDisclosure:
+        "一部の外部リンクはアフィリエイトです。交通の時刻・運賃は各公式情報を優先してください。",
     },
-    zh: {
       navAria: "主菜单",
       navGuide: "地图",
       navGuideTitle: "便利设施地图",
@@ -146,8 +147,9 @@
       lowSubmit: "提交反馈",
       thanks: "感谢你的反馈！",
       thanksHigh: "很高兴能帮到你，谢谢！",
+      affiliateDisclosure:
+        "部分外链为联盟营销链接（Klook、Viator 等）；交通时刻与票价请以各运营商官方信息为准。",
     },
-    en: {
       navAria: "Main menu",
       navGuide: "Map",
       navGuideTitle: "Island POI map",
@@ -172,6 +174,8 @@
       lowSubmit: "Send feedback",
       thanks: "Thanks for your feedback!",
       thanksHigh: "Glad it helped — thank you!",
+      affiliateDisclosure:
+        "Some outbound links are affiliate links. Timetables and fares follow official operator sources.",
     },
   };
 
@@ -248,6 +252,13 @@
       <a href="${langQs("/about/")}">${t("navAbout")}</a>
       <span class="footer-sep" aria-hidden="true">·</span>
       <a href="https://ko-fi.com/yimleung" target="_blank" rel="noopener noreferrer">${t("supportKofi")}</a>`;
+    let aff = footer.querySelector(".app-footer-affiliate");
+    if (!aff) {
+      aff = document.createElement("p");
+      aff.className = "app-footer-affiliate";
+      footer.appendChild(aff);
+    }
+    aff.textContent = t("affiliateDisclosure");
   }
 
   function mountFeedback(footer) {

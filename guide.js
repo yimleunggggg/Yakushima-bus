@@ -715,10 +715,18 @@
     const boot = () => {
       applyI18n(data);
       placeGuideFoot();
+      map?.invalidateSize();
+      const affEl = document.getElementById("affiliateMapExperiences");
+      if (affEl && window.AffiliateUI) {
+        affEl.innerHTML = AffiliateUI.experiencesSectionHtml(lang, "map");
+      }
     };
-    if (window.SiteChrome) boot();
-    else document.addEventListener("DOMContentLoaded", boot, { once: true });
-    document.addEventListener("yakushima-bus-lang", () => boot(), { once: false });
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", boot, { once: true });
+    } else {
+      boot();
+    }
+    document.addEventListener("yakushima-bus-lang", () => boot());
 
     placeGuideFoot();
     window.addEventListener("resize", onGuideViewportChange);
