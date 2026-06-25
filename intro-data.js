@@ -77,7 +77,7 @@ window.INTRO_DATA = {
         },
         {
           icon: "🗺",
-          title: "路线图与运价",
+          title: "路线图与票价",
           body: "官方 PDF / 手机高清图预览；选站点查时刻表、成人单程参考价与悠享乘车券说明。",
           href: "/fare/",
         },
