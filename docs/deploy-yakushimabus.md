@@ -170,7 +170,7 @@ python3 scripts/seo_site_uptime.py
 5. 再跑 `python3 scripts/seo_site_uptime.py`，四页应 **200**
 6. GSC → URL 检查 →「测试实际网址」确认 Live 200；必要时重新请求编入索引
 
-**监控**：SEO 日报 Actions 第一步会跑 `seo_site_uptime.py`，非 200 发 ntfy **urgent**。见 `docs/seo/tutorial/06-日报与优化追踪.md`。
+**监控**：SEO 日报 Actions 第一步会跑 `seo_site_uptime.py`，非 200 发 ntfy **urgent**。见教程 [06-日报与优化追踪](https://github.com/yimleunggggg/vibe-coding-static-site-guide/blob/main/seo/tutorial/06-日报与优化追踪.md)。
 
 **DNS 说明**：腾讯云仅 2 条 A 记录（`185.199.108/109.153`）通常够用，**不是**本次 404 主因。
 

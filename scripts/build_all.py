@@ -79,6 +79,8 @@ def main():
     if args.map or all_:
         print("→ map-data.js")
         run_map()
+        print("→ bus-stops-geo.js")
+        subprocess.check_call([sys.executable, str(ROOT / "scripts" / "build_stop_geo.py")], cwd=ROOT)
     if args.access or all_:
         print("→ access-data.js")
         subprocess.check_call([sys.executable, str(ROOT / "scripts" / "build_access_data.py")], cwd=ROOT)

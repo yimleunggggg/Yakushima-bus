@@ -22,6 +22,7 @@ const ABOUT_DATA = {
   contact: {
     email: "yimleung.ly@gmail.com",
     instagram: "https://www.instagram.com/yiiimleung/",
+    kofi: "https://ko-fi.com/yimleung",
     instagramLabel: {
       ja: "Instagram @yiiimleung",
       zh: "Instagram @yiiimleung",

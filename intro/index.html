@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Yakushima Bus product tour — trilingual bus timetable, routes, fares and ferry access for Yakushima Island.">
+  <meta name="description" content="屋久岛公交时刻表、运价、船运、观光地图与登山参考的三语工具站介绍。Yakushima bus timetable, fares, ferry & POI map — product tour.">
+  <meta name="keywords" content="屋久岛,公交,时刻表,运价,屋久島,バス,時刻表,Yakushima,bus,timetable">
   <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#143a35">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -13,18 +14,23 @@
   <meta property="og:url" content="https://yakushimabus.com/intro/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <title>製品紹介 | 产品介绍 | Yakushima Bus Intro</title>
-  <link rel="stylesheet" href="/styles.css?v=layout-v56">
+  <link rel="stylesheet" href="/styles.css?v=layout-v82">
   <script src="/analytics.js"></script>
+  <script src="/analytics-events.js" defer></script>
+  <script src="/site-chrome.js?v=chrome-v10" defer></script>
 </head>
 <body class="app-page-narrow">
   <div class="app intro-page">
     <div class="app-nav-sticky">
-      <nav class="nav nav-main nav-main--4" id="mainNav" aria-label="Main">
-        <a href="/" data-i18n="navTime">時刻表</a>
-        <a href="/map/" data-i18n="navMap">路線</a>
-        <a href="/access/" data-i18n="navAccess">上島</a>
-        <a href="/intro/" class="active" aria-current="page" data-i18n="navIntro">紹介</a>
+      <nav class="nav nav-main nav-main--6" id="mainNav" aria-label="Main">
+        <a href="/guide/">マップ</a>
+        <a href="/">時刻表</a>
+        <a href="/map/">運賃</a>
+        <a href="/access/">フェリー</a>
+        <a href="/trekking/">登山</a>
+        <a href="/intro/" class="active" aria-current="page">紹介</a>
       </nav>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v10"></script>
     </div>
 
     <header class="intro-hero">
@@ -38,6 +44,7 @@
       </div>
       <h1 id="introTitle">Yakushima Bus とは</h1>
       <p class="intro-hero-lead" id="introLead"></p>
+      <p class="app-meta meta-links" id="introCross"></p>
     </header>
 
     <section class="intro-video-block panel" aria-labelledby="introVideoTitle">
@@ -64,31 +71,20 @@
       <div id="introSourcesBody"></div>
     </section>
 
-    <footer class="app-footer">
-      <nav class="app-footer-links" aria-label="Site pages">
-        <a href="/" data-i18n="navTime">バス時刻表</a>
-        <span class="footer-sep" aria-hidden="true">·</span>
-        <a href="/map/" data-i18n="navMap">路線・運賃</a>
-        <span class="footer-sep" aria-hidden="true">·</span>
-        <a href="/access/" data-i18n="navAccess">フェリー等</a>
-        <span class="footer-sep" aria-hidden="true">·</span>
-        <a href="/about/" data-i18n="navAbout">About</a>
-      </nav>
-    </footer>
+    <section class="intro-support panel" id="introSupport" aria-labelledby="introSupportTitle" hidden></section>
+
+    <footer class="app-footer"></footer>
   </div>
 
-  <script src="/sources-data.js?v=1"></script>
-  <script src="/intro-data.js?v=intro-v5"></script>
+  <script src="/sources-data.js?v=3"></script>
+  <script src="/intro-data.js?v=intro-v11"></script>
+  <script src="/app-core.js"></script>
   <script>
-    const NAV_UI = {
-      ja: { navAria: "メインメニュー", navTime: "時刻表", navMap: "路線", navAccess: "上島", navIntro: "紹介", navAbout: "About" },
-      zh: { navAria: "主菜单", navTime: "时刻表", navMap: "路线", navAccess: "上岛", navIntro: "介绍", navAbout: "关于" },
-      en: { navAria: "Main menu", navTime: "Times", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About" },
-    };
+    const NAV_UI = {};
 
     let lang = localStorage.getItem("yakushima-bus-lang") || "ja";
     let introVideoSec = 0;
-    const t = (key) => (NAV_UI[lang] && NAV_UI[lang][key]) || NAV_UI.ja[key] || key;
+    const t = (key) => (NAV_UI[lang] && NAV_UI[lang][key]) || NAV_UI.ja?.[key] || key;
 
     function pick(o) {
       if (o == null) return "";
@@ -108,16 +104,23 @@
           const items = (g.items || [])
             .map((item) => {
               const note = item.note ? pick(item.note) : "";
-              const noteHtml = `<span class="about-source-note">${note}</span>`;
+              const noteHtml = note ? `<span class="about-source-note">${note}</span>` : "";
               const isTel = String(item.url).startsWith("tel:");
               const ext = isTel ? "" : ' target="_blank" rel="noopener noreferrer"';
               return `<a href="${item.url}"${ext}><span class="about-source-label">${pick(item.label)}</span>${noteHtml}</a>`;
             })
             .join("");
-          return `<div class="about-sources-group">
-            <h3 class="about-sources-heading">${pick(g.title)}</h3>
-            <div class="links about-sources-links">${items}</div>
-          </div>`;
+          const count = (g.items || []).length;
+          const title = pick(g.title);
+          return `<details class="intro-sources-fold">
+            <summary class="intro-sources-summary">
+              <span class="intro-sources-summary-label">${title}</span>
+              <span class="intro-sources-summary-meta"><span class="intro-sources-count">${count}</span><span class="aux-chevron" aria-hidden="true"></span></span>
+            </summary>
+            <div class="intro-sources-fold-body">
+              <div class="links about-sources-links">${items}</div>
+            </div>
+          </details>`;
         })
         .join("");
       el.innerHTML = intro + groups;
@@ -143,17 +146,26 @@
       return base.replace("{duration}", formatDuration(introVideoSec, l));
     }
 
+    function featureHref(href) {
+      if (!href || href.startsWith("#")) return href;
+      const sep = href.includes("?") ? "&" : "?";
+      return `${href}${sep}lang=${lang}`;
+    }
+
     function render() {
       const c = INTRO_DATA.content[lang] || INTRO_DATA.content.ja;
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
       document.getElementById("introTitle").textContent = c.title;
       document.getElementById("introLead").textContent = c.lead;
+      if (window.SiteChrome) {
+        SiteChrome.applyPageHead("intro", { crossEl: document.getElementById("introCross"), lang });
+      }
       document.getElementById("introVideoTitle").textContent = c.videoTitle;
       document.getElementById("introVideoHint").textContent = videoHintText(c, lang);
       document.getElementById("introFeatures").innerHTML = c.features
         .map(
           (f) => `
-        <a class="intro-feature panel" href="${f.href}">
+        <a class="intro-feature panel" href="${featureHref(f.href)}">
           <span class="intro-feature-icon" aria-hidden="true">${f.icon}</span>
           <h3 class="intro-feature-title">${f.title}</h3>
           <p class="intro-feature-body">${f.body}</p>
@@ -161,11 +173,27 @@
         )
         .join("");
 
+      const supportEl = document.getElementById("introSupport");
+      if (c.support && supportEl) {
+        supportEl.hidden = false;
+        supportEl.innerHTML = `
+          <div class="intro-support-card">
+            <div class="intro-support-copy">
+              <h2 class="intro-section-title" id="introSupportTitle">${c.support.title}</h2>
+              <p class="intro-support-body">${c.support.body}</p>
+            </div>
+            <div class="intro-support-action">
+              <a class="intro-kofi-btn" href="https://ko-fi.com/yimleung" target="_blank" rel="noopener noreferrer">
+                <img src="https://storage.ko-fi.com/cdn/kofi2.png?v=3" width="150" height="36" alt="Ko-fi">
+              </a>
+            </div>
+          </div>`;
+      }
+
       document.querySelectorAll("[data-i18n]").forEach((el) => {
         const key = el.getAttribute("data-i18n");
-        if (NAV_UI[lang][key]) el.textContent = NAV_UI[lang][key];
+        if (NAV_UI[lang]?.[key]) el.textContent = NAV_UI[lang][key];
       });
-      document.getElementById("mainNav").setAttribute("aria-label", t("navAria"));
       renderSources();
     }
 
@@ -173,13 +201,12 @@
       const btn = e.target.closest("[data-lang]");
       if (!btn) return;
       lang = btn.dataset.lang;
-      localStorage.setItem("yakushima-bus-lang", lang);
+      AppCore.setLang(lang);
       document.querySelectorAll("#langSwitch [data-lang]").forEach((b) => {
         b.classList.toggle("active", b.dataset.lang === lang);
       });
       render();
     });
-    document.querySelector(`#langSwitch [data-lang="${lang}"]`)?.classList.add("active");
 
     (async function initIntroVideo() {
       const v = INTRO_DATA.video;
@@ -199,7 +226,12 @@
       video.load();
     })();
 
-    render();
+    AppCore.runPageBoot((resolvedLang) => {
+      lang = resolvedLang;
+      AppCore.setLang(lang);
+      document.querySelector(`#langSwitch [data-lang="${lang}"]`)?.classList.add("active");
+      render();
+    });
   </script>
 </body>
 </html>

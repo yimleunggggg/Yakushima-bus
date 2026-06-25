@@ -4,6 +4,12 @@
     "zh": "黄金周、盂兰盆、年末年初运价/班次可能不同。",
     "en": "Fares/schedules may differ in peak seasons (GW, Obon, New Year)."
   },
+  "alert": {
+    "ja": "2026年7〜11月、下記日曜は運休予定（折田汽船・2026/5/8 公表）：7/5・12・26、8/2・23・30、9/6・13・27、10/4・18・25、11/8・15・29。※日曜は貨物・車両の受付・引渡しなし。予約 TEL 099-226-0731（日曜除く9–17時）。",
+    "zh": "2026年7–11月，以下周日计划停运（折田汽船，2026/5/8 公告）：7/5、7/12、7/26；8/2、8/23、8/30；9/6、9/13、9/27；10/4、10/18、10/25；11/8、11/15、11/29。周日全天不受理货物/车辆。预约 099-226-0731（周一至周六 9–17 时）。",
+    "en": "Planned no-sail Sundays Jul–Nov 2026 (Orita, announced 2026-05-08): Jul 5, 12, 26; Aug 2, 23, 30; Sep 6, 13, 27; Oct 4, 18, 25; Nov 8, 15, 29. No cargo/vehicle handling on Sundays. Reservations 099-226-0731 (Mon–Sat 9:00–17:00, not Sun)."
+  },
+  "alertUrl": "https://ferryyakusima2.com/news/10207",
   "rows": [
     {
       "dir": "to_yakushima",

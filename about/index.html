@@ -46,19 +46,24 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v56">
+  <link rel="stylesheet" href="/styles.css?v=layout-v79">
   <script src="/analytics.js"></script>
+  <script src="/analytics-events.js" defer></script>
+  <script src="/site-chrome.js?v=chrome-v10" defer></script>
 </head>
 <body class="app-page-narrow">
   <script>if (location.hash === "#sources") location.replace("/intro/#sources");</script>
   <div class="app">
     <div class="app-nav-sticky">
-      <nav class="nav nav-main nav-main--4" id="mainNav">
+      <nav class="nav nav-main nav-main--6" id="mainNav">
         <a href="/" data-i18n="navTime">時刻表</a>
         <a href="/map/" data-i18n="navMap">路線・運賃</a>
         <a href="/access/" data-i18n="navAccess">上島</a>
+        <a href="/trekking/" data-i18n="navTrek">登山</a>
+        <a href="/guide/" data-i18n="navGuide">便利</a>
         <a href="/intro/" data-i18n="navIntro">紹介</a>
       </nav>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v10"></script>
     </div>
 
     <header class="header header-compact">
@@ -78,37 +83,29 @@
       <div class="sec about-body" id="aboutSections"></div>
     </div>
 
-    <footer class="app-footer">
-      <nav class="app-footer-links" aria-label="Site pages">
-        <a href="/" data-i18n="navTime">バス時刻表</a>
-        <span class="footer-sep" aria-hidden="true">·</span>
-        <a href="/map/" data-i18n="navMap">路線・運賃</a>
-        <span class="footer-sep" aria-hidden="true">·</span>
-        <a href="/access/" data-i18n="navAccess">フェリー等</a>
-      </nav>
-    </footer>
+    <footer class="app-footer"></footer>
   </div>
 
-  <script src="/about-data.js?v=about-v3"></script>
+  <script src="/about-data.js?v=about-v4"></script>
   <script>
     const UI = {
       ja: {
         navAria: "メインメニュー", siteBrand: "屋久島バス",
-        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navIntro: "紹介",
+        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navTrek: "登山", navGuide: "便利", navIntro: "紹介",
         title: "このサイトについて", sub: "データ出典・連絡先",
-        updated: "更新", contactHeading: "連絡先", contactEmail: "Email", contactInstagram: "Instagram", backHome: "時刻表に戻る",
+        updated: "更新", contactHeading: "連絡先", contactEmail: "Email", contactInstagram: "Instagram", contactKofi: "Ko-fi", supportKofi: "コーヒーをおごる", backHome: "時刻表に戻る",
       },
       zh: {
         navAria: "主菜单", siteBrand: "屋久岛公交",
-        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navIntro: "介绍",
+        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navTrek: "登山", navGuide: "指南", navIntro: "介绍",
         title: "关于本站", sub: "说明、数据来源与联系方式",
-        updated: "更新", contactHeading: "联系方式", contactEmail: "Email", contactInstagram: "Instagram", backHome: "返回时刻表",
+        updated: "更新", contactHeading: "联系方式", contactEmail: "Email", contactInstagram: "Instagram", contactKofi: "Ko-fi", supportKofi: "支持本站", backHome: "返回时刻表",
       },
       en: {
         navAria: "Main menu", siteBrand: "Yakushima Bus",
-        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro",
+        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navTrek: "Trek", navGuide: "Guide", navIntro: "Intro",
         title: "About", sub: "What this is, sources & contact",
-        updated: "Updated", contactHeading: "Contact", contactEmail: "Email", contactInstagram: "Instagram", backHome: "Back to timetable",
+        updated: "Updated", contactHeading: "Contact", contactEmail: "Email", contactInstagram: "Instagram", contactKofi: "Ko-fi", supportKofi: "Buy me a coffee", backHome: "Back to timetable",
       },
     };
 
@@ -132,6 +129,7 @@
 
     const ICON_MAIL = `<svg class="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>`;
     const ICON_IG = `<svg class="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>`;
+    const ICON_KOFI = `<svg class="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 8h12v9a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V8Z"/><path d="M6 8V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/><path d="M10 12h4"/></svg>`;
 
     function instagramHandle(url) {
       const m = String(url || "").match(/instagram\.com\/([^/?#]+)/i);
@@ -151,6 +149,17 @@
             </a>
           </li>`
         : "";
+      const kofiRow = c.kofi
+        ? `<li>
+            <a class="contact-item" href="${c.kofi}" target="_blank" rel="noopener noreferrer">
+              <span class="contact-icon contact-icon-kofi">${ICON_KOFI}</span>
+              <span class="contact-body">
+                <span class="contact-label">${t("contactKofi")}</span>
+                <span class="contact-value">${t("supportKofi")}</span>
+              </span>
+            </a>
+          </li>`
+        : "";
       return `<div class="contact-block">
         <h3 class="contact-heading">${t("contactHeading")}</h3>
         <ul class="contact-list">
@@ -164,6 +173,7 @@
             </a>
           </li>
           ${igRow}
+          ${kofiRow}
         </ul>
       </div>`;
     }
@@ -208,6 +218,7 @@
       if (!btn) return;
       lang = btn.dataset.lang;
       localStorage.setItem("yakushima-bus-lang", lang);
+      window.dispatchEvent(new CustomEvent("yakushima-bus-lang", { detail: { lang } }));
       applyI18n();
     });
 

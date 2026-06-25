@@ -1,0 +1,331 @@
+/** 主景区↔公交 — sources/destinations.json */
+const DESTINATIONS_DATA = {
+  "meta": {
+    "disclaimer": {
+      "ja": "バス・登山バスの時刻・運休は公式 PDF・公式サイトで必ず確認してください。ハイキングの難易度・装備はここでは案内しません。",
+      "zh": "公交与登山巴士时刻、停运请以官方 PDF 与官网为准。不在此提供徒步难度或装备攻略。",
+      "en": "Always confirm bus and trail-bus times and suspensions on official PDFs/sites. No trekking difficulty or gear advice here."
+    }
+  },
+  "spots": [
+    {
+      "id": "jomon_sugi",
+      "priority": "p0",
+      "badge": {
+        "ja": "登山",
+        "zh": "登山",
+        "en": "Trek"
+      },
+      "title": {
+        "ja": "縄文杉（荒川ルート）",
+        "zh": "绳文杉（荒川线）",
+        "en": "Jomon Sugi (Arakawa route)"
+      },
+      "intro": {
+        "ja": "路線バスと荒川登山バスは別運賃・別ダイヤです。代表的な2つの入山パターンのみ記載します。",
+        "zh": "路线公交与荒川登山巴士票价、班次不同。仅说明两种常见进山方式。",
+        "en": "Route buses and the Arakawa shuttle have separate fares and timetables. Two common access patterns only."
+      },
+      "variants": [
+        {
+          "id": "arakawa_round",
+          "title": {
+            "ja": "① 荒川登山口 → 往復",
+            "zh": "① 荒川登山口往返",
+            "en": "① Arakawa trailhead round trip"
+          },
+          "cells": [
+            {
+              "ja": "路線バスで屋久杉自然館へ（宮之浦港発は早朝便が必要な場合あり）→ 荒川登山バス（3–11月・別料金）",
+              "zh": "路线公交至屋久杉自然馆（若从宫之浦港出发常需搭乘清晨班次）→ 换乘荒川登山巴士（3–11 月，另收费）",
+              "en": "Route bus to Yakusugi Museum (early departures from Miyanoura Port) → Arakawa shuttle (Mar–Nov, separate fare)"
+            },
+            {
+              "ja": "登山バス券・山岳部環境保全協力金は事前購入推奨（自然館バス停等）",
+              "zh": "建议提前购买登山巴士票与山岳环境保全协力金（自然馆巴士站等）",
+              "en": "Buy shuttle ticket & mountain cooperation fee in advance (museum bus stop, etc.)"
+            },
+            {
+              "ja": "帰りは荒川登山口発の最終便に注意（公式 X で運休確認）",
+              "zh": "下山务必赶上登山口末班车（停运见官方 X）",
+              "en": "Do not miss the last shuttle down; check suspensions on official X"
+            }
+          ],
+          "presets": [
+            {
+              "from": "miyanoura_port",
+              "to": "yakusugi_museum",
+              "role": "route"
+            },
+            {
+              "from": "yakusugi_museum",
+              "to": "arakawa_trailhead",
+              "role": "route"
+            }
+          ],
+          "links": [
+            {
+              "url": "http://yakushima-tozan.com/",
+              "label": {
+                "ja": "登山バス・協力金（公式）",
+                "zh": "登山巴士与协力金（官方）",
+                "en": "Shuttle & fees (official)"
+              }
+            }
+          ]
+        },
+        {
+          "id": "shiratani_traverse",
+          "title": {
+            "ja": "② 白谷雲水峡 → 縄文杉（縦走）",
+            "zh": "② 白谷云水峡纵走到绳文杉",
+            "en": "② Shiratani → Jomon (traverse)"
+          },
+          "cells": [
+            {
+              "ja": "白谷雲水峡線（安房方面からは小原町で乗換）→ 終点 白谷雲水峡",
+              "zh": "白谷云水峡线（从安房方向需在小原町换乘）→ 终点白谷",
+              "en": "Shiratani line (transfer at Kobara from Anbo side) → Shiratani terminus"
+            },
+            {
+              "ja": "峡谷のみ：森林環境整備協力金。縄文杉まで行く場合は山岳部協力金も",
+              "zh": "仅游峡谷：森林环境协力金。目标绳文杉还需山岳协力金",
+              "en": "Ravine only: forest fee. Going to Jomon Sugi also needs mountain cooperation fee"
+            },
+            {
+              "ja": "下山は荒川登山口側の登山バス＋路線バスで戻る想定（ダイヤ組み合わせ要確認）",
+              "zh": "下山通常经荒川登山口登山巴士转路线公交（需自行核对班次衔接）",
+              "en": "Descent usually via Arakawa shuttle + route bus (check connections)"
+            }
+          ],
+          "presets": [
+            {
+              "from": "miyanoura_port",
+              "to": "shiratani",
+              "role": "route"
+            }
+          ],
+          "links": [
+            {
+              "url": "http://yakushima-tozan.com/",
+              "label": {
+                "ja": "協力金・入山（公式）",
+                "zh": "协力金与入山（官方）",
+                "en": "Fees & entry (official)"
+              }
+            },
+            {
+              "url": "https://yakukan.jp/trekking/",
+              "label": {
+                "ja": "観光協会・登山",
+                "zh": "观光协会·登山",
+                "en": "Tourism assoc. trekking"
+              }
+            }
+          ]
+        }
+      ],
+      "trackLinks": [
+        {
+          "url": "https://yamap.com/",
+          "label": {
+            "ja": "Yamap（外部・GPX参考）",
+            "zh": "Yamap（外部·路线参考）",
+            "en": "Yamap (external GPX ref.)"
+          }
+        },
+        {
+          "url": "https://www.alltrails.com/",
+          "label": {
+            "ja": "AllTrails（外部）",
+            "zh": "AllTrails（外部）",
+            "en": "AllTrails (external)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "shiratani",
+      "priority": "p1",
+      "badge": {
+        "ja": "日帰り",
+        "zh": "当日往返",
+        "en": "Day trip"
+      },
+      "title": {
+        "ja": "白谷雲水峡",
+        "zh": "白谷云水峡",
+        "en": "Shiratani Unsuikyo"
+      },
+      "lines": [
+        {
+          "ja": "白谷雲水峡線。宮之浦港・宮之浦方面は小原町で安房行きに乗換。",
+          "zh": "白谷云水峡专线；从宫之浦港/宫之浦方向在小原町换乘往安房。",
+          "en": "Shiratani branch line; from Miyanoura Port/ town transfer at Kobara for Anbo-bound buses."
+        },
+        {
+          "ja": "縄文杉縦走とは別の、峡谷周遊向け。",
+          "zh": "与纵走绳文杉不同，适合峡谷当日往返。",
+          "en": "Separate from the Jomon traverse — for ravine day visits."
+        },
+        {
+          "ja": "入口で森林環境整備協力金（別）。開園情報は管理組合へ。",
+          "zh": "入口另付森林环境协力金；开放见管理组合网站。",
+          "en": "Forest cooperation fee at gate (separate). Hours: management committee site."
+        }
+      ],
+      "presets": [
+        {
+          "from": "miyanoura_port",
+          "to": "shiratani"
+        }
+      ],
+      "links": [
+        {
+          "url": "https://y-rekumori.com/",
+          "label": {
+            "ja": "入園・料金",
+            "zh": "入园与票价",
+            "en": "Admission & fees"
+          }
+        }
+      ]
+    },
+    {
+      "id": "yakusugiland",
+      "priority": "p1",
+      "badge": {
+        "ja": "林道",
+        "zh": "林区",
+        "en": "Forest"
+      },
+      "title": {
+        "ja": "ヤクスギランド・紀元杉",
+        "zh": "屋久杉 Land · 纪元杉",
+        "en": "Yakusugiland & Kigen Sugi"
+      },
+      "lines": [
+        {
+          "ja": "紀元杉線（1日2往復程度）。宮之浦方面は合庁前で乗換。",
+          "zh": "纪元杉线（每日约 2 班往返）；从宫之浦方向在县厅前换乘。",
+          "en": "Kigen Sugi line (~2 round trips/day). From Miyanoura: transfer at Govt Office."
+        },
+        {
+          "ja": "短時間の屋久杉散策。縄文杉登山とは別プラン。",
+          "zh": "短途屋久杉散步，与绳文杉登山行程分开规划。",
+          "en": "Short forest walks — not the same plan as Jomon Sugi trekking."
+        },
+        {
+          "ja": "ヤクスギランド入園料は別（管理組合）。",
+          "zh": "屋久杉 Land 入园费另付（管理组合）。",
+          "en": "Yakusugiland admission is separate (management committee)."
+        }
+      ],
+      "presets": [
+        {
+          "from": "gocho_mae",
+          "to": "kigen_sugi"
+        },
+        {
+          "from": "yakusugi_museum",
+          "to": "yakusugiland"
+        }
+      ],
+      "links": [
+        {
+          "url": "https://y-rekumori.com/",
+          "label": {
+            "ja": "入園・料金",
+            "zh": "入园与票价",
+            "en": "Admission & fees"
+          }
+        }
+      ]
+    },
+    {
+      "id": "okawa",
+      "priority": "p1",
+      "badge": {
+        "ja": "西部",
+        "zh": "西部",
+        "en": "West"
+      },
+      "title": {
+        "ja": "大川の滝",
+        "zh": "大川瀑布",
+        "en": "Okawa Falls"
+      },
+      "lines": [
+        {
+          "ja": "宮之浦港から西部方面へ長めの路線バス（栗生橋経由）。",
+          "zh": "从宫之浦港乘路线公交至岛西部（经栗生桥），车程较长。",
+          "en": "Long route-bus ride west from Miyanoura Port (via Kurio Bridge)."
+        },
+        {
+          "ja": "バス停から滝まで徒歩約5分。",
+          "zh": "下车后步行约 5 分钟至瀑布。",
+          "en": "~5 min walk from the bus stop to the falls."
+        },
+        {
+          "ja": "西部林道の一部区間はバス不通のため、時刻表の運行区間に注意。",
+          "zh": "西部林道部分路段无公交，请注意时刻表实际运行区间。",
+          "en": "Some west forest roads have no bus service — check the timetable coverage."
+        }
+      ],
+      "presets": [
+        {
+          "from": "miyanoura_port",
+          "to": "okawa_falls"
+        }
+      ],
+      "links": []
+    }
+  ],
+  "officialExtras": [
+    {
+      "key": "yakukan",
+      "url": "https://yakukan.jp/trans/",
+      "label": {
+        "ja": "屋久島観光協会・島内交通",
+        "zh": "屋久岛观光协会·岛内交通",
+        "en": "Tourism assoc. island transport"
+      }
+    },
+    {
+      "key": "tozan",
+      "url": "http://yakushima-tozan.com/",
+      "label": {
+        "ja": "荒川登山バス・協力金",
+        "zh": "荒川登山巴士·协力金",
+        "en": "Arakawa shuttle & fees"
+      }
+    },
+    {
+      "key": "status",
+      "url": "https://yakushima.co.jp/route_bus/",
+      "label": {
+        "ja": "まつばんだ・運行状況",
+        "zh": "松ばんだ·运行状况",
+        "en": "Matsubanda service status"
+      }
+    },
+    {
+      "key": "yuran",
+      "url": "https://yakukan.jp/wp-content/uploads/2024/03/yuran-bus.pdf",
+      "label": {
+        "ja": "ゆうらんバス（観光・定期）",
+        "zh": "悠览巴士（观光定期）",
+        "en": "Yuran sightseeing bus (PDF)"
+      }
+    },
+    {
+      "key": "yakuzarugo",
+      "url": "https://yakukan.jp/wp-content/uploads/2024/02/yakuzarugo.pdf",
+      "label": {
+        "ja": "やくざる号（観光・定期）",
+        "zh": "やくざる号（观光定期）",
+        "en": "Yakuzaru tour bus (PDF)"
+      }
+    }
+  ]
+};

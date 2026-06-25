@@ -1,0 +1,25 @@
+{
+  "week": "2026-W25",
+  "period": {
+    "start": "2026-06-15",
+    "end": "2026-06-21"
+  },
+  "fetched_at": "2026-06-24",
+  "ga4": {
+    "property_id": "538426834",
+    "error": "503 failed to connect to all addresses; last error: UNKNOWN: ipv4:216.239.38.223:443: tcp handshaker shutdown",
+    "period": {
+      "start": "2026-06-15",
+      "end": "2026-06-21"
+    }
+  },
+  "gsc": {
+    "error": "OAuth refresh 失败: ('invalid_grant: Bad Request', {'error': 'invalid_grant', 'error_description': 'Bad Request'})",
+    "period": {
+      "start": "2026-06-15",
+      "end": "2026-06-21"
+    }
+  },
+  "derived": {},
+  "wow": {}
+}

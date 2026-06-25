@@ -1,8 +1,8 @@
 {
   "fetched_at": "2026-05-22",
   "ga4_daily": {
-    "property_id": "",
-    "error": "未设置 GA4_PROPERTY_ID"
+    "property_id": "538426834",
+    "error": "503 failed to connect to all addresses; last error: UNKNOWN: ipv4:142.250.66.74:443: tcp handshaker shutdown"
   },
   "gsc_28d": {
     "site_url": "https://yakushimabus.com/",

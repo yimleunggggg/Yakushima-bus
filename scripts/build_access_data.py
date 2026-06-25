@@ -148,6 +148,7 @@ def build_data() -> dict:
                 "sourceKey": "ferry",
                 "title": {"ja": "フェリー屋久島2（1日1便）", "zh": "屋久岛2号渡轮（每日1班）", "en": "Ferry Yakushima 2 (daily)"},
                 "note": ferry["note"],
+                **({"alert": ferry["alert"], "alertUrl": ferry["alertUrl"]} if ferry.get("alert") else {}),
                 "columns": [
                     {"key": "from", "label": {"ja": "出発", "zh": "出发", "en": "From"}},
                     {"key": "dep", "label": {"ja": "発", "zh": "发", "en": "Dep."}},

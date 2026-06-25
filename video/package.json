@@ -6,7 +6,8 @@
     "record": "node scripts/record.mjs",
     "narrate": "node scripts/narrate.mjs",
     "compose": "node scripts/compose.mjs",
-    "build": "npm run record && npm run narrate && npm run compose"
+    "build": "npm run record && npm run narrate && npm run compose",
+    "build:online": "VIDEO_SKIP_SERVER=1 VIDEO_BASE_URL=https://yakushimabus.com npm run build"
   },
   "devDependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",

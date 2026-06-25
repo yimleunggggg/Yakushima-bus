@@ -8,27 +8,30 @@ const root = path.join(__dirname, "..");
 const audioDir = path.join(root, "audio");
 const scenes = JSON.parse(fs.readFileSync(path.join(__dirname, "scenes.json"), "utf8"));
 
+const EN_VOICES = ["Samantha", "Alex", "Daniel", "Karen", "Moira"];
+const RATE = Number(process.env.VIDEO_TTS_RATE || 188);
+
 fs.mkdirSync(audioDir, { recursive: true });
 
-const VOICES = ["Ting-Ting", "Meijia", "Sin-Ji", "Yu-shu"];
-
 function pickVoice() {
-  for (const v of VOICES) {
-    const test = spawnSync("say", ["-v", v, "测试"], { encoding: "utf8" });
+  for (const v of EN_VOICES) {
+    const test = spawnSync("say", ["-v", v, "ok"], { encoding: "utf8" });
     if (test.status === 0) return v;
   }
-  return "Ting-Ting";
+  return "Samantha";
 }
 
 const voice = pickVoice();
-console.log("TTS voice:", voice);
+console.log("TTS voice:", voice, "rate:", RATE);
+
+const ffmpegBin = (await import("@ffmpeg-installer/ffmpeg")).default.path;
 
 for (const scene of scenes) {
   const aiff = path.join(audioDir, `${scene.id}.aiff`);
   const mp3 = path.join(audioDir, `${scene.id}.mp3`);
   console.log("narrating:", scene.id);
 
-  const say = spawnSync("say", ["-v", voice, "-r", "185", scene.narration, "-o", aiff], {
+  const say = spawnSync("say", ["-v", voice, "-r", String(RATE), scene.narration, "-o", aiff], {
     encoding: "utf8",
   });
   if (say.status !== 0) {
@@ -36,11 +39,10 @@ for (const scene of scenes) {
     process.exit(1);
   }
 
-  const ffmpegBin = (await import("@ffmpeg-installer/ffmpeg")).default.path;
   const conv = spawnSync(
     ffmpegBin,
     ["-y", "-i", aiff, "-codec:a", "libmp3lame", "-q:a", "2", mp3],
-    { encoding: "utf8" }
+    { encoding: "utf8" },
   );
   if (conv.status !== 0) {
     console.error("ffmpeg mp3 failed:", conv.stderr);

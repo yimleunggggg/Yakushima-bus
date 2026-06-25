@@ -1,0 +1,435 @@
+{
+  "meta": {
+    "source": "scripts/lib/catalog.py",
+    "stopCount": 52,
+    "note": "Master stop table: id, no, ja/zh/en, group. Edit catalog.py then run build_all.py."
+  },
+  "stops": {
+    "nagata": {
+      "no": "1",
+      "ja": "永田",
+      "zh": "永田",
+      "en": "Nagata",
+      "group": "nagata"
+    },
+    "inakahama": {
+      "no": "5",
+      "ja": "いなか浜",
+      "zh": "稻叶滨",
+      "en": "Inakahama",
+      "group": "nagata"
+    },
+    "yoshida": {
+      "no": "8",
+      "ja": "吉田",
+      "zh": "吉田",
+      "en": "Yoshida",
+      "group": "nagata"
+    },
+    "hitomaru": {
+      "no": "11",
+      "ja": "一湊",
+      "zh": "一凑",
+      "en": "Isso",
+      "group": "nagata"
+    },
+    "shitoko": {
+      "no": "14",
+      "ja": "志戸子",
+      "zh": "志户子",
+      "en": "Shitoko",
+      "group": "nagata"
+    },
+    "fukagawa": {
+      "no": "17",
+      "ja": "深川",
+      "zh": "深川",
+      "en": "Fukagawa",
+      "group": "nagata"
+    },
+    "miyanoura_port_early": {
+      "no": "19",
+      "ja": "宮之浦港（早朝）",
+      "zh": "宫之浦港（早班）",
+      "en": "Miyanoura Port (early)",
+      "group": "miyanoura",
+      "tags": [
+        "ferry"
+      ]
+    },
+    "miyanoura_port": {
+      "no": "20",
+      "ja": "宮之浦港",
+      "zh": "宫之浦港",
+      "en": "Miyanoura Port",
+      "group": "miyanoura",
+      "tags": [
+        "ferry",
+        "tourist"
+      ]
+    },
+    "miyanoura_port_entrance": {
+      "no": "21",
+      "ja": "宮之浦港入口",
+      "zh": "宫之浦港入口",
+      "en": "Miyanoura Port Ent.",
+      "group": "miyanoura"
+    },
+    "miyanoura": {
+      "no": "23",
+      "ja": "宮之浦",
+      "zh": "宫之浦",
+      "en": "Miyanoura",
+      "group": "miyanoura",
+      "tags": [
+        "tourist"
+      ]
+    },
+    "kobara": {
+      "no": "25",
+      "ja": "小原町",
+      "zh": "小原町",
+      "en": "Oharamachi",
+      "group": "miyanoura",
+      "tags": [
+        "transfer"
+      ]
+    },
+    "ushiroka_park": {
+      "no": "26",
+      "ja": "牛床公園",
+      "zh": "牛床公园",
+      "en": "Ushiroka Park",
+      "group": "shiratani"
+    },
+    "shiratani": {
+      "no": "29",
+      "ja": "白谷雲水峡",
+      "zh": "白谷云水峡",
+      "en": "Shiratani Unsuikyo",
+      "group": "shiratani",
+      "tags": [
+        "tourist"
+      ]
+    },
+    "a_coop": {
+      "no": "30",
+      "ja": "Ａコープ前",
+      "zh": "A-Coop前",
+      "en": "A-Coop",
+      "group": "miyanoura"
+    },
+    "miyaura_elem": {
+      "no": "31",
+      "ja": "宮浦小前",
+      "zh": "宫浦小学前",
+      "en": "Miyaura Elem.",
+      "group": "miyanoura"
+    },
+    "koko_mae": {
+      "no": "32",
+      "ja": "高校前",
+      "zh": "高中前",
+      "en": "High School",
+      "group": "miyanoura",
+      "matsubandaOnly": true
+    },
+    "asahi": {
+      "no": "34",
+      "ja": "旭町",
+      "zh": "旭町",
+      "en": "Asahi-machi",
+      "group": "miyanoura"
+    },
+    "kusugawa": {
+      "no": "37",
+      "ja": "楠川",
+      "zh": "楠川",
+      "en": "Kusugawa",
+      "group": "miyanoura"
+    },
+    "kunugawa": {
+      "no": "41",
+      "ja": "椨川",
+      "zh": "椨川",
+      "en": "Kunugawa",
+      "group": "miyanoura"
+    },
+    "kozeta": {
+      "no": "44",
+      "ja": "小瀬田",
+      "zh": "小濑田",
+      "en": "Koseda",
+      "group": "airport"
+    },
+    "shionomichi": {
+      "no": "48",
+      "ja": "塩ノ道",
+      "zh": "盐之道",
+      "en": "Shionomichi",
+      "group": "airport"
+    },
+    "airport": {
+      "no": "49",
+      "ja": "空港",
+      "zh": "机场",
+      "en": "Airport",
+      "group": "airport",
+      "tags": [
+        "airport",
+        "tourist"
+      ]
+    },
+    "hayasaki": {
+      "no": "52",
+      "ja": "早崎",
+      "zh": "早崎",
+      "en": "Hayasaki",
+      "group": "airport"
+    },
+    "takamibashi": {
+      "no": "53",
+      "ja": "高見橋",
+      "zh": "高见桥",
+      "en": "Takamibashi",
+      "group": "airport",
+      "matsubandaOnly": true
+    },
+    "towaho": {
+      "no": "56",
+      "ja": "永久保",
+      "zh": "永久保",
+      "en": "Towaho",
+      "group": "airport"
+    },
+    "funayuki": {
+      "no": "59",
+      "ja": "船行",
+      "zh": "船行",
+      "en": "Funayuki",
+      "group": "anbo"
+    },
+    "chuo": {
+      "no": "61",
+      "ja": "中央",
+      "zh": "中央",
+      "en": "Chuo",
+      "group": "anbo",
+      "matsubandaOnly": true
+    },
+    "gocho_mae": {
+      "no": "62",
+      "ja": "合庁前",
+      "zh": "县厅前",
+      "en": "Govt Office",
+      "group": "anbo",
+      "tags": [
+        "transfer"
+      ]
+    },
+    "police_mae": {
+      "no": "63",
+      "ja": "警察署前",
+      "zh": "警察署前",
+      "en": "Police Sta.",
+      "group": "anbo"
+    },
+    "anbo_port": {
+      "no": "64",
+      "ja": "安房港",
+      "zh": "安房港",
+      "en": "Anbo Port",
+      "group": "anbo",
+      "tags": [
+        "ferry",
+        "tourist"
+      ]
+    },
+    "naka_iin_mae": {
+      "no": "65",
+      "ja": "仲医院前",
+      "zh": "仲医院前",
+      "en": "Naka Clinic",
+      "group": "anbo",
+      "matsubandaOnly": true
+    },
+    "anbo": {
+      "no": "66",
+      "ja": "安房",
+      "zh": "安房",
+      "en": "Anbo",
+      "group": "anbo",
+      "tags": [
+        "tourist"
+      ]
+    },
+    "makino": {
+      "no": "67",
+      "ja": "牧野",
+      "zh": "牧野",
+      "en": "Makino",
+      "group": "anbo"
+    },
+    "yakusugi_museum": {
+      "no": "68",
+      "ja": "屋久杉自然館",
+      "zh": "屋久杉自然馆",
+      "en": "Yakusugi Museum",
+      "group": "anbo",
+      "tags": [
+        "tourist",
+        "transfer"
+      ]
+    },
+    "arakawa_sancho": {
+      "no": "69",
+      "ja": "荒川三叉路",
+      "zh": "荒川三岔路",
+      "en": "Arakawa Junction",
+      "group": "arakawa"
+    },
+    "arakawa_trailhead": {
+      "no": "70",
+      "ja": "荒川登山口",
+      "zh": "荒川登山口",
+      "en": "Arakawa Trailhead",
+      "group": "arakawa",
+      "tags": [
+        "tourist"
+      ]
+    },
+    "yakusugiland": {
+      "no": "71",
+      "ja": "ヤクスギランド",
+      "zh": "屋久杉Land",
+      "en": "Yakusugiland",
+      "group": "arakawa",
+      "tags": [
+        "tourist"
+      ]
+    },
+    "kigen_sugi": {
+      "no": "72",
+      "ja": "紀元杉",
+      "zh": "纪元杉",
+      "en": "Kigen Sugi",
+      "group": "arakawa",
+      "tags": [
+        "tourist"
+      ]
+    },
+    "morihisa_jinja": {
+      "no": "73",
+      "ja": "盛久神社",
+      "zh": "盛久神社",
+      "en": "Morihisa Shrine",
+      "group": "east"
+    },
+    "hirano": {
+      "no": "78",
+      "ja": "平野",
+      "zh": "平野",
+      "en": "Hirano",
+      "group": "east"
+    },
+    "mugi": {
+      "no": "85",
+      "ja": "麦生",
+      "zh": "麦生",
+      "en": "Mugi",
+      "group": "east"
+    },
+    "botanical_park": {
+      "no": "86",
+      "ja": "ボタニカルリサーチパーク",
+      "zh": "植物研究公园",
+      "en": "Botanical Park",
+      "group": "east",
+      "tags": [
+        "tourist"
+      ]
+    },
+    "hara": {
+      "no": "89",
+      "ja": "原",
+      "zh": "原",
+      "en": "Hara",
+      "group": "east"
+    },
+    "onokaido": {
+      "no": "94",
+      "ja": "尾之間",
+      "zh": "尾之间",
+      "en": "Onoaida",
+      "group": "east"
+    },
+    "saman_hotel": {
+      "no": "97",
+      "ja": "サマナホテルヤクシマ",
+      "zh": "Samana Hotel Yakushima",
+      "en": "Samana Hotel",
+      "group": "east",
+      "tags": [
+        "hotel"
+      ]
+    },
+    "hotel_yakushima": {
+      "no": "99",
+      "ja": "ザホテルヤクシマ",
+      "zh": "The Hotel Yakushima",
+      "en": "The Hotel Yakushima",
+      "group": "east",
+      "tags": [
+        "hotel"
+      ]
+    },
+    "kojima": {
+      "no": "102",
+      "ja": "小島",
+      "zh": "小岛",
+      "en": "Kojima",
+      "group": "west"
+    },
+    "hirauchi_onsen": {
+      "no": "112",
+      "ja": "平内海中温泉",
+      "zh": "平内海中温泉",
+      "en": "Hirauchi Onsen",
+      "group": "west",
+      "tags": [
+        "tourist"
+      ]
+    },
+    "yunuma": {
+      "no": "114",
+      "ja": "湯泊",
+      "zh": "汤泊",
+      "en": "Yunuma",
+      "group": "west"
+    },
+    "naka": {
+      "no": "123",
+      "ja": "中間",
+      "zh": "中间",
+      "en": "Naka",
+      "group": "west"
+    },
+    "kurio_bashi": {
+      "no": "127",
+      "ja": "栗生橋",
+      "zh": "栗生桥",
+      "en": "Kurio Bridge",
+      "group": "west"
+    },
+    "okawa_falls": {
+      "no": "129",
+      "ja": "大川の滝",
+      "zh": "大川瀑布",
+      "en": "Okawa Falls",
+      "group": "west",
+      "tags": [
+        "tourist"
+      ]
+    }
+  }
+}

@@ -34,4 +34,4 @@ description: >-
 - ntfy **urgent**：uptime 非 200。
 - 邮件 digest 不含空 §2 表；勿把整份 md 当 HTML 发。
 
-详细排错表：案例仓 `docs/seo/tutorial/TROUBLESHOOTING.md`。
+详细排错表：[vibe-coding-static-site-guide/seo/tutorial/TROUBLESHOOTING.md](https://github.com/yimleunggggg/vibe-coding-static-site-guide/blob/main/seo/tutorial/TROUBLESHOOTING.md)。

@@ -95,6 +95,14 @@ window.SOURCES_DATA = {
         },
         {
           label: {
+            ja: "フェリー屋久島2 — 2026年7〜11月運休予定",
+            zh: "屋久岛2号渡轮 — 2026年7–11月停运计划",
+            en: "Ferry Yakushima 2 — Jul–Nov 2026 suspensions",
+          },
+          url: "https://ferryyakusima2.com/news/10207",
+        },
+        {
+          label: {
             ja: "南国交通 鹿児島空港連絡バス",
             zh: "南国交通 鹿儿岛机场联络巴士",
             en: "Nangoku Kotsu Kagoshima airport shuttle",
@@ -121,6 +129,58 @@ window.SOURCES_DATA = {
             en: "Day pass — sales & routes (Iwasaki)",
           },
           url: "https://www.iwasaki-corp.com/kagoshima_kotsu/route-bus/yakushima-free-pass/",
+        },
+      ],
+    },
+    {
+      title: { ja: "登山・トレッキング", zh: "登山徒步", en: "Trekking" },
+      items: [
+        {
+          label: {
+            ja: "屋久島観光協会 — 登山・トレッキング",
+            zh: "屋久岛观光协会 — 登山徒步",
+            en: "Yakushima tourism — trekking",
+          },
+          url: "https://yakukan.jp/trekking/",
+        },
+        {
+          label: {
+            ja: "当サイト — コース参考＋バス時刻",
+            zh: "本站 — 路线参考与公交时刻",
+            en: "This site — course ref & bus times",
+          },
+          url: "/trekking/",
+        },
+        {
+          label: {
+            ja: "屋久島登山マップ・コース情報（PDF）",
+            zh: "屋久岛登山地图·路线补充（PDF）",
+            en: "Yakushima trekking map & courses (PDF)",
+          },
+          url: "https://yakukan.jp/wp-content/uploads/2025/06/20250609084458.pdf",
+          note: { ja: "2025/6", zh: "2025/6", en: "2025-06" },
+        },
+      ],
+    },
+    {
+      title: { ja: "観光・便利情報", zh: "观光与便利信息", en: "Tourism & practical info" },
+      items: [
+        {
+          label: {
+            ja: "屋久島観光情報（PDF）",
+            zh: "屋久岛观光综合信息（PDF）",
+            en: "Yakushima tourism info brochure (PDF)",
+          },
+          url: "https://yakukan.jp/wp-content/uploads/2026/06/kannkou-jouhou-senn.pdf",
+          note: { ja: "2026/6", zh: "2026/6", en: "2026-06" },
+        },
+        {
+          label: {
+            ja: "屋久島温泉ガイド（YES YAKUSHIMA）",
+            zh: "屋久岛温泉指南（YES YAKUSHIMA）",
+            en: "Yakushima hot springs guide (YES YAKUSHIMA)",
+          },
+          url: "https://yesyakushima.com/yakushima-travel-guide/travel-guidance/hot-springs/",
         },
       ],
     },

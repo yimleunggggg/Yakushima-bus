@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="屋久島バス路線図・運賃・料金。宮之浦港・白谷・屋久杉自然館・荒川登山口。2026年3月改定。区間運賃を検索。">
-  <meta name="keywords" content="屋久島,バス,運賃,路線図,白谷,荒川登山,縄文杉,屋久岛,公交,票价,Yakushima,bus,fare,Jomon Sugi,Shiratani">
+  <meta name="description" content="屋久島バス路線図・料金2026。宮之浦港・白谷・屋久杉自然館・荒川登山口の運賃検索。公式PDF・Yakushima bus map & fares。三语。">
+  <meta name="keywords" content="屋久島,バス,路線図,料金,運賃,屋久島 バス 料金,屋久岛,票价,Yakushima,bus,map,fare">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#143a35">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -16,21 +16,25 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="geo.placename" content="Yakushima, Kagoshima, Japan">
   <link rel="canonical" href="https://yakushimabus.com/map/">
+  <link rel="alternate" hreflang="ja" href="https://yakushimabus.com/map/?lang=ja">
+  <link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/map/?lang=zh">
+  <link rel="alternate" hreflang="en" href="https://yakushimabus.com/map/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/map/">
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://yakushimabus.com/sitemap.xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Yakushima Bus">
-  <meta property="og:title" content="屋久島バス路線図・運賃・料金">
-  <meta property="og:description" content="屋久島バス路線図と区間運賃の目安。白谷、自然館、荒川登山口方面。2026年3月改定。">
+  <meta property="og:title" content="屋久島バス路線図・料金 2026｜Yakushima Bus Map">
+  <meta property="og:description" content="公式路線図PDF・区間運賃検索。白谷、自然館、荒川登山口方面。">
   <meta property="og:url" content="https://yakushimabus.com/map/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Yakushima Bus — 屋久岛公交路线与运价">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="屋久島バス路線図・運賃">
-  <meta name="twitter:description" content="路線図と区間運賃の目安。宮之浦港・白谷・荒川登山口。">
+  <meta name="twitter:title" content="屋久島バス路線図・料金 2026">
+  <meta name="twitter:description" content="Yakushima bus route map, section fares, official PDF. Miyanoura, Shiratani, Arakawa.">
   <meta name="twitter:image" content="https://yakushimabus.com/og-image.png">
-  <title>屋久島バス路線図・運賃・料金（2026年3月改定）</title>
+  <title>屋久島バス路線図・料金 2026｜運賃表・Yakushima Bus Map</title>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -53,23 +57,28 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v56">
+  <link rel="stylesheet" href="/styles.css?v=layout-v82">
   <script src="/analytics.js"></script>
+  <script src="/analytics-events.js" defer></script>
+  <script src="/site-chrome.js?v=chrome-v10" defer></script>
 </head>
 <body>
   <div class="app">
     <div class="app-nav-sticky">
-      <nav class="nav nav-main nav-main--4" id="mainNav">
-        <a href="/" data-i18n="navTime">時刻表</a>
-        <a href="/map/" class="active" aria-current="page" data-i18n="navMap">路線・運賃</a>
-        <a href="/access/" data-i18n="navAccess">上島</a>
-        <a href="/intro/" data-i18n="navIntro">紹介</a>
+      <nav class="nav nav-main nav-main--6" id="mainNav">
+        <a href="/guide/">マップ</a>
+        <a href="/">時刻表</a>
+        <a href="/map/" class="active" aria-current="page">運賃</a>
+        <a href="/access/">フェリー</a>
+        <a href="/trekking/">登山</a>
+        <a href="/intro/">紹介</a>
       </nav>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v10"></script>
     </div>
 
     <header class="header header-compact">
       <div class="header-main">
-        <h1 id="appTitle">路線図・運賃</h1>
+        <h1 id="appTitle">運賃計算</h1>
       </div>
       <div class="header-actions">
         <div class="clock-wrap" role="group" aria-label="Japan Standard Time">
@@ -87,7 +96,9 @@
       </div>
     </header>
 
-    <p class="app-meta meta-links" id="metaBar"></p>
+    <p class="page-seo-lead" id="pageSeoLead"></p>
+    <p class="app-meta meta-links" id="pageCross"></p>
+    <p class="app-meta" id="metaBar"></p>
 
     <div class="map-layout">
     <div class="map-layout-primary">
@@ -105,15 +116,15 @@
           <span class="pdf-fallback-name" id="pdfFallbackName"></span>
         </div>
         <div class="pdf-stage" id="pdfStage">
+        <div class="pdf-toolbar">
+          <button type="button" id="pdfZoomOut" aria-label="zoom out">−</button>
+          <button type="button" id="pdfZoomReset" aria-label="reset">100%</button>
+          <button type="button" id="pdfZoomIn" aria-label="zoom in">+</button>
+          <button type="button" id="pdfFullscreen" data-i18n="pdfFullscreen">全画面</button>
+          <a id="pdfOpenNew" href="#" target="_blank" rel="noopener" data-i18n="pdfOpenNew">新しいタブ</a>
+        </div>
+        <button type="button" class="pdf-fs-close" id="pdfFsClose" data-i18n="pdfExitFullscreen">終了</button>
         <div class="pdf-viewport" id="pdfViewport">
-          <div class="pdf-toolbar">
-            <button type="button" id="pdfZoomOut" aria-label="zoom out">−</button>
-            <button type="button" id="pdfZoomReset" aria-label="reset">100%</button>
-            <button type="button" id="pdfZoomIn" aria-label="zoom in">+</button>
-            <button type="button" id="pdfFullscreen" data-i18n="pdfFullscreen">全画面</button>
-            <a id="pdfOpenNew" href="#" target="_blank" rel="noopener" data-i18n="pdfOpenNew">新しいタブ</a>
-          </div>
-          <button type="button" class="pdf-fs-close" id="pdfFsClose" data-i18n="pdfExitFullscreen">終了</button>
           <div class="pdf-loading" id="pdfLoading" data-i18n="pdfLoading">読み込み中…</div>
           <iframe id="pdfEmbed" class="pdf-frame" title="Yakushima bus route map"></iframe>
         </div>
@@ -201,15 +212,7 @@
     </div>
     </div>
 
-    <footer class="app-footer">
-      <nav class="app-footer-links" aria-label="Site pages">
-        <a href="/" data-i18n="navTime">バス時刻表</a>
-        <span class="footer-sep" aria-hidden="true">·</span>
-        <a href="/access/" data-i18n="navAccess">フェリー等</a>
-        <span class="footer-sep" aria-hidden="true">·</span>
-        <a href="/about/" data-i18n="navAbout">このサイトについて</a>
-      </nav>
-    </footer>
+    <footer class="app-footer"></footer>
   </div>
 
   <div class="app-toast map-toast" id="mapToast" role="status" aria-live="polite" hidden></div>
@@ -238,12 +241,12 @@
   <script src="/section-divider.js"></script>
   <script src="/stop-picker.js?v=picker-v5"></script>
   <script src="/pdf-fullscreen.js"></script>
-  <script src="/pdf-viewer.js?v=pdf-preview-v2"></script>
+  <script src="/pdf-viewer.js?v=pdf-preview-v3"></script>
   <script>
     const UI = {
       ja: {
         navAria: "メインメニュー", siteBrand: "屋久島バス",
-        navTime: "時刻表", navMap: "路線・運賃", navAccess: "上島", navIntro: "紹介", navAbout: "このサイトについて", title: "路線・運賃", sub: "種子島・屋久島交通", valid: "適用",
+        title: "屋久島バス路線図・料金", sub: "種子島・屋久島交通", valid: "適用",
         stopLookup: "停留所",
         linkNotice: "運休・遅延は",
         linkTaneyaku: "種屋時刻表", linkMatsubanda: "まつばんだ", linkTozan: "荒川登山バス",
@@ -275,7 +278,7 @@
       },
       zh: {
         navAria: "主菜单", siteBrand: "屋久岛公交",
-        navTime: "时刻表", navMap: "路线·运价", navAccess: "上岛", navIntro: "介绍", navAbout: "关于本站", title: "路线及价格", sub: "种子岛·屋久岛交通", valid: "有效",
+        title: "公交票价查询", sub: "种子岛·屋久岛交通", valid: "有效",
         stopLookup: "站点",
         linkNotice: "停运延误见",
         linkTaneyaku: "种屋时刻表", linkMatsubanda: "松ばんだ", linkTozan: "荒川登山巴士",
@@ -307,7 +310,7 @@
       },
       en: {
         navAria: "Main menu", siteBrand: "Yakushima Bus",
-        navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navIntro: "Intro", navAbout: "About", title: "Routes & fares", sub: "Tanegashima Yakushima Kotsu", valid: "Valid",
+        title: "Yakushima Bus Map & Fares", sub: "Tanegashima Yakushima Kotsu", valid: "Valid",
         stopLookup: "Stop",
         linkNotice: "Disruptions:",
         linkTaneyaku: "Taneyaku PDF", linkMatsubanda: "Matsubanda", linkTozan: "Arakawa shuttle",
@@ -396,6 +399,8 @@
       liveClockTime: document.getElementById("liveClockTime"),
       appTitle: document.getElementById("appTitle"),
       metaBar: document.getElementById("metaBar"),
+      pageCross: document.getElementById("pageCross"),
+      pageSeoLead: document.getElementById("pageSeoLead"),
       pdfStage: document.getElementById("pdfStage"),
       pdfFallback: document.getElementById("pdfFallback"),
       pdfMobilePages: document.getElementById("pdfMobilePages"),
@@ -682,6 +687,7 @@
         const est = kind === "estimate" ? ` · ${t("fareEstimate")}` : "";
         els.fareResult.className = "fare-result has-price";
         els.fareResult.innerHTML = `¥${fare.toLocaleString()}<small>${fromName} → ${toName}${est}</small>`;
+        window.BusAnalytics?.event("fare_lookup", { from: els.fareFrom.value, to: els.fareTo.value, fare });
       } else {
         els.fareResult.className = "fare-result";
         els.fareResult.textContent = t("noFare");
@@ -712,10 +718,23 @@
     function initMeta() {
       if (!els.metaBar || !BUS_DATA?.meta) return;
       const m = BUS_DATA.meta;
-      els.metaBar.innerHTML = [
-        `${t("valid")} ${m.validFrom}–${m.validTo}`,
-        `<span class="meta-links"><a href="/?lang=${lang}">${t("navTime")}</a> · <a href="/access/?lang=${lang}">${t("navAccess")}</a></span>`,
-      ].join('<span class="meta-sep" aria-hidden="true">·</span>');
+      const parts = [`${t("valid")} ${m.validFrom}–${m.validTo}`];
+      els.metaBar.innerHTML = parts.join('<span class="meta-sep" aria-hidden="true">·</span>');
+    }
+
+    function applyPageHead() {
+      if (window.SiteChrome) {
+        SiteChrome.applyPageHead("map", {
+          titleEl: els.appTitle,
+          leadEl: els.pageSeoLead,
+          crossEl: els.pageCross,
+          lang,
+        });
+        return;
+      }
+      const titles = { ja: "運賃計算", zh: "公交票价查询", en: "Fare calculator" };
+      els.appTitle.textContent = titles[lang] || titles.ja;
+      initMeta();
     }
 
     function renderSeoFaq() {
@@ -732,9 +751,7 @@
       document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
       pdfFsCtl?.sync();
       els.langSwitch.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
-      els.appTitle.textContent = t("title");
-      const mainNav = document.getElementById("mainNav");
-      if (mainNav) mainNav.setAttribute("aria-label", t("navAria"));
+      applyPageHead();
       if (els.liveClockTime && typeof AppCore !== "undefined") {
         const jp = AppCore.japanParts();
         els.liveClockTime.textContent = `${jp.hour}:${jp.minute}`;
@@ -742,7 +759,11 @@
           ? "日本标准时间 (JST · UTC+9)"
           : (lang === "en" ? "Japan Standard Time (JST · UTC+9)" : "日本標準時 (JST · UTC+9)");
       }
-      initPdf();
+      try {
+        initPdf();
+      } catch (err) {
+        console.warn("initPdf failed", err);
+      }
       initPickers();
       els.fareNotes.innerHTML = Object.values(MAP_DATA.fareNotes).map((n) => `<li>${pick(n)}</li>`).join("");
       if (els.mapPassDivider) {
@@ -771,7 +792,10 @@
       initPdf();
     });
 
-    els.panelTimeBtn.addEventListener("click", openTimetableModal);
+    els.panelTimeBtn.addEventListener("click", () => {
+      window.BusAnalytics?.event("open_timetable", { from: els.lookupStop.value });
+      openTimetableModal();
+    });
     els.panelFromBtn.addEventListener("click", setFareFromStop);
     els.panelToBtn.addEventListener("click", setFareToStop);
 
@@ -806,21 +830,24 @@
       });
     }
 
-    const params = new URLSearchParams(location.search);
-    if (params.get("lang")) lang = params.get("lang");
-    modalDay = detectDayType();
-    applyI18n();
-    setInterval(() => {
-      if (!els.liveClockTime || typeof AppCore === "undefined") return;
-      const jp = AppCore.japanParts();
-      els.liveClockTime.textContent = `${jp.hour}:${jp.minute}`;
-    }, 30000);
-    bindPdfControls();
-    if (params.get("stop") && MAP_DATA.stops[params.get("stop")]) {
-      lookupPicker.setValue(params.get("stop"), false);
-      selectedStop = params.get("stop");
-      updateStopPanel();
-    }
+    AppCore.runPageBoot((resolvedLang) => {
+      lang = resolvedLang;
+      AppCore.setLang(lang);
+      modalDay = detectDayType();
+      applyI18n();
+      setInterval(() => {
+        if (!els.liveClockTime || typeof AppCore === "undefined") return;
+        const jp = AppCore.japanParts();
+        els.liveClockTime.textContent = `${jp.hour}:${jp.minute}`;
+      }, 30000);
+      bindPdfControls();
+      const params = new URLSearchParams(location.search);
+      if (params.get("stop") && MAP_DATA.stops[params.get("stop")]) {
+        lookupPicker.setValue(params.get("stop"), false);
+        selectedStop = params.get("stop");
+        updateStopPanel();
+      }
+    });
   </script>
 </body>
 </html>

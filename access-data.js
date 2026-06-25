@@ -2,7 +2,7 @@
 const ACCESS_DATA = {
   "meta": {
     "revision": "2026-04-01",
-    "updatedAt": "2026-05-20",
+    "updatedAt": "2026-06-23",
     "activeSeason": "summer_2026",
     "seasonRange": {
       "from": "2026-04-01",
@@ -56,14 +56,9 @@ const ACCESS_DATA = {
     }
   },
   "intro": {
-    "ja": "鹿児島から屋久島へは高速船（約2–3時間）かフェリー（約4時間）が一般的です。島内は路線バス（時刻表）が中心。最新ダイヤ・運休は各社公式を確認してください。",
+    "ja": "鹿児島から屋久島へは高速船（約2–3時間）かフェリー（約4時間）が一般的です。島内は路線バス（時刻表タブ）が中心。最新ダイヤ・運休は各社公式を確認してください。",
     "zh": "从鹿儿岛到屋久岛通常乘高速船（约2–3小时）或渡轮（约4小时）。岛上以公交为主（见时刻表页）。请以各运营商最新公告为准。",
     "en": "Reach Yakushima from Kagoshima by jetfoil (~2–3h) or ferry (~4h). On-island travel is mostly by route bus (Timetable tab). Check each operator for latest schedules."
-  },
-  "introHtml": {
-    "ja": "鹿児島から屋久島へは高速船（約2–3時間）かフェリー（約4時間）が一般的です。島内の<a href=\"/\">屋久島バス時刻表</a>で次の便を検索。運賃は<a href=\"/map/\">路線図・運賃</a>。最新ダイヤ・運休は各社公式を確認してください。",
-    "zh": "从鹿儿岛到屋久岛通常乘高速船（约2–3小时）或渡轮（约4小时）。岛上以<a href=\"/\">公交时刻表</a>为主，票价见<a href=\"/map/\">路线与运价</a>。请以各运营商最新公告为准。",
-    "en": "Reach Yakushima from Kagoshima by jetfoil (~2–3h) or ferry (~4h). On-island travel is mostly by <a href=\"/\">route bus (timetable)</a>; fares on the <a href=\"/map/\">routes &amp; fares</a> page. Check each operator for latest schedules."
   },
   "booking": {
     "title": {
@@ -124,9 +119,9 @@ const ACCESS_DATA = {
           "en": "Ferry Yakushima 2"
         },
         "body": {
-          "ja": "個人（12名以下）は予約不要。ネット販売はなく、出港当日に窓口で購入。出港約1時間前までにご来港ください。団体・車両航送は電話予約（公式サイト参照）。",
-          "zh": "普通乘客（12 人以下）无需预约，不支持线上购票，请在出发当天到码头窗口购买，建议提前约 1 小时办理。团体/运车需电话预约（见官网）。",
-          "en": "Walk-on passengers (≤12) need no reservation; no online sales — buy at the port counter on sailing day, arrive ~1 hour early. Groups/vehicle shipping: phone reservation (see official site)."
+          "ja": "個人（12名以下）は予約不要。ネット販売はなく、出港当日に窓口で購入。出港約1時間前までにご来港ください。団体・車両航送は電話予約（公式サイト参照）。2026年7〜11月は特定日曜に運休予定あり（下の時刻表のお知らせ参照）。",
+          "zh": "普通乘客（12 人以下）无需预约，不支持线上购票，请在出发当天到码头窗口购买，建议提前约 1 小时办理。团体/运车需电话预约（见官网）。2026年7–11月部分周日计划停运（见下方时刻表提示）。",
+          "en": "Walk-on passengers (≤12) need no reservation; no online sales — buy at the port counter on sailing day, arrive ~1 hour early. Groups/vehicle shipping: phone reservation (see official site). Planned Sunday suspensions Jul–Nov 2026 (see timetable notice below)."
         },
         "ctaUrl": "https://ferryyakusima2.com/terminal",
         "ctaLabel": {
@@ -508,6 +503,12 @@ const ACCESS_DATA = {
         "zh": "黄金周、盂兰盆、年末年初运价/班次可能不同。",
         "en": "Fares/schedules may differ in peak seasons (GW, Obon, New Year)."
       },
+      "alert": {
+        "ja": "2026年7〜11月、下記日曜は運休予定（折田汽船・2026/5/8 公表）：7/5・12・26、8/2・23・30、9/6・13・27、10/4・18・25、11/8・15・29。※日曜は貨物・車両の受付・引渡しなし。予約 TEL 099-226-0731（日曜除く9–17時）。",
+        "zh": "2026年7–11月，以下周日计划停运（折田汽船，2026/5/8 公告）：7/5、7/12、7/26；8/2、8/23、8/30；9/6、9/13、9/27；10/4、10/18、10/25；11/8、11/15、11/29。周日全天不受理货物/车辆。预约 099-226-0731（周一至周六 9–17 时）。",
+        "en": "Planned no-sail Sundays Jul–Nov 2026 (Orita, announced 2026-05-08): Jul 5, 12, 26; Aug 2, 23, 30; Sep 6, 13, 27; Oct 4, 18, 25; Nov 8, 15, 29. No cargo/vehicle handling on Sundays. Reservations 099-226-0731 (Mon–Sat 9:00–17:00, not Sun)."
+      },
+      "alertUrl": "https://ferryyakusima2.com/news/10207",
       "columns": [
         {
           "key": "from",

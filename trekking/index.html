@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="屋久島トレッキングコース参考：縄文杉・太鼓岩・宮之浦岳など。難易度・所要時間とバス時刻表へのリンク。Yakushima trekking course reference with bus connections.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#143a35">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://yakushimabus.com/trekking/">
+  <meta property="og:title" content="屋久島トレッキング参考 | Yakushima Trekking">
+  <meta property="og:url" content="https://yakushimabus.com/trekking/">
+  <meta property="og:image" content="https://yakushimabus.com/og-image.png">
+  <title>登山・トレッキング参考 | 屋久岛徒步 | Yakushima Trekking</title>
+  <link rel="stylesheet" href="/styles.css?v=layout-v79">
+  <script src="/analytics.js"></script>
+  <script src="/analytics-events.js" defer></script>
+  <script src="/site-chrome.js?v=chrome-v10" defer></script>
+</head>
+<body class="app-page-narrow">
+  <div class="app trek-page">
+    <div class="app-nav-sticky">
+      <nav class="nav nav-main nav-main--6" id="mainNav" aria-label="Main">
+        <a href="/guide/">マップ</a>
+        <a href="/">時刻表</a>
+        <a href="/map/">運賃</a>
+        <a href="/access/">フェリー</a>
+        <a href="/trekking/" class="active" aria-current="page">登山</a>
+        <a href="/intro/">紹介</a>
+      </nav>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v10"></script>
+    </div>
+
+    <header class="header header-compact">
+      <div class="header-main">
+        <h1 id="appTitle">登山ルート</h1>
+      </div>
+      <div class="header-actions">
+        <div class="lang-switch" id="langSwitch">
+          <button type="button" data-lang="ja">JA</button>
+          <button type="button" data-lang="zh">ZH</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <p class="app-meta trek-lead" id="trekLead"></p>
+    <p class="app-meta meta-links" id="pageCross"></p>
+
+    <section class="panel trek-season" aria-labelledby="trekSeasonTitle">
+      <h2 class="trek-section-title" id="trekSeasonTitle"></h2>
+      <p class="trek-season-lead" id="trekSeasonLead"></p>
+      <div class="trek-season-grid" id="trekSeasonGrid"></div>
+    </section>
+
+    <section class="trek-courses-wrap" aria-labelledby="trekCoursesTitle">
+      <h2 class="trek-section-title trek-courses-heading" id="trekCoursesTitle"></h2>
+      <div class="trek-courses" id="trekCourses"></div>
+    </section>
+
+    <section class="panel trek-resources" aria-labelledby="trekResourcesTitle">
+      <h2 class="trek-section-title" id="trekResourcesTitle"></h2>
+      <ul class="trek-resource-links" id="trekResources"></ul>
+    </section>
+
+    <p class="trek-disclaimer" id="trekDisclaimer"></p>
+    <p class="trek-source">
+      <span id="trekSourceLabel"></span>
+      <a id="trekSourceLink" href="https://yakukan.jp/trekking/" target="_blank" rel="noopener">yakukan.jp/trekking</a>
+    </p>
+
+    <footer class="app-footer"></footer>
+  </div>
+
+  <script src="/trekking-data.js?v=trek-v4"></script>
+  <script src="/app-core.js"></script>
+  <script>
+    const UI = {
+      ja: { sourceLabel: "出典：" },
+      zh: { sourceLabel: "来源：" },
+      en: { sourceLabel: "Source: " },
+    };
+
+    let lang = localStorage.getItem("yakushima-bus-lang") || "ja";
+    const t = (key) => (UI[lang] && UI[lang][key]) || UI.ja[key] || key;
+
+    function pick(o) {
+      if (o == null) return "";
+      if (typeof o === "string" || typeof o === "number") return String(o);
+      return o[lang] || o.ja || o.en || o.zh || "";
+    }
+
+    function stars(n) {
+      const v = Math.max(0, Math.min(5, Number(n) || 0));
+      return `<span class="trek-stars" aria-label="${v}/5">${"★".repeat(v)}<span class="trek-stars-dim">${"★".repeat(5 - v)}</span></span>`;
+    }
+
+    function applyPageHead() {
+      const titleEl = document.getElementById("appTitle");
+      const leadEl = document.getElementById("trekLead");
+      const crossEl = document.getElementById("pageCross");
+      if (window.SiteChrome) {
+        SiteChrome.applyPageHead("trek", { titleEl, leadEl, crossEl, lang });
+        return;
+      }
+      const titles = { ja: "登山ルート", zh: "登山路线", en: "Hiking routes" };
+      titleEl.textContent = titles[lang] || titles.ja;
+      const d = window.TREKKING_DATA;
+      if (d && leadEl) leadEl.textContent = pick(d.intro);
+    }
+
+    function render() {
+      const d = window.TREKKING_DATA;
+      if (!d) return;
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+      applyPageHead();
+      document.getElementById("trekSeasonTitle").textContent = pick(d.seasonTitle);
+      document.getElementById("trekSeasonLead").textContent = pick(d.seasonLead);
+      document.getElementById("trekCoursesTitle").textContent = pick(d.coursesTitle);
+      document.getElementById("trekResourcesTitle").textContent = pick(d.resourcesTitle);
+      document.getElementById("trekResources").innerHTML = (d.resources || [])
+        .map((r) => {
+          const note = pick(r.note);
+          return `<li><a href="${r.url}" target="_blank" rel="noopener">${pick(r.label)}</a>${note ? `<span class="trek-resource-note">${note}</span>` : ""}</li>`;
+        })
+        .join("");
+      document.getElementById("trekDisclaimer").textContent = pick(d.disclaimer);
+      document.getElementById("trekSourceLabel").textContent = t("sourceLabel");
+
+      document.getElementById("trekSeasonGrid").innerHTML = d.seasons
+        .map(
+          (s) => `<div class="trek-season-card panel">
+          <h3 class="trek-season-name">${pick(s.title)}</h3>
+          <ul class="trek-season-list">${s.items.map((i) => `<li>${pick(i)}</li>`).join("")}</ul>
+        </div>`
+        )
+        .join("");
+
+      const L = d.labels;
+      document.getElementById("trekCourses").innerHTML = d.courses
+        .map((c) => {
+          const routeRef = c.yamapUrl
+            ? `<a href="${c.yamapUrl}" target="_blank" rel="noopener">${pick(L.yamap)}</a>`
+            : c.allTrailsUrl
+              ? `<a href="${c.allTrailsUrl}" target="_blank" rel="noopener" title="${pick(c.title)} · ${pick(c.distance)}">${pick(L.allTrails)}</a>`
+              : "";
+          const links = [
+            `<a href="${c.yakukanUrl}" target="_blank" rel="noopener">${pick(L.yakukan)}</a>`,
+            routeRef,
+          ]
+            .filter(Boolean)
+            .join("");
+          return `<article class="trek-card panel" id="${c.id}">
+            <h3 class="trek-card-title">${pick(c.title)}</h3>
+            <dl class="trek-stats">
+              <div><dt>${pick(L.difficulty)}</dt><dd>${stars(c.difficulty)}</dd></div>
+              <div><dt>${pick(L.fitness)}</dt><dd>${stars(c.fitness)}</dd></div>
+              <div><dt>${pick(L.distance)}</dt><dd>${pick(c.distance)}</dd></div>
+              <div><dt>${pick(L.duration)}</dt><dd>${pick(c.duration)}</dd></div>
+              <div><dt>${pick(L.elevation)}</dt><dd>${pick(c.elevation)}</dd></div>
+            </dl>
+            <div class="trek-card-links">${links}</div>
+          </article>`;
+        })
+        .join("");
+    }
+
+    document.getElementById("langSwitch").addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-lang]");
+      if (!btn) return;
+      lang = btn.dataset.lang;
+      AppCore.setLang(lang);
+      document.querySelectorAll("#langSwitch [data-lang]").forEach((b) => {
+        b.classList.toggle("active", b.dataset.lang === lang);
+      });
+      render();
+    });
+
+    AppCore.runPageBoot((resolvedLang) => {
+      lang = resolvedLang;
+      AppCore.setLang(lang);
+      document.querySelector(`#langSwitch [data-lang="${lang}"]`)?.classList.add("active");
+      render();
+    });
+  </script>
+</body>
+</html>

@@ -1,92 +1,75 @@
 [
   {
-    "id": "hook",
-    "title": "屋久岛公交，为什么让人迷路？",
-    "subtitle": "Yakushima Bus · 产品讲解",
-    "narration": "屋久岛，日本最南端的世界遗产之一。森林、海岸、阳光——旅行者的天堂。但岛上的公交，能把最老练的背包客整懵：时刻表密密麻麻，换乘规则各说各话，同一条路还有多家运营商。站在站牌前，你真正需要的，往往只是一句话——下一班车，几点来？",
-    "durationHint": 28,
-    "type": "title"
-  },
-  {
     "id": "intro",
     "title": "Yakushima Bus",
-    "subtitle": "yakushimabus.com · 独立三语查询工具",
-    "narration": "所以我做了 Yakushima Bus——一个纯静态、无后端的独立工具。不依附任何公交公司或观光协会，数据全部来自最新官方 PDF，日中英三语。打开 yakushimabus.com，没有登录，没有广告弹窗，打开就能查。",
-    "durationHint": 22,
+    "subtitle": "Trilingual bus & ferry guide",
+    "narration": "This is Yakushima Bus — a free trilingual bus and ferry guide for Yakushima Island. Official PDF data. No app, no login.",
+    "subtitleZh": "屋久岛免费三语公交与上岛交通查询 · 官方 PDF · 无需安装",
+    "durationHint": 9,
     "type": "title"
   },
   {
     "id": "home-next",
-    "title": "下一班车",
-    "subtitle": "站在站牌前最需要的信息",
-    "narration": "首页的核心，是「下一班车」。选好出发站和到达站——比如宫之浦港到安房——顶部立刻显示最近一班的发车时间和倒计时。右上角是日本时间实时钟，确保你和岛上的时刻表对齐。为什么做这个？因为在站牌前，你不需要翻二十页 PDF，你只需要知道——还要等多久。",
-    "durationHint": 35,
+    "title": "Next departure",
+    "subtitle": "Presets · countdown · JST",
+    "narration": "Pick origin and destination — or tap a preset route. Next departure, live countdown, Japan time clock. Swap direction in one tap.",
+    "subtitleZh": "选站或点常用区间 · 下一班与倒计时 · 一键对调方向",
+    "durationHint": 11,
     "type": "record",
     "recordId": "home-next",
-    "url": "/",
-    "viewport": "desktop"
+    "url": "/?lang=en"
   },
   {
     "id": "home-timetable",
-    "title": "完整时刻表",
-    "subtitle": "多运营商 · 日种筛选 · 常用区间",
-    "narration": "往下是完整便一览。Taneyaku 和 Matsubanda 两家运营商用不同颜色区分，工作日、周六、日祝一键切换。勾选「仅显示此后」，配合时刻筛选，可以规划下午的回程。顶部还有常用区间预设——港到安房、港到白谷——一键填入，减少在陌生站名里搜索的时间。",
-    "durationHint": 32,
+    "title": "Full timetable",
+    "subtitle": "Day types · operators",
+    "narration": "Full timetable: weekday, Saturday, holidays. Two operators, color-coded. Filter upcoming buses only.",
+    "subtitleZh": "平日 / 周六 / 假日 · 两家运营商分色 · 可只看此后班次",
+    "durationHint": 9,
     "type": "record",
     "recordId": "home-timetable",
-    "url": "/",
-    "viewport": "desktop"
+    "url": "/?lang=en"
   },
   {
     "id": "home-i18n",
-    "title": "三语切换",
-    "subtitle": "日 · 中 · 英 站名对照",
-    "narration": "右上角 JA、ZH、EN 一键切换。站名搜索支持三种语言——输入「安房」「Anbo」或日文原名，都能定位。这对国际旅行者至关重要：官方 PDF 往往只有日文，而这个工具把中日英站名做了对照，降低语言门槛。",
-    "durationHint": 24,
+    "title": "Trilingual",
+    "subtitle": "UI & stop search",
+    "narration": "UI in Japanese, Chinese, or English. Search stops in any of the three — matches the sign at the stop.",
+    "subtitleZh": "界面日中英切换 · 站名三语搜索与站牌一致",
+    "durationHint": 8,
     "type": "record",
     "recordId": "home-i18n",
-    "url": "/?lang=zh",
-    "viewport": "desktop"
+    "url": "/?lang=en"
   },
   {
     "id": "map",
-    "title": "路线图 & 运价",
-    "subtitle": "官方 PDF 内嵌 · 移动端图片预览",
-    "narration": "路线及价格页，嵌入官方路线图和运价表 PDF。桌面端可以直接在页面里缩放、滚动。最新版本还解决了移动端痛点——手机往往打不开或不方便看 PDF 外链，所以我们把 PDF 导出为高清 JPG，触屏设备直接内嵌图片浏览，同时保留打开原 PDF 的链接。非主要站点的运价通过锚点估算，标注为「目安」，页脚提醒以车内实际收费为准。",
-    "durationHint": 38,
+    "title": "Routes & fares",
+    "subtitle": "Map · fare lookup",
+    "narration": "Routes page: embedded official map — zoom in-page. Look up adult one-way fare between any two stops.",
+    "subtitleZh": "官方路线图页内缩放 · 任意两站成人单程票价",
+    "durationHint": 9,
     "type": "record",
     "recordId": "map",
-    "url": "/map/",
-    "viewport": "both"
+    "url": "/map/?lang=en"
   },
   {
     "id": "access",
-    "title": "上岛交通",
-    "subtitle": "高速船 · 渡轮 · 机场巴士 · 多日券",
-    "narration": "上岛页汇总了来屋久岛的交通方式：鹿儿岛出发的高速船和渡轮时刻、票价、机场接驳巴士，以及 Iwasaki 的多日乘车券信息。为什么单独做这一页？因为很多旅行者查公交之前，先要解决「怎么上岛」——把官方来源整理成表格，比在各个网站之间跳转高效得多。",
-    "durationHint": 30,
+    "title": "Island access",
+    "subtitle": "Jetfoil · ferry · fares",
+    "narration": "Access page: jetfoil and ferry times, fares from Kagoshima.",
+    "subtitleZh": "上岛页：高速船与渡轮时刻、鹿儿岛出发票价",
+    "durationHint": 6,
     "type": "record",
     "recordId": "access",
-    "url": "/access/?lang=zh",
-    "viewport": "desktop"
-  },
-  {
-    "id": "data",
-    "title": "数据可信",
-    "subtitle": "官方 PDF · 可校验 · 可更新",
-    "narration": "所有数据来自屋久岛观光协会和公交公司的官方 PDF，构建脚本会自动校验运价锚点。发现错误可以发邮件反馈。页面底部链接到原始来源，方便你交叉核对。这是参考工具，不是官方产品——出发前请以站牌和司机告知为准。",
-    "durationHint": 26,
-    "type": "record",
-    "recordId": "about",
-    "url": "/about/?lang=zh",
-    "viewport": "desktop"
+    "url": "/access/?lang=en"
   },
   {
     "id": "outro",
-    "title": "祝旅途顺利",
-    "subtitle": "yakushimabus.com",
-    "narration": "Yakushima Bus，希望帮在岛上的你，更快找到下一班车。如果你也在做旅行工具、或对中国的行程规划有兴趣，关于页有联系方式。干杯，祝你在屋久岛旅途顺利。",
-    "durationHint": 18,
+    "title": "yakushimabus.com",
+    "subtitle": "Everything before you board",
+    "narration": "yakushimabus.com — everything before you board.",
+    "subtitleZh": "yakushimabus.com — 上车前查这一站就够",
+    "durationHint": 5,
     "type": "title"
   }
 ]

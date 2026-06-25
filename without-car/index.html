@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="屋久島をレンタカーなしで回る：バス時刻表・路線図・料金・上島交通。宮之浦港・白谷・荒川登山口。How to travel Yakushima without a car — bus timetable & map 2026.">
+  <meta name="keywords" content="屋久島,レンタカーなし,バス,交通,屋久岛,不租车,公交,Yakushima,without a car,bus">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#143a35">
+  <meta name="geo.region" content="JP-46">
+  <meta name="geo.placename" content="Yakushima, Kagoshima, Japan">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://yakushimabus.com/without-car/">
+  <link rel="alternate" hreflang="ja" href="https://yakushimabus.com/without-car/?lang=ja">
+  <link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/without-car/?lang=zh">
+  <link rel="alternate" hreflang="en" href="https://yakushimabus.com/without-car/?lang=en">
+  <meta property="og:title" content="屋久島レンタカーなし｜バスで回る | Yakushima Without a Car">
+  <meta property="og:description" content="Bus timetable, route map, fares and ferry access — plan Yakushima without renting a car.">
+  <meta property="og:url" content="https://yakushimabus.com/without-car/">
+  <meta property="og:image" content="https://yakushimabus.com/og-image.png">
+  <title>屋久島レンタカーなし｜バスで回る 2026 | 不租车公交 | Yakushima Without a Car</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Travel Yakushima without a car",
+    "url": "https://yakushimabus.com/without-car/",
+    "description": "How to use Yakushima buses and ferries without a rental car. Links to timetable, map and fares.",
+    "inLanguage": ["ja", "zh-CN", "en"],
+    "isPartOf": { "@type": "WebSite", "name": "Yakushima Bus", "url": "https://yakushimabus.com/" }
+  }
+  </script>
+  <link rel="stylesheet" href="/styles.css?v=layout-v79">
+  <script src="/analytics.js"></script>
+    <script src="/analytics-events.js" defer></script>
+  <script src="/site-chrome.js?v=chrome-v10" defer></script>
+</head>
+<body class="app-page-narrow">
+  <div class="app without-car-page">
+    <div class="app-nav-sticky">
+      <nav class="nav nav-main nav-main--6" id="mainNav" aria-label="Main">
+        <a href="/" data-i18n="navTime">時刻表</a>
+        <a href="/map/" data-i18n="navMap">路線</a>
+        <a href="/access/" data-i18n="navAccess">上島</a>
+        <a href="/trekking/" data-i18n="navTrek">登山</a>
+        <a href="/guide/" data-i18n="navGuide">便利</a>
+        <a href="/intro/" data-i18n="navIntro">紹介</a>
+      </nav>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v10"></script>
+    </div>
+
+    <header class="header header-compact">
+      <div class="header-main">
+        <h1 id="appTitle">レンタカーなし</h1>
+      </div>
+      <div class="header-actions">
+        <div class="lang-switch" id="langSwitch">
+          <button type="button" data-lang="ja">JA</button>
+          <button type="button" data-lang="zh">ZH</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <p class="page-seo-lead" id="pageLead"></p>
+
+    <div id="sections"></div>
+
+    <p class="without-car-note panel" id="passNote"></p>
+
+    <footer class="app-footer"></footer>
+  </div>
+
+  <script src="/without-car-data.js?v=1"></script>
+  <script>
+    const NAV_UI = {
+      ja: { navAria: "メインメニュー", navTime: "時刻表", navMap: "路線", navAccess: "上島", navTrek: "登山", navGuide: "便利", navIntro: "紹介", navAbout: "About", supportKofi: "コーヒーをおごる", title: "レンタカーなしで回る" },
+      zh: { navAria: "主菜单", navTime: "时刻表", navMap: "路线", navAccess: "上岛", navTrek: "登山", navGuide: "指南", navIntro: "介绍", navAbout: "关于", supportKofi: "支持本站", title: "不租车怎么玩" },
+      en: { navAria: "Main menu", navTime: "Timetable", navMap: "Routes", navAccess: "Ferry", navTrek: "Trek", navGuide: "Guide", navIntro: "Intro", navAbout: "About", supportKofi: "Buy me a coffee", title: "Without a rental car" },
+    };
+
+    let lang = localStorage.getItem("yakushima-bus-lang") || "ja";
+    const t = (key) => (NAV_UI[lang] && NAV_UI[lang][key]) || NAV_UI.ja[key] || key;
+
+    function pick(o) {
+      if (o == null) return "";
+      if (typeof o === "string" || typeof o === "number") return String(o);
+      return o[lang] || o.ja || o.en || o.zh || "";
+    }
+
+    function render() {
+      const d = window.WITHOUT_CAR_DATA;
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+      document.getElementById("appTitle").textContent = t("title");
+      document.getElementById("pageLead").textContent = pick(d.intro);
+      document.getElementById("passNote").textContent = pick(d.passNote);
+
+      document.getElementById("sections").innerHTML = d.sections
+        .map((sec) => {
+          if (sec.links) {
+            const links = sec.links
+              .map((l) => {
+                const note = l.note ? `<span class="without-car-link-note">${pick(l.note)}</span>` : "";
+                return `<a class="without-car-tool-link" href="${l.href}?lang=${lang}"><span class="without-car-link-label">${pick(l.label)}</span>${note}</a>`;
+              })
+              .join("");
+            return `<section class="panel without-car-section"><h2 class="without-car-heading">${pick(sec.title)}</h2><div class="without-car-tools">${links}</div></section>`;
+          }
+          const items = (sec.items || []).map((i) => `<li>${pick(i)}</li>`).join("");
+          return `<section class="panel without-car-section"><h2 class="without-car-heading">${pick(sec.title)}</h2><ul class="without-car-list">${items}</ul></section>`;
+        })
+        .join("");
+
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (NAV_UI[lang][key]) el.textContent = NAV_UI[lang][key];
+      });
+      document.getElementById("mainNav").setAttribute("aria-label", t("navAria"));
+    }
+
+    document.getElementById("langSwitch").addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-lang]");
+      if (!btn) return;
+      lang = btn.dataset.lang;
+      localStorage.setItem("yakushima-bus-lang", lang);
+      window.dispatchEvent(new CustomEvent("yakushima-bus-lang", { detail: { lang } }));
+      document.querySelectorAll("#langSwitch [data-lang]").forEach((b) => {
+        b.classList.toggle("active", b.dataset.lang === lang);
+      });
+      render();
+    });
+    document.querySelector(`#langSwitch [data-lang="${lang}"]`)?.classList.add("active");
+    render();
+  </script>
+</body>
+</html>

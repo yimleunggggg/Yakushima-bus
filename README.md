@@ -19,9 +19,13 @@
 | 文件 | 作用 |
 |------|------|
 | `index.html` | 时刻表 |
-| `map.html` | 路线图 + 运价 |
-| `access.html` | 上岛交通 + 多日券（直出表格） |
-| `about.html` | 关于本站 / 开发者说明（三语） |
+| `map/index.html` | 路线图 + 运价 |
+| `guide/index.html` | 便利设施地图（POI + 公交站） |
+| `access/index.html` | 上岛交通 + 多日券 |
+| `trekking/index.html` | 登山路线参考 |
+| `without-car/index.html` | 不租车交通攻略（SEO） |
+| `intro/index.html` | 产品介绍（noindex） |
+| `about/index.html` | 关于本站 |
 | `about-data.js` | 关于页文案 |
 | `data.js` / `map-data.js` / `access-data.js` | 生成数据 |
 | `sources/manifest.json` | 公交官方 URL |
@@ -40,8 +44,7 @@ curl -fsSL -o assets/taneyaku-20260301.pdf "https://yakukan.jp/.../taneyakubus-t
 # 2. 重建并校验运价锚点
 python3 scripts/build_all.py
 
-# 3. 浏览器预览 index.html / map.html
-python3 -m http.server 8765
+# 3. 浏览器预览各页（根目录 `python3 -m http.server 8765`）
 ```
 
 ### 局部修改（不等官方 PDF）
@@ -74,10 +77,10 @@ python3 -m http.server 8765
 
 | 文档 | 读者 |
 |------|------|
-| [**Playbook**（流程 / 架构 / 踩坑 / 复用）](docs/playbook/README.md) | 自己复盘、vibe coding 分享 |
-| [**教程独立仓库**（可分享）](https://github.com/yimleunggggg/vibe-coding-static-site-guide) | Vibe Coding 静态工具站使用教程 |
+| [**Vibe Coding 教程仓**](https://github.com/yimleunggggg/vibe-coding-static-site-guide) | 从 0 到 1、部署、SEO 自动化、踩坑与复用（公开脱敏） |
 | [产品介绍（非技术）](docs/product-intro.md) | 访客 / 社媒 |
-| [SEO 自动化教程（脱敏）](docs/seo/tutorial/README.md) | 跟做 Actions 日报 |
+| [本站部署](docs/deploy-yakushimabus.md) | yakushimabus.com 运维 |
+| [SEO 日报与指标](docs/seo/README.md) | 本仓库 Actions 产出与私人配置 |
 
 ## 部署（yakushimabus.com）
 

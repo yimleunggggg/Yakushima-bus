@@ -3,13 +3,33 @@ const AppCore = {
   LANG_KEY: "yakushima-bus-lang",
 
   getLang() {
-    return this._lang ?? (localStorage.getItem(this.LANG_KEY) || "ja");
+    return this._lang ?? this.resolveLang();
+  },
+
+  resolveLang() {
+    const q = new URLSearchParams(location.search).get("lang");
+    if (q === "ja" || q === "zh" || q === "en") return q;
+    return localStorage.getItem(this.LANG_KEY) || "ja";
+  },
+
+  runPageBoot(fn) {
+    const run = () => fn(this.resolveLang());
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", run, { once: true });
+    } else {
+      run();
+    }
   },
 
   setLang(lang) {
     this._lang = lang;
     localStorage.setItem(this.LANG_KEY, lang);
     this.applyDocLang(lang);
+    this.notifyLangChange(lang);
+  },
+
+  notifyLangChange(lang = this.getLang()) {
+    window.dispatchEvent(new CustomEvent("yakushima-bus-lang", { detail: { lang } }));
   },
 
   applyDocLang(lang = this.getLang()) {

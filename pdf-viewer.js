@@ -138,7 +138,8 @@
   }) {
     let scale = 1;
     let pinchDist = 0;
-    let rafId = 0;
+    let pinchBaseScale = 1;
+    let pinching = false;
     let pan = null;
 
     function baseHeight() {
@@ -150,8 +151,7 @@
       return Math.round(baseHeight() * scale * 2.2);
     }
 
-    function apply(nextScale) {
-      scale = Math.min(max, Math.max(min, nextScale));
+    function centerScroll() {
       const cw = viewport.clientWidth;
       const ch = viewport.clientHeight;
       const sl = viewport.scrollLeft;
@@ -160,6 +160,12 @@
       const sh = Math.max(viewport.scrollHeight, 1);
       const ratioX = (sl + cw / 2) / sw;
       const ratioY = (st + ch / 2) / sh;
+      viewport.scrollLeft = Math.max(0, ratioX * viewport.scrollWidth - cw / 2);
+      viewport.scrollTop = Math.max(0, ratioY * viewport.scrollHeight - ch / 2);
+    }
+
+    function apply(nextScale, { adjustScroll = true } = {}) {
+      scale = Math.min(max, Math.max(min, nextScale));
       const h = embedHeight();
 
       embed.style.width = `${Math.round(scale * 100)}%`;
@@ -167,10 +173,9 @@
       embed.style.height = `${h}px`;
       if (zoomReset) zoomReset.textContent = `${Math.round(scale * 100)}%`;
 
-      requestAnimationFrame(() => {
-        viewport.scrollLeft = Math.max(0, ratioX * viewport.scrollWidth - cw / 2);
-        viewport.scrollTop = Math.max(0, ratioY * viewport.scrollHeight - ch / 2);
-      });
+      if (adjustScroll) {
+        requestAnimationFrame(centerScroll);
+      }
     }
 
     function panTarget(el) {
@@ -214,6 +219,8 @@
           e.touches[0].pageX - e.touches[1].pageX,
           e.touches[0].pageY - e.touches[1].pageY
         );
+        pinchBaseScale = scale;
+        pinching = true;
         return;
       }
       if (e.touches.length === 1 && !panTarget(e.target)) {
@@ -233,22 +240,24 @@
         e.touches[0].pageX - e.touches[1].pageX,
         e.touches[0].pageY - e.touches[1].pageY
       );
-      const next = scale * (dist / pinchDist);
-      pinchDist = dist;
-      if (rafId) return;
-      rafId = requestAnimationFrame(() => {
-        apply(next);
-        rafId = 0;
-      });
+      const next = pinchBaseScale * (dist / pinchDist);
+      apply(next, { adjustScroll: false });
     }, { passive: false });
+
+    function endPinch() {
+      if (!pinching) return;
+      pinching = false;
+      pinchDist = 0;
+      centerScroll();
+    }
 
     viewport.addEventListener("touchend", (e) => {
       if (e.touches.length === 0) endPan();
-      pinchDist = 0;
+      if (e.touches.length < 2) endPinch();
     });
     viewport.addEventListener("touchcancel", () => {
       endPan();
-      pinchDist = 0;
+      endPinch();
     });
 
     apply(1);

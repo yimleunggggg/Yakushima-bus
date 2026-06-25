@@ -15,11 +15,11 @@ description: >-
 | **Skill（本包）** | Agent 行为与检查清单 | `npx skills add <owner>/<repo> -s static-site-seo-setup` |
 | **脚本模板** | `scripts/seo_*`、`.github/workflows/seo-*.yml` | 从案例仓 **复制** 到目标项目（Skill 不写 Secrets） |
 
-参考案例仓：`Yakushima-bus`（yakushimabus.com）。公开教程：`docs/seo/tutorial/` 或独立库 `vibe-coding-static-site-guide`。
+参考案例仓：`Yakushima-bus`（yakushimabus.com）。公开教程：[vibe-coding-static-site-guide](https://github.com/yimleunggggg/vibe-coding-static-site-guide/tree/main/seo/tutorial/README.md)。
 
 ## 执行顺序
 
-1. **Google**：Cloud 项目 → GSC OAuth（Search Console API）→ GA4 服务账号只读 → 见教程 `02-Google授权.md`。
+1. **Google**：Cloud 项目 → GSC OAuth（Search Console API）→ GA4 服务账号只读 → 见教程 [02-Google授权.md](https://github.com/yimleunggggg/vibe-coding-static-site-guide/blob/main/seo/tutorial/02-Google授权.md)。
 2. **GitHub Secrets**（名称与案例仓一致）：`GSC_*`、`GA4_*`、`RESEND_*`、`NTFY_*` 等；勿写入 Skill 或提交到 git。
 3. **复制脚本**：`seo_fetch_daily.py`、`seo_daily_report.py`、`seo_priorities.py`、`seo_notify*.sh`、`seo_site_uptime.py` 及 `seo_daily_ci*.sh`。
 4. **Workflow**：`seo-daily.yml`（cron + 失败重跑）；`permissions: contents: write` 写 `docs/seo/metrics/`。
