@@ -56,9 +56,9 @@
     ferry: {
       titleKey: "navAccessTitle",
       lead: {
-        ja: "鹿児島・指宿からの高速船・フェリー時刻と運賃。上島後のバス接続は時刻表へ。",
-        zh: "鹿儿岛·指宿出发的高速船与渡轮时刻、票价；上岛后查公交时刻表。",
-        en: "Jetfoil and ferry times and fares from Kagoshima and Ibusuki. Bus connections after you land.",
+        ja: "鹿児島↔屋久島の高速船・フェリー時刻と運賃（指宿発含む）。上島後のバス接続は時刻表へ。",
+        zh: "鹿儿岛↔屋久岛 高速船与渡轮时刻、票价（含指宿出发）；上岛后查公交时刻表。",
+        en: "Kagoshima ↔ Yakushima jetfoil and ferry times and fares (incl. Ibusuki). Bus timetable after you land.",
       },
       crossHtml: {
         ja: '<a href="/?lang=ja">上島後は時刻表で接続便を検索</a>',
@@ -386,7 +386,7 @@
   }
 
   function refresh() {
-    lang = localStorage.getItem(LANG_KEY) || "ja";
+    lang = readLang();
     renderMainNav();
     renderFooter();
     const stored = readStore();

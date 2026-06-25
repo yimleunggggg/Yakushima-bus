@@ -45,10 +45,10 @@
   }
   </script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="/styles.css?v=layout-v82">
+  <link rel="stylesheet" href="/styles.css?v=layout-v84">
   <script src="/analytics.js"></script>
   <script src="/analytics-events.js?v=analytics-v2" defer></script>
-  <script src="/site-chrome.js?v=chrome-v11" defer></script>
+  <script src="/site-chrome.js?v=chrome-v13" defer></script>
 </head>
 <body class="guide-page">
   <div class="app">
@@ -61,7 +61,7 @@
         <a href="/trekking/">登山</a>
         <a href="/intro/">紹介</a>
       </nav>
-      <script src="/site-chrome-nav-boot.js?v=chrome-v11"></script>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v13"></script>
     </div>
 
     <header class="header header-compact">
@@ -90,16 +90,17 @@
 
     <div class="guide-shell">
     <div class="guide-layout panel">
-      <div class="guide-peek">
-        <div class="guide-filters-wrap">
-          <div class="guide-filters" id="guideFilters" role="group" aria-label="Category filters"></div>
-        </div>
-        <div class="guide-map-wrap">
-          <div id="guideMap" class="guide-map" role="application" aria-label="POI map"></div>
-        </div>
-      </div>
       <div class="guide-list-block">
         <ul class="guide-list" id="guideList"></ul>
+      </div>
+      <div class="guide-map-wrap">
+        <div class="guide-filters-float" aria-label="Category filters">
+          <div class="guide-filters" id="guideFilters" role="group"></div>
+        </div>
+        <div id="guideMap" class="guide-map" role="application" aria-label="POI map"></div>
+        <button type="button" class="guide-map-fs-btn" id="guideMapFsBtn" aria-pressed="false" title="Fullscreen map" aria-label="Fullscreen map">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.4" d="M2.5 5.5V2.5h3M10.5 2.5h3v3M13.5 10.5v3h-3M6.5 13.5h-3v-3"/></svg>
+        </button>
       </div>
     </div>
     </div>
@@ -139,6 +140,6 @@
   <script src="/poi-data.js?v=poi-v7"></script>
   <script src="/bus-stops-geo.js?v=stop-geo-v7"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="/guide.js?v=guide-v22"></script>
+  <script src="/guide.js?v=guide-v23"></script>
 </body>
 </html>

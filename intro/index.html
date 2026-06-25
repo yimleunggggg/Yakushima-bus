@@ -14,10 +14,10 @@
   <meta property="og:url" content="https://yakushimabus.com/intro/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <title>製品紹介 | 产品介绍 | Yakushima Bus Intro</title>
-  <link rel="stylesheet" href="/styles.css?v=layout-v83">
+  <link rel="stylesheet" href="/styles.css?v=layout-v84">
   <script src="/analytics.js"></script>
   <script src="/analytics-events.js?v=analytics-v2" defer></script>
-  <script src="/site-chrome.js?v=chrome-v11" defer></script>
+  <script src="/site-chrome.js?v=chrome-v13" defer></script>
 </head>
 <body class="app-page-narrow">
   <div class="app intro-page">
@@ -30,12 +30,11 @@
         <a href="/trekking/">登山</a>
         <a href="/intro/" class="active" aria-current="page">紹介</a>
       </nav>
-      <script src="/site-chrome-nav-boot.js?v=chrome-v11"></script>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v13"></script>
     </div>
 
     <header class="intro-hero">
       <div class="intro-hero-top">
-        <p class="intro-hero-eyebrow">yakushimabus.com</p>
         <div class="lang-switch" id="langSwitch">
           <button type="button" data-lang="ja">JA</button>
           <button type="button" data-lang="zh">ZH</button>
@@ -77,14 +76,36 @@
   </div>
 
   <script src="/sources-data.js?v=3"></script>
-  <script src="/intro-data.js?v=intro-v13"></script>
+  <script src="/intro-data.js?v=intro-v14"></script>
   <script src="/app-core.js"></script>
   <script>
     const NAV_UI = {};
 
-    let lang = localStorage.getItem("yakushima-bus-lang") || "ja";
+    let lang = AppCore.resolveLang();
     let introVideoSec = 0;
+    let langBooted = false;
     const t = (key) => (NAV_UI[lang] && NAV_UI[lang][key]) || NAV_UI.ja?.[key] || key;
+
+    function syncLangSwitch() {
+      document.querySelectorAll("#langSwitch [data-lang]").forEach((b) => {
+        b.classList.toggle("active", b.dataset.lang === lang);
+      });
+    }
+
+    function setLang(next) {
+      if (next === lang && document.getElementById("introTitle").textContent) {
+        syncLangSwitch();
+        return;
+      }
+      lang = next;
+      AppCore.setLang(lang);
+      const url = new URL(location.href);
+      url.searchParams.set("lang", lang);
+      history.replaceState(null, "", url);
+      if (window.__renderSiteChromeNav) window.__renderSiteChromeNav(lang);
+      syncLangSwitch();
+      render();
+    }
 
     function pick(o) {
       if (o == null) return "";
@@ -171,7 +192,7 @@
         .map(
           (f) => `
         <a class="intro-feature panel" href="${featureHref(f.href)}">
-          <span class="intro-feature-icon" aria-hidden="true">${f.icon}</span>
+          <span class="intro-feature-icon${f.iconKind === "symbol" ? " intro-feature-icon--symbol" : ""}" aria-hidden="true">${f.icon}</span>
           <h3 class="intro-feature-title">${f.title}</h3>
           <p class="intro-feature-body">${f.body}</p>
         </a>`
@@ -189,7 +210,10 @@
             </div>
             <div class="intro-support-action">
               <a class="intro-kofi-btn" href="https://ko-fi.com/yimleung" target="_blank" rel="noopener noreferrer">
-                <img src="https://storage.ko-fi.com/cdn/kofi2.png?v=3" width="150" height="36" alt="Ko-fi">
+                <span class="intro-kofi-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M6 8h12v9a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V8Z"/><path d="M6 8V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/><path d="M10 12h4"/></svg>
+                </span>
+                <span class="intro-kofi-text">Ko-fi</span>
               </a>
             </div>
           </div>`;
@@ -205,12 +229,12 @@
     document.getElementById("langSwitch").addEventListener("click", (e) => {
       const btn = e.target.closest("[data-lang]");
       if (!btn) return;
-      lang = btn.dataset.lang;
-      AppCore.setLang(lang);
-      document.querySelectorAll("#langSwitch [data-lang]").forEach((b) => {
-        b.classList.toggle("active", b.dataset.lang === lang);
-      });
-      render();
+      setLang(btn.dataset.lang);
+    });
+
+    window.addEventListener("yakushima-bus-lang", (e) => {
+      const next = e.detail?.lang;
+      if (next && next !== lang) setLang(next);
     });
 
     (async function initIntroVideo() {
@@ -232,10 +256,7 @@
     })();
 
     AppCore.runPageBoot((resolvedLang) => {
-      lang = resolvedLang;
-      AppCore.setLang(lang);
-      document.querySelector(`#langSwitch [data-lang="${lang}"]`)?.classList.add("active");
-      render();
+      setLang(resolvedLang);
     });
   </script>
 </body>

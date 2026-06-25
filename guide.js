@@ -57,6 +57,8 @@
       sourceLink: "yakukan.jp",
       updated: "更新",
       noResults: "該当なし",
+      mapFullscreen: "地図を全画面",
+      mapExitFullscreen: "全画面を終了",
     },
     zh: {
       filterAll: "全部",
@@ -71,6 +73,8 @@
       sourceLink: "yakukan.jp",
       updated: "更新",
       noResults: "无匹配结果",
+      mapFullscreen: "全屏查看地图",
+      mapExitFullscreen: "退出全屏",
     },
     en: {
       filterAll: "All",
@@ -85,6 +89,8 @@
       sourceLink: "yakukan.jp",
       updated: "Updated",
       noResults: "No matches",
+      mapFullscreen: "Fullscreen map",
+      mapExitFullscreen: "Exit fullscreen",
     },
   };
 
@@ -379,17 +385,14 @@
     return `${escapeHtml(label)} <span class="guide-chip-count">${n}</span>`;
   }
 
-  function ensureCatsEnabled(data) {
+  function allCatsOn(data) {
     const cats = Object.keys(data.meta.categories || {});
-    if (!cats.length) return;
-    if (!cats.some((c) => enabledCats.has(c))) {
-      cats.forEach((c) => enabledCats.add(c));
-    }
+    return cats.length > 0 && cats.every((c) => enabledCats.has(c));
   }
 
   function renderFilters(data) {
     const cats = Object.keys(data.meta.categories || {});
-    const allOn = cats.every((c) => enabledCats.has(c));
+    const allOn = allCatsOn(data);
     const counts = countByCategory(data);
     const busTotal = busStopsMeta().mapped;
     const chips = [
@@ -413,8 +416,13 @@
           return;
         }
         if (cat === "__all__") {
-          cats.forEach((c) => enabledCats.add(c));
-          track("guide_filter", { category: "__all__" });
+          if (allOn) {
+            enabledCats.clear();
+            track("guide_filter", { category: "__all__", enabled: false });
+          } else {
+            cats.forEach((c) => enabledCats.add(c));
+            track("guide_filter", { category: "__all__", enabled: true });
+          }
         } else if (enabledCats.has(cat)) {
           enabledCats.delete(cat);
           track("guide_filter", { category: cat, enabled: false });
@@ -422,7 +430,6 @@
           enabledCats.add(cat);
           track("guide_filter", { category: cat, enabled: true });
         }
-        ensureCatsEnabled(data);
         renderFilters(data);
         renderList(data);
         updateMarkers(data);
@@ -579,6 +586,12 @@
     renderList(data);
     updateMarkers(data);
     updateBusStops();
+    const fsBtn = document.getElementById("guideMapFsBtn");
+    if (fsBtn) {
+      const open = document.querySelector(".guide-map-wrap--fullscreen");
+      fsBtn.title = open ? t("mapExitFullscreen") : t("mapFullscreen");
+      fsBtn.setAttribute("aria-label", fsBtn.title);
+    }
   }
 
   function bindLang() {
@@ -649,6 +662,35 @@
     map?.invalidateSize();
   }
 
+  function bindMapFullscreen() {
+    const wrap = document.querySelector(".guide-map-wrap");
+    const btn = document.getElementById("guideMapFsBtn");
+    if (!wrap || !btn) return;
+
+    const setOpen = (open) => {
+      wrap.classList.toggle("guide-map-wrap--fullscreen", open);
+      document.body.classList.toggle("guide-map-fs-open", open);
+      btn.setAttribute("aria-pressed", open ? "true" : "false");
+      btn.title = open ? t("mapExitFullscreen") : t("mapFullscreen");
+      btn.setAttribute("aria-label", btn.title);
+      window.setTimeout(() => map?.invalidateSize(), 80);
+    };
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setOpen(!wrap.classList.contains("guide-map-wrap--fullscreen"));
+    });
+
+    wrap.querySelector(".guide-map")?.addEventListener("click", (e) => {
+      if (e.target.closest(".guide-filters-float, .guide-map-fs-btn, .leaflet-control")) return;
+      if (!wrap.classList.contains("guide-map-wrap--fullscreen")) setOpen(true);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && wrap.classList.contains("guide-map-wrap--fullscreen")) setOpen(false);
+    });
+  }
+
   function init() {
     const data = window.POI_DATA;
     if (!data) return;
@@ -663,6 +705,7 @@
     Object.keys(data.meta.categories || {}).forEach((c) => enabledCats.add(c));
 
     initMap();
+    bindMapFullscreen();
     document.querySelectorAll("#langSwitch [data-lang]").forEach((btn) => {
       btn.classList.toggle("active", btn.dataset.lang === lang);
     });
@@ -670,7 +713,6 @@
     startClock();
 
     const boot = () => {
-      ensureCatsEnabled(data);
       applyI18n(data);
       placeGuideFoot();
     };

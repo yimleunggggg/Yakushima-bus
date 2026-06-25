@@ -33,9 +33,10 @@ window.INTRO_DATA = {
           href: "/guide/",
         },
         {
-          icon: "⛴",
+          icon: "⇄",
+          iconKind: "symbol",
           title: "上島交通",
-          body: "鹿児島・指宿↔屋久島の高速船・フェリー・空港バス。上島後は時刻表で接続便を検索。",
+          body: "鹿児島↔屋久島・指宿発の高速船・フェリー・空港バス。上島後は時刻表で接続便を検索。",
           href: "/ferry/",
         },
         {
@@ -82,9 +83,10 @@ window.INTRO_DATA = {
           href: "/guide/",
         },
         {
-          icon: "⛴",
+          icon: "⇄",
+          iconKind: "symbol",
           title: "船运·上岛",
-          body: "鹿儿岛·指宿↔屋久岛 高速船、渡轮、机场巴士；上岛后用时刻表查接驳公交。",
+          body: "鹿儿岛↔屋久岛、指宿出发的高速船、渡轮与机场巴士；上岛后用时刻表查接驳公交。",
           href: "/ferry/",
         },
         {
@@ -132,9 +134,10 @@ window.INTRO_DATA = {
           href: "/guide/",
         },
         {
-          icon: "⛴",
+          icon: "⇄",
+          iconKind: "symbol",
           title: "Ferry & access",
-          body: "Jetfoil, ferry, and airport bus between Kagoshima, Ibusuki, and Yakushima. Bus connections after you land.",
+          body: "Kagoshima ↔ Yakushima and Ibusuki jetfoil, ferry, and airport bus. Bus connections after you land.",
           href: "/ferry/",
         },
         {

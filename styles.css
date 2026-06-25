@@ -88,7 +88,6 @@ html:lang(en) body {
   max-width: var(--app-width);
   margin: 0 auto;
   padding: 10px 12px calc(14px + var(--safe-bottom));
-  overflow-x: hidden;
   min-width: 0;
   position: relative;
   display: flex;
@@ -138,11 +137,15 @@ html:lang(en) body {
   background: var(--primary); color: #fff; border-color: var(--primary); font-weight: 600;
 }
 .app-nav-sticky {
-  position: sticky; top: 0; z-index: 90;
-  margin: -2px -12px 10px; padding: 6px 12px 8px;
-  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  margin: -2px -12px 10px;
+  padding: 6px 12px 8px;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
 }
 .nav.nav-main {
   display: flex; gap: 0; width: 100%; margin-bottom: 0;
@@ -1926,21 +1929,32 @@ body.modal-open {
   padding: 0;
 }
 .intro-kofi-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
   border-radius: 8px;
-  overflow: hidden;
+  border: 1px solid color-mix(in srgb, #ff5e5b 35%, var(--border));
+  background: color-mix(in srgb, #ff5e5b 8%, var(--surface));
+  color: var(--primary-dark);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
   box-shadow: 0 1px 3px rgba(20, 58, 53, 0.12);
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
   align-self: flex-start;
 }
 .intro-kofi-btn:hover {
   transform: translateY(-1px);
+  border-color: color-mix(in srgb, #ff5e5b 55%, var(--border));
   box-shadow: 0 3px 8px rgba(20, 58, 53, 0.14);
 }
-.intro-kofi-btn img {
-  display: block;
-  height: 40px;
-  width: auto;
+.intro-kofi-icon {
+  display: flex;
+  color: #e85d4c;
+}
+.intro-kofi-text {
+  line-height: 1;
 }
 
 /* ── Trekking (/trekking/) ── */
@@ -2362,6 +2376,72 @@ button, .nav a, .lang-switch button, .presets button, .day-tabs button {
   gap: 8px;
   min-width: 0;
 }
+.guide-map-wrap {
+  position: relative;
+  min-width: 0;
+  flex-shrink: 0;
+}
+.guide-filters-float {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 44px;
+  z-index: 450;
+  max-height: calc(100% - 16px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(20, 58, 53, 0.1);
+  pointer-events: auto;
+}
+.guide-map-fs-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 460;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xs);
+  border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  color: var(--primary-dark);
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(20, 58, 53, 0.12);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.guide-map-fs-btn:hover {
+  background: var(--surface);
+  border-color: var(--accent);
+}
+.guide-map-wrap--fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  padding: calc(8px + env(safe-area-inset-top, 0px)) 8px calc(8px + env(safe-area-inset-bottom, 0px));
+  background: var(--bg);
+}
+.guide-map-wrap--fullscreen .guide-map {
+  flex: 1;
+  height: auto !important;
+  min-height: 0;
+  border-radius: var(--radius-sm);
+}
+.guide-map-wrap--fullscreen .guide-filters-float {
+  top: calc(8px + env(safe-area-inset-top, 0px));
+  max-height: 40vh;
+}
 .guide-layout {
   display: flex;
   flex-direction: column;
@@ -2369,13 +2449,8 @@ button, .nav a, .lang-switch button, .presets button, .day-tabs button {
   padding: var(--space-2);
   min-width: 0;
 }
-.guide-filters-wrap {
-  min-width: 0;
-  flex-shrink: 0;
-}
-.guide-map-wrap {
-  min-width: 0;
-  flex-shrink: 0;
+body.guide-map-fs-open {
+  overflow: hidden;
 }
 .guide-map {
   width: 100%;
@@ -2819,18 +2894,12 @@ button, .nav a, .lang-switch button, .presets button, .day-tabs button {
     flex-direction: column;
     overflow: hidden;
   }
-  .guide-page .guide-peek {
+  .guide-page .guide-map-wrap {
+    order: -1;
     flex-shrink: 0;
-    margin: 0;
-    padding: 0 0 8px;
-    background: transparent;
-    backdrop-filter: none;
+    margin-bottom: 8px;
+    padding-bottom: 0;
     border-bottom: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
-    box-shadow: none;
-  }
-  .guide-page .guide-filters-wrap {
-    flex-shrink: 0;
-    padding: 0 0 6px;
   }
   .guide-page .guide-map {
     height: min(32vh, 240px);
@@ -2852,25 +2921,17 @@ button, .nav a, .lang-switch button, .presets button, .day-tabs button {
 }
 
 @media (min-width: 768px) {
-  .guide-peek {
-    display: contents;
-  }
   .guide-layout {
     display: grid;
     grid-template-columns: min(300px, 36%) 1fr;
-    grid-template-rows: auto minmax(0, 1fr);
     column-gap: 10px;
     row-gap: 8px;
     height: min(76vh, 600px);
     max-height: min(76vh, 600px);
   }
-  .guide-filters-wrap {
-    grid-column: 1;
-    grid-row: 1;
-  }
   .guide-list-block {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 1;
     min-height: 0;
     display: flex;
     flex-direction: column;
@@ -2878,7 +2939,7 @@ button, .nav a, .lang-switch button, .presets button, .day-tabs button {
   }
   .guide-map-wrap {
     grid-column: 2;
-    grid-row: 1 / -1;
+    grid-row: 1;
     min-height: 0;
     display: flex;
     flex-direction: column;
@@ -2929,12 +2990,15 @@ button, .nav a, .lang-switch button, .presets button, .day-tabs button {
   text-align: center;
 }
 .intro-hero-top {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: flex-end;
   gap: 8px; margin-bottom: 10px;
 }
-.intro-hero-eyebrow {
-  margin: 0; font-size: 0.6875rem; font-weight: 600;
-  color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase;
+.intro-feature-icon--symbol {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 .intro-hero h1 {
   margin: 0 0 10px; font-size: 1.375rem; font-weight: 700;
