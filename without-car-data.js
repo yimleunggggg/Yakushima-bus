@@ -16,9 +16,9 @@ window.WITHOUT_CAR_DATA = {
           en: "Ports, airport, and lodging areas are on the bus network — check the next bus.",
         },
         {
-          ja: "路線図・運賃は別ページ。区間料金と PDF 公式図を参照",
-          zh: "路线图与票价见专页，可查区间票价与官方 PDF",
-          en: "Route map and fares live on a dedicated page with section prices and official PDFs.",
+          ja: "路線図・運賃は別ページ。区間料金と公式路線図を参照",
+          zh: "路线图与票价见专页，可查区间票价与官方路线图",
+          en: "Route map and fares live on a dedicated page with section prices and official route maps.",
         },
         {
           ja: "縄文杉・登山は登山バス＋路線バスの組み合わせ（季節運行に注意）",

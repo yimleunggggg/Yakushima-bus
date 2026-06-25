@@ -10,9 +10,9 @@ window.INTRO_DATA = {
     ja: {
       navIntro: "紹介",
       title: "Yakushima Bus とは",
-      lead: "屋久島バス時刻表・運賃・フェリー・観光マップを三語で。公式 PDF をもとに、港やバス停でサッと調べられる独立ツール。",
+      lead: "屋久島バス時刻表・運賃・フェリー・観光マップを三語で。公式情報をもとにした独立ツール。",
       videoTitle: "デモ動画",
-      videoHintBase: "再生時間 {duration} · 英語ナレーション",
+      videoHintBase: "",
       features: [
         {
           icon: "🚌",
@@ -23,7 +23,7 @@ window.INTRO_DATA = {
         {
           icon: "🗺",
           title: "路線図・運賃",
-          body: "公式 PDF／モバイル画像プレビュー。停留所から時刻表・大人片道運賃の目安・乗車券情報。",
+          body: "公式路線図／モバイル画像プレビュー。停留所から時刻表・大人片道運賃の目安・乗車券情報。",
           href: "/fare/",
         },
         {
@@ -41,7 +41,7 @@ window.INTRO_DATA = {
         {
           icon: "🥾",
           title: "登山ルート",
-          body: "縄文杉・太鼓岩・宮之浦岳など代表コースとバス接続。公式 PDF・登山バス季節の注意。",
+          body: "縄文杉・太鼓岩・宮之浦岳など代表コースとバス接続。公式資料・登山バス季節の注意。",
           href: "/trekking/",
         },
         {
@@ -49,12 +49,6 @@ window.INTRO_DATA = {
           title: "レンタカーなし",
           body: "バスとフェリーだけで主要エリアを回る考え方。よく使う区間と各ツールへの導線。",
           href: "/without-car/",
-        },
-        {
-          icon: "🌐",
-          title: "データ出典",
-          body: "種屋・まつばんだ・フェリー各社・運行状況など、参考リンクを下に一覧。",
-          href: "#sources",
         },
       ],
       support: {
@@ -65,9 +59,9 @@ window.INTRO_DATA = {
     zh: {
       navIntro: "介绍",
       title: "产品介绍",
-      lead: "屋久岛公交时刻表、票价、船运与观光地图三语网站。基于官方 PDF 整理，适合在港口、公交站路边快速查询。",
+      lead: "屋久岛公交时刻表、票价、船运与观光地图三语网站。基于官方信息整理。",
       videoTitle: "产品演示",
-      videoHintBase: "时长 {duration} · 英文旁白",
+      videoHintBase: "",
       features: [
         {
           icon: "🚌",
@@ -78,7 +72,7 @@ window.INTRO_DATA = {
         {
           icon: "🗺",
           title: "路线图与票价",
-          body: "官方 PDF / 手机高清图预览；选站点查时刻表、成人单程参考价与悠享乘车券说明。",
+          body: "官方路线图 / 手机高清图预览；选站点查时刻表、成人单程参考价与悠享乘车券说明。",
           href: "/fare/",
         },
         {
@@ -96,7 +90,7 @@ window.INTRO_DATA = {
         {
           icon: "🥾",
           title: "登山路线",
-          body: "绳文杉、太鼓岩、宫之浦岳等代表徒步路线与公交衔接；附官方 PDF 与登山巴士季节提示。",
+          body: "绳文杉、太鼓岩、宫之浦岳等代表徒步路线与公交衔接；附官方资料与登山巴士季节提示。",
           href: "/trekking/",
         },
         {
@@ -104,12 +98,6 @@ window.INTRO_DATA = {
           title: "不租车攻略",
           body: "靠公交与渡轮覆盖主要景点；常用区间说明，并链到本站各查询工具。",
           href: "/without-car/",
-        },
-        {
-          icon: "🌐",
-          title: "数据来源",
-          body: "种屋、松ばんだ、船班、运行状况等官方与参考链接，见下方完整列表。",
-          href: "#sources",
         },
       ],
       support: {
@@ -121,9 +109,9 @@ window.INTRO_DATA = {
       navIntro: "Intro",
       title: "Product tour",
       lead:
-        "Trilingual Yakushima bus timetables, fares, ferry access, and an island POI map — built from official PDFs for travelers at the port or bus stop.",
+        "Trilingual Yakushima bus timetables, fares, ferry access, and an island POI map — built from official sources.",
       videoTitle: "Demo video",
-      videoHintBase: "Length {duration} · English narration",
+      videoHintBase: "",
       features: [
         {
           icon: "🚌",
@@ -134,7 +122,7 @@ window.INTRO_DATA = {
         {
           icon: "🗺",
           title: "Routes & fares",
-          body: "Official PDFs and mobile map previews; stop lookup, adult fare estimates, and day-pass info.",
+          body: "Official route maps and mobile previews; stop lookup, adult fare estimates, and day-pass info.",
           href: "/fare/",
         },
         {
@@ -152,7 +140,7 @@ window.INTRO_DATA = {
         {
           icon: "🥾",
           title: "Trekking routes",
-          body: "Jomon Sugi, Taikoiwa, Miyanoura-dake and more — bus links, official PDFs, seasonal trail-bus notes.",
+          body: "Jomon Sugi, Taikoiwa, Miyanoura-dake and more — bus links, official references, seasonal trail-bus notes.",
           href: "/trekking/",
         },
         {
@@ -160,12 +148,6 @@ window.INTRO_DATA = {
           title: "Without a car",
           body: "Plan Yakushima by bus and ferry — common legs and links to every tool on this site.",
           href: "/without-car/",
-        },
-        {
-          icon: "🌐",
-          title: "Data sources",
-          body: "Official timetables, ferry operators, service status — full list below.",
-          href: "#sources",
         },
       ],
       support: {

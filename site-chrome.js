@@ -82,9 +82,9 @@
     intro: {
       titleKey: "navIntroTitle",
       lead: {
-        ja: "屋久島バス時刻表・運賃・フェリー・観光マップを三語で。公式 PDF をもとに港やバス停でサッと調べられる独立ツール。",
-        zh: "屋久岛公交时刻表、票价、船运与观光地图三语网站；基于官方 PDF，适合港口与公交站路边查询。",
-        en: "Trilingual bus timetables, fares, ferry access, and POI map — built from official PDFs for travelers on the island.",
+        ja: "屋久島バス時刻表・運賃・フェリー・観光マップを三語で。公式情報をもとにした独立ツール。",
+        zh: "屋久岛公交时刻表、票价、船运与观光地图三语网站；基于官方信息整理。",
+        en: "Trilingual bus timetables, fares, ferry access, and POI map — built from official sources.",
       },
       crossHtml: {
         ja: '<a href="/?lang=ja">時刻表</a> · <a href="/fare/?lang=ja">運賃</a> · <a href="/guide/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',

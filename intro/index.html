@@ -77,7 +77,7 @@
   </div>
 
   <script src="/sources-data.js?v=3"></script>
-  <script src="/intro-data.js?v=intro-v11"></script>
+  <script src="/intro-data.js?v=intro-v13"></script>
   <script src="/app-core.js"></script>
   <script>
     const NAV_UI = {};
@@ -161,7 +161,12 @@
         SiteChrome.applyPageHead("intro", { crossEl: document.getElementById("introCross"), lang });
       }
       document.getElementById("introVideoTitle").textContent = c.videoTitle;
-      document.getElementById("introVideoHint").textContent = videoHintText(c, lang);
+      const hintEl = document.getElementById("introVideoHint");
+      const hint = videoHintText(c, lang);
+      if (hintEl) {
+        hintEl.textContent = hint;
+        hintEl.hidden = !hint.trim();
+      }
       document.getElementById("introFeatures").innerHTML = c.features
         .map(
           (f) => `

@@ -2,9 +2,9 @@
 const DESTINATIONS_DATA = {
   "meta": {
     "disclaimer": {
-      "ja": "バス・登山バスの時刻・運休は公式 PDF・公式サイトで必ず確認してください。ハイキングの難易度・装備はここでは案内しません。",
-      "zh": "公交与登山巴士时刻、停运请以官方 PDF 与官网为准。不在此提供徒步难度或装备攻略。",
-      "en": "Always confirm bus and trail-bus times and suspensions on official PDFs/sites. No trekking difficulty or gear advice here."
+      "ja": "バス・登山バスの時刻・運休は公式情報・公式サイトで必ず確認してください。ハイキングの難易度・装備はここでは案内しません。",
+      "zh": "公交与登山巴士时刻、停运请以官方信息与官网为准。不在此提供徒步难度或装备攻略。",
+      "en": "Always confirm bus and trail-bus times and suspensions on official sources/sites. No trekking difficulty or gear advice here."
     }
   },
   "spots": [
