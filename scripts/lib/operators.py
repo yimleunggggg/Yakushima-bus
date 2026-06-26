@@ -21,9 +21,9 @@ TANEYAKU_OPERATOR = {
 
 MATSUBANDA_OPERATOR = {
     "ja": "まつばんだ交通",
-    "zh": "松ばんだ交通",
+    "zh": "松叶交通",
     "en": "Matsubanda Kotsu",
-    "short": {"ja": "まつばんだ", "zh": "松ばんだ", "en": "Matsubanda"},
+    "short": {"ja": "まつばんだ", "zh": "松叶", "en": "Matsubanda"},
     "color": "#5c4d7a",
     "acceptsPass": False,
     "acceptsIc": False,

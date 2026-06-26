@@ -57,10 +57,10 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v85">
+  <link rel="stylesheet" href="/styles.css?v=layout-v123">
   <script src="/analytics.js"></script>
-  <script src="/analytics-events.js?v=analytics-v3" defer></script>
-  <script src="/site-chrome.js?v=chrome-v15" defer></script>
+  <script src="/analytics-events.js?v=analytics-v4" defer></script>
+  <script src="/site-chrome.js?v=chrome-v20" defer></script>
 </head>
 <body>
   <div class="app">
@@ -73,7 +73,7 @@
         <a href="/trekking/">登山</a>
         <a href="/intro/">紹介</a>
       </nav>
-      <script src="/site-chrome-nav-boot.js?v=chrome-v15"></script>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v19"></script>
     </div>
 
     <header class="header header-compact">
@@ -232,16 +232,17 @@
     </div>
   </div>
 
-  <script src="/data.js"></script>
+  <script src="/source-links.js?v=src-v1"></script>
+  <script src="/data.js?v=data-loop-split-v1"></script>
   <script src="/meta-data.js"></script>
-  <script src="/app-core.js?v=picker-v2"></script>
+  <script src="/app-core.js?v=core-v9"></script>
   <script src="/access-data.js"></script>
   <script src="/map-data.js"></script>
   <script src="/operator-ui.js"></script>
   <script src="/section-divider.js"></script>
   <script src="/stop-picker.js?v=picker-v5"></script>
   <script src="/pdf-fullscreen.js"></script>
-  <script src="/pdf-viewer.js?v=pdf-preview-v3"></script>
+  <script src="/pdf-viewer.js?v=pdf-preview-v4"></script>
   <script>
     const UI = {
       ja: {
@@ -281,7 +282,7 @@
         title: "公交票价查询", sub: "种子岛·屋久岛交通", valid: "有效",
         stopLookup: "站点",
         linkNotice: "停运延误见",
-        linkTaneyaku: "种屋时刻表", linkMatsubanda: "松ばんだ", linkTozan: "荒川登山巴士",
+        linkTaneyaku: "种屋时刻表", linkMatsubanda: "松叶", linkTozan: "荒川登山巴士",
         routeMap: "官方路线图", fareLookup: "运价查询（成人单程）", fareNotes: "运价说明",
         passInfo: "屋久岛悠享乘车券", passOffices: "发售点", source: "来源",
         pdfLoading: "加载中…", pdfSlowHint: "若显示空白，请用新窗口打开。",
@@ -465,30 +466,7 @@
     function parseMinutes(time) { return AppCore.parseMinutes(time); }
 
     function getStopDepartures(stopId, dayType) {
-      const groups = [];
-      for (const route of BUS_DATA.routes) {
-        for (const dir of route.directions) {
-          if (!dir.stops.includes(stopId)) continue;
-          const deps = [];
-          for (const trip of dir.trips) {
-            if (trip.suspended || !trip.days.includes(dayType)) continue;
-            const dep = trip.times[stopId];
-            if (!dep || dep === "↓") continue;
-            const destId = trip.dest || dir.stops[dir.stops.length - 1];
-            deps.push({ time: dep, dest: stopName(destId) });
-          }
-          if (!deps.length) continue;
-          deps.sort((a, b) => parseMinutes(a.time) - parseMinutes(b.time));
-          groups.push({
-            routeName: pick(route.name),
-            dirLabel: pick(dir.label),
-            operator: BUS_DATA.operators[route.operator] || BUS_DATA.operators.taneyaku,
-            operatorId: route.operator,
-            deps,
-          });
-        }
-      }
-      return groups;
+      return AppCore.getStopDepartures(stopId, dayType, { pick, stopName });
     }
 
     function getFare(fromId, toId) {
@@ -516,8 +494,9 @@
 
     function syncPdfLinks() {
       const url = pdfUrl();
-      els.pdfOpenNew.href = url;
-      els.pdfOpenPrimary.href = url;
+      const openUrl = typeof pdfUrlWithPage === "function" ? pdfUrlWithPage(url) : url;
+      els.pdfOpenNew.href = openUrl;
+      els.pdfOpenPrimary.href = openUrl;
       els.pdfFallbackName.textContent = url.split("/").pop();
       els.pdfSourceNote.innerHTML = `${t("pdfSourceNote")} <a href="${url}" target="_blank" rel="noopener">${url.split("/").pop()}</a>`;
       els.pdfLangTabs.querySelectorAll("button").forEach((b) =>
@@ -666,7 +645,7 @@
             <div class="modal-pay-tags">${OperatorUI.paymentTagsHtml(g.operator, lang)}</div>
           </div>
           <div class="dep-grid">${g.deps.map((d) =>
-            `<span class="dep-chip" title="${d.dest}">${d.time}</span>`
+            `<span class="dep-chip" title="${d.dest}">${AppCore.formatTime(d.time)}</span>`
           ).join("")}</div>
         </div>
       `).join("");
@@ -712,14 +691,14 @@
       const notice = s.notice || "https://yakukan.jp/trans/";
       const status = s.serviceStatus || "https://yakushima.co.jp/route_bus/";
       const tozan = "http://yakushima-tozan.com/";
-      els.mapSourceLinks.innerHTML = [
-        `<a href="${notice}" target="_blank" rel="noopener">${t("linkTaneyaku")}</a>`,
-        `<a href="${status}" target="_blank" rel="noopener">${t("linkMatsubanda")}</a>`,
-        `<a href="${tozan}" target="_blank" rel="noopener">${t("linkTozan")}</a>`,
-        `<a href="${s.fare || "#"}" target="_blank" rel="noopener">${t("pdfFare")}</a>`,
-        `<a href="${s.fareEn || "#"}" target="_blank" rel="noopener">${t("pdfFareEn")}</a>`,
-        `<a href="${s.pass || "#"}" target="_blank" rel="noopener">${t("passOfficial")}</a>`,
-      ].join("");
+      SourceLinks.mountFlat(els.mapSourceLinks, [
+        { url: notice, label: t("linkTaneyaku") },
+        { url: status, label: t("linkMatsubanda") },
+        { url: tozan, label: t("linkTozan") },
+        { url: s.fare || "#", label: t("pdfFare") },
+        { url: s.fareEn || "#", label: t("pdfFareEn") },
+        { url: s.pass || "#", label: t("passOfficial") },
+      ], lang);
     }
 
     function initMeta() {
@@ -755,13 +734,14 @@
     function applyI18n() {
       AppCore.setLang(lang);
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+      window.__syncPageTitle?.(lang);
       document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
       pdfFsCtl?.sync();
       els.langSwitch.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
       applyPageHead();
       if (els.liveClockTime && typeof AppCore !== "undefined") {
         const jp = AppCore.japanParts();
-        els.liveClockTime.textContent = `${jp.hour}:${jp.minute}`;
+        els.liveClockTime.textContent = AppCore.formatJapanClock();
         els.liveClockTime.title = lang === "zh"
           ? "日本标准时间 (JST · UTC+9)"
           : (lang === "en" ? "Japan Standard Time (JST · UTC+9)" : "日本標準時 (JST · UTC+9)");
@@ -845,7 +825,7 @@
       setInterval(() => {
         if (!els.liveClockTime || typeof AppCore === "undefined") return;
         const jp = AppCore.japanParts();
-        els.liveClockTime.textContent = `${jp.hour}:${jp.minute}`;
+        els.liveClockTime.textContent = AppCore.formatJapanClock();
       }, 30000);
       bindPdfControls();
       const params = new URLSearchParams(location.search);

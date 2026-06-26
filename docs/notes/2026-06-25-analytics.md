@@ -35,11 +35,12 @@
 
 ## DebugView 怎么看
 
-1. 打开任意页面，URL 加 **`?ga_debug=1`**（例：`https://yakushimabus.com/fare/?lang=zh&ga_debug=1`）。
-2. GA4 后台 → **管理** → **DebugView**（左侧「数据展示」下）。
-3. 本机自测可加 **`?ga_internal=1`**，避免污染正式报表（`analytics.js` 内过滤）。
-4. 操作：换语言、点导航、在 `/fare/` 选两站 → DebugView 应在数秒内出现 `fare_lookup` 等事件。
-5. 若只有 `page_view`：硬刷新、确认 `analytics-events.js?v=analytics-v2` 已部署；AdBlock 会挡 gtag。
+1. 打开任意页面，URL 加 **`?ga_debug=1`**（例：`https://yakushimabus.com/?ga_debug=1`）。**会写入 localStorage**，换页后顶栏链接自动带上参数，DebugView 不会断。
+2. 关闭调试：访问 **`?ga_debug=0`**。
+3. GA4 后台 → **管理** → **DebugView**。
+4. 本机自测可加 **`?ga_internal=1`**，避免污染正式报表（同样会跨页保留）。
+5. 操作对照：平日/土日祝 → `timetable_day_tab`；常用区间 → `timetable_preset`；交换 → `timetable_swap`；改站 → `timetable_search`；`/fare/` 选站 → `fare_lookup`。
+6. 若只有 `page_view`：硬刷新、确认 `analytics-events.js?v=analytics-v4` 已部署；AdBlock 会挡 gtag。
 
 ## GSC 索引
 

@@ -19,7 +19,9 @@ window.GA_MEASUREMENT_ID = 'G-BX2P31GEHW';
   var internal =
     params.get('ga_internal') === '1' ||
     localStorage.getItem('yakushima-bus-ga-internal') === '1';
-  var debug = params.get('ga_debug') === '1';
+  var debug =
+    params.get('ga_debug') === '1' ||
+    localStorage.getItem('yakushima-bus-ga-debug') === '1';
 
   if (params.get('ga_internal') === '1') {
     localStorage.setItem('yakushima-bus-ga-internal', '1');
@@ -27,6 +29,22 @@ window.GA_MEASUREMENT_ID = 'G-BX2P31GEHW';
   if (params.get('ga_internal') === '0') {
     localStorage.removeItem('yakushima-bus-ga-internal');
   }
+  if (params.get('ga_debug') === '1') {
+    localStorage.setItem('yakushima-bus-ga-debug', '1');
+  }
+  if (params.get('ga_debug') === '0') {
+    localStorage.removeItem('yakushima-bus-ga-debug');
+  }
+
+  /** 站内链保留 debug / internal 参数，避免换页后 DebugView 断流 */
+  window.appendBusGaQs = function (href) {
+    if (!href || /^https?:\/\//i.test(href) || href.startsWith('mailto:')) return href;
+    var parts = [];
+    if (localStorage.getItem('yakushima-bus-ga-debug') === '1') parts.push('ga_debug=1');
+    if (localStorage.getItem('yakushima-bus-ga-internal') === '1') parts.push('ga_internal=1');
+    if (!parts.length) return href;
+    return href + (href.indexOf('?') >= 0 ? '&' : '?') + parts.join('&');
+  };
 
   var s = document.createElement('script');
   s.async = true;

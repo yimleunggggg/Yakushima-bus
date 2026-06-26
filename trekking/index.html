@@ -13,10 +13,10 @@
   <meta property="og:url" content="https://yakushimabus.com/trekking/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <title>登山・トレッキング参考 | 屋久岛徒步 | Yakushima Trekking</title>
-  <link rel="stylesheet" href="/styles.css?v=layout-v87">
+  <link rel="stylesheet" href="/styles.css?v=layout-v123">
   <script src="/analytics.js"></script>
-  <script src="/analytics-events.js?v=analytics-v3" defer></script>
-  <script src="/site-chrome.js?v=chrome-v15" defer></script>
+  <script src="/analytics-events.js?v=analytics-v4" defer></script>
+  <script src="/site-chrome.js?v=chrome-v20" defer></script>
 </head>
 <body class="app-page-narrow">
   <div class="app trek-page">
@@ -29,7 +29,7 @@
         <a href="/trekking/" class="active" aria-current="page">登山</a>
         <a href="/intro/">紹介</a>
       </nav>
-      <script src="/site-chrome-nav-boot.js?v=chrome-v14"></script>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v19"></script>
     </div>
 
     <header class="header header-compact">
@@ -49,22 +49,31 @@
     <p class="app-meta meta-links" id="pageCross"></p>
 
     <section class="panel trek-season" aria-labelledby="trekSeasonTitle">
-      <h2 class="trek-section-title" id="trekSeasonTitle"></h2>
-      <p class="trek-season-lead" id="trekSeasonLead"></p>
+      <h2 class="page-section-title" id="trekSeasonTitle"></h2>
+      <p class="page-section-lead" id="trekSeasonLead"></p>
       <div class="trek-season-grid" id="trekSeasonGrid"></div>
     </section>
 
-    <section class="trek-courses-wrap" aria-labelledby="trekCoursesTitle">
-      <h2 class="trek-section-title trek-courses-heading" id="trekCoursesTitle"></h2>
+    <div class="aux-sections" id="trekAffiliateSection"></div>
+
+    <section class="panel trek-courses-wrap" aria-labelledby="trekCoursesTitle">
+      <h2 class="page-section-title" id="trekCoursesTitle"></h2>
+      <p class="page-section-note" id="trekCoursesNote" hidden></p>
       <div class="trek-courses" id="trekCourses"></div>
     </section>
 
-    <section class="panel trek-resources" aria-labelledby="trekResourcesTitle">
-      <h2 class="trek-section-title" id="trekResourcesTitle"></h2>
-      <ul class="trek-resource-links" id="trekResources"></ul>
-    </section>
+    <div class="panel panel-aux">
+      <div class="aux-sections aux-in-panel">
+        <details class="aux-block">
+          <summary class="aux-summary"><span id="trekResourcesTitle"></span><span class="aux-chevron" aria-hidden="true"></span></summary>
+          <div class="aux-body">
+            <div id="trekResources"></div>
+          </div>
+        </details>
+      </div>
+    </div>
 
-    <p class="trek-disclaimer" id="trekDisclaimer"></p>
+    <p class="page-section-note trek-disclaimer" id="trekDisclaimer"></p>
     <p class="trek-source">
       <span id="trekSourceLabel"></span>
       <a id="trekSourceLink" href="https://yakukan.jp/trekking/" target="_blank" rel="noopener">yakukan.jp/trekking</a>
@@ -73,10 +82,13 @@
     <footer class="app-footer"></footer>
   </div>
 
-  <script src="/affiliate-data.js?v=aff-v5"></script>
-  <script src="/affiliate-ui.js?v=aff-v5"></script>
-  <script src="/trekking-data.js?v=trek-v4"></script>
-  <script src="/app-core.js"></script>
+  <script src="/data.js?v=data-loop-split-v1"></script>
+  <script src="/map-data.js"></script>
+  <script src="/affiliate-data.js?v=aff-v8"></script>
+  <script src="/affiliate-ui.js?v=aff-v12"></script>
+  <script src="/source-links.js?v=src-v1"></script>
+  <script src="/trekking-data.js?v=trek-v7"></script>
+  <script src="/app-core.js?v=core-v9"></script>
   <script>
     const UI = {
       ja: { sourceLabel: "出典：" },
@@ -98,6 +110,47 @@
       return `<span class="trek-stars" aria-label="${v}/5">${"★".repeat(v)}<span class="trek-stars-dim">${"★".repeat(5 - v)}</span></span>`;
     }
 
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function stopName(id) {
+      const s = (typeof BUS_DATA !== "undefined" && BUS_DATA.stops[id])
+        || (typeof MAP_DATA !== "undefined" && MAP_DATA.stops[id]);
+      if (!s) return id;
+      return lang === "ja" ? s.ja : (lang === "zh" ? s.zh : s.en);
+    }
+
+    function busRouteHref(preset) {
+      if (!preset?.from) return `/?lang=${encodeURIComponent(lang)}`;
+      const q = new URLSearchParams({ lang, from: preset.from });
+      if (preset.to) q.set("to", preset.to);
+      return `/?${q.toString()}`;
+    }
+
+    function renderAccessCompact(c, L) {
+      const preset = c.presetRoute;
+      if (!preset?.from) return "";
+      const stops = (c.accessStops || []).filter((a) => a.stopId);
+      const routeLabel = preset.to
+        ? `${stopName(preset.from)} → ${stopName(preset.to)}`
+        : stopName(preset.from);
+      const hints = stops
+        .map((a) => pick(a.note))
+        .filter(Boolean)
+        .join(" · ");
+      return `<div class="trek-card-bus">
+        <p class="trek-bus-line">
+          <span class="trek-bus-route">${escapeHtml(routeLabel)}</span><span class="trek-bus-sep" aria-hidden="true">·</span><a class="trek-bus-cta" href="${busRouteHref(preset)}">${escapeHtml(pick(L.checkShuttle))}</a>
+        </p>
+        ${hints ? `<p class="trek-bus-hint">${escapeHtml(hints)}</p>` : ""}
+      </div>`;
+    }
+
     function applyPageHead() {
       const titleEl = document.getElementById("appTitle");
       const leadEl = document.getElementById("trekLead");
@@ -116,19 +169,27 @@
       const d = window.TREKKING_DATA;
       if (!d) return;
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+      window.__renderSiteChromeNav?.(lang);
+      window.__syncPageTitle?.(lang);
       applyPageHead();
       document.getElementById("trekSeasonTitle").textContent = pick(d.seasonTitle);
       document.getElementById("trekSeasonLead").textContent = pick(d.seasonLead);
       document.getElementById("trekCoursesTitle").textContent = pick(d.coursesTitle);
+      const coursesNote = document.getElementById("trekCoursesNote");
+      if (coursesNote) {
+        const note = pick(d.labels.busTimetableNote);
+        coursesNote.textContent = note;
+        coursesNote.hidden = !note;
+      }
       document.getElementById("trekResourcesTitle").textContent = pick(d.resourcesTitle);
-      document.getElementById("trekResources").innerHTML = (d.resources || [])
-        .map((r) => {
-          const note = pick(r.note);
-          return `<li><a href="${r.url}" target="_blank" rel="noopener">${pick(r.label)}</a>${note ? `<span class="trek-resource-note">${note}</span>` : ""}</li>`;
-        })
-        .join("");
+      SourceLinks.mountFlat(
+        document.getElementById("trekResources"),
+        (d.resources || []).map((r) => ({ url: r.url, label: r.label, note: r.note })),
+        lang,
+      );
       document.getElementById("trekDisclaimer").textContent = pick(d.disclaimer);
       document.getElementById("trekSourceLabel").textContent = t("sourceLabel");
+      window.SiteChrome?.refresh();
 
       document.getElementById("trekSeasonGrid").innerHTML = d.seasons
         .map(
@@ -139,6 +200,11 @@
         )
         .join("");
 
+      const trekAffiliate = document.getElementById("trekAffiliateSection");
+      if (trekAffiliate) {
+        trekAffiliate.innerHTML = window.AffiliateUI ? AffiliateUI.trekkingSectionHtml(lang) : "";
+      }
+
       const L = d.labels;
       document.getElementById("trekCourses").innerHTML = d.courses
         .map((c) => {
@@ -147,25 +213,34 @@
             : c.allTrailsUrl
               ? `<a href="${c.allTrailsUrl}" target="_blank" rel="noopener" title="${pick(c.title)} · ${pick(c.distance)}">${pick(L.allTrails)}</a>`
               : "";
-          const links = [
+          const refs = [
             `<a href="${c.yakukanUrl}" target="_blank" rel="noopener">${pick(L.yakukan)}</a>`,
             routeRef,
           ]
             .filter(Boolean)
-            .join("");
-          const affiliate =
-            window.AffiliateUI ? AffiliateUI.trekkingOfferHtml(lang, c.id) : "";
+            .join('<span class="trek-ref-sep" aria-hidden="true">·</span>');
+          const summary = c.summary ? `<p class="trek-card-lead">${escapeHtml(pick(c.summary))}</p>` : "";
+          const access = renderAccessCompact(c, L);
+          const grade = `<div class="trek-card-grade" aria-label="${pick(L.difficulty)} ${c.difficulty}/5, ${pick(L.fitness)} ${c.fitness}/5">
+            <span class="trek-grade-item"><span class="trek-grade-label">${pick(L.difficulty)}</span>${stars(c.difficulty)}</span>
+            <span class="trek-grade-item"><span class="trek-grade-label">${pick(L.fitness)}</span>${stars(c.fitness)}</span>
+          </div>`;
+          const facts = `<div class="trek-card-facts">
+            <span class="trek-fact trek-fact--time">${escapeHtml(pick(c.duration))}</span>
+            <span class="trek-fact">${escapeHtml(pick(c.distance))}</span>
+            <span class="trek-fact trek-fact--elev">${escapeHtml(pick(c.elevation))}</span>
+          </div>`;
+          const foot = (access || refs)
+            ? `<footer class="trek-card-foot">${access}${refs ? `<div class="trek-card-refs">${refs}</div>` : ""}</footer>`
+            : "";
           return `<article class="trek-card panel" id="${c.id}">
-            <h3 class="trek-card-title">${pick(c.title)}</h3>
-            <dl class="trek-stats">
-              <div><dt>${pick(L.difficulty)}</dt><dd>${stars(c.difficulty)}</dd></div>
-              <div><dt>${pick(L.fitness)}</dt><dd>${stars(c.fitness)}</dd></div>
-              <div><dt>${pick(L.distance)}</dt><dd>${pick(c.distance)}</dd></div>
-              <div><dt>${pick(L.duration)}</dt><dd>${pick(c.duration)}</dd></div>
-              <div><dt>${pick(L.elevation)}</dt><dd>${pick(c.elevation)}</dd></div>
-            </dl>
-            <div class="trek-card-links">${links}</div>
-            ${affiliate}
+            <header class="trek-card-head">
+              <h3 class="trek-card-title">${escapeHtml(pick(c.title))}</h3>
+              ${summary}
+            </header>
+            ${facts}
+            ${grade}
+            ${foot}
           </article>`;
         })
         .join("");

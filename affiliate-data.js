@@ -1,10 +1,5 @@
 /** 联盟链 — Klook + Viator；官方预约/时刻仍为主链 */
 window.AFFILIATE_DATA = {
-  disclosure: {
-    ja: "一部の外部リンクはアフィリエイトです（Klook・Viator 等）。交通の時刻・運賃は各公式情報を優先してください。",
-    zh: "部分外链为联盟营销链接（Klook、Viator 等）；交通时刻与票价请以各运营商官方信息为准。",
-    en: "Some links are affiliate links (Klook, Viator, etc.). Timetables and fares follow official operator sources.",
-  },
   /** Viator 等 — 带评分，按 pages 出现在对应页面 */
   experiences: [
     {
@@ -12,7 +7,7 @@ window.AFFILIATE_DATA = {
       partner: "viator",
       productCode: "43454P739",
       placement: "viator_jetfoil_day",
-      pages: ["ferry", "trekking", "without-car"],
+      pages: ["trekking", "without-car"],
       tags: ["day_trip", "jetfoil", "trekking", "shiratani"],
       url: "https://www.viator.com/tours/Kagoshima-Prefecture/Day-trip-to-Yakushima-by-high-speed-Jetfoil-Toppy-from-Kagoshima/d50190-43454P739?pid=P00307180&mcid=42383&medium=link&medium_version=selector",
       title: {
@@ -35,7 +30,7 @@ window.AFFILIATE_DATA = {
       partner: "viator",
       productCode: "43454P373",
       placement: "viator_private_sights",
-      pages: ["without-car", "map"],
+      pages: ["trekking", "without-car"],
       tags: ["day_trip", "sightseeing", "private"],
       url: "https://www.viator.com/tours/Kagoshima-Prefecture/Yakushima-Private-Island-Sights-Tour-with-ENGLISH-Speaking-Guide/d50190-43454P373?pid=P00307180&mcid=42383&medium=link&medium_version=selector",
       title: {
@@ -54,11 +49,34 @@ window.AFFILIATE_DATA = {
       cta: { ja: "Viator で見る", zh: "在 Viator 预订", en: "Book on Viator" },
     },
     {
+      id: "viator_nagata_dive",
+      partner: "viator",
+      productCode: "143822P2",
+      placement: "viator_nagata_dive",
+      pages: ["without-car"],
+      tags: ["diving", "marine", "nagata", "day_trip"],
+      url: "https://www.viator.com/tours/Kagoshima-Prefecture/2-boat-dives-Nagata-area/d50190-143822P2?pid=P00307180&mcid=42383&medium=link&medium_version=selector",
+      title: {
+        ja: "永田エリア船ダイビング（2本）",
+        zh: "永田海域船潜（2 潜）",
+        en: "Boat diving in Nagata area (2 dives)",
+      },
+      body: {
+        ja: "屋久島南部の海。初心者向けプランあり。海況・資格は各ツアー要確認。",
+        zh: "屋久岛南部海域，部分行程适合初学者；海况与资质要求请见产品页。",
+        en: "Southern Yakushima waters; some trips suit beginners — check cert & conditions on Viator.",
+      },
+      rating: 5.0,
+      reviewCount: 12,
+      statsUpdated: "2026-05-20",
+      cta: { ja: "Viator で見る", zh: "在 Viator 预订", en: "Book on Viator" },
+    },
+    {
       id: "viator_snorkel_turtle",
       partner: "viator",
       productCode: "306889P1",
       placement: "viator_snorkel_turtle",
-      pages: ["without-car", "map"],
+      pages: ["without-car"],
       tags: ["snorkeling", "marine", "turtle", "family", "day_trip"],
       url: "https://www.viator.com/tours/Kagoshima-Prefecture/%E5%B1%8B%E4%B9%85%E5%B3%B6-%E3%82%B7%E3%83%A5%E3%83%8E%E3%82%B1%E3%83%AA%E3%83%B3%E3%82%AF-%E6%86%A7%E3%82%8C%E3%81%AE%E3%82%A6%E3%83%9F%E3%82%AB%E3%83%A1%E3%81%AB%E4%BC%9A%E3%81%84%E3%81%9F%E3%81%84-%E3%82%A6%E3%83%9F%E3%82%AB%E3%83%A1%E3%81%A8%E6%B3%B3%E3%81%8E%E3%82%B7%E3%83%A5%E3%83%8E%E3%82%B1%E3%83%AA%E3%83%B3%E3%82%AF%E3%83%84%E3%82%A2-3%E6%99%82%E9%96%93/d50190-306889P1?pid=P00307180&mcid=42383&medium=link&medium_version=selector",
       title: {
@@ -89,18 +107,12 @@ window.AFFILIATE_DATA = {
         zh: "Klook 预订（优惠）",
         en: "Book on Klook (deals)",
       },
-      hint: {
-        ja: "中国語・クレジットカード向け。料金・取消は Klook の規約に従います。",
-        zh: "支持中文界面与信用卡；价格与退改以 Klook 规则为准。",
-        en: "Chinese UI and cards; price and cancellation follow Klook.",
-      },
     },
     hiking: {
       partner: "klook",
       adid: "1316225",
       placement: "trekking_jomon",
       url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316225&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F150846-yakushima-hiking-tour",
-      image: "/images/affiliate/hiking-klook.png",
       title: {
         ja: "ガイド付き日帰り（縄文杉など）",
         zh: "跟团一日游（绳文杉等）",
@@ -121,6 +133,7 @@ window.AFFILIATE_DATA = {
       partner: "klook",
       adid: "1316230",
       placement: "dest_yakushima",
+      pages: ["trekking", "without-car"],
       url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316230&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Fdestination%2Fc21043%2F",
       label: {
         ja: "屋久島の体験・チケット",
@@ -179,9 +192,19 @@ window.AFFILIATE_DATA = {
       en: "Yakushima tours & local experiences",
     },
     experiencesLead: {
-      ja: "Viator の高評価ツアー（英語ガイド・日帰り・ダイビング等）。バス時刻は本サイト、予約・取消は各プラットフォームの規約に従います。",
-      zh: "以下为 Viator 高评分当地体验：屋久岛一日游、徒步、潜水等。岛上公交时刻见本站；预订与退改以平台规则为准。",
-      en: "Top-rated Viator tours — day trips, trekking & diving. Bus times on this site; booking rules on each platform.",
+      ja: "Klook / Viator の現地体験（日帰り・ガイド付き等）。バス時刻は本サイト、予約・取消は各プラットフォームの規約に従います。",
+      zh: "以下为 Klook / Viator 精选当地体验：徒步跟团、一日游、潜水等。岛上公交时刻见本站；预订与退改以各平台规则为准。",
+      en: "Selected Klook & Viator tours — guided hikes, day trips & more. Bus times on this site; booking rules on each platform.",
+    },
+    trekkingExperiencesLead: {
+      ja: "Klook / Viator のガイド付き日帰り・徒步体験。バス接続は上の路線表・運賃ページで確認。",
+      zh: "Klook / Viator 精选徒步跟团与一日游；公交衔接请查本站时刻表与票价。",
+      en: "Guided hikes & day tours on Klook & Viator — pair with our bus timetable for connections.",
+    },
+    trekkingBrowseMore: {
+      ja: "その他の屋久島アクティビティ（Klook）",
+      zh: "更多屋久岛活动（Klook）",
+      en: "More Yakushima activities (Klook)",
     },
     experiencesStatsNote: {
       ja: "評価・件数は Viator 表示（{date} 時点）",

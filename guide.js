@@ -3,6 +3,7 @@
   const LANG_KEY = "yakushima-bus-lang";
   const MAP_CENTER = [30.35, 130.5];
   const MAP_ZOOM = 10;
+  const POPUP_OPTS = { maxWidth: 280, autoPan: true, autoPanPadding: [36, 36] };
 
   const CAT_COLORS = {
     historic: "#7a5c44",
@@ -51,7 +52,8 @@
       stopListCat: "バス停",
       stopsPartial: "確認済み {n}/{total}",
       navigate: "ナビ",
-      googleMaps: "Googleマップ",
+      copyAddress: "住所をコピー",
+      copyAddressDone: "コピーしました",
       viewTimetable: "時刻表",
       source: "出典：",
       sourceLink: "yakukan.jp",
@@ -67,7 +69,8 @@
       stopListCat: "公交站",
       stopsPartial: "已核实 {n}/{total} 站",
       navigate: "导航",
-      googleMaps: "谷歌地图",
+      copyAddress: "复制地址",
+      copyAddressDone: "已复制",
       viewTimetable: "查时刻表",
       source: "来源：",
       sourceLink: "yakukan.jp",
@@ -83,7 +86,8 @@
       stopListCat: "Bus stop",
       stopsPartial: "{n} of {total} stops mapped",
       navigate: "Navigate",
-      googleMaps: "Google Maps",
+      copyAddress: "Copy address",
+      copyAddressDone: "Copied",
       viewTimetable: "Timetable",
       source: "Source: ",
       sourceLink: "yakukan.jp",
@@ -94,7 +98,11 @@
     },
   };
 
-  let lang = localStorage.getItem(LANG_KEY) || "ja";
+  let lang = (() => {
+    const q = new URLSearchParams(location.search).get("lang");
+    if (q === "ja" || q === "zh" || q === "en") return q;
+    return localStorage.getItem(LANG_KEY) || "ja";
+  })();
   let map;
   let markersLayer;
   let busStopsLayer;
@@ -218,15 +226,13 @@
     return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
   }
 
-  /** Open Google Maps place search (reviews, hours) — coords from association KML, not Place ID */
-  function googleMapsPlaceUrl(spot) {
-    const ja = spot.name?.ja || pick(spot.name);
-    const q = encodeURIComponent(`${ja} 屋久島`);
-    return `https://www.google.com/maps/search/?api=1&query=${q}`;
+  function spotCopyText(spot) {
+    const name = pick(spot.name);
+    return `${name}\n${spot.lat}, ${spot.lng}`;
   }
 
-  function timetableUrl(stopId) {
-    return `/?lang=${encodeURIComponent(lang)}&from=${encodeURIComponent(stopId)}`;
+  function isOfficialStop(stopId) {
+    return !!(typeof BUS_DATA !== "undefined" && BUS_DATA.stops && BUS_DATA.stops[stopId]);
   }
 
   function stopLabel(stop) {
@@ -240,9 +246,11 @@
       ${no}
       <strong class="guide-popup-name">${escapeHtml(name)}</strong>
       <p class="guide-popup-desc guide-popup-stop-hint">${escapeHtml(t("stopHint"))}</p>
-      <div class="guide-popup-actions">
+      <div class="guide-popup-actions guide-popup-actions--pair">
         <a class="guide-nav-btn" href="${navUrl(stop.lat, stop.lng)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("navigate"))}</a>
-        <a class="guide-tt-btn" href="${timetableUrl(stopId)}">${escapeHtml(t("viewTimetable"))}</a>
+        ${isOfficialStop(stopId)
+          ? `<button type="button" class="guide-tt-btn" data-guide-tt="${escapeHtml(stopId)}">${escapeHtml(t("viewTimetable"))}</button>`
+          : ""}
       </div>
     </div>`;
   }
@@ -255,17 +263,17 @@
       .join(" ");
     const descBlock = desc ? `<p class="guide-popup-desc">${escapeHtml(desc)}</p>` : "";
     const src = spot.sourceUrl
-      ? `<a href="${spot.sourceUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("sourceLink"))}</a>`
+      ? `<p class="guide-popup-source"><a href="${spot.sourceUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("sourceLink"))}</a></p>`
       : "";
     return `<div class="guide-popup">
       <strong class="guide-popup-name">${escapeHtml(name)}</strong>
       <div class="guide-popup-cats">${cats}</div>
       ${descBlock}
-      <div class="guide-popup-actions">
+      <div class="guide-popup-actions guide-popup-actions--pair">
         <a class="guide-nav-btn" href="${navUrl(spot.lat, spot.lng)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("navigate"))}</a>
-        <a class="guide-tt-btn" href="${googleMapsPlaceUrl(spot)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("googleMaps"))}</a>
-        ${src}
+        <button type="button" class="guide-copy-btn" data-guide-copy="${encodeURIComponent(spotCopyText(spot))}">${escapeHtml(t("copyAddress"))}</button>
       </div>
+      ${src}
     </div>`;
   }
 
@@ -347,7 +355,7 @@
         iconAnchor: [9, 9],
       });
       const marker = L.marker([stop.lat, stop.lng], { icon, pane: "guideBusStops" });
-      marker.bindPopup(stopPopupHtml(id, stop), { maxWidth: 280 });
+      marker.bindPopup(stopPopupHtml(id, stop), POPUP_OPTS);
       marker.on("click", () => setActive(id, "bus"));
       marker.addTo(busStopsLayer);
       busMarkerById[id] = marker;
@@ -364,7 +372,7 @@
         icon: makePoiIcon(spot),
         pane: "guidePoi",
       });
-      marker.bindPopup(popupHtml(spot, data), { maxWidth: 280 });
+      marker.bindPopup(popupHtml(spot, data), POPUP_OPTS);
       marker.on("click", () => setActive(spot.id));
       marker.addTo(markersLayer);
       markerById[spot.id] = marker;
@@ -455,9 +463,15 @@
     if (!els.pdfCards) return;
     els.pdfCards.innerHTML = layers
       .map(
-        (layer) => `<a class="guide-toilet-link" href="${layer.url}" target="_blank" rel="noopener noreferrer">
-        <span class="guide-toilet-link-title">${escapeHtml(pick(layer.title))}</span>
-        <span class="guide-toilet-link-note">${escapeHtml(pick(layer.note))}</span>
+        (layer) => `<a class="guide-foot-link guide-foot-link--pdf" href="${layer.url}" target="_blank" rel="noopener noreferrer">
+        <span class="guide-foot-link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7 4h7l5 5v11H7z"/><path d="M14 4v5h5"/><path d="M9 13h6M9 17h4"/></svg>
+        </span>
+        <span class="guide-foot-link-text">
+          <span class="guide-foot-link-title">${escapeHtml(pick(layer.title))}</span>
+          <span class="guide-foot-link-note">${escapeHtml(pick(layer.note))}</span>
+        </span>
+        <span class="guide-foot-link-arrow" aria-hidden="true">›</span>
       </a>`
       )
       .join("");
@@ -566,16 +580,25 @@
   }
 
   function applyPageHead() {
-    if (!window.SiteChrome) return;
-    SiteChrome.applyPageHead("map", {
-      titleEl: document.getElementById("appTitle"),
-      leadEl: els.lead,
-      crossEl: document.getElementById("guideCross"),
-    });
+    const titleEl = document.getElementById("appTitle");
+    const titles = { ja: "スポット地図", zh: "便利设施地图", en: "Island POI map" };
+    if (window.SiteChrome) {
+      SiteChrome.applyPageHead("map", {
+        titleEl,
+        leadEl: els.lead,
+        crossEl: document.getElementById("guideCross"),
+        lang,
+      });
+      return;
+    }
+    if (titleEl) titleEl.textContent = titles[lang] || titles.ja;
   }
 
   function applyI18n(data) {
+    localStorage.setItem(LANG_KEY, lang);
     document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+    window.__renderSiteChromeNav?.(lang);
+    window.__syncPageTitle?.(lang);
     applyPageHead();
     els.sourceLabel.textContent = t("source");
     const updated = data.meta?.updatedAt;
@@ -586,24 +609,33 @@
     renderList(data);
     updateMarkers(data);
     updateBusStops();
+    window.TimetableModal?.setLang(lang);
     const fsBtn = document.getElementById("guideMapFsBtn");
     if (fsBtn) {
       const open = document.querySelector(".guide-map-wrap--fullscreen");
-      fsBtn.title = open ? t("mapExitFullscreen") : t("mapFullscreen");
+      const exitLabel = t("mapExitFullscreen");
+      fsBtn.title = open ? exitLabel : t("mapFullscreen");
       fsBtn.setAttribute("aria-label", fsBtn.title);
+      const label = fsBtn.querySelector(".guide-map-fs-label");
+      if (label) label.textContent = open ? exitLabel : "";
     }
   }
 
   function bindLang() {
     document.querySelectorAll("#langSwitch [data-lang]").forEach((btn) => {
-      btn.classList.toggle("active", btn.dataset.lang === lang);
       btn.addEventListener("click", () => {
-        lang = btn.dataset.lang;
-        localStorage.setItem(LANG_KEY, lang);
+        const next = btn.dataset.lang;
+        if (next === lang) return;
+        lang = next;
+        if (window.AppCore) AppCore.setLang(lang);
+        else {
+          localStorage.setItem(LANG_KEY, lang);
+          window.__renderSiteChromeNav?.(lang);
+          window.dispatchEvent(new CustomEvent("yakushima-bus-lang", { detail: { lang } }));
+        }
         document.querySelectorAll("#langSwitch [data-lang]").forEach((b) => {
           b.classList.toggle("active", b.dataset.lang === lang);
         });
-        window.dispatchEvent(new CustomEvent("yakushima-bus-lang", { detail: { lang } }));
         applyI18n(window.POI_DATA);
       });
     });
@@ -613,14 +645,9 @@
     const el = document.getElementById("liveClockTime");
     if (!el) return;
     const tick = () => {
-      const now = new Date();
-      const s = now.toLocaleString("en-GB", {
-        timeZone: "Asia/Tokyo",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      });
-      el.textContent = s.split(", ").pop() || "--:--";
+      if (typeof AppCore !== "undefined") {
+        el.textContent = AppCore.formatJapanClock();
+      }
       el.title = lang === "zh" ? "日本时间 (JST)" : "JST";
     };
     tick();
@@ -671,8 +698,11 @@
       wrap.classList.toggle("guide-map-wrap--fullscreen", open);
       document.body.classList.toggle("guide-map-fs-open", open);
       btn.setAttribute("aria-pressed", open ? "true" : "false");
-      btn.title = open ? t("mapExitFullscreen") : t("mapFullscreen");
+      const label = btn.querySelector(".guide-map-fs-label");
+      const exitLabel = t("mapExitFullscreen");
+      btn.title = open ? exitLabel : t("mapFullscreen");
       btn.setAttribute("aria-label", btn.title);
+      if (label) label.textContent = open ? exitLabel : "";
       window.setTimeout(() => map?.invalidateSize(), 80);
     };
 
@@ -681,13 +711,48 @@
       setOpen(!wrap.classList.contains("guide-map-wrap--fullscreen"));
     });
 
-    wrap.querySelector(".guide-map")?.addEventListener("click", (e) => {
-      if (e.target.closest(".guide-filters-float, .guide-map-fs-btn, .leaflet-control")) return;
-      if (!wrap.classList.contains("guide-map-wrap--fullscreen")) setOpen(true);
-    });
-
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && wrap.classList.contains("guide-map-wrap--fullscreen")) setOpen(false);
+    });
+  }
+
+  function bindPopupActions() {
+    if (!map) return;
+    map.on("popupopen", (ev) => {
+      const root = ev.popup.getElement();
+      if (!root) return;
+      root.querySelectorAll("[data-guide-copy]").forEach((btn) => {
+        if (btn.dataset.copyBound) return;
+        btn.dataset.copyBound = "1";
+        btn.addEventListener("click", async (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const raw = btn.getAttribute("data-guide-copy");
+          if (!raw) return;
+          const text = decodeURIComponent(raw);
+          const label = t("copyAddress");
+          try {
+            await navigator.clipboard.writeText(text);
+            btn.textContent = t("copyAddressDone");
+            window.setTimeout(() => { btn.textContent = label; }, 1600);
+          } catch {
+            window.prompt(label, text);
+          }
+        });
+      });
+      root.querySelectorAll("[data-guide-tt]").forEach((btn) => {
+        if (btn.dataset.ttBound) return;
+        btn.dataset.ttBound = "1";
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const stopId = btn.getAttribute("data-guide-tt");
+          if (!stopId || !isOfficialStop(stopId)) return;
+          track("open_timetable", { from: stopId, source: "map_popup" });
+          window.TimetableModal?.setLang(lang);
+          window.TimetableModal?.open(stopId);
+        });
+      });
     });
   }
 
@@ -706,27 +771,28 @@
 
     initMap();
     bindMapFullscreen();
-    document.querySelectorAll("#langSwitch [data-lang]").forEach((btn) => {
-      btn.classList.toggle("active", btn.dataset.lang === lang);
-    });
+    bindPopupActions();
+    window.TimetableModal?.mount();
     bindLang();
     startClock();
-
     const boot = () => {
+      lang = (() => {
+        const q = new URLSearchParams(location.search).get("lang");
+        if (q === "ja" || q === "zh" || q === "en") return q;
+        return localStorage.getItem(LANG_KEY) || "ja";
+      })();
+      document.querySelectorAll("#langSwitch [data-lang]").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
       applyI18n(data);
       placeGuideFoot();
       map?.invalidateSize();
-      const affEl = document.getElementById("affiliateMapExperiences");
-      if (affEl && window.AffiliateUI) {
-        affEl.innerHTML = AffiliateUI.experiencesSectionHtml(lang, "map");
-      }
     };
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", boot, { once: true });
     } else {
       boot();
     }
-    document.addEventListener("yakushima-bus-lang", () => boot());
 
     placeGuideFoot();
     window.addEventListener("resize", onGuideViewportChange);

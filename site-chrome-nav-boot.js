@@ -73,42 +73,73 @@
 
   function langQs(lang, href) {
     const sep = href.includes("?") ? "&" : "?";
-    return `${href}${sep}lang=${lang}`;
+    const withLang = `${href}${sep}lang=${lang}`;
+    return typeof window.appendBusGaQs === "function" ? window.appendBusGaQs(withLang) : withLang;
   }
 
   function syncPageTitle(lang) {
     const path = location.pathname;
     const titleEl = document.getElementById("appTitle");
     if (!titleEl) return;
-    if (/^\/fare\/?$/i.test(path)) {
+    if (/^\/$/i.test(path)) {
+      titleEl.textContent = t(lang, "navTimeTitle");
+    } else if (/^\/fare\/?$/i.test(path)) {
       titleEl.textContent = t(lang, "navMapTitle");
     } else if (/^\/map\/?$/i.test(path)) {
       titleEl.textContent = t(lang, "navGuideTitle");
+    } else if (/^\/ferry\/?$/i.test(path)) {
+      titleEl.textContent = t(lang, "navAccessTitle");
+    } else if (/^\/trekking\/?$/i.test(path)) {
+      titleEl.textContent = t(lang, "navTrekTitle");
+    } else if (/^\/intro\/?$/i.test(path)) {
+      titleEl.textContent = t(lang, "navIntroTitle");
     }
   }
 
   function renderMainNav(forcedLang) {
     const nav = document.getElementById("mainNav");
     if (!nav) return;
-    const lang = forcedLang || getLang();
-    if (nav.dataset.chromeNav === lang) return;
+    const L = forcedLang || getLang();
+    if (!forcedLang && nav.dataset.chromeNav === L) return;
 
     nav.className = "nav nav-main nav-main--6";
-    nav.setAttribute("aria-label", t(lang, "navAria"));
+    nav.setAttribute("aria-label", t(L, "navAria"));
     const path = location.pathname;
     nav.innerHTML = MAIN_NAV.map((item) => {
       const on = item.active.test(path);
       const cls = on ? ' class="active"' : "";
       const aria = on ? ' aria-current="page"' : "";
       const titleKey = `${item.key}Title`;
-      const titleVal = t(lang, titleKey);
+      const titleVal = t(L, titleKey);
       const title = titleVal !== titleKey ? ` title="${titleVal.replace(/"/g, "&quot;")}"` : "";
-      return `<a href="${langQs(lang, item.href)}"${cls}${aria}${title}>${t(lang, item.key)}</a>`;
+      return `<a href="${langQs(L, item.href)}"${cls}${aria}${title}>${t(L, item.key)}</a>`;
     }).join("");
-    nav.dataset.chromeNav = lang;
-    syncPageTitle(lang);
+    nav.dataset.chromeNav = L;
+    syncPageTitle(L);
   }
 
-  renderMainNav();
+  const bootLang = getLang();
+  document.documentElement.lang = bootLang === "zh" ? "zh-CN" : bootLang;
+  renderMainNav(bootLang);
   window.__renderSiteChromeNav = renderMainNav;
+  window.__syncPageTitle = syncPageTitle;
+
+  function syncLangSwitchUi(forcedLang) {
+    const L = forcedLang || getLang();
+    document.querySelectorAll("#langSwitch [data-lang]").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.lang === L);
+    });
+  }
+
+  function onDomReady() {
+    const L = getLang();
+    syncPageTitle(L);
+    syncLangSwitchUi(L);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", onDomReady);
+  } else {
+    onDomReady();
+  }
 })();

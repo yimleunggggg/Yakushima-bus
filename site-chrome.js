@@ -110,6 +110,7 @@
       navIntro: "紹介",
       navIntroTitle: "サイト紹介",
       navAbout: "このサイトについて",
+      footerNavAria: "サイト内リンク",
       supportKofi: "コーヒーをおごる",
       feedbackQ: "このサイトの情報は役に立ちましたか？",
       starLabel: "{n} / 5",
@@ -120,9 +121,8 @@
       lowSubmit: "送信",
       thanks: "ありがとうございます！",
       thanksHigh: "うれしいです。ありがとうございます！",
-      affiliateDisclosure:
-        "一部の外部リンクはアフィリエイトです。交通の時刻・運賃は各公式情報を優先してください。",
     },
+    zh: {
       navAria: "主菜单",
       navGuide: "地图",
       navGuideTitle: "便利设施地图",
@@ -137,6 +137,7 @@
       navIntro: "介绍",
       navIntroTitle: "网站介绍",
       navAbout: "关于本站",
+      footerNavAria: "站内导航",
       supportKofi: "支持本站",
       feedbackQ: "本站信息对你有帮助吗？",
       starLabel: "{n} 星",
@@ -147,9 +148,8 @@
       lowSubmit: "提交反馈",
       thanks: "感谢你的反馈！",
       thanksHigh: "很高兴能帮到你，谢谢！",
-      affiliateDisclosure:
-        "部分外链为联盟营销链接（Klook、Viator 等）；交通时刻与票价请以各运营商官方信息为准。",
     },
+    en: {
       navAria: "Main menu",
       navGuide: "Map",
       navGuideTitle: "Island POI map",
@@ -164,6 +164,7 @@
       navIntro: "Intro",
       navIntroTitle: "About this site",
       navAbout: "About",
+      footerNavAria: "Site links",
       supportKofi: "Buy me a coffee",
       feedbackQ: "Was this site helpful for your trip?",
       starLabel: "{n} of 5",
@@ -174,8 +175,6 @@
       lowSubmit: "Send feedback",
       thanks: "Thanks for your feedback!",
       thanksHigh: "Glad it helped — thank you!",
-      affiliateDisclosure:
-        "Some outbound links are affiliate links. Timetables and fares follow official operator sources.",
     },
   };
 
@@ -188,7 +187,8 @@
 
   function langQs(href) {
     const sep = href.includes("?") ? "&" : "?";
-    return `${href}${sep}lang=${lang}`;
+    const withLang = `${href}${sep}lang=${lang}`;
+    return typeof window.appendBusGaQs === "function" ? window.appendBusGaQs(withLang) : withLang;
   }
 
   function readStore() {
@@ -209,9 +209,11 @@
     }
   }
 
-  function renderMainNav() {
+  function renderMainNav(forcedLang) {
+    const L = forcedLang || readLang();
+    lang = L;
     if (typeof window.__renderSiteChromeNav === "function") {
-      window.__renderSiteChromeNav(lang);
+      window.__renderSiteChromeNav(L);
       return;
     }
     const nav = document.getElementById("mainNav");
@@ -232,33 +234,23 @@
   function renderFooter() {
     const footer = document.querySelector(".app-footer");
     if (!footer) return;
+    lang = readLang();
     footer.querySelector("#footerMetaLinks")?.remove();
     footer.querySelector(".app-footer-support")?.remove();
     let nav = footer.querySelector(".app-footer-links");
     if (!nav) {
       nav = document.createElement("nav");
       nav.className = "app-footer-links";
-      nav.setAttribute("aria-label", "Site pages");
       footer.appendChild(nav);
     }
+    nav.setAttribute("aria-label", t("footerNavAria"));
     nav.innerHTML = `<a href="${langQs("/")}">${t("navTime")}</a>
-      <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/fare/")}">${t("navMap")}</a>
-      <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/map/")}">${t("navGuide")}</a>
-      <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/ferry/")}">${t("navAccess")}</a>
-      <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/about/")}">${t("navAbout")}</a>
-      <span class="footer-sep" aria-hidden="true">·</span>
       <a href="https://ko-fi.com/yimleung" target="_blank" rel="noopener noreferrer">${t("supportKofi")}</a>`;
-    let aff = footer.querySelector(".app-footer-affiliate");
-    if (!aff) {
-      aff = document.createElement("p");
-      aff.className = "app-footer-affiliate";
-      footer.appendChild(aff);
-    }
-    aff.textContent = t("affiliateDisclosure");
+    footer.querySelector(".app-footer-affiliate")?.remove();
   }
 
   function mountFeedback(footer) {
@@ -367,6 +359,9 @@
   }
 
   function readLang() {
+    if (window.AppCore && typeof AppCore.getLang === "function") {
+      return AppCore.getLang();
+    }
     const q = new URLSearchParams(location.search).get("lang");
     if (q === "ja" || q === "zh" || q === "en") return q;
     return localStorage.getItem(LANG_KEY) || lang || "ja";
@@ -398,7 +393,7 @@
 
   function refresh() {
     lang = readLang();
-    renderMainNav();
+    renderMainNav(lang);
     renderFooter();
     const stored = readStore();
     if (feedbackEl && isFeedbackDone(stored)) {
@@ -415,11 +410,12 @@
 
   function init() {
     lang = readLang();
-    renderMainNav();
+    renderMainNav(lang);
     renderFooter();
     renderFeedback();
     document.addEventListener("yakushima-bus-lang", (e) => {
-      if (e.detail && e.detail.lang) lang = e.detail.lang;
+      const next = e.detail?.lang;
+      if (next) lang = next;
       refresh();
     });
   }

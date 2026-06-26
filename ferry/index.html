@@ -52,10 +52,10 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v87">
+  <link rel="stylesheet" href="/styles.css?v=layout-v101">
   <script src="/analytics.js"></script>
-  <script src="/analytics-events.js?v=analytics-v3" defer></script>
-  <script src="/site-chrome.js?v=chrome-v15" defer></script>
+  <script src="/analytics-events.js?v=analytics-v4" defer></script>
+  <script src="/site-chrome.js?v=chrome-v20" defer></script>
 </head>
 <body class="app-page-narrow">
   <div class="app">
@@ -68,7 +68,7 @@
         <a href="/trekking/">登山</a>
         <a href="/intro/">紹介</a>
       </nav>
-      <script src="/site-chrome-nav-boot.js?v=chrome-v14"></script>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v19"></script>
     </div>
 
     <header class="header header-compact">
@@ -95,18 +95,17 @@
     <p class="app-meta meta-links" id="pageCross"></p>
     <p class="app-meta" id="metaBar"></p>
     <div class="panel" id="bookingPanel">
-      <div class="sec">
+      <div class="sec access-booking-sec">
         <div class="access-booking" id="bookingCards"></div>
+        <p class="access-booking-hint" id="bookingHint" hidden></p>
       </div>
     </div>
 
     <div id="sections"></div>
 
-    <div id="affiliateFerryBottom"></div>
-
     <div class="panel panel-aux">
-      <div class="aux-sections aux-in-panel">
-        <details class="aux-block">
+      <div class="aux-sections aux-in-panel" id="ferryAuxSections">
+        <details class="aux-block" id="ferrySourceLinks">
           <summary class="aux-summary"><span data-i18n="sources">公式リンク</span><span class="aux-chevron" aria-hidden="true"></span></summary>
           <div class="aux-body">
             <div class="links" id="sourceLinks"></div>
@@ -119,11 +118,12 @@
     <footer class="app-footer"></footer>
   </div>
 
-  <script src="/affiliate-data.js?v=aff-v5"></script>
-  <script src="/affiliate-ui.js?v=aff-v5"></script>
-  <script src="/access-data.js?v=booking-v3"></script>
+  <script src="/source-links.js?v=src-v1"></script>
+  <script src="/affiliate-data.js?v=aff-v8"></script>
+  <script src="/affiliate-ui.js?v=aff-v9"></script>
+  <script src="/access-data.js?v=booking-v5"></script>
   <script src="/section-divider.js"></script>
-  <script src="/app-core.js"></script>
+  <script src="/app-core.js?v=core-v9"></script>
   <script>
     const UI = {
       ja: { navAria: "メインメニュー", siteBrand: "屋久島バス",
@@ -144,7 +144,9 @@
       pageSeoLead: document.getElementById("pageSeoLead"),
       pageCross: document.getElementById("pageCross"),
       bookingCards: document.getElementById("bookingCards"),
-      affiliateFerryBottom: document.getElementById("affiliateFerryBottom"),
+      bookingHint: document.getElementById("bookingHint"),
+      ferryAuxSections: document.getElementById("ferryAuxSections"),
+      ferrySourceLinks: document.getElementById("ferrySourceLinks"),
       sections: document.getElementById("sections"),
       sourceLinks: document.getElementById("sourceLinks"),
       disclaimer: document.getElementById("disclaimer"),
@@ -158,6 +160,13 @@
     }
 
     function renderCell(val) {
+      const text = pick(val);
+      if (typeof AppCore !== "undefined" && AppCore.isBusTime(text)) return AppCore.formatTime(text);
+      return text;
+    }
+
+    function fareRowLabel(row, key) {
+      const val = row[key] ?? row.type ?? row.route ?? row.class ?? row.days;
       return pick(val);
     }
 
@@ -168,9 +177,13 @@
       b.items.forEach((item) => {
         const badge = item.badge ? `<span class="access-booking-badge">${pick(item.badge)}</span>` : "";
         const duration = item.duration ? `<span class="access-booking-duration">${pick(item.duration)}</span>` : "";
-        const affiliate =
+        const affiliateBtn =
           item.id === "jetfoil" && window.AffiliateUI
             ? AffiliateUI.jetfoilSecondaryHtml(lang)
+            : "";
+        const affiliateHint =
+          item.id === "jetfoil" && window.AffiliateUI
+            ? AffiliateUI.jetfoilAffiliateHintHtml(lang)
             : "";
         cards.push(`<article class="access-booking-card access-booking-card--${item.id}">
           <div class="access-booking-head">
@@ -181,19 +194,30 @@
             ${badge}
           </div>
           <p class="access-booking-body">${pick(item.body)}</p>
-          <div class="access-booking-actions">
-            <a class="access-booking-btn access-booking-btn-primary" href="${item.ctaUrl}" target="_blank" rel="noopener">${pick(item.ctaLabel)}</a>
-            ${affiliate}
+          <div class="access-booking-foot">
+            <div class="access-booking-actions">
+              <a class="access-booking-btn access-booking-btn-primary" href="${item.ctaUrl}" target="_blank" rel="noopener">${pick(item.ctaLabel)}</a>
+              ${affiliateBtn}
+            </div>
+            ${affiliateHint}
           </div>
         </article>`);
       });
-      els.bookingCards.innerHTML = cards.join("") + (b.footerHint ? `<p class="access-booking-hint">${pick(b.footerHint)}</p>` : "");
+      els.bookingCards.innerHTML = cards.join("");
+      if (els.bookingHint) {
+        if (b.footerHint) {
+          els.bookingHint.textContent = pick(b.footerHint);
+          els.bookingHint.hidden = false;
+        } else {
+          els.bookingHint.hidden = true;
+        }
+      }
     }
 
     function tickClock() {
       if (!els.liveClockTime || typeof AppCore === "undefined") return;
       const jp = AppCore.japanParts();
-      els.liveClockTime.textContent = `${jp.hour}:${jp.minute}`;
+      els.liveClockTime.textContent = AppCore.formatJapanClock();
       els.liveClockTime.title = lang === "zh"
         ? `日本标准时间 (JST · UTC+9)`
         : (lang === "en" ? "Japan Standard Time (JST · UTC+9)" : "日本標準時 (JST · UTC+9)");
@@ -212,15 +236,9 @@
     }
 
     function renderSchedulePart(sec) {
-      const srcKey = sec.sourceKey;
-      const srcUrl = ACCESS_DATA.meta.sources[srcKey];
-      const srcLabel = pick(ACCESS_DATA.meta.sourceLabels[srcKey] || {});
       const note = sec.note ? `<p class="table-note">${pick(sec.note)}</p>` : "";
       const alert = sec.alert
         ? `<p class="table-note table-note--alert">${pick(sec.alert)}${sec.alertUrl ? ` <a href="${sec.alertUrl}" target="_blank" rel="noopener">${lang === "zh" ? "官方公告" : lang === "en" ? "Official notice" : "公式お知らせ"}</a>` : ""}</p>`
-        : "";
-      const sourceLine = srcUrl
-        ? `<p class="table-source">${t("source")}: <a href="${srcUrl}" target="_blank" rel="noopener">${srcLabel || srcUrl}</a></p>`
         : "";
       const head = sec.columns.map((c) => `<th>${pick(c.label)}</th>`).join("");
       const body = sec.rows.map((row) =>
@@ -231,23 +249,23 @@
           ${alert}
           ${note}
           <div class="table-wrap"><table class="data-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>
-          ${sourceLine}
         </section>`;
     }
 
-    function renderFarePart(sec) {
+    function renderFarePart(sec, showSource) {
       const srcKey = sec.sourceKey;
       const srcUrl = ACCESS_DATA.meta.sources[srcKey];
       const srcLabel = pick(ACCESS_DATA.meta.sourceLabels[srcKey] || {});
       const note = sec.note ? `<p class="table-note">${pick(sec.note)}</p>` : "";
-      const sourceLine = srcUrl
-        ? `<p class="table-source">${t("source")}: <a href="${srcUrl}" target="_blank" rel="noopener">${srcLabel || srcUrl}</a></p>`
-        : "";
+      const sourceLine =
+        showSource && srcUrl
+          ? `<p class="table-source">${t("source")}: <a href="${srcUrl}" target="_blank" rel="noopener">${srcLabel || srcUrl}</a></p>`
+          : "";
       const labelKey = sec.fareKey || "route";
       const colLabel = labelKey === "type" ? t("fareColType") : t("fareColRoute");
       const body = sec.rows.map((row) => {
         const sub = row.sub ? ' class="fare-sub"' : "";
-        return `<tr${sub}><td>${pick(row[labelKey])}</td><td>${row.adult}</td><td>${row.child}</td></tr>`;
+        return `<tr${sub}><td>${fareRowLabel(row, labelKey)}</td><td>${row.adult}</td><td>${row.child}</td></tr>`;
       }).join("");
       return `<section class="access-mode-part access-mode-part--fare">
           <div class="sec-title">${pick(sec.title)}</div>
@@ -257,13 +275,19 @@
         </section>`;
     }
 
-    function renderSectionPart(sec) {
-      if (sec.kind === "fare") return renderFarePart(sec);
+    function renderSectionPart(sec, showSource = false) {
+      if (sec.kind === "fare") return renderFarePart(sec, showSource);
       return renderSchedulePart(sec);
     }
 
     function renderModeBlock(mode, sections) {
-      const parts = sections.map((sec) => renderSectionPart(sec)).join("");
+      const lastSourceIdx = sections.reduce(
+        (idx, sec, i) => (sec.sourceKey && ACCESS_DATA.meta.sources[sec.sourceKey] ? i : idx),
+        -1
+      );
+      const parts = sections
+        .map((sec, i) => renderSectionPart(sec, i === lastSourceIdx))
+        .join("");
       return `<div class="panel access-mode-panel access-mode-panel--${mode}">
         <div class="sec">
           ${modeDividerHtml(mode)}
@@ -288,6 +312,7 @@
 
     function applyI18n() {
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+      window.__syncPageTitle?.(lang);
       document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
       els.langSwitch.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
       applyPageHead();
@@ -307,7 +332,7 @@
         const mode = sectionMode(sec);
         if (!mode) {
           flushMode();
-          blocks.push(renderSectionPart(sec));
+          blocks.push(renderSectionPart(sec, true));
           return;
         }
         if (mode !== groupMode) {
@@ -318,12 +343,21 @@
       });
       flushMode();
       els.sections.innerHTML = blocks.join("");
-      if (els.affiliateFerryBottom && window.AffiliateUI) {
-        els.affiliateFerryBottom.innerHTML = AffiliateUI.ferryBottomHtml(lang);
+      if (els.ferryAuxSections && els.ferrySourceLinks && window.AffiliateUI) {
+        els.ferryAuxSections.querySelector(".aux-block--affiliate")?.remove();
+        const affiliateHtml = AffiliateUI.ferryBottomHtml(lang);
+        if (affiliateHtml) {
+          els.ferrySourceLinks.insertAdjacentHTML("beforebegin", affiliateHtml);
+        }
       }
-      els.sourceLinks.innerHTML = ACCESS_DATA.links.map((l) =>
-        `<a href="${ACCESS_DATA.meta.sources[l.key]}" target="_blank" rel="noopener">${pick(l.label)}</a>`
-      ).join("");
+      SourceLinks.mountFlat(
+        els.sourceLinks,
+        ACCESS_DATA.links.map((l) => ({
+          url: ACCESS_DATA.meta.sources[l.key],
+          label: pick(l.label),
+        })),
+        lang,
+      );
       els.disclaimer.textContent = pick(ACCESS_DATA.disclaimer);
     }
 

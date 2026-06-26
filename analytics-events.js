@@ -1,4 +1,4 @@
-/** GA4 事件 — 在 GA4「事件」里标为关键事件（见 docs/notes/2026-06-25-analytics.md） */
+/** GA4 事件 — 全站委托埋点（见 docs/notes/2026-06-25-analytics.md） */
 (function () {
   function event(name, params) {
     if (typeof window.gtag !== "function") return;
@@ -10,6 +10,41 @@
   document.addEventListener(
     "click",
     (e) => {
+      const dayBtn = e.target.closest(".day-tabs button[data-day]");
+      if (dayBtn) {
+        event("timetable_day_tab", { day_type: dayBtn.dataset.day });
+      }
+
+      const presetBtn = e.target.closest(".presets button[data-from]");
+      if (presetBtn) {
+        event("timetable_preset", {
+          from: presetBtn.dataset.from,
+          to: presetBtn.dataset.to,
+        });
+      }
+
+      if (e.target.closest("#swapBtn")) {
+        const fromEl = document.getElementById("fromStop");
+        const toEl = document.getElementById("toStop");
+        event("timetable_swap", {
+          from: fromEl?.value || "",
+          to: toEl?.value || "",
+        });
+      }
+
+      if (e.target.closest("#timeFilterBtn")) {
+        event("timetable_time_open", {});
+      }
+
+      if (e.target.closest("#timeFilterReset")) {
+        event("timetable_time_reset", {});
+      }
+
+      const pdfLangBtn = e.target.closest("button[data-pdf-lang]");
+      if (pdfLangBtn) {
+        event("pdf_lang_switch", { lang: pdfLangBtn.dataset.pdfLang });
+      }
+
       const nav = e.target.closest(".nav-main a[href]");
       if (nav) {
         event("nav_click", {
@@ -54,12 +89,26 @@
       if (/google\.com\/maps|maps\.google/.test(href)) {
         event("open_maps", { link_url: href });
       }
-      if (/^\/(fare|map|ferry|access|guide|trekking|without-car|intro|about)\/?/i.test(href.replace(location.origin, "")) || href.startsWith("/")) {
-        const path = href.split("?")[0];
-        if (path && path !== location.pathname) {
-          event("internal_link", { link_url: href, link_text: (a.textContent || "").trim().slice(0, 60) });
-        }
+      const pathOnly = href.replace(location.origin, "").split("?")[0];
+      if (
+        /^\/(fare|map|ferry|access|guide|trekking|without-car|intro|about)\/?$/i.test(pathOnly) ||
+        (href.startsWith("/") && pathOnly && pathOnly !== location.pathname)
+      ) {
+        event("internal_link", {
+          link_url: href,
+          link_text: (a.textContent || "").trim().slice(0, 60),
+        });
       }
+    },
+    true
+  );
+
+  document.addEventListener(
+    "change",
+    (e) => {
+      const t = e.target;
+      if (!t || t.id !== "upcomingOnly") return;
+      event("timetable_upcoming_toggle", { enabled: !!t.checked });
     },
     true
   );
@@ -69,9 +118,12 @@
     (e) => {
       const d = e.target;
       if (d.tagName !== "DETAILS" || !d.open) return;
-      if (d.classList.contains("aux-block") || d.classList.contains("intro-sources-fold")) {
-        const label = d.querySelector("summary")?.textContent?.trim().slice(0, 80) || "";
+      const label = d.querySelector("summary")?.textContent?.trim().slice(0, 80) || "";
+      if (d.classList.contains("aux-block") || d.classList.contains("source-group-fold") || d.classList.contains("intro-sources-fold")) {
         event("section_open", { section: label });
+      }
+      if (d.classList.contains("seo-faq-item")) {
+        event("faq_open", { question: label });
       }
     },
     true

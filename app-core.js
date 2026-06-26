@@ -25,11 +25,24 @@ const AppCore = {
     this._lang = lang;
     localStorage.setItem(this.LANG_KEY, lang);
     this.applyDocLang(lang);
+    this.syncLangUrl(lang);
+    window.__renderSiteChromeNav?.(lang);
     this.notifyLangChange(lang);
+  },
+
+  syncLangUrl(lang) {
+    try {
+      if (location.protocol !== "http:" && location.protocol !== "https:") return;
+      const url = new URL(location.href);
+      if (url.searchParams.get("lang") === lang) return;
+      url.searchParams.set("lang", lang);
+      history.replaceState(null, "", url);
+    } catch (_) { /* ignore */ }
   },
 
   notifyLangChange(lang = this.getLang()) {
     window.dispatchEvent(new CustomEvent("yakushima-bus-lang", { detail: { lang } }));
+    window.SiteChrome?.refresh();
   },
 
   applyDocLang(lang = this.getLang()) {
@@ -81,6 +94,158 @@ const AppCore = {
     if (!time || time === "↓") return null;
     const [h, m] = time.split(":").map(Number);
     return h * 60 + m;
+  },
+
+  isBusTime(time) {
+    return Boolean(time && /^\d{1,2}:\d{2}$/.test(time));
+  },
+
+  /** 展示用 24 小时制 HH:mm（公交/船运时刻，与 locale 无关） */
+  formatTime(time) {
+    if (time == null || time === "") return "";
+    if (time === "↓") return time;
+    if (!this.isBusTime(time)) return String(time);
+    const mins = this.parseMinutes(time);
+    if (mins == null) return String(time);
+    const h = Math.floor(mins / 60) % 24;
+    const mm = mins % 60;
+    return `${String(h).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+  },
+
+  formatJapanClock(date = new Date()) {
+    const jp = this.japanParts(date);
+    return this.formatTime(`${jp.hour}:${jp.minute}`);
+  },
+
+  /** 环线区间：沿站序单调走到终点站，跳过错圈时刻 */
+  resolveTripSegment(trip, dir, fromIdx, toIdx) {
+    if (fromIdx === toIdx) return null;
+    const fromId = dir.stops[fromIdx];
+    const dep = trip.times[fromId];
+    if (!this.isBusTime(dep)) return null;
+    const depM = this.parseMinutes(dep);
+    const step = fromIdx < toIdx ? 1 : -1;
+    const chain = [{ sid: fromId, time: dep, idx: fromIdx }];
+    let lastM = depM;
+
+    for (let i = fromIdx + step; step > 0 ? i <= toIdx : i >= toIdx; i += step) {
+      const sid = dir.stops[i];
+      const raw = trip.times[sid];
+      if (!this.isBusTime(raw)) continue;
+      const m = this.parseMinutes(raw);
+      if (m < lastM) continue;
+      lastM = m;
+      chain.push({ sid, time: raw, idx: i });
+    }
+
+    const last = chain[chain.length - 1];
+    if (!last || last.idx !== toIdx || lastM <= depM) return null;
+    return { dep, arr: last.time, fi: fromIdx, ti: toIdx, chain };
+  },
+
+  segmentStops(trip, dir, fromIdx, toIdx) {
+    const seg = this.resolveTripSegment(trip, dir, fromIdx, toIdx);
+    if (!seg?.chain) return [];
+    const timeMap = new Map(seg.chain.map((c) => [c.sid, c.time]));
+    const out = [];
+    const step = fromIdx < toIdx ? 1 : -1;
+    for (let i = fromIdx; step > 0 ? i <= toIdx : i >= toIdx; i += step) {
+      const sid = dir.stops[i];
+      out.push({ sid, time: timeMap.get(sid) || null });
+    }
+    return out;
+  },
+
+  isValidTripSegment(trip, dir, fromIdx, toIdx) {
+    return Boolean(this.resolveTripSegment(trip, dir, fromIdx, toIdx));
+  },
+
+  isValidDepartureAtStop(trip, dir, stopIdx) {
+    const stopId = dir.stops[stopIdx];
+    const dep = trip.times[stopId];
+    if (!this.isBusTime(dep)) return false;
+    const depM = this.parseMinutes(dep);
+    for (let i = stopIdx + 1; i < dir.stops.length; i++) {
+      const next = trip.times[dir.stops[i]];
+      if (!this.isBusTime(next)) continue;
+      if (this.parseMinutes(next) > depM) return true;
+    }
+    for (let i = stopIdx - 1; i >= 0; i--) {
+      const next = trip.times[dir.stops[i]];
+      if (!this.isBusTime(next)) continue;
+      if (this.parseMinutes(next) > depM) return true;
+    }
+    return false;
+  },
+
+  findTrips(from, to, dayType) {
+    const found = [];
+    if (typeof BUS_DATA === "undefined") return found;
+    for (const route of BUS_DATA.routes) {
+      for (const dir of route.directions) {
+        const fi = dir.stops.indexOf(from);
+        const ti = dir.stops.indexOf(to);
+        if (fi === -1 || ti === -1 || fi === ti) continue;
+        for (const trip of dir.trips) {
+          if (trip.suspended || !trip.days.includes(dayType)) continue;
+          const seg = this.resolveTripSegment(trip, dir, fi, ti);
+          if (!seg) continue;
+          found.push({
+            route,
+            dir,
+            trip,
+            dep: seg.dep,
+            arr: seg.arr,
+            fi: seg.fi,
+            ti: seg.ti,
+          });
+        }
+      }
+    }
+    return found.sort((a, b) => this.parseMinutes(a.dep) - this.parseMinutes(b.dep));
+  },
+
+  /**
+   * @param {string} stopId
+   * @param {string} dayType
+   * @param {{ pick?: Function, stopName?: Function }} [opts]
+   */
+  getStopDepartures(stopId, dayType, opts = {}) {
+    const pick = opts.pick || ((o) => this.pick(o));
+    const stopName = opts.stopName || ((id) => this.stopLabel(id));
+    const groups = [];
+    if (!stopId || typeof BUS_DATA === "undefined" || !BUS_DATA.stops[stopId]) return groups;
+    for (const route of BUS_DATA.routes) {
+      for (const dir of route.directions) {
+        const si = dir.stops.indexOf(stopId);
+        if (si === -1) continue;
+        const deps = [];
+        for (const trip of dir.trips) {
+          if (trip.suspended || !trip.days.includes(dayType)) continue;
+          if (!this.isValidDepartureAtStop(trip, dir, si)) continue;
+          const dep = trip.times[stopId];
+          const destId = trip.dest || dir.stops[dir.stops.length - 1];
+          deps.push({ time: this.formatTime(dep), dest: stopName(destId) });
+        }
+        if (!deps.length) continue;
+        deps.sort((a, b) => this.parseMinutes(a.time) - this.parseMinutes(b.time));
+        groups.push({
+          routeName: pick(route.name),
+          dirLabel: pick(dir.label),
+          operator: BUS_DATA.operators[route.operator] || BUS_DATA.operators.taneyaku,
+          operatorId: route.operator,
+          deps,
+        });
+      }
+    }
+    return groups;
+  },
+
+  stopLabel(id, lang = this.getLang()) {
+    const s = (typeof BUS_DATA !== "undefined" && BUS_DATA.stops[id])
+      || (typeof MAP_DATA !== "undefined" && MAP_DATA.stops?.[id]);
+    if (!s) return id;
+    return lang === "ja" ? s.ja : (lang === "zh" ? s.zh : s.en);
   },
 
   stopAriaLabel(id, lang = this.getLang()) {

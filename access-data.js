@@ -90,9 +90,9 @@ const ACCESS_DATA = {
           "en": "Jetfoil (Toppy / Rocket)"
         },
         "body": {
-          "ja": "公式サイトからオンライン予約・購入できます（T&Rフレンド登録、クレジット・コンビニ払い）。乗船2ヶ月前の同一日9:00から予約開始。繁忙期は早めの予約を。港窓口・旅行代理店でも購入可。",
-          "zh": "可在官网在线预约购票（需注册 T&R 会员，支持信用卡/便利店支付）。一般于乘船日 2 个月前同日上午 9:00 起开放预约，旺季建议尽早订。也可到鹿儿岛/屋久岛港窗口或部分旅行社购买。",
-          "en": "Book and pay on the official site (T&R Friend signup; card or convenience-store payment). Opens ~2 months before sailing at 9:00. Book early in peak season. Also sold at port counters and some travel agencies."
+          "ja": "公式サイトからオンライン予約・購入できます（T&Rフレンド登録、クレジット・コンビニ払い）。乗船2ヶ月前の同一日9:00から予約開始。繁忙期は早めの予約を。",
+          "zh": "可在官网在线预约购票（需注册 T&R 会员，支持信用卡/便利店支付）。一般于乘船日 2 个月前同日上午 9:00 起开放预约，旺季建议尽早订。",
+          "en": "Book and pay on the official site (T&R Friend signup; card or convenience-store payment). Opens ~2 months before sailing at 9:00. Book early in peak season."
         },
         "ctaUrl": "https://www.tykousoku.jp/reserve/",
         "ctaLabel": {
@@ -590,8 +590,8 @@ const ACCESS_DATA = {
         {
           "type": {
             "ja": "二等",
-            "zh": "二等",
-            "en": "Standard"
+            "zh": "二等（经济舱）",
+            "en": "Standard (2nd class)"
           },
           "adult": "¥6,500",
           "child": "¥3,200"
@@ -599,8 +599,8 @@ const ACCESS_DATA = {
         {
           "type": {
             "ja": "一等",
-            "zh": "一等",
-            "en": "First"
+            "zh": "一等（头等舱）",
+            "en": "First class"
           },
           "adult": "¥9,000",
           "child": "¥4,500"

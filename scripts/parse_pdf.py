@@ -22,6 +22,7 @@ from lib.catalog import (  # noqa: E402
 from lib.day_columns import REF_STOP, column_day_types  # noqa: E402
 from lib.operators import OPERATORS  # noqa: E402
 from lib.overrides import apply_overrides  # noqa: E402
+from lib.trip_split import split_routes_trips, validate_routes_monotonic  # noqa: E402
 from parse_matsubanda import (  # noqa: E402
     MATSUBANDA_INFO,
     build_matsubanda_routes,
@@ -298,18 +299,20 @@ def build_data() -> dict:
         },
         "routes": taneyaku_routes + build_matsubanda_routes(),
         "presets": [
+            {"from": "yakusugi_museum", "to": "arakawa_trailhead", "tag": "tourist"},
             {"from": "miyanoura_port", "to": "anbo", "tag": "core"},
             {"from": "miyanoura_port", "to": "airport", "tag": "core"},
             {"from": "miyanoura_port", "to": "yakusugi_museum", "tag": "core"},
             {"from": "miyanoura_port", "to": "shiratani", "tag": "tourist"},
             {"from": "anbo_port", "to": "miyanoura_port", "tag": "core"},
             {"from": "airport", "to": "miyanoura_port", "tag": "core"},
-            {"from": "yakusugi_museum", "to": "arakawa_trailhead", "tag": "tourist"},
             {"from": "miyanoura_port", "to": "okawa_falls", "tag": "tourist"},
             {"from": "gocho_mae", "to": "kigen_sugi", "tag": "tourist"},
         ],
     }
-    return apply_overrides(data, OVERRIDES)
+    data = apply_overrides(data, OVERRIDES)
+    split_routes_trips(data["routes"])
+    return data
 
 
 def emit_js(data: dict, out: Path) -> None:
@@ -325,6 +328,13 @@ if __name__ == "__main__":
     data = build_data()
     emit_js(data, ROOT / "data.js")
     central = data["routes"][0]
+    bad = validate_routes_monotonic(data["routes"])
     print(f"stops: {len(data['stops'])}")
     print(f"central west trips: {len(central['directions'][0]['trips'])}")
     print(f"central east trips: {len(central['directions'][1]['trips'])}")
+    if bad:
+        print(f"NON-MONOTONIC trips: {len(bad)}", file=sys.stderr)
+        for line in bad[:20]:
+            print(f"  {line}", file=sys.stderr)
+        sys.exit(1)
+    print("monotonic check: OK")

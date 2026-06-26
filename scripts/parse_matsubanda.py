@@ -67,7 +67,7 @@ def build_matsubanda_routes() -> list[dict]:
     season_note = {
         "ja": "冬季（12/1–2/28）運行。ゆったり満喫券・IC不可。",
         "zh": "冬季（12/1–2/28）运行。不可用悠享乘车券与 IC 卡。",
-        "en": "Winter service (Dec 1–Feb 28). Day pass & IC cards not accepted.",
+        "en": "Winter (Dec 1–Feb 28). No day pass or IC.",
     }
     delay_note = {
         "ja": "下山時間の都合により出発が遅れる場合あり",
@@ -76,7 +76,7 @@ def build_matsubanda_routes() -> list[dict]:
     }
     shiratani_suspended = {
         "ja": "2026/3/1–11/30 運休（まつばんだ便）",
-        "zh": "2026/3/1–11/30 停运（松ばんだ班次）",
+        "zh": "2026/3/1–11/30 停运（松叶班次）",
         "en": "Suspended Mar 1–Nov 30, 2026 (Matsubanda)",
     }
 
@@ -138,12 +138,12 @@ from lib.operators import MATSUBANDA_OPERATOR  # noqa: E402
 MATSUBANDA_INFO = {
     "matsubandaPass": {
         "ja": "まつばんだ便では「ゆったり満喫乗車券」は利用できません。",
-        "zh": "松ばんだ班次不可使用悠享乘车券。",
+        "zh": "松叶班次不可使用悠享乘车券。",
         "en": "Matsubanda buses do not accept the Yakushima day pass.",
     },
     "matsubandaIc": {
         "ja": "まつばんだ便では IC カードは利用できません。",
-        "zh": "松ばんだ班次不可使用 IC 卡。",
+        "zh": "松叶班次不可使用 IC 卡。",
         "en": "IC cards are not accepted on Matsubanda buses.",
     },
 }

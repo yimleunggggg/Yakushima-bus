@@ -29,9 +29,34 @@
     ],
   };
 
+  /** 默认打开页（1-based）；运价 PDF 第 1 页为路线图、第 2 页为运价表 */
+  const PDF_START_PAGE = {
+    "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin.pdf": 2,
+    "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin-en.pdf": 2,
+    "/assets/pdf/yakushimabus-map-unchin.pdf": 2,
+    "/assets/pdf/yakushimabus-map-unchin-en.pdf": 2,
+  };
+
+  global.pdfStartPage = function (url) {
+    const clean = String(url || "").split("#")[0];
+    return PDF_START_PAGE[clean] || 1;
+  };
+
+  global.pdfUrlWithPage = function (url) {
+    const clean = String(url || "").split("#")[0];
+    const page = global.pdfStartPage(clean);
+    return page > 1 ? `${clean}#page=${page}` : clean;
+  };
+
   global.pdfPreviewPages = function (url) {
     const clean = String(url || "").split("#")[0];
-    return PDF_PREVIEW[clean] || [];
+    let pages = PDF_PREVIEW[clean] || [];
+    const start = global.pdfStartPage(clean);
+    if (start > 1 && pages.length >= start) {
+      const idx = start - 1;
+      pages = [pages[idx], ...pages.slice(0, idx), ...pages.slice(idx + 1)];
+    }
+    return pages;
   };
 
   global.renderPdfMobilePreview = function (container, url) {
@@ -75,7 +100,9 @@
   global.pdfEmbedSrc = function (url) {
     const clean = String(url || "").split("#")[0];
     const base = PDF_MIRROR[clean] || clean;
-    return `${base}#toolbar=0&navpanes=0&view=FitH`;
+    const page = global.pdfStartPage(clean);
+    const pageFrag = page > 1 ? `page=${page}&` : "";
+    return `${base}#${pageFrag}toolbar=0&navpanes=0&view=FitH`;
   };
 
   global.initPdfViewer = function ({

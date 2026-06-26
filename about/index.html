@@ -48,8 +48,8 @@
   </script>
   <link rel="stylesheet" href="/styles.css?v=layout-v85">
   <script src="/analytics.js"></script>
-  <script src="/analytics-events.js?v=analytics-v3" defer></script>
-  <script src="/site-chrome.js?v=chrome-v15" defer></script>
+  <script src="/analytics-events.js?v=analytics-v4" defer></script>
+  <script src="/site-chrome.js?v=chrome-v20" defer></script>
 </head>
 <body class="app-page-narrow">
   <script>if (location.hash === "#sources") location.replace("/intro/#sources");</script>
@@ -63,7 +63,7 @@
         <a href="/map/" data-i18n="navGuide">便利</a>
         <a href="/intro/" data-i18n="navIntro">紹介</a>
       </nav>
-      <script src="/site-chrome-nav-boot.js?v=chrome-v15"></script>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v19"></script>
     </div>
 
     <header class="header header-compact">
@@ -217,8 +217,12 @@
       const btn = e.target.closest("button[data-lang]");
       if (!btn) return;
       lang = btn.dataset.lang;
-      localStorage.setItem("yakushima-bus-lang", lang);
-      window.dispatchEvent(new CustomEvent("yakushima-bus-lang", { detail: { lang } }));
+      if (window.AppCore) AppCore.setLang(lang);
+      else {
+        localStorage.setItem("yakushima-bus-lang", lang);
+        window.__renderSiteChromeNav?.(lang);
+        window.dispatchEvent(new CustomEvent("yakushima-bus-lang", { detail: { lang } }));
+      }
       applyI18n();
     });
 
