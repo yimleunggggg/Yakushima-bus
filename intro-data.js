@@ -17,7 +17,7 @@ window.INTRO_DATA = {
         {
           icon: "🚌",
           title: "バス時刻表 2026",
-          body: "区間検索・次発ハイライト・平日/土日祝。48停留所、運行会社表示。公式表（2026年3月改定）準拠。",
+          body: "区間検索・次発ハイライト・平日/土日祝。48停留所、運行会社表示。2026年最新公式表準拠。",
           href: "/",
         },
         {
@@ -67,7 +67,7 @@ window.INTRO_DATA = {
         {
           icon: "🚌",
           title: "公交时刻表 2026",
-          body: "区间查询、高亮下一班、按工作日/周末筛选；48 站、运营公司标识。对齐 2026 年 3 月官方改订。",
+          body: "区间查询、高亮下一班、按工作日/周末筛选；48 站、运营公司标识。对齐 2026 最新官方班次。",
           href: "/",
         },
         {
@@ -118,7 +118,7 @@ window.INTRO_DATA = {
         {
           icon: "🚌",
           title: "Bus timetable 2026",
-          body: "Route search, next-departure highlight, weekday/weekend tabs, 48 stops with operator badges. Mar 2026 official revision.",
+          body: "Route search, next-departure highlight, weekday/weekend tabs, 48 stops with operator badges. 2026 latest official schedules.",
           href: "/",
         },
         {

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="屋久島バス時刻表2026・屋久島交通の次の便検索。平日/土日祝、宮之浦港・空港・安房・白谷・荒川登山口。路線図・料金は専用ページ。三语界面。">
-  <meta name="keywords" content="屋久島,バス,時刻表,屋久島交通,屋久島 バス 時刻表,2026,屋久岛,公交时刻表,Yakushima,bus,timetable">
+  <meta name="description" content="屋久島バス時刻表2026最新・屋久島交通の次の便検索。平日/土日祝、宮之浦港・空港・安房・白谷・荒川登山口。路線図・料金は専用ページ。三语界面。">
+  <meta name="keywords" content="屋久島,バス,時刻表,屋久島交通,屋久島 バス 時刻表,2026,2026最新,最新時刻表,屋久岛,公交时刻表,2026最新,Yakushima,bus,timetable,2026">
   <meta name="author" content="Yakushima Bus">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#143a35">
@@ -26,8 +26,8 @@
   <link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Yakushima Bus">
-  <meta property="og:title" content="屋久島バス時刻表 2026｜屋久島交通・次の便検索">
-  <meta property="og:description" content="屋久島バス時刻表2026。宮之浦港・空港・白谷・荒川登山口の次の便。路線図・料金は /fare/。">
+  <meta property="og:title" content="屋久島バス時刻表 2026最新｜屋久島交通・次の便検索">
+  <meta property="og:description" content="屋久島バス時刻表2026最新。宮之浦港・空港・白谷・荒川登山口の次の便。路線図・料金は /fare/。">
   <meta property="og:url" content="https://yakushimabus.com/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -37,10 +37,10 @@
   <meta property="og:locale:alternate" content="zh_CN">
   <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="屋久島バス時刻表 2026｜屋久島交通">
-  <meta name="twitter:description" content="次の便検索・平日土日祝。宮之浦港・白谷・荒川登山口。">
+  <meta name="twitter:title" content="屋久島バス時刻表 2026最新｜屋久島交通">
+  <meta name="twitter:description" content="2026最新ダイヤ・次の便検索。平日土日祝。宮之浦港・白谷・荒川登山口。">
   <meta name="twitter:image" content="https://yakushimabus.com/og-image.png">
-  <title>屋久島バス時刻表 2026｜屋久島交通・次の便検索（3月改定）</title>
+  <title>屋久島バス時刻表 2026最新｜屋久島交通・次の便検索</title>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -76,7 +76,7 @@
         "applicationCategory": "TravelApplication",
         "operatingSystem": "Any",
         "inLanguage": ["ja", "zh-CN", "en"],
-        "description": "Yakushima bus timetables and next-departure search. Updated March 2026.",
+        "description": "Yakushima bus timetables and next-departure search. 2026 latest official schedules.",
         "areaServed": {
           "@type": "Place",
           "name": "Yakushima Island",
@@ -88,10 +88,10 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v124">
+  <link rel="stylesheet" href="/styles.css?v=layout-v132">
   <script src="/analytics.js"></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
-  <script src="/site-chrome.js?v=chrome-v20" defer></script>
+  <script src="/site-chrome.js?v=chrome-v21" defer></script>
 </head>
 <body>
   <div class="app">
@@ -302,9 +302,9 @@
   <div class="app-toast" id="appToast" role="status" aria-live="polite" hidden></div>
 
   <script src="source-links.js?v=src-v1" defer></script>
-  <script src="data.js?v=data-loop-split-v1" defer></script>
+  <script src="data.js?v=data-column-v2" defer></script>
   <script src="meta-data.js" defer></script>
-  <script src="app-core.js?v=core-v9" defer></script>
+  <script src="app-core.js?v=core-v10" defer></script>
   <script src="operator-ui.js" defer></script>
   <script src="stop-picker.js?v=picker-v5" defer></script>
   <script src="pdf-fullscreen.js" defer></script>
@@ -339,10 +339,12 @@
         routeTipsTitle: "こう探すと見つかることがあります",
         tipMoreToAlt: "「{alt}」なら{n}便（「{to}」は{current}便）。港と町は別停留所です。",
         tipMoreFromAlt: "出発を「{alt}」にすると{n}便（今は{current}便）。港と町は別停留所です。",
+        tipExtraFromAlt: "「{from}」とは別便：「{alt}」発 {times} など {n}便。港と町は別停留所です。",
+        tipWeekendFewer: "平日は{wk}便ありますが、土日祝は{current}便のみ（公式時刻表どおり）。",
         tipSearchAlt: "{from} → {alt} を検索",
         tipAnboPortWeekend: "土日祝は「宮之浦港」直行便が少ない/なしのことがあります。「宮之浦」まで{n}便あり、下車後は港まで徒歩・乗換が必要です。",
         tipWalkToPort: "下車後、宮之浦港まで徒歩または乗換が必要な場合があります。",
-        tipDataNote: "2026年3月改定。現地の掲示を優先してください。",
+        tipDataNote: "2026最新。現地の掲示を優先してください。",
         endedOtherDayHint: "日祝は末班が遅い場合があります。",
         results: "便一覧", travelTips: "乗車のポイント", sources: "公式情報", faqTitle: "よくある質問",
         searchPlaceholder: "停留所名（日/中/英）",
@@ -367,7 +369,7 @@
         transfer: "乗換", weather: "運休", arakawaSeason: "荒川バス",
         disclaimer: "参考情報です。バス停掲示および <a href=\"https://yakukan.jp/trans/\" target=\"_blank\" rel=\"noopener\">屋久島観光協会</a> の最新 PDF をご確認ください。",
         pdfTaneyaku: "時刻表 PDF（日本語）", pdfTaneyakuEn: "Timetable PDF (English)",
-        pdfViewer: "公式時刻表 PDF", expandable: "展開可",
+        pdfViewer: "公式時刻表 PDF", tripExpand: "経停駅を表示", tripCollapse: "経停駅を閉じる",
         pdfJa: "日本語 PDF", pdfEn: "English PDF",
         pdfFullscreen: "全画面", pdfExitFullscreen: "終了", pdfOpenNew: "新しいタブ",
         pdfOpenPrimary: "公式 PDF を開く",
@@ -383,6 +385,7 @@
         arakawaXLink: "公式 X を開く",
         tagTransfer: "乗換", tagTourist: "観光", tagFerry: "フェリー接続", tagAirport: "空港",
         tagHotel: "ホテル", season: "3～11月", winterSeason: "12～2月",
+        winterNoteShort: "冬季·券/IC不可",
         suspended: "運休", dropOnly: "到着 ↓（降車可）", matsubandaPass: "満喫券不可", matsubandaIc: "IC不可",
         pdfFare: "運賃表 PDF", pdfFareEn: "Fare table PDF (EN)",
       },
@@ -413,10 +416,12 @@
         routeTipsTitle: "很多人不会想到这样搜",
         tipMoreToAlt: "到「{alt}」有 {n} 班，到「{to}」只有 {current} 班。码头与镇中心是不同站点。",
         tipMoreFromAlt: "出发改选「{alt}」有 {n} 班（当前 {current} 班）。码头与镇中心是不同站点。",
+        tipExtraFromAlt: "与「{from}」不是同一批车：从「{alt}」还有 {times} 等 {n} 班。",
+        tipWeekendFewer: "工作日该区间有 {wk} 班；当前日种只有 {current} 班，符合官方周六/日祝时刻表。",
         tipSearchAlt: "查 {from} → {alt}",
         tipAnboPortWeekend: "周末/节假日直达「宫之浦港」的班次很少或没有；到镇上「宫之浦」有 {n} 班，下车后需步行或再转车到码头。",
         tipWalkToPort: "下车后可能还需步行或转车到宫之浦港。",
-        tipDataNote: "数据为 2026年3月改定；请以站牌为准。",
+        tipDataNote: "2026 最新数据；请以站牌为准。",
         endedOtherDayHint: "日祝末班可能更晚。",
         results: "班次", travelTips: "乘车须知", sources: "官方信息", faqTitle: "常见问题",
         searchPlaceholder: "输入站名（中/日/英）",
@@ -441,7 +446,7 @@
         transfer: "换乘", weather: "停运", arakawaSeason: "荒川巴士",
         disclaimer: "仅供参考。请以站牌和 <a href=\"https://yakukan.jp/trans/\" target=\"_blank\" rel=\"noopener\">屋久岛观光协会</a> 最新 PDF 为准。",
         pdfTaneyaku: "时刻表 PDF（日文）", pdfTaneyakuEn: "Timetable PDF (English)",
-        pdfViewer: "官方时刻表 PDF", expandable: "可展开",
+        pdfViewer: "官方时刻表 PDF", tripExpand: "查看经停站", tripCollapse: "收起经停站",
         pdfJa: "日文 PDF", pdfEn: "英文 PDF",
         pdfFullscreen: "全屏", pdfExitFullscreen: "退出全屏", pdfOpenNew: "新窗口打开",
         pdfOpenPrimary: "打开官方 PDF",
@@ -457,6 +462,7 @@
         arakawaXLink: "打开官方 X",
         tagTransfer: "换乘", tagTourist: "观光", tagFerry: "渡轮衔接", tagAirport: "机场",
         tagHotel: "酒店", season: "3–11月", winterSeason: "12–2月",
+        winterNoteShort: "冬季·无券/IC",
         suspended: "停运", dropOnly: "到达 ↓（可下车）", matsubandaPass: "不可用乘车券", matsubandaIc: "不可用IC",
         pdfFare: "运价表 PDF", pdfFareEn: "运价表 PDF（英文）",
       },
@@ -487,10 +493,12 @@
         routeTipsTitle: "Try searching like this",
         tipMoreToAlt: "{n} buses to “{alt}” vs {current} to “{to}”. The ferry pier and town center are different stops.",
         tipMoreFromAlt: "{n} buses from “{alt}” vs {current} from “{from}”. Pier and town are different stops.",
+        tipExtraFromAlt: "Different departures from “{alt}” ({times}, {n} total) — not the same runs as “{from}”.",
+        tipWeekendFewer: "Weekdays: {wk} buses on this route; selected day type: {current} only (per official timetable).",
         tipSearchAlt: "Search {from} → {alt}",
         tipAnboPortWeekend: "On Sat/Sun/holidays, direct buses to Miyanoura Port may be rare or none; {n} buses go to town stop “Miyanoura” — walk or transfer to the pier.",
         tipWalkToPort: "You may need to walk or transfer to reach Miyanoura Port after alighting.",
-        tipDataNote: "Mar 2026 timetable. Confirm at the stop.",
+        tipDataNote: "2026 latest schedules. Confirm at the stop.",
         endedOtherDayHint: "Sun & holidays may run later.",
         results: "Departures", travelTips: "Travel tips", sources: "Official links", faqTitle: "FAQ",
         searchPlaceholder: "Search stops (JP/ZH/EN)",
@@ -515,7 +523,7 @@
         transfer: "Transfers", weather: "Disruptions", arakawaSeason: "Arakawa bus",
         disclaimer: "Reference only. Confirm at the bus stop and the <a href=\"https://yakukan.jp/trans/\" target=\"_blank\" rel=\"noopener\">tourism association</a> PDF.",
         pdfTaneyaku: "Timetable PDF (Japanese)", pdfTaneyakuEn: "Timetable PDF (English)",
-        pdfViewer: "Official timetable PDF", expandable: "Expand",
+        pdfViewer: "Official timetable PDF", tripExpand: "Show stops", tripCollapse: "Hide stops",
         pdfJa: "Japanese PDF", pdfEn: "English PDF",
         pdfFullscreen: "Fullscreen", pdfExitFullscreen: "Exit", pdfOpenNew: "Open in new tab",
         pdfOpenPrimary: "Open official PDF",
@@ -531,6 +539,7 @@
         arakawaXLink: "Open on X",
         tagTransfer: "Transfer", tagTourist: "Sightseeing", tagFerry: "Ferry link", tagAirport: "Airport",
         tagHotel: "Hotel", season: "Mar–Nov", winterSeason: "Dec–Feb",
+        winterNoteShort: "Winter · no pass/IC",
         suspended: "Suspended", dropOnly: "Arr. ↓ (drop-off OK)", matsubandaPass: "No day pass", matsubandaIc: "No IC",
         pdfFare: "Fare table PDF", pdfFareEn: "Fare table PDF (EN)",
       },
@@ -543,17 +552,17 @@
 
     const SEO_FAQ = {
       ja: [
-        { q: "屋久島バスの時刻表は最新ですか？", a: "2026年3月改定のダイヤです。上の区間検索で次の便を確認できます。駅の掲示と各社の最新情報を優先してください。" },
+        { q: "屋久島バスの時刻表は最新ですか？", a: "2026年最新の公式ダイヤです。上の区間検索で次の便を確認できます。駅の掲示と各社の最新情報を優先してください。" },
         { q: "屋久島 バス 料金（運賃）はどこで見る？", a: "区間運賃の目安は<a href=\"/fare/\">路線図・運賃</a>ページで出発・到着を選んで確認できます。" },
         { q: "屋久島空港から宮之浦港のバスは？", a: "よく使う区間に「宮之浦港 ↔ 空港」があります。出発を「屋久島空港」、到着を「宮之浦港」に選んでも検索できます。" },
       ],
       zh: [
-        { q: "屋久岛公交时刻表是最新的吗？", a: "2026年3月改订班次。用上方区间搜索查下一班。请以站牌与各公司最新公告为准。" },
+        { q: "屋久岛公交时刻表是最新的吗？", a: "2026 最新官方班次。用上方区间搜索查下一班。请以站牌与各公司最新公告为准。" },
         { q: "哪里看巴士票价？", a: "在<a href=\"/fare/\">路线·票价</a>页选出发与到达，可查看区间票价。" },
         { q: "屋久岛机场到宫之浦港的巴士？", a: "常用区间里有「宫之浦港 ↔ 机场」，也可手动选择这两站搜索。" },
       ],
       en: [
-        { q: "Is the bus timetable up to date?", a: "March 2026 revision. Use route search above for the next departure. Confirm at the stop and on each operator’s site." },
+        { q: "Is the bus timetable up to date?", a: "2026 latest official schedules. Use route search above for the next departure. Confirm at the stop and on each operator’s site." },
         { q: "Where can I find bus fares?", a: "Section estimates on the <a href=\"/fare/\">routes &amp; fares</a> page — pick origin and destination." },
         { q: "Bus from Yakushima Airport to Miyanoura Port?", a: "Use the “Miyanoura Port ↔ Airport” preset, or pick those stops manually." },
       ],
@@ -896,22 +905,32 @@
       return `<div class="empty">${parts.join("")}</div>`;
     }
 
+    function tripNoteLabel(item) {
+      if (!item.trip.note) return "";
+      const full = pick(item.trip.note);
+      if (item.route.season === "12-2") return t("winterNoteShort");
+      return full;
+    }
+
+    function tagTitleAttr(title) {
+      if (!title) return "";
+      return ` title="${String(title).replace(/"/g, "&quot;")}"`;
+    }
+
     function tripTags(item) {
       const tags = [];
-      if (item.route.season === "3-11") tags.push({ moss: true, text: t("season") });
-      if (item.route.season === "12-2") tags.push({ season: true, text: t("winterSeason") });
+      const noteFull = item.trip.note ? pick(item.trip.note) : "";
+      if (item.route.season === "3-11" && !item.trip.note) tags.push({ moss: true, text: t("season") });
+      if (item.route.season === "12-2" && !item.trip.note) tags.push({ season: true, text: t("winterSeason") });
       if (item.trip.suspended) tags.push({ warn: true, text: t("suspended") });
-      if (!item.trip.note) {
+      if (item.trip.note) {
+        tags.push({ warn: true, text: tripNoteLabel(item), title: noteFull });
+      } else {
         OperatorUI.paymentTags(item.route.operator, lang).forEach((tag) =>
           tags.push({ season: true, text: tag.text })
         );
       }
       return tags;
-    }
-
-    function tripNoteHtml(item) {
-      if (!item.trip.note) return "";
-      return `<p class="trip-note">${pick(item.trip.note)}</p>`;
     }
 
     function renderOperatorLegend() {
@@ -1084,16 +1103,29 @@
       };
 
       const addAltFrom = (altFrom) => {
-        const n = findTrips(altFrom, to, dayType).length;
-        if (n <= currentCount) return;
+        const currentTrips = findTrips(from, to, dayType);
+        const altTrips = findTrips(altFrom, to, dayType);
+        if (!altTrips.length) return;
+        const currentDeps = new Set(currentTrips.map((tr) => tr.dep));
+        const extra = altTrips.filter((tr) => !currentDeps.has(tr.dep));
+        if (altTrips.length <= currentTrips.length && !extra.length) return;
+        const sampleTrips = extra.length ? extra : altTrips;
+        const times = sampleTrips.map((tr) => formatTime(tr.dep)).slice(0, 3).join(lang === "ja" ? "・" : "、");
         push({
           id: `from-${altFrom}-${to}`,
-          text: t("tipMoreFromAlt", {
-            alt: stopName(altFrom),
-            from: stopName(from),
-            n,
-            current: currentCount,
-          }),
+          text: extra.length
+            ? t("tipExtraFromAlt", {
+                alt: stopName(altFrom),
+                from: stopName(from),
+                times,
+                n: extra.length,
+              })
+            : t("tipMoreFromAlt", {
+                alt: stopName(altFrom),
+                from: stopName(from),
+                n: altTrips.length,
+                current: currentTrips.length,
+              }),
           apply: { from: altFrom, to },
           label: t("tipSearchAlt", { from: stopName(altFrom), alt: stopName(to) }),
         });
@@ -1101,6 +1133,17 @@
 
       (DEST_STOP_ALTS[to] || []).forEach((altTo) => addAltTo(altTo));
       (ORIGIN_STOP_ALTS[from] || []).forEach((altFrom) => addAltFrom(altFrom));
+
+      if (dayType !== "weekday" && currentCount > 0) {
+        const wkCount = findTrips(from, to, "weekday").length;
+        if (wkCount >= 3 && currentCount < wkCount) {
+          push({
+            id: `weekend-fewer-${from}-${to}`,
+            text: t("tipWeekendFewer", { wk: wkCount, current: currentCount }),
+            noteOnly: true,
+          });
+        }
+      }
 
       const reverseN = findTrips(to, from, dayType).length;
       if (reverseN > 0 && currentCount === 0) {
@@ -1217,6 +1260,73 @@
       }
     }
 
+    function bindTripExpanders(root) {
+      const TAP_MOVE_PX = 12;
+      root.querySelectorAll(".trip:not(.trip--flat)").forEach((el) => {
+        const head = el.querySelector(".trip-head");
+        if (!head || head.classList.contains("trip-head--flat")) return;
+
+        const toggle = () => {
+          const key = el.dataset.tripKey;
+          const willOpen = !el.classList.contains("open");
+          els.results.querySelectorAll(".trip").forEach((tripEl) => {
+            tripEl.classList.remove("open");
+            tripEl.querySelector(".trip-head[aria-expanded]")?.setAttribute("aria-expanded", "false");
+            tripEl.querySelector(".trip-head[aria-expanded]")?.setAttribute("aria-label", t("tripExpand"));
+          });
+          if (willOpen) {
+            el.classList.add("open");
+            head.setAttribute("aria-expanded", "true");
+            head.setAttribute("aria-label", t("tripCollapse"));
+            openTripKey = key;
+            requestAnimationFrame(() => el.scrollIntoView({ block: "nearest", behavior: "smooth" }));
+          } else {
+            openTripKey = null;
+            head.setAttribute("aria-expanded", "false");
+            head.setAttribute("aria-label", t("tripExpand"));
+          }
+        };
+
+        let touchStart = null;
+        let suppressClick = false;
+        head.addEventListener("touchstart", (e) => {
+          if (e.target.closest("a, button:not(.trip-head)")) return;
+          const t0 = e.changedTouches[0];
+          touchStart = { x: t0.clientX, y: t0.clientY };
+        }, { passive: true });
+        head.addEventListener("touchmove", (e) => {
+          if (!touchStart) return;
+          const t0 = e.changedTouches[0];
+          if (Math.hypot(t0.clientX - touchStart.x, t0.clientY - touchStart.y) > TAP_MOVE_PX) {
+            touchStart = null;
+          }
+        }, { passive: true });
+        head.addEventListener("touchend", (e) => {
+          if (!touchStart) return;
+          if (e.target.closest("a, button:not(.trip-head)")) return;
+          const t0 = e.changedTouches[0];
+          if (Math.hypot(t0.clientX - touchStart.x, t0.clientY - touchStart.y) > TAP_MOVE_PX) {
+            touchStart = null;
+            return;
+          }
+          touchStart = null;
+          e.preventDefault();
+          suppressClick = true;
+          toggle();
+          setTimeout(() => { suppressClick = false; }, 400);
+        }, { passive: false });
+        head.addEventListener("click", (e) => {
+          if (suppressClick) {
+            e.preventDefault();
+            return;
+          }
+          if (e.target.closest("a, button:not(.trip-head)")) return;
+          e.preventDefault();
+          toggle();
+        });
+      });
+    }
+
     function renderResults() {
       const from = els.fromStop.value, to = els.toStop.value;
       const refMins = getRefMins();
@@ -1285,7 +1395,7 @@
           if (typeof tg === "string") return `<span class="tag">${tg}</span>`;
           if (tg.moss) return `<span class="tag moss">${tg.text}</span>`;
           if (tg.season) return `<span class="tag season">${tg.text}</span>`;
-          if (tg.warn) return `<span class="tag warn">${tg.text}</span>`;
+          if (tg.warn) return `<span class="tag warn"${tagTitleAttr(tg.title)}>${tg.text}</span>`;
           return `<span class="tag">${tg.text}</span>`;
         }).join("");
         const tripKey = `${item.dep}|${item.route.id}|${item.dir.id || ""}|${idx}`;
@@ -1294,7 +1404,13 @@
         const expandable = tripHasExpandableDetail(item, from, to);
         const chevron = expandable ? '<span class="trip-chevron" aria-hidden="true"></span>' : "";
         const detailHtml = expandable ? `<div class="trip-detail">${extraDetail}</div>` : "";
-        return `<article class="trip ${isNext ? "next" : ""}${isOpen ? " open" : ""}${expandable ? "" : " trip--flat"}" data-trip-key="${tripKey}" aria-expanded="${isOpen ? "true" : "false"}">
+        const headLabel = isOpen ? t("tripCollapse") : t("tripExpand");
+        const headBtn = expandable
+          ? `<button type="button" class="trip-head" aria-expanded="${isOpen ? "true" : "false"}" aria-label="${headLabel}">`
+          : `<div class="trip-head trip-head--flat">`;
+        const headEnd = expandable ? "</button>" : "</div>";
+        return `<article class="trip ${isNext ? "next" : ""}${isOpen ? " open" : ""}${expandable ? "" : " trip--flat"}" data-trip-key="${tripKey}">
+          ${headBtn}
           <div class="trip-top">
             ${renderJourneyHtml(fromName, toName, item.dep, item.arr)}
             <div class="trip-top-end">
@@ -1302,48 +1418,16 @@
               ${chevron}
             </div>
           </div>
-          <div class="trip-meta">${formatTripMeta(item)}</div>
-          ${tags.length ? `<div class="trip-tags">${tagHtml}</div>` : ""}
-          ${tripNoteHtml(item)}
+          ${headEnd}
+          <div class="trip-sub">
+            <div class="trip-meta">${formatTripMeta(item)}</div>
+            ${tags.length ? `<div class="trip-tags">${tagHtml}</div>` : ""}
+          </div>
           ${detailHtml}
         </article>`;
       }).join("");
 
-      els.results.querySelectorAll(".trip:not(.trip--flat)").forEach((el) => {
-        const toggle = () => {
-          const key = el.dataset.tripKey;
-          const willOpen = !el.classList.contains("open");
-          els.results.querySelectorAll(".trip").forEach((t) => {
-            t.classList.remove("open");
-            t.setAttribute("aria-expanded", "false");
-          });
-          if (willOpen) {
-            el.classList.add("open");
-            el.setAttribute("aria-expanded", "true");
-            openTripKey = key;
-            requestAnimationFrame(() => el.scrollIntoView({ block: "nearest", behavior: "smooth" }));
-          } else {
-            openTripKey = null;
-          }
-        };
-        let blockClick = false;
-        el.addEventListener("touchend", (e) => {
-          if (e.target.closest("a, button")) return;
-          blockClick = true;
-          e.preventDefault();
-          toggle();
-          setTimeout(() => { blockClick = false; }, 450);
-        }, { passive: false });
-        el.addEventListener("click", (e) => {
-          if (e.target.closest("a, button")) return;
-          if (blockClick) {
-            e.preventDefault();
-            return;
-          }
-          e.stopPropagation();
-          toggle();
-        });
-      });
+      bindTripExpanders(els.results);
     }
 
     function renderSeoFaq() {

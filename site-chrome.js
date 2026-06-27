@@ -30,9 +30,9 @@
     time: {
       titleKey: "navTimeTitle",
       lead: {
-        ja: "屋久島交通の公式バス時刻（2026年3月改定）。次の便を検索。",
-        zh: "屋久岛公交官方时刻表（2026年3月改订），查下一班车。",
-        en: "Official Yakushima bus timetables (Mar 2026). Find your next departure.",
+        ja: "屋久島交通の公式バス時刻（2026年最新）。次の便を検索。",
+        zh: "屋久岛公交官方时刻表（2026最新），查下一班车。",
+        en: "Official Yakushima bus timetables (2026 latest). Find your next departure.",
       },
       crossHtml: {
         ja: '<a href="/fare/?lang=ja">運賃計算</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
@@ -43,9 +43,9 @@
     fare: {
       titleKey: "navMapTitle",
       lead: {
-        ja: "公式路線図と区間運賃（2026年3月改定）。停留所タップで時刻表へ。",
-        zh: "屋久岛巴士官方路线图与区间票价（2026年3月改订），选站点可查时刻表、算成人单程票价。",
-        en: "Official route map and section fares (Mar 2026). Tap a stop for timetables.",
+        ja: "公式路線図と区間運賃（2026年最新）。停留所タップで時刻表へ。",
+        zh: "屋久岛巴士官方路线图与区间票价（2026最新），选站点可查时刻表、算成人单程票价。",
+        en: "Official route map and section fares (2026 latest). Tap a stop for timetables.",
       },
       crossHtml: {
         ja: '<a href="/?lang=ja">時刻表</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',

@@ -2,7 +2,7 @@
 const META_DATA = {
   "revision": "2026",
   "updatedAt": "2026-05-20",
-  "builtAt": "2026-05-20",
+  "builtAt": "2026-06-27",
   "holidays": [
     "2026-01-01",
     "2026-01-12",
@@ -39,12 +39,14 @@ const META_DATA = {
     },
     "access": {
       "revision": "2026-04-01",
-      "updatedAt": "2026-05-20",
+      "updatedAt": "2026-06-23",
       "activeSeason": "summer_2026",
       "seasonFrom": "2026-04-01",
       "seasonTo": "2026-06-30"
     }
   },
-  "warnings": [],
+  "warnings": [
+    "上岛季节 summer_2026 将于 2026-06-30 结束（剩 3 天）"
+  ],
   "errors": []
 };

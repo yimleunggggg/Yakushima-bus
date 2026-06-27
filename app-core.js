@@ -143,21 +143,58 @@ const AppCore = {
     return { dep, arr: last.time, fi: fromIdx, ti: toIdx, chain };
   },
 
+  /** 环线 PDF 整列：起终点时刻同列且 arr>dep 即可搜（拆分前 columnTrips） */
+  resolveColumnSegment(trip, dir, fromIdx, toIdx) {
+    if (fromIdx === toIdx) return null;
+    const fromId = dir.stops[fromIdx];
+    const toId = dir.stops[toIdx];
+    const dep = trip.times[fromId];
+    const arr = trip.times[toId];
+    if (!this.isBusTime(dep) || !this.isBusTime(arr)) return null;
+    const depM = this.parseMinutes(dep);
+    const arrM = this.parseMinutes(arr);
+    if (arrM <= depM || arrM - depM > 240) return null;
+    return { dep, arr, fi: fromIdx, ti: toIdx, chain: null, column: true };
+  },
+
+  resolveSegment(trip, dir, fromIdx, toIdx) {
+    return (
+      this.resolveTripSegment(trip, dir, fromIdx, toIdx)
+      || this.resolveColumnSegment(trip, dir, fromIdx, toIdx)
+    );
+  },
+
   segmentStops(trip, dir, fromIdx, toIdx) {
     const seg = this.resolveTripSegment(trip, dir, fromIdx, toIdx);
-    if (!seg?.chain) return [];
-    const timeMap = new Map(seg.chain.map((c) => [c.sid, c.time]));
+    if (seg?.chain) {
+      const timeMap = new Map(seg.chain.map((c) => [c.sid, c.time]));
+      const out = [];
+      const step = fromIdx < toIdx ? 1 : -1;
+      for (let i = fromIdx; step > 0 ? i <= toIdx : i >= toIdx; i += step) {
+        const sid = dir.stops[i];
+        out.push({ sid, time: timeMap.get(sid) || null });
+      }
+      return out;
+    }
+    const col = this.resolveColumnSegment(trip, dir, fromIdx, toIdx);
+    if (!col) return [];
+    const depM = this.parseMinutes(col.dep);
+    const arrM = this.parseMinutes(col.arr);
     const out = [];
     const step = fromIdx < toIdx ? 1 : -1;
     for (let i = fromIdx; step > 0 ? i <= toIdx : i >= toIdx; i += step) {
       const sid = dir.stops[i];
-      out.push({ sid, time: timeMap.get(sid) || null });
+      const raw = trip.times[sid];
+      if (!this.isBusTime(raw)) continue;
+      const m = this.parseMinutes(raw);
+      if (m < depM || m > arrM) continue;
+      out.push({ sid, time: raw });
     }
     return out;
   },
 
   isValidTripSegment(trip, dir, fromIdx, toIdx) {
-    return Boolean(this.resolveTripSegment(trip, dir, fromIdx, toIdx));
+    return Boolean(this.resolveSegment(trip, dir, fromIdx, toIdx));
   },
 
   isValidDepartureAtStop(trip, dir, stopIdx) {
@@ -186,9 +223,12 @@ const AppCore = {
         const fi = dir.stops.indexOf(from);
         const ti = dir.stops.indexOf(to);
         if (fi === -1 || ti === -1 || fi === ti) continue;
-        for (const trip of dir.trips) {
+        const pools = [];
+        if (dir.columnTrips?.length) pools.push(...dir.columnTrips);
+        else pools.push(...dir.trips);
+        for (const trip of pools) {
           if (trip.suspended || !trip.days.includes(dayType)) continue;
-          const seg = this.resolveTripSegment(trip, dir, fi, ti);
+          const seg = this.resolveSegment(trip, dir, fi, ti);
           if (!seg) continue;
           found.push({
             route,
@@ -202,7 +242,15 @@ const AppCore = {
         }
       }
     }
-    return found.sort((a, b) => this.parseMinutes(a.dep) - this.parseMinutes(b.dep));
+    const seen = new Set();
+    return found
+      .filter((t) => {
+        const key = `${t.route.id}|${t.dep}|${t.arr}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      })
+      .sort((a, b) => this.parseMinutes(a.dep) - this.parseMinutes(b.dep));
   },
 
   /**

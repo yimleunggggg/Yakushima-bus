@@ -38,11 +38,29 @@ const OperatorUI = {
     ).join("");
   },
 
+  legendPaymentSummary(op, lang) {
+    const L = {
+      pass: { ja: "券可", zh: "券", en: "Pass" },
+      noPass: { ja: "券不可", zh: "无券", en: "No pass" },
+      ic: { ja: "IC", zh: "IC", en: "IC" },
+      cash: { ja: "現金", zh: "现金", en: "Cash" },
+    };
+    const t = (key) => L[key][lang] || L[key].ja;
+    return (op.paymentTags || []).map((tag) => {
+      const full = this.pick(tag, lang);
+      if (/IC/i.test(full)) return t("ic");
+      if (/cash|現金|现金/i.test(full)) return t("cash");
+      if (tag.positive) return t("pass");
+      return t("noPass");
+    }).join("·");
+  },
+
   legendHtml(lang) {
     const ops = Object.entries(BUS_DATA.operators || {});
     return ops.map(([, op]) => {
-      const tags = (op.paymentTags || []).map((t) => this.pick(t, lang)).join(" · ");
-      return `<span class="op-legend-item">${this.badge(op, lang)}<span class="op-legend-note">${tags}</span></span>`;
+      const note = this.legendPaymentSummary(op, lang);
+      const title = (op.paymentTags || []).map((tag) => this.pick(tag, lang)).join(" · ");
+      return `<span class="op-legend-item">${this.badge(op, lang)}<span class="op-legend-note" title="${title.replace(/"/g, "&quot;")}">${note}</span></span>`;
     }).join("");
   },
 };

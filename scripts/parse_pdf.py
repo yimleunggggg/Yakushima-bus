@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import copy
 import json
 import re
 import sys
@@ -130,7 +131,9 @@ def parse_side(text: str, side: str) -> list[dict]:
     ref = REF_STOP[side]
     if ref not in rows:
         return []
-    ncols = len(rows[ref])
+    # 环线 PDF：参考站列数可能少于其他行（如西向 20 站 14 列、21 站 15 列），
+    # 须取全表最大列数，否则末列班次（如 18:26 宫之浦港入口）会被截断。
+    ncols = max(len(rows[ref]), max((len(t) for t in rows.values()), default=0))
     day_types = column_day_types(side, ncols)
     trips = [{"days": day_types[i], "times": {}} for i in range(ncols)]
 
@@ -311,6 +314,9 @@ def build_data() -> dict:
         ],
     }
     data = apply_overrides(data, OVERRIDES)
+    for route in data["routes"]:
+        for direction in route.get("directions", []):
+            direction["columnTrips"] = copy.deepcopy(direction.get("trips", []))
     split_routes_trips(data["routes"])
     return data
 

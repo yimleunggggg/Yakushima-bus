@@ -66,7 +66,7 @@ INBOUND_STOPS = list(MATSUBANDA_INBOUND.keys())
 def build_matsubanda_routes() -> list[dict]:
     season_note = {
         "ja": "冬季（12/1–2/28）運行。ゆったり満喫券・IC不可。",
-        "zh": "冬季（12/1–2/28）运行。不可用悠享乘车券与 IC 卡。",
+        "zh": "冬季运行，无券/IC。",
         "en": "Winter (Dec 1–Feb 28). No day pass or IC.",
     }
     delay_note = {
