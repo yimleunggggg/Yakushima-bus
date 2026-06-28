@@ -98,11 +98,12 @@
     },
   };
 
-  let lang = (() => {
-    const q = new URLSearchParams(location.search).get("lang");
-    if (q === "ja" || q === "zh" || q === "en") return q;
-    return localStorage.getItem(LANG_KEY) || "ja";
-  })();
+  let lang = window.SiteLang?.current
+    || (() => {
+      const q = new URLSearchParams(location.search).get("lang");
+      if (q === "ja" || q === "zh" || q === "en") return q;
+      return localStorage.getItem(LANG_KEY) || "ja";
+    })();
   let map;
   let markersLayer;
   let busStopsLayer;
@@ -630,6 +631,11 @@
         if (window.AppCore) AppCore.setLang(lang);
         else {
           localStorage.setItem(LANG_KEY, lang);
+          if (window.SiteLang) {
+            window.SiteLang.current = lang;
+            window.SiteLang.markUserPicked();
+            window.SiteLang.syncLangUrl(lang);
+          }
           window.__renderSiteChromeNav?.(lang);
           window.dispatchEvent(new CustomEvent("yakushima-bus-lang", { detail: { lang } }));
         }

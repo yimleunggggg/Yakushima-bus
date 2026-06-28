@@ -49,7 +49,9 @@
   <link rel="stylesheet" href="/styles.css?v=layout-v85">
   <script src="/analytics.js"></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
-  <script src="/site-chrome.js?v=chrome-v21" defer></script>
+  <script src="/site-chrome.js?v=chrome-v22" defer></script>
+  <script src="/lang-boot.js?v=lang-v4"></script>
+  <script src="/seo-head-zh.js?v=seo-zh-v1"></script>
 </head>
 <body class="app-page-narrow">
   <script>if (location.hash === "#sources") location.replace("/intro/#sources");</script>
@@ -63,7 +65,7 @@
         <a href="/map/" data-i18n="navGuide">便利</a>
         <a href="/intro/" data-i18n="navIntro">紹介</a>
       </nav>
-      <script src="/site-chrome-nav-boot.js?v=chrome-v19"></script>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v22"></script>
     </div>
 
     <header class="header header-compact">
@@ -109,7 +111,7 @@
       },
     };
 
-    let lang = localStorage.getItem("yakushima-bus-lang") || "ja";
+    let lang = window.SiteLang?.current || "ja";
 
     const els = {
       langSwitch: document.getElementById("langSwitch"),
@@ -220,6 +222,11 @@
       if (window.AppCore) AppCore.setLang(lang);
       else {
         localStorage.setItem("yakushima-bus-lang", lang);
+        if (window.SiteLang) {
+          window.SiteLang.current = lang;
+          window.SiteLang.markUserPicked();
+          window.SiteLang.syncLangUrl(lang);
+        }
         window.__renderSiteChromeNav?.(lang);
         window.dispatchEvent(new CustomEvent("yakushima-bus-lang", { detail: { lang } }));
       }

@@ -22,7 +22,8 @@
 - 列数缺口：**0**
 - 站点时刻与 PDF 不一致：**0**
 - column 搜索仍缺班：**0**
-- fragment 单独搜索仍缺：**14** 个区间×日种（预期；站点用 `columnTrips` 搜索）
+- fragment 单独搜索仍缺：**14** 个区间×日种（预期；`findTrips` / `getStopDepartures` 已走 `columnTrips`）
+- `python3 scripts/build_all.py --validate --timetable` 含全表审计
 
 ## 路线概况
 
@@ -35,4 +36,4 @@
 - 工作日：11 班 → **12 班**（补 18:26）
 - 土曜/日祝：不变（3 班）
 
-缓存：`data-column-v2`
+缓存：`data-column-v3` / `core-v11`

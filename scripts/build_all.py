@@ -54,6 +54,16 @@ def validate():
     validate_meta()
 
 
+def validate_timetable():
+    r = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "audit_pdf_trips.py")],
+        cwd=ROOT,
+    )
+    if r.returncode != 0:
+        sys.exit(r.returncode)
+    print("timetable audit OK")
+
+
 def run_meta():
     subprocess.check_call([sys.executable, str(ROOT / "scripts" / "build_meta_data.py")], cwd=ROOT)
 
@@ -76,6 +86,10 @@ def main():
     if args.timetable or all_:
         print("→ data.js")
         run_timetable()
+        if args.validate or all_:
+            validate_timetable()
+    elif args.validate:
+        validate_timetable()
     if args.map or all_:
         print("→ map-data.js")
         run_map()

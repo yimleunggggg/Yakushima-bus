@@ -362,6 +362,7 @@
     if (window.AppCore && typeof AppCore.getLang === "function") {
       return AppCore.getLang();
     }
+    if (window.SiteLang) return window.SiteLang.current;
     const q = new URLSearchParams(location.search).get("lang");
     if (q === "ja" || q === "zh" || q === "en") return q;
     return localStorage.getItem(LANG_KEY) || lang || "ja";

@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 
 Sitemap: https://yakushimabus.com/sitemap.xml
+Sitemap: https://yakushimabus.com/sitemap-zh.xml
 
 # AI / LLM crawlers
 User-agent: GPTBot

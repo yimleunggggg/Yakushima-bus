@@ -55,7 +55,9 @@
   <link rel="stylesheet" href="/styles.css?v=layout-v101">
   <script src="/analytics.js"></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
-  <script src="/site-chrome.js?v=chrome-v21" defer></script>
+  <script src="/site-chrome.js?v=chrome-v22" defer></script>
+  <script src="/lang-boot.js?v=lang-v4"></script>
+  <script src="/seo-head-zh.js?v=seo-zh-v1"></script>
 </head>
 <body class="app-page-narrow">
   <div class="app">
@@ -68,7 +70,7 @@
         <a href="/trekking/">登山</a>
         <a href="/intro/">紹介</a>
       </nav>
-      <script src="/site-chrome-nav-boot.js?v=chrome-v19"></script>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v22"></script>
     </div>
 
     <header class="header header-compact">
@@ -123,7 +125,7 @@
   <script src="/affiliate-ui.js?v=aff-v9"></script>
   <script src="/access-data.js?v=booking-v5"></script>
   <script src="/section-divider.js"></script>
-  <script src="/app-core.js?v=core-v10"></script>
+  <script src="/app-core.js?v=core-v12"></script>
   <script>
     const UI = {
       ja: { navAria: "メインメニュー", siteBrand: "屋久島バス",
@@ -134,7 +136,7 @@
         sources: "Official links", updated: "Updated", source: "Source", adult: "Adult", child: "Child", fareColRoute: "Route", fareColType: "Class", kindSchedule: "Timetable", kindFare: "Fares", dividerJetfoil: "Jetfoil", dividerFerry: "Ferry" },
     };
 
-    let lang = localStorage.getItem("yakushima-bus-lang") || "ja";
+    let lang = AppCore.getLang();
 
     const els = {
       langSwitch: document.getElementById("langSwitch"),

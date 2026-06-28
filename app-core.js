@@ -7,6 +7,7 @@ const AppCore = {
   },
 
   resolveLang() {
+    if (window.SiteLang) return window.SiteLang.resolveLang();
     const q = new URLSearchParams(location.search).get("lang");
     if (q === "ja" || q === "zh" || q === "en") return q;
     return localStorage.getItem(this.LANG_KEY) || "ja";
@@ -24,6 +25,8 @@ const AppCore = {
   setLang(lang) {
     this._lang = lang;
     localStorage.setItem(this.LANG_KEY, lang);
+    window.SiteLang?.markUserPicked?.();
+    if (window.SiteLang) window.SiteLang.current = lang;
     this.applyDocLang(lang);
     this.syncLangUrl(lang);
     window.__renderSiteChromeNav?.(lang);
@@ -31,6 +34,10 @@ const AppCore = {
   },
 
   syncLangUrl(lang) {
+    if (window.SiteLang?.syncLangUrl) {
+      window.SiteLang.syncLangUrl(lang);
+      return;
+    }
     try {
       if (location.protocol !== "http:" && location.protocol !== "https:") return;
       const url = new URL(location.href);
@@ -267,13 +274,18 @@ const AppCore = {
       for (const dir of route.directions) {
         const si = dir.stops.indexOf(stopId);
         if (si === -1) continue;
+        const pools = dir.columnTrips?.length ? dir.columnTrips : dir.trips;
         const deps = [];
-        for (const trip of dir.trips) {
+        const seen = new Set();
+        for (const trip of pools) {
           if (trip.suspended || !trip.days.includes(dayType)) continue;
           if (!this.isValidDepartureAtStop(trip, dir, si)) continue;
           const dep = trip.times[stopId];
+          const time = this.formatTime(dep);
+          if (seen.has(time)) continue;
+          seen.add(time);
           const destId = trip.dest || dir.stops[dir.stops.length - 1];
-          deps.push({ time: this.formatTime(dep), dest: stopName(destId) });
+          deps.push({ time, dest: stopName(destId) });
         }
         if (!deps.length) continue;
         deps.sort((a, b) => this.parseMinutes(a.time) - this.parseMinutes(b.time));

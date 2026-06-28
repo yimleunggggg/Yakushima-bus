@@ -30,6 +30,17 @@
 - **你需要**：登录 GSC → 确认属性已验证 → Sitemap 提交 `sitemap.xml` → URL 检查请求编入索引 4 页
 - 详见 `docs/seo/TRACKING.md`
 
+## Bing Webmaster Tools
+
+- 2026-06-28：从 GSC 导入完成，Sitemap Success（7 URL）
+- 完整步骤与踩坑：[`docs/notes/2026-06-28-bing-webmaster-setup.md`](2026-06-28-bing-webmaster-setup.md)
+
+## 中文搜索引擎（百度等）
+
+- 中文 Sitemap：`sitemap-zh.xml`（7 条 `?lang=zh`）
+- 语言优先：`lang-boot.js` v4 + `seo-head-zh.js`
+- 后台登记：[`docs/notes/2026-06-28-baidu-search-setup.md`](2026-06-28-baidu-search-setup.md)
+
 ## Google Analytics 4
 
 - 衡量 ID：`G-BX2P31GEHW`（四页 `<head>` 已引用 `analytics.js`）

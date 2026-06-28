@@ -60,6 +60,7 @@
   };
 
   function getLang() {
+    if (window.SiteLang) return window.SiteLang.current;
     const q = new URLSearchParams(location.search).get("lang");
     if (q === "ja" || q === "zh" || q === "en") return q;
     const stored = localStorage.getItem(LANG_KEY);
