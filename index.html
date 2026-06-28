@@ -70,6 +70,17 @@
         }
       },
       {
+        "@type": "Organization",
+        "name": "Yakushima Bus",
+        "url": "https://yakushimabus.com/",
+        "areaServed": {
+          "@type": "Place",
+          "name": "Yakushima Island",
+          "address": { "@type": "PostalAddress", "addressRegion": "Kagoshima", "addressCountry": "JP" },
+          "geo": { "@type": "GeoCoordinates", "latitude": 30.4286, "longitude": 130.6694 }
+        }
+      },
+      {
         "@type": "WebApplication",
         "name": "Yakushima Bus",
         "alternateName": ["屋久岛公交查询", "屋久島バス", "yakushimabus.com"],
@@ -78,19 +89,15 @@
         "operatingSystem": "Any",
         "inLanguage": ["ja", "zh-CN", "en"],
         "description": "Yakushima bus timetables and next-departure search. 2026 latest official schedules.",
-        "areaServed": {
-          "@type": "Place",
-          "name": "Yakushima Island",
-          "address": { "@type": "PostalAddress", "addressRegion": "Kagoshima", "addressCountry": "JP" },
-          "geo": { "@type": "GeoCoordinates", "latitude": 30.4286, "longitude": 130.6694 }
-        },
+        "keywords": "Yakushima Island, Kagoshima, Japan, bus timetable, ferry access",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v132">
-  <script src="/analytics.js"></script>
+  <link rel="preload" href="/styles.css?v=layout-v135" as="style">
+  <link rel="stylesheet" href="/styles.css?v=layout-v135">
+  <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
   <script src="/site-chrome.js?v=chrome-v22" defer></script>
   <script src="/lang-boot.js?v=lang-v4"></script>
@@ -222,7 +229,7 @@
                 <span class="time-filter-label" data-i18n="filterTime">絞り込み時刻</span>
                 <span class="time-filter-val" id="timeFilterDisplay">--:--</span>
               </button>
-              <input type="time" id="queryTime" class="time-native-hidden" tabindex="-1">
+              <input type="time" id="queryTime" class="time-native-hidden" tabindex="-1" aria-label="Filter by time">
               <button type="button" class="time-filter-reset" id="timeFilterReset" hidden aria-label="reset">×</button>
             </div>
           </div>
@@ -311,7 +318,7 @@
   <script src="operator-ui.js" defer></script>
   <script src="stop-picker.js?v=picker-v5" defer></script>
   <script src="pdf-fullscreen.js" defer></script>
-  <script src="pdf-viewer.js?v=pdf-preview-v3" defer></script>
+  <script src="pdf-viewer.js?v=pdf-preview-v5" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
     const UI = {
@@ -1448,6 +1455,7 @@
       applyPageHead();
       els.liveClockTime.title = lang === "zh" ? "日本时间 (JST)" : "JST";
       document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
+      if (els.queryTime) els.queryTime.setAttribute("aria-label", t("filterTime"));
       ttPdfFsCtl?.sync();
       els.langSwitch.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
       initPresets(); initPickers(); syncRouteHint(); initInfo(); initSources(); renderOperatorLegend(); renderResults();

@@ -29,6 +29,16 @@
     ],
   };
 
+  const PDF_PREVIEW_DIMS = {
+    "/assets/pdf-preview/taneyakubus-timetable-20260301-1.jpg": [2002, 1418],
+    "/assets/pdf-preview/taneyakubus-timetable-20260301-en-1.jpg": [2002, 1418],
+    "/assets/pdf-preview/yakushimabus-map-unchin-1.jpg": [2002, 1418],
+    "/assets/pdf-preview/yakushimabus-map-unchin-2.jpg": [1684, 1190],
+    "/assets/pdf-preview/yakushimabus-map-unchin-en-1.jpg": [2002, 1418],
+    "/assets/pdf-preview/yakushimabus-map-unchin-en-2.jpg": [1684, 1190],
+    "/assets/pdf-preview/yakuzarugo-1.jpg": [1684, 1191],
+  };
+
   /** 默认打开页（1-based）；运价 PDF 第 1 页为路线图、第 2 页为运价表 */
   const PDF_START_PAGE = {
     "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin.pdf": 2,
@@ -68,9 +78,10 @@
       return false;
     }
     container.hidden = false;
-    container.innerHTML = pages.map((src, i) =>
-      `<img src="${src}" alt="" class="pdf-mobile-page" loading="${i ? "lazy" : "eager"}" decoding="async">`
-    ).join("");
+    container.innerHTML = pages.map((src, i) => {
+      const [w, h] = PDF_PREVIEW_DIMS[src] || [2002, 1418];
+      return `<img src="${src}" alt="" class="pdf-mobile-page" width="${w}" height="${h}" style="aspect-ratio:${w}/${h}" loading="${i ? "lazy" : "eager"}" decoding="async">`;
+    }).join("");
     return true;
   };
 

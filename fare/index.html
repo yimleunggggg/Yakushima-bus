@@ -57,8 +57,9 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/styles.css?v=layout-v123">
-  <script src="/analytics.js"></script>
+  <link rel="preload" href="/styles.css?v=layout-v135" as="style">
+  <link rel="stylesheet" href="/styles.css?v=layout-v135">
+  <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
   <script src="/site-chrome.js?v=chrome-v22" defer></script>
   <script src="/lang-boot.js?v=lang-v4"></script>
@@ -142,7 +143,7 @@
     <div class="map-layout-secondary">
     <div class="panel map-tools-panel">
       <div class="sec map-tools-sec map-tools-stop">
-        <div class="sec-title sec-title-inset" data-i18n="stopLookup">停留所</div>
+        <label for="lookupStopInput" class="sec-title sec-title-inset" data-i18n="stopLookup">停留所</label>
         <div class="stop-panel show" id="stopPanel">
           <div class="stop-alt" id="lookupAlt" hidden></div>
           <div class="stop-picker" id="lookupPicker">
@@ -163,19 +164,19 @@
         <div class="sec-title sec-title-inset" data-i18n="fareLookup">運賃検索（大人片道）</div>
         <div class="fare-form">
           <div class="fare-field">
-            <label data-i18n="from">出発</label>
+            <label for="fareFromInput" data-i18n="from">出発</label>
             <div class="stop-alt" id="fareFromAlt" hidden></div>
             <div class="stop-picker" id="fareFromPicker">
-              <input type="text" class="picker-input" autocomplete="off" spellcheck="false">
+              <input type="text" id="fareFromInput" class="picker-input" autocomplete="off" spellcheck="false">
               <input type="hidden" id="fareFrom" value="miyanoura_port">
               <ul class="picker-list" role="listbox" hidden></ul>
             </div>
           </div>
           <div class="fare-field">
-            <label data-i18n="to">到着</label>
+            <label for="fareToInput" data-i18n="to">到着</label>
             <div class="stop-alt" id="fareToAlt" hidden></div>
             <div class="stop-picker" id="fareToPicker">
-              <input type="text" class="picker-input" autocomplete="off" spellcheck="false">
+              <input type="text" id="fareToInput" class="picker-input" autocomplete="off" spellcheck="false">
               <input type="hidden" id="fareTo" value="anbo">
               <ul class="picker-list" role="listbox" hidden></ul>
             </div>
@@ -244,7 +245,7 @@
   <script src="/section-divider.js"></script>
   <script src="/stop-picker.js?v=picker-v5"></script>
   <script src="/pdf-fullscreen.js"></script>
-  <script src="/pdf-viewer.js?v=pdf-preview-v4"></script>
+  <script src="/pdf-viewer.js?v=pdf-preview-v5"></script>
   <script>
     const UI = {
       ja: {

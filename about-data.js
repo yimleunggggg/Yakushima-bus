@@ -13,9 +13,9 @@ const ABOUT_DATA = {
       title: { ja: "このサイトについて", zh: "本站说明", en: "What this site is" },
       showContact: true,
       body: {
-        zh: "YakuBus（yakushimabus.com）是独立的屋久岛公交查询工具，帮助在岛旅客查下一班车、路线与票价。数据整理自屋久岛观光协会等官方信息，本站非巴士公司或观光协会运营。\n\n更新频率：随官方信息更新而同步；页脚日期为最近一次数据核对。\n\n仅供参考，请以站牌与官方最新公告为准。发现错误或有好建议，欢迎邮件联系。",
-        ja: "YakuBus（yakushimabus.com）は、島内の旅人向けに次のバス・路線・運賃を調べる独立ツールです。データは屋久島観光協会などの公式情報をもとに整理しています。バス会社・観光協会の公式サイトではありません。\n\n更新：公式情報の更新に合わせて同期。フッターの日付は最終確認日です。\n\n参考情報です。バス停掲示と公式の最新情報を優先してください。誤りやご提案はメールでどうぞ。",
-        en: "YakuBus (yakushimabus.com) is an independent tool to find the next bus, routes, and fares on Yakushima. Data is compiled from official sources (e.g. the tourism association). This is not run by the bus operators or the tourism board.\n\nUpdates: synced when official sources change; the footer date is the last data check.\n\nReference only — confirm at the bus stop and official notices. Email me if you spot errors or have suggestions.",
+        zh: "YakuBus（yakushimabus.com）是独立的屋久岛公交查询工具，帮助在岛旅客查下一班车、路线与票价。数据整理自屋久岛观光协会等官方信息，本站非巴士公司或观光协会运营。\n\n更新频率：随官方信息更新而同步；页脚日期为最近一次数据核对。\n\n旅行社、民宿或当地从业者可将本站加入浏览器书签，方便反复查班次与票价。\n\n仅供参考，请以站牌与官方最新公告为准。发现错误或有好建议，欢迎邮件联系。",
+        ja: "YakuBus（yakushimabus.com）は、島内の旅人向けに次のバス・路線・運賃を調べる独立ツールです。データは屋久島観光協会などの公式情報をもとに整理しています。バス会社・観光協会の公式サイトではありません。\n\n更新：公式情報の更新に合わせて同期。フッターの日付は最終確認日です。\n\n旅行会社・宿泊施設・島内関係者の方は、ブックマークして繰り返しご利用ください。\n\n参考情報です。バス停掲示と公式の最新情報を優先してください。誤りやご提案はメールでどうぞ。",
+        en: "YakuBus (yakushimabus.com) is an independent tool to find the next bus, routes, and fares on Yakushima. Data is compiled from official sources (e.g. the tourism association). This is not run by the bus operators or the tourism board.\n\nUpdates: synced when official sources change; the footer date is the last data check.\n\nTravel agents, guesthouses, and local operators may bookmark this site for quick timetable and fare lookups.\n\nReference only — confirm at the bus stop and official notices. Email me if you spot errors or have suggestions.",
       },
     },
   ],
