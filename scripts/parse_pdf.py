@@ -302,15 +302,12 @@ def build_data() -> dict:
         },
         "routes": taneyaku_routes + build_matsubanda_routes(),
         "presets": [
-            {"from": "yakusugi_museum", "to": "arakawa_trailhead", "tag": "tourist"},
-            {"from": "miyanoura_port", "to": "anbo", "tag": "core"},
-            {"from": "miyanoura_port", "to": "airport", "tag": "core"},
-            {"from": "miyanoura_port", "to": "yakusugi_museum", "tag": "core"},
-            {"from": "miyanoura_port", "to": "shiratani", "tag": "tourist"},
-            {"from": "anbo_port", "to": "miyanoura_port", "tag": "core"},
-            {"from": "airport", "to": "miyanoura_port", "tag": "core"},
-            {"from": "miyanoura_port", "to": "okawa_falls", "tag": "tourist"},
-            {"from": "gocho_mae", "to": "kigen_sugi", "tag": "tourist"},
+            {"from": "miyanoura_port", "to": "anbo", "tag": "popular"},
+            {"from": "miyanoura_port", "to": "shiratani", "tag": "popular"},
+            {"from": "miyanoura_port", "to": "yakusugi_museum", "tag": "popular"},
+            {"from": "yakusugi_museum", "to": "arakawa_trailhead", "tag": "popular"},
+            {"from": "miyanoura_port", "to": "airport", "tag": "popular"},
+            {"from": "anbo_port", "to": "miyanoura_port", "tag": "popular"},
         ],
     }
     data = apply_overrides(data, OVERRIDES)

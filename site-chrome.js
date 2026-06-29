@@ -245,10 +245,15 @@
     }
     nav.setAttribute("aria-label", t("footerNavAria"));
     nav.innerHTML = `<a href="${langQs("/")}">${t("navTime")}</a>
+      <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/fare/")}">${t("navMap")}</a>
+      <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/map/")}">${t("navGuide")}</a>
+      <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/ferry/")}">${t("navAccess")}</a>
+      <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/about/")}">${t("navAbout")}</a>
+      <span class="footer-sep" aria-hidden="true">·</span>
       <a href="https://ko-fi.com/yimleung" target="_blank" rel="noopener noreferrer">${t("supportKofi")}</a>`;
     footer.querySelector(".app-footer-affiliate")?.remove();
   }

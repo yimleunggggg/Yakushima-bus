@@ -31,6 +31,9 @@
 
     document.addEventListener("fullscreenchange", syncBtn);
     document.addEventListener("webkitfullscreenchange", syncBtn);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && activeEl() === stage) exitFs();
+    });
     syncBtn();
     return { sync: syncBtn };
   };

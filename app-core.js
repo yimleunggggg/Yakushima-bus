@@ -192,9 +192,15 @@ const AppCore = {
     for (let i = fromIdx; step > 0 ? i <= toIdx : i >= toIdx; i += step) {
       const sid = dir.stops[i];
       const raw = trip.times[sid];
-      if (!this.isBusTime(raw)) continue;
+      if (!this.isBusTime(raw)) {
+        out.push({ sid, time: null });
+        continue;
+      }
       const m = this.parseMinutes(raw);
-      if (m < depM || m > arrM) continue;
+      if (m < depM || m > arrM) {
+        out.push({ sid, time: null });
+        continue;
+      }
       out.push({ sid, time: raw });
     }
     return out;

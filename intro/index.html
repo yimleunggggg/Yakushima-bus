@@ -14,11 +14,11 @@
   <meta property="og:url" content="https://yakushimabus.com/intro/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <title>製品紹介 | 产品介绍 | Yakushima Bus Intro</title>
-  <link rel="preload" href="/styles.css?v=layout-v135" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v135">
+  <link rel="preload" href="/styles.css?v=layout-v142" as="style">
+  <link rel="stylesheet" href="/styles.css?v=layout-v142">
   <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
-  <script src="/site-chrome.js?v=chrome-v22" defer></script>
+  <script src="/site-chrome.js?v=chrome-v23" defer></script>
   <script src="/lang-boot.js?v=lang-v4"></script>
   <script src="/seo-head-zh.js?v=seo-zh-v1"></script>
 </head>
@@ -33,21 +33,16 @@
         <a href="/trekking/">登山</a>
         <a href="/intro/" class="active" aria-current="page">紹介</a>
       </nav>
-      <script src="/site-chrome-nav-boot.js?v=chrome-v22"></script>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v23"></script>
     </div>
 
-    <header class="intro-hero">
-      <div class="intro-hero-top">
-        <div class="lang-switch" id="langSwitch">
-          <button type="button" data-lang="ja">JA</button>
-          <button type="button" data-lang="zh">ZH</button>
-          <button type="button" data-lang="en">EN</button>
-        </div>
+    <div class="intro-hero-top">
+      <div class="lang-switch" id="langSwitch">
+        <button type="button" data-lang="ja">JA</button>
+        <button type="button" data-lang="zh">ZH</button>
+        <button type="button" data-lang="en">EN</button>
       </div>
-      <h1 id="introTitle">Yakushima Bus とは</h1>
-      <p class="intro-hero-lead" id="introLead"></p>
-      <p class="app-meta meta-links" id="introCross"></p>
-    </header>
+    </div>
 
     <section class="intro-video-block panel" aria-labelledby="introVideoTitle">
       <h2 class="intro-section-title" id="introVideoTitle">デモ動画</h2>
@@ -79,7 +74,7 @@
   <script src="/source-links.js?v=src-v1"></script>
   <script src="/sources-data.js?v=3"></script>
   <script src="/intro-data.js?v=intro-v14"></script>
-  <script src="/app-core.js?v=core-v12"></script>
+  <script src="/app-core.js?v=core-v13"></script>
   <script>
     const NAV_UI = {};
 
@@ -157,11 +152,6 @@
     function render() {
       const c = INTRO_DATA.content[lang] || INTRO_DATA.content.ja;
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
-      document.getElementById("introTitle").textContent = c.title;
-      document.getElementById("introLead").textContent = c.lead;
-      if (window.SiteChrome) {
-        SiteChrome.applyPageHead("intro", { crossEl: document.getElementById("introCross"), lang });
-      }
       document.getElementById("introVideoTitle").textContent = c.videoTitle;
       const hintEl = document.getElementById("introVideoHint");
       const hint = videoHintText(c, lang);

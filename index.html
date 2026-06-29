@@ -95,11 +95,11 @@
     ]
   }
   </script>
-  <link rel="preload" href="/styles.css?v=layout-v135" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v135">
+  <link rel="preload" href="/styles.css?v=layout-v142" as="style">
+  <link rel="stylesheet" href="/styles.css?v=layout-v142">
   <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
-  <script src="/site-chrome.js?v=chrome-v22" defer></script>
+  <script src="/site-chrome.js?v=chrome-v23" defer></script>
   <script src="/lang-boot.js?v=lang-v4"></script>
   <script src="/seo-head-zh.js?v=seo-zh-v1"></script>
 </head>
@@ -114,7 +114,7 @@
         <a href="/trekking/">登山</a>
         <a href="/intro/">紹介</a>
       </nav>
-      <script src="/site-chrome-nav-boot.js?v=chrome-v22"></script>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v23"></script>
     </div>
     <header class="header header-compact">
       <div class="header-main">
@@ -221,7 +221,7 @@
           </div>
           <div class="filter-row">
             <label class="toggle" for="upcomingOnly">
-              <input type="checkbox" id="upcomingOnly">
+              <input type="checkbox" id="upcomingOnly" checked>
               <span class="toggle-text" data-i18n="upcoming">以降のみ</span>
             </label>
             <div class="time-filter">
@@ -314,7 +314,7 @@
   <script src="source-links.js?v=src-v1" defer></script>
   <script src="data.js?v=data-column-v3" defer></script>
   <script src="meta-data.js" defer></script>
-  <script src="app-core.js?v=core-v12" defer></script>
+  <script src="app-core.js?v=core-v13" defer></script>
   <script src="operator-ui.js" defer></script>
   <script src="stop-picker.js?v=picker-v5" defer></script>
   <script src="pdf-fullscreen.js" defer></script>
@@ -350,12 +350,15 @@
         tipMoreToAlt: "「{alt}」なら{n}便（「{to}」は{current}便）。港と町は別停留所です。",
         tipMoreFromAlt: "出発を「{alt}」にすると{n}便（今は{current}便）。港と町は別停留所です。",
         tipExtraFromAlt: "「{from}」とは別便：「{alt}」発 {times} など {n}便。港と町は別停留所です。",
+        tipNearRoute: "「{altFrom} → {altTo}」に他 {n}便（{from} → {to} には出ません）。",
+        tipTimesMore: "ほか {n}便",
         tipWeekendFewer: "平日は{wk}便ありますが、土日祝は{current}便のみ（公式時刻表どおり）。",
         tipSearchAlt: "{from} → {alt} を検索",
         tipAnboPortWeekend: "土日祝は「宮之浦港」直行便が少ない/なしのことがあります。「宮之浦」まで{n}便あり、下車後は港まで徒歩・乗換が必要です。",
         tipWalkToPort: "下車後、宮之浦港まで徒歩または乗換が必要な場合があります。",
         tipDataNote: "2026最新。現地の掲示を優先してください。",
-        endedOtherDayHint: "日祝は末班が遅い場合があります。",
+        endedOtherDayHint: "日祝は末班が遅い場合があります。上の「日祝」タブをお試しください。",
+        endedOtherDayHintSat: "土曜は末班が遅い場合があります。上の「土曜」タブをお試しください。",
         results: "便一覧", travelTips: "乗車のポイント", sources: "公式情報", faqTitle: "よくある質問",
         searchPlaceholder: "停留所名（日/中/英）",
         valid: "適用", updated: "更新", stopCount: "{n} 停留所", arrive: "到着", dest: "行先",
@@ -426,13 +429,16 @@
         routeTipsTitle: "很多人不会想到这样搜",
         tipMoreToAlt: "到「{alt}」有 {n} 班，到「{to}」只有 {current} 班。码头与镇中心是不同站点。",
         tipMoreFromAlt: "出发改选「{alt}」有 {n} 班（当前 {current} 班）。码头与镇中心是不同站点。",
-        tipExtraFromAlt: "与「{from}」不是同一批车：从「{alt}」还有 {times} 等 {n} 班。",
+        tipExtraFromAlt: "与「{from}」不是同一批车：从「{alt}」另有多 {n} 班（如 {times}）。",
+        tipNearRoute: "「{altFrom} → {altTo}」另有 {n} 班未出现在当前结果（{from} → {to}）。",
+        tipTimesMore: "等共 {n} 班",
         tipWeekendFewer: "工作日该区间有 {wk} 班；当前日种只有 {current} 班，符合官方周六/日祝时刻表。",
         tipSearchAlt: "查 {from} → {alt}",
         tipAnboPortWeekend: "周末/节假日直达「宫之浦港」的班次很少或没有；到镇上「宫之浦」有 {n} 班，下车后需步行或再转车到码头。",
         tipWalkToPort: "下车后可能还需步行或转车到宫之浦港。",
         tipDataNote: "2026 最新数据；请以站牌为准。",
-        endedOtherDayHint: "日祝末班可能更晚。",
+        endedOtherDayHint: "若周日·节假日末班更晚，可切换上方对应标签查看。",
+        endedOtherDayHintSat: "若周六末班更晚，可切换上方「周六」查看。",
         results: "班次", travelTips: "乘车须知", sources: "官方信息", faqTitle: "常见问题",
         searchPlaceholder: "输入站名（中/日/英）",
         valid: "有效", updated: "更新", stopCount: "共 {n} 站", arrive: "到达", dest: "终点",
@@ -504,12 +510,15 @@
         tipMoreToAlt: "{n} buses to “{alt}” vs {current} to “{to}”. The ferry pier and town center are different stops.",
         tipMoreFromAlt: "{n} buses from “{alt}” vs {current} from “{from}”. Pier and town are different stops.",
         tipExtraFromAlt: "Different departures from “{alt}” ({times}, {n} total) — not the same runs as “{from}”.",
+        tipNearRoute: "“{altFrom} → {altTo}” adds {n} trips not in your current “{from} → {to}” results.",
+        tipTimesMore: "{n} more",
         tipWeekendFewer: "Weekdays: {wk} buses on this route; selected day type: {current} only (per official timetable).",
         tipSearchAlt: "Search {from} → {alt}",
         tipAnboPortWeekend: "On Sat/Sun/holidays, direct buses to Miyanoura Port may be rare or none; {n} buses go to town stop “Miyanoura” — walk or transfer to the pier.",
         tipWalkToPort: "You may need to walk or transfer to reach Miyanoura Port after alighting.",
         tipDataNote: "2026 latest schedules. Confirm at the stop.",
-        endedOtherDayHint: "Sun & holidays may run later.",
+        endedOtherDayHint: "Try the Sun & holidays tab if last buses run later.",
+        endedOtherDayHintSat: "Try the Saturday tab if last buses run later.",
         results: "Departures", travelTips: "Travel tips", sources: "Official links", faqTitle: "FAQ",
         searchPlaceholder: "Search stops (JP/ZH/EN)",
         valid: "Valid", updated: "Updated", stopCount: "{n} stops", arrive: "Arrive", dest: "Destination",
@@ -590,7 +599,7 @@
 
     function resetUpcomingFilter() {
       upcomingUserOverride = false;
-      els.upcomingOnly.checked = false;
+      els.upcomingOnly.checked = true;
     }
     let useCustomTime = false;
 
@@ -718,7 +727,8 @@
       const dur = tripDurationLabel(dep, arr);
       const boardLabel = compact ? t("boardRole") : legLabel("boardRole", fromName);
       const arriveLabel = compact ? t("arriveRole") : legLabel("arriveRole", toName);
-      return `<div class="trip-journey" aria-label="${legLabel("boardRole", fromName)} ${arrDisp} ${legLabel("arriveRole", toName)}">
+      const ariaDur = dur ? ` ${dur}` : "";
+      return `<div class="trip-journey" aria-label="${legLabel("boardRole", fromName)} ${arrDisp}${ariaDur} ${legLabel("arriveRole", toName)}">
         <div class="trip-leg trip-leg--board">
           <span class="trip-leg-time">${formatTime(dep)}</span>
           <span class="trip-leg-label">${boardLabel}</span>
@@ -830,11 +840,7 @@
 
     function initMeta() {
       const m = BUS_DATA.meta;
-      const parts = [`${t("valid")} ${m.validFrom}–${m.validTo}`];
-      if (META_DATA?.warnings?.length) {
-        parts.push(`<span class="meta-warn">${t("dataStale")}</span>`);
-      }
-      els.metaBar.innerHTML = parts.join('<span class="meta-sep" aria-hidden="true">·</span>');
+      els.metaBar.textContent = `${t("valid")} ${m.validFrom}–${m.validTo}`;
     }
 
     function applyPageHead() {
@@ -1052,30 +1058,48 @@
     }
 
     function laterLastBusHint(from, to, dayType) {
-      if (dayType === "sunday_holiday" || !t("endedOtherDayHint")) return "";
-      const sun = findTrips(from, to, "sunday_holiday");
-      const sat = findTrips(from, to, "saturday");
-      const wkLast = findTrips(from, to, "weekday").at(-1)?.dep;
-      const sunLast = sun.at(-1)?.dep;
-      const satLast = sat.at(-1)?.dep;
+      if (dayType === "sunday_holiday") return "";
       const pm = (x) => (x ? parseMinutes(x) : -1);
-      if (sunLast && pm(sunLast) > pm(wkLast)) return t("endedOtherDayHint");
-      if (dayType === "weekday" && satLast && pm(satLast) > pm(wkLast)) {
-        return lang === "ja" ? "土曜は末班が遅い場合があります。"
-          : (lang === "zh" ? "周六末班可能更晚。" : "Saturday may run later.");
+      const lastDep = (d) => findTrips(from, to, d).at(-1)?.dep;
+
+      if (dayType === "weekday") {
+        const wkLast = lastDep("weekday");
+        if (!wkLast) return "";
+        const sunLast = lastDep("sunday_holiday");
+        const satLast = lastDep("saturday");
+        if (sunLast && pm(sunLast) > pm(wkLast)) return t("endedOtherDayHint");
+        if (satLast && pm(satLast) > pm(wkLast)) return t("endedOtherDayHintSat");
+        return "";
+      }
+      if (dayType === "saturday") {
+        const satLast = lastDep("saturday");
+        const sunLast = lastDep("sunday_holiday");
+        if (satLast && sunLast && pm(sunLast) > pm(satLast)) return t("endedOtherDayHint");
       }
       return "";
     }
 
-    const DEST_STOP_ALTS = {
+    const STOP_NEAR_ALTS = {
       miyanoura_port: ["miyanoura", "miyanoura_port_entrance"],
+      miyanoura: ["miyanoura_port", "miyanoura_port_entrance"],
+      miyanoura_port_entrance: ["miyanoura_port", "miyanoura"],
       anbo_port: ["anbo"],
+      anbo: ["anbo_port"],
     };
-    const ORIGIN_STOP_ALTS = {
-      miyanoura_port: ["miyanoura", "miyanoura_port_entrance"],
-      anbo_port: ["anbo"],
-      miyanoura: ["miyanoura_port"],
-    };
+    const PORT_FROM_STOPS = new Set(["miyanoura_port", "anbo_port"]);
+
+    function tripRunKey(tr) {
+      return `${tr.route.id}|${tr.arr}`;
+    }
+
+    function nearStopCandidates(stopId, role) {
+      const out = [stopId];
+      if (role === "from" && PORT_FROM_STOPS.has(stopId)) return out;
+      (STOP_NEAR_ALTS[stopId] || []).forEach((id) => {
+        if (!out.includes(id)) out.push(id);
+      });
+      return out;
+    }
 
     function getPracticalRouteTips(from, to, dayType, currentCount) {
       if (!from || !to || from === to) return [];
@@ -1087,62 +1111,46 @@
         tips.push(tip);
       };
 
-      const addAltTo = (altTo) => {
-        const n = findTrips(from, altTo, dayType).length;
-        if (n <= currentCount) return;
-        let text;
-        if (to === "miyanoura_port" && altTo === "miyanoura" && dayType !== "weekday") {
-          text = t("tipAnboPortWeekend", { n });
-        } else {
-          text = t("tipMoreToAlt", {
-            alt: stopName(altTo),
-            to: stopName(to),
-            n,
-            current: currentCount,
+      const currentTrips = findTrips(from, to, dayType);
+      const currentRuns = new Set(currentTrips.map(tripRunKey));
+      const fromName = stopName(from);
+      const toName = stopName(to);
+
+      const nearRoutes = [];
+      nearStopCandidates(from, "from").forEach((altFrom) => {
+        nearStopCandidates(to, "to").forEach((altTo) => {
+          if (altFrom === from && altTo === to) return;
+          const altTrips = findTrips(altFrom, altTo, dayType);
+          if (!altTrips.length) return;
+          const extra = altTrips.filter((tr) => !currentRuns.has(tripRunKey(tr)));
+          if (!extra.length) return;
+          nearRoutes.push({ altFrom, altTo, extra, total: altTrips.length });
+        });
+      });
+      nearRoutes
+        .sort((a, b) => b.extra.length - a.extra.length || b.total - a.total)
+        .slice(0, 3)
+        .forEach(({ altFrom, altTo, extra }) => {
+          let text = t("tipNearRoute", {
+            altFrom: stopName(altFrom),
+            altTo: stopName(altTo),
+            from: fromName,
+            to: toName,
+            n: extra.length,
           });
-        }
-        if (to === "miyanoura_port" && altTo === "miyanoura") {
-          text = `${text} ${t("tipWalkToPort")}`;
-        }
-        push({
-          id: `to-${from}-${altTo}`,
-          text,
-          apply: { from, to: altTo },
-          label: t("tipSearchAlt", { from: stopName(from), alt: stopName(altTo) }),
+          if (to === "miyanoura_port" && altTo === "miyanoura" && dayType !== "weekday") {
+            text = t("tipAnboPortWeekend", { n: extra.length });
+          } else if (to === "miyanoura_port" && altTo === "miyanoura") {
+            text = `${text} ${t("tipWalkToPort")}`;
+          }
+          push({
+            id: `near-${altFrom}-${altTo}`,
+            text,
+            timesList: extra.map((tr) => formatTime(tr.dep)),
+            apply: { from: altFrom, to: altTo },
+            label: t("tipSearchAlt", { from: stopName(altFrom), alt: stopName(altTo) }),
+          });
         });
-      };
-
-      const addAltFrom = (altFrom) => {
-        const currentTrips = findTrips(from, to, dayType);
-        const altTrips = findTrips(altFrom, to, dayType);
-        if (!altTrips.length) return;
-        const currentDeps = new Set(currentTrips.map((tr) => tr.dep));
-        const extra = altTrips.filter((tr) => !currentDeps.has(tr.dep));
-        if (altTrips.length <= currentTrips.length && !extra.length) return;
-        const sampleTrips = extra.length ? extra : altTrips;
-        const times = sampleTrips.map((tr) => formatTime(tr.dep)).slice(0, 3).join(lang === "ja" ? "・" : "、");
-        push({
-          id: `from-${altFrom}-${to}`,
-          text: extra.length
-            ? t("tipExtraFromAlt", {
-                alt: stopName(altFrom),
-                from: stopName(from),
-                times,
-                n: extra.length,
-              })
-            : t("tipMoreFromAlt", {
-                alt: stopName(altFrom),
-                from: stopName(from),
-                n: altTrips.length,
-                current: currentTrips.length,
-              }),
-          apply: { from: altFrom, to },
-          label: t("tipSearchAlt", { from: stopName(altFrom), alt: stopName(to) }),
-        });
-      };
-
-      (DEST_STOP_ALTS[to] || []).forEach((altTo) => addAltTo(altTo));
-      (ORIGIN_STOP_ALTS[from] || []).forEach((altFrom) => addAltFrom(altFrom));
 
       if (dayType !== "weekday" && currentCount > 0) {
         const wkCount = findTrips(from, to, "weekday").length;
@@ -1185,14 +1193,19 @@
     function renderRouteTipsInner(tips) {
       return tips.map((tip) => {
         const text = `<p class="route-tip-text">${tip.text}</p>`;
+        const timesHtml = tip.timesList?.length
+          ? `<ul class="route-tip-times" aria-label="${t("tripCount", { n: tip.timesList.length })}">${tip.timesList
+              .map((time) => `<li>${time}</li>`)
+              .join("")}</ul>`
+          : "";
         if (tip.noteOnly) return `<div class="route-tip route-tip--note">${text}</div>`;
         if (tip.apply === "swap") {
-          return `<div class="route-tip">${text}<button type="button" class="route-tip-btn" data-tip-swap>${tip.label}</button></div>`;
+          return `<div class="route-tip">${text}${timesHtml}<button type="button" class="route-tip-btn" data-tip-swap>${tip.label}</button></div>`;
         }
         if (tip.apply?.from && tip.apply?.to) {
-          return `<div class="route-tip">${text}<button type="button" class="route-tip-btn" data-tip-from="${tip.apply.from}" data-tip-to="${tip.apply.to}">${tip.label}</button></div>`;
+          return `<div class="route-tip">${text}${timesHtml}<button type="button" class="route-tip-btn" data-tip-from="${tip.apply.from}" data-tip-to="${tip.apply.to}">${tip.label}</button></div>`;
         }
-        return `<div class="route-tip">${text}</div>`;
+        return `<div class="route-tip">${text}${timesHtml}</div>`;
       }).join("");
     }
 
@@ -1213,7 +1226,8 @@
 
     function syncRouteTips(from, to, dayType, currentCount) {
       if (!els.routeTips) return;
-      const tips = getPracticalRouteTips(from, to, dayType, currentCount);
+      const tips = getPracticalRouteTips(from, to, dayType, currentCount)
+        .filter((tip) => !tip.noteOnly);
       if (!tips.length) {
         els.routeTips.hidden = true;
         els.routeTips.innerHTML = "";
@@ -1228,7 +1242,7 @@
       syncRouteTips(els.fromStop.value, els.toStop.value, selectedDay, findTrips(els.fromStop.value, els.toStop.value, selectedDay).length);
     }
 
-    function updateNextBar(allTrips, refMins) {
+    function updateNextBar(allTrips, refMins, { upcomingActive = false, upcomingExplicit = false, showingTrips = false } = {}) {
       const from = els.fromStop.value;
       const to = els.toStop.value;
       const fromName = stopName(from);
@@ -1244,6 +1258,11 @@
       const ended = !next;
       const item = next || allTrips[allTrips.length - 1];
       const depM = parseMinutes(item.dep);
+
+      if (ended && upcomingExplicit && !showingTrips) {
+        hideNextBar();
+        return;
+      }
 
       els.nextBar.classList.add("show");
       els.nextBarWrap.classList.add("has-next");
@@ -1346,18 +1365,8 @@
 
       if (upcoming && refMins != null) {
         const filtered = allTrips.filter((tr) => parseMinutes(tr.dep) >= refMins);
-        if (!filtered.length && allTrips.length) {
-          if (!upcomingUserOverride) {
-            upcoming = false;
-            els.upcomingOnly.checked = false;
-            trips = allTrips;
-          } else {
-            trips = filtered;
-          }
-        } else {
-          trips = filtered;
-          if (filtered.length) upcomingUserOverride = false;
-        }
+        trips = filtered;
+        if (filtered.length) upcomingUserOverride = false;
       }
 
       if (from === to) {
@@ -1385,13 +1394,21 @@
           upcomingUserOverride = false;
           renderResults();
         });
-        updateNextBar(allTrips, refMins);
+        updateNextBar(allTrips, refMins, {
+          upcomingActive: upcoming,
+          upcomingExplicit: upcomingUserOverride && els.upcomingOnly.checked,
+          showingTrips: false,
+        });
         syncRouteTips(from, to, selectedDay, 0);
         return;
       }
 
       els.resultsCount.textContent = t("tripCount", { n: trips.length });
-      updateNextBar(allTrips, refMins);
+      updateNextBar(allTrips, refMins, {
+        upcomingActive: upcoming,
+        upcomingExplicit: upcomingUserOverride && els.upcomingOnly.checked,
+        showingTrips: true,
+      });
       syncRouteTips(from, to, selectedDay, allTrips.length);
 
       const fromName = stopName(from);
@@ -1423,15 +1440,14 @@
           ${headBtn}
           <div class="trip-top">
             ${renderJourneyHtml(fromName, toName, item.dep, item.arr)}
-            <div class="trip-top-end">
-              ${OperatorUI.badge(opId, lang)}
+            <div class="trip-aside">
               ${chevron}
             </div>
           </div>
           ${headEnd}
           <div class="trip-sub">
             <div class="trip-meta">${formatTripMeta(item)}</div>
-            ${tags.length ? `<div class="trip-tags">${tagHtml}</div>` : ""}
+            <div class="trip-tags">${OperatorUI.badge(opId, lang)}${tagHtml}</div>
           </div>
           ${detailHtml}
         </article>`;
