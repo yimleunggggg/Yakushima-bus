@@ -13,8 +13,8 @@
   <meta property="og:url" content="https://yakushimabus.com/trekking/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <title>登山・トレッキング参考 | 屋久岛徒步 | Yakushima Trekking</title>
-  <link rel="preload" href="/styles.css?v=layout-v142" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v142">
+  <link rel="preload" href="/styles.css?v=layout-v148" as="style">
+  <link rel="stylesheet" href="/styles.css?v=layout-v148">
   <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
   <script src="/site-chrome.js?v=chrome-v23" defer></script>
@@ -57,9 +57,7 @@
       <div class="trek-season-grid" id="trekSeasonGrid"></div>
     </section>
 
-    <div class="panel panel-aux trek-affiliate-panel" id="trekAffiliatePanel" hidden>
-      <div class="aux-sections aux-in-panel" id="trekAffiliateSection"></div>
-    </div>
+    <section class="panel trek-partner" id="trekAffiliatePanel" hidden aria-labelledby="trekAffiliateTitle"></section>
 
     <section class="panel trek-courses-wrap" aria-labelledby="trekCoursesTitle">
       <h2 class="page-section-title" id="trekCoursesTitle"></h2>
@@ -89,11 +87,11 @@
 
   <script src="/data.js?v=data-column-v3"></script>
   <script src="/map-data.js"></script>
-  <script src="/affiliate-data.js?v=aff-v8"></script>
-  <script src="/affiliate-ui.js?v=aff-v12"></script>
+  <script src="/partner-data.js?v=partner-v1"></script>
+  <script src="/partner-ui.js?v=partner-v3"></script>
   <script src="/source-links.js?v=src-v1"></script>
   <script src="/trekking-data.js?v=trek-v7"></script>
-  <script src="/app-core.js?v=core-v13"></script>
+  <script src="/app-core.js?v=core-v14"></script>
   <script>
     const UI = {
       ja: { sourceLabel: "出典：" },
@@ -206,10 +204,9 @@
         .join("");
 
       const trekAffiliatePanel = document.getElementById("trekAffiliatePanel");
-      const trekAffiliate = document.getElementById("trekAffiliateSection");
-      if (trekAffiliate && trekAffiliatePanel) {
+      if (trekAffiliatePanel) {
         const affiliateHtml = window.AffiliateUI ? AffiliateUI.trekkingSectionHtml(lang) : "";
-        trekAffiliate.innerHTML = affiliateHtml;
+        trekAffiliatePanel.innerHTML = affiliateHtml;
         trekAffiliatePanel.hidden = !affiliateHtml;
       }
 

@@ -66,8 +66,18 @@
 
 ## 三、优化过程记录（我们做了什么）
 
+> **运维主文件（版本块 + 归因 ID + 平台对照）**：[../OPS-JOURNAL.md](../OPS-JOURNAL.md)
+
 | 日期 | 阶段 | 动作 | 状态 |
 |------|------|------|------|
+| 2026-06-28 | 登记 | Bing Webmaster（GSC 导入）、7 URL 提交 | ✅ [note](../notes/2026-06-28-bing-webmaster-setup.md) |
+| 2026-06-28 | 登记 | 百度搜索资源平台验证 + `sitemap-zh.xml` | ✅ [note](../notes/2026-06-28-baidu-search-setup.md) |
+| 2026-06-28 | 中文 SEO | `sitemap-zh`、`lang-v4`、百度来源优先中文 | ✅ 已部署 |
+| 2026-06-28 | GA4 | 关键事件 ☆；internal 过滤「有效」 | ✅ 后台 |
+| 2026-06-28 | GA4 | analytics-v4（debug 跨页、事件委托） | ✅ 已部署 |
+| 2026-06-26 | SEO 文案 | title/meta「2026最新」 | ✅ |
+| 2026-06-25 | URL | `/fare/`、`/ferry/` 重命名 + 301 | ✅ |
+| 2026-06-25 | GA4 | 自定义事件埋点 | ✅ |
 | 2026-05-21 | Round 1 | page-lead、JSON-LD、sitemap lastmod、canonical | ✅ 已上线 |
 | 2026-05-22 | 数据 | GA4/GSC 自动化日报、ntfy 推送 | ✅ |
 | 2026-05-22 | 分析 | 渠道/国家解读、bot 剔除、Direct=微信说明 | ✅ |

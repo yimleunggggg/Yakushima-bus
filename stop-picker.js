@@ -56,8 +56,18 @@ const StopPicker = {
   matches(id, q) {
     if (!q) return true;
     const s = BUS_DATA.stops[id];
+    const ql = q.toLowerCase();
     const hay = [s.ja, s.zh, s.en, s.no, `#${s.no}`].join(" ").toLowerCase();
-    return hay.includes(q.toLowerCase());
+    if (hay.includes(ql)) return true;
+    if (typeof AppCore === "undefined") return false;
+    const cluster = AppCore.stopSearchCluster(id);
+    return cluster.some((cid) => {
+      if (cid === id) return false;
+      const c = BUS_DATA.stops[cid];
+      if (!c) return false;
+      const ch = [c.ja, c.zh, c.en, c.no].join(" ").toLowerCase();
+      return ch.includes(ql);
+    });
   },
 
   groupLabel(groupId, lang) {

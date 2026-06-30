@@ -13,6 +13,8 @@ MANIFEST = ROOT / "sources" / "manifest.json"
 ACCESS_MANIFEST = ROOT / "sources" / "access-manifest.json"
 ACCESS_DIR = ROOT / "sources" / "access"
 OUT = ROOT / "meta-data.js"
+SEGMENT_STATS = ROOT / "sources" / "segment-stats.json"
+STOP_CLUSTERS = ROOT / "sources" / "stop-search-clusters.json"
 
 
 def load_json(path: Path) -> dict:
@@ -65,6 +67,28 @@ def collect_warnings(ref: date, warn_days: int) -> tuple[list[str], list[str]]:
     return errors, warnings
 
 
+def load_stop_search_clusters() -> dict[str, list[str]]:
+    if not STOP_CLUSTERS.exists():
+        return {}
+    raw = json.loads(STOP_CLUSTERS.read_text(encoding="utf-8"))
+    out: dict[str, list[str]] = {}
+    for members in raw.values():
+        for sid in members:
+            out[sid] = members
+    return out
+
+
+def load_segment_bounds() -> dict | None:
+    if not SEGMENT_STATS.exists():
+        return None
+    stats = json.loads(SEGMENT_STATS.read_text(encoding="utf-8"))
+    return {
+        "absMaxMinutes": stats.get("absMaxMinutes", 120),
+        "pdfWestMaxSegment": stats.get("pdfWestGlobalMaxSegment"),
+        "pdfWestMaxFullTrip": stats.get("pdfWestMaxFullTrip"),
+    }
+
+
 def build_meta(ref: date | None = None) -> dict:
     ref = ref or date.today()
     holidays_cfg = load_json(HOLIDAYS)
@@ -99,6 +123,8 @@ def build_meta(ref: date | None = None) -> dict:
         },
         "warnings": warnings,
         "errors": errors,
+        "stopSearchClusters": load_stop_search_clusters(),
+        "segmentBounds": load_segment_bounds(),
     }
 
 

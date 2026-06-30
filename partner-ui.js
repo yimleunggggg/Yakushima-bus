@@ -1,4 +1,4 @@
-/** 联盟链渲染 — 依赖 affiliate-data.js */
+/** 联盟链渲染 — 依赖 partner-data.js */
 (function () {
   const D = () => window.AFFILIATE_DATA;
 

@@ -95,8 +95,8 @@
     ]
   }
   </script>
-  <link rel="preload" href="/styles.css?v=layout-v142" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v142">
+  <link rel="preload" href="/styles.css?v=layout-v145" as="style">
+  <link rel="stylesheet" href="/styles.css?v=layout-v145">
   <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
   <script src="/site-chrome.js?v=chrome-v23" defer></script>
@@ -188,8 +188,8 @@
         <div class="route-tips" id="routeTips" hidden></div>
       </div>
 
-      <div class="sec sec-next has-next" id="nextBarWrap">
-        <div class="next-bar show" id="nextBar">
+      <div class="sec sec-next" id="nextBarWrap">
+        <div class="next-bar" id="nextBar">
         <div class="next-bar-head">
           <div class="label" id="nextLabel">次のバス</div>
           <span id="nextOpBadge"></span>
@@ -244,6 +244,7 @@
           <span class="count" id="resultsCount"></span>
         </div>
         <div class="op-legend" id="opLegend" aria-label="operators"><span class="op-legend-label">運行会社</span></div>
+        <p class="results-notice" id="resultsNotice" hidden></p>
         <div id="results" class="results-list"></div>
       </div>
       </div>
@@ -314,9 +315,9 @@
   <script src="source-links.js?v=src-v1" defer></script>
   <script src="data.js?v=data-column-v3" defer></script>
   <script src="meta-data.js" defer></script>
-  <script src="app-core.js?v=core-v13" defer></script>
+  <script src="app-core.js?v=core-v20" defer></script>
   <script src="operator-ui.js" defer></script>
-  <script src="stop-picker.js?v=picker-v5" defer></script>
+  <script src="stop-picker.js?v=picker-v6" defer></script>
   <script src="pdf-fullscreen.js" defer></script>
   <script src="pdf-viewer.js?v=pdf-preview-v5" defer></script>
   <script>
@@ -367,7 +368,14 @@
         noTripsReverse: "この方向の直通便はありません",
         noTripsReverseHint: "逆方向 {from} → {to} には {n} 便あります。",
         noTripsDayType: "選択した日種ではこの区間に便がありません",
+        noTripsDayTypeCurrent: "選択した「{day}」ではこの区間に便がありません",
         noTripsDayTypeHint: "土曜・日祝タブを試すか、公式PDFをご確認ください。",
+        noTripsOtherDaysHint: "この区間の便は {list} のみです。上の日種タブを切り替えてください。",
+        dayTypeHasTrips: "{day} {n}便",
+        listSep: " · ",
+        switchDayType: "{day}に切り替え",
+        presetDaysOnly: "便は {list} のみ",
+        resultsFewerNotice: "{day}は{n}便のみ（平日{wk}便・公式時刻表どおり）",
         noTripsNoRoute: "この区間の直通便はデータ上見つかりません",
         noTripsDataGapHint: "公式PDFで要確認（データ取り込み未対応の可能性）",
         noTripsUpcoming: "このあとの便はありません",
@@ -447,7 +455,14 @@
         noTripsReverse: "这个方向没有直达班次",
         noTripsReverseHint: "反向 {from} → {to} 有 {n} 班。",
         noTripsDayType: "所选日种（工作日/周六/日祝）此区间无班次",
+        noTripsDayTypeCurrent: "所选「{day}」此区间无班次",
         noTripsDayTypeHint: "可切换上方日种标签，或查看官方 PDF。",
+        noTripsOtherDaysHint: "该区间仅有：{list}。请切换上方日种标签。",
+        dayTypeHasTrips: "{day} {n}班",
+        listSep: " · ",
+        switchDayType: "切换到{day}",
+        presetDaysOnly: "仅有 {list} 班次",
+        resultsFewerNotice: "{day}仅 {n} 班（工作日 {wk} 班，与官方时刻表一致）",
         noTripsNoRoute: "数据中未找到此区间的直达车",
         noTripsDataGapHint: "请以官方 PDF 为准（本站可能尚未正确收录该区间）",
         noTripsUpcoming: "当前时间之后没有班次",
@@ -527,7 +542,14 @@
         noTripsReverse: "No direct buses in this direction",
         noTripsReverseHint: "Reverse {from} → {to} has {n} trip(s).",
         noTripsDayType: "No buses on this route for the selected day type",
+        noTripsDayTypeCurrent: "No buses on this route for {day}",
         noTripsDayTypeHint: "Try Sat / Sun & holidays tabs, or check the official PDF.",
+        noTripsOtherDaysHint: "This route only runs on: {list}. Switch the day tab above.",
+        dayTypeHasTrips: "{day} {n} trips",
+        listSep: " · ",
+        switchDayType: "Switch to {day}",
+        presetDaysOnly: "Trips on {list} only",
+        resultsFewerNotice: "{day}: {n} trips only (weekdays {wk}; per official timetable)",
         noTripsNoRoute: "No direct route found in our timetable data",
         noTripsDataGapHint: "Check the official PDF — this leg may not be in our data yet",
         noTripsUpcoming: "No later buses today",
@@ -638,6 +660,7 @@
       results: document.getElementById("results"),
       resultsCount: document.getElementById("resultsCount"),
       opLegend: document.getElementById("opLegend"),
+      resultsNotice: document.getElementById("resultsNotice"),
       infoGrid: document.getElementById("infoGrid"),
       sourceLinks: document.getElementById("sourceLinks"),
       disclaimer: document.getElementById("disclaimer"),
@@ -709,7 +732,7 @@
     function tripDurationMins(dep, arr) {
       if (!dep || !isArrivalTime(arr)) return null;
       const mins = parseMinutes(arr) - parseMinutes(dep);
-      if (mins <= 0 || mins > 720) return null;
+      if (mins <= 0 || mins > 120) return null;
       return mins;
     }
 
@@ -722,16 +745,14 @@
       return `${t(roleKey)} · ${name}`;
     }
 
-    function renderJourneyHtml(fromName, toName, dep, arr, { compact = true } = {}) {
+    function renderJourneyHtml(fromName, toName, dep, arr) {
       const arrDisp = tripArrivalDisplay(arr);
       const dur = tripDurationLabel(dep, arr);
-      const boardLabel = compact ? t("boardRole") : legLabel("boardRole", fromName);
-      const arriveLabel = compact ? t("arriveRole") : legLabel("arriveRole", toName);
       const ariaDur = dur ? ` ${dur}` : "";
-      return `<div class="trip-journey" aria-label="${legLabel("boardRole", fromName)} ${arrDisp}${ariaDur} ${legLabel("arriveRole", toName)}">
+      return `<div class="trip-journey" aria-label="${fromName} ${formatTime(dep)}${ariaDur} ${toName} ${arrDisp}">
         <div class="trip-leg trip-leg--board">
           <span class="trip-leg-time">${formatTime(dep)}</span>
-          <span class="trip-leg-label">${boardLabel}</span>
+          <span class="trip-leg-label">${fromName}</span>
         </div>
         <div class="trip-journey-mid" aria-hidden="true">
           <span class="trip-journey-arrow">→</span>
@@ -739,7 +760,7 @@
         </div>
         <div class="trip-leg trip-leg--arrive">
           <span class="trip-leg-time">${arrDisp}</span>
-          <span class="trip-leg-label">${arriveLabel}</span>
+          <span class="trip-leg-label">${toName}</span>
         </div>
       </div>`;
     }
@@ -807,9 +828,11 @@
 
     function initPresets() {
       const active = BUS_DATA.presets.filter((p) => presetHasTrips(p.from, p.to));
-      els.presets.innerHTML = active.map((p) =>
-        `<button type="button" data-from="${p.from}" data-to="${p.to}">${stopName(p.from)} → ${stopName(p.to)}</button>`
-      ).join("");
+      els.presets.innerHTML = active.map((p) => {
+        const daysTitle = presetDaysTitle(p.from, p.to);
+        const titleAttr = daysTitle ? ` title="${daysTitle.replace(/"/g, "&quot;")}"` : "";
+        return `<button type="button" data-from="${p.from}" data-to="${p.to}"${titleAttr}>${stopName(p.from)} → ${stopName(p.to)}</button>`;
+      }).join("");
     }
 
     function initInfo() {
@@ -863,11 +886,58 @@
       return AppCore.findTrips(from, to, dayType);
     }
 
+    function dayTypeLabel(dayType) {
+      if (dayType === "weekday") return t("weekday");
+      if (dayType === "saturday") return t("saturday");
+      return t("sunday");
+    }
+
+    function tripsByDayType(from, to) {
+      return ["weekday", "saturday", "sunday_holiday"]
+        .map((day) => ({ day, count: findTrips(from, to, day).length }))
+        .filter((x) => x.count > 0);
+    }
+
+    function formatDayTypesWithTrips(from, to, excludeDay) {
+      const parts = tripsByDayType(from, to)
+        .filter((x) => x.day !== excludeDay)
+        .map(({ day, count }) => t("dayTypeHasTrips", { day: dayTypeLabel(day), n: count }));
+      return parts.join(t("listSep"));
+    }
+
+    function presetDaysTitle(from, to) {
+      const avail = tripsByDayType(from, to);
+      if (avail.length >= 3) return "";
+      if (!avail.length) return "";
+      const list = avail.map(({ day, count }) => t("dayTypeHasTrips", { day: dayTypeLabel(day), n: count })).join(t("listSep"));
+      return t("presetDaysOnly", { list });
+    }
+
+    function dayTypeFewerNotice(from, to, dayType, currentCount) {
+      if (dayType === "weekday" || currentCount === 0) return "";
+      const wk = findTrips(from, to, "weekday").length;
+      if (wk >= 3 && currentCount < wk) {
+        return t("resultsFewerNotice", { day: dayTypeLabel(dayType), n: currentCount, wk });
+      }
+      return "";
+    }
+
+    function syncResultsNotice(from, to, dayType, currentCount) {
+      if (!els.resultsNotice) return;
+      const notice = dayTypeFewerNotice(from, to, dayType, currentCount);
+      if (notice) {
+        els.resultsNotice.textContent = notice;
+        els.resultsNotice.hidden = false;
+      } else {
+        els.resultsNotice.hidden = true;
+        els.resultsNotice.textContent = "";
+      }
+    }
+
     function explainEmpty(from, to, dayType, allTrips, trips, upcoming, refMins) {
       const reverse = findTrips(to, from, dayType);
-      const otherDay = ["weekday", "saturday", "sunday_holiday"]
-        .filter((d) => d !== dayType)
-        .some((d) => findTrips(from, to, d).length);
+      const otherAvail = tripsByDayType(from, to).filter((x) => x.day !== dayType);
+      const otherDay = otherAvail.length > 0;
       const anyDay = otherDay || allTrips.length;
 
       if (allTrips.length && upcoming && refMins != null && !trips.length) {
@@ -891,11 +961,14 @@
         };
       }
       if (otherDay) {
+        const list = formatDayTypesWithTrips(from, to, dayType);
+        const sole = otherAvail.length === 1 ? otherAvail[0].day : null;
         return {
-          title: t("noTripsDayType"),
-          hint: t("noTripsDayTypeHint"),
+          title: t("noTripsDayTypeCurrent", { day: dayTypeLabel(dayType) }),
+          hint: t("noTripsOtherDaysHint", { list }),
           tips: getPracticalRouteTips(from, to, dayType, 0),
-          action: null,
+          action: sole ? "switchDay" : null,
+          switchDay: sole,
         };
       }
       return {
@@ -910,10 +983,13 @@
       const parts = [`<p class="empty-title">${info.title}</p>`];
       if (info.hint) parts.push(`<p class="empty-hint">${info.hint}</p>`);
       if (info.tips?.length) {
-        parts.push(`<div class="route-tips route-tips--empty"><p class="route-tips-title">${t("routeTipsTitle")}</p>${renderRouteTipsInner(info.tips)}</div>`);
+        parts.push(`<div class="route-tips route-tips--empty">${renderRouteTipsInner(info.tips)}</div>`);
       }
       if (info.action === "swap") {
         parts.push(`<button type="button" class="empty-action" data-empty-swap>${t("swapRoute")}</button>`);
+      }
+      if (info.action === "switchDay" && info.switchDay) {
+        parts.push(`<button type="button" class="empty-action" data-empty-day="${info.switchDay}">${t("switchDayType", { day: dayTypeLabel(info.switchDay) })}</button>`);
       }
       if (info.showAll) {
         parts.push(`<button type="button" class="empty-action empty-action--ghost" data-empty-show-all>${t("showAllTrips")}</button>`);
@@ -1234,7 +1310,7 @@
         return;
       }
       els.routeTips.hidden = false;
-      els.routeTips.innerHTML = `<p class="route-tips-title">${t("routeTipsTitle")}</p>${renderRouteTipsInner(tips)}`;
+      els.routeTips.innerHTML = renderRouteTipsInner(tips);
       bindRouteTipButtons(els.routeTips);
     }
 
@@ -1280,9 +1356,9 @@
         els.nextJourney.hidden = false;
         setNextJourney({
           boardTime: formatTime(item.dep),
-          boardLabel: legLabel("boardRole", fromName),
+          boardLabel: stopName(item.depStop || from),
           arriveTime: tripArrivalDisplay(item.arr),
-          arriveLabel: legLabel("arriveRole", toName),
+          arriveLabel: stopName(item.arrStop || to),
           duration: tripDurationLabel(item.dep, item.arr),
         });
         els.nextDetail.innerHTML = formatNextDetail(depM, refMins);
@@ -1378,6 +1454,7 @@
           els.routeTips.innerHTML = "";
         }
         hideNextBar();
+        if (els.resultsNotice) els.resultsNotice.hidden = true;
         return;
       }
       if (!trips.length) {
@@ -1389,6 +1466,14 @@
         els.results.querySelector("[data-empty-swap]")?.addEventListener("click", () => {
           els.swapBtn.click();
         });
+        els.results.querySelector("[data-empty-day]")?.addEventListener("click", (e) => {
+          const day = e.currentTarget.dataset.emptyDay;
+          if (!day) return;
+          selectedDay = day;
+          els.dayTabs.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.dataset.day === selectedDay));
+          renderResults();
+        });
+        syncResultsNotice(from, to, selectedDay, 0);
         els.results.querySelector("[data-empty-show-all]")?.addEventListener("click", () => {
           els.upcomingOnly.checked = false;
           upcomingUserOverride = false;
@@ -1404,6 +1489,7 @@
       }
 
       els.resultsCount.textContent = t("tripCount", { n: trips.length });
+      syncResultsNotice(from, to, selectedDay, trips.length);
       updateNextBar(allTrips, refMins, {
         upcomingActive: upcoming,
         upcomingExplicit: upcomingUserOverride && els.upcomingOnly.checked,
@@ -1414,6 +1500,8 @@
       const fromName = stopName(from);
       const toName = stopName(to);
       els.results.innerHTML = trips.map((item, idx) => {
+        const depStopName = stopName(item.depStop || from);
+        const arrStopName = stopName(item.arrStop || to);
         const opId = item.route.operator;
         const depM = parseMinutes(item.dep);
         const isNext = idx === 0 && upcoming && refMins != null && depM >= refMins;
@@ -1439,7 +1527,7 @@
         return `<article class="trip ${isNext ? "next" : ""}${isOpen ? " open" : ""}${expandable ? "" : " trip--flat"}" data-trip-key="${tripKey}">
           ${headBtn}
           <div class="trip-top">
-            ${renderJourneyHtml(fromName, toName, item.dep, item.arr)}
+            ${renderJourneyHtml(depStopName, arrStopName, item.dep, item.arr)}
             <div class="trip-aside">
               ${chevron}
             </div>
@@ -1483,7 +1571,6 @@
         btn.classList.toggle("active", btn.dataset.day === selectedDay);
         btn.addEventListener("click", () => {
           selectedDay = btn.dataset.day;
-          resetUpcomingFilter();
           els.dayTabs.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.dataset.day === selectedDay));
           renderResults();
         });
@@ -1566,6 +1653,15 @@
       syncTimeFilterDisplay();
     }
 
+    function applyDefaultRoute() {
+      const urlParams = new URLSearchParams(location.search);
+      if (urlParams.get("from") || urlParams.get("to")) return;
+      const first = BUS_DATA.presets.find((p) => p.tag === "popular" && presetHasTrips(p.from, p.to));
+      if (!first) return;
+      fromPicker.setValue(first.from, false);
+      toPicker.setValue(first.to, false);
+    }
+
     function bindEvents() {
       els.langSwitch.addEventListener("click", (e) => {
         const btn = e.target.closest("button[data-lang]");
@@ -1628,6 +1724,7 @@
     if (els.timetablePdfPanel?.open) initTimetablePdf();
     if (urlParams.get("from")) fromPicker.setValue(urlParams.get("from"), false);
     if (urlParams.get("to")) toPicker.setValue(urlParams.get("to"), false);
+    else applyDefaultRoute();
     renderResults();
     setInterval(() => { setLiveClock(); renderResults(); }, 30000);
     });

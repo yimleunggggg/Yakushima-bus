@@ -2,7 +2,7 @@
 const META_DATA = {
   "revision": "2026",
   "updatedAt": "2026-05-20",
-  "builtAt": "2026-06-27",
+  "builtAt": "2026-06-29",
   "holidays": [
     "2026-01-01",
     "2026-01-12",
@@ -46,7 +46,38 @@ const META_DATA = {
     }
   },
   "warnings": [
-    "上岛季节 summer_2026 将于 2026-06-30 结束（剩 3 天）"
+    "上岛季节 summer_2026 将于 2026-06-30 结束（剩 1 天）"
   ],
-  "errors": []
+  "errors": [],
+  "stopSearchClusters": {
+    "miyanoura_port_early": [
+      "miyanoura_port_early",
+      "miyanoura_port",
+      "miyanoura_port_entrance",
+      "miyanoura"
+    ],
+    "miyanoura_port": [
+      "miyanoura_port_early",
+      "miyanoura_port",
+      "miyanoura_port_entrance",
+      "miyanoura"
+    ],
+    "miyanoura_port_entrance": [
+      "miyanoura_port_early",
+      "miyanoura_port",
+      "miyanoura_port_entrance",
+      "miyanoura"
+    ],
+    "miyanoura": [
+      "miyanoura_port_early",
+      "miyanoura_port",
+      "miyanoura_port_entrance",
+      "miyanoura"
+    ]
+  },
+  "segmentBounds": {
+    "absMaxMinutes": 120,
+    "pdfWestMaxSegment": 50,
+    "pdfWestMaxFullTrip": 102
+  }
 };

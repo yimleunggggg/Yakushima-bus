@@ -6,6 +6,8 @@
 
 | 文件 | 作用 |
 |------|------|
+| [`docs/OPS-JOURNAL.md`](../OPS-JOURNAL.md) | **运维主文件**（版本块 + 归因 ID + 平台对照 + 待办） |
+| [`~/.cursor/rules/change-journal.mdc`](../../../.cursor/rules/change-journal.mdc) | 版本块格式与 Agent 义务（全项目） |
 | [`docs/seo/TRACKING.md`](../seo/TRACKING.md) | GSC/GA4 操作清单、指标表、目标查询词 |
 | [`docs/seo/CHANGELOG.md`](../seo/CHANGELOG.md) | 每轮 SEO 改了什么 |
 

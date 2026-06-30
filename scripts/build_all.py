@@ -55,12 +55,15 @@ def validate():
 
 
 def validate_timetable():
-    r = subprocess.run(
-        [sys.executable, str(ROOT / "scripts" / "audit_pdf_trips.py")],
-        cwd=ROOT,
-    )
-    if r.returncode != 0:
-        sys.exit(r.returncode)
+    subprocess.check_call([sys.executable, str(ROOT / "scripts" / "build_segment_stats.py")], cwd=ROOT)
+    subprocess.check_call([sys.executable, str(ROOT / "scripts" / "build_meta_data.py")], cwd=ROOT)
+    for script in ("audit_pdf_trips.py", "audit_presets.py", "audit_segment_bounds.py"):
+        r = subprocess.run(
+            [sys.executable, str(ROOT / "scripts" / script)],
+            cwd=ROOT,
+        )
+        if r.returncode != 0:
+            sys.exit(r.returncode)
     print("timetable audit OK")
 
 

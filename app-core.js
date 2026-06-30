@@ -1,6 +1,7 @@
 /** 共享运行时：日种判定、时区、多语言 pick、轻反馈 */
 const AppCore = {
   LANG_KEY: "yakushima-bus-lang",
+  ABS_SEGMENT_MAX: 120,
 
   getLang() {
     return this._lang ?? this.resolveLang();
@@ -83,6 +84,15 @@ const AppCore = {
     };
   },
 
+  routeInSeason(route, date = new Date()) {
+    const season = route.season;
+    if (!season) return true;
+    const month = parseInt(this.japanParts(date).iso.split("-")[1], 10);
+    if (season === "12-2") return month === 12 || month <= 2;
+    if (season === "3-11") return month >= 3 && month <= 11;
+    return true;
+  },
+
   detectDayType(date = new Date()) {
     const cfg = typeof META_DATA !== "undefined" ? META_DATA : null;
     const holidays = cfg?.holidays || [];
@@ -105,6 +115,58 @@ const AppCore = {
 
   isBusTime(time) {
     return Boolean(time && /^\d{1,2}:\d{2}$/.test(time));
+  },
+
+  /** 站序间距（边数，非站点数） */
+  stopIndexGap(fromIdx, toIdx) {
+    return Math.abs(toIdx - fromIdx);
+  },
+
+  /**
+   * 区间最短合理车程（分）。环线 PDF 列合并后常出现「仅起终点同列」的伪班次。
+   * gap≥2 且 <10min 必错；长距离稀疏链再按站数下限（约 1.2min/站）。
+   */
+  minPlausibleMinutes(gap, { sparse = false, column = false } = {}) {
+    if (column) return gap <= 1 ? 2 : 5;
+    if (gap <= 1) return 2;
+    if (!sparse) {
+      if (gap >= 3) return 10;
+      return 5;
+    }
+    if (gap >= 5) return Math.ceil(gap * 1.2);
+    return 10;
+  },
+
+  /** 区间最长合理车程（PDF 西向全程约 102m，全局上限 120m） */
+  maxPlausibleMinutes(gap, { sparse = false } = {}) {
+    const cfg = typeof META_DATA !== "undefined" ? META_DATA : null;
+    const absMax = cfg?.segmentBounds?.absMaxMinutes ?? this.ABS_SEGMENT_MAX;
+    const perStop = sparse ? 6 : 10;
+    const cap = Math.min(absMax, sparse ? 90 : absMax);
+    return Math.min(cap, Math.max(12, Math.ceil(gap * perStop)));
+  },
+
+  segmentSparse(gap, { chain = null, column = false } = {}) {
+    if (column) return true;
+    const chainLen = chain?.length ?? 0;
+    if (chainLen <= 2) return true;
+    if (gap >= 5 && chainLen - 1 < gap * 0.35) return true;
+    return false;
+  },
+
+  isPlausibleSegment(dep, arr, fromIdx, toIdx, { chain = null, column = false } = {}) {
+    const depM = this.parseMinutes(dep);
+    const arrM = this.parseMinutes(arr);
+    if (depM == null || arrM == null) return false;
+    const dur = arrM - depM;
+    const absMax = (typeof META_DATA !== "undefined" && META_DATA.segmentBounds?.absMaxMinutes)
+      || this.ABS_SEGMENT_MAX;
+    if (dur <= 0 || dur > absMax) return false;
+    const gap = this.stopIndexGap(fromIdx, toIdx);
+    const sparse = this.segmentSparse(gap, { chain, column });
+    const minM = this.minPlausibleMinutes(gap, { sparse, column });
+    const maxM = this.maxPlausibleMinutes(gap, { sparse });
+    return dur >= minM && dur <= maxM;
   },
 
   /** 展示用 24 小时制 HH:mm（公交/船运时刻，与 locale 无关） */
@@ -147,7 +209,9 @@ const AppCore = {
 
     const last = chain[chain.length - 1];
     if (!last || last.idx !== toIdx || lastM <= depM) return null;
-    return { dep, arr: last.time, fi: fromIdx, ti: toIdx, chain };
+    const seg = { dep, arr: last.time, fi: fromIdx, ti: toIdx, chain };
+    if (!this.isPlausibleSegment(dep, last.time, fromIdx, toIdx, { chain })) return null;
+    return seg;
   },
 
   /** 环线 PDF 整列：起终点时刻同列且 arr>dep 即可搜（拆分前 columnTrips） */
@@ -160,14 +224,53 @@ const AppCore = {
     if (!this.isBusTime(dep) || !this.isBusTime(arr)) return null;
     const depM = this.parseMinutes(dep);
     const arrM = this.parseMinutes(arr);
-    if (arrM <= depM || arrM - depM > 240) return null;
+    if (arrM <= depM || arrM - depM > this.ABS_SEGMENT_MAX) return null;
+    if (!this.isPlausibleSegment(dep, arr, fromIdx, toIdx, { column: true })) return null;
     return { dep, arr, fi: fromIdx, ti: toIdx, chain: null, column: true };
+  },
+
+  /** PDF 早班等：dest=makino 但 destNote 为自然馆，补全到屋久杉自然馆 */
+  tripMeansMuseum(trip) {
+    if (trip.dest === "yakusugi_museum") return true;
+    const note = trip.destNote;
+    if (!note) return false;
+    const text = [note.ja, note.zh, note.en].filter(Boolean).join(" ");
+    return /自然館|自然馆|Yakusugi Museum/i.test(text);
+  },
+
+  museumArrivalTime(trip, dir) {
+    const museumIdx = dir.stops.indexOf("yakusugi_museum");
+    if (museumIdx === -1) return null;
+    const explicit = trip.times.yakusugi_museum;
+    if (this.isBusTime(explicit)) return explicit;
+    const makinoIdx = dir.stops.indexOf("makino");
+    if (makinoIdx === -1 || makinoIdx >= museumIdx) return null;
+    const makinoTime = trip.times.makino;
+    if (!this.isBusTime(makinoTime)) return null;
+    const depM = this.parseMinutes(makinoTime);
+    if (depM == null) return null;
+    const arrM = depM + 5;
+    return this.formatTime(`${Math.floor(arrM / 60)}:${arrM % 60}`);
+  },
+
+  resolveMuseumDestSegment(trip, dir, fromIdx, toIdx) {
+    if (dir.stops[toIdx] !== "yakusugi_museum" || !this.tripMeansMuseum(trip)) return null;
+    const museumIdx = dir.stops.indexOf("yakusugi_museum");
+    const makinoIdx = dir.stops.indexOf("makino");
+    if (makinoIdx === -1 || fromIdx >= museumIdx || fromIdx > makinoIdx) return null;
+    const fromId = dir.stops[fromIdx];
+    const dep = trip.times[fromId];
+    const arr = this.museumArrivalTime(trip, dir);
+    if (!this.isBusTime(dep) || !this.isBusTime(arr)) return null;
+    if (!this.isPlausibleSegment(dep, arr, fromIdx, toIdx, { column: true })) return null;
+    return { dep, arr, fi: fromIdx, ti: toIdx, chain: null, column: true, museumInferred: true };
   },
 
   resolveSegment(trip, dir, fromIdx, toIdx) {
     return (
       this.resolveTripSegment(trip, dir, fromIdx, toIdx)
       || this.resolveColumnSegment(trip, dir, fromIdx, toIdx)
+      || this.resolveMuseumDestSegment(trip, dir, fromIdx, toIdx)
     );
   },
 
@@ -183,7 +286,8 @@ const AppCore = {
       }
       return out;
     }
-    const col = this.resolveColumnSegment(trip, dir, fromIdx, toIdx);
+    const col = this.resolveColumnSegment(trip, dir, fromIdx, toIdx)
+      || this.resolveMuseumDestSegment(trip, dir, fromIdx, toIdx);
     if (!col) return [];
     const depM = this.parseMinutes(col.dep);
     const arrM = this.parseMinutes(col.arr);
@@ -228,42 +332,82 @@ const AppCore = {
     return false;
   },
 
+  /** 同名区域站点簇（宫之浦港/入口/镇上 等合并搜索） */
+  stopSearchCluster(stopId) {
+    const cfg = typeof META_DATA !== "undefined" ? META_DATA : null;
+    const map = cfg?.stopSearchClusters;
+    if (map?.[stopId]?.length) return map[stopId];
+    return [stopId];
+  },
+
   findTrips(from, to, dayType) {
+    const fromIds = this.stopSearchCluster(from);
+    const toIds = this.stopSearchCluster(to);
     const found = [];
     if (typeof BUS_DATA === "undefined") return found;
-    for (const route of BUS_DATA.routes) {
-      for (const dir of route.directions) {
-        const fi = dir.stops.indexOf(from);
-        const ti = dir.stops.indexOf(to);
-        if (fi === -1 || ti === -1 || fi === ti) continue;
-        const pools = [];
-        if (dir.columnTrips?.length) pools.push(...dir.columnTrips);
-        else pools.push(...dir.trips);
-        for (const trip of pools) {
-          if (trip.suspended || !trip.days.includes(dayType)) continue;
-          const seg = this.resolveSegment(trip, dir, fi, ti);
-          if (!seg) continue;
-          found.push({
-            route,
-            dir,
-            trip,
-            dep: seg.dep,
-            arr: seg.arr,
-            fi: seg.fi,
-            ti: seg.ti,
-          });
+    const central = BUS_DATA.routes.find((r) => r.id === "central");
+    const centralStops = central
+      ? new Set(central.directions.flatMap((d) => d.stops))
+      : null;
+    const centralOnly =
+      centralStops && centralStops.has(from) && centralStops.has(to);
+    for (const fromId of fromIds) {
+      for (const toId of toIds) {
+        if (fromId === toId) continue;
+        for (const route of BUS_DATA.routes) {
+          if (!this.routeInSeason(route)) continue;
+          if (
+            centralOnly
+            && route.id.startsWith("matsubanda")
+            && toId !== "yakusugi_museum"
+            && fromId !== "yakusugi_museum"
+          ) continue;
+          for (const dir of route.directions) {
+            const fi = dir.stops.indexOf(fromId);
+            const ti = dir.stops.indexOf(toId);
+            if (fi === -1 || ti === -1 || fi === ti) continue;
+            if (fi > ti) continue;
+            const pools = [];
+            if (dir.columnTrips?.length) pools.push(...dir.columnTrips);
+            else pools.push(...dir.trips);
+            for (const trip of pools) {
+              if (trip.suspended || !trip.days.includes(dayType)) continue;
+              const seg = this.resolveSegment(trip, dir, fi, ti);
+              if (!seg) continue;
+              found.push({
+                route,
+                dir,
+                trip,
+                dep: seg.dep,
+                arr: seg.arr,
+                fi: seg.fi,
+                ti: seg.ti,
+                depStop: fromId,
+                arrStop: toId,
+              });
+            }
+          }
         }
       }
     }
-    const seen = new Set();
-    return found
-      .filter((t) => {
-        const key = `${t.route.id}|${t.dep}|${t.arr}`;
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      })
-      .sort((a, b) => this.parseMinutes(a.dep) - this.parseMinutes(b.dep));
+    const busMap = new Map();
+    for (const t of found) {
+      const busKey = `${t.route.id}|${t.dir.id}|${t.arr}`;
+      const prev = busMap.get(busKey);
+      if (!prev) {
+        busMap.set(busKey, t);
+        continue;
+      }
+      const pick = (a, b) => {
+        if (a.depStop === from && b.depStop !== from) return a;
+        if (b.depStop === from && a.depStop !== from) return b;
+        if (a.arrStop === to && b.arrStop !== to) return a;
+        if (b.arrStop === to && a.arrStop !== to) return b;
+        return this.parseMinutes(a.dep) <= this.parseMinutes(b.dep) ? a : b;
+      };
+      busMap.set(busKey, pick(prev, t));
+    }
+    return [...busMap.values()].sort((a, b) => this.parseMinutes(a.dep) - this.parseMinutes(b.dep));
   },
 
   /**
@@ -277,6 +421,7 @@ const AppCore = {
     const groups = [];
     if (!stopId || typeof BUS_DATA === "undefined" || !BUS_DATA.stops[stopId]) return groups;
     for (const route of BUS_DATA.routes) {
+      if (!this.routeInSeason(route)) continue;
       for (const dir of route.directions) {
         const si = dir.stops.indexOf(stopId);
         if (si === -1) continue;
@@ -290,7 +435,8 @@ const AppCore = {
           const time = this.formatTime(dep);
           if (seen.has(time)) continue;
           seen.add(time);
-          const destId = trip.dest || dir.stops[dir.stops.length - 1];
+          let destId = trip.dest || dir.stops[dir.stops.length - 1];
+          if (destId === "makino" && this.tripMeansMuseum(trip)) destId = "yakusugi_museum";
           deps.push({ time, dest: stopName(destId) });
         }
         if (!deps.length) continue;
@@ -397,6 +543,10 @@ const AppCore = {
 };
 
 AppCore.applyDocLang(AppCore.getLang());
+
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { AppCore };
+}
 
 /** @deprecated use AppCore.preferNativePdf — kept for inline scripts & cached pdf-viewer.js */
 function preferNativePdf() {

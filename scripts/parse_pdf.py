@@ -21,6 +21,7 @@ from lib.catalog import (  # noqa: E402
     no_to_id,
 )
 from lib.day_columns import REF_STOP, column_day_types  # noqa: E402
+from lib.pdf_align import ANCHOR_STOP, parse_side_text, parse_side_x  # noqa: E402
 from lib.operators import OPERATORS  # noqa: E402
 from lib.overrides import apply_overrides  # noqa: E402
 from lib.trip_split import split_routes_trips, validate_routes_monotonic  # noqa: E402
@@ -117,7 +118,7 @@ def apply_row(trips: list[dict], stop_no: str, raw: str) -> list[dict]:
     return trips
 
 
-def parse_side(text: str, side: str) -> list[dict]:
+def _parse_side_text_rows(text: str, side: str) -> dict[str, list[str | None]]:
     rows: dict[str, list[str | None]] = {}
     for line in text.splitlines():
         west, east = parse_row_line(line)
@@ -127,16 +128,32 @@ def parse_side(text: str, side: str) -> list[dict]:
             prev = rows.get(chunk[0])
             if prev is None or len(times) > len(prev):
                 rows[chunk[0]] = times
+    return rows
+
+
+def parse_side(text: str, side: str, pdf_path: Path | None = None) -> list[dict]:
+    path = pdf_path or PDF
+    if path.exists():
+        try:
+            from lib.pdf_align import load_pdf_words
+
+            words = load_pdf_words(path)
+            trips = parse_side_x(words, side)
+            if trips:
+                return trips
+        except ImportError:
+            pass
+
+    rows = _parse_side_text_rows(text, side)
+    if rows.get(ANCHOR_STOP[side]):
+        return parse_side_text(rows, side)
 
     ref = REF_STOP[side]
     if ref not in rows:
         return []
-    # 环线 PDF：参考站列数可能少于其他行（如西向 20 站 14 列、21 站 15 列），
-    # 须取全表最大列数，否则末列班次（如 18:26 宫之浦港入口）会被截断。
     ncols = max(len(rows[ref]), max((len(t) for t in rows.values()), default=0))
     day_types = column_day_types(side, ncols)
     trips = [{"days": day_types[i], "times": {}} for i in range(ncols)]
-
     for stop_no, times in rows.items():
         sid = no_to_id(stop_no)
         if not sid:
@@ -144,7 +161,6 @@ def parse_side(text: str, side: str) -> list[dict]:
         for i, t in enumerate(times):
             if i < ncols and t:
                 trips[i]["times"][sid] = t
-
     return [t for t in trips if len(t.get("times", {})) >= 2]
 
 

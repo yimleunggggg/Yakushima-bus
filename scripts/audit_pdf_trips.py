@@ -74,15 +74,15 @@ def pdf_column_stats(text: str) -> list[dict]:
 
 
 def resolve_trip_segment(trip: dict, stops: list[str], fi: int, ti: int) -> bool:
-    if fi == ti:
+    chain_len = resolve_trip_segment_chain_len(trip, stops, fi, ti)
+    if chain_len == 0:
         return False
-    dep = trip["times"].get(stops[fi])
-    if not dep or not TIME_RE.match(dep):
-        return False
-    dep_m = parse_minutes(dep)
+    dep = trip["times"][stops[fi]]
+    # rebuild arr from chain walk
     step = 1 if fi < ti else -1
+    dep_m = parse_minutes(dep)
     last_m = dep_m
-    last_idx = fi
+    arr = dep
     for i in range(fi + step, ti + step, step):
         raw = trip["times"].get(stops[i])
         if not raw or not TIME_RE.match(raw):
@@ -91,8 +91,8 @@ def resolve_trip_segment(trip: dict, stops: list[str], fi: int, ti: int) -> bool
         if m < last_m:
             continue
         last_m = m
-        last_idx = i
-    return last_idx == ti and last_m > dep_m
+        arr = raw
+    return is_plausible_segment(dep, arr, fi, ti, chain_len=chain_len, column=False)
 
 
 def resolve_column_segment(trip: dict, stops: list[str], fi: int, ti: int) -> bool:
@@ -103,7 +103,80 @@ def resolve_column_segment(trip: dict, stops: list[str], fi: int, ti: int) -> bo
     if not dep or not arr or not TIME_RE.match(dep) or not TIME_RE.match(arr):
         return False
     dep_m, arr_m = parse_minutes(dep), parse_minutes(arr)
-    return arr_m > dep_m and arr_m - dep_m <= 240
+    if not (arr_m > dep_m and arr_m - dep_m <= 240):
+        return False
+    return is_plausible_segment(dep, arr, fi, ti, chain_len=0, column=True)
+
+
+def stop_index_gap(fi: int, ti: int) -> int:
+    return abs(ti - fi)
+
+
+def min_plausible_minutes(gap: int, *, sparse: bool, column: bool = False) -> int:
+    if column:
+        return 2 if gap <= 1 else 5
+    if gap <= 1:
+        return 2
+    if not sparse:
+        return 10 if gap >= 3 else 5
+    if gap >= 5:
+        return int(gap * 1.2 + 0.999)
+    return 10
+
+
+def max_plausible_minutes(gap: int, *, sparse: bool) -> int:
+    abs_max = 120
+    per_stop = 6 if sparse else 10
+    cap = min(abs_max, 90 if sparse else abs_max)
+    return min(cap, max(12, int(gap * per_stop + 0.999)))
+
+
+def segment_sparse(gap: int, *, chain_len: int, column: bool) -> bool:
+    if column:
+        return True
+    if chain_len <= 2:
+        return True
+    if gap >= 5 and (chain_len - 1) < gap * 0.35:
+        return True
+    return False
+
+
+def is_plausible_segment(
+    dep: str, arr: str, fi: int, ti: int, *, chain_len: int = 0, column: bool = False
+) -> bool:
+    dep_m, arr_m = parse_minutes(dep), parse_minutes(arr)
+    dur = arr_m - dep_m
+    if dur <= 0 or dur > 120:
+        return False
+    gap = stop_index_gap(fi, ti)
+    sparse = segment_sparse(gap, chain_len=chain_len, column=column)
+    return min_plausible_minutes(gap, sparse=sparse, column=column) <= dur <= max_plausible_minutes(gap, sparse=sparse)
+
+
+def resolve_trip_segment_chain_len(trip: dict, stops: list[str], fi: int, ti: int) -> int:
+    if fi == ti:
+        return 0
+    dep = trip["times"].get(stops[fi])
+    if not dep or not TIME_RE.match(dep):
+        return 0
+    dep_m = parse_minutes(dep)
+    step = 1 if fi < ti else -1
+    last_m = dep_m
+    last_idx = fi
+    chain_len = 1
+    for i in range(fi + step, ti + step, step):
+        raw = trip["times"].get(stops[i])
+        if not raw or not TIME_RE.match(raw):
+            continue
+        m = parse_minutes(raw)
+        if m < last_m:
+            continue
+        last_m = m
+        last_idx = i
+        chain_len += 1
+    if last_idx != ti or last_m <= dep_m:
+        return 0
+    return chain_len
 
 
 def find_segments(

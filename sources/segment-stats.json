@@ -1,0 +1,204 @@
+{
+  "absMaxMinutes": 120,
+  "pdfWestGlobalMaxSegment": 50,
+  "pdfWestGlobalMaxSegmentPair": {
+    "from": "anbo_port",
+    "to": "saman_hotel",
+    "minutes": 50
+  },
+  "pdfWestMaxFullTrip": 102,
+  "adjacent": {
+    "miyanoura_port_entrance|miyanoura": {
+      "min": 2,
+      "max": 2,
+      "samples": 15
+    },
+    "miyanoura|kobara": {
+      "min": 2,
+      "max": 2,
+      "samples": 15
+    },
+    "kobara|a_coop": {
+      "min": 1,
+      "max": 1,
+      "samples": 15
+    },
+    "a_coop|miyaura_elem": {
+      "min": 1,
+      "max": 1,
+      "samples": 15
+    },
+    "miyaura_elem|asahi": {
+      "min": 2,
+      "max": 2,
+      "samples": 15
+    },
+    "asahi|kusugawa": {
+      "min": 2,
+      "max": 2,
+      "samples": 15
+    },
+    "kusugawa|kunugawa": {
+      "min": 4,
+      "max": 4,
+      "samples": 15
+    },
+    "kunugawa|kozeta": {
+      "min": 3,
+      "max": 3,
+      "samples": 15
+    },
+    "kozeta|shionomichi": {
+      "min": 4,
+      "max": 4,
+      "samples": 15
+    },
+    "shionomichi|hayasaki": {
+      "min": 2,
+      "max": 2,
+      "samples": 1
+    },
+    "hayasaki|towaho": {
+      "min": 3,
+      "max": 3,
+      "samples": 15
+    },
+    "towaho|funayuki": {
+      "min": 4,
+      "max": 4,
+      "samples": 15
+    },
+    "funayuki|gocho_mae": {
+      "min": 3,
+      "max": 5,
+      "samples": 15
+    },
+    "gocho_mae|police_mae": {
+      "min": 2,
+      "max": 2,
+      "samples": 15
+    },
+    "police_mae|anbo": {
+      "min": 2,
+      "max": 2,
+      "samples": 4
+    },
+    "anbo|makino": {
+      "min": 1,
+      "max": 1,
+      "samples": 14
+    },
+    "miyanoura_port|miyanoura_port_entrance": {
+      "min": 1,
+      "max": 2,
+      "samples": 14
+    },
+    "shionomichi|airport": {
+      "min": 1,
+      "max": 1,
+      "samples": 14
+    },
+    "airport|hayasaki": {
+      "min": 2,
+      "max": 2,
+      "samples": 14
+    },
+    "police_mae|anbo_port": {
+      "min": 4,
+      "max": 4,
+      "samples": 11
+    },
+    "anbo_port|saman_hotel": {
+      "min": 50,
+      "max": 50,
+      "samples": 1
+    },
+    "nagata|inakahama": {
+      "min": 3,
+      "max": 3,
+      "samples": 6
+    },
+    "inakahama|yoshida": {
+      "min": 7,
+      "max": 7,
+      "samples": 6
+    },
+    "yoshida|hitomaru": {
+      "min": 6,
+      "max": 6,
+      "samples": 6
+    },
+    "hitomaru|shitoko": {
+      "min": 5,
+      "max": 5,
+      "samples": 6
+    },
+    "shitoko|fukagawa": {
+      "min": 7,
+      "max": 7,
+      "samples": 6
+    },
+    "fukagawa|miyanoura_port": {
+      "min": 6,
+      "max": 6,
+      "samples": 6
+    },
+    "makino|morihisa_jinja": {
+      "min": 1,
+      "max": 1,
+      "samples": 12
+    },
+    "morihisa_jinja|hirano": {
+      "min": 4,
+      "max": 4,
+      "samples": 13
+    },
+    "hirano|mugi": {
+      "min": 8,
+      "max": 8,
+      "samples": 13
+    },
+    "mugi|botanical_park": {
+      "min": 1,
+      "max": 1,
+      "samples": 13
+    },
+    "botanical_park|hara": {
+      "min": 2,
+      "max": 2,
+      "samples": 13
+    },
+    "hara|onokaido": {
+      "min": 5,
+      "max": 5,
+      "samples": 13
+    },
+    "onokaido|saman_hotel": {
+      "min": 1,
+      "max": 1,
+      "samples": 13
+    },
+    "anbo_port|anbo": {
+      "min": 2,
+      "max": 2,
+      "samples": 10
+    },
+    "yakusugi_museum|morihisa_jinja": {
+      "min": 32,
+      "max": 32,
+      "samples": 1
+    }
+  },
+  "stopSearchClusters": {
+    "miyanoura": [
+      "miyanoura_port_early",
+      "miyanoura_port",
+      "miyanoura_port_entrance",
+      "miyanoura"
+    ],
+    "anbo": [
+      "anbo_port",
+      "anbo"
+    ]
+  }
+}
