@@ -3,15 +3,192 @@
 > 唯一主轴：**版本号 + 日期 → 加了 / 改了 / 减去了**。最新在上。  
 > 长教程：`docs/notes/` · SEO 专轴：[seo/SEO-JOURNAL.md](seo/SEO-JOURNAL.md)
 
-**当前 V1.7.3 · 2026-05-20**
+**当前 V1.8.3 · 2026-06-30**
 
 ---
 
 ## 待办
 
 - [ ] GSC：新页 URL 检查（`/without-car/`、`/map/`、`/fare/`、`/ferry/` 等）
+- [ ] Bing：建议操作「meta 过短」复扫（部署后 48h+）
 - [ ] 搜狗 / 360（可选）
 - [ ] IndexNow（可选）
+
+---
+
+## V1.8.3（2026-06-30）— Bing meta description 加长
+
+**加了**
+- `/access/` 跳转页：`meta description` + `noindex, follow`
+
+**改了**
+- 首页、`/ferry/` 的 `meta description` 扩至约 150 字（Bing 建议 150–160）
+- 首页 og / twitter description 同步加长
+- `seo-head-zh.js` 首页、船运中文 description 加长
+
+**减去了 / 下线**
+- `/access/` 不再参与索引（权重归 `/ferry/`）
+
+**技术**：`index.html`、`ferry/index.html`、`access/index.html`、`seo-head-zh.js?v=seo-zh-v2`
+
+---
+
+## V1.8.2（2026-06-30）— Trace v1.10 工具升级
+
+**加了**
+- `project.resources` 6 条项目入口（GitHub、生产站、OPS-JOURNAL 等）
+- 节点 `2026-06-30-trace-v110-upgrade`
+- `docs/buildtrace/backups/nodes-before-v1.10.json`（40 节点备份）
+
+**改了**
+- Trace v1.10：`viewer/`、`SKILL.md`、`scripts/`、`references/`、`CURSOR-UPDATE-PROMPT.md`、`.cursor/rules/buildtrace.mdc`
+- 看板 boot 优先 `../nodes.json`；资料柜支持 id 与编辑/移除
+- `PROJECT-NODES.md` 重生成（41 节点 + 项目入口）
+
+**减去了 / 下线**
+- Trace v1.8 工具文件（由 v1.10 覆盖）
+
+**技术**：`nodes.json` 41 节点、`PROJECT-PROFILE.md` 未改动、`buildtrace-v1.10.zip`
+
+---
+
+## V1.8.1（2026-06-30）— Trace v1.8 工具升级
+
+**加了**
+- `docs/buildtrace/CURSOR-UPDATE-PROMPT.md`（更新边界与维护流程）
+- `docs/buildtrace/references/evidence-policy.md`、`lifecycle.md`
+- `docs/buildtrace/release/` 发布文案
+- `docs/buildtrace/backups/nodes-before-v1.8.json`（39 节点备份）
+- 节点 `2026-06-30-trace-v18-upgrade`
+
+**改了**
+- Trace v1.8：`viewer/`、`SKILL.md`、`scripts/`、`references/`、`.cursor/rules/buildtrace.mdc`
+- 看板保留 `../nodes.json` 优先加载与「清空缓存并重载」
+- `PROJECT-NODES.md` 重生成（40 节点）
+
+**减去了 / 下线**
+- Trace v1.6 工具文件（由 v1.8 覆盖）
+
+**技术**：`nodes.json` 40 节点（39 历史 + 1 升级节点）、`PROJECT-PROFILE.md` 未改动、`buildtrace-v1.8.zip`
+
+---
+
+## V1.8.0（2026-07-01）— Trace v1.6 看板与规则升级
+
+**加了**
+- `docs/buildtrace/backups/nodes-before-v1.6.json`（升级前节点备份）
+
+**改了**
+- Trace v1.6：`viewer/`、`SKILL.md`、`scripts/nodes-json-to-md.mjs`、`.cursor/rules/buildtrace.mdc`
+- `PROJECT-NODES.md` 用 v1.6 脚本重生成
+
+**减去了 / 下线**
+- BuildTrace v1.5 看板/脚本（由 v1.6 覆盖）
+
+**技术**：`docs/buildtrace/nodes.json`（39 节点未改动）、`buildtrace-v1.6.zip`
+
+---
+
+## V1.7.9（2026-07-01）— Trace / BuildTrace v1.5 安装与节点迁移
+
+**加了**
+- Trace v1.5：`docs/buildtrace/`（viewer、references、v1.5 字段）
+- `docs/buildtrace/backups/nodes-before-v1.5.json`（38 节点备份）
+- 全局 skill `~/.cursor/skills/buildtrace/`（含 references/）
+
+**改了**
+- 37 条历史节点迁移至 v1.5 结构（plainSummary、scenario、结构化 evidence）
+- `.cursor/rules/buildtrace.mdc` 更新为 v1.5 Agent 工作流
+
+**减去了 / 下线**
+- BuildTrace v1.2 包文件（viewer/scripts/templates/SKILL 旧版）
+- 旧节点 `2026-06-30-buildtrace-v11-deep-backfill`（由 v1.5 安装节点替代）
+
+**技术**：`docs/buildtrace/nodes.json`（39 节点）、`buildtrace-v1.5.zip`
+
+---
+
+## V1.7.8（2026-06-30）— BuildTrace v1.2 与节点中文修复
+
+**加了**
+- `nodes.json` 语言修复元数据（`language_repair` 块）
+
+**改了**
+- BuildTrace 升级 v1.2（SKILL、viewer「清空旧缓存」、nodes-json-to-md、cursor-rule）
+- 38 条节点人类可读字段统一中文；`PROJECT-NODES.md` 重生成
+
+**减去了 / 下线**
+- v1.1 包文件引用（由 v1.2 覆盖）
+
+**技术**：`docs/buildtrace/nodes.json`、`buildtrace-v1.2.zip`
+
+---
+
+## V1.7.7（2026-06-30）— BuildTrace v1.1 深度回填
+
+**加了**
+- `nodes.json` 回填元数据（`backfill` 块：来源、git 108 commits、不可访问项）
+- 38 条项目节点（2026-05-20 → 2026-06-30）
+
+**改了**
+- BuildTrace 升级 v1.1（SKILL、viewer、nodes-json-to-md 中文版、cursor-rule）
+- `PROJECT-NODES.md` 全量重生成
+
+**减去了 / 下线**
+- 旧 11 条浅回填节点（由 38 条深度节点替代）
+
+**技术**：`docs/buildtrace/nodes.json`、`buildtrace-v1.1.zip`
+
+---
+
+## V1.7.6（2026-06-30）— 接入 BuildTrace 项目节点记忆
+
+**加了**
+- `docs/buildtrace/`：`nodes.json`（11 条回填节点）、`PROJECT-PROFILE.md`、`PROJECT-NODES.md`、viewer、scripts
+- `.cursor/rules/buildtrace.mdc`
+- 全局 skill `~/.cursor/skills/buildtrace/SKILL.md`
+
+**改了**
+- （无）
+
+**减去了 / 下线**
+- （无）
+
+**技术**：`docs/buildtrace/nodes.json`、`docs/buildtrace/viewer/index.html`
+
+---
+
+## V1.7.5（2026-06-30）— 下线 SHIPLOG
+
+**加了**
+- （无）
+
+**改了**
+- （无）
+
+**减去了 / 下线**
+- `docs/shiplog/`、`docs/SHIPLOG.md`、`.cursor/rules/shiplog.mdc`
+- 全局 skill `~/.cursor/skills/shiplog/`
+
+**技术**：项目记忆仍用 `docs/OPS-JOURNAL.md` + `ops-journal` skill
+
+---
+
+## V1.7.4（2026-06-30）— 接入 SHIPLOG 项目记忆
+
+**加了**
+- `docs/shiplog/`：SHIPLOG skill、模板、示例
+- `docs/SHIPLOG.md`：判断痕迹主文件（3 条种子条目）
+- `.cursor/rules/shiplog.mdc`：完成重要改动后落盘规则
+- 全局 skill `~/.cursor/skills/shiplog/SKILL.md`
+
+**改了**
+- （无）
+
+**减去了 / 下线**
+- （无）
+
+**技术**：`docs/SHIPLOG.md`、`docs/shiplog/SKILL.md`、`.cursor/rules/shiplog.mdc`
 
 ---
 

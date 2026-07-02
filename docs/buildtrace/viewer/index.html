@@ -1,0 +1,2433 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trace Viewer</title>
+  <style>
+    :root {
+      --bg: #f7fafb;
+      --paper: #ffffff;
+      --paper-2: #f1f5f7;
+      --ink: #12171b;
+      --ink-2: #29343b;
+      --muted: #6d7981;
+      --faint: #9aa6ad;
+      --line: #dce5e9;
+      --line-strong: #b9c8cf;
+      --side: #11181d;
+      --side-2: #182329;
+      --cyan: #19b7d8;
+      --cyan-soft: #e4f8fc;
+      --green: #1e7f68;
+      --green-soft: #e7f5f1;
+      --red: #b54b5a;
+      --red-soft: #fdecef;
+      --gold: #a77a24;
+      --gold-soft: #fbf4df;
+      --violet-free-blue: #315f86;
+      --shadow: 0 24px 60px rgba(16, 28, 35, 0.08);
+      --radius: 8px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --sans: "Avenir Next", "Hiragino Sans GB", "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+      --serif: "Avenir Next", "Hiragino Sans GB", "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+      color-scheme: light;
+      font-family: var(--sans);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(31, 52, 62, 0.035) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(31, 52, 62, 0.026) 1px, transparent 1px),
+        var(--bg);
+      background-size: 40px 40px;
+      color: var(--ink);
+      letter-spacing: 0;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 212px minmax(760px, 1fr) 360px;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      background: linear-gradient(180deg, var(--side), var(--side-2));
+      color: #eff7f8;
+      padding: 20px 14px;
+      overflow: auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 8px;
+      position: relative;
+      background: linear-gradient(135deg, rgba(25,183,216,0.34), rgba(255,255,255,0.05));
+    }
+
+    .mark::before,
+    .mark::after {
+      content: "";
+      position: absolute;
+      background: var(--cyan);
+    }
+
+    .mark::before {
+      width: 18px;
+      height: 1px;
+      left: 7px;
+      top: 16px;
+    }
+
+    .mark::after {
+      width: 1px;
+      height: 18px;
+      left: 16px;
+      top: 7px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 22px;
+      line-height: 1;
+      font-weight: 720;
+      letter-spacing: 0;
+    }
+
+    .brand p {
+      margin: 3px 0 0;
+      color: #a9b8be;
+      font-size: 12px;
+    }
+
+    .nav {
+      display: grid;
+      gap: 4px;
+      margin-bottom: 22px;
+    }
+
+    .nav button,
+    .agent-action,
+    .utility-btn {
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: #d8e3e7;
+      background: transparent;
+      min-height: 34px;
+      padding: 7px 9px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .nav button:hover,
+    .nav button.active,
+    .agent-action:hover,
+    .utility-btn:hover {
+      border-color: rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.07);
+      color: #fff;
+    }
+
+    .nav small,
+    .agent-action small {
+      color: #90a2a9;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .side-label {
+      margin: 24px 0 10px;
+      color: #7f929a;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 10px;
+    }
+
+    .agent-actions {
+      display: grid;
+      gap: 8px;
+    }
+
+    .agent-action {
+      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.045);
+      align-items: start;
+      min-height: 44px;
+      display: block;
+    }
+
+    .agent-action span {
+      display: block;
+      color: #fff;
+      font-weight: 680;
+      margin-bottom: 2px;
+    }
+
+    .source-stack {
+      display: grid;
+      gap: 8px;
+    }
+
+    .resource-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 24px 0 10px;
+      color: #7f929a;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 10px;
+    }
+
+    .add-resource {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: #d9f7ff;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .resource-shelf {
+      display: grid;
+      gap: 7px;
+    }
+
+    .resource-link {
+      display: grid;
+      grid-template-columns: 6px minmax(0, 1fr);
+      gap: 9px;
+      align-items: center;
+      min-height: 38px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      color: #dce8eb;
+      text-decoration: none;
+      padding: 8px 9px;
+    }
+
+    .resource-link:hover {
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.075);
+    }
+
+    .resource-mark {
+      width: 6px;
+      height: 24px;
+      border-radius: 999px;
+      background: var(--cyan);
+    }
+
+    .resource-mark.docs { background: #55c6a8; }
+    .resource-mark.reference { background: #d2b25e; }
+    .resource-mark.data { background: #6fb7e8; }
+    .resource-mark.deploy { background: #b7c6d0; }
+    .resource-mark.finance { background: #d7ae5f; }
+    .resource-mark.admin { background: #d46c7a; }
+    .resource-mark.design { background: #88b7c5; }
+
+    .resource-title {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #f1fbfd;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .resource-meta {
+      display: flex;
+      gap: 6px;
+      margin-top: 2px;
+      color: #8ea0a7;
+      font-size: 10px;
+    }
+
+    .source-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      color: #c6d2d7;
+      font-size: 12px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .source-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 0 4px rgba(25,183,216,0.10);
+    }
+
+    .source-dot.green { background: #55c6a8; box-shadow: 0 0 0 4px rgba(85,198,168,0.12); }
+    .source-dot.gold { background: #d2b25e; box-shadow: 0 0 0 4px rgba(210,178,94,0.12); }
+    .source-dot.red { background: #d46c7a; box-shadow: 0 0 0 4px rgba(212,108,122,0.12); }
+
+    .main {
+      padding: 24px 28px 36px;
+      overflow: auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--violet-free-blue);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .topbar h2 {
+      margin: 0;
+      max-width: 780px;
+      font-family: var(--serif);
+      font-size: clamp(30px, 3.4vw, 42px);
+      line-height: 1.08;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .topbar p {
+      margin: 14px 0 0;
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: end;
+    }
+
+    .btn {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 11px;
+      background: var(--paper);
+      color: var(--ink-2);
+      font-size: 13px;
+    }
+
+    .btn.primary {
+      border-color: #16232a;
+      background: #16232a;
+      color: #fff;
+    }
+
+    .btn.signal {
+      border-color: #96ddeb;
+      background: var(--cyan-soft);
+      color: #0b6174;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.78);
+      padding: 10px 12px;
+      min-height: 72px;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .stat strong {
+      font-family: var(--serif);
+      font-size: 22px;
+      line-height: 1;
+      font-weight: 520;
+    }
+
+    .stat em {
+      display: block;
+      margin-top: 6px;
+      color: var(--faint);
+      font-style: normal;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .resource-board {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(25,183,216,0.04), transparent 130px),
+        rgba(255,255,255,0.86);
+      box-shadow: 0 12px 34px rgba(16, 28, 35, 0.045);
+      margin-bottom: 14px;
+      padding: 14px 16px 16px;
+    }
+
+    .resource-board-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .resource-board-head h3 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 720;
+    }
+
+    .resource-board-head p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .resource-board-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px;
+    }
+
+    .resource-card {
+      min-height: 62px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.84);
+      color: inherit;
+      text-decoration: none;
+      padding: 10px 11px;
+      display: grid;
+      gap: 5px;
+    }
+
+    .resource-card:hover {
+      border-color: #9cdde8;
+      background: #f6fcfe;
+    }
+
+    .resource-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .resource-card strong {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 13px;
+    }
+
+    .resource-chip {
+      flex: none;
+      min-height: 20px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0 7px;
+      color: var(--muted);
+      background: #fff;
+      font-size: 10px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .resource-card span:last-child {
+      color: var(--faint);
+      font-size: 11px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .resource-card-note {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .resource-card-url {
+      color: var(--faint);
+      font-family: var(--mono);
+      font-size: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .resource-card-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 3px;
+    }
+
+    .resource-action {
+      min-height: 24px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0 8px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .resource-action:hover {
+      border-color: #9cdde8;
+      color: #0a6377;
+      background: var(--cyan-soft);
+    }
+
+    .resource-action.danger:hover {
+      border-color: #efb5bf;
+      color: #9d3545;
+      background: var(--red-soft);
+    }
+
+    .command-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .command {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(180deg, #fff, #f5f8fa);
+      padding: 11px 12px;
+      min-height: 76px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .command::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: 0;
+      transition: opacity 160ms ease;
+    }
+
+    .command:hover::before {
+      opacity: 1;
+    }
+
+    .command small {
+      display: block;
+      color: var(--violet-free-blue);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .command strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .command span {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .workspace {
+      display: block;
+    }
+
+    .timeline-overview {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.82);
+      box-shadow: 0 12px 34px rgba(16, 28, 35, 0.05);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .compact-head {
+      padding: 12px 16px 8px;
+      border-bottom: 0;
+    }
+
+    .milestone-rail {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(184px, 220px);
+      gap: 0;
+      overflow-x: auto;
+      padding: 8px 16px 18px;
+      scroll-snap-type: x proximity;
+      scrollbar-color: var(--line-strong) transparent;
+    }
+
+    .milestone {
+      position: relative;
+      min-height: 104px;
+      padding: 20px 18px 0 0;
+      border-top: 1px solid var(--line-strong);
+      border-left: 0;
+      border-right: 0;
+      border-bottom: 0;
+      background: transparent;
+      text-align: left;
+      color: inherit;
+      scroll-snap-align: start;
+    }
+
+    .milestone::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 0;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 0 4px rgba(25,183,216,0.12);
+    }
+
+    .milestone time {
+      display: block;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 10px;
+      margin-bottom: 5px;
+    }
+
+    .milestone strong {
+      display: block;
+      font-size: 12px;
+      line-height: 1.35;
+      color: var(--ink);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .milestone small {
+      display: block;
+      margin-top: 5px;
+      color: var(--faint);
+      font-size: 10px;
+    }
+
+    .milestone-summary {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .journal-page,
+    .inbox-panel,
+    .evidence-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(25,183,216,0.035), transparent 160px),
+        var(--paper);
+      box-shadow: 0 12px 34px rgba(16, 28, 35, 0.05);
+    }
+
+    .journal-page {
+      overflow: hidden;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 14px;
+      padding: 14px 16px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head h3 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 720;
+    }
+
+    .section-head p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .search {
+      width: 240px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 9px 10px;
+      outline: none;
+      color: var(--ink);
+      font-size: 13px;
+    }
+
+    .node-list {
+      display: grid;
+    }
+
+    .scenario-filter {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfdfe;
+    }
+
+    .scenario-filter button {
+      min-height: 28px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      padding: 0 10px;
+      font-size: 11px;
+    }
+
+    .scenario-filter button.active {
+      border-color: #9cdde8;
+      background: var(--cyan-soft);
+      color: #0a6377;
+    }
+
+    .node-row {
+      display: grid;
+      grid-template-columns: 88px minmax(0, 1fr) 68px;
+      gap: 14px;
+      align-items: start;
+      min-height: 98px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      background: transparent;
+      color: inherit;
+      border-left: 0;
+      border-right: 0;
+      border-top: 0;
+      width: 100%;
+      transition: background 160ms ease;
+    }
+
+    .node-row:hover,
+    .node-row.active {
+      background: #f5fafb;
+    }
+
+    .node-date {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .node-date span {
+      display: inline-block;
+      margin-top: 6px;
+      color: var(--gold);
+      background: var(--gold-soft);
+      border-radius: 999px;
+      padding: 4px 7px;
+      font-family: var(--sans);
+      font-size: 10px;
+    }
+
+    .node-title {
+      margin: 0 0 8px;
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 740;
+      letter-spacing: 0;
+    }
+
+    .node-summary {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .tag,
+    .status {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      min-height: 22px;
+      padding: 0 8px;
+      font-size: 10px;
+      line-height: 1;
+      white-space: nowrap;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: #fff;
+    }
+
+    .status {
+      justify-content: center;
+      font-weight: 650;
+      width: fit-content;
+      justify-self: end;
+    }
+
+    .status.pending-review { color: #805b09; background: var(--gold-soft); border-color: #ead69a; }
+    .status.reviewed { color: #126a55; background: var(--green-soft); border-color: #a8d8ca; }
+    .status.backfilled { color: #1c5d78; background: var(--cyan-soft); border-color: #a8dfea; }
+    .status.needs-user-context { color: #9d3545; background: var(--red-soft); border-color: #efb5bf; }
+
+    .side-work {
+      display: none;
+    }
+
+    .inbox-panel,
+    .evidence-panel {
+      padding: 16px;
+    }
+
+    .panel-title {
+      margin: 0 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .panel-title small {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 10px;
+    }
+
+    .inbox-item {
+      border-left: 2px solid var(--cyan);
+      padding: 0 0 0 10px;
+      margin: 14px 0;
+      color: var(--ink-2);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .inbox-item small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .evidence-lanes {
+      display: grid;
+      gap: 10px;
+    }
+
+    .lane {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .lane-label {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .lane-track {
+      min-height: 28px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #f7fafb;
+      padding: 4px;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .event-token {
+      max-width: 124px;
+      border-radius: 999px;
+      padding: 5px 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--ink-2);
+      font-size: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .event-token.ga4,
+    .event-token.posthog { border-color: #9cdde8; color: #0a6377; }
+    .event-token.github,
+    .event-token.vercel { border-color: #b7c6d0; color: #29343b; }
+    .event-token.stripe { border-color: #d9c680; color: #745315; }
+    .event-token.manual { border-color: #d8b9c0; color: #8c3240; }
+
+    .detail {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+      border-left: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(17,24,29,0.035), transparent 240px),
+        #fbfdfe;
+      padding: 22px 18px;
+    }
+
+    .detail-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .detail h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.24;
+      letter-spacing: 0;
+    }
+
+    .detail-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .detail-actions .btn {
+      min-height: 32px;
+      font-size: 12px;
+    }
+
+    .doc-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 10px;
+      color: var(--ink-2);
+      background: #fff;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .edit-panel {
+      display: grid;
+      gap: 10px;
+    }
+
+    .edit-panel label {
+      display: grid;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .edit-panel input,
+    .edit-panel select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      padding: 8px 9px;
+      outline: none;
+      font-size: 12px;
+    }
+
+    .detail-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .field {
+      margin-top: 14px;
+    }
+
+    .field label {
+      display: block;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .field p,
+    .field li {
+      margin: 0;
+      color: var(--ink-2);
+      font-size: 13px;
+      line-height: 1.62;
+    }
+
+    .field ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .chain {
+      display: grid;
+      gap: 8px;
+    }
+
+    .chain-step {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      align-items: start;
+      position: relative;
+    }
+
+    .chain-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: 28px;
+      bottom: -8px;
+      width: 1px;
+      background: linear-gradient(var(--cyan), transparent);
+    }
+
+    .chain-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #10212a;
+      color: #dffaff;
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      z-index: 1;
+    }
+
+    .chain-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fbfc;
+      padding: 10px;
+    }
+
+    .chain-box strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+
+    .chain-box span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 92px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      outline: none;
+      color: var(--ink);
+      background: #fff;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .empty {
+      padding: 22px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1280px) {
+      .app {
+        grid-template-columns: 220px minmax(520px, 1fr);
+      }
+
+      .detail {
+        grid-column: 1 / -1;
+        height: auto;
+        position: relative;
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 920px) {
+      .app {
+        display: block;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+      }
+
+      .status-grid,
+      .command-strip,
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .node-row {
+        grid-template-columns: 1fr;
+      }
+
+      .status {
+        justify-self: start;
+      }
+
+      .topbar {
+        display: block;
+      }
+
+      .actions {
+        justify-content: start;
+        margin-top: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <h1>Trace</h1>
+          <p>项目脉络</p>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Trace views">
+        <button class="active" data-view="all"><span>全部节点</span><small id="countAll">0</small></button>
+        <button data-view="pending-review"><span>待回看</span><small id="countPending">0</small></button>
+        <button data-view="needs-user-context"><span>待补</span><small id="countMissing">0</small></button>
+        <button data-view="hidden"><span>已隐藏</span><small id="countHidden">0</small></button>
+        <button data-mode="data-review"><span>数据复盘</span><small>range</small></button>
+        <button data-mode="external"><span>外部事实</span><small>events</small></button>
+      </nav>
+
+      <div class="resource-head">
+        <span>项目入口</span>
+        <button class="add-resource" id="addResource" title="添加项目入口" aria-label="添加项目入口">+</button>
+      </div>
+      <div class="resource-shelf" id="resourceShelf"></div>
+
+      <div class="side-label">工作方式</div>
+      <div class="agent-actions">
+        <button class="agent-action" data-mode="restore"><span>恢复上下文</span><small>读最近节点和待回看</small></button>
+        <button class="agent-action" data-mode="record"><span>记录本轮</span><small>先起草，你再改</small></button>
+        <button class="agent-action" data-mode="review"><span>复盘时间段</span><small>对照节点和数据</small></button>
+        <button class="agent-action" data-view="needs-user-context"><span>补缺口</span><small>只问关键问题</small></button>
+      </div>
+
+      <div class="side-label">可叠加来源</div>
+      <div class="source-stack">
+        <div class="source-row"><span>GitHub / Vercel</span><i class="source-dot"></i></div>
+        <div class="source-row"><span>GA4 / PostHog</span><i class="source-dot green"></i></div>
+        <div class="source-row"><span>Stripe / Revenue</span><i class="source-dot gold"></i></div>
+        <div class="source-row"><span>Manual notes</span><i class="source-dot red"></i></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Project Trace</p>
+          <h2>项目记忆，不是变更日志。</h2>
+          <p>按时间记住：当时为什么做、改了什么、证据在哪里、之后要看什么结果。Agent 先整理，你只纠错和补关键判断。</p>
+        </div>
+        <div class="actions">
+          <input id="importFile" type="file" accept="application/json,.json" hidden>
+          <button class="btn" id="importNodes">导入 JSON</button>
+          <button class="btn" id="exportNodes">导出 JSON</button>
+          <button class="btn signal" id="clearLocal">清空缓存</button>
+          <button class="btn primary" id="newNode">新节点草稿</button>
+        </div>
+      </header>
+
+      <section class="status-grid" id="summary"></section>
+
+      <section class="command-strip" id="modeStrip">
+        <button class="command" data-mode="restore">
+          <small>context</small>
+          <strong>恢复上下文</strong>
+          <span>开工前先读最近节点，避免忘掉前因。</span>
+        </button>
+        <button class="command" data-mode="record">
+          <small>draft</small>
+          <strong>记录本轮</strong>
+          <span>从对话、文件变化和验证结果起草。</span>
+        </button>
+        <button class="command" data-mode="review">
+          <small>review</small>
+          <strong>复盘时间段</strong>
+          <span>把改动、部署、事件、交易放一起看。</span>
+        </button>
+        <button class="command" data-mode="intent">
+          <small>inbox</small>
+          <strong>补关键缺口</strong>
+          <span>只追问重要节点缺失的原因和判断。</span>
+        </button>
+      </section>
+
+      <section class="resource-board" aria-label="Project resources">
+        <div class="resource-board-head">
+          <div>
+            <h3>项目入口</h3>
+            <p>GitHub、文档、参考资料、数据平台、部署后台、支付和设计稿都放这里；它们是资料柜，不是单条记录。</p>
+          </div>
+          <button class="btn" id="addResourceMain">添加入口</button>
+        </div>
+        <div class="resource-board-grid" id="resourceBoard"></div>
+      </section>
+
+      <section class="timeline-overview" aria-label="Project timeline overview">
+        <div class="section-head compact-head">
+          <div>
+            <h3>项目总览</h3>
+            <p>按时间展示所有未隐藏节点，横向拖动看完整脉络；这里只说人能读懂的事，路径和技术名词放详情里。</p>
+          </div>
+        </div>
+        <div class="milestone-rail" id="milestoneRail"></div>
+      </section>
+
+      <section class="workspace">
+        <article class="journal-page">
+          <div class="section-head">
+            <div>
+              <h3>项目时间页</h3>
+              <p>先看一句话和可信度，技术细节放右侧。</p>
+            </div>
+            <input class="search" id="search" type="search" placeholder="搜索节点、变化、证据">
+          </div>
+          <div class="scenario-filter" id="scenarioFilter"></div>
+          <div class="node-list" id="nodeList"></div>
+        </article>
+
+        <aside class="side-work">
+          <section class="inbox-panel">
+            <h3 class="panel-title">待补问题 <small>draft</small></h3>
+            <div id="intentInbox"></div>
+          </section>
+
+          <section class="evidence-panel">
+            <h3 class="panel-title">外部事实轨道 <small id="externalCount">0</small></h3>
+            <div class="evidence-lanes" id="evidenceLanes"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <aside class="detail" id="detail"></aside>
+  </div>
+
+  <script>
+    const labels = {
+      status: {
+        "pending-review": "待回看",
+        reviewed: "已回看",
+        backfilled: "已补录",
+        "needs-user-context": "待补"
+      },
+      confidence: {
+        "confirmed-by-user": "用户确认",
+        inferred: "证据推断",
+        "not-captured": "缺原因"
+      },
+      result: {
+        pending: "待回填",
+        worked: "有效",
+        "did-not-work": "无效/有害",
+        unclear: "不确定",
+        "not-needed": "无需回看"
+      },
+      scenario: {
+        feature: "功能新增",
+        bugfix: "Bug 修复",
+        optimization: "优化",
+        experiment: "实验",
+        "analytics-data": "数据/埋点",
+        "growth-seo": "SEO/增长",
+        monetization: "变现/交易",
+        architecture: "架构/重构",
+        content: "内容/文案",
+        "ops-release": "运维/发布",
+        "app-mobile": "App",
+        "ai-prompt": "AI/提示词",
+        "security-privacy": "安全/隐私",
+        decision: "决策",
+        snapshot: "快照"
+      },
+      type: {
+        feature: "功能",
+        experiment: "实验",
+        optimization: "优化",
+        bugfix: "修复",
+        data: "数据",
+        architecture: "架构",
+        content: "内容",
+        seo: "SEO",
+        monetization: "变现",
+        ops: "运维",
+        decision: "决策",
+        snapshot: "快照",
+        ux: "体验",
+        analytics: "分析",
+        acquisition: "获客"
+      }
+    };
+
+    const sampleData = {
+      schema_version: "buildtrace.nodes.v1",
+      project: {
+        name: "示例项目",
+        purpose: "演示 Trace 的冷感科技手账式项目记忆。",
+        updated_at: "2026-07-01",
+        resources: [
+          { category: "code", title: "GitHub 仓库", url: "https://github.com/example/project", note: "代码与 issue" },
+          { category: "docs", title: "项目文档", url: "../PROJECT-NODES.md", note: "长期记录" },
+          { category: "data", title: "GA4 / PostHog", url: "", note: "粘贴真实后台链接" },
+          { category: "deploy", title: "Vercel / 部署后台", url: "", note: "粘贴真实部署入口" }
+        ]
+      },
+      nodes: [
+        {
+          id: "2026-06-30-parser-trust",
+          date: "2026-06-30",
+          title: "PDF 列对齐修复，恢复时刻表可信度",
+          plainSummary: "修复错误 PDF 解析造成的离谱班次，让地图和时刻表读同一份可信数据。",
+          technicalNote: "按 x 坐标重建 PDF 列，统一地图弹窗和时刻表数据源，并增加异常车程过滤。",
+          status: "pending-review",
+          types: ["bugfix", "data"],
+          scenario: "bugfix",
+          reviewDue: "2026-07-08",
+          dateConfidence: "commit-exact",
+          humanIntent: {
+            original: "离谱伪班次比查不到更伤信任。",
+            interpretation: "用户认为错误结果会破坏工具可信度，宁愿明确没有结果，也不能展示伪造班次。",
+            confidence: "confirmed-by-user"
+          },
+          scenarioDetail: {
+            problem: "PDF 列合并导致 1 分钟跨港、291 分钟三站等假班次。",
+            solution: "重建列解析并统一数据源。",
+            successSignal: "异常班次消失，路线点击和停留行为不被错误结果污染。",
+            risk: "PDF 更新后仍需审计。"
+          },
+          sourceRefs: ["示例数据：请替换为真实 commit、文件路径、截图路径或数据导出"],
+          docRef: "../PROJECT-NODES.md",
+          changes: {
+            added: ["异常车程过滤"],
+            changed: ["PDF 列解析", "地图和时刻表数据来源"],
+            removed: ["伪班次展示"],
+            optimized: ["数据可信度"]
+          },
+          technical: {
+            files: ["scripts/parse-pdf.js", "map/index.html", "timetable/index.html"],
+            schema: "统一 stop/trip 数据结构",
+            architecture: "单一数据源供地图和时刻表读取",
+            validation: "问题样例回归检查"
+          },
+          evidence: [
+            { kind: "example", ref: "替换为真实 commit / 文件 / 日志路径", note: "示例数据，不可当作真实证据" }
+          ],
+          externalEvents: [
+            { source: "manual", date: "2026-06-30", kind: "example", title: "替换为真实 commit / push / deploy", value: "", note: "示例数据，不可当作真实事实" }
+          ],
+          review: {
+            watch: "路线点击、查询失败率、用户反馈。",
+            result: "pending",
+            learning: ""
+          }
+        },
+        {
+          id: "2026-06-28-baidu-zh",
+          date: "2026-06-28",
+          title: "百度来源中文优先，降低首访理解摩擦",
+          plainSummary: "中文搜索来的访客优先看到中文信息，减少英文首屏造成的跳出风险。",
+          technicalNote: "补中文 SEO 元信息，并调整来源/referrer 触发的语言启动逻辑。",
+          status: "backfilled",
+          types: ["seo", "experiment"],
+          scenario: "growth-seo",
+          reviewDue: "2026-07-06",
+          dateConfidence: "doc-exact",
+          humanIntent: {
+            original: "百度搜索来的用户大概率是中文意图，首屏英文页可能直接跳出。",
+            interpretation: "用户把语言匹配视为中文自然搜索体验的前置条件。",
+            confidence: "confirmed-by-user"
+          },
+          scenarioDetail: {
+            problem: "搜索意图和页面首屏语言不匹配。",
+            solution: "百度来源首访中文优先。",
+            successSignal: "中文页浏览、路线点击、关键事件改善。",
+            risk: "流量小，短期无法强归因。"
+          },
+          sourceRefs: ["notes/2026-06-28-baidu-search-setup.md"],
+          docRef: "../PROJECT-NODES.md",
+          changes: {
+            added: ["中文 SEO 元信息", "百度来源判断"],
+            changed: ["首访语言启动逻辑"],
+            removed: ["无"],
+            optimized: ["中文访客落地体验"]
+          },
+          technical: {
+            files: ["seo-head-zh.js", "lang-boot.js", "sitemap-zh.xml"],
+            schema: "无数据结构变更",
+            architecture: "前端语言引导",
+            validation: "本地 URL 和线上冒烟测试"
+          },
+          evidence: [
+            { kind: "note", ref: "2026-06-28-baidu-search-setup.md", note: "动机记录" }
+          ],
+          externalEvents: [
+            { source: "ga4", date: "2026-07-06", kind: "metric", title: "待导入中文页行为", value: "pending export", note: "复盘时导入聚合数据" }
+          ],
+          review: {
+            watch: "百度自然访问、中文页浏览、路线点击。",
+            result: "pending",
+            learning: ""
+          }
+        },
+        {
+          id: "2026-06-25-affiliate-context",
+          date: "2026-06-25",
+          title: "联盟卡片按页面意图出现",
+          plainSummary: "变现入口从全站堆叠改为按页面任务出现，减少对买票用户的打扰。",
+          technicalNote: "按页面类型渲染 Klook/Viator 区块，并保留追踪参数。",
+          status: "needs-user-context",
+          types: ["monetization", "decision"],
+          scenario: "monetization",
+          reviewDue: "none",
+          dateConfidence: "date-inferred",
+          humanIntent: {
+            original: "未捕捉。",
+            interpretation: "从页面变化看，用户可能希望变现跟随页面意图，而不是每页强行插广告。",
+            confidence: "not-captured"
+          },
+          scenarioDetail: {
+            problem: "船运页用户想买票，日游卡片像打断。",
+            solution: "登山/行程页保留联盟卡片，船运页弱化。",
+            successSignal: "联盟点击更自然，不损害核心任务。",
+            risk: "缺用户原始动机，需要补。"
+          },
+          sourceRefs: ["trekking/index.html", "ferry/index.html"],
+          docRef: "../PROJECT-NODES.md",
+          changes: {
+            added: ["页面条件渲染"],
+            changed: ["联盟卡片位置"],
+            removed: ["船运页强打扰卡片"],
+            optimized: ["变现与页面意图匹配"]
+          },
+          technical: {
+            files: ["trekking/index.html", "ferry/index.html"],
+            schema: "联盟追踪参数",
+            architecture: "静态页面条件区块",
+            validation: "页面冒烟检查"
+          },
+          evidence: [
+            { kind: "file", ref: "trekking/index.html", note: "联盟卡片位置" }
+          ],
+          externalEvents: [
+            { source: "manual", date: "2026-07-01", kind: "note", title: "待补联盟点击观察", value: "", note: "手填后台观察" }
+          ],
+          review: {
+            watch: "联盟点击、页面跳出、核心 CTA 点击。",
+            result: "unclear",
+            learning: ""
+          }
+        }
+      ],
+      externalEvents: [
+        { id: "sample-external-event", source: "manual", date: "2026-07-01", kind: "example", title: "示例外部事实，使用时请替换为真实来源", value: "", note: "外部事实不自动代表因果" }
+      ]
+    };
+
+    let projectMeta = sampleData.project;
+    let nodes = sampleData.nodes.map(normalizeNode);
+    let externalEvents = sampleData.externalEvents.map(normalizeExternalEvent);
+    let selectedId = nodes[0]?.id || null;
+    let activeView = "all";
+    let activeMode = "restore";
+    let activeScenario = "all";
+    let editMode = false;
+    let searchTerm = "";
+
+    const resourceCategories = {
+      code: "代码",
+      docs: "文档",
+      reference: "参考",
+      data: "数据",
+      deploy: "部署",
+      finance: "交易",
+      admin: "后台",
+      design: "设计",
+      other: "其他"
+    };
+
+    function scalar(value, fallback = "") {
+      if (value === undefined || value === null || value === "") return fallback;
+      if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") return String(value);
+      if (Array.isArray(value)) return value.map(item => scalar(item)).filter(Boolean).join("；");
+      return value.label || value.value || value.status || value.confidence || value.note || value.text || fallback;
+    }
+
+    function toArray(value) {
+      if (Array.isArray(value)) return value;
+      if (value === undefined || value === null || value === "") return [];
+      return String(value).split(/\n|;/).map(item => item.trim()).filter(Boolean);
+    }
+
+    function normalizeTypes(value) {
+      const list = Array.isArray(value) ? value : String(value || "decision").split(",");
+      return list.map(item => scalar(item).trim()).filter(Boolean);
+    }
+
+    function normalizeExternalEvent(event) {
+      if (typeof event === "string") {
+        return { id: `manual-${Math.random().toString(36).slice(2, 8)}`, source: "manual", date: "", kind: "note", title: event, value: "", url: "", nodeId: "", note: "" };
+      }
+      const source = scalar(event?.source, "manual").toLowerCase();
+      return {
+        id: scalar(event?.id, `${source}-${event?.date || "unknown"}-${Math.random().toString(36).slice(2, 8)}`),
+        source,
+        date: scalar(event?.date, ""),
+        kind: scalar(event?.kind, "event"),
+        title: scalar(event?.title || event?.name, "未命名事件"),
+        value: scalar(event?.value || event?.count || event?.status || event?.amount, ""),
+        url: scalar(event?.url || event?.link, ""),
+        nodeId: scalar(event?.nodeId || event?.node_id, ""),
+        note: scalar(event?.note || event?.description, "")
+      };
+    }
+
+    function normalizeResource(resource) {
+      if (typeof resource === "string") {
+        return { id: `resource-${Math.random().toString(36).slice(2, 8)}`, category: "other", title: resource, url: resource, note: "" };
+      }
+      const category = scalar(resource?.category, "other").trim();
+      return {
+        id: scalar(resource?.id, `resource-${Math.random().toString(36).slice(2, 8)}`),
+        category: resourceCategories[category] ? category : "other",
+        title: scalar(resource?.title || resource?.name, "未命名入口"),
+        url: scalar(resource?.url || resource?.href || resource?.path, ""),
+        note: scalar(resource?.note || resource?.description, "")
+      };
+    }
+
+    function normalizeNode(node) {
+      const humanIntent = node.humanIntent || {};
+      const review = node.review || {};
+      const types = normalizeTypes(node.types || node.type || "decision");
+      return {
+        id: node.id || `${node.date || new Date().toISOString().slice(0, 10)}-${Math.random().toString(36).slice(2, 8)}`,
+        date: scalar(node.date, new Date().toISOString().slice(0, 10)),
+        title: scalar(node.title, "未命名节点"),
+        plainSummary: scalar(node.plainSummary || node.summary || humanIntent.interpretation, ""),
+        technicalNote: scalar(node.technicalNote || node.technical?.note, ""),
+        status: scalar(node.status, "needs-user-context"),
+        types,
+        scenario: scalar(node.scenario || types[0], "decision"),
+        reviewDue: scalar(node.reviewDue || node.review_due, "none"),
+        dateConfidence: scalar(node.dateConfidence || node.date_confidence, "unknown"),
+        original: scalar(node.original || humanIntent.original, "未捕捉。"),
+        interpretation: scalar(node.interpretation || humanIntent.interpretation, "需要补当时为什么做。"),
+        confidence: scalar(node.confidence || humanIntent.confidence, "not-captured"),
+        scenarioDetail: node.scenarioDetail || {},
+        sourceRefs: toArray(node.sourceRefs || node.source_refs),
+        docRef: scalar(node.docRef || node.doc_ref || node.markdownRef || node.markdown_ref, "../PROJECT-NODES.md"),
+        hidden: Boolean(node.hidden),
+        userNotes: toArray(node.userNotes || node.user_notes),
+        changes: {
+          added: toArray(node.changes?.added),
+          changed: toArray(node.changes?.changed),
+          removed: toArray(node.changes?.removed),
+          optimized: toArray(node.changes?.optimized)
+        },
+        technical: {
+          files: toArray(node.technical?.files),
+          schema: scalar(node.technical?.schema || node.technical?.data, ""),
+          architecture: scalar(node.technical?.architecture || node.technical?.config, ""),
+          validation: scalar(node.technical?.validation, "")
+        },
+        evidence: toArray(node.evidence),
+        externalEvents: toArray(node.externalEvents).map(normalizeExternalEvent),
+        watch: scalar(node.watch || review.watch, ""),
+        result: scalar(node.result || review.result, "pending"),
+        learning: scalar(node.learning || review.learning, "")
+      };
+    }
+
+    function publicTitle(node) {
+      const raw = scalar(node?.title, "未命名节点");
+      const summary = scalar(node?.plainSummary || node?.interpretation, "");
+      const lower = raw.toLowerCase();
+      if (/url\s*重命名/i.test(raw)) return "页面地址与搜索意图对齐";
+      if (/\/guide\/\s*(?:→|->)\s*\/map\//i.test(raw)) return "便利设施地图入口调整";
+      if (/\/fare\/|\/ferry\//i.test(raw)) return "运价和上岛页面地址整理";
+
+      let title = raw
+        .replace(/\s*\/[A-Za-z0-9._-]+\/\s*(?:→|->)\s*\/[A-Za-z0-9._-]+\/\s*/g, " 页面入口调整 ")
+        .replace(/\s*\/[A-Za-z0-9._-]+\/\s*\/[A-Za-z0-9._-]+\/\s*/g, " 页面地址 ")
+        .replace(/\s{2,}/g, " ")
+        .trim();
+
+      if ((title === raw || title.length < 6) && lower.includes("url")) {
+        title = "页面地址整理";
+      }
+      if (title.length <= 4 && summary) return summary.split(/[；。,.，]/)[0].slice(0, 26);
+      return title || raw;
+    }
+
+    function outerSummary(node) {
+      return scalar(node?.plainSummary || node?.interpretation, "")
+        .replace(/\s*\/[A-Za-z0-9._-]+\/\s*(?:→|->)\s*\/[A-Za-z0-9._-]+\/\s*/g, "页面入口调整")
+        .replace(/\s{2,}/g, " ")
+        .trim();
+    }
+
+    function label(group, value) {
+      return labels[group]?.[value] || value || "";
+    }
+
+    function evidenceText(item) {
+      if (typeof item === "string") return item;
+      if (!item) return "";
+      return [item.kind, item.ref, item.note || item.supports].filter(Boolean).join(" / ");
+    }
+
+    function eventText(event) {
+      return [event.source, event.date, event.kind, event.title, event.value, event.note].filter(Boolean).join(" ");
+    }
+
+    function allExternalEvents() {
+      const nodeEvents = nodes.flatMap(node => (node.externalEvents || []).map(event => ({ ...event, nodeId: event.nodeId || node.id })));
+      return [...externalEvents, ...nodeEvents];
+    }
+
+    function eventsForNode(node) {
+      return allExternalEvents().filter(event => event.nodeId === node.id || event.date === node.date);
+    }
+
+    function matchesNode(node) {
+      const byView = activeView === "hidden" ? node.hidden : (activeView === "all" ? !node.hidden : node.status === activeView && !node.hidden);
+      const byScenario = activeScenario === "all" || node.scenario === activeScenario || node.types.includes(activeScenario);
+      const haystack = [
+        node.title,
+        node.plainSummary,
+        node.original,
+        node.interpretation,
+        node.technicalNote,
+        node.watch,
+        node.scenario,
+        Object.values(node.scenarioDetail || {}).join(" "),
+        Object.values(node.changes).flat().join(" "),
+        node.technical.files.join(" "),
+        node.evidence.map(evidenceText).join(" "),
+        node.externalEvents.map(eventText).join(" ")
+      ].join(" ").toLowerCase();
+      const bySearch = !searchTerm || haystack.includes(searchTerm.toLowerCase());
+      return byView && byScenario && bySearch;
+    }
+
+    function filteredNodes() {
+      return nodes.filter(matchesNode);
+    }
+
+    function ensureSelectedVisible() {
+      const list = filteredNodes();
+      if (list.length && !list.some(node => node.id === selectedId)) selectedId = list[0].id;
+      if (!list.length && activeView !== "all") selectedId = null;
+    }
+
+    function setMode(mode) {
+      activeMode = mode;
+      document.querySelectorAll("[data-mode]").forEach(el => el.classList.toggle("active", el.dataset.mode === mode));
+      renderIntentInbox();
+    }
+
+    function renderSummary() {
+      const pending = nodes.filter(n => n.status === "pending-review").length;
+      const missing = nodes.filter(n => n.status === "needs-user-context").length;
+      const reviewed = nodes.filter(n => n.status === "reviewed").length;
+      const backfilled = nodes.filter(n => n.status === "backfilled").length;
+      const hidden = nodes.filter(n => n.hidden).length;
+      const external = allExternalEvents().length;
+      const items = [
+        ["节点", nodes.length, "当前记录"],
+        ["待回看", pending, "之后补结果"],
+        ["待补", missing, "缺原因"],
+        ["已处理", reviewed + backfilled, "已回看/补录"],
+        ["外部事实", external, "数据/部署/交易"]
+      ];
+      document.getElementById("summary").innerHTML = items.map(([labelText, value, note]) => `
+        <article class="stat">
+          <span>${labelText}</span>
+          <strong>${value}</strong>
+          <em>${note}</em>
+        </article>
+      `).join("");
+      document.getElementById("countAll").textContent = nodes.length;
+      document.getElementById("countPending").textContent = pending;
+      document.getElementById("countMissing").textContent = missing;
+      document.getElementById("countHidden").textContent = hidden;
+    }
+
+    function renderResources() {
+      const resources = (projectMeta.resources || []).map(normalizeResource);
+      const shelf = document.getElementById("resourceShelf");
+      const board = document.getElementById("resourceBoard");
+      if (!resources.length) {
+        shelf.innerHTML = `<div class="source-row"><span>暂无入口，点 + 添加</span><i class="source-dot"></i></div>`;
+        board.innerHTML = `<div class="empty">暂无项目入口。可以添加 GitHub、原始文档、GA4、PostHog、Vercel、Stripe、Figma 或其他项目资料。</div>`;
+        return;
+      }
+      shelf.innerHTML = resources.slice(0, 8).map(resource => {
+        const href = resource.url || "#";
+        const host = resource.url ? safeHost(resource.url) : "待补链接";
+        return `
+          <a class="resource-link" href="${escapeAttr(href)}" target="_blank" rel="noreferrer" title="${escapeAttr(resource.note || resource.url || "")}">
+            <i class="resource-mark ${escapeAttr(resource.category)}"></i>
+            <span>
+              <span class="resource-title">${resource.title}</span>
+              <span class="resource-meta"><span>${resourceCategories[resource.category] || "其他"}</span><span>${host}</span></span>
+            </span>
+          </a>
+        `;
+      }).join("");
+      board.innerHTML = resources.map(resource => {
+        const href = resource.url || "#";
+        const host = resource.url ? safeHost(resource.url) : "待补链接";
+        const index = resources.findIndex(item => item.id === resource.id);
+        return `
+          <article class="resource-card" title="${escapeAttr(resource.note || resource.url || "")}">
+            <span class="resource-card-top">
+              <strong>${resource.title}</strong>
+              <span class="resource-chip">${resourceCategories[resource.category] || "其他"}</span>
+            </span>
+            <span class="resource-card-note">${resource.note || "暂无说明"}</span>
+            <span class="resource-card-url">${host}</span>
+            <span class="resource-card-actions">
+              <a class="resource-action" href="${escapeAttr(href)}" target="_blank" rel="noreferrer">打开</a>
+              <button class="resource-action" data-resource-action="edit" data-resource-index="${index}">编辑</button>
+              <button class="resource-action danger" data-resource-action="remove" data-resource-index="${index}">移除</button>
+            </span>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function safeHost(url) {
+      if (!url) return "";
+      try {
+        if (url.startsWith("../") || url.startsWith("./") || url.startsWith("/")) return "本地文件";
+        return new URL(url).hostname.replace(/^www\./, "");
+      } catch {
+        return "本地/自定义";
+      }
+    }
+
+    function renderScenarioFilters() {
+      const options = [
+        ["all", "全部场景"],
+        ["feature", "功能"],
+        ["bugfix", "修复"],
+        ["optimization", "优化"],
+        ["experiment", "实验"],
+        ["analytics-data", "数据"],
+        ["growth-seo", "SEO/增长"],
+        ["monetization", "变现"],
+        ["architecture", "架构"],
+        ["content", "内容"],
+        ["ops-release", "发布"],
+        ["ai-prompt", "AI"]
+      ];
+      document.getElementById("scenarioFilter").innerHTML = options.map(([value, text]) => `
+        <button class="${activeScenario === value ? "active" : ""}" data-scenario="${value}">${text}</button>
+      `).join("");
+    }
+
+    function renderMilestones() {
+      const list = nodes
+        .filter(node => !node.hidden)
+        .slice()
+        .sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
+      document.getElementById("milestoneRail").innerHTML = list.map(node => `
+        <button class="milestone" data-id="${node.id}">
+          <time>${node.date}</time>
+          <strong>${publicTitle(node)}</strong>
+          <small>${label("scenario", node.scenario)} · ${label("confidence", node.confidence)}</small>
+          <span class="milestone-summary">${outerSummary(node)}</span>
+        </button>
+      `).join("") || `<div class="empty">还没有可展示的关键节点。</div>`;
+    }
+
+    function renderNodeList() {
+      const list = filteredNodes().slice().sort((a, b) => b.date.localeCompare(a.date));
+      const el = document.getElementById("nodeList");
+      if (!list.length) {
+        el.innerHTML = `<div class="empty">没有匹配当前筛选的节点。</div>`;
+        return;
+      }
+      el.innerHTML = list.map(node => `
+        <button class="node-row ${node.id === selectedId ? "active" : ""}" data-id="${node.id}">
+          <div class="node-date">
+            ${node.date}
+            ${node.reviewDue && node.reviewDue !== "none" ? `<br><span>${node.reviewDue}</span>` : ""}
+          </div>
+          <div>
+            <h4 class="node-title">${publicTitle(node)}</h4>
+            <p class="node-summary">${outerSummary(node)}</p>
+            <div class="tags">
+              <span class="tag">${label("scenario", node.scenario)}</span>
+              <span class="tag">${label("confidence", node.confidence)}</span>
+            </div>
+          </div>
+          <span class="status ${node.status}">${label("status", node.status)}</span>
+        </button>
+      `).join("");
+    }
+
+    function renderIntentInbox() {
+      const target = document.getElementById("intentInbox");
+      const missing = nodes.filter(node => node.status === "needs-user-context");
+      const pending = nodes.filter(node => node.status === "pending-review");
+      const selected = nodes.find(node => node.id === selectedId) || nodes[0];
+      let items = [];
+
+      if (activeMode === "record") {
+        items = [
+          ["先起草", "根据对话、文件变化、git 差异和验证结果生成一条记录。"],
+          ["再确认", "你只需要改错，或补一句当时为什么要做。"]
+        ];
+      } else if (activeMode === "review") {
+        items = [
+          ["看同一段时间", "把改动、部署、事件、交易、手填观察放在一起。"],
+          ["不乱归因", "只说明同一时间段发生；证据不足不下结论。"]
+        ];
+      } else if (activeMode === "intent") {
+        items = [
+          ["先暂存", "把担心、希望、取舍、假设先放着，不打断开发。"],
+          ["再整理", "结束时压缩成节点。"]
+        ];
+      } else {
+        items = [
+          ["最近上下文", `${selected?.title || "暂无节点"}。先读最近节点，再动代码。`],
+          ["优先处理", missing[0]?.title || pending[0]?.title || "暂无紧急缺口。"]
+        ];
+      }
+
+      target.innerHTML = items.map(([title, body]) => `
+        <div class="inbox-item">
+          <strong>${title}</strong>
+          <br>${body}
+          <small>待整理</small>
+        </div>
+      `).join("");
+    }
+
+    function renderEvidenceLanes() {
+      const events = allExternalEvents();
+      document.getElementById("externalCount").textContent = events.length;
+      const groups = [
+        ["项目节点", nodes.map(node => ({ source: "node", title: node.title }))],
+        ["GitHub/Vercel", events.filter(e => ["github", "vercel"].includes(e.source))],
+        ["GA4/PostHog", events.filter(e => ["ga4", "posthog"].includes(e.source))],
+        ["Stripe/手填", events.filter(e => ["stripe", "manual"].includes(e.source))]
+      ];
+      document.getElementById("evidenceLanes").innerHTML = groups.map(([name, list]) => `
+        <div class="lane">
+          <div class="lane-label">${name}</div>
+          <div class="lane-track">
+            ${list.slice(0, 4).map(item => `<span class="event-token ${item.source || "manual"}">${item.title || item.id}</span>`).join("") || `<span class="event-token manual">暂无</span>`}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function listItems(items) {
+      const clean = (items || []).filter(Boolean);
+      if (!clean.length) return `<ul><li>暂无</li></ul>`;
+      return `<ul>${clean.map(item => `<li>${scalar(item)}</li>`).join("")}</ul>`;
+    }
+
+    function renderDetail() {
+      const visible = filteredNodes();
+      const node = visible.find(item => item.id === selectedId) || visible[0] || (activeView === "all" ? nodes.find(item => item.id === selectedId) || nodes[0] : null);
+      if (!node) {
+        document.getElementById("detail").innerHTML = `<div class="empty">暂无节点。</div>`;
+        return;
+      }
+      const detail = node.scenarioDetail || {};
+      const events = eventsForNode(node);
+      document.getElementById("detail").innerHTML = `
+        <section class="detail-card">
+          <div class="detail-meta">
+            <span class="status ${node.status}">${label("status", node.status)}</span>
+            <span class="tag">${label("scenario", node.scenario)}</span>
+            <span class="tag">${label("confidence", node.confidence)}</span>
+          </div>
+          <h3>${publicTitle(node)}</h3>
+          ${publicTitle(node) !== node.title ? `<div class="field"><label>原始记录标题</label><p>${node.title}</p></div>` : ""}
+          <div class="field">
+            <label>当时原话</label>
+            <p>${node.original}</p>
+          </div>
+          <div class="field">
+            <label>一句话</label>
+            <p>${node.plainSummary || node.interpretation}</p>
+          </div>
+          <div class="detail-actions">
+            <button class="btn" data-action="edit-node">${editMode ? "退出编辑" : "编辑"}</button>
+            <button class="btn" data-action="toggle-hidden">${node.hidden ? "恢复显示" : "隐藏"}</button>
+            <a class="doc-link" href="${node.docRef || "PROJECT-NODES.md"}" target="_blank" rel="noreferrer">查看底层文档</a>
+          </div>
+        </section>
+
+        ${editMode ? editPanel(node) : ""}
+
+        <section class="detail-card">
+          <h3>记录详情</h3>
+          <div class="chain">
+            ${chainStep(1, "为什么做", node.interpretation)}
+            ${chainStep(2, "改了什么", detail.solution || [...node.changes.added, ...node.changes.changed].join("；") || "暂无")}
+            ${chainStep(3, "依据/来源", [...node.sourceRefs, ...node.evidence.map(evidenceText), ...node.technical.files].filter(Boolean).join("；") || "暂无")}
+            ${chainStep(4, "相关事实", events.map(event => `${event.source}: ${event.title}`).join("；") || "暂无")}
+            ${chainStep(5, "之后看什么", `${label("result", node.result)}。${node.watch || ""}`)}
+          </div>
+        </section>
+
+        <section class="detail-card">
+          <h3>技术备注</h3>
+          <div class="field">
+            <label>相关文件</label>
+            ${listItems(node.technical.files)}
+          </div>
+          <div class="field">
+            <label>实现/结构</label>
+            <p>${node.technical.architecture || "暂无"}</p>
+          </div>
+          <div class="field">
+            <label>验证</label>
+            <p>${node.technical.validation || "暂无"}</p>
+          </div>
+        </section>
+
+        <section class="detail-card">
+          <h3>证据</h3>
+          <div class="field">
+            <label>依据/来源</label>
+            ${listItems([...node.sourceRefs, ...node.evidence.map(evidenceText)])}
+          </div>
+          <div class="field">
+            <label>证据明细</label>
+            ${listItems(node.evidence.map(evidenceText))}
+          </div>
+          <div class="field">
+            <label>外部事实</label>
+            ${listItems(events.map(event => `${event.date || "unknown"} / ${event.source} / ${event.title}${event.value ? " / " + event.value : ""}`))}
+          </div>
+          <div class="field">
+            <label>我的备注</label>
+            ${listItems(node.userNotes)}
+          </div>
+        </section>
+
+        <section class="detail-card">
+          <h3>结果回看</h3>
+          <div class="field">
+            <label>要观察什么</label>
+            <p>${node.watch || "暂无"}</p>
+          </div>
+          <div class="field">
+            <label>回看结论</label>
+            <textarea id="learningNote" placeholder="回看后写一句结论。">${node.learning}</textarea>
+          </div>
+          <button class="btn primary" data-action="save-learning">保存回看</button>
+        </section>
+      `;
+    }
+
+    function chainStep(num, title, body) {
+      return `
+        <div class="chain-step">
+          <div class="chain-num">${num}</div>
+          <div class="chain-box">
+            <strong>${title}</strong>
+            <span>${body || "暂无"}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function editPanel(node) {
+      const scenarioOptions = Object.keys(labels.scenario).map(value => `<option value="${value}" ${node.scenario === value ? "selected" : ""}>${label("scenario", value)}</option>`).join("");
+      const statusOptions = Object.keys(labels.status).map(value => `<option value="${value}" ${node.status === value ? "selected" : ""}>${label("status", value)}</option>`).join("");
+      return `
+        <section class="detail-card">
+          <h3>编辑记录</h3>
+          <div class="edit-panel">
+            <label>标题<input id="editTitle" value="${escapeAttr(node.title)}"></label>
+            <label>日期<input id="editDate" value="${escapeAttr(node.date)}"></label>
+            <label>场景<select id="editScenario">${scenarioOptions}</select></label>
+            <label>状态<select id="editStatus">${statusOptions}</select></label>
+            <label>一句话<textarea id="editSummary">${escapeText(node.plainSummary || "")}</textarea></label>
+            <label>当时为什么做<textarea id="editWhy">${escapeText(node.interpretation || "")}</textarea></label>
+            <label>依据/来源（每行一条，可以是 commit、文件、URL、截图路径、数据导出）<textarea id="editSourceRefs">${escapeText(node.sourceRefs.join("\n"))}</textarea></label>
+            <label>自由备注（每行一条，可选）<textarea id="editUserNotes">${escapeText(node.userNotes.join("\n"))}</textarea></label>
+            <div class="detail-actions">
+              <button class="btn primary" data-action="save-node-edit">保存到本地</button>
+              <button class="btn" data-action="edit-node">取消</button>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function escapeAttr(value) {
+      return String(value || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+    }
+
+    function escapeText(value) {
+      return String(value || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function persistNodes() {
+      localStorage.setItem("trace.nodes.v1", JSON.stringify(toDataFile(), null, 2));
+    }
+
+    function toDataFile() {
+      return {
+        schema_version: "buildtrace.nodes.v1",
+        project: { ...projectMeta, resources: (projectMeta.resources || []).map(normalizeResource), updated_at: new Date().toISOString().slice(0, 10) },
+        externalEvents: externalEvents.map(event => ({ ...event })),
+        nodes: nodes.map(node => ({
+          id: node.id,
+          date: node.date,
+          title: node.title,
+          plainSummary: node.plainSummary,
+          technicalNote: node.technicalNote,
+          status: node.status,
+          types: node.types,
+          scenario: node.scenario,
+          reviewDue: node.reviewDue,
+          dateConfidence: node.dateConfidence,
+          humanIntent: {
+            original: node.original,
+            interpretation: node.interpretation,
+            confidence: node.confidence
+          },
+          scenarioDetail: node.scenarioDetail,
+          changes: node.changes,
+          technical: node.technical,
+          evidence: node.evidence,
+          externalEvents: node.externalEvents,
+          review: {
+            watch: node.watch,
+            result: node.result,
+            learning: node.learning
+          },
+          sourceRefs: node.sourceRefs,
+          docRef: node.docRef,
+          hidden: node.hidden,
+          userNotes: node.userNotes
+        }))
+      };
+    }
+
+    function loadStored() {
+      const stored = localStorage.getItem("trace.nodes.v1") || localStorage.getItem("buildtrace.nodes.v1");
+      if (!stored) return;
+      try {
+        const parsed = JSON.parse(stored);
+        projectMeta = parsed.project || projectMeta;
+        externalEvents = (parsed.externalEvents || []).map(normalizeExternalEvent);
+        nodes = (parsed.nodes || parsed).map(normalizeNode);
+        selectedId = nodes[0]?.id || null;
+      } catch {
+        // Keep sample data.
+      }
+    }
+
+    async function tryLoadProjectNodes() {
+      const paths = ["../nodes.json", "/nodes.json", "../data/nodes.json"];
+      for (const path of paths) {
+        try {
+          const response = await fetch(path, { cache: "no-store" });
+          if (!response.ok) continue;
+          const data = await response.json();
+          const nextNodes = (data.nodes || []).map(normalizeNode);
+          if (!nextNodes.length) continue;
+          projectMeta = data.project || projectMeta;
+          externalEvents = (data.externalEvents || []).map(normalizeExternalEvent);
+          nodes = nextNodes;
+          selectedId = nodes[0]?.id || null;
+          return true;
+        } catch {
+          // Try next path (file:// or missing file).
+        }
+      }
+      return false;
+    }
+
+    async function tryLoadDefaultData() {
+      if (await tryLoadProjectNodes()) {
+        persistNodes();
+        renderAll();
+      }
+    }
+
+    function renderAll() {
+      ensureSelectedVisible();
+      renderSummary();
+      renderResources();
+      renderScenarioFilters();
+      renderMilestones();
+      renderNodeList();
+      renderIntentInbox();
+      renderEvidenceLanes();
+      renderDetail();
+    }
+
+    document.addEventListener("click", event => {
+      const nav = event.target.closest("[data-view]");
+      const mode = event.target.closest("[data-mode]");
+      const row = event.target.closest(".node-row");
+      const milestone = event.target.closest(".milestone");
+      const save = event.target.closest('[data-action="save-learning"]');
+      const edit = event.target.closest('[data-action="edit-node"]');
+      const hide = event.target.closest('[data-action="toggle-hidden"]');
+      const saveEdit = event.target.closest('[data-action="save-node-edit"]');
+      const scenario = event.target.closest("[data-scenario]");
+
+      if (nav) {
+        activeView = nav.dataset.view || "all";
+        if (activeView !== "hidden") editMode = false;
+        document.querySelectorAll(".nav button").forEach(btn => btn.classList.remove("active"));
+        nav.classList.add("active");
+        renderAll();
+      }
+
+      if (mode) {
+        setMode(mode.dataset.mode);
+      }
+
+      if (row) {
+        selectedId = row.dataset.id;
+        editMode = false;
+        renderAll();
+      }
+
+      if (milestone) {
+        selectedId = milestone.dataset.id;
+        editMode = false;
+        renderAll();
+      }
+
+      if (scenario) {
+        activeScenario = scenario.dataset.scenario || "all";
+        renderAll();
+      }
+
+      if (edit) {
+        editMode = !editMode;
+        renderDetail();
+      }
+
+      if (hide) {
+        const node = nodes.find(item => item.id === selectedId);
+        if (node) {
+          node.hidden = !node.hidden;
+          node.userNotes = [...node.userNotes, `${new Date().toISOString().slice(0, 10)}: 用户${node.hidden ? "隐藏" : "恢复"}此节点。`];
+          persistNodes();
+          activeView = node.hidden ? "all" : activeView;
+          editMode = false;
+          renderAll();
+        }
+      }
+
+      if (saveEdit) {
+        const node = nodes.find(item => item.id === selectedId);
+        if (node) {
+          node.title = document.getElementById("editTitle").value.trim() || node.title;
+          node.date = document.getElementById("editDate").value.trim() || node.date;
+          node.scenario = document.getElementById("editScenario").value;
+          node.status = document.getElementById("editStatus").value;
+          node.plainSummary = document.getElementById("editSummary").value.trim();
+          node.interpretation = document.getElementById("editWhy").value.trim();
+          node.sourceRefs = toArray(document.getElementById("editSourceRefs").value);
+          node.userNotes = toArray(document.getElementById("editUserNotes").value);
+          node.confidence = node.confidence === "not-captured" && node.interpretation ? "confirmed-by-user" : node.confidence;
+          persistNodes();
+          editMode = false;
+          renderAll();
+        }
+      }
+
+      if (save) {
+        const node = nodes.find(item => item.id === selectedId);
+        if (node) {
+          node.learning = document.getElementById("learningNote").value.trim();
+          if (node.learning && node.result === "pending") node.result = "unclear";
+          persistNodes();
+          renderAll();
+        }
+      }
+    });
+
+    document.getElementById("search").addEventListener("input", event => {
+      searchTerm = event.target.value;
+      renderAll();
+    });
+
+    document.getElementById("importNodes").addEventListener("click", () => {
+      document.getElementById("importFile").click();
+    });
+
+    document.getElementById("importFile").addEventListener("change", async event => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const data = JSON.parse(await file.text());
+      projectMeta = data.project || projectMeta;
+      externalEvents = (data.externalEvents || []).map(normalizeExternalEvent);
+      nodes = (data.nodes || data).map(normalizeNode);
+      selectedId = nodes[0]?.id || null;
+      persistNodes();
+      renderAll();
+      event.target.value = "";
+    });
+
+    document.getElementById("exportNodes").addEventListener("click", () => {
+      const blob = new Blob([JSON.stringify(toDataFile(), null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "nodes.json";
+      link.click();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById("clearLocal").addEventListener("click", async () => {
+      localStorage.removeItem("trace.nodes.v1");
+      localStorage.removeItem("buildtrace.nodes.v1");
+      if (await tryLoadProjectNodes()) {
+        persistNodes();
+        renderAll();
+        return;
+      }
+      window.location.reload();
+    });
+
+    function addResourceFlow() {
+      const title = window.prompt("入口名称，例如 GitHub 仓库 / GA4 / 产品文档");
+      if (!title) return;
+      const url = window.prompt("链接或本地路径，例如 https://... 或 ../PROJECT-NODES.md", "");
+      const category = window.prompt("分类：code / docs / reference / data / deploy / finance / admin / design / other", "docs") || "other";
+      const note = window.prompt("备注，可留空", "") || "";
+      projectMeta.resources = [...(projectMeta.resources || []).map(normalizeResource), normalizeResource({ title, url, category, note })];
+      persistNodes();
+      renderAll();
+    }
+
+    function editResourceFlow(index) {
+      const resources = (projectMeta.resources || []).map(normalizeResource);
+      const resource = resources[index];
+      if (!resource) return;
+      const title = window.prompt("入口名称", resource.title);
+      if (!title) return;
+      const url = window.prompt("链接或本地路径", resource.url || "");
+      const category = window.prompt("分类：code / docs / reference / data / deploy / finance / admin / design / other", resource.category || "docs") || resource.category || "other";
+      const note = window.prompt("说明：这个链接是什么、什么时候看、注意什么", resource.note || "") || "";
+      resources[index] = normalizeResource({ ...resource, title, url, category, note });
+      projectMeta.resources = resources;
+      persistNodes();
+      renderAll();
+    }
+
+    function removeResourceFlow(index) {
+      const resources = (projectMeta.resources || []).map(normalizeResource);
+      const resource = resources[index];
+      if (!resource) return;
+      const ok = window.confirm(`从项目入口移除「${resource.title}」？这只会从看板资源柜移除，不会删除原文件或网页。`);
+      if (!ok) return;
+      resources.splice(index, 1);
+      projectMeta.resources = resources;
+      persistNodes();
+      renderAll();
+    }
+
+    document.getElementById("newNode").addEventListener("click", () => {
+      const today = new Date().toISOString().slice(0, 10);
+      const node = normalizeNode({
+        id: `${today}-draft-${Math.random().toString(36).slice(2, 6)}`,
+        date: today,
+        title: "新节点草稿",
+        status: "needs-user-context",
+        types: ["decision"],
+        scenario: "decision",
+        reviewDue: "none",
+        dateConfidence: "user-confirmed",
+        sourceRefs: [],
+        docRef: "../PROJECT-NODES.md",
+        userNotes: [],
+        humanIntent: {
+          original: "未捕捉。",
+          interpretation: "等待 Agent 根据本轮对话和文件变化起草。",
+          confidence: "not-captured"
+        },
+        changes: { added: [], changed: [], removed: [], optimized: [] },
+        technical: { files: [], schema: "", architecture: "", validation: "" },
+        evidence: [],
+        externalEvents: [],
+        review: { watch: "", result: "pending", learning: "" }
+      });
+      nodes = [node, ...nodes];
+      selectedId = node.id;
+      activeView = "all";
+      setMode("record");
+      persistNodes();
+      renderAll();
+    });
+
+    document.getElementById("addResource").addEventListener("click", () => {
+      addResourceFlow();
+    });
+
+    document.getElementById("addResourceMain").addEventListener("click", () => {
+      addResourceFlow();
+    });
+
+    document.getElementById("resourceBoard").addEventListener("click", event => {
+      const action = event.target.closest("[data-resource-action]");
+      if (!action) return;
+      const index = Number(action.dataset.resourceIndex);
+      if (action.dataset.resourceAction === "edit") editResourceFlow(index);
+      if (action.dataset.resourceAction === "remove") removeResourceFlow(index);
+    });
+
+    async function boot() {
+      const diskLoaded = await tryLoadProjectNodes();
+      if (diskLoaded) {
+        persistNodes();
+      } else {
+        loadStored();
+      }
+      setMode("restore");
+      renderAll();
+    }
+
+    boot();
+  </script>
+</body>
+</html>

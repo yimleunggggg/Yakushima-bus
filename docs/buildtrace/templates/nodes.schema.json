@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://buildtrace.dev/schemas/nodes.v1.json",
+  "title": "BuildTrace Nodes",
+  "type": "object",
+  "required": ["schema_version", "project", "nodes"],
+  "properties": {
+    "schema_version": {
+      "const": "buildtrace.nodes.v1"
+    },
+    "project": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "purpose": { "type": "string" },
+        "updated_at": { "type": "string" },
+        "resources": {
+          "type": "array",
+          "description": "Project archive links and entry points such as GitHub, docs, references, analytics, deploy dashboards, finance/admin tools, or design files.",
+          "items": { "$ref": "#/$defs/resource" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "date", "title", "status", "types", "humanIntent", "changes", "technical", "evidence", "review"],
+        "properties": {
+          "id": { "type": "string" },
+          "date": { "type": "string" },
+          "title": { "type": "string" },
+          "plainSummary": { "type": "string" },
+          "technicalNote": { "type": "string" },
+          "status": {
+            "enum": ["pending-review", "reviewed", "backfilled", "needs-user-context"]
+          },
+          "types": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "scenario": {
+            "enum": ["feature", "bugfix", "optimization", "experiment", "analytics-data", "growth-seo", "monetization", "architecture", "content", "ops-release", "app-mobile", "ai-prompt", "security-privacy", "decision", "snapshot"]
+          },
+          "reviewDue": { "type": "string" },
+          "dateConfidence": {
+            "enum": ["commit-exact", "doc-exact", "user-confirmed", "date-inferred", "unknown"]
+          },
+          "sourceRefs": {
+            "type": "array",
+            "description": "Human-checkable sources that support this node: commit hashes, file paths, doc paths, screenshot paths, URLs, exported data files, or user-provided notes.",
+            "items": { "type": "string" }
+          },
+          "docRef": {
+            "type": "string",
+            "description": "Relative path or anchor to the detailed Markdown record, usually ../PROJECT-NODES.md from the viewer."
+          },
+          "hidden": {
+            "type": "boolean",
+            "description": "User-hidden nodes stay in the source file but are hidden from the default dashboard view."
+          },
+          "userNotes": {
+            "type": "array",
+            "description": "Optional user-added notes, corrections, reminders, or subjective judgments.",
+            "items": { "type": "string" }
+          },
+          "humanIntent": {
+            "type": "object",
+            "required": ["original", "interpretation", "confidence"],
+            "properties": {
+              "original": { "type": "string" },
+              "interpretation": { "type": "string" },
+              "confidence": {
+                "enum": ["confirmed-by-user", "inferred", "not-captured"]
+              }
+            },
+            "additionalProperties": true
+          },
+          "scenarioDetail": {
+            "type": "object",
+            "properties": {
+              "problem": { "type": "string" },
+              "opportunity": { "type": "string" },
+              "solution": { "type": "string" },
+              "successSignal": { "type": "string" },
+              "risk": { "type": "string" },
+              "rootCause": { "type": "string" },
+              "impact": { "type": "string" },
+              "validation": { "type": "string" }
+            },
+            "additionalProperties": true
+          },
+          "changes": {
+            "type": "object",
+            "required": ["added", "changed", "removed", "optimized"],
+            "properties": {
+              "added": { "type": "array", "items": { "type": "string" } },
+              "changed": { "type": "array", "items": { "type": "string" } },
+              "removed": { "type": "array", "items": { "type": "string" } },
+              "optimized": { "type": "array", "items": { "type": "string" } }
+            },
+            "additionalProperties": true
+          },
+          "technical": {
+            "type": "object",
+            "required": ["files", "schema", "architecture", "validation"],
+            "properties": {
+              "files": { "type": "array", "items": { "type": "string" } },
+              "schema": { "type": "string" },
+              "architecture": { "type": "string" },
+              "validation": { "type": "string" }
+            },
+            "additionalProperties": true
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                { "type": "string" },
+                {
+                  "type": "object",
+                  "required": ["kind", "ref"],
+                  "properties": {
+                    "kind": { "type": "string" },
+                    "ref": { "type": "string" },
+                    "note": { "type": "string" },
+                    "supports": { "type": "string" }
+                  },
+                  "additionalProperties": true
+                }
+              ]
+            }
+          },
+          "externalEvents": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/externalEvent" }
+          },
+          "review": {
+            "type": "object",
+            "required": ["watch", "result", "learning"],
+            "properties": {
+              "watch": { "type": "string" },
+              "result": {
+                "enum": ["pending", "worked", "did-not-work", "unclear", "not-needed"]
+              },
+              "learning": { "type": "string" }
+            },
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "externalEvents": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/externalEvent" }
+    }
+  },
+  "$defs": {
+    "externalEvent": {
+      "type": "object",
+      "required": ["source", "date", "kind", "title"],
+      "properties": {
+        "id": { "type": "string" },
+        "source": { "type": "string" },
+        "date": { "type": "string" },
+        "kind": { "type": "string" },
+        "title": { "type": "string" },
+        "value": { "type": "string" },
+        "url": { "type": "string" },
+        "nodeId": { "type": "string" },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "resource": {
+      "type": "object",
+      "required": ["title"],
+      "properties": {
+        "id": { "type": "string" },
+        "category": {
+          "enum": ["code", "docs", "reference", "data", "deploy", "finance", "admin", "design", "other"]
+        },
+        "title": { "type": "string" },
+        "url": { "type": "string" },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
