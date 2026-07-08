@@ -2524,6 +2524,14 @@ body.modal-open {
   text-underline-offset: 2px;
 }
 
+#geo-evidence h3.page-section-title {
+  margin-top: 12px;
+}
+#geo-evidence .geo-evidence-table td:first-child {
+  white-space: normal;
+  min-width: 9rem;
+}
+
 .without-car-section { margin-bottom: 10px; padding: 12px; }
 .without-car-heading {
   margin: 0 0 8px;

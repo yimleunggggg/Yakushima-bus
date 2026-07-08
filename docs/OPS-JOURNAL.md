@@ -1,9 +1,9 @@
 # YakuBus 运维变更日志
 
-> 唯一主轴：**版本号 + 日期 → 加了 / 改了 / 减去了**。最新在上。  
-> 长教程：`docs/notes/` · SEO 专轴：[seo/SEO-JOURNAL.md](seo/SEO-JOURNAL.md)
+> **项目记忆主源** → [`docs/buildtrace/BUILDTRACE.md`](../buildtrace/BUILDTRACE.md)（BuildTrace v1.14）  
+> 本文件仅作**运维版号快览**（加减改）。
 
-**当前 V1.8.3 · 2026-06-30**
+**当前 V1.8.4 · 2026-07-08**
 
 ---
 
@@ -11,8 +11,29 @@
 
 - [ ] GSC：新页 URL 检查（`/without-car/`、`/map/`、`/fare/`、`/ferry/` 等）
 - [ ] Bing：建议操作「meta 过短」复扫（部署后 48h+）
+- [ ] GEO：Prompt 试验基线（GEOFlow / 6 条 Prompt）
 - [ ] 搜狗 / 360（可选）
 - [ ] IndexNow（可选）
+
+---
+
+## V1.8.4（2026-07-08）— GEO 证据容器 P0
+
+**加了**
+- `/without-car/`：`evidence` 区段（6 条区间班次·票价表）+ `<noscript>` 静态事实
+- 首页 FAQ 3 条带数字问答 + `<noscript>` 摘要
+- `llms.txt`：Key facts 数字表
+
+**改了**
+- `without-car-data.js`：`evidence` 知识原子（2026-03 时刻 / 2024-03 运价）
+- `styles.css`：`#geo-evidence` 表格换行
+
+**减去了 / 下线**
+- （无）
+
+**技术**：`without-car-data.js?v=geo-v1`、`layout-v149`、`llms.txt`
+
+**详情**：[notes/seo-geo.md](notes/seo-geo.md)
 
 ---
 

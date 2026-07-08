@@ -27,6 +27,21 @@ Japanese (primary), Simplified Chinese, English — `?lang=ja|zh|en` on any page
 
 Yakushima Island buses: Miyanoura Port, Anbo, Shiratani Unsuikyo, Yakusugi Museum, Arakawa trail bus (Mar–Nov), Matsubanda winter routes.
 
+## Key facts (weekday · Mar 2026 timetable · adult one-way)
+
+| Route | Buses | First–last dep. | Fare |
+|-------|-------|-----------------|------|
+| Miyanoura Port → Yakushima Airport | 10 | 05:50–15:20 | ¥590 |
+| Yakushima Airport → Miyanoura Port | 9 | 06:06–19:06 | ¥590 |
+| Miyanoura Port → Shiratani Unsuikyo | 4 | 08:20–15:30 | ¥530 |
+| Shiratani → Miyanoura Port | 4 | 09:00–16:10 | ¥530 |
+| Miyanoura Port → Anbo | 9 | 08:00–15:20 | ¥870 |
+| Anbo → Yakusugi Museum | 3 | 05:23–13:38 | ¥240 |
+
+- Day pass (reference): ¥2,500 (1 day), ¥4,000 (3 days), ¥5,000 (4 days); child half fare.
+- Jomon Sugi: route bus to Yakusugi Museum, then Arakawa shuttle Mar–Nov (separate fare).
+- Fares from official table Mar 2024 revision. Independent site — not the bus operator.
+
 ## Contact
 
 - Email: yimleung.ly@gmail.com

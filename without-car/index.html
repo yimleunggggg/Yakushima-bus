@@ -28,11 +28,12 @@
     "url": "https://yakushimabus.com/without-car/",
     "description": "How to use Yakushima buses and ferries without a rental car. Links to timetable, map and fares.",
     "inLanguage": ["ja", "zh-CN", "en"],
-    "isPartOf": { "@type": "WebSite", "name": "Yakushima Bus", "url": "https://yakushimabus.com/" }
+    "isPartOf": { "@type": "WebSite", "name": "Yakushima Bus", "url": "https://yakushimabus.com/" },
+    "dateModified": "2026-07-08"
   }
   </script>
-  <link rel="preload" href="/styles.css?v=layout-v143" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v143">
+  <link rel="preload" href="/styles.css?v=layout-v149" as="style">
+  <link rel="stylesheet" href="/styles.css?v=layout-v149">
   <script>
     (function () {
       var h = location.hostname;
@@ -79,6 +80,31 @@
 
     <p class="page-seo-lead" id="pageLead"></p>
 
+    <noscript>
+      <section class="panel without-car-section" lang="en">
+        <h2 class="page-section-title">Yakushima without a car — key bus facts (weekday)</h2>
+        <p class="page-section-lead">Tanegashima Yakushima Kotsu route buses connect ports, airport, Shiratani, Anbo, and Yakusugi Museum. Mar 2026 official timetable; fares Mar 2024 revision.</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Route</th><th>Weekday buses</th><th>First–last dep.</th><th>Adult fare</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Miyanoura Port → Airport</td><td>10</td><td>05:50–15:20</td><td>¥590</td></tr>
+              <tr><td>Airport → Miyanoura Port</td><td>9</td><td>06:06–19:06</td><td>¥590</td></tr>
+              <tr><td>Miyanoura Port → Shiratani</td><td>4</td><td>08:20–15:30</td><td>¥530</td></tr>
+              <tr><td>Shiratani → Miyanoura Port</td><td>4</td><td>09:00–16:10</td><td>¥530</td></tr>
+              <tr><td>Miyanoura Port → Anbo</td><td>9</td><td>08:00–15:20</td><td>¥870</td></tr>
+              <tr><td>Anbo → Yakusugi Museum</td><td>3</td><td>05:23–13:38</td><td>¥240</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="page-section-note">Day pass: ¥2,500 (1d) / ¥4,000 (3d) / ¥5,000 (4d). Arakawa trail shuttle Mar–Nov, separate fare. Independent site — confirm on operator PDFs.</p>
+      </section>
+    </noscript>
+
+    <div id="geoEvidence"></div>
+
     <div id="sections"></div>
 
     <div id="affiliateExperiences"></div>
@@ -90,7 +116,7 @@
 
   <script src="/partner-data.js?v=partner-v1"></script>
   <script src="/partner-ui.js?v=partner-v1"></script>
-  <script src="/without-car-data.js?v=1"></script>
+  <script src="/without-car-data.js?v=geo-v1"></script>
   <script>
     const NAV_UI = {
       ja: { navAria: "メインメニュー", navTime: "時刻表", navMap: "路線", navAccess: "上島", navTrek: "登山", navGuide: "便利", navIntro: "紹介", navAbout: "About", supportKofi: "コーヒーをおごる", title: "レンタカーなしで回る" },
@@ -107,12 +133,42 @@
       return o[lang] || o.ja || o.en || o.zh || "";
     }
 
+    function renderEvidence(d) {
+      const ev = d.evidence;
+      if (!ev) return;
+      const c = ev.cols;
+      const head = [c.route, c.buses, c.hours, c.fare].map((col) => `<th>${pick(col)}</th>`).join("");
+      const body = ev.rows
+        .map((row) => `<tr><td>${pick(row.route)}</td><td>${row.buses}</td><td>${pick(row.hours)}</td><td>${row.fare}</td></tr>`)
+        .join("");
+      const trail = pick(ev.trailText).replace(/\?lang=(ja|zh|en)/g, `?lang=${lang}`);
+      const note = pick(ev.note).replace(/\?lang=(ja|zh|en)/g, `?lang=${lang}`);
+      document.getElementById("geoEvidence").innerHTML = `
+        <section class="panel without-car-section" id="geo-evidence">
+          <h2 class="page-section-title">${pick(ev.title)}</h2>
+          <p class="page-section-lead">${pick(ev.lead)}</p>
+          <div class="table-wrap">
+            <table class="data-table geo-evidence-table">
+              <thead><tr>${head}</tr></thead>
+              <tbody>${body}</tbody>
+            </table>
+          </div>
+          <h3 class="page-section-title">${pick(ev.passTitle)}</h3>
+          <p class="page-section-lead">${pick(ev.passText)}</p>
+          <h3 class="page-section-title">${pick(ev.trailTitle)}</h3>
+          <p class="page-section-lead">${trail}</p>
+          <p class="page-section-note">${note}</p>
+          <p class="page-section-note">${pick(ev.sources)}</p>
+        </section>`;
+    }
+
     function render() {
       const d = window.WITHOUT_CAR_DATA;
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
       document.getElementById("appTitle").textContent = t("title");
       document.getElementById("pageLead").textContent = pick(d.intro);
       document.getElementById("passNote").textContent = pick(d.passNote);
+      renderEvidence(d);
 
       document.getElementById("sections").innerHTML = d.sections
         .map((sec) => {
