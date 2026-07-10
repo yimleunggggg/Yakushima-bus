@@ -9,6 +9,7 @@ window.INTRO_DATA = {
   content: {
     ja: {
       navIntro: "紹介",
+      metaTitle: "屋久島バス案内 | Yakushima Bus",
       title: "Yakushima Bus とは",
       lead: "屋久島バス時刻表・運賃・フェリー・観光マップを三語で。公式情報をもとにした独立ツール。",
       videoTitle: "デモ動画",
@@ -59,6 +60,7 @@ window.INTRO_DATA = {
     },
     zh: {
       navIntro: "介绍",
+      metaTitle: "屋久岛公交介绍 | Yakushima Bus",
       title: "产品介绍",
       lead: "屋久岛公交时刻表、票价、船运与观光地图三语网站。基于官方信息整理。",
       videoTitle: "产品演示",
@@ -109,6 +111,7 @@ window.INTRO_DATA = {
     },
     en: {
       navIntro: "Intro",
+      metaTitle: "About Yakushima Bus | Timetables, fares, ferry and map",
       title: "Product tour",
       lead:
         "Trilingual Yakushima bus timetables, fares, ferry access, and an island POI map — built from official sources.",

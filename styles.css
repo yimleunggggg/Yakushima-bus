@@ -3997,8 +3997,24 @@ body.guide-map-fs-open {
 }
 
 .intro-page .intro-hero-top {
-  display: flex; align-items: center; justify-content: flex-end;
+  display: flex; align-items: flex-start; justify-content: space-between;
   gap: 8px; margin: 8px 0 10px;
+}
+.intro-hero-copy {
+  min-width: 0;
+}
+.intro-hero-copy h1 {
+  margin: 0 0 4px;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  line-height: 1.1;
+  color: var(--ink);
+}
+.intro-hero-copy p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.55;
 }
 .intro-feature-icon--symbol {
   font-size: 1.125rem;

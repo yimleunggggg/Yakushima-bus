@@ -14,8 +14,8 @@
   <meta property="og:url" content="https://yakushimabus.com/intro/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <title>製品紹介 | 产品介绍 | Yakushima Bus Intro</title>
-  <link rel="preload" href="/styles.css?v=layout-v143" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v143">
+  <link rel="preload" href="/styles.css?v=layout-v150" as="style">
+  <link rel="stylesheet" href="/styles.css?v=layout-v150">
   <script>
     (function () {
       var h = location.hostname;
@@ -30,7 +30,7 @@
   <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
   <script src="/site-chrome.js?v=chrome-v23" defer></script>
-  <script src="/lang-boot.js?v=lang-v4"></script>
+  <script src="/lang-boot.js?v=lang-v5"></script>
   <script src="/seo-head-zh.js?v=seo-zh-v2"></script>
 </head>
 <body class="app-page-narrow">
@@ -48,6 +48,10 @@
     </div>
 
     <div class="intro-hero-top">
+      <div class="intro-hero-copy">
+        <h1 id="introTitle">Yakushima Bus</h1>
+        <p id="introLead"></p>
+      </div>
       <div class="lang-switch" id="langSwitch">
         <button type="button" data-lang="ja">JA</button>
         <button type="button" data-lang="zh">ZH</button>
@@ -84,7 +88,7 @@
 
   <script src="/source-links.js?v=src-v1"></script>
   <script src="/sources-data.js?v=3"></script>
-  <script src="/intro-data.js?v=intro-v14"></script>
+  <script src="/intro-data.js?v=intro-v15"></script>
   <script src="/app-core.js?v=core-v14"></script>
   <script>
     const NAV_UI = {};
@@ -163,6 +167,9 @@
     function render() {
       const c = INTRO_DATA.content[lang] || INTRO_DATA.content.ja;
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+      document.title = c.metaTitle || c.title || document.title;
+      document.getElementById("introTitle").textContent = c.title;
+      document.getElementById("introLead").textContent = c.lead || "";
       document.getElementById("introVideoTitle").textContent = c.videoTitle;
       const hintEl = document.getElementById("introVideoHint");
       const hint = videoHintText(c, lang);

@@ -405,11 +405,11 @@
     const counts = countByCategory(data);
     const busTotal = busStopsMeta().mapped;
     const chips = [
-      `<button type="button" class="guide-chip guide-chip-all${allOn ? " active" : ""}" data-cat="__all__">${escapeHtml(t("filterAll"))}</button>`,
-      `<button type="button" class="guide-chip guide-chip-bus${showBusStops ? " active" : ""}" data-cat="__bus__">${chipLabel(t("filterBus"), busTotal)}</button>`,
+      `<button type="button" class="guide-chip guide-chip-all${allOn ? " active" : ""}" data-cat="__all__" aria-pressed="${allOn ? "true" : "false"}">${escapeHtml(t("filterAll"))}</button>`,
+      `<button type="button" class="guide-chip guide-chip-bus${showBusStops ? " active" : ""}" data-cat="__bus__" aria-pressed="${showBusStops ? "true" : "false"}">${chipLabel(t("filterBus"), busTotal)}</button>`,
       ...cats.map((c) => {
         const on = enabledCats.has(c);
-        return `<button type="button" class="guide-chip guide-cat--${c}${on ? " active" : ""}" data-cat="${c}">${chipLabel(catLabel(c, data), counts[c] || 0)}</button>`;
+        return `<button type="button" class="guide-chip guide-cat--${c}${on ? " active" : ""}" data-cat="${c}" aria-pressed="${on ? "true" : "false"}">${chipLabel(catLabel(c, data), counts[c] || 0)}</button>`;
       }),
     ];
     els.filters.innerHTML = chips.join("");

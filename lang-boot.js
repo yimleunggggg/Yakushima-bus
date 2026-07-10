@@ -1,4 +1,4 @@
-/** 全站语言：手动选择后 localStorage 优先；中文搜索来源/爬虫优先 zh；否则 URL > storage > 浏览器 > ja */
+/** 全站语言：显式 URL 优先；否则手动选择 > 中文搜索来源/爬虫 > storage > 浏览器 > ja */
 (function () {
   const LANG_KEY = "yakushima-bus-lang";
   const PICKED_KEY = "yakushima-bus-lang-picked";
@@ -38,8 +38,8 @@
   function resolveLang() {
     const q = new URLSearchParams(location.search).get("lang");
     const stored = localStorage.getItem(LANG_KEY);
-    if (isUserPicked() && SUPPORTED.includes(stored)) return stored;
     if (SUPPORTED.includes(q)) return q;
+    if (isUserPicked() && SUPPORTED.includes(stored)) return stored;
     if (!isUserPicked() && isChineseSearchContext()) return "zh";
     if (SUPPORTED.includes(stored)) return stored;
     return detectBrowserLang();
@@ -60,12 +60,12 @@
     const stored = localStorage.getItem(LANG_KEY);
     let lang;
 
-    if (isUserPicked() && SUPPORTED.includes(stored)) {
-      lang = stored;
-      if (q !== lang) syncLangUrl(lang);
-    } else if (SUPPORTED.includes(q)) {
+    if (SUPPORTED.includes(q)) {
       lang = q;
       localStorage.setItem(LANG_KEY, lang);
+    } else if (isUserPicked() && SUPPORTED.includes(stored)) {
+      lang = stored;
+      if (q !== lang) syncLangUrl(lang);
     } else if (isChineseSearchContext()) {
       lang = "zh";
       localStorage.setItem(LANG_KEY, lang);
