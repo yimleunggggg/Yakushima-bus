@@ -89,14 +89,8 @@ const StopPicker = {
 
     let currentLang = lang;
     let selectedId = hidden.value || "";
-    const touchPick = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    const coarsePointer = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
     const listIds = (q) => this.ids(filterIds).filter((id) => this.matches(id, q));
-
-    if (touchPick) {
-      input.readOnly = true;
-      input.setAttribute("inputmode", "none");
-      input.classList.add("picker-input-touch");
-    }
 
     const syncDisplay = () => {
       input.value = selectedId ? this.label(selectedId, currentLang) : "";
@@ -192,10 +186,6 @@ const StopPicker = {
     };
 
     const beginBrowse = () => {
-      if (touchPick) {
-        openList("");
-        return;
-      }
       const current = selectedId ? this.label(selectedId, currentLang) : "";
       input.value = "";
       input.placeholder = current || placeholder || "";
@@ -267,18 +257,13 @@ const StopPicker = {
       if (list.hidden) {
         e.preventDefault();
         beginBrowse();
-        if (!touchPick) input.focus({ preventScroll: true });
+        input.focus({ preventScroll: true });
       }
     });
     input.addEventListener("focus", () => {
-      if (touchPick) {
-        input.blur();
-        return;
-      }
       if (list.hidden) beginBrowse();
     });
     input.addEventListener("input", () => {
-      if (touchPick) return;
       renderList(input.value);
     });
     input.addEventListener("keydown", (e) => {
@@ -296,7 +281,6 @@ const StopPicker = {
       }
     });
     input.addEventListener("blur", () => {
-      if (touchPick) return;
       setTimeout(() => {
         input.placeholder = placeholder || "";
         pickFromInput();
@@ -311,7 +295,7 @@ const StopPicker = {
       setValue(li.dataset.id);
     });
     list.addEventListener("click", (e) => {
-      if (!touchPick) return;
+      if (!coarsePointer) return;
       const li = e.target.closest("li.picker-option");
       if (!li) return;
       e.preventDefault();

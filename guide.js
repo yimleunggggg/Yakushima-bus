@@ -59,6 +59,7 @@
       sourceLink: "yakukan.jp",
       updated: "更新",
       noResults: "該当なし",
+      mapUnavailable: "地図を読み込めません。下のスポット一覧は利用できます。",
       mapFullscreen: "地図を全画面",
       mapExitFullscreen: "全画面を終了",
     },
@@ -76,6 +77,7 @@
       sourceLink: "yakukan.jp",
       updated: "更新",
       noResults: "无匹配结果",
+      mapUnavailable: "地图暂时无法加载，下方地点列表仍可使用。",
       mapFullscreen: "全屏查看地图",
       mapExitFullscreen: "退出全屏",
     },
@@ -93,6 +95,7 @@
       sourceLink: "yakukan.jp",
       updated: "Updated",
       noResults: "No matches",
+      mapUnavailable: "The map could not load. The place list below is still available.",
       mapFullscreen: "Fullscreen map",
       mapExitFullscreen: "Exit fullscreen",
     },
@@ -662,6 +665,16 @@
   }
 
   function initMap() {
+    if (!window.L) {
+      const mapEl = document.getElementById("guideMap");
+      const fsBtn = document.getElementById("guideMapFsBtn");
+      if (mapEl) {
+        mapEl.classList.add("guide-map--unavailable");
+        mapEl.textContent = t("mapUnavailable");
+      }
+      if (fsBtn) fsBtn.hidden = true;
+      return false;
+    }
     map = L.map("guideMap", { scrollWheelZoom: true }).setView(MAP_CENTER, MAP_ZOOM);
     map.createPane("guideBusStops");
     map.getPane("guideBusStops").style.zIndex = 420;
@@ -673,6 +686,7 @@
     }).addTo(map);
     busStopsLayer = L.layerGroup().addTo(map);
     markersLayer = L.layerGroup().addTo(map);
+    return true;
   }
 
   function placeGuideFoot() {
@@ -775,9 +789,11 @@
 
     Object.keys(data.meta.categories || {}).forEach((c) => enabledCats.add(c));
 
-    initMap();
-    bindMapFullscreen();
-    bindPopupActions();
+    const mapReady = initMap();
+    if (mapReady) {
+      bindMapFullscreen();
+      bindPopupActions();
+    }
     window.TimetableModal?.mount();
     bindLang();
     startClock();

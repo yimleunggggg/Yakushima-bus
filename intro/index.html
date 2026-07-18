@@ -14,8 +14,8 @@
   <meta property="og:url" content="https://yakushimabus.com/intro/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <title>製品紹介 | 产品介绍 | Yakushima Bus Intro</title>
-  <link rel="preload" href="/styles.css?v=layout-v150" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v150">
+  <link rel="preload" href="/styles.css?v=layout-v152" as="style">
+  <link rel="stylesheet" href="/styles.css?v=layout-v152">
   <script>
     (function () {
       var h = location.hostname;
@@ -68,7 +68,9 @@
           class="intro-video-player"
           controls
           playsinline
-          preload="auto"
+          preload="none"
+          width="720"
+          height="1280"
           poster="/assets/video/yakushima-bus-demo-poster.jpg"
         >
           <source id="introVideoSource" type="video/mp4">
@@ -88,8 +90,8 @@
 
   <script src="/source-links.js?v=src-v1"></script>
   <script src="/sources-data.js?v=3"></script>
-  <script src="/intro-data.js?v=intro-v15"></script>
-  <script src="/app-core.js?v=core-v14"></script>
+  <script src="/intro-data.js?v=intro-v16"></script>
+  <script src="/app-core.js?v=core-v21"></script>
   <script>
     const NAV_UI = {};
 
@@ -205,7 +207,7 @@
       if (next && next !== lang) setLang(next);
     });
 
-    (async function initIntroVideo() {
+    (function initIntroVideo() {
       const v = INTRO_DATA.video;
       const video = document.getElementById("introVideo");
       const src = document.getElementById("introVideoSource");
@@ -220,7 +222,6 @@
         },
         { once: true }
       );
-      video.load();
     })();
 
     AppCore.runPageBoot((resolvedLang) => {

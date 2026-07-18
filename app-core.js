@@ -491,6 +491,106 @@ const AppCore = {
   modalScrollY: 0,
   _modalPinEl: null,
   _modalPinHandler: null,
+  _dialogEl: null,
+  _dialogReturnFocus: null,
+  _dialogBackground: null,
+  _dialogBackgroundWasInert: false,
+  _dialogBackgroundAriaHidden: null,
+  _dialogKeyHandler: null,
+
+  dialogFocusables(el) {
+    if (!el) return [];
+    const selector = [
+      'a[href]:not([tabindex="-1"])',
+      'button:not([disabled]):not([tabindex="-1"])',
+      'input:not([disabled]):not([tabindex="-1"])',
+      'select:not([disabled]):not([tabindex="-1"])',
+      'textarea:not([disabled]):not([tabindex="-1"])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(",");
+    return Array.from(el.querySelectorAll(selector)).filter((node) =>
+      node.getClientRects().length > 0
+    );
+  },
+
+  openDialog(el, { onClose, initialFocus } = {}) {
+    if (!el) return;
+    if (this._dialogEl && this._dialogEl !== el) this.closeDialog(this._dialogEl);
+
+    this._dialogEl = el;
+    this._dialogReturnFocus = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
+    this._dialogBackground = document.querySelector(".app");
+    if (this._dialogBackground) {
+      this._dialogBackgroundWasInert = this._dialogBackground.inert;
+      this._dialogBackgroundAriaHidden = this._dialogBackground.getAttribute("aria-hidden");
+      this._dialogBackground.inert = true;
+      this._dialogBackground.setAttribute("aria-hidden", "true");
+    }
+
+    el.hidden = false;
+    this.lockScroll();
+    this.pinOverlay(el);
+
+    this._dialogKeyHandler = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        if (onClose) onClose();
+        else this.closeDialog(el);
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const focusables = this.dialogFocusables(el);
+      if (!focusables.length) {
+        event.preventDefault();
+        return;
+      }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (event.shiftKey && (document.activeElement === first || !el.contains(document.activeElement))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", this._dialogKeyHandler);
+
+    requestAnimationFrame(() => {
+      const target = initialFocus || this.dialogFocusables(el)[0];
+      target?.focus?.({ preventScroll: true });
+    });
+  },
+
+  closeDialog(el = this._dialogEl) {
+    if (!el) return;
+    el.hidden = true;
+    if (this._dialogKeyHandler) {
+      document.removeEventListener("keydown", this._dialogKeyHandler);
+    }
+    if (this._dialogBackground) {
+      this._dialogBackground.inert = this._dialogBackgroundWasInert;
+      if (this._dialogBackgroundAriaHidden == null) {
+        this._dialogBackground.removeAttribute("aria-hidden");
+      } else {
+        this._dialogBackground.setAttribute("aria-hidden", this._dialogBackgroundAriaHidden);
+      }
+    }
+    this.unpinOverlay();
+    this.unlockScroll();
+
+    const returnFocus = this._dialogReturnFocus;
+    this._dialogEl = null;
+    this._dialogReturnFocus = null;
+    this._dialogBackground = null;
+    this._dialogBackgroundAriaHidden = null;
+    this._dialogKeyHandler = null;
+    requestAnimationFrame(() => {
+      if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
+    });
+  },
 
   lockScroll() {
     this.modalScrollY = window.scrollY;

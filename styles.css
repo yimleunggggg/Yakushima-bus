@@ -327,10 +327,6 @@ select, .picker-input {
   min-height: var(--tap-min); padding: 8px 10px; font-size: 1rem; font-weight: 400; line-height: 1.25;
   background: #fff; transition: border-color 0.15s, box-shadow 0.15s;
 }
-.picker-input-touch {
-  cursor: pointer;
-  caret-color: transparent;
-}
 .stop-picker { position: relative; }
 .stop-picker.is-open { z-index: 40; }
 .stop-picker.is-open .picker-input {
@@ -1455,6 +1451,15 @@ input[type="time"] {
 }
 .pdf-hint-desktop { display: block; }
 .pdf-hint-mobile { display: none; }
+.pdf-image-mode .pdf-hint-desktop,
+.pdf-image-mode .pdf-hint-mobile,
+.pdf-image-mode .pdf-slow-hint { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .pdf-image-mode .pdf-mobile-pages {
+    max-height: min(60vh, 600px);
+    overflow: auto;
+  }
+}
 @media (hover: none) and (pointer: coarse) {
   .pdf-hint-desktop { display: none; }
   .pdf-hint-mobile { display: block; }
@@ -3349,6 +3354,7 @@ button, .nav a, .lang-switch button, .presets button, .day-tabs button {
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(20, 58, 53, 0.1);
 }
+.guide-map-fs-btn[hidden] { display: none; }
 .guide-map-fs-icon--exit { display: none; }
 .guide-map-fs-label {
   display: none;
@@ -3404,6 +3410,15 @@ body.guide-map-fs-open {
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   z-index: 0;
+}
+.guide-map--unavailable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--surface-tint);
 }
 .guide-list-block {
   min-width: 0;

@@ -2,7 +2,7 @@
 window.INTRO_DATA = {
   updated: "2026-06-25",
   video: {
-    src: "/assets/video/yakushima-bus-demo.mp4",
+    src: "/assets/video/yakushima-bus-demo-web.mp4",
     poster: "/assets/video/yakushima-bus-demo-poster.jpg",
     type: "video/mp4",
   },

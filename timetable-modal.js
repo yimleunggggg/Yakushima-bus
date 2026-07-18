@@ -146,16 +146,15 @@ const TimetableModal = {
       this._els.modalRouteLink.textContent = this.t("openRouteSearch");
     }
     this.render();
-    this._els.timeModal.hidden = false;
-    AppCore.lockScroll();
-    AppCore.pinOverlay(this._els.timeModal);
+    AppCore.openDialog(this._els.timeModal, {
+      onClose: () => this.close(),
+      initialFocus: this._els.modalClose,
+    });
   },
 
   close() {
     if (!this._els) return;
-    this._els.timeModal.hidden = true;
-    AppCore.unpinOverlay();
-    AppCore.unlockScroll();
+    AppCore.closeDialog(this._els.timeModal);
   },
 
   render() {

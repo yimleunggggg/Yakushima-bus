@@ -95,8 +95,8 @@
     ]
   }
   </script>
-  <link rel="preload" href="/styles.css?v=layout-v149" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v149">
+  <link rel="preload" href="/styles.css?v=layout-v152" as="style">
+  <link rel="stylesheet" href="/styles.css?v=layout-v152">
   <script>
     (function () {
       var h = location.hostname;
@@ -268,7 +268,7 @@
         <div class="info-grid" id="infoGrid"></div>
       </div>
     </details>
-    <details class="aux-block pdf-panel" id="timetablePdfPanel" open>
+    <details class="aux-block pdf-panel" id="timetablePdfPanel">
       <summary class="aux-summary">
         <span data-i18n="pdfViewer">公式時刻表 PDF</span>
         <span class="aux-chevron" aria-hidden="true"></span>
@@ -336,11 +336,11 @@
   <script src="source-links.js?v=src-v1" defer></script>
   <script src="data.js?v=data-column-v3" defer></script>
   <script src="meta-data.js" defer></script>
-  <script src="app-core.js?v=core-v20" defer></script>
+  <script src="app-core.js?v=core-v21" defer></script>
   <script src="operator-ui.js" defer></script>
-  <script src="stop-picker.js?v=picker-v6" defer></script>
+  <script src="stop-picker.js?v=picker-v7" defer></script>
   <script src="pdf-fullscreen.js" defer></script>
-  <script src="pdf-viewer.js?v=pdf-preview-v5" defer></script>
+  <script src="pdf-viewer.js?v=pdf-preview-v7" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
     const UI = {
@@ -644,6 +644,7 @@
     let ttPdfLang = localStorage.getItem("yakushima-bus-tt-pdf-lang") || "ja";
     let ttPdfZoomCtl = null;
     let ttPdfLoaded = false;
+    let ttPdfObserver = null;
     let upcomingUserOverride = false;
 
     function resetUpcomingFilter() {
@@ -1610,6 +1611,8 @@
     }
 
     function initTimetablePdf() {
+      ttPdfObserver?.disconnect();
+      ttPdfObserver = null;
       const url = ttPdfUrl();
       els.ttPdfOpenNew.href = url;
       els.ttPdfOpenPrimary.href = url;
@@ -1641,6 +1644,20 @@
         resetZoom: () => ttPdfZoomCtl?.reset(),
       });
       ttPdfLoaded = true;
+    }
+
+    function observeTimetablePdf() {
+      if (ttPdfLoaded || !els.timetablePdfPanel?.open) return;
+      if (!("IntersectionObserver" in window)) {
+        initTimetablePdf();
+        return;
+      }
+      ttPdfObserver?.disconnect();
+      ttPdfObserver = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        initTimetablePdf();
+      }, { rootMargin: "100px 0px" });
+      ttPdfObserver.observe(els.timetablePdfPanel);
     }
 
     function bindTtPdfEvents() {
@@ -1748,7 +1765,7 @@
     if (urlParams.get("lang")) lang = urlParams.get("lang");
     applyI18n();
     bindTtPdfEvents();
-    if (els.timetablePdfPanel?.open) initTimetablePdf();
+    observeTimetablePdf();
     if (urlParams.get("from")) fromPicker.setValue(urlParams.get("from"), false);
     if (urlParams.get("to")) toPicker.setValue(urlParams.get("to"), false);
     else applyDefaultRoute();

@@ -11,7 +11,7 @@
       "/assets/pdf/yakushimabus-map-unchin-en.pdf",
   };
 
-  /** 移动端内嵌预览（由 PDF 导出，每页一张） */
+  /** 稳定的内嵌预览（由 PDF 导出，每页一张） */
   const PDF_PREVIEW = {
     "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301.pdf": [
       "/assets/pdf-preview/taneyakubus-timetable-20260301-1.jpg",
@@ -90,7 +90,11 @@
       ?? global.matchMedia("(hover: none) and (pointer: coarse)").matches;
   };
 
-  /** 触屏：内嵌 JPG 预览 + 次要「打开 PDF」链接 */
+  /**
+   * 优先使用逐页 JPG 预览。Chrome 的内嵌 PDF 插件在 iframe 中会随环境
+   * 出现黑屏/白屏；图片预览在桌面端和移动端都更稳定。
+   * 无预览图时，触屏设备显示 PDF 直达链接，桌面端则回退到原生内嵌。
+   */
   global.initPdfMobileFallback = function ({
     mobilePagesEl,
     url,
@@ -99,7 +103,12 @@
     embedEl,
     loadingEl,
   }) {
-    if (!global.preferNativePdf()) return false;
+    const hasPreview = global.pdfPreviewPages(url).length > 0;
+    if (!hasPreview && !global.preferNativePdf()) {
+      stageEl?.parentElement?.classList.remove("pdf-image-mode");
+      return false;
+    }
+    stageEl?.parentElement?.classList.add("pdf-image-mode");
     if (stageEl) stageEl.hidden = true;
     if (fallbackEl) fallbackEl.hidden = false;
     if (embedEl) embedEl.removeAttribute("src");

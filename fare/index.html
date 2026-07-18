@@ -57,8 +57,8 @@
     ]
   }
   </script>
-  <link rel="preload" href="/styles.css?v=layout-v143" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v143">
+  <link rel="preload" href="/styles.css?v=layout-v152" as="style">
+  <link rel="stylesheet" href="/styles.css?v=layout-v152">
   <script>
     (function () {
       var h = location.hostname;
@@ -249,14 +249,14 @@
   <script src="/source-links.js?v=src-v1"></script>
   <script src="/data.js?v=data-column-v3"></script>
   <script src="/meta-data.js"></script>
-  <script src="/app-core.js?v=core-v14"></script>
+  <script src="/app-core.js?v=core-v21"></script>
   <script src="/access-data.js"></script>
   <script src="/map-data.js"></script>
   <script src="/operator-ui.js"></script>
   <script src="/section-divider.js"></script>
-  <script src="/stop-picker.js?v=picker-v5"></script>
+  <script src="/stop-picker.js?v=picker-v7"></script>
   <script src="/pdf-fullscreen.js"></script>
-  <script src="/pdf-viewer.js?v=pdf-preview-v5"></script>
+  <script src="/pdf-viewer.js?v=pdf-preview-v7"></script>
   <script>
     const UI = {
       ja: {
@@ -378,6 +378,8 @@
     let modalDay = AppCore.detectDayType();
     let pdfZoomCtl = null;
     let pdfFsCtl = null;
+    let pdfLoaded = false;
+    let pdfObserver = null;
     let lookupPicker, fareFromPicker, fareToPicker;
     let toastTimer = { id: null };
 
@@ -519,6 +521,8 @@
     }
 
     function initPdf() {
+      pdfObserver?.disconnect();
+      pdfObserver = null;
       syncPdfLinks();
       if (initPdfMobileFallback({
         mobilePagesEl: els.pdfMobilePages,
@@ -527,7 +531,10 @@
         fallbackEl: els.pdfFallback,
         embedEl: els.pdfEmbed,
         loadingEl: els.pdfLoading,
-      })) return;
+      })) {
+        pdfLoaded = true;
+        return;
+      }
       els.pdfStage.hidden = false;
       els.pdfFallback.hidden = true;
       initPdfViewer({
@@ -539,6 +546,22 @@
         slowText: t("pdfSlowHint"),
         resetZoom: () => pdfZoomCtl?.reset(),
       });
+      pdfLoaded = true;
+    }
+
+    function observePdf() {
+      if (pdfLoaded) return;
+      const section = els.pdfStage.closest(".map-layout-primary") || els.pdfStage;
+      if (!("IntersectionObserver" in window)) {
+        initPdf();
+        return;
+      }
+      pdfObserver?.disconnect();
+      pdfObserver = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        initPdf();
+      }, { rootMargin: "100px 0px" });
+      pdfObserver.observe(section);
     }
 
     function renderPassInfo() {
@@ -628,15 +651,14 @@
         b.classList.toggle("active", b.dataset.day === modalDay)
       );
       renderModalBody();
-      els.timeModal.hidden = false;
-      AppCore.lockScroll();
-      AppCore.pinOverlay(els.timeModal);
+      AppCore.openDialog(els.timeModal, {
+        onClose: closeTimetableModal,
+        initialFocus: els.modalClose,
+      });
     }
 
     function closeTimetableModal() {
-      els.timeModal.hidden = true;
-      AppCore.unpinOverlay();
-      AppCore.unlockScroll();
+      AppCore.closeDialog(els.timeModal);
     }
 
     function renderModalBody() {
@@ -760,11 +782,8 @@
           ? "日本标准时间 (JST · UTC+9)"
           : (lang === "en" ? "Japan Standard Time (JST · UTC+9)" : "日本標準時 (JST · UTC+9)");
       }
-      try {
-        initPdf();
-      } catch (err) {
-        console.warn("initPdf failed", err);
-      }
+      syncPdfLinks();
+      if (pdfLoaded) initPdf();
       initPickers();
       els.fareNotes.innerHTML = Object.values(MAP_DATA.fareNotes).map((n) => `<li>${pick(n)}</li>`).join("");
       if (els.mapPassDivider) {
@@ -836,6 +855,7 @@
       AppCore.setLang(lang);
       modalDay = detectDayType();
       applyI18n();
+      observePdf();
       setInterval(() => {
         if (!els.liveClockTime || typeof AppCore === "undefined") return;
         const jp = AppCore.japanParts();
