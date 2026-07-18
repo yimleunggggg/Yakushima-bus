@@ -95,8 +95,8 @@
     ]
   }
   </script>
-  <link rel="preload" href="/styles.css?v=layout-v152" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v152">
+  <link rel="preload" href="styles.css?v=layout-v152" as="style">
+  <link rel="stylesheet" href="styles.css?v=layout-v152">
   <script>
     (function () {
       var h = location.hostname;
@@ -1469,8 +1469,14 @@
 
       if (upcoming && refMins != null) {
         const filtered = allTrips.filter((tr) => parseMinutes(tr.dep) >= refMins);
-        trips = filtered;
-        if (filtered.length) upcomingUserOverride = false;
+        if (!filtered.length && allTrips.length && !upcomingUserOverride) {
+          upcoming = false;
+          els.upcomingOnly.checked = false;
+          trips = allTrips;
+        } else {
+          trips = filtered;
+          if (filtered.length) upcomingUserOverride = false;
+        }
       }
 
       if (from === to) {
