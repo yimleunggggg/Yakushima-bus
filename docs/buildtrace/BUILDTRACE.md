@@ -62,7 +62,7 @@
 来源可信度: confirmed
 来源覆盖: current-turn, feishu-export, codex-task-api, local-rollout-audit, git, project-files
 关联任务: codex-thread/019f74f2-c1a0-7462-a15f-508cb80c124b
-依据: 用户本轮完整原话；BuildTrace sync / init 输出；`.buildtrace/recovery/latest.json` 私有恢复清单；Codex App 任务读取；本项目 Git 与 35 条既有记录；桌面与 390px 真实 Viewer 验收
+依据: 用户本轮完整原话；BuildTrace sync / init 输出；`.buildtrace/recovery/latest.json` 私有恢复清单；Codex App 任务读取；本项目 Git 与 35 条既有记录；桌面与 390px 真实 Viewer 验收；28 项上游自动测试；本项目 doctor、公开脱敏检查、commit `023a51e` 与远端分支
 场景: ai-workflow
 可见范围: private
 结果状态: 待观察
@@ -99,7 +99,7 @@ Agent 计划:
 - [E3 <- P3 | completed] 运行安全 `init`，只新建缺失的根目录 `AGENTS.md`；恢复审计在 148 份日志中匹配 21 份 Codex rollout 来源，覆盖 18 个唯一任务、168 条去重用户原话、1 个 compact 窗口、3 条多 Agent 派生边、138 个 Git 提交。Codex App 当前列出 6 个明显相关任务，已读取 5 个非当前任务的可用页面；外部平台和未暴露 fork 仍明确列为缺口。
 - [E4 <- P4 | completed] 将 2026-07-18 真实用户问题和已推送修复补成完整记录；给 2026-07-03 Bing 动作增加稳定 record ID、假设、观察计划和决策原则，但因没有后台复扫数据，继续标为待观察。
 - [E5 <- P5 | completed] 本地 Viewer 真实读取本项目 Markdown：桌面端显示 37 条项目记录、项目资料、复盘轨和决策手册；390px 检查无横向溢出，项目资料与人的初心仍可读取。
-- [E6 <- P6 | pending] 等待最终测试与 Git 审查后补记。
+- [E6 <- P6 | completed] 上游 28 项自动测试全部通过；本项目 doctor 确认 37 条记录；公开派生为 0/37 条且不含原话与内部路径；暂存审查只包含 19 个 BuildTrace 集成文件，没有带入 `.buildtrace/`、备份、旧 Viewer、shiplog、临时 walkthrough、`PROJECT-PROFILE.md` 或 Cursor prompt。commit `023a51e` 已推送到 `agent/buildtrace-v1-17-integration`。
 
 人的假设:
 - [H1] 在真实项目中同时激活项目级规则、历史恢复和只读 Viewer，比只复制一个看板模板更能让后续 Agent 延续人的判断与项目因果。
@@ -125,7 +125,7 @@ Agent 计划:
 - 五份 Cursor 导出已在任务 `019f75ff-2875-7fd0-ae7e-3f9586e0217e` 完成首轮时间顺序与隐私审计；其中可确认内容应继续增量补强既有记录，原始全文不直接提交。
 
 结果:
-- v1.17 模板、项目级自动规则、增量恢复审计与真实 Viewer 验收已经落地；Git 推送完成前，不能把本记录改为「有效」。
+- v1.17 模板、项目级自动规则、增量恢复审计、真实 Viewer 验收和远端分支已经落地；本记录继续「待观察」是为了用未来一个月的真实写回与结果复盘验证长期效果，不是集成未完成。
 
 ### 2026-07-18 — 末班后自动展示全天并修复本地预览样式
 
