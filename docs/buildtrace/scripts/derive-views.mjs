@@ -193,7 +193,12 @@ export function buildDecisionPlaybook(projects) {
   for (const project of projects) {
     for (const principle of project.trace.decisionPrinciples || []) {
       const id = cleanValue(principle.id);
-      if (!/^dp-[a-z0-9-]+$/.test(id) || !cleanValue(principle.text)) continue;
+      const confirmation = cleanValue(principle.confirmation).toLowerCase();
+      if (!/^dp-[a-z0-9-]+$/.test(id)
+        || !cleanValue(principle.text)
+        || !["user-confirmed", "human-confirmed"].includes(confirmation)
+        || principle.sourceTrust !== "confirmed"
+        || !cleanValue(principle.evidence)) continue;
       if (!groups.has(id)) groups.set(id, []);
       groups.get(id).push({
         id,
@@ -203,6 +208,9 @@ export function buildDecisionPlaybook(projects) {
         recordId: principle.recordId,
         recordTitle: principle.recordTitle,
         recordDate: principle.recordDate,
+        confirmation,
+        sourceTrust: principle.sourceTrust,
+        evidence: cleanValue(principle.evidence),
       });
     }
   }
@@ -226,7 +234,7 @@ export function buildDecisionPlaybook(projects) {
   });
 
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     projectCount: projects.length,
     principleCount: principles.length,
     repeatedCount: principles.filter((principle) => principle.status === "repeated").length,
@@ -244,7 +252,7 @@ export function renderDecisionPlaybookMarkdown(playbook, generatedAt = new Date(
   const lines = [
     "# 个人决策手册",
     "",
-    "> 这是从各项目 BUILDTRACE.md 派生的索引，不是新的事实主源。修改原则时请回到对应项目记录。",
+    "> 这里只收录用户明确确认、来源 confirmed 且有依据的原则。它是证据索引，不替用户自动总结人生方法；修改时请回到对应项目记录。",
     "",
     `生成时间: ${generatedAt}`,
     `项目数: ${playbook.projectCount}`,
@@ -266,7 +274,7 @@ export function renderDecisionPlaybookMarkdown(playbook, generatedAt = new Date(
       }
       lines.push("", `出现于 ${principle.projectCount} 个项目、${principle.occurrenceCount} 条记录：`);
       for (const evidence of principle.evidence) {
-        lines.push(`- ${evidence.project} · ${evidence.recordDate} · ${evidence.recordTitle} · ${evidence.recordId}`);
+        lines.push(`- ${evidence.project} · ${evidence.recordDate} · ${evidence.recordTitle} · ${evidence.recordId} · 依据：${evidence.evidence}`);
       }
       lines.push("");
     }

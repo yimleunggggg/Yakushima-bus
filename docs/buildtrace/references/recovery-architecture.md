@@ -7,9 +7,10 @@ BuildTrace treats recovery as an evidence audit, not a promise that every past t
 1. **Current task:** capture full user messages, Agent messages, plan changes, tool calls, file changes, checks, and the final result while they are still directly accessible.
 2. **Codex task API:** list matching project tasks, page every turn with `read_thread`, and retain stable task, turn, and item identifiers. A `contextCompaction` marker is recorded as an event; it does not replace exact messages that the task API can still return.
 3. **Local Codex rollouts:** audit both active and archived JSONL rollouts under the configured Codex home. Match by canonical project path and Git origin. Preserve source hashes and message references before extracting relevant records.
-4. **Fork and multi-Agent graph:** read native parent/child metadata when available. For subagents, keep parent thread, child thread, Agent path, role, task, handoff, and result. If a user-created fork has no exposed parent ID, compare stable message IDs or shared content prefixes and label the relationship `inferred`.
-5. **Project evidence:** inspect Git history, branches, worktrees, documentation, screenshots, exports, deployment records, test output, and data snapshots. These sources can establish what happened, but cannot manufacture a missing human motive.
-6. **Cross-tool and external sources:** use user-provided exports or authorized connectors for Cursor, Claude, ChatGPT, GitHub, analytics, deployment, support, and other systems. Never bypass access controls.
+4. **Local Claude Code sessions:** inventory project JSONL under the configured Claude home, matching canonical working directory or Claude's project-directory encoding. Retain session IDs, hashes, message references, compact summaries, parent UUIDs and sidechain signals without copying transcript text into the private manifest; the Agent must still read and map relevant accessible messages.
+5. **Fork and multi-Agent graph:** read native parent/child metadata when available. For subagents, keep parent thread, child thread, Agent path, role, task, handoff, and result. If a user-created fork has no exposed parent ID, compare stable message IDs or shared content prefixes and label the relationship `inferred`.
+6. **Project evidence:** inspect Git history, branches, worktrees, documentation, screenshots, exports, deployment records, test output, and data snapshots. These sources can establish what happened, but cannot manufacture a missing human motive.
+7. **Cross-tool and external sources:** use user-provided exports or authorized connectors for Cursor, ChatGPT, GitHub, analytics, deployment, support, and other systems. Never bypass access controls.
 
 ## Evidence fidelity
 

@@ -3,7 +3,7 @@ name: buildtrace
 description: Maintain lightweight, evidence-backed project memory in the current project's docs/buildtrace/BUILDTRACE.md after meaningful work, before context restore, during historical backfill, or when the user corrects intent and outcomes.
 ---
 
-# BuildTrace v1.17
+# BuildTrace v1.18
 
 BuildTrace 保存项目因果，而不是复制 Git 记录。唯一主源是当前项目根目录下的 `docs/buildtrace/BUILDTRACE.md`。
 
@@ -30,6 +30,12 @@ BuildTrace 保存项目因果，而不是复制 Git 记录。唯一主源是当�
 - 不要因为全局 Skill 目录旁边存在其他 `BUILDTRACE.md`，就把它当成当前项目的记录。
 - 多项目工作区按本轮实际修改的项目分别维护，不把不同项目写进同一份记录。
 - 当前项目尚未初始化 BuildTrace 时，先明确说明；只有在用户要求安装或初始化时才创建项目文件。
+
+## 作者的话是可选的
+
+- `作者的话（可选）` 是项目层的第一人称来由，不是每条记录都必须填写，也不是 Agent 自动生成的品牌文案。
+- 只有用户亲自提供或明确确认过的内容才能放进这里。用户要求润色时可调整开头与语句，但不能增加经历、数据或动机。
+- Viewer 默认只展示第一段作为引子，展开后接着显示剩余原文；不得再次复制第一段，也不得用项目初心或 Agent 总结替代它。
 
 ## 开始工作前
 
@@ -59,7 +65,9 @@ BuildTrace 保存项目因果，而不是复制 Git 记录。唯一主源是当�
 
 在功能、修复、设计、增长、数据、变现、架构、发布、Agent 工作流或重要决策完成后，写一条记录。
 
-不要为拼写修正、纯格式化和一次性探索建节点。
+不要为拼写修正、纯格式化和一次性探索建节点。按钮文案、间距微调、同一功能的后续修边和没有独立复盘价值的小改动，应并入最近一条相关记录的执行轨迹或结果，不要各建一个节点。只有未来复盘仍值得单独找到的产品决策、主要功能、架构变化、发布、运营动作或明确问题修复，才新增记录。
+
+`关键节点` 比普通项目记录更克制。它只用于主要版本、重要功能、架构转折、正式发布或已经确认的项目里程碑，让 Viewer 的项目脉络保持可读。普通记录默认写 `否`；不要因为“刚完成”就标成 `是`，也不要把关键功能上线误写成已经取得成效。
 
 每条记录必须包含：
 
@@ -72,6 +80,7 @@ BuildTrace 保存项目因果，而不是复制 Git 记录。唯一主源是当�
 关联任务: codex-thread/<thread-id> / 未记录
 依据: 本轮对话 / 文件 / commit / 截图 / 数据导出
 场景: feature | bugfix | ux-content | seo-growth | analytics-data | monetization | architecture | ops-release | ai-workflow | decision
+关键节点: 是 | 否
 可见范围: private | team | public
 结果状态: 待观察 | 有效 | 无效 | 不确定
 后续回看: YYYY-MM-DD / 无
@@ -112,7 +121,7 @@ Agent 计划:
 - [O1 | supported | 日期=YYYY-MM-DD] supported / refuted / mixed / inconclusive / pending；只按后来证据判断。
 
 决策原则:
-- [dp-stable-principle-id | 分类] 这次真实体现、值得跨项目复用的判断；没有就省略。
+- [dp-stable-principle-id | 分类 | 确认=user-confirmed] 只有用户明确确认要进入个人决策手册时才写；Agent 自己总结的候选不得加确认标记。
 
 技术备注:
 - 文件、命令、commit、验证、截图或数据来源。
@@ -133,7 +142,7 @@ Agent 计划:
 - `Agent 当时理解`、`Agent 计划` 与 `执行轨迹` 分开保存。计划变化不能在事后被抹平。
 - 每条新记录使用稳定 `记录 ID`；修改标题不修改 ID。结构规范见 `references/record-schema-v3.md`。
 - `人的假设 → 做了什么 → 数据变化 → 结果判断` 是可逐步补齐的复盘轨。不存在的内容省略，不为结构完整而发明。
-- 决策原则只在真实记录明确体现时添加，并使用稳定 `dp-*` ID。跨项目相同原则沿用同一 ID；同 ID 不同表述保留为冲突，不能自动揉成一条。
+- 决策原则只在真实记录明确体现时添加，并使用稳定 `dp-*` ID。只有用户明确确认后才添加 `确认=user-confirmed`，进入决策手册还要求记录 `来源可信度: confirmed` 且存在依据。Agent 自己概括的“方法论”只能留作未确认候选，不能冒充用户的个人手册。跨项目相同原则沿用同一 ID；同 ID 不同表述保留为冲突，不能自动揉成一条。
 
 ## 私密、团队与公开派生物
 

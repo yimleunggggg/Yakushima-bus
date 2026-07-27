@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { createReadStream, existsSync } from "node:fs";
-import { copyFile, cp, lstat, mkdir, readFile, readdir, readlink, stat, symlink, writeFile } from "node:fs/promises";
+import { copyFile, cp, lstat, mkdir, readFile, readdir, readlink, realpath, rename, stat, symlink, unlink, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { homedir } from "node:os";
 import { basename, dirname, extname, join, relative, resolve, sep } from "node:path";
@@ -11,6 +11,7 @@ import { buildDecisionPlaybook, buildPublication, renderDecisionPlaybookMarkdown
 import { parseBuildtrace } from "../docs/buildtrace/viewer/parser.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const skillRoot = join(root, "skill", "buildtrace");
 const defaultPort = 4173;
 
 const MIME_TYPES = {
@@ -61,7 +62,45 @@ const managedProjectFiles = [
   ["bin/buildtrace.mjs", "bin/buildtrace.mjs"],
 ];
 
-const publicRoot = join(root, "docs/buildtrace");
+const projectAdapters = [
+  ["adapters/cursor-rule.mdc", ".cursor/rules/buildtrace.mdc", false],
+  ["adapters/CLAUDE.md", "CLAUDE.md", true],
+  ["adapters/copilot-instructions.md", ".github/copilot-instructions.md", true],
+  ["adapters/GEMINI.md", "GEMINI.md", true],
+  ["adapters/windsurf-rule.md", ".windsurf/rules/buildtrace.md", false],
+];
+
+const AUTO_BLOCK_START = "<!-- buildtrace:auto:start -->";
+const AUTO_BLOCK_END = "<!-- buildtrace:auto:end -->";
+const PROJECT_ADAPTER_BLOCK_START = "<!-- buildtrace:project-adapter:start -->";
+const PROJECT_ADAPTER_BLOCK_END = "<!-- buildtrace:project-adapter:end -->";
+const globalInstructionTargets = [
+  [".codex/AGENTS.md", "Codex"],
+  [".claude/CLAUDE.md", "Claude Code"],
+  [".copilot/copilot-instructions.md", "GitHub Copilot"],
+  [".codeium/windsurf/memories/global_rules.md", "Windsurf"],
+  [".gemini/GEMINI.md", "Gemini CLI"],
+];
+
+function globalAutoInstructions(agentName) {
+  return `${AUTO_BLOCK_START}
+## BuildTrace automatic project memory
+
+The user enabled BuildTrace for future projects in ${agentName}. At the start of meaningful work in a writable project:
+
+1. Locate the project root. If \`docs/buildtrace/BUILDTRACE.md\` is absent, run \`buildtrace init --target "<absolute-project-root>"\` before implementation. Do not initialize read-only reviews, temporary folders, dependencies, or projects whose instructions opt out.
+2. Read \`docs/buildtrace/SKILL.md\`, the project purpose, recent and relevant records, and due follow-ups.
+3. After a meaningful feature, fix, design, architecture, release, operational action, or important decision, update the Markdown source in the same turn. Ordinary natural language is enough; do not wait for a fixed command.
+4. On first initialization of an existing project, continue from \`.buildtrace/recovery/latest.json\`: inspect every safe accessible matching task, compact trace, fork or subagent lineage, Git branch, project artifact, and authorized export. State what was searched, mapped, unavailable, and still unresolved.
+5. Never copy another project's records into the new project. The installed Skill contains rules only; project facts belong only in that project's \`docs/buildtrace/BUILDTRACE.md\`.
+
+If the \`buildtrace\` command is unavailable, tell the user to install it from https://github.com/yimleunggggg/Buildtrace instead of silently skipping initialization.
+${AUTO_BLOCK_END}
+`;
+}
+
+const blockedLocalSegments = new Set([".git", ".buildtrace", "node_modules"]);
+const allowedRootDocuments = new Set(["README.md", "README.en.md", "CHANGELOG.md", "DESIGN.md", "LICENSE", "LICENSE.md"]);
 
 function getOption(name, fallback) {
   const index = process.argv.indexOf(name);
@@ -171,15 +210,34 @@ function validateRecords(entries) {
   return errors;
 }
 
-function safeLocalPath(pathname) {
+function safeLocalPath(pathname, base) {
   const decoded = decodeURIComponent(pathname);
-  const requested = resolve(root, `.${decoded}`);
-  if (requested !== publicRoot && !requested.startsWith(`${publicRoot}${sep}`)) return null;
+  const requested = resolve(base, `.${decoded}`);
+  if (requested !== base && !requested.startsWith(`${base}${sep}`)) return null;
+  const segments = relative(base, requested).split(sep).filter(Boolean);
+  if (segments.some((segment) => blockedLocalSegments.has(segment) || segment === ".env" || segment.startsWith(".env."))) return null;
+  if (segments[0] !== "docs" && !allowedRootDocuments.has(segments.join("/"))) return null;
   return requested;
+}
+
+function isInsidePath(base, candidate) {
+  return candidate === base || candidate.startsWith(`${base}${sep}`);
 }
 
 async function serve() {
   const parsedPort = Number(getOption("--port", process.env.PORT || defaultPort));
+  const target = resolve(getOption("--target", root));
+  const explicitSource = getOption("--source", null);
+  const source = resolve(explicitSource || join(target, "docs/buildtrace/BUILDTRACE.md"));
+  const targetStat = await stat(target).catch(() => null);
+  const sourceStat = await stat(source).catch(() => null);
+  if (!targetStat?.isDirectory()) throw new Error(`serve target does not exist: ${target}`);
+  if (!sourceStat?.isFile()) throw new Error(`serve source does not exist: ${source}`);
+  const canonicalTarget = await realpath(target);
+  const canonicalSource = await realpath(source);
+  if (!explicitSource && !isInsidePath(canonicalTarget, canonicalSource)) {
+    throw new Error("default BuildTrace source resolves outside the serve target");
+  }
   if (!Number.isInteger(parsedPort) || parsedPort < 0 || parsedPort > 65535) {
     throw new Error("--port must be an integer between 0 and 65535");
   }
@@ -193,7 +251,9 @@ async function serve() {
         return;
       }
 
-      let filePath = safeLocalPath(url.pathname);
+      let filePath = url.pathname === "/docs/buildtrace/BUILDTRACE.md"
+        ? canonicalSource
+        : safeLocalPath(url.pathname, target);
       if (!filePath) {
         response.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" });
         response.end("Forbidden");
@@ -202,15 +262,25 @@ async function serve() {
 
       const fileStat = await stat(filePath);
       if (fileStat.isDirectory()) filePath = join(filePath, "index.html");
+      filePath = await realpath(filePath);
+      if (filePath !== canonicalSource && !isInsidePath(canonicalTarget, filePath)) {
+        response.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" });
+        response.end("Forbidden");
+        return;
+      }
       const finalStat = await stat(filePath);
       if (!finalStat.isFile()) throw new Error("Not a file");
 
-      response.writeHead(200, {
+      const headers = {
         "Cache-Control": "no-store",
         "Content-Length": finalStat.size,
         "Content-Type": MIME_TYPES[extname(filePath)] || "application/octet-stream",
         "X-Content-Type-Options": "nosniff",
-      });
+      };
+      if (url.searchParams.get("download") === "1" && filePath === canonicalSource) {
+        headers["Content-Disposition"] = 'attachment; filename="BUILDTRACE.md"';
+      }
+      response.writeHead(200, headers);
       createReadStream(filePath).pipe(response);
     } catch {
       response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
@@ -225,7 +295,7 @@ async function serve() {
       const address = server.address();
       const activePort = typeof address === "object" && address ? address.port : parsedPort;
       log(`BuildTrace Viewer: http://localhost:${activePort}`);
-      log("Source: docs/buildtrace/BUILDTRACE.md");
+      log(`Source: ${canonicalSource}`);
       resolveListening();
     });
   });
@@ -235,8 +305,36 @@ async function serve() {
   process.once("SIGTERM", close);
 }
 
+async function assertSafeProjectWritePath(target, destination) {
+  const relativePath = relative(target, destination);
+  if (!relativePath || relativePath === ".") return;
+  if (relativePath === ".." || relativePath.startsWith(`..${sep}`) || resolve(destination) !== destination) {
+    throw new Error(`refusing to write outside project: ${destination}`);
+  }
+  const targetStat = await lstat(target);
+  if (targetStat.isSymbolicLink()) throw new Error(`refusing to use symlink project root: ${target}`);
+
+  let current = target;
+  for (const segment of relativePath.split(sep).filter(Boolean)) {
+    current = join(current, segment);
+    const currentStat = await lstat(current).catch((error) => {
+      if (error.code === "ENOENT") return null;
+      throw error;
+    });
+    if (!currentStat) break;
+    if (currentStat.isSymbolicLink()) {
+      throw new Error(`refusing to follow project symlink: ${relative(target, current)}`);
+    }
+  }
+}
+
 async function copyWithoutOverwrite(source, destination) {
-  if (existsSync(destination)) {
+  const existing = await lstat(destination).catch((error) => {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  });
+  if (existing?.isSymbolicLink()) throw new Error(`refusing to follow destination symlink: ${destination}`);
+  if (existing) {
     log(`↷ kept ${relative(process.cwd(), destination)}`);
     return false;
   }
@@ -247,7 +345,12 @@ async function copyWithoutOverwrite(source, destination) {
 }
 
 async function writeWithoutOverwrite(destination, content) {
-  if (existsSync(destination)) {
+  const existing = await lstat(destination).catch((error) => {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  });
+  if (existing?.isSymbolicLink()) throw new Error(`refusing to follow destination symlink: ${destination}`);
+  if (existing) {
     log(`↷ kept ${relative(process.cwd(), destination)}`);
     return false;
   }
@@ -257,9 +360,124 @@ async function writeWithoutOverwrite(destination, content) {
   return true;
 }
 
+async function installProjectAdapter(target, sourcePath, destinationPath, sharedInstructionFile) {
+  const source = join(root, sourcePath);
+  const destination = join(target, destinationPath);
+  await assertSafeProjectWritePath(target, destination);
+  if (sharedInstructionFile) return Number(await upsertProjectAdapterBlock(target, source, destination));
+  const destinationStat = await lstat(destination).catch((error) => {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  });
+  if (!destinationStat) return Number(await copyWithoutOverwrite(source, destination));
+  log(`↷ kept ${relative(process.cwd(), destination)}`);
+  return 0;
+}
+
+async function upsertProjectAdapterBlock(target, source, destination) {
+  await assertSafeProjectWritePath(target, destination);
+  const sourceContent = await readFile(source, "utf8");
+  const block = `${PROJECT_ADAPTER_BLOCK_START}\n${sourceContent.trim()}\n${PROJECT_ADAPTER_BLOCK_END}`;
+  const destinationStat = await lstat(destination).catch((error) => {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  });
+  if (destinationStat?.isSymbolicLink() || (destinationStat && !destinationStat.isFile())) {
+    throw new Error(`refusing to update unsafe project instruction file: ${destination}`);
+  }
+  const existing = destinationStat ? await readFile(destination, "utf8") : "";
+  const start = existing.indexOf(PROJECT_ADAPTER_BLOCK_START);
+  const end = existing.indexOf(PROJECT_ADAPTER_BLOCK_END);
+  let next;
+  if (start >= 0 && end > start) {
+    next = `${existing.slice(0, start)}${block}${existing.slice(end + PROJECT_ADAPTER_BLOCK_END.length)}`;
+  } else if (existing.trim() === sourceContent.trim()) {
+    next = block;
+  } else {
+    const separator = existing.trim() ? "\n\n" : "";
+    next = `${existing.trimEnd()}${separator}${block}`;
+  }
+  next = `${next.trimEnd()}\n`;
+  if (next === existing) {
+    log(`↷ current ${relative(process.cwd(), destination)}`);
+    return false;
+  }
+  await mkdir(dirname(destination), { recursive: true });
+  await writeFile(destination, next, "utf8");
+  log(`✓ ${destinationStat ? "updated" : "created"} ${relative(process.cwd(), destination)}`);
+  return true;
+}
+
+async function upsertManagedBlock(destination, block) {
+  await mkdir(dirname(destination), { recursive: true });
+  const destinationStat = await lstat(destination).catch((error) => {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  });
+  if (destinationStat?.isSymbolicLink() || (destinationStat && !destinationStat.isFile())) {
+    throw new Error(`refusing to update unsafe instruction file: ${destination}`);
+  }
+  const existing = destinationStat ? await readFile(destination, "utf8") : "";
+  const start = existing.indexOf(AUTO_BLOCK_START);
+  const end = existing.indexOf(AUTO_BLOCK_END);
+  let next;
+  if (start >= 0 && end > start) {
+    next = `${existing.slice(0, start)}${block.trim()}${existing.slice(end + AUTO_BLOCK_END.length)}`;
+  } else {
+    const separator = existing.trim() ? "\n\n" : "";
+    next = `${existing.trimEnd()}${separator}${block.trim()}`;
+  }
+  next = `${next.trimEnd()}\n`;
+  if (next === existing) {
+    log(`↷ current ${destination}`);
+    return false;
+  }
+  await writeFile(destination, next, "utf8");
+  log(`✓ activated ${destination}`);
+  return true;
+}
+
+async function ensureSkillLink(destination) {
+  await mkdir(dirname(destination), { recursive: true });
+  const existing = await lstat(destination).catch((error) => {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  });
+  if (existing) {
+    if (existing.isDirectory()) {
+      const existingSkill = await readFile(join(destination, "SKILL.md"), "utf8").catch(() => "");
+      if (!/^name:\s*buildtrace\s*$/m.test(existingSkill)) {
+        throw new Error(`refusing to overwrite existing Skill folder: ${destination}`);
+      }
+      const backup = `${destination}.backup-${new Date().toISOString().replace(/[:.]/g, "-")}`;
+      await rename(destination, backup);
+      log(`✓ backed up legacy BuildTrace Skill ${backup}`);
+    } else if (!existing.isSymbolicLink()) {
+      throw new Error(`refusing to overwrite existing Skill path: ${destination}`);
+    }
+    if (existing.isSymbolicLink()) {
+      const currentTarget = resolve(dirname(destination), await readlink(destination));
+      if (currentTarget === skillRoot) {
+        log(`↷ current ${destination}`);
+        return false;
+      }
+      const linkedSkill = await readFile(join(currentTarget, "SKILL.md"), "utf8").catch(() => "");
+      if (!/^name:\s*buildtrace\s*$/m.test(linkedSkill)) {
+        throw new Error(`refusing to replace unrelated Skill link: ${destination}`);
+      }
+      await unlink(destination);
+      log(`✓ removed legacy project-archive Skill link ${destination}`);
+    }
+  }
+  await symlink(skillRoot, destination, "dir");
+  log(`✓ linked clean Skill ${destination}`);
+  return true;
+}
+
 async function ensurePrivateBuildtraceIgnore(target) {
   const privateRoot = join(target, ".buildtrace");
   const ignorePath = join(privateRoot, ".gitignore");
+  await assertSafeProjectWritePath(target, privateRoot);
   const privateRootStat = await lstat(privateRoot).catch((error) => {
     if (error.code === "ENOENT") return null;
     throw error;
@@ -297,6 +515,7 @@ async function init() {
   const targetStat = await stat(target).catch(() => null);
   if (!targetStat?.isDirectory()) throw new Error(`target directory does not exist: ${target}`);
 
+  await ensurePrivateBuildtraceIgnore(target);
   const recoveryReport = await recoverHistory(target);
   const matchedThreads = recoveryReport.coverage.codexLocalRollouts.matchedThreadCount;
   const matchedRollouts = recoveryReport.coverage.codexLocalRollouts.matchedRolloutCount;
@@ -324,44 +543,53 @@ async function init() {
     .replace("文件、命令、commit、验证或数据来源。", "docs/buildtrace/；.buildtrace/recovery/latest.json；BuildTrace init。")
     .replace("待回看或后续结论。", "初始化完成；历史内容的逐条映射仍需 Agent 继续完成。");
 
-  let created = Number(
-    await writeWithoutOverwrite(join(target, "docs/buildtrace/BUILDTRACE.md"), initializedSource),
-  );
+  const projectSourcePath = join(target, "docs/buildtrace/BUILDTRACE.md");
+  await assertSafeProjectWritePath(target, projectSourcePath);
+  let created = Number(await writeWithoutOverwrite(projectSourcePath, initializedSource));
   for (const [source, destination] of managedProjectFiles) {
-    created += Number(await copyWithoutOverwrite(join(root, source), join(target, destination)));
+    const destinationPath = join(target, destination);
+    await assertSafeProjectWritePath(target, destinationPath);
+    created += Number(await copyWithoutOverwrite(join(root, source), destinationPath));
   }
 
-  created += Number(
-    await writeWithoutOverwrite(
-      join(target, ".cursor/rules/buildtrace.mdc"),
-      `---\ndescription: Maintain evidence-backed project memory\nalwaysApply: true\n---\n\nDo not wait for fixed commands. Infer intent, concerns, tradeoffs, evidence, and outcomes from the user's ordinary natural language. Restore relevant context before meaningful work and record completed meaningful work in the same turn. Ask only when missing information would change the factual judgment.\n\nOn first install or backfill, audit every safe readable task, compact residue, fork or subagent trace, Git branch, project artifact, and provided export. Preserve complete relevant user messages, itemized requirements, Agent understanding, the original plan, and the actual execution trace as separate layers.\n\nRead and follow docs/buildtrace/SKILL.md for meaningful work and context restoration.\n`,
-    ),
-  );
+  for (const adapter of projectAdapters) {
+    created += await installProjectAdapter(target, ...adapter);
+  }
   const agentsInstructions = await readFile(join(root, "adapters/AGENTS.md"), "utf8");
   const agentsPath = join(target, "AGENTS.md");
-  if (existsSync(agentsPath)) {
-    created += Number(await writeWithoutOverwrite(join(target, "AGENTS.md.buildtrace"), agentsInstructions));
+  await assertSafeProjectWritePath(target, agentsPath);
+  const agentsStat = await lstat(agentsPath).catch((error) => {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  });
+  if (agentsStat) {
+    const fallbackPath = join(target, "AGENTS.md.buildtrace");
+    await assertSafeProjectWritePath(target, fallbackPath);
+    created += Number(await writeWithoutOverwrite(fallbackPath, agentsInstructions));
     log("! AGENTS.md already exists; merge AGENTS.md.buildtrace to activate BuildTrace for Codex.");
   } else {
     created += Number(await writeWithoutOverwrite(agentsPath, agentsInstructions));
   }
 
   log(`BuildTrace initialized at ${target} (${created} new file${created === 1 ? "" : "s"}).`);
-  log("Run: node docs/buildtrace/viewer/serve.mjs");
+  log("Run: buildtrace serve --target .");
 }
 
 async function recoverHistory(targetOverride = null) {
   const target = resolve(targetOverride || getOption("--target", process.cwd()));
   const targetStat = await stat(target).catch(() => null);
   if (!targetStat?.isDirectory()) throw new Error(`target directory does not exist: ${target}`);
+  await ensurePrivateBuildtraceIgnore(target);
   const codexHome = resolve(getOption("--codex-home", join(homedir(), ".codex")));
-  const report = await auditHistory({ target, codexHome });
+  const claudeHome = resolve(getOption("--claude-home", join(homedir(), ".claude")));
+  const report = await auditHistory({ target, codexHome, claudeHome });
   const destination = await writeHistoryAudit(report, target);
   const matched = report.coverage.codexLocalRollouts.matchedThreadCount;
   const matchedRollouts = report.coverage.codexLocalRollouts.matchedRolloutCount;
   const exactMessages = report.totals.exactUserMessages || 0;
   const compacted = report.totals.compactedWindows || 0;
   log(`✓ recovery audit: ${matchedRollouts} rollout source${matchedRollouts === 1 ? "" : "s"}, ${matched} unique Codex thread${matched === 1 ? "" : "s"}, ${exactMessages} deduplicated user message${exactMessages === 1 ? "" : "s"}, ${compacted} compacted window${compacted === 1 ? "" : "s"}`);
+  log(`✓ Claude Code: ${report.coverage.claudeLocalSessions.matchedSessionCount} matching local session${report.coverage.claudeLocalSessions.matchedSessionCount === 1 ? "" : "s"}`);
   log(`  manifest ${destination}`);
   log("! The Agent must still page matching app tasks and promote relevant evidence into BUILDTRACE.md.");
   return report;
@@ -517,6 +745,7 @@ async function syncProject() {
   for (const [sourcePath, destinationPath] of managedProjectFiles) {
     const source = join(root, sourcePath);
     const destination = join(target, destinationPath);
+    await assertSafeProjectWritePath(target, destination);
     const sourceContent = await readFile(source);
     const destinationStat = await lstat(destination).catch((error) => {
       if (error.code === "ENOENT") return null;
@@ -551,9 +780,74 @@ async function syncProject() {
     }
   }
 
+  for (const adapter of projectAdapters) {
+    const result = await syncProjectAdapter(target, backupRoot, ...adapter);
+    updated += result.updated;
+    created += result.created;
+    kept += result.kept;
+    backedUp += result.backedUp;
+  }
+
   log(`BuildTrace synced at ${target}: ${updated} updated, ${created} created, ${kept} current.`);
   if (backedUp) log(`Previous managed files backed up to ${backupRoot}`);
   log("Project facts were not touched: docs/buildtrace/BUILDTRACE.md and AGENTS.md were kept.");
+}
+
+async function syncProjectAdapter(target, backupRoot, sourcePath, destinationPath, sharedInstructionFile) {
+  const source = join(root, sourcePath);
+  const sourceContent = await readFile(source);
+  const destination = join(target, destinationPath);
+  await assertSafeProjectWritePath(target, destination);
+
+  if (sharedInstructionFile) {
+    const beforeStat = await lstat(destination).catch((error) => {
+      if (error.code === "ENOENT") return null;
+      throw error;
+    });
+    const before = beforeStat ? await readFile(destination) : null;
+    const changed = await upsertProjectAdapterBlock(target, source, destination);
+    if (!changed) return { updated: 0, created: 0, kept: 1, backedUp: 0 };
+    if (before) {
+      const backup = join(backupRoot, destinationPath);
+      await assertSafeProjectWritePath(target, backup);
+      await mkdir(dirname(backup), { recursive: true });
+      await writeFile(backup, before);
+      return { updated: 1, created: 0, kept: 0, backedUp: 1 };
+    }
+    return { updated: 0, created: 1, kept: 0, backedUp: 0 };
+  }
+
+  const destinationStat = await lstat(destination).catch((error) => {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  });
+  if (destinationStat?.isSymbolicLink()) {
+    throw new Error(`refusing to replace project adapter symlink: ${relative(target, destination)}`);
+  }
+
+  const existing = destinationStat ? await readFile(destination) : null;
+  if (existing && Buffer.compare(existing, sourceContent) === 0) {
+    log(`↷ current ${relative(target, destination)}`);
+    return { updated: 0, created: 0, kept: 1, backedUp: 0 };
+  }
+
+  let backedUp = 0;
+  if (existing) {
+    const backup = join(backupRoot, destinationPath);
+    await assertSafeProjectWritePath(target, backup);
+    await mkdir(dirname(backup), { recursive: true });
+    await copyFile(destination, backup);
+    backedUp = 1;
+  }
+  await mkdir(dirname(destination), { recursive: true });
+  await copyFile(source, destination);
+  log(`✓ ${existing ? "updated" : "created"} ${relative(target, destination)}`);
+  return {
+    updated: existing ? 1 : 0,
+    created: existing ? 0 : 1,
+    kept: 0,
+    backedUp,
+  };
 }
 
 async function createDeployKit() {
@@ -566,6 +860,7 @@ async function createDeployKit() {
   }
 
   const destination = join(target, ".github", "workflows", "buildtrace-pages.yml");
+  await assertSafeProjectWritePath(target, destination);
   const created = await copyWithoutOverwrite(join(root, "templates", "buildtrace-pages.yml"), destination);
   if (created) {
     log("The workflow generates a public snapshot and never uploads the private BUILDTRACE.md directly.");
@@ -578,35 +873,38 @@ async function installCodexSkill() {
   const destination = resolve(
     getOption("--dest", join(homedir(), ".agents", "skills", "buildtrace")),
   );
-  const source = join(root, "docs/buildtrace");
+  await ensureSkillLink(destination);
+  log(`  source ${skillRoot}`);
+  log("This compatibility command installs rules only. Use `buildtrace setup` for automatic future-project activation.");
+}
 
-  await mkdir(dirname(destination), { recursive: true });
-  const existing = await lstat(destination).catch(() => null);
-  if (existing) {
-    if (existing.isSymbolicLink()) {
-      const currentTarget = resolve(dirname(destination), await readlink(destination));
-      if (currentTarget === source) {
-        log(`✓ BuildTrace Codex Skill is already linked to ${source}`);
-        return;
-      }
-    }
-    throw new Error(`refusing to overwrite existing Skill folder: ${destination}`);
+async function setupAgents() {
+  const userHome = resolve(getOption("--home", homedir()));
+  const skillDestinations = [
+    join(userHome, ".agents", "skills", "buildtrace"),
+    join(userHome, ".claude", "skills", "buildtrace"),
+    join(userHome, ".cursor", "skills", "buildtrace"),
+    join(userHome, ".copilot", "skills", "buildtrace"),
+  ];
+  for (const destination of skillDestinations) await ensureSkillLink(destination);
+  for (const [relativePath, agentName] of globalInstructionTargets) {
+    await upsertManagedBlock(join(userHome, relativePath), globalAutoInstructions(agentName));
   }
-
-  await symlink(source, destination, "dir");
-  log(`✓ linked ${destination}`);
-  log(`  source ${source}`);
-  log("Updates to the repository Skill folder are now reflected in the local Codex Skill.");
+  log("");
+  log("BuildTrace is active for future writable projects in Codex, Cursor, Claude Code, GitHub Copilot, Windsurf, and Gemini CLI.");
+  log("Each project receives its own clean Markdown archive on first meaningful work; no project records live in the global Skill.");
+  log("Update later with: npm install -g github:yimleunggggg/Buildtrace && buildtrace setup");
 }
 
 function help() {
-  log(`BuildTrace ${process.env.npm_package_version || "v1.17"}\n\nCommands:\n  buildtrace doctor [--target /path/to/project]\n  buildtrace serve [--port 4173]\n  buildtrace init --target /path/to/project\n  buildtrace recover [--target /path/to/project] [--codex-home /path/to/.codex]\n  buildtrace export [--target /path/to/project] [--format json|jsonl] [--output /path]\n  buildtrace playbook [--target /project/a --target /project/b] [--format md|json] [--output /path]\n  buildtrace publish --profile team|public [--target /path/to/project] --output /empty/directory\n  buildtrace sync --target /path/to/project\n  buildtrace deploy-kit --provider github-pages [--target /path/to/project]\n  buildtrace install-codex-skill [--dest /path/to/skill]`);
+  log(`BuildTrace ${process.env.npm_package_version || "v1.18"}\n\nCommands:\n  buildtrace setup [--home /path/to/test-home]\n  buildtrace doctor [--target /path/to/project]\n  buildtrace serve [--target /path/to/project] [--source /path/to/BUILDTRACE.md] [--port 4173]\n  buildtrace init --target /path/to/project\n  buildtrace recover [--target /path/to/project] [--codex-home /path/to/.codex] [--claude-home /path/to/.claude]\n  buildtrace export [--target /path/to/project] [--format json|jsonl] [--output /path]\n  buildtrace playbook [--target /project/a --target /project/b] [--format md|json] [--output /path]\n  buildtrace publish --profile team|public [--target /path/to/project] --output /empty/directory\n  buildtrace sync --target /path/to/project\n  buildtrace deploy-kit --provider github-pages [--target /path/to/project]\n  buildtrace install-codex-skill [--dest /path/to/skill]`);
 }
 
 const command = process.argv[2] || "help";
 
 try {
-  if (command === "doctor") await doctor(resolve(getOption("--target", root)));
+  if (command === "setup") await setupAgents();
+  else if (command === "doctor") await doctor(resolve(getOption("--target", root)));
   else if (command === "serve") await serve();
   else if (command === "init") await init();
   else if (command === "recover") await recoverHistory();

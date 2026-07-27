@@ -203,6 +203,77 @@ async function inspectRollout(pathname, target, targetRepositoryUrl, codexHome) 
   };
 }
 
+async function inspectClaudeSession(pathname, target, claudeHome) {
+  const counters = {
+    compactedWindows: 0,
+    exactUserMessages: 0,
+    agentMessages: 0,
+    reasoningItems: 0,
+    toolCalls: 0,
+    toolOutputs: 0,
+  };
+  const messageRefs = [];
+  const sessionIds = new Set();
+  const workingDirectories = new Set();
+  let firstTimestamp = null;
+  let lastTimestamp = null;
+  let hasSidechain = false;
+  let parentMessageCount = 0;
+
+  const input = createInterface({ input: createReadStream(pathname), crlfDelay: Infinity });
+  for await (const line of input) {
+    if (!line.trim()) continue;
+    let event;
+    try {
+      event = JSON.parse(line);
+    } catch {
+      continue;
+    }
+    if (event.timestamp) {
+      firstTimestamp ||= event.timestamp;
+      lastTimestamp = event.timestamp;
+    }
+    if (event.cwd) workingDirectories.add(await canonicalPath(event.cwd));
+    if (event.sessionId || event.session_id) sessionIds.add(event.sessionId || event.session_id);
+    if (event.isSidechain) hasSidechain = true;
+    if (event.parentUuid || event.parent_uuid) parentMessageCount += 1;
+    if (["summary", "compact_boundary", "compacted"].includes(event.type)) counters.compactedWindows += 1;
+
+    const message = event.message || event.payload?.message;
+    const role = message?.role || (event.type === "user" ? "user" : event.type === "assistant" ? "assistant" : null);
+    const id = event.uuid || event.id || message?.id || null;
+    if (role === "user") {
+      counters.exactUserMessages += 1;
+      if (id) messageRefs.push({ id, role: "user" });
+    } else if (role === "assistant") {
+      counters.agentMessages += 1;
+      if (id) messageRefs.push({ id, role: "assistant" });
+    }
+  }
+
+  const encodedTarget = target.replaceAll(sep, "-");
+  const cwdMatch = [...workingDirectories].some((cwd) => isInside(cwd, target));
+  const directoryMatch = pathname.split(sep).some((segment) =>
+    segment === encodedTarget || segment === encodedTarget.replace(/^-/, ""),
+  );
+  if (!cwdMatch && !directoryMatch) return null;
+  const fileStat = await stat(pathname);
+  return {
+    sessionId: [...sessionIds].at(-1) || basename(pathname, ".jsonl"),
+    sourcePath: relative(claudeHome, pathname),
+    sourceSha256: await sha256(pathname),
+    sourceBytes: fileStat.size,
+    matchedBy: cwdMatch ? "cwd" : "project-directory",
+    workingDirectories: [...workingDirectories],
+    firstTimestamp,
+    lastTimestamp,
+    hasSidechain,
+    parentMessageCount,
+    counters,
+    messageRefs,
+  };
+}
+
 function readSpawnEdges(codexHome) {
   const database = join(codexHome, "state_5.sqlite");
   const result = spawnSync(
@@ -238,9 +309,14 @@ async function inspectProjectEvidence(target) {
   };
 }
 
-export async function auditHistory({ target, codexHome = process.env.CODEX_HOME || join(homedir(), ".codex") }) {
+export async function auditHistory({
+  target,
+  codexHome = process.env.CODEX_HOME || join(homedir(), ".codex"),
+  claudeHome = process.env.CLAUDE_HOME || join(homedir(), ".claude"),
+}) {
   const canonicalTarget = await canonicalPath(target);
   const canonicalCodexHome = await canonicalPath(codexHome);
+  const canonicalClaudeHome = await canonicalPath(claudeHome);
   const git = getTargetGit(canonicalTarget);
   const rolloutRoots = [
     join(canonicalCodexHome, "sessions"),
@@ -262,6 +338,20 @@ export async function auditHistory({ target, codexHome = process.env.CODEX_HOME 
     if (thread) threads.push(thread);
   }
 
+  const claudeFiles = await walkFiles(
+    join(canonicalClaudeHome, "projects"),
+    (pathname) => pathname.endsWith(".jsonl"),
+  );
+  const claudeSessions = [];
+  for (const pathname of claudeFiles) {
+    const session = await inspectClaudeSession(
+      pathname,
+      canonicalTarget,
+      canonicalClaudeHome,
+    );
+    if (session) claudeSessions.push(session);
+  }
+
   const threadIds = new Set(threads.map((thread) => thread.threadId).filter(Boolean));
   const spawnGraph = readSpawnEdges(canonicalCodexHome);
   const relevantEdges = spawnGraph.edges.filter((edge) =>
@@ -273,7 +363,7 @@ export async function auditHistory({ target, codexHome = process.env.CODEX_HOME 
   }
 
   const projectEvidence = await inspectProjectEvidence(canonicalTarget);
-  const totals = threads.reduce((sum, thread) => {
+  const totals = [...threads, ...claudeSessions].reduce((sum, thread) => {
     for (const [key, value] of Object.entries(thread.counters)) sum[key] = (sum[key] || 0) + value;
     return sum;
   }, {});
@@ -281,8 +371,13 @@ export async function auditHistory({ target, codexHome = process.env.CODEX_HOME 
   let unidentifiedUserMessageOccurrences = 0;
   for (const thread of threads) {
     const identified = thread.messageRefs.filter((message) => message.role === "user" && message.id);
-    for (const message of identified) userMessageIds.add(message.id);
+    for (const message of identified) userMessageIds.add(`codex:${message.id}`);
     unidentifiedUserMessageOccurrences += Math.max(0, thread.counters.exactUserMessages - identified.length);
+  }
+  for (const session of claudeSessions) {
+    const identified = session.messageRefs.filter((message) => message.role === "user" && message.id);
+    for (const message of identified) userMessageIds.add(`claude:${message.id}`);
+    unidentifiedUserMessageOccurrences += Math.max(0, session.counters.exactUserMessages - identified.length);
   }
   totals.exactUserMessageOccurrences = totals.exactUserMessages || 0;
   totals.exactUserMessages = userMessageIds.size + unidentifiedUserMessageOccurrences;
@@ -306,14 +401,27 @@ export async function auditHistory({ target, codexHome = process.env.CODEX_HOME 
         matchedThreadCount: new Set(threads.map((thread) => thread.threadId || thread.sourcePath)).size,
         note: "Rollout sources may repeat forked message prefixes. exactUserMessages is deduplicated by message ID; exactUserMessageOccurrences retains the pre-deduplication count.",
       },
+      claudeLocalSessions: {
+        status: claudeFiles.length ? "audited" : "unavailable",
+        searchedFileCount: claudeFiles.length,
+        matchedSessionCount: claudeSessions.length,
+        note: "Claude Code project JSONL is inventoried without copying transcript text into the recovery manifest. The Agent must read and map relevant messages from accessible sessions.",
+      },
       compaction: {
         status: totals.compactedWindows ? "found" : "not-found",
         compactedWindows: totals.compactedWindows || 0,
         note: "A compacted marker or summary does not replace earlier exact messages when the rollout still contains them.",
       },
       multiAgent: {
-        status: threads.some((thread) => thread.parentThreadId) || relevantEdges.length ? "found" : "not-found",
+        status: threads.some((thread) => thread.parentThreadId)
+          || relevantEdges.length
+          || claudeSessions.some((session) => session.hasSidechain)
+          ? "found"
+          : "not-found",
         spawnEdges: relevantEdges.length,
+        claudeSidechainSessions: claudeSessions.filter((session) => session.hasSidechain).length,
+        claudeParentMessageRefs: claudeSessions.reduce((sum, session) => sum + session.parentMessageCount, 0),
+        note: "Claude parentUuid values describe ordinary message reply chains; only explicit sidechain or Agent metadata counts as multi-Agent evidence.",
       },
       forkLineage: {
         status: "partial",
@@ -328,9 +436,11 @@ export async function auditHistory({ target, codexHome = process.env.CODEX_HOME 
     },
     totals,
     threads,
+    claudeSessions,
     spawnEdges: relevantEdges,
     unresolved: [
       "Codex app tasks have not been paged until an Agent uses list_threads/read_thread.",
+      "Claude Code session files are only inventoried until an Agent reads and maps relevant messages.",
       "Forks without exposed parent metadata require shared-prefix comparison and remain inferred.",
       "Deleted, inaccessible, or never-exported conversations cannot be claimed as recovered.",
       "External tools remain unaudited until an export or connector is available.",

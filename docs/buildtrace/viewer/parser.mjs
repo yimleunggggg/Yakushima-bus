@@ -5,6 +5,7 @@ const FIELD_MAP = {
   "关联任务": "relatedTask",
   "依据": "evidence",
   "场景": "scene",
+  "关键节点": "milestone",
   "可见范围": "visibility",
   "结果状态": "status",
   "后续回看": "reviewDate",
@@ -125,6 +126,8 @@ const STRUCTURED_FIELD_MAP = {
   judgment: "judgment",
   "分类": "category",
   category: "category",
+  "确认": "confirmation",
+  confirmation: "confirmation",
 };
 
 function parseStructuredItem(item, index, prefix) {
@@ -207,7 +210,7 @@ function parsePrinciples(markdown) {
 }
 
 function parseHumanPurpose(markdown) {
-  const match = markdown.match(/## 为什么做（人写的）\s*\n([\s\S]*?)(?=\n## |$)/);
+  const match = markdown.match(/## (?:作者的话(?:（可选）)?|为什么做（人写的）)\s*\n([\s\S]*?)(?=\n## |$)/);
   if (!match) return "";
   return match[1]
     .split("\n")
@@ -320,6 +323,7 @@ function parseEntry(header, body, index) {
     relatedTask: "",
     evidence: "",
     scene: "decision",
+    milestone: false,
     visibility: "private",
     status: "不确定",
     reviewDate: "无",
@@ -386,6 +390,7 @@ function parseEntry(header, body, index) {
     .map((outcome) => ({ ...outcome, judgment: outcome.judgment || outcome.tag || "pending" }));
   entry.decisionPrinciples = parseStructuredItems(entry.sectionItems.decisionPrinciples || [], "dp-")
     .map((principle) => ({ ...principle, category: principle.category || principle.tag || "未分类" }));
+  entry.milestone = ["是", "true", "yes", "major"].includes(String(entry.milestone).toLowerCase());
   entry.visibility = normalizeVisibility(entry.visibility);
   if (entry.recordId) entry.id = entry.recordId;
 
@@ -424,6 +429,8 @@ export function parseBuildtrace(markdown) {
     recordTitle: entry.title,
     recordDate: entry.date,
     visibility: entry.visibility,
+    sourceTrust: entry.sourceTrust,
+    evidence: entry.evidence,
   })));
 
   return {

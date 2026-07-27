@@ -56,6 +56,75 @@
 
 ## 项目记录
 
+### 2026-07-27 — 同步 BuildTrace v1.18 多 Agent 规则并刷新恢复审计
+
+记录 ID: bt-20260727-yakushima-buildtrace-v118
+来源可信度: confirmed
+来源覆盖: current-turn, local-rollout-audit, project-files, automated-tests, browser-verification
+关联任务: codex-thread/019f74f2-c1a0-7462-a15f-508cb80c124b
+依据: 用户本轮完整原话；BuildTrace v1.18 sync 与 recover 输出；Yakushima doctor；Chrome 真实看板与复制指令验收；上游 31 项自动测试
+场景: ai-workflow
+关键节点: 是
+可见范围: private
+结果状态: 待观察
+后续回看: 2026-08-27
+
+沟通原文:
+- [Q1 | user | current-turn | verbatim]
+  > 我的目标是， 任何人点开 GitHub、任意 Agent 一键安装、以后所有项目自动记录。 如果每个项目需要初始化，用户如何发送指令，以及之前的东西怎么办。 我需要公开仓库和全局 Skill 目录目前不包含我的 BuildTrace 自身档案和其他项目档案； 自动激活目前主要支持 Codex 和 Cursor，Claude 等还没有正式适配——我需要适配。 另外把Buildtrace的看板和Yakushima的看板给我，我要截图； 你可以按第八点，你的顺序处理
+- [Q2 | user | current-turn | verbatim]
+  > 继续做吧，目前你的决策手册总结的信息很没谱，以及界面很多地方导出、复制都无效； 照着我们之前的目标继续完成
+- [Q3 | user | current-turn | verbatim]
+  > [$frontend-ui-ux-design](/Users/yimleung/.agents/skills/frontend-ui-ux-design/SKILL.md)  目前整个页面的可读性还是有些弱，以及要注意手机端的适配； 另外如果做成html怎么样， 会实时更新吗
+- [Q4 | user | current-turn | verbatim]
+  > 作者的话不用放在最前面，页面里找个菜单放就好，类似于关于本工具之类的地方
+
+需求总结:
+- [R1 <- Q1] 让 Yakushima 使用与公开版一致的 v1.18 通用规则，并能被 Codex、Cursor、Claude Code、GitHub Copilot、Windsurf 与 Gemini CLI 延续。
+- [R2 <- Q1] 保留 Yakushima 自己的项目档案，不能把 BuildTrace 自身或其他项目记录混入。
+- [R3 <- Q1] 刷新当前仍可访问的 compact、任务、多 Agent、Git 与 Claude Code 会话线索，并明确不可访问部分。
+- [R4 <- Q1] 打开读取 Yakushima 真实主源的独立看板，供用户截图。
+- [R5 <- Q2] 验证项目资料、后来结果等复制操作真的提供完整可选中文本，而不是只显示无效提示。
+- [R6 <- Q3,Q4] Yakushima 看板同步新的长文阅读层级和手机适配；作者背景不再占首屏，并明确本地 HTML 看板与线上静态部署各自怎样更新。
+
+Agent 当时理解:
+- [U1 <- R1,R2] 这次不是再次复制一份前端，而是把干净全局 Skill、多 Agent 项目规则、私密恢复清单和 Yakushima 自己的 Markdown 主源保持为四个清楚分离的层。
+- [U2 <- R3] 恢复清单只证明来源存在，不能替代 Agent 对相关任务逐条映射；本机没有匹配的 Claude Code session 时应明确记录为 0，不能补写。
+- [U3 <- R4,R5] 看板交付必须用 Yakushima 的 37 条真实记录启动并真实点击，而不是用 BuildTrace 演示数据代替。
+- [U4 <- R6] Yakushima 记录更多、摘要更长，比演示数据更适合验证 320px 手机宽度、默认摘要行数和 Markdown 自动刷新；“作者的话”属于项目背景，应放进低频“关于”抽屉。
+
+Agent 计划:
+- [P1 <- R1,R2] 从 v1.18 主仓安全同步受管理文件，不改写本项目主源与既有项目事实。
+- [P2 <- R1] 补齐 Claude、Copilot、Gemini 与 Windsurf 项目规则，保留已有 Cursor 规则。
+- [P3 <- R3] 刷新私密历史恢复清单并运行项目 doctor。
+- [P4 <- R4,R5] 启动 Yakushima 独立看板，检查真实记录详情和复制指令。
+- [P5 <- R1,R2,R3,R4,R5] 只提交本轮 BuildTrace 管理文件与这条项目记录，隔离工作区原有未提交内容。
+- [P6 <- R6] 再次同步 Viewer，验证桌面、手机、“关于”入口和 Markdown 保存后的自动读取。
+
+执行轨迹:
+- [E1 <- P1 | completed] `sync` 更新 9 个受管理文件、新建 4 个 Agent 适配文件、保留 7 个当前文件；旧受管版本备份到私有 `.buildtrace/backups/`，没有覆盖此前 37 条项目事实。
+- [E2 <- P2 | completed] 新增 `CLAUDE.md`、`.github/copilot-instructions.md`、`GEMINI.md` 与 `.windsurf/rules/buildtrace.md`；已有 Cursor rule 原样保留。
+- [E3 <- P3 | completed] doctor 确认 15 个必需文件、5 条项目初心与 37 条既有记录；恢复审计匹配 21 个 rollout 来源、18 个唯一 Codex 任务、168 条去重用户消息与 1 个 compact 窗口，本机匹配 Claude Code session 为 0。
+- [E4 <- P4 | completed] 在 `http://localhost:43174/docs/buildtrace/viewer/` 真实读取 Yakushima 主源；打开 v1.17 集成记录后能看到完整原话、需求总结、Agent 理解、计划、执行轨迹与结果；“补记后来结果”显示完整可选中指令，关闭按钮正常。
+- [E5 <- P5 | pending] 等待 BuildTrace 主仓发布审查完成后，只暂存并推送本轮确定属于 v1.18 集成的文件。
+- [E6 <- P6 | completed] 同步最终阅读系统与 HTML 自动刷新：作者背景移入桌面顶部/手机底部“关于”，长摘要默认两行，所有操作目标至少 44px，详情中的 Agent 理解与计划改为单栏；本地服务每 10 秒重读项目自己的 Markdown，线上版本仍需重新部署。
+
+为什么做:
+- Yakushima 是已经运营的真实产品，最能检验 BuildTrace 是否能在不污染项目事实的前提下升级规则、恢复旧上下文并持续记录。
+- 如果 Claude 等 Agent 只能安装 Skill 却没有项目级规则，或 Viewer 的复制按钮只是视觉反馈，这套工作流仍不能让普通用户长期依赖。
+
+做了什么:
+- 将 Yakushima 从 v1.17 同步到 v1.18 的多 Agent 规则、恢复审计、证据型决策手册与可靠复制交互。
+- 同步适合长记录的桌面与手机阅读系统，并把项目背景和自动刷新说明收进低频“关于”入口。
+- 保留项目自己的 Markdown 档案、未提交工作和私密恢复文件，不把它们放进 BuildTrace 的公开仓库或全局 Skill。
+
+技术备注:
+- 私密恢复与备份继续放在 `.buildtrace/`，不进入 Viewer 或 Git。
+- 本轮没有取得新的运营后台数据，因此不修改既有产品动作的结果判断。
+
+结果:
+- v1.18 项目规则、恢复清单和真实看板已经在本机运行；最终发布与远端提交完成后再更新本条执行状态，长期自动写回效果继续观察到 2026-08-27。
+
 ### 2026-07-19 — 同步 BuildTrace v1.17 并恢复项目级自动规则
 
 记录 ID: bt-20260719-yakushima-buildtrace-v117
