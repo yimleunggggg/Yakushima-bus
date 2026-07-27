@@ -62,7 +62,7 @@
 来源可信度: confirmed
 来源覆盖: current-turn, local-rollout-audit, project-files, automated-tests, browser-verification
 关联任务: codex-thread/019f74f2-c1a0-7462-a15f-508cb80c124b
-依据: 用户本轮完整原话；BuildTrace v1.18 sync 与 recover 输出；Yakushima doctor；Chrome 真实看板与复制指令验收；上游 31 项自动测试
+依据: 用户本轮完整原话；BuildTrace v1.18 sync 与 recover 输出；Yakushima doctor；桌面、390px 与 320px 真实看板验收；Markdown 自动刷新实测；上游 35 项自动测试；远端分支提交 e040d2e
 场景: ai-workflow
 关键节点: 是
 可见范围: private
@@ -106,7 +106,7 @@ Agent 计划:
 - [E2 <- P2 | completed] 新增 `CLAUDE.md`、`.github/copilot-instructions.md`、`GEMINI.md` 与 `.windsurf/rules/buildtrace.md`；已有 Cursor rule 原样保留。
 - [E3 <- P3 | completed] doctor 确认 15 个必需文件、5 条项目初心与 37 条既有记录；恢复审计匹配 21 个 rollout 来源、18 个唯一 Codex 任务、168 条去重用户消息与 1 个 compact 窗口，本机匹配 Claude Code session 为 0。
 - [E4 <- P4 | completed] 在 `http://localhost:43174/docs/buildtrace/viewer/` 真实读取 Yakushima 主源；打开 v1.17 集成记录后能看到完整原话、需求总结、Agent 理解、计划、执行轨迹与结果；“补记后来结果”显示完整可选中指令，关闭按钮正常。
-- [E5 <- P5 | pending] 等待 BuildTrace 主仓发布审查完成后，只暂存并推送本轮确定属于 v1.18 集成的文件。
+- [E5 <- P5 | completed] 只提交 16 个 BuildTrace 管理文件与本项目记录，明确排除 `CURSOR-UPDATE-PROMPT.md`、`PROJECT-PROFILE.md`、私密 `.buildtrace/`、备份及其他既有未跟踪目录；提交 `e040d2e` 已推送到 `origin/agent/buildtrace-v1-17-integration`。
 - [E6 <- P6 | completed] 同步最终阅读系统与 HTML 自动刷新：作者背景移入桌面顶部/手机底部“关于”，长摘要默认两行，所有操作目标至少 44px，详情中的 Agent 理解与计划改为单栏；本地服务每 10 秒重读项目自己的 Markdown，线上版本仍需重新部署。
 
 为什么做:
@@ -123,7 +123,7 @@ Agent 计划:
 - 本轮没有取得新的运营后台数据，因此不修改既有产品动作的结果判断。
 
 结果:
-- v1.18 项目规则、恢复清单和真实看板已经在本机运行；最终发布与远端提交完成后再更新本条执行状态，长期自动写回效果继续观察到 2026-08-27。
+- v1.18 项目规则、恢复清单、可读性改版、手机布局与 Markdown 自动刷新已经在真实看板运行，集成分支也已推送；长期自动写回效果继续观察到 2026-08-27。
 
 ### 2026-07-19 — 同步 BuildTrace v1.17 并恢复项目级自动规则
 
