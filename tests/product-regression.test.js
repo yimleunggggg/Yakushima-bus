@@ -59,6 +59,15 @@ test('affiliate placements have matching destinations, preserved attribution and
   }
   assert.ok(!d.experiences.some(x=>x.productCode==='143822P2'));
   assert.ok(d.experiences.every(x=>!x.rating && !x.reviewCount));
+  assert.equal(d.items.jetfoil.adid,'1492155');
+  assert.equal(d.items.destKagoshima.adid,'1492153');
+  assert.equal(d.items.senganEn.adid,'1492169');
+  assert.equal(d.experiences.find(x=>x.id==='klook_yakuzaru_day').adid,'1492158');
+  for(const key of ['samanaHotel','iwasakiHotel']) {
+    const target=new URL(new URL(d.items[key].url).searchParams.get('k_site'));
+    assert.equal(target.search,'');
+    assert.match(target.pathname,/\/hotels\/detail\//);
+  }
   for (const lang of ['ja','zh','en']) {
     assert.ok(c.window.AffiliateUI.jetfoilAffiliateHintHtml(lang).length>0);
     assert.doesNotMatch(c.window.AffiliateUI.trekkingSectionHtml(lang),/2026-05-20|affiliate-trust-stars/);
@@ -66,7 +75,12 @@ test('affiliate placements have matching destinations, preserved attribution and
     assert.match(c.window.AffiliateUI.trekkingSectionHtml(lang),/destination%2Fc21043/);
     assert.equal((c.window.AffiliateUI.ferryBottomHtml(lang).match(/destination%2Fp60271491-yakushima/g)||[]).length,1);
     assert.equal((c.window.AffiliateUI.ferryBottomHtml(lang).match(/destination%2Fc21043/g)||[]).length,1);
+    assert.match(c.window.AffiliateUI.ferryBottomHtml(lang),/1492169/);
+    assert.doesNotMatch(c.window.AffiliateUI.ferryBottomHtml(lang),/jr_japan_7|1492176|1492181/);
     assert.match(c.window.AffiliateUI.experiencesSectionHtml(lang,'without-car'),/commission|佣金|紹介料/);
+    assert.equal((c.window.AffiliateUI.experiencesSectionHtml(lang,'without-car').match(/<article class="affiliate-card/g)||[]).length,2);
+    assert.match(c.window.AffiliateUI.lodgingSectionHtml(lang),/1492165/);
+    assert.match(c.window.AffiliateUI.lodgingSectionHtml(lang),/1492166/);
   }
 });
 test('Klook localization preserves partner attribution in every language', () => {
@@ -94,12 +108,13 @@ test('current Shiratani suspension hides scheduled trips without hiding Arakawa 
 
 test('suspended Shiratani tour is not promoted while the road is closed', () => {
   const c=runtime();
-  const html=c.window.AffiliateUI.experiencesSectionHtml('zh','trekking');
-  assert.doesNotMatch(html,/43454P739|白谷徒步/);
-  assert.match(html,/43454P373/);
+  const html=c.window.AffiliateUI.experiencesSectionHtml('zh','without-car');
+  assert.doesNotMatch(html,/43454P739|146665|76916|白谷徒步/);
+  assert.match(html,/1492158|43454P373/);
   const hike=c.window.AffiliateUI.trekkingSectionHtml('zh');
   assert.match(hike,/白谷云水峡路线目前封闭/);
   assert.match(hike,/https:\/\/yakukan\.jp\/topics\/19316\.html/);
+  assert.doesNotMatch(hike,/43454P373/);
 });
 test('October timetable and ferry suspension respect current official dates', () => {
   const { core, access, schedule } = runtime();

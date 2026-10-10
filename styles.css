@@ -2109,6 +2109,29 @@ body.modal-open {
 .affiliate-experiences {
   margin-top: 10px;
 }
+.affiliate-lodging.panel {
+  margin-top: 10px;
+  padding: 12px;
+}
+.affiliate-more {
+  margin-top: 10px;
+  border-top: 1px solid var(--border);
+  padding-top: 9px;
+}
+.affiliate-lodging .affiliate-more {
+  margin-top: 0;
+  border-top: 0;
+  padding-top: 0;
+}
+.affiliate-more summary {
+  color: var(--primary-dark);
+  font-size: 0.75rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+.affiliate-more .affiliate-block-lead {
+  margin-top: 8px;
+}
 .affiliate-card-grid {
   display: grid;
   grid-template-columns: 1fr;

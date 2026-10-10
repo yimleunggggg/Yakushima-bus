@@ -87,10 +87,8 @@
     const media = it.image
       ? `<div class="affiliate-card-media"><img class="affiliate-card-img" src="${it.image}" alt="" width="320" height="120" loading="lazy" decoding="async"></div>`
       : "";
-    const rating = ratingHtml(it, lang) || `<div class="affiliate-card-rating affiliate-card-rating--empty" aria-hidden="true"></div>`;
-    const stats =
-      statsDateHtml(it, lang) ||
-      `<span class="affiliate-card-stats-date affiliate-card-stats-date--empty" aria-hidden="true"></span>`;
+    const rating = ratingHtml(it, lang);
+    const stats = statsDateHtml(it, lang);
     return `<article class="affiliate-card affiliate-card--${partner}">
       ${media}
       <div class="affiliate-card-main">
@@ -128,14 +126,31 @@
     const list = experiencesForPage(pageId);
     if (!list.length) return "";
     const b = D().blocks;
-    const cards = list.map((ex) => experienceCard(ex, lang)).join("");
+    const cards = list.filter((ex) => !ex.compact).map((ex) => experienceCard(ex, lang)).join("");
+    const more = list.filter((ex) => ex.compact).map((ex) =>
+      `<a class="affiliate-browse-link" ${affAttrs(ex, lang)}><strong>${pick(ex.title, lang)}</strong><span>${pick(ex.body, lang)}</span></a>`).join("");
     return `<section class="panel affiliate-experiences" aria-labelledby="affiliateExpTitle">
       <h2 class="affiliate-section-title" id="affiliateExpTitle">${pick(b.experiencesTitle, lang)}</h2>
       <p class="affiliate-block-lead">${pick(b.experiencesLead, lang)}</p>
       <div class="affiliate-card-grid">${cards}</div>
+      ${more ? `<details class="affiliate-more"><summary>${pick(b.moreExperiences, lang)}</summary><div class="affiliate-browse-links">${more}</div></details>` : ""}
       <p class="page-section-note">${pick(b.affiliateDisclosure, lang)}</p>
       ${browseDestinationsHtml(lang)}
     </section>`;
+  }
+
+  function lodgingSectionHtml(lang) {
+    const b = D().blocks;
+    const links = ["samanaHotel", "iwasakiHotel"].map((key) => {
+      const it = item(key);
+      return it ? `<a class="affiliate-browse-link" ${affAttrs(it, lang)}><strong>${pick(it.label, lang)}</strong><span>${pick(it.note, lang)}</span></a>` : "";
+    }).join("");
+    if (!links) return "";
+    return `<section class="panel affiliate-lodging"><details class="affiliate-more">
+      <summary>${pick(b.lodgingSummary, lang)}</summary>
+      <p class="affiliate-block-lead">${pick(b.lodgingLead, lang)}</p>
+      <div class="affiliate-browse-links">${links}</div>
+    </details></section>`;
   }
 
   function jetfoilSecondaryHtml(lang) {
@@ -206,7 +221,7 @@
         <h3 class="affiliate-link-group-title">${pick(b.islandBookingTitle, lang)}</h3>
         <div class="links source-links">${links(["jetfoil", "destYakushima"])}</div>
         <h3 class="affiliate-link-group-title">${pick(b.gatewayBookingTitle, lang)}</h3>
-        <div class="links source-links">${links(["destKagoshima", "jrKyushu", "jrJapan7"])}</div>
+        <div class="links source-links">${links(["destKagoshima", "senganEn", "jrKyushu"])}</div>
       </div>
     </details>`;
   }
@@ -218,6 +233,7 @@
     jetfoilAffiliateHintHtml,
     ferryBottomHtml,
     experiencesSectionHtml,
+    lodgingSectionHtml,
     trekkingSectionHtml,
   };
 })();

@@ -3,6 +3,25 @@ window.AFFILIATE_DATA = {
   /** Viator 等 — 按 pages 出现在对应页面 */
   experiences: [
     {
+      id: "klook_yakuzaru_day",
+      partner: "klook",
+      adid: "1492158",
+      placement: "without_car_yakuzaru_day",
+      pages: ["without-car"],
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1492158&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F156301-yakuzaru-sightseeing-bus-yakushima-island-full-day-tour",
+      title: {
+        ja: "やくざる号・屋久島周遊（1日）",
+        zh: "屋久岛观光巴士「やくざる号」（全天）",
+        en: "Yakuzaru sightseeing bus (full day)",
+      },
+      body: {
+        ja: "車なしで滝・ヤクスギランドなどを巡る日本語ツアー。Klook 表示は100件以上の予約。",
+        zh: "不自驾串联瀑布、屋久杉 Land 等景点；日语导览。Klook 页面显示 100+ 人预订。",
+        en: "See waterfalls and Yakusugi Land without driving. Japanese-guided; Klook shows 100+ bookings.",
+      },
+      cta: { ja: "内容・空席を見る", zh: "查看行程与余位", en: "Check itinerary & dates" },
+    },
+    {
       id: "viator_jetfoil_day",
       requiresRouteId: "shiratani",
       partner: "viator",
@@ -28,7 +47,7 @@ window.AFFILIATE_DATA = {
       partner: "viator",
       productCode: "43454P373",
       placement: "viator_private_sights",
-      pages: ["trekking", "without-car"],
+      pages: ["without-car"],
       tags: ["day_trip", "sightseeing", "private"],
       url: "https://www.viator.com/tours/Kagoshima-Prefecture/Yakushima-Private-Island-Sights-Tour-with-ENGLISH-Speaking-Guide/d50190-43454P373?pid=P00307180&mcid=42383&medium=link&medium_version=selector",
       title: {
@@ -49,6 +68,7 @@ window.AFFILIATE_DATA = {
       productCode: "306889P1",
       placement: "viator_snorkel_turtle",
       pages: ["without-car"],
+      compact: true,
       tags: ["snorkeling", "marine", "turtle", "family", "day_trip"],
       url: "https://www.viator.com/tours/Kagoshima-Prefecture/%E5%B1%8B%E4%B9%85%E5%B3%B6-%E3%82%B7%E3%83%A5%E3%83%8E%E3%82%B1%E3%83%AA%E3%83%B3%E3%82%AF-%E6%86%A7%E3%82%8C%E3%81%AE%E3%82%A6%E3%83%9F%E3%82%AB%E3%83%A1%E3%81%AB%E4%BC%9A%E3%81%84%E3%81%9F%E3%81%84-%E3%82%A6%E3%83%9F%E3%82%AB%E3%83%A1%E3%81%A8%E6%B3%B3%E3%81%8E%E3%82%B7%E3%83%A5%E3%83%8E%E3%82%B1%E3%83%AA%E3%83%B3%E3%82%AF%E3%83%84%E3%82%A2-3%E6%99%82%E9%96%93/d50190-306889P1?pid=P00307180&mcid=42383&medium=link&medium_version=selector",
       title: {
@@ -67,14 +87,14 @@ window.AFFILIATE_DATA = {
   items: {
     jetfoil: {
       partner: "klook",
-      adid: "1316221",
+      adid: "1492155",
       placement: "ferry_jetfoil",
       hint: {
         ja: "バウチャーは事前に印刷。往復は往路・復路を別々に選び、宮之浦／安房の港と確認書の便をご確認ください。リンク経由の予約で当サイトに紹介料が入る場合があります。",
         zh: "请提前打印凭证。往返需分别选择去程和返程套餐，注意宫之浦／安房港；班次以确认单为准。通过链接预订，本站可能获得佣金。",
         en: "Print your voucher in advance. For a return trip, select both outbound and inbound packages; check Miyanoura/Anbo port and confirmed sailings. We may earn a commission from bookings through this link.",
       },
-      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316221&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F161058-round-trip-ticket-for-high-speed-jetfoil-toppy-or-rocket-to-yakushima",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1492155&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F161058-round-trip-ticket-for-high-speed-jetfoil-toppy-or-rocket-to-yakushima",
       image: "/images/affiliate/jetfoil-klook.png",
       cta: {
         ja: "Klook で船券を見る",
@@ -124,9 +144,9 @@ window.AFFILIATE_DATA = {
     },
     destKagoshima: {
       partner: "klook",
-      adid: "1316233",
+      adid: "1492153",
       placement: "dest_kagoshima",
-      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316233&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Fdestination%2Fc21043%2F",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1492153&k_site=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fdestination%2Fc21043%2F",
       label: {
         ja: "Klook 鹿児島ページを見る",
         zh: "查看 Klook 鹿儿岛专区",
@@ -135,9 +155,9 @@ window.AFFILIATE_DATA = {
     },
     jrKyushu: {
       partner: "klook",
-      adid: "1316236",
+      adid: "1492182",
       placement: "jr_kyushu",
-      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316236&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F2371-jr-kyushu-jr-pass",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1492182&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F2371-jr-kyushu-jr-pass",
       label: {
         ja: "JR 九州パス（鹿児島まで）",
         zh: "九州 JR Pass（到鹿儿岛）",
@@ -149,20 +169,52 @@ window.AFFILIATE_DATA = {
         en: "If touring Kyushu by train before the island",
       },
     },
-    jrJapan7: {
+    senganEn: {
       partner: "klook",
-      adid: "1316237",
-      placement: "jr_japan_7",
-      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316237&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F1420-7-day-whole-japan-rail-pass-jr-pass",
+      adid: "1492169",
+      placement: "kagoshima_sengan_en",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1492169&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F38419-sengan-en-garden-ticket-kagoshima",
       label: {
-        ja: "JR 全日本パス（7日）",
-        zh: "日本全境 JR Pass（7 日）",
-        en: "Japan Rail Pass (7 days)",
+        ja: "仙巌園の入場券",
+        zh: "仙巖園门票",
+        en: "Sengan-en admission",
       },
       note: {
-        ja: "全国周遊の長期行程向け",
-        zh: "适合跨多地区的长行程",
-        en: "For multi-region trips across Japan",
+        ja: "鹿児島で半日過ごすなら。Klook 表示は1万件以上の予約",
+        zh: "在鹿儿岛多留半天时；Klook 页面显示 1 万+ 人预订",
+        en: "For extra time in Kagoshima; Klook shows 10K+ bookings",
+      },
+    },
+    samanaHotel: {
+      partner: "klook",
+      adid: "1492165",
+      placement: "without_car_samana_hotel",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1492165&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Fhotels%2Fdetail%2F137390-samana-hotel-yakushima%2F",
+      label: {
+        ja: "samana hotel Yakushima",
+        zh: "samana hotel Yakushima",
+        en: "samana hotel Yakushima",
+      },
+      note: {
+        ja: "尾之間エリア・温泉と海景色。バス停名は「samana hotel Yakushima」",
+        zh: "尾之间区域，温泉与海景；本站有同名公交站",
+        en: "Onoaida area, hot spring and sea views; a same-name bus stop is in our timetable",
+      },
+    },
+    iwasakiHotel: {
+      partner: "klook",
+      adid: "1492166",
+      placement: "without_car_iwasaki_hotel",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1492166&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Fhotels%2Fdetail%2F560390-yakushima-iwasaki-hotel%2F",
+      label: {
+        ja: "屋久島いわさきホテル",
+        zh: "屋久岛岩崎酒店",
+        en: "Yakushima Iwasaki Hotel",
+      },
+      note: {
+        ja: "尾之間エリア・山側の滞在。バス停名は「いわさきホテル」",
+        zh: "尾之间区域、山景住宿；本站有“岩崎酒店”公交站",
+        en: "Onoaida area, mountain setting; Iwasaki Hotel stop is in our timetable",
       },
     },
   },
@@ -178,14 +230,14 @@ window.AFFILIATE_DATA = {
       en: "Yakushima tours & local experiences",
     },
     experiencesLead: {
-      ja: "Klook / Viator の現地体験（日帰り・ガイド付き等）。バス時刻は本サイト、予約・取消は各プラットフォームの規約に従います。",
-      zh: "以下为 Klook / Viator 精选当地体验：徒步跟团、一日游、潜水等。岛上公交时刻见本站；预订与退改以各平台规则为准。",
-      en: "Selected Klook & Viator tours — guided hikes, day trips & more. Bus times on this site; booking rules on each platform.",
+      ja: "車なしで巡る周遊バスと英語ガイド付き貸切ツアー。路線バスの時刻は本サイト、予約条件は各販売ページで確認してください。",
+      zh: "不自驾看岛上的两种方式：日语观光巴士或英文私人团。定线公交查本站，预订条件看商品页。",
+      en: "Two ways to explore without driving: a Japanese-guided sightseeing bus or an English-guided private tour. Check local bus times here and booking terms on each product page.",
     },
     trekkingExperiencesLead: {
-      ja: "Klook / Viator のガイド付き日帰り・徒步体験。バス接続は上の路線表・運賃ページで確認。",
-      zh: "Klook / Viator 精选徒步跟团与一日游；公交衔接请查本站时刻表与票价。",
-      en: "Guided hikes & day tours on Klook & Viator — pair with our bus timetable for connections.",
+      ja: "ガイド付き登山ツアー。希望コースと当日の道路状況を確認してください。",
+      zh: "向导徒步套餐；请先核对所选路线和当天道路状态。",
+      en: "Guided hiking options; check the chosen route and current road status first.",
     },
     islandBookingTitle: {
       ja: "屋久島での体験・船券",
@@ -193,9 +245,24 @@ window.AFFILIATE_DATA = {
       en: "On Yakushima: activities & ferry tickets",
     },
     gatewayBookingTitle: {
-      ja: "鹿児島発着・九州の移動",
-      zh: "鹿儿岛出发与九州接驳",
-      en: "Via Kagoshima: activities & Kyushu rail",
+      ja: "鹿児島での滞在・九州の移動",
+      zh: "鹿儿岛停留与九州接驳",
+      en: "Kagoshima stay & Kyushu rail",
+    },
+    moreExperiences: {
+      ja: "ほかの屋久島体験",
+      zh: "其他屋久岛体验",
+      en: "More Yakushima experiences",
+    },
+    lodgingSummary: {
+      ja: "バス停から選ぶ屋久島の宿",
+      zh: "按公交站选屋久岛住宿",
+      en: "Yakushima stays near bus stops",
+    },
+    lodgingLead: {
+      ja: "尾之間の2軒。宿のページで希望日を選び、バスは本サイトの時刻表で確認してください。紹介料が入る場合があります。",
+      zh: "两家位于尾之间区域；酒店页自行选入住日，公交班次请查本站时刻表。通过链接预订，本站可能获得佣金。",
+      en: "Two Onoaida-area stays. Choose your dates on the hotel page and check buses here. We may earn a commission.",
     },
     experiencesStatsNote: {
       ja: "評価・件数は Viator 表示（{date} 時点）",
