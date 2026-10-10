@@ -1,0 +1,50 @@
+name: Transport source verification
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 09:00 JST; overdue source reviews fail the gate
+  pull_request:
+    paths:
+      - 'sources/**'
+      - 'assets/pdf/**'
+      - 'assets/pdf-preview/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - '*.js'
+      - '*.html'
+      - '*/index.html'
+      - 'styles.css'
+      - '.github/workflows/transport-verify.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'sources/**'
+      - 'assets/pdf/**'
+      - 'assets/pdf-preview/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - '*.js'
+      - '*.html'
+      - '*/index.html'
+      - 'styles.css'
+      - '.github/workflows/transport-verify.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install PDF parsers
+        run: python -m pip install -r scripts/requirements-transport.txt
+      - name: Verify source tables, timetables, PDFs and pages
+        run: python scripts/build_all.py --validate

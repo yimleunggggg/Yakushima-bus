@@ -35,6 +35,8 @@ const s={};vm.createContext(s);
 vm.runInContext(fs.readFileSync('data.js','utf8')+'\nthis.BUS_DATA=BUS_DATA;',s);
 vm.runInContext(fs.readFileSync('app-core.js','utf8').replace('AppCore.applyDocLang(AppCore.getLang());','')+'\nthis.AppCore=AppCore;',s);
 const {AppCore,BUS_DATA}=s;
+// This audit checks the planned table; live notices have separate runtime tests.
+AppCore.routeAvailable = route => AppCore.routeInSeason(route);
 const central=BUS_DATA.routes.find(r=>r.id==='central');
 const out=[];
 for (const dir of central.directions) {
@@ -44,7 +46,7 @@ for (const dir of central.directions) {
       for (const day of ['weekday','saturday','sunday_holiday']) {
         for (const t of AppCore.findTrips(stops[fi],stops[ti],day)) {
           const d=AppCore.parseMinutes(t.arr)-AppCore.parseMinutes(t.dep);
-          out.push({from:stops[fi],to:stops[ti],dep:t.dep,arr:t.arr,d,day,route:t.route.id,dir:t.dir.id});
+          out.push({from:stops[fi],to:stops[ti],depStop:t.depStop,arrStop:t.arrStop,dep:t.dep,arr:t.arr,d,day,route:t.route.id,dir:t.dir.id});
         }
       }
 }
@@ -60,17 +62,20 @@ def main() -> int:
     pdf_max = stats["pdfWestGlobalMaxSegment"]
     segments = node_all_segments()
     over_abs = [s for s in segments if s["d"] > abs_max]
-    over_pdf = [s for s in segments if s["d"] > pdf_max + 5]
+    adjacent = stats['adjacent']
+    over_pdf = [s for s in segments if s['dir'] == 'west'
+                and s['from'] == s['depStop'] and s['to'] == s['arrStop']
+                and (key := f"{s['from']}|{s['to']}") in adjacent
+                and s['d'] > adjacent[key]['max'] + 5]
 
     print(f"=== 班次耗时审查 (上限 {abs_max}m, PDF西向最大站间 {pdf_max}m) ===")
     print(f"findTrips 区间班次: {len(segments)}")
     print(f"超过 {abs_max}m: {len(over_abs)}")
     for s in sorted(over_abs, key=lambda x: -x["d"])[:15]:
         print(f"  {s['d']}m {s['from']}→{s['to']} {s['dep']}→{s['arr']} ({s['day']})")
-    if over_pdf and not over_abs:
-        print(f"超过 PDF+5m ({pdf_max+5}): {len(over_pdf)} (仅提示)")
+    print(f"超过 PDF 相邻站区间+5m: {len(over_pdf)}")
 
-    return 1 if over_abs else 0
+    return 1 if over_abs or over_pdf else 0
 
 
 if __name__ == "__main__":

@@ -13,8 +13,8 @@
   <meta property="og:url" content="https://yakushimabus.com/trekking/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <title>登山・トレッキング参考 | 屋久岛徒步 | Yakushima Trekking</title>
-  <link rel="preload" href="/styles.css?v=layout-v152" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v152">
+  <link rel="preload" href="/styles.css?v=e245864c2b7b" as="style">
+  <link rel="stylesheet" href="/styles.css?v=e245864c2b7b">
   <script>
     (function () {
       var h = location.hostname;
@@ -28,9 +28,11 @@
   </script>
   <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
-  <script src="/site-chrome.js?v=chrome-v23" defer></script>
+  <script src="/site-chrome.js?v=64e80f098123" defer></script>
   <script src="/lang-boot.js?v=lang-v5"></script>
   <script src="/seo-head-zh.js?v=seo-zh-v2"></script>
+  <script src="/transport-data.js?v=6cd6620d7fdd"></script>
+  <script src="/transport-status.js?v=1e410c0c1a7a"></script>
 </head>
 <body class="app-page-narrow">
   <div class="app trek-page">
@@ -68,13 +70,13 @@
       <div class="trek-season-grid" id="trekSeasonGrid"></div>
     </section>
 
-    <section class="panel trek-partner" id="trekAffiliatePanel" hidden aria-labelledby="trekAffiliateTitle"></section>
-
     <section class="panel trek-courses-wrap" aria-labelledby="trekCoursesTitle">
       <h2 class="page-section-title" id="trekCoursesTitle"></h2>
       <p class="page-section-note" id="trekCoursesNote" hidden></p>
       <div class="trek-courses" id="trekCourses"></div>
     </section>
+
+    <section class="panel trek-partner" id="trekAffiliatePanel" hidden aria-labelledby="trekAffiliateTitle"></section>
 
     <div class="panel panel-aux">
       <div class="aux-sections aux-in-panel">
@@ -96,13 +98,13 @@
     <footer class="app-footer"></footer>
   </div>
 
-  <script src="/data.js?v=data-column-v3"></script>
-  <script src="/map-data.js"></script>
-  <script src="/partner-data.js?v=partner-v1"></script>
-  <script src="/partner-ui.js?v=partner-v3"></script>
+  <script src="/data.js?v=3aa1f2cda9d8"></script>
+  <script src="/map-data.js?v=32bda5fae96a"></script>
+  <script src="/partner-data.js?v=20261010"></script>
+  <script src="/partner-ui.js?v=20261010"></script>
   <script src="/source-links.js?v=src-v1"></script>
-  <script src="/trekking-data.js?v=trek-v7"></script>
-  <script src="/app-core.js?v=core-v21"></script>
+  <script src="/trekking-data.js?v=ba92f5444259"></script>
+  <script src="/app-core.js?v=55bcddd6073f"></script>
   <script>
     const UI = {
       ja: { sourceLabel: "出典：" },
@@ -148,7 +150,17 @@
 
     function renderAccessCompact(c, L) {
       const preset = c.presetRoute;
-      if (!preset?.from) return "";
+      const closed = window.TransportStatus?.forCourse(c.id).find(a => a.status === 'suspended');
+      if (closed) {
+        const alternatives = (closed.alternativeCourseIds || [])
+          .map(id => window.TREKKING_DATA.courses.find(course => course.id === id))
+          .filter(course => course && !window.TransportStatus?.forCourse(course.id).some(a => a.status === 'suspended'));
+        const alternativesHtml = alternatives.length
+          ? `<p class="trek-alternative">${escapeHtml(pick({ja:'代わりに：',zh:'可考虑：',en:'Alternatives: '}))}${alternatives.map(course => `<a href="#${escapeHtml(course.id)}">${escapeHtml(pick(course.title))}</a>`).join(' · ')}</p>`
+          : '';
+        return `<div class="trek-card-bus trek-card-bus--closed"><p><span class="trek-closed-title">${escapeHtml(pick(closed.courseMessage || closed.message))}</span> <a href="${escapeHtml(closed.sourceUrl)}" target="_blank" rel="noopener">${escapeHtml(pick({ja:'公式情報',zh:'官方公告',en:'Official notice'}))}</a></p>${alternativesHtml}</div>`;
+      }
+      if (!preset?.from) return c.accessNote ? `<div class="trek-card-bus"><p class="trek-bus-hint">${escapeHtml(pick(c.accessNote))}</p></div>` : "";
       const stops = (c.accessStops || []).filter((a) => a.stopId);
       const routeLabel = preset.to
         ? `${stopName(preset.from)} → ${stopName(preset.to)}`

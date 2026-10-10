@@ -1,0 +1,302 @@
+{
+  "title": {
+    "ja": "データ出典・参考リンク",
+    "zh": "数据来源与参考链接",
+    "en": "Data sources & references"
+  },
+  "sourceGroups": [
+    {
+      "title": {
+        "ja": "バス時刻表",
+        "zh": "公交时刻表",
+        "en": "Bus timetables"
+      },
+      "items": [
+        {
+          "label": {
+            "ja": "種子島・屋久島交通 時刻表（日本語）",
+            "zh": "种子岛·屋久岛交通 时刻表（日文）",
+            "en": "Tanegashima Yakushima Kotsu timetable (Japanese)"
+          },
+          "sourceRef": "bus:taneyaku"
+        },
+        {
+          "label": {
+            "ja": "種子島・屋久島交通 時刻表（英語）",
+            "zh": "种子岛·屋久岛交通 时刻表（英文）",
+            "en": "Tanegashima Yakushima Kotsu timetable (English)"
+          },
+          "sourceRef": "bus:taneyakuEn"
+        },
+        {
+          "label": {
+            "ja": "まつばんだ交通 時刻表",
+            "zh": "松ばんだ交通 时刻表",
+            "en": "Matsubanda Kotsu timetable"
+          },
+          "sourceRef": "bus:matsubanda"
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "路線図・運賃",
+        "zh": "路线图与运价",
+        "en": "Route maps & fares"
+      },
+      "items": [
+        {
+          "label": {
+            "ja": "屋久島バス 路線図・運賃表（日本語）",
+            "zh": "屋久岛公交 路线图·运价表（日文）",
+            "en": "Yakushima bus route map & fares (Japanese)"
+          },
+          "sourceRef": "bus:fare"
+        },
+        {
+          "label": {
+            "ja": "屋久島バス 路線図・運賃表（英語）",
+            "zh": "屋久岛公交 路线图·运价表（英文）",
+            "en": "Yakushima bus route map & fares (English)"
+          },
+          "sourceRef": "bus:fareEn"
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "上島交通（鹿児島↔屋久島）",
+        "zh": "上岛交通（鹿儿岛↔屋久岛）",
+        "en": "Kagoshima ↔ Yakushima access"
+      },
+      "items": [
+        {
+          "label": {
+            "ja": "種子屋久高速船（トッピー・ロケット）— 時刻・運賃",
+            "zh": "种子屋久高速船（Toppy / Rocket）— 时刻与运价",
+            "en": "TaneYaku Jetfoil (Toppy / Rocket) — times & fares"
+          },
+          "sourceRef": "access:jetfoil"
+        },
+        {
+          "label": {
+            "ja": "高速船 オンライン予約",
+            "zh": "高速船 在线预约",
+            "en": "Jetfoil online booking"
+          },
+          "sourceRef": "access:jetfoilBook"
+        },
+        {
+          "label": {
+            "ja": "フェリー屋久島2（折田汽船）— 時刻表",
+            "zh": "屋久岛2号渡轮（折田汽船）— 时刻表",
+            "en": "Ferry Yakushima 2 (Orita) — timetable"
+          },
+          "sourceRef": "access:ferry"
+        },
+        {
+          "label": {
+            "ja": "フェリー屋久島2 — 2026年7〜11月運休予定",
+            "zh": "屋久岛2号渡轮 — 2026年7–11月停运计划",
+            "en": "Ferry Yakushima 2 — Jul–Nov 2026 suspensions"
+          },
+          "url": "https://ferryyakusima2.com/news/10207"
+        },
+        {
+          "label": {
+            "ja": "南国交通 鹿児島空港連絡バス",
+            "zh": "南国交通 鹿儿岛机场联络巴士",
+            "en": "Nangoku Kotsu Kagoshima airport shuttle"
+          },
+          "sourceRef": "access:airportShuttle"
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "乗車券・パス",
+        "zh": "乘车券与通票",
+        "en": "Passes & tickets"
+      },
+      "items": [
+        {
+          "label": {
+            "ja": "屋久島ゆったり満喫乗車券（観光協会）",
+            "zh": "屋久岛悠享乘车券（观光协会）",
+            "en": "Yakushima day pass (tourism association)"
+          },
+          "sourceRef": "bus:pass"
+        },
+        {
+          "label": {
+            "ja": "屋久島ゆったり満喫乗車券 — 発売・路線（岩崎自動車）",
+            "zh": "悠享乘车券 — 发售与适用线路（岩崎自动车）",
+            "en": "Day pass — sales & routes (Iwasaki)"
+          },
+          "sourceRef": "access:pass"
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "登山・トレッキング",
+        "zh": "登山徒步",
+        "en": "Trekking"
+      },
+      "items": [
+        {
+          "label": {
+            "ja": "屋久島観光協会 — 登山・トレッキング",
+            "zh": "屋久岛观光协会 — 登山徒步",
+            "en": "Yakushima tourism — trekking"
+          },
+          "url": "https://yakukan.jp/trekking/"
+        },
+        {
+          "label": {
+            "ja": "当サイト — コース参考＋バス時刻",
+            "zh": "本站 — 路线参考与公交时刻",
+            "en": "This site — course ref & bus times"
+          },
+          "url": "/trekking/"
+        },
+        {
+          "label": {
+            "ja": "屋久島登山マップ・コース情報（PDF）",
+            "zh": "屋久岛登山地图·路线补充（PDF）",
+            "en": "Yakushima trekking map & courses (PDF)"
+          },
+          "url": "https://yakukan.jp/wp-content/uploads/2025/06/20250609084458.pdf",
+          "note": {
+            "ja": "2025/6",
+            "zh": "2025/6",
+            "en": "2025-06"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "観光・便利情報",
+        "zh": "观光与便利信息",
+        "en": "Tourism & practical info"
+      },
+      "items": [
+        {
+          "label": {
+            "ja": "屋久島観光情報（PDF）",
+            "zh": "屋久岛观光综合信息（PDF）",
+            "en": "Yakushima tourism info brochure (PDF)"
+          },
+          "url": "https://yakukan.jp/wp-content/uploads/2026/06/kannkou-jouhou-senn.pdf",
+          "note": {
+            "ja": "2026/6",
+            "zh": "2026/6",
+            "en": "2026-06"
+          }
+        },
+        {
+          "label": {
+            "ja": "屋久島温泉ガイド（YES YAKUSHIMA）",
+            "zh": "屋久岛温泉指南（YES YAKUSHIMA）",
+            "en": "Yakushima hot springs guide (YES YAKUSHIMA)"
+          },
+          "url": "https://yesyakushima.com/yakushima-travel-guide/travel-guidance/hot-springs/"
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "運行状況・登山バス",
+        "zh": "运行状况与登山巴士",
+        "en": "Service status & trail buses"
+      },
+      "items": [
+        {
+          "label": {
+            "ja": "屋久島内路線バス 当日運行状況",
+            "zh": "屋久岛内公交线路 当日运行状况",
+            "en": "Yakushima route buses — today’s service"
+          },
+          "sourceRef": "bus:serviceStatus"
+        },
+        {
+          "label": {
+            "ja": "荒川登山バス運行状況（公式 X @yakusansharyou）",
+            "zh": "荒川登山巴士运行状况（官方 X @yakusansharyou）",
+            "en": "Arakawa trail bus status (official X @yakusansharyou)"
+          },
+          "sourceRef": "bus:arakawaX"
+        },
+        {
+          "label": {
+            "ja": "屋久島登山協会（荒川登山バス等）",
+            "zh": "屋久岛登山协会（荒川登山巴士等）",
+            "en": "Yakushima mountaineering association (Arakawa bus)"
+          },
+          "url": "http://yakushima-tozan.com/"
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "屋久島観光協会",
+        "zh": "屋久岛观光协会",
+        "en": "Yakushima tourism association"
+      },
+      "items": [
+        {
+          "label": {
+            "ja": "交通・時刻表一覧ページ",
+            "zh": "交通与时刻表索引页",
+            "en": "Transport & timetable index"
+          },
+          "sourceRef": "bus:notice"
+        },
+        {
+          "label": {
+            "ja": "屋久島観光協会 公式サイト",
+            "zh": "屋久岛观光协会 官网",
+            "en": "Yakushima tourism association — home"
+          },
+          "sourceRef": "access:yakukanAbout"
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "バス会社（電話）",
+        "zh": "公交公司（电话）",
+        "en": "Bus operators (phone)"
+      },
+      "items": [
+        {
+          "label": {
+            "ja": "種子島・屋久島交通",
+            "zh": "种子岛·屋久岛交通",
+            "en": "Tanegashima Yakushima Kotsu"
+          },
+          "url": "tel:0997-46-2221",
+          "note": {
+            "ja": "0997-46-2221",
+            "zh": "0997-46-2221",
+            "en": "0997-46-2221"
+          }
+        },
+        {
+          "label": {
+            "ja": "まつばんだ交通",
+            "zh": "松ばんだ交通",
+            "en": "Matsubanda Kotsu"
+          },
+          "url": "tel:0997-43-5000",
+          "note": {
+            "ja": "0997-43-5000",
+            "zh": "0997-43-5000",
+            "en": "0997-43-5000"
+          }
+        }
+      ]
+    }
+  ]
+}

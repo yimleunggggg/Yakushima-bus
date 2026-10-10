@@ -14,14 +14,29 @@
   }
 
   function experiencesForPage(pageId) {
-    return (D()?.experiences || []).filter((ex) => (ex.pages || []).includes(pageId));
+    return (D()?.experiences || []).filter((ex) => {
+      if (!(ex.pages || []).includes(pageId)) return false;
+      if (!ex.requiresRouteId) return true;
+      const alerts = window.TransportStatus?.alerts?.() || [];
+      return !alerts.some((a) => a.status === "suspended" && a.routeIds?.includes(ex.requiresRouteId));
+    });
   }
 
-  function affAttrs(it) {
+  function localizedUrl(it, lang) {
+    if (it.partner !== "klook") return it.url;
+    const url = new URL(it.url);
+    const target = new URL(url.searchParams.get("k_site"));
+    const locale = { ja: "ja", zh: "zh-CN", en: "en-US" }[lang] || "ja";
+    target.pathname = target.pathname.replace(/^\/(zh-CN|en-US|ja)\//, `/${locale}/`);
+    url.searchParams.set("k_site", target.href);
+    return url.href;
+  }
+
+  function affAttrs(it, lang) {
     const partner = it.partner || "klook";
     const id = it.adid || it.productCode || it.id || "";
     const placement = it.placement || "";
-    return `href="${it.url}" target="_blank" rel="sponsored noopener" data-affiliate-partner="${partner}" data-affiliate-id="${id}" data-affiliate-placement="${placement}"`;
+    return `href="${localizedUrl(it, lang)}" target="_blank" rel="sponsored noopener" data-affiliate-partner="${partner}" data-affiliate-id="${id}" data-affiliate-placement="${placement}"`;
   }
 
   function partnerBadge(partner) {
@@ -55,6 +70,14 @@
     return `<span class="affiliate-card-stats-date">${pick(statsNote, lang).replace("{date}", ex.statsUpdated)}</span>`;
   }
 
+  function routeNoticeHtml(it, lang) {
+    if (!it.affectedRouteId || !it.closedHint) return "";
+    const alert = (window.TransportStatus?.alerts?.() || []).find((a) =>
+      a.status === "suspended" && a.routeIds?.includes(it.affectedRouteId));
+    if (!alert) return "";
+    return `<p class="affiliate-card-route-notice">${pick(it.closedHint, lang)} <a href="${alert.sourceUrl}" target="_blank" rel="noopener">${pick({ ja: "公式情報", zh: "官方公告", en: "Official notice" }, lang)}</a></p>`;
+  }
+
   /** 统一产品卡：标题 · 平台标 · 可选图 · 描述 · 评分 · CTA */
   function productCard(it, lang) {
     const partner = it.partner || "klook";
@@ -72,13 +95,14 @@
       ${media}
       <div class="affiliate-card-main">
         <div class="affiliate-card-head">
-          <h3 class="affiliate-card-title"><a class="affiliate-card-link" ${affAttrs(it)}>${title}</a></h3>
+          <h3 class="affiliate-card-title"><a class="affiliate-card-link" ${affAttrs(it, lang)}>${title}</a></h3>
           ${partnerBadge(partner)}
         </div>
         ${rating}
         ${body ? `<p class="affiliate-card-body">${body}</p>` : ""}
+        ${routeNoticeHtml(it, lang)}
         <div class="affiliate-card-foot">
-          <a class="affiliate-offer-btn affiliate-card-cta" ${affAttrs(it)}>${cta}</a>
+          <a class="affiliate-offer-btn affiliate-card-cta" ${affAttrs(it, lang)}>${cta}</a>
           ${stats}
         </div>
       </div>
@@ -87,6 +111,17 @@
 
   function experienceCard(ex, lang) {
     return productCard(ex, lang);
+  }
+
+  function browseDestinationsHtml(lang) {
+    const b = D().blocks;
+    return `<div class="affiliate-browse-links">
+      ${[["destYakushima", b.islandBookingTitle], ["destKagoshima", b.gatewayBookingTitle]]
+        .map(([key, title]) => {
+          const it = item(key);
+          return it ? `<a class="affiliate-browse-link" ${affAttrs(it, lang)}><strong>${pick(title, lang)}</strong><span>${pick(it.label, lang)}</span></a>` : "";
+        }).join("")}
+    </div>`;
   }
 
   function experiencesSectionHtml(lang, pageId) {
@@ -98,13 +133,15 @@
       <h2 class="affiliate-section-title" id="affiliateExpTitle">${pick(b.experiencesTitle, lang)}</h2>
       <p class="affiliate-block-lead">${pick(b.experiencesLead, lang)}</p>
       <div class="affiliate-card-grid">${cards}</div>
+      <p class="page-section-note">${pick(b.affiliateDisclosure, lang)}</p>
+      ${browseDestinationsHtml(lang)}
     </section>`;
   }
 
   function jetfoilSecondaryHtml(lang) {
     const it = item("jetfoil");
     if (!it) return "";
-    return `<a class="access-booking-btn access-booking-btn-affiliate" ${affAttrs(it)}>${pick(it.cta, lang)}</a>`;
+    return `<a class="access-booking-btn access-booking-btn-affiliate" ${affAttrs(it, lang)}>${pick(it.cta, lang)}</a>`;
   }
 
   function jetfoilAffiliateHintHtml(lang) {
@@ -127,10 +164,11 @@
         <span class="trek-partner-badge">${badge}</span>
         ${rating}
       </header>
-      <h3 class="trek-partner-card-title"><a class="trek-partner-card-link" ${affAttrs(it)}>${title}</a></h3>
+      <h3 class="trek-partner-card-title"><a class="trek-partner-card-link" ${affAttrs(it, lang)}>${title}</a></h3>
       ${body ? `<p class="trek-partner-card-body">${body}</p>` : ""}
+      ${routeNoticeHtml(it, lang)}
       <footer class="trek-partner-card-foot">
-        <a class="trek-partner-card-cta" ${affAttrs(it)}>${cta}</a>
+        <a class="trek-partner-card-cta" ${affAttrs(it, lang)}>${cta}</a>
       </footer>
     </article>`;
   }
@@ -142,40 +180,39 @@
     if (hiking) cards.push(trekProductCard(hiking, lang));
     experiencesForPage("trekking").forEach((ex) => cards.push(trekProductCard(ex, lang)));
     if (!cards.length) return "";
-    const destY = item("destYakushima");
-    const browseMore = destY
-      ? `<p class="trek-partner-more"><a class="trek-partner-more-link" ${affAttrs(destY)}>${pick(b.trekkingBrowseMore, lang)}</a></p>`
-      : "";
-    const statsDate = experiencesForPage("trekking").find((ex) => ex.statsUpdated)?.statsUpdated || "2026-05-20";
-    const statsNote = pick(b.experiencesStatsNote, lang).replace("{date}", statsDate);
+    const statsNote = pick(b.affiliateDisclosure, lang);
     return `<h2 class="page-section-title" id="trekAffiliateTitle">${pick(b.experiencesTitle, lang)}</h2>
       <p class="page-section-lead">${pick(b.trekkingExperiencesLead || b.experiencesLead, lang)}</p>
       <div class="trek-partner-grid">${cards.join("")}</div>
       <p class="page-section-note trek-partner-note">${statsNote}</p>
-      ${browseMore}`;
+      ${browseDestinationsHtml(lang)}`;
   }
 
   function ferryBottomHtml(lang) {
     const b = D().blocks;
-    const rows = ["jrKyushu", "jrJapan7", "jetfoil", "destKagoshima", "destYakushima"]
+    const links = (keys) => keys
       .map((key) => {
         const it = item(key);
         if (!it) return "";
         const label = pick(it.label || it.cta, lang);
         const note = it.note ? `<span class="link-sub">${pick(it.note, lang)}</span>` : "";
-        return `<a ${affAttrs(it)}>${label}${note}</a>`;
+        return `<a ${affAttrs(it, lang)}>${label}${note}</a>`;
       })
       .join("");
     return `<details class="aux-block aux-block--affiliate">
       <summary class="aux-summary"><span>${pick(b.ferryBottomSummary, lang)}</span><span class="aux-chevron" aria-hidden="true"></span></summary>
       <div class="aux-body">
         <p class="affiliate-block-lead">${pick(b.ferryBottomLead, lang)}</p>
-        <div class="links source-links">${rows}</div>
+        <h3 class="affiliate-link-group-title">${pick(b.islandBookingTitle, lang)}</h3>
+        <div class="links source-links">${links(["jetfoil", "destYakushima"])}</div>
+        <h3 class="affiliate-link-group-title">${pick(b.gatewayBookingTitle, lang)}</h3>
+        <div class="links source-links">${links(["destKagoshima", "jrKyushu", "jrJapan7"])}</div>
       </div>
     </details>`;
   }
 
   window.AffiliateUI = {
+    localizedUrl,
     pick,
     jetfoilSecondaryHtml,
     jetfoilAffiliateHintHtml,

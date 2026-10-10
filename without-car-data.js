@@ -1,90 +1,41 @@
 /** レンタカーなし — /without-car/ */
 window.WITHOUT_CAR_DATA = {
-  updated: "2026-07-08",
+  updated: "2026-10-10",
   intro: {
-    ja: "屋久島は路線バスとフェリーで主要エリアに行けます。宮之浦港・安房港・空港から白谷、屋久杉自然館、荒川登山口方面へ。本ページは交通の考え方と、このサイトのツールへの導線です。",
-    zh: "屋久岛靠环岛公交和渡轮即可覆盖主要区域：从宫之浦港、安房港、机场到白谷、屋久杉自然馆、荒川登山口等。本文说明不租车时的交通思路，并链到本站工具。",
-    en: "Yakushima works without a rental car: route buses and ferries link Miyanoura Port, Anbo Port, the airport, Shiratani, the museum, and the Arakawa trailhead. This page explains how to plan and links to our tools.",
+    ja: "宮之浦港・安房港・空港から路線バスで各地へ。山間部は運休や乗換を確認して計画してください。",
+    zh: "从宫之浦港、安房港和机场可乘公交前往岛上各地；山区线路需先核查停运与换乘。",
+    en: "Route buses connect the ports, airport and towns. Check mountain-route suspensions and transfers before planning.",
   },
   evidence: {
     title: {
-      ja: "主要区間の数字（平日・2026年3月改定時刻表）",
-      zh: "主要区间数字（平日·2026 年 3 月改定时刻表）",
-      en: "Key route facts (weekday · Mar 2026 official timetable)",
+      ja: "主要区間（現在の時刻表・平日）",
+      zh: "常用区间（当前时刻表·工作日）",
+      en: "Common routes (current timetable · weekday)",
     },
     lead: {
-      ja: "屋久島の路線バスは宮之浦港・空港・白谷雲水峡・安房・屋久杉自然館を結びます。下表は種子島・屋久島交通の公式ダイヤに基づく目安です。",
-      zh: "屋久岛环岛公交连接宫之浦港、机场、白谷云水峡、安房与自然馆。下表依据种子岛·屋久岛交通官方时刻表（平日）。",
-      en: "Tanegashima Yakushima Kotsu route buses link Miyanoura Port, Yakushima Airport, Shiratani Unsuikyo, Anbo, and Yakusugi Museum. Weekday sample below from the Mar 2026 official timetable.",
+      ja: "下表は共通の時刻表データと運行状況から自動表示します。運休中の区間に旧便を表示しません。",
+      zh: "下表直接读取全站共用的时刻与停运状态；停运区间不会显示旧班次。",
+      en: "This table reads the same timetable and service status as route search. Suspended legs do not show old departures.",
     },
     cols: {
       route: { ja: "区間", zh: "区间", en: "Route" },
-      buses: { ja: "平日班数", zh: "平日班次", en: "Weekday buses" },
+      buses: { ja: "平日計画便", zh: "工作日计划班次", en: "Planned weekday buses" },
       hours: { ja: "始发–末班（出発）", zh: "首班–末班（发车）", en: "First–last departure" },
       fare: { ja: "大人片道", zh: "成人单程", en: "Adult one-way" },
     },
     rows: [
-      {
-        route: {
-          ja: "宮之浦港 → 屋久島空港",
-          zh: "宫之浦港 → 屋久岛机场",
-          en: "Miyanoura Port → Yakushima Airport",
-        },
-        buses: "10",
-        hours: { ja: "05:50–15:20", zh: "05:50–15:20", en: "05:50–15:20" },
-        fare: "¥590",
-      },
-      {
-        route: {
-          ja: "屋久島空港 → 宮之浦港",
-          zh: "屋久岛机场 → 宫之浦港",
-          en: "Yakushima Airport → Miyanoura Port",
-        },
-        buses: "9",
-        hours: { ja: "06:06–19:06", zh: "06:06–19:06", en: "06:06–19:06" },
-        fare: "¥590",
-      },
-      {
-        route: {
-          ja: "宮之浦港 → 白谷雲水峡",
-          zh: "宫之浦港 → 白谷云水峡",
-          en: "Miyanoura Port → Shiratani Unsuikyo",
-        },
-        buses: "4",
-        hours: { ja: "08:20–15:30", zh: "08:20–15:30", en: "08:20–15:30" },
-        fare: "¥530",
-      },
-      {
-        route: {
-          ja: "白谷雲水峡 → 宮之浦港",
-          zh: "白谷云水峡 → 宫之浦港",
-          en: "Shiratani Unsuikyo → Miyanoura Port",
-        },
-        buses: "4",
-        hours: { ja: "09:00–16:10", zh: "09:00–16:10", en: "09:00–16:10" },
-        fare: "¥530",
-      },
-      {
-        route: {
-          ja: "宮之浦港 → 安房",
-          zh: "宫之浦港 → 安房",
-          en: "Miyanoura Port → Anbo",
-        },
-        buses: "9",
-        hours: { ja: "08:00–15:20", zh: "08:00–15:20", en: "08:00–15:20" },
-        fare: "¥870",
-      },
-      {
-        route: {
-          ja: "安房 → 屋久杉自然館",
-          zh: "安房 → 屋久杉自然馆",
-          en: "Anbo → Yakusugi Museum",
-        },
-        buses: "3",
-        hours: { ja: "05:23–13:38", zh: "05:23–13:38", en: "05:23–13:38" },
-        fare: "¥240",
-      },
+      { from: "miyanoura_port", to: "airport" },
+      { from: "airport", to: "miyanoura_port" },
+      { from: "miyanoura_port", to: "shiratani" },
+      { from: "shiratani", to: "miyanoura_port" },
+      { from: "miyanoura_port", to: "anbo" },
+      { from: "anbo", to: "yakusugi_museum" },
     ],
+    conditionNote: {
+      ja: "＊印は登校日・荒川登山バス・高速船接続などの運行条件を含む計画便数です。実際に乗れる便は時刻表の各便注記で確認してください。",
+      zh: "＊ 表示含小学上课日、荒川登山巴士或高速船衔接等条件班次；实际可乘班次请在时刻表逐班核对。",
+      en: "＊ includes runs conditional on school days, Arakawa shuttle service or jetfoil connections. Check each timetable note for the actual travel day.",
+    },
     passTitle: {
       ja: "乗り放題パス（目安）",
       zh: "乘车通票（参考）",
@@ -111,9 +62,9 @@ window.WITHOUT_CAR_DATA = {
       en: "Fares estimated from the official fare table (Mar 2024). Check Sat/Sun/holiday and seasonal service on the <a href=\"/\">timetable</a>. Independent site — not the operator.",
     },
     sources: {
-      ja: "出典：種子島・屋久島交通バス時刻表（2026年3月改定）・運賃表（2024年3月改定）",
-      zh: "来源：种子岛·屋久岛交通巴士时刻表（2026 年 3 月改定）·运价表（2024 年 3 月改定）",
-      en: "Sources: Tanegashima Yakushima Kotsu bus timetable (Mar 2026 rev.) and fare table (Mar 2024 rev.)",
+      ja: "出典：共通の公式時刻表（2026年10月改定）・運賃表（2024年3月改定）",
+      zh: "来源：全站共用官方时刻表（2026 年 10 月改定）·运价表（2024 年 3 月改定）",
+      en: "Sources: shared official timetable (Oct 2026 rev.) and fare table (Mar 2024 rev.)",
     },
   },
   sections: [
@@ -149,11 +100,6 @@ window.WITHOUT_CAR_DATA = {
           ja: "屋久杉自然館 → 荒川登山口（登山バス・季節限定）",
           zh: "自然馆 → 荒川登山口（登山巴士，季节性）",
           en: "Museum → Arakawa trailhead (seasonal trail bus)",
-        },
-        {
-          ja: "宮之浦港 → 白谷雲水峡（シャクナゲ号など）",
-          zh: "宫之浦港 → 白谷云水峡",
-          en: "Miyanoura Port → Shiratani Unsuikyo",
         },
       ],
     },

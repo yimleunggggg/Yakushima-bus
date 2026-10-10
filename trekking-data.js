@@ -155,7 +155,7 @@ window.TREKKING_DATA = {
       elevation: { ja: "497m", zh: "497 m", en: "497 m" },
       yakukanUrl: "https://yakukan.jp/feature/tachudake-course.html",
       allTrailsUrl: "https://www.alltrails.com/trail/japan/kagoshima--2/mount-tachu",
-      presetRoute: { from: "gocho_mae", to: "kigen_sugi" },
+      presetRoute: { from: "gocho_mae", to: "yakusugiland" },
       accessStops: [
         {
           stopId: "gocho_mae",
@@ -190,17 +190,11 @@ window.TREKKING_DATA = {
       elevation: { ja: "466m", zh: "466 m", en: "466 m" },
       yakukanUrl: "https://yakukan.jp/feature/kuromidake-course.html",
       yamapUrl: "https://yamap.com/model-courses/20298",
-      presetRoute: { from: "miyanoura_port", to: "shiratani" },
-      accessStops: [
-        {
-          stopId: "shiratani",
-          note: {
-            ja: "バス可达区域；花之江河・山顶需长距离纵走",
-            zh: "公交可达白谷一带；花之江河与山顶需长距离纵走",
-            en: "Bus reaches Shiratani area; Hananoego & summit need long traverse",
-          },
-        },
-      ],
+      accessNote: {
+        ja: "淀川登山口から入山。路線バスは登山口まで行きません。アクセスを別途手配してください。",
+        zh: "从淀川登山口入山；公交不到登山口，需另行安排接送。",
+        en: "Start at Yodogawa trailhead; route buses do not reach it. Arrange transport separately.",
+      },
     },
     {
       id: "janokuchi",
@@ -244,25 +238,11 @@ window.TREKKING_DATA = {
       elevation: { ja: "571m", zh: "571 m", en: "571 m" },
       yakukanUrl: "https://yakukan.jp/feature/miyanouradake-course.html",
       yamapUrl: "https://yamap.com/model-courses/1613",
-      presetRoute: { from: "miyanoura_port", to: "shiratani" },
-      accessStops: [
-        {
-          stopId: "shiratani",
-          note: {
-            ja: "代表登山口の一つ（縦走前提）",
-            zh: "主要登山口之一（纵走行程）",
-            en: "One main trailhead (multi-day traverse)",
-          },
-        },
-        {
-          stopId: "arakawa_trailhead",
-          note: {
-            ja: "荒川ルートからも入山可",
-            zh: "亦可从荒川线入山",
-            en: "Also accessible via Arakawa route",
-          },
-        },
-      ],
+      accessNote: {
+        ja: "淀川登山口から入山。路線バスは登山口まで行きません。アクセスを別途手配してください。",
+        zh: "从淀川登山口入山；公交不到登山口，需另行安排接送。",
+        en: "Start at Yodogawa trailhead; route buses do not reach it. Arrange transport separately.",
+      },
     },
     {
       id: "mocchomudake",

@@ -466,9 +466,9 @@ const MAP_DATA = {
     },
     "hotel_yakushima": {
       "no": "99",
-      "ja": "ザホテルヤクシマ",
-      "zh": "The Hotel Yakushima",
-      "en": "The Hotel Yakushima",
+      "ja": "いわさきホテル",
+      "zh": "岩崎酒店",
+      "en": "Iwasaki Hotel",
       "group": "east",
       "x": 2216.4,
       "y": 210,
@@ -617,15 +617,15 @@ const MAP_DATA = {
     },
     "miyanoura_port_early": {
       "no": "19",
-      "ja": "宮之浦港（早朝）",
-      "zh": "宫之浦港（早班）",
-      "en": "Miyanoura Port (early)",
+      "ja": "ザホテルヤクシマ",
+      "zh": "The Hotel Yakushima",
+      "en": "The Hotel Yakushima",
       "group": "miyanoura",
       "x": 358.6,
       "y": 210,
       "fareAnchor": "miyanoura_port",
       "tags": [
-        "ferry"
+        "hotel"
       ]
     }
   },

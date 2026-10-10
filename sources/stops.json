@@ -49,12 +49,12 @@
     },
     "miyanoura_port_early": {
       "no": "19",
-      "ja": "宮之浦港（早朝）",
-      "zh": "宫之浦港（早班）",
-      "en": "Miyanoura Port (early)",
+      "ja": "ザホテルヤクシマ",
+      "zh": "The Hotel Yakushima",
+      "en": "The Hotel Yakushima",
       "group": "miyanoura",
       "tags": [
-        "ferry"
+        "hotel"
       ]
     },
     "miyanoura_port": {
@@ -375,9 +375,9 @@
     },
     "hotel_yakushima": {
       "no": "99",
-      "ja": "ザホテルヤクシマ",
-      "zh": "The Hotel Yakushima",
-      "en": "The Hotel Yakushima",
+      "ja": "いわさきホテル",
+      "zh": "岩崎酒店",
+      "en": "Iwasaki Hotel",
       "group": "east",
       "tags": [
         "hotel"

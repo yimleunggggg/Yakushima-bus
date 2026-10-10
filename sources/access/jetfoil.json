@@ -34,7 +34,11 @@
   "seasons": [
     {
       "id": "summer_2026",
-      "label": { "ja": "夏ダイヤ", "zh": "夏季班次", "en": "Summer schedule" },
+      "label": {
+        "ja": "夏ダイヤ",
+        "zh": "夏季班次",
+        "en": "Summer schedule"
+      },
       "validFrom": "2026-04-01",
       "validTo": "2026-06-30",
       "note": {
@@ -43,25 +47,197 @@
         "en": "Based on official timetable."
       },
       "toYakushima": [
-        { "no": "111", "dep": "07:30", "arr": "10:20", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } },
-        { "no": "112", "dep": "07:45", "arr": "09:35", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "直航", "zh": "直航", "en": "Direct" } },
-        { "no": "114", "dep": "10:10", "arr": "12:55", "port": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } },
-        { "no": "127", "dep": "13:00", "arr": "15:35", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } },
-        { "no": "117", "dep": "13:35", "arr": "15:25", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "直航", "zh": "直航", "en": "Direct" } },
-        { "no": "118", "dep": "15:45", "arr": "18:20", "port": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } }
+        {
+          "no": "111",
+          "dep": "07:30",
+          "arr": "10:20",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "種子島・西之表経由",
+            "zh": "经种子岛·西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "112",
+          "dep": "07:45",
+          "arr": "09:35",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "直航",
+            "zh": "直航",
+            "en": "Direct"
+          }
+        },
+        {
+          "no": "114",
+          "dep": "10:10",
+          "arr": "12:55",
+          "port": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "種子島・西之表経由",
+            "zh": "经种子岛·西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "127",
+          "dep": "13:00",
+          "arr": "15:35",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "種子島・西之表経由",
+            "zh": "经种子岛·西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "117",
+          "dep": "13:35",
+          "arr": "15:25",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "直航",
+            "zh": "直航",
+            "en": "Direct"
+          }
+        },
+        {
+          "no": "118",
+          "dep": "15:45",
+          "arr": "18:20",
+          "port": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "種子島・西之表経由",
+            "zh": "经种子岛·西之表",
+            "en": "Via Nishinoomote"
+          }
+        }
       ],
       "toKagoshima": [
-        { "no": "121", "dep": "07:00", "arr": "09:40", "from": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "西之表経由", "zh": "经西之表", "en": "Via Nishinoomote" } },
-        { "no": "112", "dep": "10:00", "arr": "12:45", "from": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "西之表経由", "zh": "经西之表", "en": "Via Nishinoomote" } },
-        { "no": "111", "dep": "10:40", "arr": "12:30", "from": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "直航", "zh": "直航", "en": "Direct" } },
-        { "no": "128", "dep": "13:10", "arr": "15:55", "from": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "西之表経由", "zh": "经西之表", "en": "Via Nishinoomote" } },
-        { "no": "117", "dep": "15:45", "arr": "18:20", "from": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "西之表経由", "zh": "经西之表", "en": "Via Nishinoomote" } },
-        { "no": "127", "dep": "16:00", "arr": "17:50", "from": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "直航", "zh": "直航", "en": "Direct" } }
+        {
+          "no": "121",
+          "dep": "07:00",
+          "arr": "09:40",
+          "from": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "112",
+          "dep": "10:00",
+          "arr": "12:45",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "111",
+          "dep": "10:40",
+          "arr": "12:30",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "直航",
+            "zh": "直航",
+            "en": "Direct"
+          }
+        },
+        {
+          "no": "128",
+          "dep": "13:10",
+          "arr": "15:55",
+          "from": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "117",
+          "dep": "15:45",
+          "arr": "18:20",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "127",
+          "dep": "16:00",
+          "arr": "17:50",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "直航",
+            "zh": "直航",
+            "en": "Direct"
+          }
+        }
       ]
     },
     {
       "id": "winter_2025",
-      "label": { "ja": "冬ダイヤ", "zh": "冬季班次", "en": "Winter schedule" },
+      "label": {
+        "ja": "冬ダイヤ",
+        "zh": "冬季班次",
+        "en": "Winter schedule"
+      },
       "validFrom": "2025-10-01",
       "validTo": "2026-02-28",
       "note": {
@@ -70,18 +246,558 @@
         "en": "Winter 2025–26 (official)."
       },
       "toYakushima": [
-        { "no": "111", "dep": "07:30", "arr": "10:20", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } },
-        { "no": "112", "dep": "07:45", "arr": "09:45", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "指宿経由", "zh": "经指宿", "en": "Via Ibusuki" } },
-        { "no": "114", "dep": "10:10", "arr": "12:55", "port": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } },
-        { "no": "127", "dep": "13:00", "arr": "15:35", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } },
-        { "no": "117", "dep": "13:35", "arr": "15:25", "port": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "直航", "zh": "直航", "en": "Direct" } },
-        { "no": "118", "dep": "15:45", "arr": "18:20", "port": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "種子島・西之表経由", "zh": "经种子岛·西之表", "en": "Via Nishinoomote" } }
+        {
+          "no": "111",
+          "dep": "07:30",
+          "arr": "10:20",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "種子島・西之表経由",
+            "zh": "经种子岛·西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "112",
+          "dep": "07:45",
+          "arr": "09:45",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "指宿経由",
+            "zh": "经指宿",
+            "en": "Via Ibusuki"
+          }
+        },
+        {
+          "no": "114",
+          "dep": "10:10",
+          "arr": "12:55",
+          "port": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "種子島・西之表経由",
+            "zh": "经种子岛·西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "127",
+          "dep": "13:00",
+          "arr": "15:35",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "種子島・西之表経由",
+            "zh": "经种子岛·西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "117",
+          "dep": "13:35",
+          "arr": "15:25",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "直航",
+            "zh": "直航",
+            "en": "Direct"
+          }
+        },
+        {
+          "no": "118",
+          "dep": "15:45",
+          "arr": "18:20",
+          "port": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "種子島・西之表経由",
+            "zh": "经种子岛·西之表",
+            "en": "Via Nishinoomote"
+          }
+        }
       ],
       "toKagoshima": [
-        { "no": "121", "dep": "07:00", "arr": "09:40", "from": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "—", "zh": "—", "en": "—" } },
-        { "no": "112", "dep": "10:00", "arr": "12:45", "from": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "—", "zh": "—", "en": "—" } },
-        { "no": "128", "dep": "13:10", "arr": "15:55", "from": { "ja": "安房", "zh": "安房", "en": "Anbo" }, "via": { "ja": "—", "zh": "—", "en": "—" } },
-        { "no": "117", "dep": "15:45", "arr": "18:30", "from": { "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura" }, "via": { "ja": "—", "zh": "—", "en": "—" } }
+        {
+          "no": "121",
+          "dep": "07:00",
+          "arr": "09:40",
+          "from": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "—",
+            "zh": "—",
+            "en": "—"
+          }
+        },
+        {
+          "no": "112",
+          "dep": "10:00",
+          "arr": "12:45",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "—",
+            "zh": "—",
+            "en": "—"
+          }
+        },
+        {
+          "no": "128",
+          "dep": "13:10",
+          "arr": "15:55",
+          "from": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "—",
+            "zh": "—",
+            "en": "—"
+          }
+        },
+        {
+          "no": "117",
+          "dep": "15:45",
+          "arr": "18:30",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "—",
+            "zh": "—",
+            "en": "—"
+          }
+        }
+      ]
+    },
+    {
+      "id": "autumn_2026",
+      "label": {
+        "ja": "7–9月ダイヤ",
+        "zh": "7–9月班次",
+        "en": "July–September schedule"
+      },
+      "validFrom": "2026-07-01",
+      "validTo": "2026-09-30",
+      "checkedAt": "2026-09-21",
+      "note": {
+        "ja": "公式掲載は「申請中」。出発前に運航状況をご確認ください。",
+        "zh": "官网标注“申请中”，出发前请再次确认运行情况。",
+        "en": "The official timetable is marked pending approval. Recheck service status before departure."
+      },
+      "toYakushima": [
+        {
+          "no": "111",
+          "dep": "07:30",
+          "arr": "10:20",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "112",
+          "dep": "08:00",
+          "arr": "09:50",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "直航",
+            "zh": "直航",
+            "en": "Direct"
+          }
+        },
+        {
+          "no": "129",
+          "dep": "10:10",
+          "arr": "12:55",
+          "port": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "127",
+          "dep": "13:00",
+          "arr": "15:35",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "117",
+          "dep": "13:35",
+          "arr": "15:25",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "直航",
+            "zh": "直航",
+            "en": "Direct"
+          }
+        },
+        {
+          "no": "118",
+          "dep": "15:45",
+          "arr": "18:20",
+          "port": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        }
+      ],
+      "toKagoshima": [
+        {
+          "no": "121",
+          "dep": "07:00",
+          "arr": "09:40",
+          "from": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "112",
+          "dep": "10:05",
+          "arr": "12:50",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "111",
+          "dep": "10:40",
+          "arr": "12:30",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "直航",
+            "zh": "直航",
+            "en": "Direct"
+          }
+        },
+        {
+          "no": "128",
+          "dep": "13:10",
+          "arr": "15:55",
+          "from": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "117",
+          "dep": "15:45",
+          "arr": "18:20",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "127",
+          "dep": "16:00",
+          "arr": "17:50",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "直航",
+            "zh": "直航",
+            "en": "Direct"
+          }
+        }
+      ]
+    },
+    {
+      "id": "winter_2026",
+      "label": {
+        "ja": "冬ダイヤ",
+        "zh": "冬季班次",
+        "en": "Winter schedule"
+      },
+      "validFrom": "2026-10-01",
+      "validTo": "2027-02-28",
+      "checkedAt": "2026-10-09",
+      "note": {
+        "ja": "公式掲載は「申請中」。出発前に運航状況をご確認ください。",
+        "zh": "官网标注“申请中”，出发前请再次确认运行情况。",
+        "en": "The official timetable is marked pending approval. Recheck service status before departure."
+      },
+      "toYakushima": [
+        {
+          "no": "111",
+          "dep": "07:30",
+          "arr": "10:20",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "112",
+          "dep": "08:00",
+          "arr": "09:50",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "直航",
+            "zh": "直航",
+            "en": "Direct"
+          }
+        },
+        {
+          "no": "114",
+          "dep": "10:00",
+          "arr": "12:40",
+          "port": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "127",
+          "dep": "13:00",
+          "arr": "15:30",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "117",
+          "dep": "13:30",
+          "arr": "15:20",
+          "port": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "直航",
+            "zh": "直航",
+            "en": "Direct"
+          }
+        },
+        {
+          "no": "118",
+          "dep": "14:45",
+          "arr": "17:20",
+          "port": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        }
+      ],
+      "toKagoshima": [
+        {
+          "no": "121",
+          "dep": "07:00",
+          "arr": "09:40",
+          "from": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "112",
+          "dep": "10:05",
+          "arr": "12:50",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "111",
+          "dep": "10:40",
+          "arr": "12:30",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "直航",
+            "zh": "直航",
+            "en": "Direct"
+          }
+        },
+        {
+          "no": "128",
+          "dep": "12:55",
+          "arr": "15:35",
+          "from": {
+            "ja": "安房",
+            "zh": "安房",
+            "en": "Anbo"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "117",
+          "dep": "15:45",
+          "arr": "18:20",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "西之表経由",
+            "zh": "经西之表",
+            "en": "Via Nishinoomote"
+          }
+        },
+        {
+          "no": "127",
+          "dep": "16:00",
+          "arr": "17:50",
+          "from": {
+            "ja": "宮之浦",
+            "zh": "宫之浦",
+            "en": "Miyanoura"
+          },
+          "via": {
+            "ja": "直航",
+            "zh": "直航",
+            "en": "Direct"
+          }
+        }
       ]
     }
   ]

@@ -4,12 +4,14 @@ const fs = require("fs");
 const vm = require("vm");
 
 const sandbox = {
-  window: {},
+  window: { addEventListener() {} },
   localStorage: { getItem: () => null, setItem: () => {} },
-  document: { documentElement: { lang: "ja" }, addEventListener: () => {} },
+  document: { readyState: "loading", documentElement: { lang: "ja" }, addEventListener: () => {} },
   location: { search: "", protocol: "file:" },
 };
 vm.createContext(sandbox);
+for (const file of ["transport-data.js", "transport-status.js"]) vm.runInContext(fs.readFileSync(require.resolve("../" + file), "utf8"), sandbox);
+vm.runInContext(fs.readFileSync(require.resolve("../meta-data.js"), "utf8"), sandbox);
 vm.runInContext(fs.readFileSync(require.resolve("../data.js"), "utf8") + "\nthis.BUS_DATA = BUS_DATA;", sandbox);
 vm.runInContext(
   fs.readFileSync(require.resolve("../app-core.js"), "utf8")
@@ -19,12 +21,16 @@ vm.runInContext(
 );
 
 const AppCore = sandbox.AppCore;
+// Explicitly bypass live notices only when comparing planned PDF columns.
+if (process.argv.includes("--planned")) { AppCore.routeAvailable = route => AppCore.routeInSeason(route); AppCore.stopSearchCluster = id => [id]; }
 
 const from = process.argv[2] || "miyanoura_port";
 const to = process.argv[3] || "anbo";
 const day = process.argv[4] || "weekday";
 
-const trips = AppCore.findTrips(from, to, day);
+const trips = AppCore.findTrips(from, to, day).filter((t) =>
+  !process.argv.includes("--exact") || (t.depStop === from && t.arrStop === to)
+);
 console.log(`${from} -> ${to} (${day}): ${trips.length} trips`);
 trips.forEach((t) => {
   const dur = AppCore.parseMinutes(t.arr) - AppCore.parseMinutes(t.dep);

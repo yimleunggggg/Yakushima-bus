@@ -31,7 +31,7 @@ from parse_matsubanda import (  # noqa: E402
 )
 
 MANIFEST = json.loads((ROOT / "sources" / "manifest.json").read_text(encoding="utf-8"))
-PDF = ROOT / MANIFEST["sources"]["taneyaku"]["file"]
+PDF = ROOT / MANIFEST["sources"][MANIFEST.get("parseSource", "taneyaku")]["file"]
 OVERRIDES = ROOT / MANIFEST["overridesDir"]
 TIME_RE = re.compile(r"\d{1,2}:\d{2}")
 
@@ -133,6 +133,10 @@ def _parse_side_text_rows(text: str, side: str) -> dict[str, list[str | None]]:
 
 def parse_side(text: str, side: str, pdf_path: Path | None = None) -> list[dict]:
     path = pdf_path or PDF
+    if MANIFEST.get("layout") == "2026-10-01":
+        from lib.timetable_october import parse_october
+        from lib.pdf_align import load_pdf_words
+        return parse_october(load_pdf_words(path), side)
     if path.exists():
         try:
             from lib.pdf_align import load_pdf_words
@@ -179,9 +183,9 @@ def fmt_trips(raw: list[dict], order: list[str], dest_hints: list[str] | None = 
             continue
         dest = trip_destination(times, order)
         note = None
-        if dest_hints and i < len(dest_hints):
+        if MANIFEST.get("layout") != "2026-10-01" and dest_hints and i < len(dest_hints):
             note = dest_hints[i]
-        entry = {"days": t.get("days", ["weekday", "saturday", "sunday_holiday"]), "times": times}
+        entry = {**t, "days": t.get("days", ["weekday", "saturday", "sunday_holiday"]), "times": times}
         if dest:
             entry["dest"] = dest
         if note:
@@ -330,7 +334,8 @@ def build_data() -> dict:
     for route in data["routes"]:
         for direction in route.get("directions", []):
             direction["columnTrips"] = copy.deepcopy(direction.get("trips", []))
-    split_routes_trips(data["routes"])
+    if MANIFEST.get("layout") != "2026-10-01":
+        split_routes_trips(data["routes"])
     return data
 
 

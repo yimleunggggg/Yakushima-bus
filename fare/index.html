@@ -57,8 +57,8 @@
     ]
   }
   </script>
-  <link rel="preload" href="/styles.css?v=layout-v152" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v152">
+  <link rel="preload" href="/styles.css?v=e245864c2b7b" as="style">
+  <link rel="stylesheet" href="/styles.css?v=e245864c2b7b">
   <script>
     (function () {
       var h = location.hostname;
@@ -72,9 +72,11 @@
   </script>
   <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
-  <script src="/site-chrome.js?v=chrome-v23" defer></script>
+  <script src="/site-chrome.js?v=64e80f098123" defer></script>
   <script src="/lang-boot.js?v=lang-v5"></script>
   <script src="/seo-head-zh.js?v=seo-zh-v2"></script>
+  <script src="/transport-data.js?v=6cd6620d7fdd"></script>
+  <script src="/transport-status.js?v=1e410c0c1a7a"></script>
 </head>
 <body>
   <div class="app">
@@ -247,16 +249,16 @@
   </div>
 
   <script src="/source-links.js?v=src-v1"></script>
-  <script src="/data.js?v=data-column-v3"></script>
-  <script src="/meta-data.js"></script>
-  <script src="/app-core.js?v=core-v21"></script>
-  <script src="/access-data.js"></script>
-  <script src="/map-data.js"></script>
+  <script src="/data.js?v=3aa1f2cda9d8"></script>
+  <script src="/meta-data.js?v=ea4e4aea067e"></script>
+  <script src="/app-core.js?v=55bcddd6073f"></script>
+  <script src="/access-data.js?v=cfcb2eb02d1c"></script>
+  <script src="/map-data.js?v=32bda5fae96a"></script>
   <script src="/operator-ui.js"></script>
   <script src="/section-divider.js"></script>
   <script src="/stop-picker.js?v=picker-v7"></script>
   <script src="/pdf-fullscreen.js"></script>
-  <script src="/pdf-viewer.js?v=pdf-preview-v7"></script>
+  <script src="/pdf-viewer.js?v=044f46b50a07"></script>
   <script>
     const UI = {
       ja: {
@@ -283,6 +285,7 @@
         pdfHintMobile: "下のボタンから公式 PDF を開いてください",
         pdfSourceNote: "公式 PDF を直接読み込み（更新は公式と同期）",
         yen: "円", noFare: "区間データなし（公式PDF参照）", sameStop: "異なる停留所を選んでください",
+        serviceSuspended: "現在、この区間は利用できません", officialNotice: "公式情報",
         fareEstimate: "目安（主要停留所区間）",
         noDeps: "この日種の発車便はありません", openRouteSearch: "区間で検索（時刻表ページ）",
         openInMaps: "Maps", modalTitle: "発車時刻", toward: "方面",
@@ -315,6 +318,7 @@
         pdfHintMobile: "请点下方按钮打开官方 PDF",
         pdfSourceNote: "直接加载官方 PDF 原址，官网更新后此处同步",
         yen: "日元", noFare: "暂无该区间的数据（见官方 PDF）", sameStop: "请选择不同的站点",
+        serviceSuspended: "当前无法乘坐该区间", officialNotice: "官方公告",
         fareEstimate: "预估（主要站点区间）",
         noDeps: "该日期类型无发车", openRouteSearch: "按区间查询（时刻表页）",
         openInMaps: "地图", modalTitle: "发车时刻", toward: "方向",
@@ -347,6 +351,7 @@
         pdfHintMobile: "Tap the button below to open the official PDF",
         pdfSourceNote: "Loads the official PDF URL directly — updates when the source updates",
         yen: "yen", noFare: "No fare data (see official PDF)", sameStop: "Pick different stops",
+        serviceSuspended: "No service on this segment", officialNotice: "Official notice",
         fareEstimate: "Estimate (major stops)",
         noDeps: "No departures on this day type", openRouteSearch: "Search by route (timetable page)",
         openInMaps: "Maps", modalTitle: "Departures", toward: "Direction",
@@ -689,12 +694,28 @@
 
     function updateFare() {
       const from = els.fareFrom.value, to = els.fareTo.value;
+      els.fareDisclaimer.className = "fare-disclaimer";
       els.fareDisclaimer.textContent = pick(MAP_DATA.fareDisclaimer) || "";
       syncPanelActionState();
       if (from === to) {
         els.fareResult.className = "fare-result";
         els.fareResult.textContent = t("sameStop");
         window.BusAnalytics?.event("fare_lookup", { from, to, fare: 0, result_type: "same_stop" });
+        return;
+      }
+      const suspension = [from, to].flatMap((id) => window.TransportStatus?.forStop(id) || [])
+        .find((alert) => alert.status === "suspended");
+      if (suspension) {
+        els.fareResult.className = "fare-result fare-result--suspended";
+        els.fareResult.textContent = t("serviceSuspended");
+        els.fareDisclaimer.className = "fare-disclaimer fare-disclaimer--suspended";
+        const source = document.createElement("a");
+        source.href = suspension.sourceUrl;
+        source.target = "_blank";
+        source.rel = "noopener";
+        source.textContent = t("officialNotice");
+        els.fareDisclaimer.replaceChildren(document.createTextNode(`${pick(suspension.message)} `), source);
+        window.BusAnalytics?.event("fare_lookup", { from, to, fare: 0, result_type: "suspended" });
         return;
       }
       const { fare, kind } = getFare(from, to);
@@ -724,7 +745,7 @@
     function initMapSources() {
       const s = BUS_DATA.meta?.sources || {};
       if (!els.mapSourceLinks) return;
-      const notice = s.notice || "https://yakukan.jp/trans/";
+      const notice = s.notice || "https://yakukan.jp/on-island.html";
       const status = s.serviceStatus || "https://yakushima.co.jp/route_bus/";
       const tozan = "http://yakushima-tozan.com/";
       SourceLinks.mountFlat(els.mapSourceLinks, [
@@ -785,7 +806,11 @@
       syncPdfLinks();
       if (pdfLoaded) initPdf();
       initPickers();
-      els.fareNotes.innerHTML = Object.values(MAP_DATA.fareNotes).map((n) => `<li>${pick(n)}</li>`).join("");
+      const shirataniSuspended = window.TransportStatus?.forStop("shiratani")
+        .some((alert) => alert.status === "suspended");
+      els.fareNotes.innerHTML = Object.entries(MAP_DATA.fareNotes)
+        .filter(([key]) => !(key === "shirataniTransfer" && shirataniSuspended))
+        .map(([, note]) => `<li>${pick(note)}</li>`).join("");
       if (els.mapPassDivider) {
         els.mapPassDivider.innerHTML = SectionDivider.html("bus", t("dividerPass"));
       }

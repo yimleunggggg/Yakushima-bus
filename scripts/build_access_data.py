@@ -26,15 +26,40 @@ def yen(n: int) -> str:
     return f"¥{n:,}"
 
 
-def pick_season(seasons: list[dict], ref: date | None = None) -> dict:
+def validate_ferry(ferry: dict) -> None:
+    """Reject malformed or overlapping calendars before publishing derived data."""
+    date.fromisoformat(ferry["checkedAt"])
+    validity = ferry["fareValidity"]
+    start = date.fromisoformat(validity["validFrom"])
+    if validity.get("validTo") and date.fromisoformat(validity["validTo"]) < start:
+        raise ValueError("ferry fare validity is reversed")
+    seen: set[str] = set()
+    previous_end = None
+    for period in sorted(ferry["suspensionPeriods"], key=lambda p: p["validFrom"]):
+        start, end = (date.fromisoformat(period[k]) for k in ("validFrom", "validTo"))
+        if start > end or (previous_end and start <= previous_end):
+            raise ValueError("ferry suspension periods overlap or are reversed")
+        previous_end = end
+        if not period["sourceUrl"].startswith("https://ferryyakusima2.com/"):
+            raise ValueError("ferry suspension must link official evidence")
+        date.fromisoformat(period["checkedAt"])
+        date.fromisoformat(period["announcedAt"])
+        for value in period["dates"]:
+            sailing = date.fromisoformat(value)
+            if value in seen or not start <= sailing <= end:
+                raise ValueError("duplicate or out-of-range ferry suspension: " + value)
+            seen.add(value)
+    for fare in ferry["fares"]:
+        if any(type(fare[k]) is not int or fare[k] <= 0 for k in ("adult", "child")):
+            raise ValueError("ferry fares must be positive integer yen")
+
+
+def pick_season(seasons: list[dict], ref: date | None = None) -> dict | None:
     ref = ref or date.today()
     for s in seasons:
         if date.fromisoformat(s["validFrom"]) <= ref <= date.fromisoformat(s["validTo"]):
             return s
-    past = [s for s in seasons if date.fromisoformat(s["validFrom"]) <= ref]
-    if past:
-        return max(past, key=lambda s: s["validFrom"])
-    return seasons[0]
+    return None
 
 
 def season_schedule_notes(season: dict) -> tuple[dict, dict]:
@@ -44,15 +69,18 @@ def season_schedule_notes(season: dict) -> tuple[dict, dict]:
     prefix_zh = f"{label['zh']}（{vf}–{vt}）。"
     prefix_en = f"{label['en']} ({vf}–{vt}). "
     outbound = {
-        "ja": prefix_ja + "鹿児島発：本港新港ふ頭（同一ターミナル）。屋久島側は宮之浦または安房着（着港欄）。",
-        "zh": prefix_zh + "鹿儿岛出发：本港新港码头（同一码头）。屋久岛侧到达宫之浦或安房（见「到达港」）。",
-        "en": prefix_en + "Departs Kagoshima Honko Shin-ko (one terminal). Arrives Miyanoura or Anbo on Yakushima (see Port).",
+        "ja": prefix_ja + "鹿児島発：本港南ふ頭（同一ターミナル）。屋久島側は宮之浦または安房着（着港欄）。",
+        "zh": prefix_zh + "鹿儿岛出发：本港南码头（同一码头）。屋久岛侧到达宫之浦或安房（见「到达港」）。",
+        "en": prefix_en + "Departs Kagoshima Honko South Pier (one terminal). Arrives Miyanoura or Anbo on Yakushima (see Port).",
     }
     inbound = {
-        "ja": prefix_ja + "屋久島発：宮之浦または安房（発港欄）。鹿児島着：本港新港ふ頭。",
-        "zh": prefix_zh + "屋久岛出发：宫之浦或安房（见「出发港」）。到达鹿儿岛本港新港码头。",
-        "en": prefix_en + "Departs Miyanoura or Anbo on Yakushima (see From). Arrives Kagoshima Honko Shin-ko.",
+        "ja": prefix_ja + "屋久島発：宮之浦または安房（発港欄）。鹿児島着：本港南ふ頭。",
+        "zh": prefix_zh + "屋久岛出发：宫之浦或安房（见「出发港」）。到达鹿儿岛本港南码头。",
+        "en": prefix_en + "Departs Miyanoura or Anbo on Yakushima (see From). Arrives Kagoshima Honko South Pier.",
     }
+    for lang in outbound:
+        outbound[lang] += " " + season.get("note", {}).get(lang, "")
+        inbound[lang] += " " + season.get("note", {}).get(lang, "")
     return outbound, inbound
 
 
@@ -82,17 +110,18 @@ def build_data() -> dict:
     src = MANIFEST["sources"]
     jetfoil = load_json("jetfoil.json")
     ferry = load_json("ferry.json")
+    validate_ferry(ferry)
     pass_data = load_json("pass.json")
     booking = load_json("booking.json")
     season = pick_season(jetfoil["seasons"])
-    note_out, note_in = season_schedule_notes(season)
+    note_out, note_in = season_schedule_notes(season) if season else ({}, {})
 
     return {
         "meta": {
             "revision": MANIFEST["revision"],
             "updatedAt": MANIFEST["updatedAt"],
-            "activeSeason": season["id"],
-            "seasonRange": {"from": season["validFrom"], "to": season["validTo"]},
+            "activeSeason": season["id"] if season else None,
+            "seasonRange": {"from": season["validFrom"], "to": season["validTo"]} if season else None,
             "sources": {k: v["url"] for k, v in src.items()},
             "sourceLabels": {k: v.get("label", {}) for k, v in src.items()},
         },
@@ -101,7 +130,9 @@ def build_data() -> dict:
             "zh": "从鹿儿岛到屋久岛通常乘高速船（约2–3小时）或渡轮（约4小时）。岛上以公交为主（见时刻表页）。请以各运营商最新公告为准。",
             "en": "Reach Yakushima from Kagoshima by jetfoil (~2–3h) or ferry (~4h). On-island travel is mostly by route bus (Timetable tab). Check each operator for latest schedules.",
         },
+        "jetfoilSeasons": [{**s, "notes": dict(zip(["jetfoil_out", "jetfoil_in"], season_schedule_notes(s)))} for s in jetfoil["seasons"]],
         "booking": booking,
+        "ferryCalendar": {"checkedAt": ferry["checkedAt"], "periods": ferry["suspensionPeriods"]},
         "sections": [
             {
                 "id": "jetfoil_out",
@@ -116,7 +147,7 @@ def build_data() -> dict:
                     {"key": "port", "label": {"ja": "着港", "zh": "到达港", "en": "Port"}},
                     {"key": "via", "label": {"ja": "経路", "zh": "路线", "en": "Route"}},
                 ],
-                "rows": season["toYakushima"],
+                "rows": season["toYakushima"] if season else [],
             },
             {
                 "id": "jetfoil_in",
@@ -131,7 +162,7 @@ def build_data() -> dict:
                     {"key": "arr", "label": {"ja": "鹿児島着", "zh": "鹿儿岛到", "en": "Arr. Kagoshima"}},
                     {"key": "via", "label": {"ja": "備考", "zh": "备注", "en": "Note"}},
                 ],
-                "rows": season["toKagoshima"],
+                "rows": season["toKagoshima"] if season else [],
             },
             {
                 "id": "jetfoil_fare",
@@ -146,9 +177,8 @@ def build_data() -> dict:
                 "id": "ferry",
                 "kind": "schedule",
                 "sourceKey": "ferry",
-                "title": {"ja": "フェリー屋久島2（1日1便）", "zh": "屋久岛2号渡轮（每日1班）", "en": "Ferry Yakushima 2 (daily)"},
+                "title": {"ja": "フェリー屋久島2（運航日の時刻）", "zh": "屋久岛2号渡轮（运行日时刻）", "en": "Ferry Yakushima 2 (sailing-day times)"},
                 "note": ferry["note"],
-                **({"alert": ferry["alert"], "alertUrl": ferry["alertUrl"]} if ferry.get("alert") else {}),
                 "columns": [
                     {"key": "from", "label": {"ja": "出発", "zh": "出发", "en": "From"}},
                     {"key": "dep", "label": {"ja": "発", "zh": "发", "en": "Dep."}},
@@ -161,8 +191,10 @@ def build_data() -> dict:
                 "id": "ferry_fare",
                 "kind": "fare",
                 "sourceKey": "ferry",
-                "title": {"ja": "フェリー：運賃目安（片道・通常期）", "zh": "渡轮：运价参考（单程·平季）", "en": "Ferry: sample one-way fares (regular season)"},
+                "title": {"ja": "フェリー：運賃目安（片道）", "zh": "渡轮：运价参考（单程）", "en": "Ferry: sample one-way fares"},
                 "fareKey": "type",
+                "note": ferry.get("fareNote", {}),
+                "validity": ferry["fareValidity"],
                 "rows": [
                     {"type": r["type"], "adult": yen(r["adult"]), "child": yen(r["child"])}
                     for r in ferry["fares"]

@@ -147,6 +147,9 @@ def assign_to_columns(
 
 
 def parse_side_x(words, side: str) -> list[dict]:
+    if any(w[4] == "Shionomichi" for w in words):
+        from lib.timetable_october import parse_october
+        return parse_october(words, side)
     centers = column_centers(words, side)
     if not centers:
         return []

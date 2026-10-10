@@ -1,17 +1,17 @@
 /** 屋久岛公交 — scripts/build_all.py 生成 */
 const BUS_DATA = {
   "meta": {
-    "version": "2026-03-01",
-    "validFrom": "2026-03-01",
+    "version": "2026-10-01",
+    "validFrom": "2026-10-01",
     "validTo": "2026-11-30",
-    "updatedAt": "2026-05-20",
+    "updatedAt": "2026-10-09",
     "sources": {
-      "taneyaku": "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301.pdf",
-      "taneyakuEn": "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301-en.pdf",
+      "taneyaku": "https://yakukan.jp/wp-content/uploads/2026/09/2b161555d2a768da24648735b71d8390.pdf",
+      "taneyakuEn": "https://yakukan.jp/wp-content/uploads/2026/09/3791b74916c1e22726378f29c90f1568.pdf",
       "matsubanda": "https://yakukan.jp/wp-content/uploads/2026/03/matsubanda-timetable-20260301.pdf",
       "fare": "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin.pdf",
       "fareEn": "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin-en.pdf",
-      "notice": "https://yakukan.jp/trans/",
+      "notice": "https://yakukan.jp/on-island.html",
       "serviceStatus": "https://yakushima.co.jp/route_bus/",
       "arakawaX": "https://x.com/yakusansharyou",
       "pass": "https://yakushima.co.jp/yuttari/"
@@ -164,12 +164,12 @@ const BUS_DATA = {
     },
     "miyanoura_port_early": {
       "no": "19",
-      "ja": "宮之浦港（早朝）",
-      "zh": "宫之浦港（早班）",
-      "en": "Miyanoura Port (early)",
+      "ja": "ザホテルヤクシマ",
+      "zh": "The Hotel Yakushima",
+      "en": "The Hotel Yakushima",
       "group": "miyanoura",
       "tags": [
-        "ferry"
+        "hotel"
       ]
     },
     "miyanoura_port": {
@@ -490,9 +490,9 @@ const BUS_DATA = {
     },
     "hotel_yakushima": {
       "no": "99",
-      "ja": "ザホテルヤクシマ",
-      "zh": "The Hotel Yakushima",
-      "en": "The Hotel Yakushima",
+      "ja": "いわさきホテル",
+      "zh": "岩崎酒店",
+      "en": "Iwasaki Hotel",
       "group": "east",
       "tags": [
         "hotel"
@@ -619,6 +619,7 @@ const BUS_DATA = {
             "shitoko",
             "fukagawa",
             "miyanoura_port",
+            "miyanoura_port_early",
             "miyanoura_port_entrance",
             "miyanoura",
             "kobara",
@@ -646,6 +647,7 @@ const BUS_DATA = {
             "hara",
             "onokaido",
             "saman_hotel",
+            "hotel_yakushima",
             "kojima",
             "hirauchi_onsen",
             "yunuma",
@@ -656,9 +658,12 @@ const BUS_DATA = {
           "trips": [
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
+                "miyanoura_port_early": "4:45",
                 "miyanoura_port_entrance": "4:46",
                 "miyanoura": "4:48",
                 "kobara": "4:50",
@@ -675,19 +680,28 @@ const BUS_DATA = {
                 "gocho_mae": "5:19",
                 "police_mae": "5:21",
                 "anbo": "5:23",
-                "makino": "5:24"
+                "makino": "5:24",
+                "yakusugi_museum": "5:29"
               },
-              "dest": "makino",
-              "destNote": {
-                "ja": "屋久杉自然館"
-              }
+              "sourceColumn": 1,
+              "condition": "arakawa",
+              "season": "3-11",
+              "note": {
+                "ja": "3〜11月、荒川登山バス運休時は運休。安房港行きは高速船始発便にも連動。",
+                "zh": "3–11月，荒川登山巴士停运时停运；去安房港的接驳班次也受高速船首班影响。",
+                "en": "Mar–Nov; suspended when the Arakawa trail bus is suspended. Anbo port connections also depend on the first jetfoil."
+              },
+              "dest": "yakusugi_museum"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "miyanoura_port": "5:50",
+                "miyanoura_port_early": "5:51",
                 "miyanoura_port_entrance": "5:52",
                 "miyanoura": "5:54",
                 "kobara": "5:56",
@@ -704,17 +718,45 @@ const BUS_DATA = {
                 "funayuki": "6:23",
                 "gocho_mae": "6:26",
                 "police_mae": "6:28",
-                "anbo_port": "6:32",
-                "saman_hotel": "7:22"
+                "anbo_port": "6:32"
               },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "安房港"
-              }
+              "sourceColumn": 2,
+              "condition": "anbo-jetfoil-and-arakawa",
+              "season": "3-11",
+              "note": {
+                "ja": "3〜11月、荒川登山バス運休時は運休。安房港行きは高速船始発便にも連動。",
+                "zh": "3–11月，荒川登山巴士停运时停运；去安房港的接驳班次也受高速船首班影响。",
+                "en": "Mar–Nov; suspended when the Arakawa trail bus is suspended. Anbo port connections also depend on the first jetfoil."
+              },
+              "dest": "anbo_port"
             },
             {
               "days": [
                 "weekday"
+              ],
+              "times": {
+                "saman_hotel": "7:22",
+                "hotel_yakushima": "7:28",
+                "kojima": "7:33",
+                "hirauchi_onsen": "7:40",
+                "yunuma": "7:41",
+                "naka": "7:49",
+                "kurio_bashi": "7:54"
+              },
+              "sourceColumn": 3,
+              "condition": "school-days",
+              "note": {
+                "ja": "小学校の登校日のみ。学校休業日は運休。",
+                "zh": "仅小学上学日运行；学校假期停运，请确认当天是否开行。",
+                "en": "Elementary school days only; does not run during school holidays. Confirm service for your date."
+              },
+              "dest": "kurio_bashi"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "nagata": "7:26",
@@ -748,16 +790,22 @@ const BUS_DATA = {
                 "botanical_park": "8:54",
                 "hara": "8:56",
                 "onokaido": "9:01",
-                "saman_hotel": "9:02"
+                "saman_hotel": "9:02",
+                "hotel_yakushima": "9:08",
+                "kojima": "9:13",
+                "hirauchi_onsen": "9:20",
+                "yunuma": "9:21",
+                "naka": "9:29",
+                "kurio_bashi": "9:34"
               },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
+              "sourceColumn": 4,
+              "dest": "kurio_bashi"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "miyanoura_port": "8:40",
@@ -786,16 +834,23 @@ const BUS_DATA = {
                 "botanical_park": "9:38",
                 "hara": "9:40",
                 "onokaido": "9:45",
-                "saman_hotel": "9:46"
+                "saman_hotel": "9:46",
+                "hotel_yakushima": "9:52",
+                "kojima": "9:57",
+                "hirauchi_onsen": "10:04",
+                "yunuma": "10:05",
+                "naka": "10:13",
+                "kurio_bashi": "10:18",
+                "okawa_falls": "10:22"
               },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
+              "sourceColumn": 5,
+              "dest": "okawa_falls"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "nagata": "9:26",
@@ -830,16 +885,22 @@ const BUS_DATA = {
                 "botanical_park": "10:58",
                 "hara": "11:00",
                 "onokaido": "11:05",
-                "saman_hotel": "11:06"
+                "saman_hotel": "11:06",
+                "hotel_yakushima": "11:12",
+                "kojima": "11:17",
+                "hirauchi_onsen": "11:24",
+                "yunuma": "11:25",
+                "naka": "11:33",
+                "kurio_bashi": "11:38"
               },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
+              "sourceColumn": 6,
+              "dest": "kurio_bashi"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "nagata": "10:01",
@@ -873,16 +934,17 @@ const BUS_DATA = {
                 "botanical_park": "11:29",
                 "hara": "11:31",
                 "onokaido": "11:36",
-                "saman_hotel": "11:37"
+                "saman_hotel": "11:37",
+                "hotel_yakushima": "11:43"
               },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
+              "sourceColumn": 7,
+              "dest": "hotel_yakushima"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "miyanoura_port": "11:15",
@@ -911,16 +973,22 @@ const BUS_DATA = {
                 "botanical_park": "12:13",
                 "hara": "12:15",
                 "onokaido": "12:20",
-                "saman_hotel": "12:21"
+                "saman_hotel": "12:21",
+                "hotel_yakushima": "12:27",
+                "kojima": "12:32",
+                "hirauchi_onsen": "12:39",
+                "yunuma": "12:40",
+                "naka": "12:48",
+                "kurio_bashi": "12:53"
               },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
+              "sourceColumn": 8,
+              "dest": "kurio_bashi"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "nagata": "11:36",
@@ -955,16 +1023,17 @@ const BUS_DATA = {
                 "botanical_park": "13:08",
                 "hara": "13:10",
                 "onokaido": "13:15",
-                "saman_hotel": "13:16"
+                "saman_hotel": "13:16",
+                "hotel_yakushima": "13:22"
               },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
+              "sourceColumn": 9,
+              "dest": "hotel_yakushima"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "miyanoura_port": "12:50",
@@ -993,54 +1062,67 @@ const BUS_DATA = {
                 "botanical_park": "13:48",
                 "hara": "13:50",
                 "onokaido": "13:55",
-                "saman_hotel": "13:56"
+                "saman_hotel": "13:56",
+                "hotel_yakushima": "14:02",
+                "kojima": "14:07",
+                "hirauchi_onsen": "14:14",
+                "yunuma": "14:15",
+                "naka": "14:23",
+                "kurio_bashi": "14:28",
+                "okawa_falls": "14:32"
               },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
+              "sourceColumn": 10,
+              "dest": "okawa_falls"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
-                "miyanoura_port": "14:10",
-                "miyanoura_port_entrance": "14:11",
-                "miyanoura": "14:13",
-                "kobara": "14:15",
-                "a_coop": "14:16",
-                "miyaura_elem": "14:17",
-                "asahi": "14:19",
-                "kusugawa": "14:21",
-                "kunugawa": "14:25",
-                "kozeta": "14:28",
-                "shionomichi": "14:32",
-                "airport": "14:33",
-                "hayasaki": "14:35",
-                "towaho": "14:38",
-                "funayuki": "14:42",
-                "gocho_mae": "14:45",
-                "police_mae": "14:47",
-                "anbo_port": "14:51",
-                "anbo": "14:53",
-                "makino": "14:54",
-                "morihisa_jinja": "14:55",
-                "hirano": "14:59",
-                "mugi": "15:07",
-                "botanical_park": "15:08",
-                "hara": "15:10",
-                "onokaido": "15:15",
-                "saman_hotel": "15:16"
+                "miyanoura_port": "14:20",
+                "miyanoura_port_entrance": "14:21",
+                "miyanoura": "14:23",
+                "kobara": "14:25",
+                "a_coop": "14:26",
+                "miyaura_elem": "14:27",
+                "asahi": "14:29",
+                "kusugawa": "14:31",
+                "kunugawa": "14:35",
+                "kozeta": "14:38",
+                "shionomichi": "14:42",
+                "airport": "14:43",
+                "hayasaki": "14:45",
+                "towaho": "14:48",
+                "funayuki": "14:52",
+                "gocho_mae": "14:55",
+                "police_mae": "14:57",
+                "anbo_port": "15:01",
+                "anbo": "15:03",
+                "makino": "15:04",
+                "morihisa_jinja": "15:05",
+                "hirano": "15:09",
+                "mugi": "15:17",
+                "botanical_park": "15:18",
+                "hara": "15:20",
+                "onokaido": "15:25",
+                "saman_hotel": "15:26",
+                "hotel_yakushima": "15:32",
+                "kojima": "15:37",
+                "hirauchi_onsen": "15:44",
+                "yunuma": "15:45",
+                "naka": "15:53",
+                "kurio_bashi": "15:58"
               },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "大川の滝"
-              }
+              "sourceColumn": 11,
+              "dest": "kurio_bashi"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "miyanoura_port": "15:20",
@@ -1069,16 +1151,22 @@ const BUS_DATA = {
                 "botanical_park": "16:18",
                 "hara": "16:20",
                 "onokaido": "16:25",
-                "saman_hotel": "16:26"
+                "saman_hotel": "16:26",
+                "hotel_yakushima": "16:32",
+                "kojima": "16:37",
+                "hirauchi_onsen": "16:44",
+                "yunuma": "16:45",
+                "naka": "16:53",
+                "kurio_bashi": "16:58"
               },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "いわさきH"
-              }
+              "sourceColumn": 12,
+              "dest": "kurio_bashi"
             },
             {
               "days": [
-                "saturday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "nagata": "15:06",
@@ -1112,16 +1200,17 @@ const BUS_DATA = {
                 "botanical_park": "16:36",
                 "hara": "16:38",
                 "onokaido": "16:43",
-                "saman_hotel": "16:44"
+                "saman_hotel": "16:44",
+                "hotel_yakushima": "16:50"
               },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "いわさきH"
-              }
+              "sourceColumn": 13,
+              "dest": "hotel_yakushima"
             },
             {
               "days": [
-                "saturday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "miyanoura_port": "16:50",
@@ -1150,611 +1239,51 @@ const BUS_DATA = {
                 "botanical_park": "17:50",
                 "hara": "17:52",
                 "onokaido": "17:57",
-                "saman_hotel": "17:58"
+                "saman_hotel": "17:58",
+                "hotel_yakushima": "18:04",
+                "kojima": "18:09",
+                "hirauchi_onsen": "18:16",
+                "yunuma": "18:17",
+                "naka": "18:25",
+                "kurio_bashi": "18:30"
               },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "大川の滝"
-              }
+              "sourceColumn": 14,
+              "dest": "kurio_bashi"
             },
             {
               "days": [
+                "weekday",
+                "saturday",
                 "sunday_holiday"
               ],
-              "destNote": {
-                "ja": "大川の滝"
-              },
-              "times": {
-                "miyanoura_port": "17:25",
-                "miyanoura_port_entrance": "17:26",
-                "miyanoura": "17:28",
-                "kobara": "17:30",
-                "a_coop": "17:31",
-                "miyaura_elem": "17:32",
-                "asahi": "17:34",
-                "kusugawa": "17:36",
-                "kunugawa": "17:40",
-                "kozeta": "17:43",
-                "shionomichi": "17:47",
-                "airport": "17:48",
-                "hayasaki": "17:50",
-                "towaho": "17:53",
-                "funayuki": "17:57",
-                "gocho_mae": "18:02",
-                "police_mae": "18:04",
-                "anbo_port": "18:08",
-                "anbo": "18:10",
-                "makino": "18:11"
-              },
-              "dest": "makino"
-            },
-            {
-              "days": [
-                "sunday_holiday"
-              ],
-              "destNote": {
-                "ja": "大川の滝"
-              },
               "times": {
                 "yakusugi_museum": "17:40",
-                "morihisa_jinja": "18:12",
-                "hirano": "18:16",
-                "mugi": "18:24",
-                "botanical_park": "18:25",
-                "hara": "18:27",
-                "onokaido": "18:32",
-                "saman_hotel": "18:33"
+                "morihisa_jinja": "17:45",
+                "hirano": "17:49",
+                "mugi": "17:57",
+                "botanical_park": "17:58",
+                "hara": "18:00",
+                "onokaido": "18:05",
+                "saman_hotel": "18:06",
+                "hotel_yakushima": "18:12"
               },
-              "dest": "saman_hotel"
+              "sourceColumn": 15,
+              "condition": "arakawa",
+              "season": "3-11",
+              "note": {
+                "ja": "3〜11月、荒川登山バス運休時は運休。安房港行きは高速船始発便にも連動。",
+                "zh": "3–11月，荒川登山巴士停运时停运；去安房港的接驳班次也受高速船首班影响。",
+                "en": "Mar–Nov; suspended when the Arakawa trail bus is suspended. Anbo port connections also depend on the first jetfoil."
+              },
+              "boardOnlyAt": [
+                "yakusugi_museum"
+              ],
+              "dest": "hotel_yakushima"
             },
             {
               "days": [
-                "sunday_holiday"
-              ],
-              "times": {
-                "nagata": "17:51",
-                "inakahama": "17:54",
-                "yoshida": "18:01",
-                "hitomaru": "18:07",
-                "shitoko": "18:12",
-                "fukagawa": "18:19",
-                "miyanoura_port": "18:25",
-                "miyanoura_port_entrance": "18:26",
-                "miyanoura": "18:28",
-                "kobara": "18:30",
-                "a_coop": "18:31",
-                "miyaura_elem": "18:32",
-                "asahi": "18:34",
-                "kusugawa": "18:36",
-                "kunugawa": "18:40",
-                "kozeta": "18:43",
-                "shionomichi": "18:47",
-                "airport": "18:48",
-                "hayasaki": "18:50",
-                "towaho": "18:53",
-                "funayuki": "18:57",
-                "gocho_mae": "19:02",
-                "police_mae": "19:04",
-                "anbo_port": "19:08",
-                "anbo": "19:10",
-                "makino": "19:11",
-                "morihisa_jinja": "19:12",
-                "hirano": "19:16",
-                "mugi": "19:24",
-                "botanical_park": "19:25",
-                "hara": "19:27",
-                "onokaido": "19:32",
-                "saman_hotel": "19:33"
-              },
-              "dest": "saman_hotel"
-            }
-          ],
-          "columnTrips": [
-            {
-              "days": [
-                "weekday"
-              ],
-              "times": {
-                "miyanoura_port_entrance": "4:46",
-                "miyanoura": "4:48",
-                "kobara": "4:50",
-                "a_coop": "4:51",
-                "miyaura_elem": "4:52",
-                "asahi": "4:54",
-                "kusugawa": "4:56",
-                "kunugawa": "5:00",
-                "kozeta": "5:03",
-                "shionomichi": "5:07",
-                "hayasaki": "5:09",
-                "towaho": "5:12",
-                "funayuki": "5:16",
-                "gocho_mae": "5:19",
-                "police_mae": "5:21",
-                "anbo": "5:23",
-                "makino": "5:24"
-              },
-              "dest": "makino",
-              "destNote": {
-                "ja": "屋久杉自然館"
-              }
-            },
-            {
-              "days": [
-                "weekday"
-              ],
-              "times": {
-                "miyanoura_port": "5:50",
-                "miyanoura_port_entrance": "5:52",
-                "miyanoura": "5:54",
-                "kobara": "5:56",
-                "a_coop": "5:57",
-                "miyaura_elem": "5:58",
-                "asahi": "6:00",
-                "kusugawa": "6:02",
-                "kunugawa": "6:06",
-                "kozeta": "6:09",
-                "shionomichi": "6:13",
-                "airport": "6:14",
-                "hayasaki": "6:16",
-                "towaho": "6:19",
-                "funayuki": "6:23",
-                "gocho_mae": "6:26",
-                "police_mae": "6:28",
-                "anbo_port": "6:32",
-                "saman_hotel": "7:22"
-              },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "安房港"
-              }
-            },
-            {
-              "days": [
-                "weekday"
-              ],
-              "times": {
-                "nagata": "7:26",
-                "inakahama": "7:29",
-                "yoshida": "7:36",
-                "hitomaru": "7:42",
-                "shitoko": "7:47",
-                "fukagawa": "7:54",
-                "miyanoura_port": "8:00",
-                "miyanoura_port_entrance": "8:01",
-                "miyanoura": "8:03",
-                "kobara": "8:05",
-                "a_coop": "8:06",
-                "miyaura_elem": "8:07",
-                "asahi": "8:09",
-                "kusugawa": "8:11",
-                "kunugawa": "8:15",
-                "kozeta": "8:18",
-                "shionomichi": "8:22",
-                "airport": "8:23",
-                "hayasaki": "8:25",
-                "towaho": "8:28",
-                "funayuki": "8:32",
-                "gocho_mae": "8:35",
-                "police_mae": "8:37",
-                "anbo": "8:39",
-                "makino": "8:40",
-                "morihisa_jinja": "8:41",
-                "hirano": "8:45",
-                "mugi": "8:53",
-                "botanical_park": "8:54",
-                "hara": "8:56",
-                "onokaido": "9:01",
-                "saman_hotel": "9:02"
-              },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
-            },
-            {
-              "days": [
-                "weekday"
-              ],
-              "times": {
-                "miyanoura_port": "8:40",
-                "miyanoura_port_entrance": "8:41",
-                "miyanoura": "8:43",
-                "kobara": "8:45",
-                "a_coop": "8:46",
-                "miyaura_elem": "8:47",
-                "asahi": "8:49",
-                "kusugawa": "8:51",
-                "kunugawa": "8:55",
-                "kozeta": "8:58",
-                "shionomichi": "9:02",
-                "airport": "9:03",
-                "hayasaki": "9:05",
-                "towaho": "9:08",
-                "funayuki": "9:12",
-                "gocho_mae": "9:15",
-                "police_mae": "9:17",
-                "anbo_port": "9:21",
-                "anbo": "9:23",
-                "makino": "9:24",
-                "morihisa_jinja": "9:25",
-                "hirano": "9:29",
-                "mugi": "9:37",
-                "botanical_park": "9:38",
-                "hara": "9:40",
-                "onokaido": "9:45",
-                "saman_hotel": "9:46"
-              },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
-            },
-            {
-              "days": [
-                "weekday"
-              ],
-              "times": {
-                "nagata": "9:26",
-                "inakahama": "9:29",
-                "yoshida": "9:36",
-                "hitomaru": "9:42",
-                "shitoko": "9:47",
-                "fukagawa": "9:54",
-                "miyanoura_port": "10:00",
-                "miyanoura_port_entrance": "10:01",
-                "miyanoura": "10:03",
-                "kobara": "10:05",
-                "a_coop": "10:06",
-                "miyaura_elem": "10:07",
-                "asahi": "10:09",
-                "kusugawa": "10:11",
-                "kunugawa": "10:15",
-                "kozeta": "10:18",
-                "shionomichi": "10:22",
-                "airport": "10:23",
-                "hayasaki": "10:25",
-                "towaho": "10:28",
-                "funayuki": "10:32",
-                "gocho_mae": "10:35",
-                "police_mae": "10:37",
-                "anbo_port": "10:41",
-                "anbo": "10:43",
-                "makino": "10:44",
-                "morihisa_jinja": "10:45",
-                "hirano": "10:49",
-                "mugi": "10:57",
-                "botanical_park": "10:58",
-                "hara": "11:00",
-                "onokaido": "11:05",
-                "saman_hotel": "11:06"
-              },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
-            },
-            {
-              "days": [
-                "weekday"
-              ],
-              "times": {
-                "nagata": "10:01",
-                "inakahama": "10:04",
-                "yoshida": "10:11",
-                "hitomaru": "10:17",
-                "shitoko": "10:22",
-                "fukagawa": "10:29",
-                "miyanoura_port": "10:35",
-                "miyanoura_port_entrance": "10:36",
-                "miyanoura": "10:38",
-                "kobara": "10:40",
-                "a_coop": "10:41",
-                "miyaura_elem": "10:42",
-                "asahi": "10:44",
-                "kusugawa": "10:46",
-                "kunugawa": "10:50",
-                "kozeta": "10:53",
-                "shionomichi": "10:57",
-                "airport": "10:58",
-                "hayasaki": "11:00",
-                "towaho": "11:03",
-                "funayuki": "11:07",
-                "gocho_mae": "11:10",
-                "police_mae": "11:12",
-                "anbo": "11:14",
-                "makino": "11:15",
-                "morihisa_jinja": "11:16",
-                "hirano": "11:20",
-                "mugi": "11:28",
-                "botanical_park": "11:29",
-                "hara": "11:31",
-                "onokaido": "11:36",
-                "saman_hotel": "11:37"
-              },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
-            },
-            {
-              "days": [
-                "weekday"
-              ],
-              "times": {
-                "miyanoura_port": "11:15",
-                "miyanoura_port_entrance": "11:16",
-                "miyanoura": "11:18",
-                "kobara": "11:20",
-                "a_coop": "11:21",
-                "miyaura_elem": "11:22",
-                "asahi": "11:24",
-                "kusugawa": "11:26",
-                "kunugawa": "11:30",
-                "kozeta": "11:33",
-                "shionomichi": "11:37",
-                "airport": "11:38",
-                "hayasaki": "11:40",
-                "towaho": "11:43",
-                "funayuki": "11:47",
-                "gocho_mae": "11:50",
-                "police_mae": "11:52",
-                "anbo_port": "11:56",
-                "anbo": "11:58",
-                "makino": "11:59",
-                "morihisa_jinja": "12:00",
-                "hirano": "12:04",
-                "mugi": "12:12",
-                "botanical_park": "12:13",
-                "hara": "12:15",
-                "onokaido": "12:20",
-                "saman_hotel": "12:21"
-              },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
-            },
-            {
-              "days": [
-                "weekday"
-              ],
-              "times": {
-                "nagata": "11:36",
-                "inakahama": "11:39",
-                "yoshida": "11:46",
-                "hitomaru": "11:52",
-                "shitoko": "11:57",
-                "fukagawa": "12:04",
-                "miyanoura_port": "12:10",
-                "miyanoura_port_entrance": "12:11",
-                "miyanoura": "12:13",
-                "kobara": "12:15",
-                "a_coop": "12:16",
-                "miyaura_elem": "12:17",
-                "asahi": "12:19",
-                "kusugawa": "12:21",
-                "kunugawa": "12:25",
-                "kozeta": "12:28",
-                "shionomichi": "12:32",
-                "airport": "12:33",
-                "hayasaki": "12:35",
-                "towaho": "12:38",
-                "funayuki": "12:42",
-                "gocho_mae": "12:45",
-                "police_mae": "12:47",
-                "anbo_port": "12:51",
-                "anbo": "12:53",
-                "makino": "12:54",
-                "morihisa_jinja": "12:55",
-                "hirano": "12:59",
-                "mugi": "13:07",
-                "botanical_park": "13:08",
-                "hara": "13:10",
-                "onokaido": "13:15",
-                "saman_hotel": "13:16"
-              },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
-            },
-            {
-              "days": [
-                "weekday"
-              ],
-              "times": {
-                "miyanoura_port": "12:50",
-                "miyanoura_port_entrance": "12:51",
-                "miyanoura": "12:53",
-                "kobara": "12:55",
-                "a_coop": "12:56",
-                "miyaura_elem": "12:57",
-                "asahi": "12:59",
-                "kusugawa": "13:01",
-                "kunugawa": "13:05",
-                "kozeta": "13:08",
-                "shionomichi": "13:12",
-                "airport": "13:13",
-                "hayasaki": "13:15",
-                "towaho": "13:18",
-                "funayuki": "13:22",
-                "gocho_mae": "13:25",
-                "police_mae": "13:27",
-                "anbo_port": "13:31",
-                "anbo": "13:33",
-                "makino": "13:34",
-                "morihisa_jinja": "13:35",
-                "hirano": "13:39",
-                "mugi": "13:47",
-                "botanical_park": "13:48",
-                "hara": "13:50",
-                "onokaido": "13:55",
-                "saman_hotel": "13:56"
-              },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "栗生橋"
-              }
-            },
-            {
-              "days": [
-                "weekday"
-              ],
-              "times": {
-                "miyanoura_port": "14:10",
-                "miyanoura_port_entrance": "14:11",
-                "miyanoura": "14:13",
-                "kobara": "14:15",
-                "a_coop": "14:16",
-                "miyaura_elem": "14:17",
-                "asahi": "14:19",
-                "kusugawa": "14:21",
-                "kunugawa": "14:25",
-                "kozeta": "14:28",
-                "shionomichi": "14:32",
-                "airport": "14:33",
-                "hayasaki": "14:35",
-                "towaho": "14:38",
-                "funayuki": "14:42",
-                "gocho_mae": "14:45",
-                "police_mae": "14:47",
-                "anbo_port": "14:51",
-                "anbo": "14:53",
-                "makino": "14:54",
-                "morihisa_jinja": "14:55",
-                "hirano": "14:59",
-                "mugi": "15:07",
-                "botanical_park": "15:08",
-                "hara": "15:10",
-                "onokaido": "15:15",
-                "saman_hotel": "15:16"
-              },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "大川の滝"
-              }
-            },
-            {
-              "days": [
-                "weekday"
-              ],
-              "times": {
-                "miyanoura_port": "15:20",
-                "miyanoura_port_entrance": "15:21",
-                "miyanoura": "15:23",
-                "kobara": "15:25",
-                "a_coop": "15:26",
-                "miyaura_elem": "15:27",
-                "asahi": "15:29",
-                "kusugawa": "15:31",
-                "kunugawa": "15:35",
-                "kozeta": "15:38",
-                "shionomichi": "15:42",
-                "airport": "15:43",
-                "hayasaki": "15:45",
-                "towaho": "15:48",
-                "funayuki": "15:52",
-                "gocho_mae": "15:55",
-                "police_mae": "15:57",
-                "anbo_port": "16:01",
-                "anbo": "16:03",
-                "makino": "16:04",
-                "morihisa_jinja": "16:05",
-                "hirano": "16:09",
-                "mugi": "16:17",
-                "botanical_park": "16:18",
-                "hara": "16:20",
-                "onokaido": "16:25",
-                "saman_hotel": "16:26"
-              },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "いわさきH"
-              }
-            },
-            {
-              "days": [
-                "saturday"
-              ],
-              "times": {
-                "nagata": "15:06",
-                "inakahama": "15:09",
-                "yoshida": "15:16",
-                "hitomaru": "15:22",
-                "shitoko": "15:27",
-                "fukagawa": "15:34",
-                "miyanoura_port": "15:40",
-                "miyanoura_port_entrance": "15:41",
-                "miyanoura": "15:43",
-                "kobara": "15:45",
-                "a_coop": "15:46",
-                "miyaura_elem": "15:47",
-                "asahi": "15:49",
-                "kusugawa": "15:51",
-                "kunugawa": "15:55",
-                "kozeta": "15:58",
-                "shionomichi": "16:02",
-                "airport": "16:03",
-                "hayasaki": "16:05",
-                "towaho": "16:08",
-                "funayuki": "16:12",
-                "gocho_mae": "16:17",
-                "police_mae": "16:19",
-                "anbo": "16:21",
-                "makino": "16:22",
-                "morihisa_jinja": "16:23",
-                "hirano": "16:27",
-                "mugi": "16:35",
-                "botanical_park": "16:36",
-                "hara": "16:38",
-                "onokaido": "16:43",
-                "saman_hotel": "16:44"
-              },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "いわさきH"
-              }
-            },
-            {
-              "days": [
-                "saturday"
-              ],
-              "times": {
-                "miyanoura_port": "16:50",
-                "miyanoura_port_entrance": "16:51",
-                "miyanoura": "16:53",
-                "kobara": "16:55",
-                "a_coop": "16:56",
-                "miyaura_elem": "16:57",
-                "asahi": "16:59",
-                "kusugawa": "17:01",
-                "kunugawa": "17:05",
-                "kozeta": "17:08",
-                "shionomichi": "17:12",
-                "airport": "17:13",
-                "hayasaki": "17:15",
-                "towaho": "17:18",
-                "funayuki": "17:22",
-                "gocho_mae": "17:27",
-                "police_mae": "17:29",
-                "anbo_port": "17:33",
-                "anbo": "17:35",
-                "makino": "17:36",
-                "morihisa_jinja": "17:37",
-                "hirano": "17:41",
-                "mugi": "17:49",
-                "botanical_park": "17:50",
-                "hara": "17:52",
-                "onokaido": "17:57",
-                "saman_hotel": "17:58"
-              },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "大川の滝"
-              }
-            },
-            {
-              "days": [
+                "weekday",
+                "saturday",
                 "sunday_holiday"
               ],
               "times": {
@@ -1778,22 +1307,27 @@ const BUS_DATA = {
                 "anbo_port": "18:08",
                 "anbo": "18:10",
                 "makino": "18:11",
-                "yakusugi_museum": "17:40",
                 "morihisa_jinja": "18:12",
                 "hirano": "18:16",
                 "mugi": "18:24",
                 "botanical_park": "18:25",
                 "hara": "18:27",
                 "onokaido": "18:32",
-                "saman_hotel": "18:33"
+                "saman_hotel": "18:33",
+                "hotel_yakushima": "18:39",
+                "kojima": "18:44",
+                "hirauchi_onsen": "18:51",
+                "yunuma": "18:52",
+                "naka": "19:00",
+                "kurio_bashi": "19:05"
               },
-              "dest": "saman_hotel",
-              "destNote": {
-                "ja": "大川の滝"
-              }
+              "sourceColumn": 16,
+              "dest": "kurio_bashi"
             },
             {
               "days": [
+                "weekday",
+                "saturday",
                 "sunday_holiday"
               ],
               "times": {
@@ -1829,9 +1363,726 @@ const BUS_DATA = {
                 "botanical_park": "19:25",
                 "hara": "19:27",
                 "onokaido": "19:32",
-                "saman_hotel": "19:33"
+                "saman_hotel": "19:33",
+                "hotel_yakushima": "19:39"
               },
-              "dest": "saman_hotel"
+              "sourceColumn": 17,
+              "dest": "hotel_yakushima"
+            }
+          ],
+          "columnTrips": [
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "miyanoura_port_early": "4:45",
+                "miyanoura_port_entrance": "4:46",
+                "miyanoura": "4:48",
+                "kobara": "4:50",
+                "a_coop": "4:51",
+                "miyaura_elem": "4:52",
+                "asahi": "4:54",
+                "kusugawa": "4:56",
+                "kunugawa": "5:00",
+                "kozeta": "5:03",
+                "shionomichi": "5:07",
+                "hayasaki": "5:09",
+                "towaho": "5:12",
+                "funayuki": "5:16",
+                "gocho_mae": "5:19",
+                "police_mae": "5:21",
+                "anbo": "5:23",
+                "makino": "5:24",
+                "yakusugi_museum": "5:29"
+              },
+              "sourceColumn": 1,
+              "condition": "arakawa",
+              "season": "3-11",
+              "note": {
+                "ja": "3〜11月、荒川登山バス運休時は運休。安房港行きは高速船始発便にも連動。",
+                "zh": "3–11月，荒川登山巴士停运时停运；去安房港的接驳班次也受高速船首班影响。",
+                "en": "Mar–Nov; suspended when the Arakawa trail bus is suspended. Anbo port connections also depend on the first jetfoil."
+              },
+              "dest": "yakusugi_museum"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "miyanoura_port": "5:50",
+                "miyanoura_port_early": "5:51",
+                "miyanoura_port_entrance": "5:52",
+                "miyanoura": "5:54",
+                "kobara": "5:56",
+                "a_coop": "5:57",
+                "miyaura_elem": "5:58",
+                "asahi": "6:00",
+                "kusugawa": "6:02",
+                "kunugawa": "6:06",
+                "kozeta": "6:09",
+                "shionomichi": "6:13",
+                "airport": "6:14",
+                "hayasaki": "6:16",
+                "towaho": "6:19",
+                "funayuki": "6:23",
+                "gocho_mae": "6:26",
+                "police_mae": "6:28",
+                "anbo_port": "6:32"
+              },
+              "sourceColumn": 2,
+              "condition": "anbo-jetfoil-and-arakawa",
+              "season": "3-11",
+              "note": {
+                "ja": "3〜11月、荒川登山バス運休時は運休。安房港行きは高速船始発便にも連動。",
+                "zh": "3–11月，荒川登山巴士停运时停运；去安房港的接驳班次也受高速船首班影响。",
+                "en": "Mar–Nov; suspended when the Arakawa trail bus is suspended. Anbo port connections also depend on the first jetfoil."
+              },
+              "dest": "anbo_port"
+            },
+            {
+              "days": [
+                "weekday"
+              ],
+              "times": {
+                "saman_hotel": "7:22",
+                "hotel_yakushima": "7:28",
+                "kojima": "7:33",
+                "hirauchi_onsen": "7:40",
+                "yunuma": "7:41",
+                "naka": "7:49",
+                "kurio_bashi": "7:54"
+              },
+              "sourceColumn": 3,
+              "condition": "school-days",
+              "note": {
+                "ja": "小学校の登校日のみ。学校休業日は運休。",
+                "zh": "仅小学上学日运行；学校假期停运，请确认当天是否开行。",
+                "en": "Elementary school days only; does not run during school holidays. Confirm service for your date."
+              },
+              "dest": "kurio_bashi"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "nagata": "7:26",
+                "inakahama": "7:29",
+                "yoshida": "7:36",
+                "hitomaru": "7:42",
+                "shitoko": "7:47",
+                "fukagawa": "7:54",
+                "miyanoura_port": "8:00",
+                "miyanoura_port_entrance": "8:01",
+                "miyanoura": "8:03",
+                "kobara": "8:05",
+                "a_coop": "8:06",
+                "miyaura_elem": "8:07",
+                "asahi": "8:09",
+                "kusugawa": "8:11",
+                "kunugawa": "8:15",
+                "kozeta": "8:18",
+                "shionomichi": "8:22",
+                "airport": "8:23",
+                "hayasaki": "8:25",
+                "towaho": "8:28",
+                "funayuki": "8:32",
+                "gocho_mae": "8:35",
+                "police_mae": "8:37",
+                "anbo": "8:39",
+                "makino": "8:40",
+                "morihisa_jinja": "8:41",
+                "hirano": "8:45",
+                "mugi": "8:53",
+                "botanical_park": "8:54",
+                "hara": "8:56",
+                "onokaido": "9:01",
+                "saman_hotel": "9:02",
+                "hotel_yakushima": "9:08",
+                "kojima": "9:13",
+                "hirauchi_onsen": "9:20",
+                "yunuma": "9:21",
+                "naka": "9:29",
+                "kurio_bashi": "9:34"
+              },
+              "sourceColumn": 4,
+              "dest": "kurio_bashi"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "miyanoura_port": "8:40",
+                "miyanoura_port_entrance": "8:41",
+                "miyanoura": "8:43",
+                "kobara": "8:45",
+                "a_coop": "8:46",
+                "miyaura_elem": "8:47",
+                "asahi": "8:49",
+                "kusugawa": "8:51",
+                "kunugawa": "8:55",
+                "kozeta": "8:58",
+                "shionomichi": "9:02",
+                "airport": "9:03",
+                "hayasaki": "9:05",
+                "towaho": "9:08",
+                "funayuki": "9:12",
+                "gocho_mae": "9:15",
+                "police_mae": "9:17",
+                "anbo_port": "9:21",
+                "anbo": "9:23",
+                "makino": "9:24",
+                "morihisa_jinja": "9:25",
+                "hirano": "9:29",
+                "mugi": "9:37",
+                "botanical_park": "9:38",
+                "hara": "9:40",
+                "onokaido": "9:45",
+                "saman_hotel": "9:46",
+                "hotel_yakushima": "9:52",
+                "kojima": "9:57",
+                "hirauchi_onsen": "10:04",
+                "yunuma": "10:05",
+                "naka": "10:13",
+                "kurio_bashi": "10:18",
+                "okawa_falls": "10:22"
+              },
+              "sourceColumn": 5,
+              "dest": "okawa_falls"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "nagata": "9:26",
+                "inakahama": "9:29",
+                "yoshida": "9:36",
+                "hitomaru": "9:42",
+                "shitoko": "9:47",
+                "fukagawa": "9:54",
+                "miyanoura_port": "10:00",
+                "miyanoura_port_entrance": "10:01",
+                "miyanoura": "10:03",
+                "kobara": "10:05",
+                "a_coop": "10:06",
+                "miyaura_elem": "10:07",
+                "asahi": "10:09",
+                "kusugawa": "10:11",
+                "kunugawa": "10:15",
+                "kozeta": "10:18",
+                "shionomichi": "10:22",
+                "airport": "10:23",
+                "hayasaki": "10:25",
+                "towaho": "10:28",
+                "funayuki": "10:32",
+                "gocho_mae": "10:35",
+                "police_mae": "10:37",
+                "anbo_port": "10:41",
+                "anbo": "10:43",
+                "makino": "10:44",
+                "morihisa_jinja": "10:45",
+                "hirano": "10:49",
+                "mugi": "10:57",
+                "botanical_park": "10:58",
+                "hara": "11:00",
+                "onokaido": "11:05",
+                "saman_hotel": "11:06",
+                "hotel_yakushima": "11:12",
+                "kojima": "11:17",
+                "hirauchi_onsen": "11:24",
+                "yunuma": "11:25",
+                "naka": "11:33",
+                "kurio_bashi": "11:38"
+              },
+              "sourceColumn": 6,
+              "dest": "kurio_bashi"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "nagata": "10:01",
+                "inakahama": "10:04",
+                "yoshida": "10:11",
+                "hitomaru": "10:17",
+                "shitoko": "10:22",
+                "fukagawa": "10:29",
+                "miyanoura_port": "10:35",
+                "miyanoura_port_entrance": "10:36",
+                "miyanoura": "10:38",
+                "kobara": "10:40",
+                "a_coop": "10:41",
+                "miyaura_elem": "10:42",
+                "asahi": "10:44",
+                "kusugawa": "10:46",
+                "kunugawa": "10:50",
+                "kozeta": "10:53",
+                "shionomichi": "10:57",
+                "airport": "10:58",
+                "hayasaki": "11:00",
+                "towaho": "11:03",
+                "funayuki": "11:07",
+                "gocho_mae": "11:10",
+                "police_mae": "11:12",
+                "anbo": "11:14",
+                "makino": "11:15",
+                "morihisa_jinja": "11:16",
+                "hirano": "11:20",
+                "mugi": "11:28",
+                "botanical_park": "11:29",
+                "hara": "11:31",
+                "onokaido": "11:36",
+                "saman_hotel": "11:37",
+                "hotel_yakushima": "11:43"
+              },
+              "sourceColumn": 7,
+              "dest": "hotel_yakushima"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "miyanoura_port": "11:15",
+                "miyanoura_port_entrance": "11:16",
+                "miyanoura": "11:18",
+                "kobara": "11:20",
+                "a_coop": "11:21",
+                "miyaura_elem": "11:22",
+                "asahi": "11:24",
+                "kusugawa": "11:26",
+                "kunugawa": "11:30",
+                "kozeta": "11:33",
+                "shionomichi": "11:37",
+                "airport": "11:38",
+                "hayasaki": "11:40",
+                "towaho": "11:43",
+                "funayuki": "11:47",
+                "gocho_mae": "11:50",
+                "police_mae": "11:52",
+                "anbo_port": "11:56",
+                "anbo": "11:58",
+                "makino": "11:59",
+                "morihisa_jinja": "12:00",
+                "hirano": "12:04",
+                "mugi": "12:12",
+                "botanical_park": "12:13",
+                "hara": "12:15",
+                "onokaido": "12:20",
+                "saman_hotel": "12:21",
+                "hotel_yakushima": "12:27",
+                "kojima": "12:32",
+                "hirauchi_onsen": "12:39",
+                "yunuma": "12:40",
+                "naka": "12:48",
+                "kurio_bashi": "12:53"
+              },
+              "sourceColumn": 8,
+              "dest": "kurio_bashi"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "nagata": "11:36",
+                "inakahama": "11:39",
+                "yoshida": "11:46",
+                "hitomaru": "11:52",
+                "shitoko": "11:57",
+                "fukagawa": "12:04",
+                "miyanoura_port": "12:10",
+                "miyanoura_port_entrance": "12:11",
+                "miyanoura": "12:13",
+                "kobara": "12:15",
+                "a_coop": "12:16",
+                "miyaura_elem": "12:17",
+                "asahi": "12:19",
+                "kusugawa": "12:21",
+                "kunugawa": "12:25",
+                "kozeta": "12:28",
+                "shionomichi": "12:32",
+                "airport": "12:33",
+                "hayasaki": "12:35",
+                "towaho": "12:38",
+                "funayuki": "12:42",
+                "gocho_mae": "12:45",
+                "police_mae": "12:47",
+                "anbo_port": "12:51",
+                "anbo": "12:53",
+                "makino": "12:54",
+                "morihisa_jinja": "12:55",
+                "hirano": "12:59",
+                "mugi": "13:07",
+                "botanical_park": "13:08",
+                "hara": "13:10",
+                "onokaido": "13:15",
+                "saman_hotel": "13:16",
+                "hotel_yakushima": "13:22"
+              },
+              "sourceColumn": 9,
+              "dest": "hotel_yakushima"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "miyanoura_port": "12:50",
+                "miyanoura_port_entrance": "12:51",
+                "miyanoura": "12:53",
+                "kobara": "12:55",
+                "a_coop": "12:56",
+                "miyaura_elem": "12:57",
+                "asahi": "12:59",
+                "kusugawa": "13:01",
+                "kunugawa": "13:05",
+                "kozeta": "13:08",
+                "shionomichi": "13:12",
+                "airport": "13:13",
+                "hayasaki": "13:15",
+                "towaho": "13:18",
+                "funayuki": "13:22",
+                "gocho_mae": "13:25",
+                "police_mae": "13:27",
+                "anbo_port": "13:31",
+                "anbo": "13:33",
+                "makino": "13:34",
+                "morihisa_jinja": "13:35",
+                "hirano": "13:39",
+                "mugi": "13:47",
+                "botanical_park": "13:48",
+                "hara": "13:50",
+                "onokaido": "13:55",
+                "saman_hotel": "13:56",
+                "hotel_yakushima": "14:02",
+                "kojima": "14:07",
+                "hirauchi_onsen": "14:14",
+                "yunuma": "14:15",
+                "naka": "14:23",
+                "kurio_bashi": "14:28",
+                "okawa_falls": "14:32"
+              },
+              "sourceColumn": 10,
+              "dest": "okawa_falls"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "miyanoura_port": "14:20",
+                "miyanoura_port_entrance": "14:21",
+                "miyanoura": "14:23",
+                "kobara": "14:25",
+                "a_coop": "14:26",
+                "miyaura_elem": "14:27",
+                "asahi": "14:29",
+                "kusugawa": "14:31",
+                "kunugawa": "14:35",
+                "kozeta": "14:38",
+                "shionomichi": "14:42",
+                "airport": "14:43",
+                "hayasaki": "14:45",
+                "towaho": "14:48",
+                "funayuki": "14:52",
+                "gocho_mae": "14:55",
+                "police_mae": "14:57",
+                "anbo_port": "15:01",
+                "anbo": "15:03",
+                "makino": "15:04",
+                "morihisa_jinja": "15:05",
+                "hirano": "15:09",
+                "mugi": "15:17",
+                "botanical_park": "15:18",
+                "hara": "15:20",
+                "onokaido": "15:25",
+                "saman_hotel": "15:26",
+                "hotel_yakushima": "15:32",
+                "kojima": "15:37",
+                "hirauchi_onsen": "15:44",
+                "yunuma": "15:45",
+                "naka": "15:53",
+                "kurio_bashi": "15:58"
+              },
+              "sourceColumn": 11,
+              "dest": "kurio_bashi"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "miyanoura_port": "15:20",
+                "miyanoura_port_entrance": "15:21",
+                "miyanoura": "15:23",
+                "kobara": "15:25",
+                "a_coop": "15:26",
+                "miyaura_elem": "15:27",
+                "asahi": "15:29",
+                "kusugawa": "15:31",
+                "kunugawa": "15:35",
+                "kozeta": "15:38",
+                "shionomichi": "15:42",
+                "airport": "15:43",
+                "hayasaki": "15:45",
+                "towaho": "15:48",
+                "funayuki": "15:52",
+                "gocho_mae": "15:55",
+                "police_mae": "15:57",
+                "anbo_port": "16:01",
+                "anbo": "16:03",
+                "makino": "16:04",
+                "morihisa_jinja": "16:05",
+                "hirano": "16:09",
+                "mugi": "16:17",
+                "botanical_park": "16:18",
+                "hara": "16:20",
+                "onokaido": "16:25",
+                "saman_hotel": "16:26",
+                "hotel_yakushima": "16:32",
+                "kojima": "16:37",
+                "hirauchi_onsen": "16:44",
+                "yunuma": "16:45",
+                "naka": "16:53",
+                "kurio_bashi": "16:58"
+              },
+              "sourceColumn": 12,
+              "dest": "kurio_bashi"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "nagata": "15:06",
+                "inakahama": "15:09",
+                "yoshida": "15:16",
+                "hitomaru": "15:22",
+                "shitoko": "15:27",
+                "fukagawa": "15:34",
+                "miyanoura_port": "15:40",
+                "miyanoura_port_entrance": "15:41",
+                "miyanoura": "15:43",
+                "kobara": "15:45",
+                "a_coop": "15:46",
+                "miyaura_elem": "15:47",
+                "asahi": "15:49",
+                "kusugawa": "15:51",
+                "kunugawa": "15:55",
+                "kozeta": "15:58",
+                "shionomichi": "16:02",
+                "airport": "16:03",
+                "hayasaki": "16:05",
+                "towaho": "16:08",
+                "funayuki": "16:12",
+                "gocho_mae": "16:17",
+                "police_mae": "16:19",
+                "anbo": "16:21",
+                "makino": "16:22",
+                "morihisa_jinja": "16:23",
+                "hirano": "16:27",
+                "mugi": "16:35",
+                "botanical_park": "16:36",
+                "hara": "16:38",
+                "onokaido": "16:43",
+                "saman_hotel": "16:44",
+                "hotel_yakushima": "16:50"
+              },
+              "sourceColumn": 13,
+              "dest": "hotel_yakushima"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "miyanoura_port": "16:50",
+                "miyanoura_port_entrance": "16:51",
+                "miyanoura": "16:53",
+                "kobara": "16:55",
+                "a_coop": "16:56",
+                "miyaura_elem": "16:57",
+                "asahi": "16:59",
+                "kusugawa": "17:01",
+                "kunugawa": "17:05",
+                "kozeta": "17:08",
+                "shionomichi": "17:12",
+                "airport": "17:13",
+                "hayasaki": "17:15",
+                "towaho": "17:18",
+                "funayuki": "17:22",
+                "gocho_mae": "17:27",
+                "police_mae": "17:29",
+                "anbo_port": "17:33",
+                "anbo": "17:35",
+                "makino": "17:36",
+                "morihisa_jinja": "17:37",
+                "hirano": "17:41",
+                "mugi": "17:49",
+                "botanical_park": "17:50",
+                "hara": "17:52",
+                "onokaido": "17:57",
+                "saman_hotel": "17:58",
+                "hotel_yakushima": "18:04",
+                "kojima": "18:09",
+                "hirauchi_onsen": "18:16",
+                "yunuma": "18:17",
+                "naka": "18:25",
+                "kurio_bashi": "18:30"
+              },
+              "sourceColumn": 14,
+              "dest": "kurio_bashi"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "yakusugi_museum": "17:40",
+                "morihisa_jinja": "17:45",
+                "hirano": "17:49",
+                "mugi": "17:57",
+                "botanical_park": "17:58",
+                "hara": "18:00",
+                "onokaido": "18:05",
+                "saman_hotel": "18:06",
+                "hotel_yakushima": "18:12"
+              },
+              "sourceColumn": 15,
+              "condition": "arakawa",
+              "season": "3-11",
+              "note": {
+                "ja": "3〜11月、荒川登山バス運休時は運休。安房港行きは高速船始発便にも連動。",
+                "zh": "3–11月，荒川登山巴士停运时停运；去安房港的接驳班次也受高速船首班影响。",
+                "en": "Mar–Nov; suspended when the Arakawa trail bus is suspended. Anbo port connections also depend on the first jetfoil."
+              },
+              "boardOnlyAt": [
+                "yakusugi_museum"
+              ],
+              "dest": "hotel_yakushima"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "miyanoura_port": "17:25",
+                "miyanoura_port_entrance": "17:26",
+                "miyanoura": "17:28",
+                "kobara": "17:30",
+                "a_coop": "17:31",
+                "miyaura_elem": "17:32",
+                "asahi": "17:34",
+                "kusugawa": "17:36",
+                "kunugawa": "17:40",
+                "kozeta": "17:43",
+                "shionomichi": "17:47",
+                "airport": "17:48",
+                "hayasaki": "17:50",
+                "towaho": "17:53",
+                "funayuki": "17:57",
+                "gocho_mae": "18:02",
+                "police_mae": "18:04",
+                "anbo_port": "18:08",
+                "anbo": "18:10",
+                "makino": "18:11",
+                "morihisa_jinja": "18:12",
+                "hirano": "18:16",
+                "mugi": "18:24",
+                "botanical_park": "18:25",
+                "hara": "18:27",
+                "onokaido": "18:32",
+                "saman_hotel": "18:33",
+                "hotel_yakushima": "18:39",
+                "kojima": "18:44",
+                "hirauchi_onsen": "18:51",
+                "yunuma": "18:52",
+                "naka": "19:00",
+                "kurio_bashi": "19:05"
+              },
+              "sourceColumn": 16,
+              "dest": "kurio_bashi"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "nagata": "17:51",
+                "inakahama": "17:54",
+                "yoshida": "18:01",
+                "hitomaru": "18:07",
+                "shitoko": "18:12",
+                "fukagawa": "18:19",
+                "miyanoura_port": "18:25",
+                "miyanoura_port_entrance": "18:26",
+                "miyanoura": "18:28",
+                "kobara": "18:30",
+                "a_coop": "18:31",
+                "miyaura_elem": "18:32",
+                "asahi": "18:34",
+                "kusugawa": "18:36",
+                "kunugawa": "18:40",
+                "kozeta": "18:43",
+                "shionomichi": "18:47",
+                "airport": "18:48",
+                "hayasaki": "18:50",
+                "towaho": "18:53",
+                "funayuki": "18:57",
+                "gocho_mae": "19:02",
+                "police_mae": "19:04",
+                "anbo_port": "19:08",
+                "anbo": "19:10",
+                "makino": "19:11",
+                "morihisa_jinja": "19:12",
+                "hirano": "19:16",
+                "mugi": "19:24",
+                "botanical_park": "19:25",
+                "hara": "19:27",
+                "onokaido": "19:32",
+                "saman_hotel": "19:33",
+                "hotel_yakushima": "19:39"
+              },
+              "sourceColumn": 17,
+              "dest": "hotel_yakushima"
             }
           ]
         },
@@ -1849,6 +2100,7 @@ const BUS_DATA = {
             "yunuma",
             "hirauchi_onsen",
             "kojima",
+            "hotel_yakushima",
             "saman_hotel",
             "onokaido",
             "hara",
@@ -1876,6 +2128,7 @@ const BUS_DATA = {
             "kobara",
             "miyanoura",
             "miyanoura_port_entrance",
+            "miyanoura_port_early",
             "miyanoura_port",
             "fukagawa",
             "shitoko",
@@ -1887,32 +2140,41 @@ const BUS_DATA = {
           "trips": [
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
-              "destNote": {
-                "ja": "宮之浦港"
-              },
               "times": {
+                "hotel_yakushima": "5:00",
                 "saman_hotel": "5:06",
                 "onokaido": "5:07",
                 "hara": "5:12",
+                "botanical_park": "5:14",
                 "mugi": "5:15",
                 "hirano": "5:23",
                 "morihisa_jinja": "5:27",
-                "yakusugi_museum": "15:35"
+                "yakusugi_museum": "5:32",
+                "makino": "5:38",
+                "anbo": "5:39",
+                "anbo_port": "5:43"
               },
-              "dest": "yakusugi_museum"
+              "sourceColumn": 1,
+              "condition": "arakawa",
+              "season": "3-11",
+              "note": {
+                "ja": "3〜11月、荒川登山バス運休時は運休。安房港行きは高速船始発便にも連動。",
+                "zh": "3–11月，荒川登山巴士停运时停运；去安房港的接驳班次也受高速船首班影响。",
+                "en": "Mar–Nov; suspended when the Arakawa trail bus is suspended. Anbo port connections also depend on the first jetfoil."
+              },
+              "dest": "anbo_port"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
-              "destNote": {
-                "ja": "宮之浦港"
-              },
               "times": {
-                "makino": "5:38",
-                "anbo": "5:39",
                 "anbo_port": "5:50",
                 "police_mae": "5:52",
                 "gocho_mae": "5:54",
@@ -1932,17 +2194,29 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "6:28",
                 "miyanoura_port": "6:31"
               },
+              "sourceColumn": 2,
+              "condition": "miyanoura-first-jetfoil",
+              "season": "3-11",
+              "note": {
+                "ja": "3〜11月、宮之浦港発の高速船始発便がある場合のみ運行。",
+                "zh": "3–11月，仅宫之浦港有高速船首班时运行。",
+                "en": "Mar–Nov only, when the first jetfoil departs Miyanoura."
+              },
               "dest": "miyanoura_port"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
-              "destNote": {
-                "ja": "永田"
-              },
               "times": {
                 "kurio_bashi": "6:39",
+                "naka": "6:44",
+                "yunuma": "6:52",
+                "hirauchi_onsen": "6:53",
+                "kojima": "7:00",
+                "hotel_yakushima": "7:05",
                 "saman_hotel": "7:11",
                 "onokaido": "7:12",
                 "hara": "7:17",
@@ -1950,18 +2224,6 @@ const BUS_DATA = {
                 "mugi": "7:20",
                 "hirano": "7:28",
                 "morihisa_jinja": "7:32",
-                "yakusugi_museum": "16:35"
-              },
-              "dest": "yakusugi_museum"
-            },
-            {
-              "days": [
-                "weekday"
-              ],
-              "destNote": {
-                "ja": "永田"
-              },
-              "times": {
                 "makino": "7:33",
                 "anbo": "7:34",
                 "police_mae": "7:36",
@@ -1988,15 +2250,13 @@ const BUS_DATA = {
                 "inakahama": "8:44",
                 "nagata": "8:47"
               },
+              "sourceColumn": 3,
               "dest": "nagata"
             },
             {
               "days": [
                 "weekday"
               ],
-              "destNote": {
-                "ja": "永田"
-              },
               "times": {
                 "miyanoura_port": "9:15",
                 "fukagawa": "9:19",
@@ -2006,17 +2266,28 @@ const BUS_DATA = {
                 "inakahama": "9:44",
                 "nagata": "9:47"
               },
+              "sourceColumn": 4,
+              "condition": "school-days",
+              "note": {
+                "ja": "小学校の登校日のみ。学校休業日は運休。",
+                "zh": "仅小学上学日运行；学校假期停运，请确认当天是否开行。",
+                "en": "Elementary school days only; does not run during school holidays. Confirm service for your date."
+              },
               "dest": "nagata"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
-              "destNote": {
-                "ja": "宮之浦港"
-              },
               "times": {
                 "kurio_bashi": "8:04",
+                "naka": "8:09",
+                "yunuma": "8:17",
+                "hirauchi_onsen": "8:18",
+                "kojima": "8:25",
+                "hotel_yakushima": "8:30",
                 "saman_hotel": "8:36",
                 "onokaido": "8:37",
                 "hara": "8:42",
@@ -2024,18 +2295,6 @@ const BUS_DATA = {
                 "mugi": "8:45",
                 "hirano": "8:53",
                 "morihisa_jinja": "8:57",
-                "yakusugi_museum": "17:35"
-              },
-              "dest": "yakusugi_museum"
-            },
-            {
-              "days": [
-                "weekday"
-              ],
-              "destNote": {
-                "ja": "宮之浦港"
-              },
-              "times": {
                 "makino": "8:58",
                 "anbo": "8:59",
                 "anbo_port": "9:03",
@@ -2057,17 +2316,22 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "9:41",
                 "miyanoura_port": "9:44"
               },
+              "sourceColumn": 5,
               "dest": "miyanoura_port"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
-              "destNote": {
-                "ja": "宮之浦港"
-              },
               "times": {
                 "kurio_bashi": "8:29",
+                "naka": "8:34",
+                "yunuma": "8:42",
+                "hirauchi_onsen": "8:43",
+                "kojima": "8:50",
+                "hotel_yakushima": "8:55",
                 "saman_hotel": "9:01",
                 "onokaido": "9:02",
                 "hara": "9:07",
@@ -2075,18 +2339,6 @@ const BUS_DATA = {
                 "mugi": "9:10",
                 "hirano": "9:18",
                 "morihisa_jinja": "9:22",
-                "yakusugi_museum": "18:20"
-              },
-              "dest": "yakusugi_museum"
-            },
-            {
-              "days": [
-                "weekday"
-              ],
-              "destNote": {
-                "ja": "宮之浦港"
-              },
-              "times": {
                 "makino": "9:23",
                 "anbo": "9:24",
                 "anbo_port": "9:28",
@@ -2108,11 +2360,14 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "10:06",
                 "miyanoura_port": "10:09"
               },
+              "sourceColumn": 6,
               "dest": "miyanoura_port"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "miyanoura_port": "10:40",
@@ -2123,17 +2378,22 @@ const BUS_DATA = {
                 "inakahama": "11:09",
                 "nagata": "11:12"
               },
-              "dest": "nagata",
-              "destNote": {
-                "ja": "永田"
-              }
+              "sourceColumn": 7,
+              "dest": "nagata"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "kurio_bashi": "9:54",
+                "naka": "9:59",
+                "yunuma": "10:07",
+                "hirauchi_onsen": "10:08",
+                "kojima": "10:15",
+                "hotel_yakushima": "10:20",
                 "saman_hotel": "10:26",
                 "onokaido": "10:27",
                 "hara": "10:32",
@@ -2162,17 +2422,23 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "11:31",
                 "miyanoura_port": "11:34"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 8,
+              "dest": "miyanoura_port"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
+                "okawa_falls": "11:00",
                 "kurio_bashi": "11:04",
+                "naka": "11:09",
+                "yunuma": "11:17",
+                "hirauchi_onsen": "11:18",
+                "kojima": "11:25",
+                "hotel_yakushima": "11:30",
                 "saman_hotel": "11:36",
                 "onokaido": "11:37",
                 "hara": "11:42",
@@ -2201,16 +2467,17 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "12:41",
                 "miyanoura_port": "12:44"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 9,
+              "dest": "miyanoura_port"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
+                "hotel_yakushima": "12:40",
                 "saman_hotel": "12:46",
                 "onokaido": "12:47",
                 "hara": "12:52",
@@ -2245,17 +2512,22 @@ const BUS_DATA = {
                 "inakahama": "14:23",
                 "nagata": "14:26"
               },
-              "dest": "nagata",
-              "destNote": {
-                "ja": "永田"
-              }
+              "sourceColumn": 10,
+              "dest": "nagata"
             },
             {
               "days": [
-                "saturday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "kurio_bashi": "13:14",
+                "naka": "13:19",
+                "yunuma": "13:27",
+                "hirauchi_onsen": "13:28",
+                "kojima": "13:35",
+                "hotel_yakushima": "13:40",
                 "saman_hotel": "13:46",
                 "onokaido": "13:47",
                 "hara": "13:52",
@@ -2284,17 +2556,22 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "14:51",
                 "miyanoura_port": "14:54"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 11,
+              "dest": "miyanoura_port"
             },
             {
               "days": [
-                "saturday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "kurio_bashi": "13:44",
+                "naka": "13:49",
+                "yunuma": "13:57",
+                "hirauchi_onsen": "13:58",
+                "kojima": "14:05",
+                "hotel_yakushima": "14:10",
                 "saman_hotel": "14:16",
                 "onokaido": "14:17",
                 "hara": "14:22",
@@ -2323,16 +2600,17 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "15:21",
                 "miyanoura_port": "15:24"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 12,
+              "dest": "miyanoura_port"
             },
             {
               "days": [
+                "weekday",
+                "saturday",
                 "sunday_holiday"
               ],
               "times": {
+                "hotel_yakushima": "15:00",
                 "saman_hotel": "15:06",
                 "onokaido": "15:07",
                 "hara": "15:12",
@@ -2366,17 +2644,23 @@ const BUS_DATA = {
                 "inakahama": "16:39",
                 "nagata": "16:42"
               },
-              "dest": "nagata",
-              "destNote": {
-                "ja": "永田"
-              }
+              "sourceColumn": 13,
+              "dest": "nagata"
             },
             {
               "days": [
+                "weekday",
+                "saturday",
                 "sunday_holiday"
               ],
               "times": {
+                "okawa_falls": "15:25",
                 "kurio_bashi": "15:29",
+                "naka": "15:34",
+                "yunuma": "15:42",
+                "hirauchi_onsen": "15:43",
+                "kojima": "15:50",
+                "hotel_yakushima": "15:55",
                 "saman_hotel": "16:01",
                 "onokaido": "16:02",
                 "hara": "16:07",
@@ -2405,17 +2689,63 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "17:06",
                 "miyanoura_port": "17:09"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 14,
+              "dest": "miyanoura_port"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "yakusugi_museum": "17:10",
+                "makino": "17:15",
+                "anbo": "17:16",
+                "police_mae": "17:18",
+                "gocho_mae": "17:20",
+                "funayuki": "17:23",
+                "towaho": "17:27",
+                "hayasaki": "17:30",
+                "airport": "17:32",
+                "shionomichi": "17:33",
+                "kozeta": "17:37",
+                "kunugawa": "17:40",
+                "kusugawa": "17:44",
+                "asahi": "17:46",
+                "miyaura_elem": "17:48",
+                "a_coop": "17:49",
+                "kobara": "17:50",
+                "miyanoura": "17:52",
+                "miyanoura_port_entrance": "17:54",
+                "miyanoura_port_early": "17:55"
+              },
+              "sourceColumn": 15,
+              "condition": "arakawa",
+              "season": "3-11",
+              "note": {
+                "ja": "3〜11月、荒川登山バス運休時は運休。安房港行きは高速船始発便にも連動。",
+                "zh": "3–11月，荒川登山巴士停运时停运；去安房港的接驳班次也受高速船首班影响。",
+                "en": "Mar–Nov; suspended when the Arakawa trail bus is suspended. Anbo port connections also depend on the first jetfoil."
+              },
+              "boardOnlyAt": [
+                "yakusugi_museum"
+              ],
+              "dest": "miyanoura_port_early"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "kurio_bashi": "16:29",
+                "naka": "16:34",
+                "yunuma": "16:42",
+                "hirauchi_onsen": "16:43",
+                "kojima": "16:50",
+                "hotel_yakushima": "16:55",
                 "saman_hotel": "17:01",
                 "onokaido": "17:02",
                 "hara": "17:07",
@@ -2450,66 +2780,92 @@ const BUS_DATA = {
                 "inakahama": "18:40",
                 "nagata": "18:43"
               },
-              "dest": "nagata",
-              "destNote": {
-                "ja": "永田"
-              }
+              "sourceColumn": 16,
+              "dest": "nagata"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
-                "kurio_bashi": "17:49",
-                "saman_hotel": "18:21",
-                "onokaido": "18:22",
-                "hara": "18:27",
-                "botanical_park": "18:29",
-                "mugi": "18:30",
-                "hirano": "18:38",
-                "morihisa_jinja": "18:42",
-                "makino": "18:43",
-                "anbo": "18:44",
-                "anbo_port": "18:48",
-                "police_mae": "18:50",
-                "gocho_mae": "18:54",
-                "funayuki": "18:57",
-                "towaho": "19:01",
-                "hayasaki": "19:04",
-                "airport": "19:06",
-                "shionomichi": "19:07",
-                "kozeta": "19:11",
-                "kunugawa": "19:14",
-                "kusugawa": "19:18",
-                "asahi": "19:20",
-                "miyaura_elem": "19:22",
-                "a_coop": "19:23",
-                "kobara": "19:24",
-                "miyanoura": "19:26",
-                "miyanoura_port_entrance": "19:28",
-                "miyanoura_port": "19:31"
+                "kurio_bashi": "17:29",
+                "naka": "17:34",
+                "yunuma": "17:42",
+                "hirauchi_onsen": "17:43",
+                "kojima": "17:50",
+                "hotel_yakushima": "17:55",
+                "saman_hotel": "18:01",
+                "onokaido": "18:02",
+                "hara": "18:07",
+                "botanical_park": "18:09",
+                "mugi": "18:10",
+                "hirano": "18:18",
+                "morihisa_jinja": "18:22",
+                "makino": "18:23",
+                "anbo": "18:24",
+                "anbo_port": "18:28",
+                "police_mae": "18:30",
+                "gocho_mae": "18:34",
+                "funayuki": "18:37",
+                "towaho": "18:41",
+                "hayasaki": "18:44",
+                "airport": "18:46",
+                "shionomichi": "18:47",
+                "kozeta": "18:51",
+                "kunugawa": "18:54",
+                "kusugawa": "18:58",
+                "asahi": "19:00",
+                "miyaura_elem": "19:02",
+                "a_coop": "19:03",
+                "kobara": "19:04",
+                "miyanoura": "19:06",
+                "miyanoura_port_entrance": "19:08",
+                "miyanoura_port": "19:11"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 17,
+              "dest": "miyanoura_port"
             }
           ],
           "columnTrips": [
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
+                "hotel_yakushima": "5:00",
                 "saman_hotel": "5:06",
                 "onokaido": "5:07",
                 "hara": "5:12",
+                "botanical_park": "5:14",
                 "mugi": "5:15",
                 "hirano": "5:23",
                 "morihisa_jinja": "5:27",
-                "yakusugi_museum": "15:35",
+                "yakusugi_museum": "5:32",
                 "makino": "5:38",
                 "anbo": "5:39",
+                "anbo_port": "5:43"
+              },
+              "sourceColumn": 1,
+              "condition": "arakawa",
+              "season": "3-11",
+              "note": {
+                "ja": "3〜11月、荒川登山バス運休時は運休。安房港行きは高速船始発便にも連動。",
+                "zh": "3–11月，荒川登山巴士停运时停运；去安房港的接驳班次也受高速船首班影响。",
+                "en": "Mar–Nov; suspended when the Arakawa trail bus is suspended. Anbo port connections also depend on the first jetfoil."
+              },
+              "dest": "anbo_port"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
                 "anbo_port": "5:50",
                 "police_mae": "5:52",
                 "gocho_mae": "5:54",
@@ -2529,17 +2885,29 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "6:28",
                 "miyanoura_port": "6:31"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 2,
+              "condition": "miyanoura-first-jetfoil",
+              "season": "3-11",
+              "note": {
+                "ja": "3〜11月、宮之浦港発の高速船始発便がある場合のみ運行。",
+                "zh": "3–11月，仅宫之浦港有高速船首班时运行。",
+                "en": "Mar–Nov only, when the first jetfoil departs Miyanoura."
+              },
+              "dest": "miyanoura_port"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "kurio_bashi": "6:39",
+                "naka": "6:44",
+                "yunuma": "6:52",
+                "hirauchi_onsen": "6:53",
+                "kojima": "7:00",
+                "hotel_yakushima": "7:05",
                 "saman_hotel": "7:11",
                 "onokaido": "7:12",
                 "hara": "7:17",
@@ -2547,7 +2915,6 @@ const BUS_DATA = {
                 "mugi": "7:20",
                 "hirano": "7:28",
                 "morihisa_jinja": "7:32",
-                "yakusugi_museum": "16:35",
                 "makino": "7:33",
                 "anbo": "7:34",
                 "police_mae": "7:36",
@@ -2574,17 +2941,14 @@ const BUS_DATA = {
                 "inakahama": "8:44",
                 "nagata": "8:47"
               },
-              "dest": "nagata",
-              "destNote": {
-                "ja": "永田"
-              }
+              "sourceColumn": 3,
+              "dest": "nagata"
             },
             {
               "days": [
                 "weekday"
               ],
               "times": {
-                "yakusugi_museum": "17:05",
                 "miyanoura_port": "9:15",
                 "fukagawa": "9:19",
                 "shitoko": "9:26",
@@ -2593,17 +2957,28 @@ const BUS_DATA = {
                 "inakahama": "9:44",
                 "nagata": "9:47"
               },
-              "dest": "nagata",
-              "destNote": {
-                "ja": "永田"
-              }
+              "sourceColumn": 4,
+              "condition": "school-days",
+              "note": {
+                "ja": "小学校の登校日のみ。学校休業日は運休。",
+                "zh": "仅小学上学日运行；学校假期停运，请确认当天是否开行。",
+                "en": "Elementary school days only; does not run during school holidays. Confirm service for your date."
+              },
+              "dest": "nagata"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "kurio_bashi": "8:04",
+                "naka": "8:09",
+                "yunuma": "8:17",
+                "hirauchi_onsen": "8:18",
+                "kojima": "8:25",
+                "hotel_yakushima": "8:30",
                 "saman_hotel": "8:36",
                 "onokaido": "8:37",
                 "hara": "8:42",
@@ -2611,7 +2986,6 @@ const BUS_DATA = {
                 "mugi": "8:45",
                 "hirano": "8:53",
                 "morihisa_jinja": "8:57",
-                "yakusugi_museum": "17:35",
                 "makino": "8:58",
                 "anbo": "8:59",
                 "anbo_port": "9:03",
@@ -2633,17 +3007,22 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "9:41",
                 "miyanoura_port": "9:44"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 5,
+              "dest": "miyanoura_port"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "kurio_bashi": "8:29",
+                "naka": "8:34",
+                "yunuma": "8:42",
+                "hirauchi_onsen": "8:43",
+                "kojima": "8:50",
+                "hotel_yakushima": "8:55",
                 "saman_hotel": "9:01",
                 "onokaido": "9:02",
                 "hara": "9:07",
@@ -2651,7 +3030,6 @@ const BUS_DATA = {
                 "mugi": "9:10",
                 "hirano": "9:18",
                 "morihisa_jinja": "9:22",
-                "yakusugi_museum": "18:20",
                 "makino": "9:23",
                 "anbo": "9:24",
                 "anbo_port": "9:28",
@@ -2673,14 +3051,14 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "10:06",
                 "miyanoura_port": "10:09"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 6,
+              "dest": "miyanoura_port"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "miyanoura_port": "10:40",
@@ -2691,17 +3069,22 @@ const BUS_DATA = {
                 "inakahama": "11:09",
                 "nagata": "11:12"
               },
-              "dest": "nagata",
-              "destNote": {
-                "ja": "永田"
-              }
+              "sourceColumn": 7,
+              "dest": "nagata"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "kurio_bashi": "9:54",
+                "naka": "9:59",
+                "yunuma": "10:07",
+                "hirauchi_onsen": "10:08",
+                "kojima": "10:15",
+                "hotel_yakushima": "10:20",
                 "saman_hotel": "10:26",
                 "onokaido": "10:27",
                 "hara": "10:32",
@@ -2730,17 +3113,23 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "11:31",
                 "miyanoura_port": "11:34"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 8,
+              "dest": "miyanoura_port"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
+                "okawa_falls": "11:00",
                 "kurio_bashi": "11:04",
+                "naka": "11:09",
+                "yunuma": "11:17",
+                "hirauchi_onsen": "11:18",
+                "kojima": "11:25",
+                "hotel_yakushima": "11:30",
                 "saman_hotel": "11:36",
                 "onokaido": "11:37",
                 "hara": "11:42",
@@ -2769,16 +3158,17 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "12:41",
                 "miyanoura_port": "12:44"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 9,
+              "dest": "miyanoura_port"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
+                "hotel_yakushima": "12:40",
                 "saman_hotel": "12:46",
                 "onokaido": "12:47",
                 "hara": "12:52",
@@ -2813,17 +3203,22 @@ const BUS_DATA = {
                 "inakahama": "14:23",
                 "nagata": "14:26"
               },
-              "dest": "nagata",
-              "destNote": {
-                "ja": "永田"
-              }
+              "sourceColumn": 10,
+              "dest": "nagata"
             },
             {
               "days": [
-                "saturday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "kurio_bashi": "13:14",
+                "naka": "13:19",
+                "yunuma": "13:27",
+                "hirauchi_onsen": "13:28",
+                "kojima": "13:35",
+                "hotel_yakushima": "13:40",
                 "saman_hotel": "13:46",
                 "onokaido": "13:47",
                 "hara": "13:52",
@@ -2852,17 +3247,22 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "14:51",
                 "miyanoura_port": "14:54"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 11,
+              "dest": "miyanoura_port"
             },
             {
               "days": [
-                "saturday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "kurio_bashi": "13:44",
+                "naka": "13:49",
+                "yunuma": "13:57",
+                "hirauchi_onsen": "13:58",
+                "kojima": "14:05",
+                "hotel_yakushima": "14:10",
                 "saman_hotel": "14:16",
                 "onokaido": "14:17",
                 "hara": "14:22",
@@ -2891,16 +3291,17 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "15:21",
                 "miyanoura_port": "15:24"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 12,
+              "dest": "miyanoura_port"
             },
             {
               "days": [
+                "weekday",
+                "saturday",
                 "sunday_holiday"
               ],
               "times": {
+                "hotel_yakushima": "15:00",
                 "saman_hotel": "15:06",
                 "onokaido": "15:07",
                 "hara": "15:12",
@@ -2934,17 +3335,23 @@ const BUS_DATA = {
                 "inakahama": "16:39",
                 "nagata": "16:42"
               },
-              "dest": "nagata",
-              "destNote": {
-                "ja": "永田"
-              }
+              "sourceColumn": 13,
+              "dest": "nagata"
             },
             {
               "days": [
+                "weekday",
+                "saturday",
                 "sunday_holiday"
               ],
               "times": {
+                "okawa_falls": "15:25",
                 "kurio_bashi": "15:29",
+                "naka": "15:34",
+                "yunuma": "15:42",
+                "hirauchi_onsen": "15:43",
+                "kojima": "15:50",
+                "hotel_yakushima": "15:55",
                 "saman_hotel": "16:01",
                 "onokaido": "16:02",
                 "hara": "16:07",
@@ -2973,17 +3380,63 @@ const BUS_DATA = {
                 "miyanoura_port_entrance": "17:06",
                 "miyanoura_port": "17:09"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 14,
+              "dest": "miyanoura_port"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "yakusugi_museum": "17:10",
+                "makino": "17:15",
+                "anbo": "17:16",
+                "police_mae": "17:18",
+                "gocho_mae": "17:20",
+                "funayuki": "17:23",
+                "towaho": "17:27",
+                "hayasaki": "17:30",
+                "airport": "17:32",
+                "shionomichi": "17:33",
+                "kozeta": "17:37",
+                "kunugawa": "17:40",
+                "kusugawa": "17:44",
+                "asahi": "17:46",
+                "miyaura_elem": "17:48",
+                "a_coop": "17:49",
+                "kobara": "17:50",
+                "miyanoura": "17:52",
+                "miyanoura_port_entrance": "17:54",
+                "miyanoura_port_early": "17:55"
+              },
+              "sourceColumn": 15,
+              "condition": "arakawa",
+              "season": "3-11",
+              "note": {
+                "ja": "3〜11月、荒川登山バス運休時は運休。安房港行きは高速船始発便にも連動。",
+                "zh": "3–11月，荒川登山巴士停运时停运；去安房港的接驳班次也受高速船首班影响。",
+                "en": "Mar–Nov; suspended when the Arakawa trail bus is suspended. Anbo port connections also depend on the first jetfoil."
+              },
+              "boardOnlyAt": [
+                "yakusugi_museum"
+              ],
+              "dest": "miyanoura_port_early"
+            },
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
                 "kurio_bashi": "16:29",
+                "naka": "16:34",
+                "yunuma": "16:42",
+                "hirauchi_onsen": "16:43",
+                "kojima": "16:50",
+                "hotel_yakushima": "16:55",
                 "saman_hotel": "17:01",
                 "onokaido": "17:02",
                 "hara": "17:07",
@@ -3018,49 +3471,52 @@ const BUS_DATA = {
                 "inakahama": "18:40",
                 "nagata": "18:43"
               },
-              "dest": "nagata",
-              "destNote": {
-                "ja": "永田"
-              }
+              "sourceColumn": 16,
+              "dest": "nagata"
             },
             {
               "days": [
-                "weekday"
+                "weekday",
+                "saturday",
+                "sunday_holiday"
               ],
               "times": {
-                "kurio_bashi": "17:49",
-                "saman_hotel": "18:21",
-                "onokaido": "18:22",
-                "hara": "18:27",
-                "botanical_park": "18:29",
-                "mugi": "18:30",
-                "hirano": "18:38",
-                "morihisa_jinja": "18:42",
-                "makino": "18:43",
-                "anbo": "18:44",
-                "anbo_port": "18:48",
-                "police_mae": "18:50",
-                "gocho_mae": "18:54",
-                "funayuki": "18:57",
-                "towaho": "19:01",
-                "hayasaki": "19:04",
-                "airport": "19:06",
-                "shionomichi": "19:07",
-                "kozeta": "19:11",
-                "kunugawa": "19:14",
-                "kusugawa": "19:18",
-                "asahi": "19:20",
-                "miyaura_elem": "19:22",
-                "a_coop": "19:23",
-                "kobara": "19:24",
-                "miyanoura": "19:26",
-                "miyanoura_port_entrance": "19:28",
-                "miyanoura_port": "19:31"
+                "kurio_bashi": "17:29",
+                "naka": "17:34",
+                "yunuma": "17:42",
+                "hirauchi_onsen": "17:43",
+                "kojima": "17:50",
+                "hotel_yakushima": "17:55",
+                "saman_hotel": "18:01",
+                "onokaido": "18:02",
+                "hara": "18:07",
+                "botanical_park": "18:09",
+                "mugi": "18:10",
+                "hirano": "18:18",
+                "morihisa_jinja": "18:22",
+                "makino": "18:23",
+                "anbo": "18:24",
+                "anbo_port": "18:28",
+                "police_mae": "18:30",
+                "gocho_mae": "18:34",
+                "funayuki": "18:37",
+                "towaho": "18:41",
+                "hayasaki": "18:44",
+                "airport": "18:46",
+                "shionomichi": "18:47",
+                "kozeta": "18:51",
+                "kunugawa": "18:54",
+                "kusugawa": "18:58",
+                "asahi": "19:00",
+                "miyaura_elem": "19:02",
+                "a_coop": "19:03",
+                "kobara": "19:04",
+                "miyanoura": "19:06",
+                "miyanoura_port_entrance": "19:08",
+                "miyanoura_port": "19:11"
               },
-              "dest": "miyanoura_port",
-              "destNote": {
-                "ja": "宮之浦港"
-              }
+              "sourceColumn": 17,
+              "dest": "miyanoura_port"
             }
           ]
         }
@@ -4020,7 +4476,48 @@ const BUS_DATA = {
             "miyanoura_port_entrance",
             "miyanoura_port"
           ],
-          "trips": [],
+          "trips": [
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {
+                "yakusugi_museum": "16:45",
+                "makino": "↓",
+                "anbo": "↓",
+                "anbo_port": "↓",
+                "naka_iin_mae": "↓",
+                "police_mae": "↓",
+                "gocho_mae": "↓",
+                "chuo": "↓",
+                "funayuki": "↓",
+                "towaho": "↓",
+                "takamibashi": "↓",
+                "hayasaki": "↓",
+                "airport": "↓",
+                "shionomichi": "↓",
+                "kozeta": "↓",
+                "kunugawa": "↓",
+                "kusugawa": "↓",
+                "asahi": "↓",
+                "koko_mae": "↓",
+                "miyaura_elem": "↓",
+                "a_coop": "↓",
+                "kobara": "↓",
+                "miyanoura": "↓",
+                "miyanoura_port_entrance": "↓",
+                "miyanoura_port": "↓"
+              },
+              "dest": "miyanoura_port",
+              "note": {
+                "ja": "下山時間の都合により出発が遅れる場合あり",
+                "zh": "因下山时间关系，发车可能延迟",
+                "en": "Departure may be delayed due to descent schedule"
+              }
+            }
+          ],
           "columnTrips": [
             {
               "days": [
@@ -4090,7 +4587,22 @@ const BUS_DATA = {
             "ushiroka_park",
             "shiratani"
           ],
-          "trips": [],
+          "trips": [
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {},
+              "suspended": true,
+              "note": {
+                "ja": "2026/3/1–11/30 運休（まつばんだ便）",
+                "zh": "2026/3/1–11/30 停运（松叶班次）",
+                "en": "Suspended Mar 1–Nov 30, 2026 (Matsubanda)"
+              }
+            }
+          ],
           "columnTrips": [
             {
               "days": [
@@ -4123,7 +4635,22 @@ const BUS_DATA = {
             "miyanoura_port_entrance",
             "miyanoura_port"
           ],
-          "trips": [],
+          "trips": [
+            {
+              "days": [
+                "weekday",
+                "saturday",
+                "sunday_holiday"
+              ],
+              "times": {},
+              "suspended": true,
+              "note": {
+                "ja": "2026/3/1–11/30 運休（まつばんだ便）",
+                "zh": "2026/3/1–11/30 停运（松叶班次）",
+                "en": "Suspended Mar 1–Nov 30, 2026 (Matsubanda)"
+              }
+            }
+          ],
           "columnTrips": [
             {
               "days": [

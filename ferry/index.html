@@ -52,8 +52,8 @@
     ]
   }
   </script>
-  <link rel="preload" href="/styles.css?v=layout-v152" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v152">
+  <link rel="preload" href="/styles.css?v=e245864c2b7b" as="style">
+  <link rel="stylesheet" href="/styles.css?v=e245864c2b7b">
   <script>
     (function () {
       var h = location.hostname;
@@ -67,9 +67,11 @@
   </script>
   <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
-  <script src="/site-chrome.js?v=chrome-v23" defer></script>
+  <script src="/site-chrome.js?v=64e80f098123" defer></script>
   <script src="/lang-boot.js?v=lang-v5"></script>
   <script src="/seo-head-zh.js?v=seo-zh-v2"></script>
+  <script src="/transport-data.js?v=6cd6620d7fdd"></script>
+  <script src="/transport-status.js?v=1e410c0c1a7a"></script>
 </head>
 <body class="app-page-narrow">
   <div class="app">
@@ -115,6 +117,11 @@
       </div>
     </div>
 
+    <div class="panel travel-date-panel"><div class="sec travel-date-sec">
+      <label for="travelDate" id="travelDateLabel"></label>
+      <input type="date" id="travelDate" aria-describedby="scheduleStatus">
+      <p id="scheduleStatus" role="status" class="travel-date-status"></p>
+    </div></div>
     <div id="sections"></div>
 
     <div class="panel panel-aux">
@@ -133,11 +140,12 @@
   </div>
 
   <script src="/source-links.js?v=src-v1"></script>
-  <script src="/partner-data.js?v=partner-v1"></script>
-  <script src="/partner-ui.js?v=partner-v1"></script>
-  <script src="/access-data.js?v=booking-v5"></script>
+  <script src="/partner-data.js?v=20261010"></script>
+  <script src="/partner-ui.js?v=20261010"></script>
+  <script src="/access-data.js?v=cfcb2eb02d1c"></script>
   <script src="/section-divider.js"></script>
-  <script src="/app-core.js?v=core-v21"></script>
+  <script src="/app-core.js?v=55bcddd6073f"></script>
+  <script src="/access-schedule.js?v=e6b3fee581e6"></script>
   <script>
     const UI = {
       ja: { navAria: "メインメニュー", siteBrand: "屋久島バス",
@@ -149,6 +157,9 @@
     };
 
     let lang = AppCore.getLang();
+    const travelDate = document.getElementById("travelDate");
+    travelDate.value = AccessSchedule.today();
+    travelDate.addEventListener("change", () => { if (!travelDate.value) travelDate.value = AccessSchedule.today(); applyI18n(); });
 
     const els = {
       langSwitch: document.getElementById("langSwitch"),
@@ -334,7 +345,12 @@
       tickClock();
       renderBooking();
       const blocks = [];
-      const list = ACCESS_DATA.sections.filter((s) => s.id !== "pass");
+      const selectedSeason = AccessSchedule.season(ACCESS_DATA, travelDate.value);
+      document.getElementById("travelDateLabel").textContent = pick({ ja: "乗船日", zh: "乘船日期", en: "Travel date" });
+      document.getElementById("scheduleStatus").textContent = selectedSeason
+        ? `${pick(selectedSeason.label)} · ${selectedSeason.validFrom} – ${selectedSeason.validTo}` + (selectedSeason.checkedAt ? ` · ${pick({ja:"時刻確認",zh:"班次核对",en:"Schedule checked"})} ${selectedSeason.checkedAt}` : "")
+        : pick({ ja: "この日付の高速船ダイヤは未確認です。上の公式予約・時刻表リンクでご確認ください。", zh: "尚未核实该日期的高速船时刻，请通过上方官方预约与时刻表链接查询。", en: "No verified jetfoil timetable for this date. Use the official booking and timetable links above." });
+      const list = AccessSchedule.sections(ACCESS_DATA, travelDate.value).filter((s) => s.id !== "pass" && (selectedSeason || !["jetfoil_out", "jetfoil_in"].includes(s.id)));
       let group = [];
       let groupMode = null;
       const flushMode = () => {

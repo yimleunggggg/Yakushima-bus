@@ -1,0 +1,68 @@
+{
+  "revision": "2026-10-09",
+  "checkedAt": "2026-10-10",
+  "reviewAfter": "2026-10-16",
+  "datePolicy": "validFrom on open-ended notices is the first verified observation used here, not a claim about the original incident date. An overdue review never reopens a suspended route.",
+  "alerts": [
+    {
+      "id": "shiratani-road-closure",
+      "status": "suspended",
+      "routeIds": [
+        "shiratani",
+        "matsubanda_shiratani"
+      ],
+      "courseIds": ["taikoiwa"],
+      "alternativeCourseIds": ["janokuchi", "tachudake"],
+      "courseMessage": {
+        "ja": "白谷への道路が通行止めのため、太鼓岩コースは現在入山できません。",
+        "zh": "通往白谷的道路封闭，太鼓岩路线目前不可进入。",
+        "en": "The road to Shiratani is closed; the Taiko-iwa route is currently inaccessible."
+      },
+      "stopIds": [
+        "shiratani"
+      ],
+      "validFrom": "2026-10-08",
+      "validTo": null,
+      "checkedAt": "2026-10-10",
+      "reviewAfter": "2026-10-16",
+      "sourceUrl": "https://yakukan.jp/topics/19316.html",
+      "corroboratingUrl": "https://www.iwasaki-corp.com/",
+      "message": {
+        "ja": "白谷雲水峡は道路通行止め・入山不可。宮之浦港〜白谷雲水峡のバスは全便運休。当面の間、旧時刻表の便は利用できません。",
+        "zh": "白谷云水峡道路封闭、禁止入山；宫之浦港至白谷全线停运，旧时刻表班次暂不可乘。",
+        "en": "Shiratani Unsuikyo is closed to access. All Miyanoura–Shiratani buses are suspended until further notice; the old timetable does not indicate available service."
+      }
+    },
+    {
+      "id": "matsubanda-status",
+      "status": "suspended",
+      "operatorIds": [
+        "matsubanda"
+      ],
+      "validFrom": "2026-10-09",
+      "validTo": null,
+      "checkedAt": "2026-10-09",
+      "reviewAfter": "2026-10-16",
+      "sourceUrl": "https://yakushima.co.jp/route_bus/",
+      "message": {
+        "ja": "まつばんだ交通の公式ページは終日運休と案内しています。種子島・屋久島交通とは別会社です。荒川登山バス自体の運休を意味しません。",
+        "zh": "松叶交通官网目前仍标注全天停运。这与种子岛·屋久岛交通是不同运营商，不代表荒川登山巴士仍停运。",
+        "en": "Matsubanda’s page currently states all-day suspension. This is a separate operator from Taneyaku and does not establish that the Arakawa trail bus is suspended."
+      }
+    },
+    {
+      "id": "october-bridge-inspections",
+      "status": "notice",
+      "validFrom": "2026-10-09",
+      "validTo": "2026-10-28",
+      "checkedAt": "2026-10-09",
+      "reviewAfter": "2026-10-29",
+      "sourceUrl": "https://yakukan.jp/topics/19545.html",
+      "message": {
+        "ja": "10/16〜28は橋梁点検による一部町道の通行止めがあります。千尋の滝方面を含む対象箇所・迂回路は公式案内をご確認ください。",
+        "zh": "10月16–28日部分町道因桥梁检查封闭，涉及千寻瀑布方向；具体日期、路段和绕行以官方公告为准。",
+        "en": "Some town roads close for bridge inspections Oct 16–28, including access toward Senpiro Falls. Check the official notice for each location, date and detour."
+      }
+    }
+  ]
+}

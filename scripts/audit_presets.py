@@ -26,6 +26,7 @@ TIME_RE = re.compile(r"^\d{1,2}:\d{2}$")
 
 # 宫之浦港出发、西行（永田/大川方向）的常用终点
 WEST_PRESETS = [
+    ("nagata", "kurio_bashi"),
     ("miyanoura_port", "airport"),
     ("miyanoura_port", "anbo_port"),
     ("miyanoura_port", "anbo"),
@@ -68,7 +69,7 @@ def pdf_pairs(
 def node_find_trips(fid: str, tid: str, day: str) -> list[tuple[int, int]]:
     script = ROOT / "scripts" / "check_route.js"
     out = subprocess.check_output(
-        ["node", str(script), fid, tid, day],
+        ["node", str(script), fid, tid, day, "--planned", "--exact"],
         cwd=ROOT,
         text=True,
     )
@@ -165,9 +166,7 @@ def main() -> int:
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args()
 
-    pdf_path = ROOT / "assets" / "pdf" / "taneyakubus-timetable-20260301.pdf"
-    if not pdf_path.exists():
-        pdf_path = ROOT / "assets" / "taneyakubus-timetable-20260301.pdf"
+    from parse_pdf import PDF as pdf_path
     words = load_pdf_words(pdf_path)
     west_trips = parse_side_x(words, "west")
     report = audit(load_data(), west_trips)
@@ -193,7 +192,7 @@ def main() -> int:
             for n in report["dayAnomalies"]:
                 print(f"  {n}")
         elif not report["mismatches"]:
-            print("\n日种说明: 土/日祝少于平日属正常（PDF 列按平日10+土2+日祝2 分区）")
+            print("\n日种说明: 列为独立班次；仅三角标注列受上学日限制，其余按官方运行条件执行。")
 
     return 1 if report["mismatches"] else 0
 

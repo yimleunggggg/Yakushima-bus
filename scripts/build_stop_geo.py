@@ -112,7 +112,7 @@ KSJ_NAMES: dict[str, list[str]] = {
     "hara": ["原"],
     "onokaido": ["尾之間"],
     "saman_hotel": ["サマナホテルヤクシマ", "JRホテル", "サマナホテル"],
-    "hotel_yakushima": ["ザホテルヤクシマ", "いわさきホテル", "いわさきホテル入口"],
+    "hotel_yakushima": ["いわさきホテル"],
     "kojima": ["小島"],
     "hirauchi_onsen": ["平内海中温泉"],
     "yunuma": ["湯泊"],
@@ -125,7 +125,7 @@ KSJ_NAMES: dict[str, list[str]] = {
     "arakawa_trailhead": ["荒川登山口"],
     "yakusugiland": ["屋久杉ランド", "ヤクスギランド"],
     "kigen_sugi": ["紀元杉"],
-    "miyanoura_port_early": ["宮之浦港"],
+    "miyanoura_port_early": ["ザホテルヤクシマ", "シーサイドホテル"],
 }
 
 OSM_NAMES: dict[str, list[str]] = {

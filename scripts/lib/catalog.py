@@ -9,7 +9,7 @@ STOP_CATALOG: dict[str, dict] = {
     "11": {"id": "hitomaru", "ja": "一湊", "zh": "一凑", "en": "Isso", "group": "nagata"},
     "14": {"id": "shitoko", "ja": "志戸子", "zh": "志户子", "en": "Shitoko", "group": "nagata"},
     "17": {"id": "fukagawa", "ja": "深川", "zh": "深川", "en": "Fukagawa", "group": "nagata"},
-    "19": {"id": "miyanoura_port_early", "ja": "宮之浦港（早朝）", "zh": "宫之浦港（早班）", "en": "Miyanoura Port (early)", "group": "miyanoura", "tags": ["ferry"]},
+    "19": {"id": "miyanoura_port_early", "ja": "ザホテルヤクシマ", "zh": "The Hotel Yakushima", "en": "The Hotel Yakushima", "group": "miyanoura", "tags": ["hotel"]},
     "20": {"id": "miyanoura_port", "ja": "宮之浦港", "zh": "宫之浦港", "en": "Miyanoura Port", "group": "miyanoura", "tags": ["ferry", "tourist"]},
     "21": {"id": "miyanoura_port_entrance", "ja": "宮之浦港入口", "zh": "宫之浦港入口", "en": "Miyanoura Port Ent.", "group": "miyanoura"},
     "23": {"id": "miyanoura", "ja": "宮之浦", "zh": "宫之浦", "en": "Miyanoura", "group": "miyanoura", "tags": ["tourist"]},
@@ -48,7 +48,7 @@ STOP_CATALOG: dict[str, dict] = {
     "89": {"id": "hara", "ja": "原", "zh": "原", "en": "Hara", "group": "east"},
     "94": {"id": "onokaido", "ja": "尾之間", "zh": "尾之间", "en": "Onoaida", "group": "east"},
     "97": {"id": "saman_hotel", "ja": "サマナホテルヤクシマ", "zh": "Samana Hotel Yakushima", "en": "Samana Hotel", "group": "east", "tags": ["hotel"]},
-    "99": {"id": "hotel_yakushima", "ja": "ザホテルヤクシマ", "zh": "The Hotel Yakushima", "en": "The Hotel Yakushima", "group": "east", "tags": ["hotel"]},
+    "99": {"id": "hotel_yakushima", "ja": "いわさきホテル", "zh": "岩崎酒店", "en": "Iwasaki Hotel", "group": "east", "tags": ["hotel"]},
     "102": {"id": "kojima", "ja": "小島", "zh": "小岛", "en": "Kojima", "group": "west"},
     "112": {"id": "hirauchi_onsen", "ja": "平内海中温泉", "zh": "平内海中温泉", "en": "Hirauchi Onsen", "group": "west", "tags": ["tourist"]},
     "114": {"id": "yunuma", "ja": "湯泊", "zh": "汤泊", "en": "Yunuma", "group": "west"},
@@ -58,9 +58,9 @@ STOP_CATALOG: dict[str, dict] = {
 }
 
 CENTRAL_WEST_NOS = [
-    "1", "5", "8", "11", "14", "17", "20", "21", "23", "25", "30", "31", "34", "37",
+    "1", "5", "8", "11", "14", "17", "20", "19", "21", "23", "25", "30", "31", "34", "37",
     "41", "44", "48", "49", "52", "56", "59", "62", "63", "64", "66", "67", "68",
-    "73", "78", "85", "86", "89", "94", "97", "102", "112", "114", "123", "127", "129",
+    "73", "78", "85", "86", "89", "94", "97", "99", "102", "112", "114", "123", "127", "129",
 ]
 CENTRAL_EAST_NOS = list(reversed(CENTRAL_WEST_NOS))
 

@@ -249,6 +249,7 @@
     return `<div class="guide-popup guide-popup--stop">
       ${no}
       <strong class="guide-popup-name">${escapeHtml(name)}</strong>
+      ${(window.TransportStatus?.forStop(stopId) || []).map(a => `<p class="guide-popup-desc">${escapeHtml(pick(a.message))} <a href="${escapeHtml(a.sourceUrl)}" target="_blank" rel="noopener">${escapeHtml(t('sourceLink'))}</a></p>`).join('')}
       <p class="guide-popup-desc guide-popup-stop-hint">${escapeHtml(t("stopHint"))}</p>
       <div class="guide-popup-actions guide-popup-actions--pair">
         <a class="guide-nav-btn" href="${navUrl(stop.lat, stop.lng)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("navigate"))}</a>
@@ -428,13 +429,12 @@
           return;
         }
         if (cat === "__all__") {
-          if (allOn) {
-            enabledCats.clear();
-            track("guide_filter", { category: "__all__", enabled: false });
-          } else {
-            cats.forEach((c) => enabledCats.add(c));
-            track("guide_filter", { category: "__all__", enabled: true });
-          }
+          cats.forEach((c) => enabledCats.add(c));
+          track("guide_filter", { category: "__all__", enabled: true });
+        } else if (allOn) {
+          enabledCats.clear();
+          enabledCats.add(cat);
+          track("guide_filter", { category: cat, enabled: true });
         } else if (enabledCats.has(cat)) {
           enabledCats.delete(cat);
           track("guide_filter", { category: cat, enabled: false });

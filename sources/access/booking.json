@@ -5,9 +5,9 @@
     "en": "How to buy tickets"
   },
   "footerHint": {
-    "ja": "当季の具体便・運賃は下の時刻表をご覧ください。",
-    "zh": "当季具体班次与运价见下方，可直接往下查看。",
-    "en": "Seasonal timetables and fares are below — scroll down."
+    "ja": "下で乗船日を選び、高速船ダイヤとフェリーの計画運休をご確認ください。",
+    "zh": "在下方选择出行日期，查看高速船班次及渡轮计划停运。",
+    "en": "Choose a travel date below for jetfoil times and planned ferry suspensions."
   },
   "items": [
     {
@@ -57,9 +57,9 @@
         "en": "Ferry Yakushima 2"
       },
       "body": {
-        "ja": "個人（12名以下）は予約不要。ネット販売はなく、出港当日に窓口で購入。出港約1時間前までにご来港ください。団体・車両航送は電話予約（公式サイト参照）。2026年7〜11月は特定日曜に運休予定あり（下の時刻表のお知らせ参照）。",
-        "zh": "普通乘客（12 人以下）无需预约，不支持线上购票，请在出发当天到码头窗口购买，建议提前约 1 小时办理。团体/运车需电话预约（见官网）。2026年7–11月部分周日计划停运（见下方时刻表提示）。",
-        "en": "Walk-on passengers (≤12) need no reservation; no online sales — buy at the port counter on sailing day, arrive ~1 hour early. Groups/vehicle shipping: phone reservation (see official site). Planned Sunday suspensions Jul–Nov 2026 (see timetable notice below)."
+        "ja": "個人（12名未満）は予約不要。ネット販売はなく、出港当日に窓口で購入。出港約1時間前までにご来港ください。12名以上の団体・車両航送は電話予約（公式参照）。計画運休は下で乗船日を選んでご確認ください。",
+        "zh": "普通乘客（不足12人）无需预约，不支持线上购票，出发当天到码头窗口购买，建议提前约1小时办理。12人及以上团体、运车需电话预约（见官网）。请在下方选择乘船日核对计划停运。",
+        "en": "Walk-on parties of fewer than 12 need no reservation. Buy at the port counter on sailing day; arrive about 1 hour early. Groups of 12 or more and vehicles require phone reservations (see official site). Select your sailing date below to check planned suspensions."
       },
       "ctaUrl": "https://ferryyakusima2.com/terminal",
       "ctaLabel": {

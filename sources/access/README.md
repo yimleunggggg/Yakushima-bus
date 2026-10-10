@@ -16,7 +16,7 @@ python3 scripts/build_access_data.py
 
 ## 季节切换
 
-`jetfoil.json` 的 `seasons` 数组按日期范围匹配；构建脚本取「今天落在范围内」的季节，否则取最近已开始的季节。
+`jetfoil.json` 的 `seasons` 数组按日期范围匹配；构建脚本仅匹配日期范围，未匹配时不回退到过期班次。船运页通过 `access-schedule.js` 按旅客选择的日期读取 `jetfoilSeasons`，默认日本当天；超出已核实时段时隐藏高速船时刻，提示访问官方链接。每个新季节记录 `checkedAt` 和官网待批准等备注。
 
 新增季节（如 2026 秋ダイヤ）：在 `seasons` 加一条，从 [tykousoku.jp/fare_time/](https://www.tykousoku.jp/fare_time/) 抄时刻即可。
 

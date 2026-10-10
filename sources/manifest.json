@@ -1,41 +1,51 @@
 {
-  "revision": "2026-03-01",
-  "validFrom": "2026-03-01",
+  "revision": "2026-10-01",
+  "validFrom": "2026-10-01",
   "validTo": "2026-11-30",
-  "updatedAt": "2026-05-20",
+  "updatedAt": "2026-10-09",
   "sources": {
     "taneyaku": {
-      "url": "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301.pdf",
-      "file": "assets/taneyaku-20260301.pdf",
+      "url": "https://yakukan.jp/wp-content/uploads/2026/09/2b161555d2a768da24648735b71d8390.pdf",
+      "file": "assets/pdf/taneyaku-20261001.pdf",
       "role": "timetable",
-      "operator": "taneyaku"
+      "operator": "taneyaku",
+      "sha256": "f23cb07ff2b19e9e8e03577cb2383ed7a9965b1d23c4084d0642a31a24967a62",
+      "revision": "2026-10-01",
+      "checkedAt": "2026-10-09"
     },
     "taneyakuEn": {
-      "url": "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301-en.pdf",
-      "file": "assets/taneyaku-en-20260301.pdf",
+      "url": "https://yakukan.jp/wp-content/uploads/2026/09/3791b74916c1e22726378f29c90f1568.pdf",
+      "file": "assets/pdf/taneyaku-en-20261001.pdf",
       "role": "timetable-i18n",
-      "operator": "taneyaku"
+      "operator": "taneyaku",
+      "sha256": "0c8dbc4a9fb138debd68fdfaf8b91d16f69aa43c2155f85eef75e05f2a5e5f77",
+      "revision": "2026-10-01",
+      "checkedAt": "2026-10-09"
     },
     "matsubanda": {
       "url": "https://yakukan.jp/wp-content/uploads/2026/03/matsubanda-timetable-20260301.pdf",
-      "file": "assets/matsubanda-20260301.pdf",
+      "file": "assets/pdf/matsubanda-20260301.pdf",
       "role": "timetable",
-      "operator": "matsubanda"
+      "operator": "matsubanda",
+      "sha256": "0f11b9afeecbbe9dd24185b72d44b914873ed2fe9df16aebad29c3427b08be40",
+      "revision": "2026-03-01"
     },
     "fare": {
       "url": "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin.pdf",
-      "file": "assets/fare-20240301.pdf",
+      "file": "assets/pdf/fare-20240301.pdf",
       "role": "fare",
-      "revision": "2024-03-01"
+      "revision": "2024-03-01",
+      "sha256": "9a1bec73dbd8794d17cb2e5b64edb72f09effe3d80bdfd36811fbcbf98a8bdb3"
     },
     "fareEn": {
       "url": "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin-en.pdf",
-      "file": "assets/fare-en-20240301.pdf",
+      "file": "assets/pdf/fare-en-20240301.pdf",
       "role": "fare-i18n",
-      "revision": "2024-03-01"
+      "revision": "2024-03-01",
+      "sha256": "f80acfdf6a25e2a988943c73f85aadb58ea0d5011778e185cf8dc35fbfb7a92e"
     },
     "notice": {
-      "url": "https://yakukan.jp/trans/",
+      "url": "https://yakukan.jp/on-island.html",
       "role": "index"
     },
     "serviceStatus": {
@@ -55,5 +65,10 @@
     "timetable": "data.js",
     "map": "map-data.js"
   },
-  "overridesDir": "sources/overrides"
+  "overridesDir": "sources/overrides",
+  "checkedAt": "2026-10-09",
+  "reviewAfter": "2026-10-16",
+  "parseSource": "taneyakuEn",
+  "layout": "2026-10-01",
+  "validityNote": "Official PDF states 2026-10-01 onward. 2026-11-30 is our conservative verified display horizon before winter operations, not an official expiry date."
 }

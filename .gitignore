@@ -11,6 +11,8 @@ __pycache__/
 .cursor/
 secrets/
 docs/seo/PRIVATE_SETUP.local.md
+docs/analytics/evidence/**/private/
+docs/analytics/snapshots/*.full-private.json
 video/node_modules/
 video/work/
 video/raw/

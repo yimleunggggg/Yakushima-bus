@@ -81,26 +81,32 @@ def main():
     args = p.parse_args()
     all_ = not (args.timetable or args.map or args.validate or args.access or args.meta)
 
-    if args.validate or all_:
+    def run(script):
+        subprocess.check_call([sys.executable, str(ROOT / "scripts" / script)], cwd=ROOT)
+
+    if args.validate:
         validate()
-    if args.meta or all_:
-        print("→ meta-data.js")
+        subprocess.check_call([sys.executable, str(ROOT / "scripts" / "check_transport_data.py"), "--strict-freshness"], cwd=ROOT)
+        for script in ("audit_october_timetable.py", "audit_pdf_trips.py", "audit_presets.py", "audit_segment_bounds.py"):
+            run(script)
+        subprocess.check_call(["node", "--test", *map(str, sorted((ROOT / "tests").glob("*.test.js")))], cwd=ROOT)
+    else:
+        if args.timetable or all_:
+            run_timetable()
+            run("build_segment_stats.py")
+        # Metadata and references always derive from the current domain sources.
         run_meta()
-    if args.timetable or all_:
-        print("→ data.js")
-        run_timetable()
-        if args.validate or all_:
-            validate_timetable()
-    elif args.validate:
-        validate_timetable()
-    if args.map or all_:
-        print("→ map-data.js")
-        run_map()
-        print("→ bus-stops-geo.js")
-        subprocess.check_call([sys.executable, str(ROOT / "scripts" / "build_stop_geo.py")], cwd=ROOT)
-    if args.access or all_:
-        print("→ access-data.js")
-        subprocess.check_call([sys.executable, str(ROOT / "scripts" / "build_access_data.py")], cwd=ROOT)
+        if args.map or all_:
+            run_map()
+            run("build_stop_geo.py")
+        if args.access or all_:
+            run("build_access_data.py")
+        run("build_sources_data.py")
+        run("build_transport_data.py")
+        run("sync_transport_assets.py")
+        if all_:
+            validate()
+            run("check_transport_data.py")
     print("done")
 
 

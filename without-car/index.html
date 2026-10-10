@@ -32,8 +32,8 @@
     "dateModified": "2026-07-08"
   }
   </script>
-  <link rel="preload" href="/styles.css?v=layout-v152" as="style">
-  <link rel="stylesheet" href="/styles.css?v=layout-v152">
+  <link rel="preload" href="/styles.css?v=e245864c2b7b" as="style">
+  <link rel="stylesheet" href="/styles.css?v=e245864c2b7b">
   <script>
     (function () {
       var h = location.hostname;
@@ -47,9 +47,11 @@
   </script>
   <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
-  <script src="/site-chrome.js?v=chrome-v23" defer></script>
+  <script src="/site-chrome.js?v=64e80f098123" defer></script>
   <script src="/lang-boot.js?v=lang-v5"></script>
   <script src="/seo-head-zh.js?v=seo-zh-v2"></script>
+  <script src="/transport-data.js?v=6cd6620d7fdd"></script>
+  <script src="/transport-status.js?v=1e410c0c1a7a"></script>
 </head>
 <body class="app-page-narrow">
   <div class="app without-car-page">
@@ -83,7 +85,7 @@
     <noscript>
       <section class="panel without-car-section" lang="en">
         <h2 class="page-section-title">Yakushima without a car — key bus facts (weekday)</h2>
-        <p class="page-section-lead">Tanegashima Yakushima Kotsu route buses connect ports, airport, Shiratani, Anbo, and Yakusugi Museum. Mar 2026 official timetable; fares Mar 2024 revision.</p>
+        <p class="page-section-lead">Route details use the shared October 2026 timetable and current suspension status; fares use the March 2024 official table.</p>
         <div class="table-wrap">
           <table class="data-table">
             <thead>
@@ -114,9 +116,13 @@
     <footer class="app-footer"></footer>
   </div>
 
-  <script src="/partner-data.js?v=partner-v1"></script>
-  <script src="/partner-ui.js?v=partner-v1"></script>
-  <script src="/without-car-data.js?v=geo-v1"></script>
+  <script src="/partner-data.js?v=20261010"></script>
+  <script src="/partner-ui.js?v=20261010"></script>
+  <script src="/data.js?v=3aa1f2cda9d8"></script>
+  <script src="/map-data.js?v=32bda5fae96a"></script>
+  <script src="/meta-data.js?v=ea4e4aea067e"></script>
+  <script src="/app-core.js?v=55bcddd6073f"></script>
+  <script src="/without-car-data.js?v=1c78d39d59fb"></script>
   <script>
     const NAV_UI = {
       ja: { navAria: "メインメニュー", navTime: "時刻表", navMap: "路線", navAccess: "上島", navTrek: "登山", navGuide: "便利", navIntro: "紹介", navAbout: "About", supportKofi: "コーヒーをおごる", title: "レンタカーなしで回る" },
@@ -138,8 +144,23 @@
       if (!ev) return;
       const c = ev.cols;
       const head = [c.route, c.buses, c.hours, c.fare].map((col) => `<th>${pick(col)}</th>`).join("");
+      const unavailable = pick({ja:'運休',zh:'停运',en:'Suspended'});
+      const noData = pick({ja:'要確認',zh:'需核查',en:'Recheck needed'});
       const body = ev.rows
-        .map((row) => `<tr><td>${pick(row.route)}</td><td>${row.buses}</td><td>${pick(row.hours)}</td><td>${row.fare}</td></tr>`)
+        .map((row) => {
+          const from = BUS_DATA.stops[row.from], to = BUS_DATA.stops[row.to];
+          const closed = [row.from,row.to].some(id => window.TransportStatus?.forStop(id).some(a=>a.status==='suspended'));
+          const verified = window.TransportStatus?.timetableAvailable();
+          const trips = verified && !closed ? AppCore.findTrips(row.from,row.to,'weekday')
+            .filter(tr => tr.depStop===row.from && tr.arrStop===row.to) : [];
+          const unique = [...new Map(trips.map(tr=>[`${tr.dep}|${tr.arr}`,tr])).values()]
+            .sort((a,b)=>AppCore.parseMinutes(a.dep)-AppCore.parseMinutes(b.dep));
+          const fare = MAP_DATA.farePairs[`${row.from}|${row.to}`];
+          const conditional = unique.some(tr => tr.trip?.condition);
+          const state = !verified ? noData : closed ? unavailable : String(unique.length) + (conditional ? '＊' : '');
+          const hours = !verified || closed || !unique.length ? '—' : `${AppCore.formatTime(unique[0].dep)}–${AppCore.formatTime(unique.at(-1).dep)}`;
+          return `<tr><td>${pick(from)} → ${pick(to)}</td><td>${state}</td><td>${hours}</td><td>${fare ? `¥${fare.toLocaleString()}` : '—'}</td></tr>`;
+        })
         .join("");
       const trail = pick(ev.trailText).replace(/\?lang=(ja|zh|en)/g, `?lang=${lang}`);
       const note = pick(ev.note).replace(/\?lang=(ja|zh|en)/g, `?lang=${lang}`);
@@ -153,6 +174,7 @@
               <tbody>${body}</tbody>
             </table>
           </div>
+          <p class="page-section-note">${pick(ev.conditionNote)}</p>
           <h3 class="page-section-title">${pick(ev.passTitle)}</h3>
           <p class="page-section-lead">${pick(ev.passText)}</p>
           <h3 class="page-section-title">${pick(ev.trailTitle)}</h3>

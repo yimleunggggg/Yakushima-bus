@@ -1,43 +1,9 @@
 (function (global) {
-  /** 同源镜像：跨域 iframe 嵌入 PDF 在桌面浏览器常黑屏 */
-  const PDF_MIRROR = {
-    "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301.pdf":
-      "/assets/pdf/taneyakubus-timetable-20260301.pdf",
-    "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301-en.pdf":
-      "/assets/pdf/taneyakubus-timetable-20260301-en.pdf",
-    "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin.pdf":
-      "/assets/pdf/yakushimabus-map-unchin.pdf",
-    "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin-en.pdf":
-      "/assets/pdf/yakushimabus-map-unchin-en.pdf",
-  };
-
-  /** 稳定的内嵌预览（由 PDF 导出，每页一张） */
-  const PDF_PREVIEW = {
-    "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301.pdf": [
-      "/assets/pdf-preview/taneyakubus-timetable-20260301-1.jpg",
-    ],
-    "https://yakukan.jp/wp-content/uploads/2026/03/taneyakubus-timetable-20260301-en.pdf": [
-      "/assets/pdf-preview/taneyakubus-timetable-20260301-en-1.jpg",
-    ],
-    "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin.pdf": [
-      "/assets/pdf-preview/yakushimabus-map-unchin-1.jpg",
-      "/assets/pdf-preview/yakushimabus-map-unchin-2.jpg",
-    ],
-    "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin-en.pdf": [
-      "/assets/pdf-preview/yakushimabus-map-unchin-en-1.jpg",
-      "/assets/pdf-preview/yakushimabus-map-unchin-en-2.jpg",
-    ],
-  };
-
-  const PDF_PREVIEW_DIMS = {
-    "/assets/pdf-preview/taneyakubus-timetable-20260301-1.jpg": [2002, 1418],
-    "/assets/pdf-preview/taneyakubus-timetable-20260301-en-1.jpg": [2002, 1418],
-    "/assets/pdf-preview/yakushimabus-map-unchin-1.jpg": [2002, 1418],
-    "/assets/pdf-preview/yakushimabus-map-unchin-2.jpg": [1684, 1190],
-    "/assets/pdf-preview/yakushimabus-map-unchin-en-1.jpg": [2002, 1418],
-    "/assets/pdf-preview/yakushimabus-map-unchin-en-2.jpg": [1684, 1190],
-    "/assets/pdf-preview/yakuzarugo-1.jpg": [1684, 1191],
-  };
+  // Mirrors and preview pages are derived from the same manifest as BUS_DATA.
+  const assets = global.TRANSPORT_DATA?.pdfAssets || {};
+  const PDF_MIRROR = Object.fromEntries(Object.entries(assets).map(([url, a]) => [url, a.mirror]));
+  const PDF_PREVIEW = Object.fromEntries(Object.entries(assets).map(([url, a]) => [url, a.previews.map(p => p.url)]));
+  const PDF_PREVIEW_DIMS = Object.fromEntries(Object.values(assets).flatMap(a => a.previews.map(p => [p.url, [p.width, p.height]])));
 
   /** 默认打开页（1-based）；运价 PDF 第 1 页为路线图、第 2 页为运价表 */
   const PDF_START_PAGE = {

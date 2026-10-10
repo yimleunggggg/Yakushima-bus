@@ -362,7 +362,10 @@ def main() -> int:
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args()
 
-    pdf_path = ROOT / "assets/taneyaku-20260301.pdf"
+    from parse_pdf import PDF as pdf_path, MANIFEST
+    if MANIFEST.get("layout") == "2026-10-01":
+        from audit_october_timetable import audit
+        return audit()
     text = extract_pdf_text(pdf_path) if pdf_path.exists() else ""
     data = load_data(args.rebuild)
 

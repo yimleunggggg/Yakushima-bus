@@ -11,10 +11,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from lib.catalog import CENTRAL_WEST_NOS, no_to_id  # noqa: E402
+from lib.catalog import CENTRAL_EAST_NOS, CENTRAL_WEST_NOS, no_to_id  # noqa: E402
 from lib.pdf_align import load_pdf_words, parse_side_x  # noqa: E402
 
-PDF = ROOT / "assets" / "pdf" / "taneyakubus-timetable-20260301.pdf"
+from parse_pdf import PDF
 OUT = ROOT / "sources" / "segment-stats.json"
 ABS_MAX = 120
 
@@ -27,6 +27,7 @@ def parse_minutes(t: str) -> int:
 def build_stats() -> dict:
     words = load_pdf_words(PDF)
     west = parse_side_x(words, "west")
+    east = parse_side_x(words, "east")
     ids = [no_to_id(n) for n in CENTRAL_WEST_NOS if no_to_id(n)]
 
     seg_samples: dict[str, list[int]] = defaultdict(list)
@@ -67,8 +68,19 @@ def build_stats() -> dict:
     clusters_path = ROOT / "sources" / "stop-search-clusters.json"
     clusters_raw = json.loads(clusters_path.read_text(encoding="utf-8"))
 
+    east_ids = [no_to_id(n) for n in CENTRAL_EAST_NOS if no_to_id(n)]
+    east_full_durs = []
+    for trip in east:
+        ordered = [trip["times"][sid] for sid in east_ids if sid in trip.get("times", {})]
+        if len(ordered) >= 2:
+            dur = parse_minutes(ordered[-1]) - parse_minutes(ordered[0])
+            if dur > 0:
+                east_full_durs.append(dur)
+    pdf_full_max = max(full_durs + east_full_durs, default=0)
+
     return {
-        "absMaxMinutes": ABS_MAX,
+        "absMaxMinutes": max(ABS_MAX, pdf_full_max + 5),
+        "pdfMaxFullTrip": pdf_full_max,
         "pdfWestGlobalMaxSegment": global_max,
         "pdfWestGlobalMaxSegmentPair": (
             {"from": global_max_pair[0], "to": global_max_pair[1], "minutes": global_max_pair[2]}

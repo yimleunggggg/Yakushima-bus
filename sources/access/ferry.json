@@ -4,30 +4,114 @@
     "zh": "黄金周、盂兰盆、年末年初运价/班次可能不同。",
     "en": "Fares/schedules may differ in peak seasons (GW, Obon, New Year)."
   },
-  "alert": {
-    "ja": "2026年7〜11月、下記日曜は運休予定（折田汽船・2026/5/8 公表）：7/5・12・26、8/2・23・30、9/6・13・27、10/4・18・25、11/8・15・29。※日曜は貨物・車両の受付・引渡しなし。予約 TEL 099-226-0731（日曜除く9–17時）。",
-    "zh": "2026年7–11月，以下周日计划停运（折田汽船，2026/5/8 公告）：7/5、7/12、7/26；8/2、8/23、8/30；9/6、9/13、9/27；10/4、10/18、10/25；11/8、11/15、11/29。周日全天不受理货物/车辆。预约 099-226-0731（周一至周六 9–17 时）。",
-    "en": "Planned no-sail Sundays Jul–Nov 2026 (Orita, announced 2026-05-08): Jul 5, 12, 26; Aug 2, 23, 30; Sep 6, 13, 27; Oct 4, 18, 25; Nov 8, 15, 29. No cargo/vehicle handling on Sundays. Reservations 099-226-0731 (Mon–Sat 9:00–17:00, not Sun)."
-  },
-  "alertUrl": "https://ferryyakusima2.com/news/10207",
   "rows": [
     {
       "dir": "to_yakushima",
       "dep": "08:30",
       "arr": "12:30",
-      "from": { "ja": "鹿児島本港南ふ頭", "zh": "鹿儿岛本港南码头", "en": "Kagoshima Minami Port" },
-      "to": { "ja": "宮之浦港", "zh": "宫之浦港", "en": "Miyanoura Port" }
+      "from": {
+        "ja": "鹿児島本港南ふ頭",
+        "zh": "鹿儿岛本港南码头",
+        "en": "Kagoshima Minami Port"
+      },
+      "to": {
+        "ja": "宮之浦港",
+        "zh": "宫之浦港",
+        "en": "Miyanoura Port"
+      }
     },
     {
       "dir": "to_kagoshima",
       "dep": "13:30",
       "arr": "17:40",
-      "from": { "ja": "宮之浦港", "zh": "宫之浦港", "en": "Miyanoura Port" },
-      "to": { "ja": "鹿児島本港南ふ頭", "zh": "鹿儿岛本港南码头", "en": "Kagoshima Minami Port" }
+      "from": {
+        "ja": "宮之浦港",
+        "zh": "宫之浦港",
+        "en": "Miyanoura Port"
+      },
+      "to": {
+        "ja": "鹿児島本港南ふ頭",
+        "zh": "鹿儿岛本港南码头",
+        "en": "Kagoshima Minami Port"
+      }
     }
   ],
   "fares": [
-    { "type": { "ja": "二等", "zh": "二等（经济舱）", "en": "Standard (2nd class)" }, "adult": 6500, "child": 3200 },
-    { "type": { "ja": "一等", "zh": "一等（头等舱）", "en": "First class" }, "adult": 9000, "child": 4500 }
+    {
+      "type": {
+        "ja": "二等",
+        "zh": "二等（经济舱）",
+        "en": "Standard (2nd class)"
+      },
+      "adult": 7000,
+      "child": 3450
+    },
+    {
+      "type": {
+        "ja": "一等",
+        "zh": "一等（头等舱）",
+        "en": "First class"
+      },
+      "adult": 9500,
+      "child": 4750
+    }
+  ],
+  "fareNote": {
+    "ja": "2026-10-01以降の公式掲載額（2026-10-09確認、燃料油価格変動調整金込み）。将来の運賃を保証するものではありません。乗船日の料金は公式でご確認ください。",
+    "zh": "2026-10-01起官网列价（2026-10-09核对，含燃油调整金）。不保证未来票价不变，请在出行前核对官网。",
+    "en": "Official listed fares from 2026-10-01, checked 2026-10-09, including fuel adjustment. Future fares may change; check the operator before travel."
+  },
+  "checkedAt": "2026-10-09",
+  "fareValidity": {
+    "validFrom": "2026-10-01",
+    "validTo": null,
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://ferryyakusima2.com/timetable",
+    "changeUrl": "https://ferryyakusima2.com/news/14684",
+    "includesFuelAdjustment": true
+  },
+  "suspensionPeriods": [
+    {
+      "validFrom": "2026-07-01",
+      "validTo": "2026-11-30",
+      "announcedAt": "2026-05-08",
+      "checkedAt": "2026-10-09",
+      "sourceUrl": "https://ferryyakusima2.com/news/10207",
+      "dates": [
+        "2026-07-05",
+        "2026-07-12",
+        "2026-07-26",
+        "2026-08-02",
+        "2026-08-23",
+        "2026-08-30",
+        "2026-09-06",
+        "2026-09-13",
+        "2026-09-27",
+        "2026-10-04",
+        "2026-10-18",
+        "2026-10-25",
+        "2026-11-08",
+        "2026-11-15",
+        "2026-11-29"
+      ]
+    },
+    {
+      "validFrom": "2026-12-01",
+      "validTo": "2027-01-31",
+      "announcedAt": "2026-10-08",
+      "checkedAt": "2026-10-09",
+      "sourceUrl": "https://ferryyakusima2.com/news/15420",
+      "dates": [
+        "2026-12-06",
+        "2026-12-13",
+        "2026-12-20",
+        "2027-01-01",
+        "2027-01-03",
+        "2027-01-10",
+        "2027-01-17",
+        "2027-01-24"
+      ],
+      "sourceNote": "原文1月の列挙は「1日17日」と誤記。前後の列挙と日曜日表記に基づき2027-01-17に正規化。出航前に公式へ再確認。"
+    }
   ]
 }

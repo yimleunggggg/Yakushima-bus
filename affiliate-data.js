@@ -1,9 +1,10 @@
 /** 联盟链 — Klook + Viator；官方预约/时刻仍为主链 */
 window.AFFILIATE_DATA = {
-  /** Viator 等 — 带评分，按 pages 出现在对应页面 */
+  /** Viator 等 — 按 pages 出现在对应页面 */
   experiences: [
     {
       id: "viator_jetfoil_day",
+      requiresRouteId: "shiratani",
       partner: "viator",
       productCode: "43454P739",
       placement: "viator_jetfoil_day",
@@ -20,10 +21,7 @@ window.AFFILIATE_DATA = {
         zh: "含 Toppy 往返高速船与英文向导森林徒步，适合时间紧的屋久岛一日游。",
         en: "Round-trip Toppy jetfoil plus guided Shiratani forest hike — classic day tour.",
       },
-      rating: 5.0,
-      reviewCount: 56,
-      statsUpdated: "2026-05-20",
-      cta: { ja: "Viator で見る", zh: "在 Viator 预订", en: "Book on Viator" },
+      cta: { ja: "Viator で見る", zh: "在 Viator 查看", en: "View on Viator" },
     },
     {
       id: "viator_private_sights",
@@ -43,33 +41,7 @@ window.AFFILIATE_DATA = {
         zh: "永田海滩、大川瀑布等景点，私人团灵活安排当地体验。",
         en: "Nagata beach, Ohko Falls & more — flexible private island tour.",
       },
-      rating: 4.9,
-      reviewCount: 28,
-      statsUpdated: "2026-05-20",
-      cta: { ja: "Viator で見る", zh: "在 Viator 预订", en: "Book on Viator" },
-    },
-    {
-      id: "viator_nagata_dive",
-      partner: "viator",
-      productCode: "143822P2",
-      placement: "viator_nagata_dive",
-      pages: ["without-car"],
-      tags: ["diving", "marine", "nagata", "day_trip"],
-      url: "https://www.viator.com/tours/Kagoshima-Prefecture/2-boat-dives-Nagata-area/d50190-143822P2?pid=P00307180&mcid=42383&medium=link&medium_version=selector",
-      title: {
-        ja: "永田エリア船ダイビング（2本）",
-        zh: "永田海域船潜（2 潜）",
-        en: "Boat diving in Nagata area (2 dives)",
-      },
-      body: {
-        ja: "屋久島南部の海。初心者向けプランあり。海況・資格は各ツアー要確認。",
-        zh: "屋久岛南部海域，部分行程适合初学者；海况与资质要求请见产品页。",
-        en: "Southern Yakushima waters; some trips suit beginners — check cert & conditions on Viator.",
-      },
-      rating: 5.0,
-      reviewCount: 12,
-      statsUpdated: "2026-05-20",
-      cta: { ja: "Viator で見る", zh: "在 Viator 预订", en: "Book on Viator" },
+      cta: { ja: "Viator で見る", zh: "在 Viator 查看", en: "View on Viator" },
     },
     {
       id: "viator_snorkel_turtle",
@@ -89,10 +61,7 @@ window.AFFILIATE_DATA = {
         zh: "适合初学者，含水下视频；能否遇到海龟视海况而定。",
         en: "Beginner-friendly with underwater video; turtle sightings depend on conditions.",
       },
-      rating: 4.9,
-      reviewCount: 24,
-      statsUpdated: "2026-05-20",
-      cta: { ja: "Viator で見る", zh: "在 Viator 预订", en: "Book on Viator" },
+      cta: { ja: "Viator で見る", zh: "在 Viator 查看", en: "View on Viator" },
     },
   ],
   items: {
@@ -100,29 +69,40 @@ window.AFFILIATE_DATA = {
       partner: "klook",
       adid: "1316221",
       placement: "ferry_jetfoil",
+      hint: {
+        ja: "バウチャーは事前に印刷。往復は往路・復路を別々に選び、宮之浦／安房の港と確認書の便をご確認ください。リンク経由の予約で当サイトに紹介料が入る場合があります。",
+        zh: "请提前打印凭证。往返需分别选择去程和返程套餐，注意宫之浦／安房港；班次以确认单为准。通过链接预订，本站可能获得佣金。",
+        en: "Print your voucher in advance. For a return trip, select both outbound and inbound packages; check Miyanoura/Anbo port and confirmed sailings. We may earn a commission from bookings through this link.",
+      },
       url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316221&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F161058-round-trip-ticket-for-high-speed-jetfoil-toppy-or-rocket-to-yakushima",
       image: "/images/affiliate/jetfoil-klook.png",
       cta: {
-        ja: "Klook で予約（お得）",
-        zh: "Klook 预订（优惠）",
-        en: "Book on Klook (deals)",
+        ja: "Klook で船券を見る",
+        zh: "在 Klook 查看船票",
+        en: "View tickets on Klook",
       },
     },
     hiking: {
       partner: "klook",
       adid: "1316225",
       placement: "trekking_jomon",
+      affectedRouteId: "shiratani",
+      closedHint: {
+        ja: "白谷雲水峡コースは現在通行止めです。縄文杉・ヤクスギランドなど他のプランも、予約前に催行日と行程を確認してください。",
+        zh: "白谷云水峡路线目前封闭。选择绳文杉、屋久杉 Land 等其他套餐前，也请在预订页核对日期和具体路线。",
+        en: "The Shiratani route is currently closed. Check dates and itineraries before choosing another package, such as Jomon Sugi or Yakusugi Land.",
+      },
       image: "/images/affiliate/hiking-klook.png",
       url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316225&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F150846-yakushima-hiking-tour",
       title: {
-        ja: "ガイド付き日帰り（縄文杉など）",
-        zh: "跟团一日游（绳文杉等）",
-        en: "Guided day hike (Jomon Sugi, etc.)",
+        ja: "屋久島ガイド付きハイキング（コース選択）",
+        zh: "屋久岛向导徒步（多路线套餐）",
+        en: "Guided Yakushima hike (choose a route)",
       },
       body: {
-        ja: "小団（最大6名）・装備レンタル可。バス接続は上の時刻表・運賃ページで別途確認。",
-        zh: "小团（最多 6 人），可租装备。公交衔接请另查本站时刻表与票价。",
-        en: "Small groups (up to 6), gear rental available. Check our bus timetable for connections.",
+        ja: "最大6名の少人数ツアー。登山用品は事前リクエストで無料レンタル可。コース・送迎条件は予約ページで確認。",
+        zh: "最多 6 人的小团；可提前申请免费租用徒步装备。请在预订页核对所选路线和接送条件。",
+        en: "Groups of up to 6; hiking gear is free to rent on request. Check your selected route and pickup terms on the booking page.",
       },
       cta: {
         ja: "Klook で見る",
@@ -135,22 +115,22 @@ window.AFFILIATE_DATA = {
       adid: "1316230",
       placement: "dest_yakushima",
       pages: ["trekking", "without-car"],
-      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316230&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Fdestination%2Fc21043%2F",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316230&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Fdestination%2Fp60271491-yakushima%2F",
       label: {
-        ja: "屋久島の体験・チケット",
-        zh: "屋久岛活动与门票",
-        en: "Yakushima activities & tickets",
+        ja: "Klook 屋久島ページを見る",
+        zh: "查看 Klook 屋久岛专区",
+        en: "Browse Yakushima on Klook",
       },
     },
     destKagoshima: {
       partner: "klook",
       adid: "1316233",
       placement: "dest_kagoshima",
-      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316233&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Fdestination%2Fc5209%2F",
+      url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316233&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Fdestination%2Fc21043%2F",
       label: {
-        ja: "鹿児島の体験・交通",
-        zh: "鹿儿岛活动与交通",
-        en: "Kagoshima activities & transport",
+        ja: "Klook 鹿児島ページを見る",
+        zh: "查看 Klook 鹿儿岛专区",
+        en: "Browse Kagoshima on Klook",
       },
     },
     jrKyushu: {
@@ -187,6 +167,11 @@ window.AFFILIATE_DATA = {
     },
   },
   blocks: {
+    affiliateDisclosure: {
+      ja: "日付・空席・料金は各予約ページで確認してください。リンク経由の予約で当サイトに紹介料が入る場合があります。",
+      zh: "请在预订页确认日期、余位和价格。通过链接预订，本站可能获得佣金。",
+      en: "Check dates, availability and prices on the booking page. We may earn a commission from bookings through these links.",
+    },
     experiencesTitle: {
       ja: "屋久島の現地体験・日帰りツアー",
       zh: "屋久岛当地体验 · 一日游",
@@ -202,10 +187,15 @@ window.AFFILIATE_DATA = {
       zh: "Klook / Viator 精选徒步跟团与一日游；公交衔接请查本站时刻表与票价。",
       en: "Guided hikes & day tours on Klook & Viator — pair with our bus timetable for connections.",
     },
-    trekkingBrowseMore: {
-      ja: "その他の屋久島アクティビティ（Klook）",
-      zh: "更多屋久岛活动（Klook）",
-      en: "More Yakushima activities (Klook)",
+    islandBookingTitle: {
+      ja: "屋久島での体験・船券",
+      zh: "屋久岛活动与船票",
+      en: "On Yakushima: activities & ferry tickets",
+    },
+    gatewayBookingTitle: {
+      ja: "鹿児島発着・九州の移動",
+      zh: "鹿儿岛出发与九州接驳",
+      en: "Via Kagoshima: activities & Kyushu rail",
     },
     experiencesStatsNote: {
       ja: "評価・件数は Viator 表示（{date} 時点）",
@@ -213,14 +203,14 @@ window.AFFILIATE_DATA = {
       en: "Rating & review count from Viator (as of {date})",
     },
     ferryBottomSummary: {
-      ja: "お得に購入（JR・チケット）",
-      zh: "优惠购票（JR · 船票等）",
-      en: "Deals (JR & tickets)",
+      ja: "屋久島・鹿児島の予約サイト",
+      zh: "屋久岛与鹿儿岛预订入口",
+      en: "Yakushima & Kagoshima booking links",
     },
     ferryBottomLead: {
-      ja: "第三者サイトへのリンクです。島内に JR はありません。時刻・運賃は上記公式情報を優先してください。",
-      zh: "以下为第三方预订链接；岛上无 JR。船班时刻与票价请以上方官方信息为准。",
-      en: "Third-party booking links. No JR on the island — timetables above stay official.",
+      ja: "第三者の予約サイトです。島内に JR はありません。時刻・運賃は上記公式情報を優先し、リンク経由の予約で当サイトに紹介料が入る場合があります。",
+      zh: "以下为第三方预订链接；岛上无 JR。船班时刻与票价请以上方官方信息为准。通过链接预订，本站可能获得佣金。",
+      en: "Third-party booking links. No JR on the island; use official timetables above. We may earn a commission from bookings through these links.",
     },
   },
 };

@@ -1,7 +1,7 @@
 /** 共享运行时：日种判定、时区、多语言 pick、轻反馈 */
 const AppCore = {
   LANG_KEY: "yakushima-bus-lang",
-  ABS_SEGMENT_MAX: 120,
+  ABS_SEGMENT_MAX: 150,
 
   getLang() {
     return this._lang ?? this.resolveLang();
@@ -93,6 +93,13 @@ const AppCore = {
     return true;
   },
 
+  routeAvailable(route, date = new Date()) {
+    const status = window.TransportStatus;
+    const iso = this.japanParts(date).iso;
+    return !!status && status.timetableAvailable(iso)
+      && !status.blocked(route, iso) && this.routeInSeason(route, date);
+  },
+
   detectDayType(date = new Date()) {
     const cfg = typeof META_DATA !== "undefined" ? META_DATA : null;
     const holidays = cfg?.holidays || [];
@@ -137,7 +144,7 @@ const AppCore = {
     return 10;
   },
 
-  /** 区间最长合理车程（PDF 西向全程约 102m，全局上限 120m） */
+  /** 区间上限从当前 PDF 的最长完整班次生成到 META_DATA。 */
   maxPlausibleMinutes(gap, { sparse = false } = {}) {
     const cfg = typeof META_DATA !== "undefined" ? META_DATA : null;
     const absMax = cfg?.segmentBounds?.absMaxMinutes ?? this.ABS_SEGMENT_MAX;
@@ -154,7 +161,7 @@ const AppCore = {
     return false;
   },
 
-  isPlausibleSegment(dep, arr, fromIdx, toIdx, { chain = null, column = false } = {}) {
+  isPlausibleSegment(dep, arr, fromIdx, toIdx, { chain = null, column = false, terminalOnly = false } = {}) {
     const depM = this.parseMinutes(dep);
     const arrM = this.parseMinutes(arr);
     if (depM == null || arrM == null) return false;
@@ -165,7 +172,8 @@ const AppCore = {
     const gap = this.stopIndexGap(fromIdx, toIdx);
     const sparse = this.segmentSparse(gap, { chain, column });
     const minM = this.minPlausibleMinutes(gap, { sparse, column });
-    const maxM = this.maxPlausibleMinutes(gap, { sparse });
+    // A published terminal-only shuttle has no intermediate stop count to estimate distance.
+    const maxM = terminalOnly ? absMax : this.maxPlausibleMinutes(gap, { sparse });
     return dur >= minM && dur <= maxM;
   },
 
@@ -210,7 +218,7 @@ const AppCore = {
     const last = chain[chain.length - 1];
     if (!last || last.idx !== toIdx || lastM <= depM) return null;
     const seg = { dep, arr: last.time, fi: fromIdx, ti: toIdx, chain };
-    if (!this.isPlausibleSegment(dep, last.time, fromIdx, toIdx, { chain })) return null;
+    if (!this.isPlausibleSegment(dep, last.time, fromIdx, toIdx, { chain, terminalOnly: dir.stops.length === 2 })) return null;
     return seg;
   },
 
@@ -224,8 +232,10 @@ const AppCore = {
     if (!this.isBusTime(dep) || !this.isBusTime(arr)) return null;
     const depM = this.parseMinutes(dep);
     const arrM = this.parseMinutes(arr);
-    if (arrM <= depM || arrM - depM > this.ABS_SEGMENT_MAX) return null;
-    if (!this.isPlausibleSegment(dep, arr, fromIdx, toIdx, { column: true })) return null;
+    const absMax = (typeof META_DATA !== "undefined" && META_DATA.segmentBounds?.absMaxMinutes)
+      || this.ABS_SEGMENT_MAX;
+    if (arrM <= depM || arrM - depM > absMax) return null;
+    if (!this.isPlausibleSegment(dep, arr, fromIdx, toIdx, { column: true, terminalOnly: dir.stops.length === 2 })) return null;
     return { dep, arr, fi: fromIdx, ti: toIdx, chain: null, column: true };
   },
 
@@ -262,7 +272,7 @@ const AppCore = {
     const dep = trip.times[fromId];
     const arr = this.museumArrivalTime(trip, dir);
     if (!this.isBusTime(dep) || !this.isBusTime(arr)) return null;
-    if (!this.isPlausibleSegment(dep, arr, fromIdx, toIdx, { column: true })) return null;
+    if (!this.isPlausibleSegment(dep, arr, fromIdx, toIdx, { column: true, terminalOnly: dir.stops.length === 2 })) return null;
     return { dep, arr, fi: fromIdx, ti: toIdx, chain: null, column: true, museumInferred: true };
   },
 
@@ -355,7 +365,7 @@ const AppCore = {
       for (const toId of toIds) {
         if (fromId === toId) continue;
         for (const route of BUS_DATA.routes) {
-          if (!this.routeInSeason(route)) continue;
+          if (!this.routeAvailable(route)) continue;
           if (
             centralOnly
             && route.id.startsWith("matsubanda")
@@ -371,7 +381,8 @@ const AppCore = {
             if (dir.columnTrips?.length) pools.push(...dir.columnTrips);
             else pools.push(...dir.trips);
             for (const trip of pools) {
-              if (trip.suspended || !trip.days.includes(dayType)) continue;
+              if (trip.suspended || !trip.days.includes(dayType) || (trip.season && !this.routeInSeason(trip))) continue;
+              if (trip.boardOnlyAt && !trip.boardOnlyAt.includes(fromId)) continue;
               const seg = this.resolveSegment(trip, dir, fi, ti);
               if (!seg) continue;
               found.push({
@@ -392,7 +403,8 @@ const AppCore = {
     }
     const busMap = new Map();
     for (const t of found) {
-      const busKey = `${t.route.id}|${t.dir.id}|${t.arr}`;
+      // A trip can match several nearby stops; keep one segment per physical run.
+      const busKey = t.trip;
       const prev = busMap.get(busKey);
       if (!prev) {
         busMap.set(busKey, t);
@@ -421,7 +433,7 @@ const AppCore = {
     const groups = [];
     if (!stopId || typeof BUS_DATA === "undefined" || !BUS_DATA.stops[stopId]) return groups;
     for (const route of BUS_DATA.routes) {
-      if (!this.routeInSeason(route)) continue;
+      if (!this.routeAvailable(route)) continue;
       for (const dir of route.directions) {
         const si = dir.stops.indexOf(stopId);
         if (si === -1) continue;
@@ -429,7 +441,8 @@ const AppCore = {
         const deps = [];
         const seen = new Set();
         for (const trip of pools) {
-          if (trip.suspended || !trip.days.includes(dayType)) continue;
+          if (trip.suspended || !trip.days.includes(dayType) || (trip.season && !this.routeInSeason(trip))) continue;
+          if (trip.boardOnlyAt && !trip.boardOnlyAt.includes(stopId)) continue;
           if (!this.isValidDepartureAtStop(trip, dir, si)) continue;
           const dep = trip.times[stopId];
           const time = this.formatTime(dep);

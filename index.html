@@ -95,8 +95,8 @@
     ]
   }
   </script>
-  <link rel="preload" href="styles.css?v=layout-v152" as="style">
-  <link rel="stylesheet" href="styles.css?v=layout-v152">
+  <link rel="preload" href="styles.css?v=e245864c2b7b" as="style">
+  <link rel="stylesheet" href="styles.css?v=e245864c2b7b">
   <script>
     (function () {
       var h = location.hostname;
@@ -110,9 +110,11 @@
   </script>
   <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
-  <script src="/site-chrome.js?v=chrome-v23" defer></script>
+  <script src="/site-chrome.js?v=64e80f098123" defer></script>
   <script src="/lang-boot.js?v=lang-v5"></script>
   <script src="/seo-head-zh.js?v=seo-zh-v2"></script>
+  <script src="/transport-data.js?v=6cd6620d7fdd"></script>
+  <script src="/transport-status.js?v=1e410c0c1a7a"></script>
 </head>
 <body>
   <div class="app">
@@ -319,8 +321,8 @@
       <section class="panel without-car-section" lang="en">
         <h2 class="page-section-title">Yakushima bus FAQ (weekday facts)</h2>
         <ul class="without-car-list">
-          <li><strong>Airport → Miyanoura Port:</strong> 9 buses, 06:06–19:06, adult ¥590 (Mar 2026 timetable).</li>
-          <li><strong>Miyanoura Port → Shiratani:</strong> 4 buses, 08:20–15:30, adult ¥530.</li>
+          <li><strong>Airport → Miyanoura Port:</strong> Search above for current departures. Adult fare estimate: ¥590.</li>
+          <li><strong>Miyanoura Port → Shiratani:</strong> Check the operator's current service notice before travel.</li>
           <li><strong>Day pass:</strong> ¥2,500 (1d) / ¥4,000 (3d) / ¥5,000 (4d).</li>
         </ul>
       </section>
@@ -334,13 +336,13 @@
   <div class="app-toast" id="appToast" role="status" aria-live="polite" hidden></div>
 
   <script src="source-links.js?v=src-v1" defer></script>
-  <script src="data.js?v=data-column-v3" defer></script>
-  <script src="meta-data.js" defer></script>
-  <script src="app-core.js?v=core-v21" defer></script>
+  <script src="data.js?v=3aa1f2cda9d8" defer></script>
+  <script src="meta-data.js?v=ea4e4aea067e" defer></script>
+  <script src="app-core.js?v=55bcddd6073f" defer></script>
   <script src="operator-ui.js" defer></script>
   <script src="stop-picker.js?v=picker-v7" defer></script>
   <script src="pdf-fullscreen.js" defer></script>
-  <script src="pdf-viewer.js?v=pdf-preview-v7" defer></script>
+  <script src="pdf-viewer.js?v=044f46b50a07" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
     const UI = {
@@ -409,7 +411,7 @@
         departFrom: "{stop}発",
         payment: "運賃・整理券", change: "両替", ic: "ICカード", pass: "乗車券",
         transfer: "乗換", weather: "運休", arakawaSeason: "荒川バス",
-        disclaimer: "参考情報です。バス停掲示および <a href=\"https://yakukan.jp/trans/\" target=\"_blank\" rel=\"noopener\">屋久島観光協会</a> の最新 PDF をご確認ください。",
+        disclaimer: "参考情報です。バス停掲示および <a href=\"https://yakukan.jp/on-island.html\" target=\"_blank\" rel=\"noopener\">屋久島観光協会</a> の最新時刻表 をご確認ください。",
         pdfTaneyaku: "時刻表 PDF（日本語）", pdfTaneyakuEn: "Timetable PDF (English)",
         pdfViewer: "公式時刻表 PDF", tripExpand: "経停駅を表示", tripCollapse: "経停駅を閉じる",
         pdfJa: "日本語 PDF", pdfEn: "English PDF",
@@ -496,7 +498,7 @@
         departFrom: "从{stop}发车",
         payment: "车费", change: "找零", ic: "IC卡", pass: "乘车券",
         transfer: "换乘", weather: "停运", arakawaSeason: "荒川巴士",
-        disclaimer: "仅供参考。请以站牌和 <a href=\"https://yakukan.jp/trans/\" target=\"_blank\" rel=\"noopener\">屋久岛观光协会</a> 最新 PDF 为准。",
+        disclaimer: "仅供参考。请以站牌和 <a href=\"https://yakukan.jp/on-island.html\" target=\"_blank\" rel=\"noopener\">屋久岛观光协会</a> 最新时刻表 为准。",
         pdfTaneyaku: "时刻表 PDF（日文）", pdfTaneyakuEn: "Timetable PDF (English)",
         pdfViewer: "官方时刻表 PDF", tripExpand: "查看经停站", tripCollapse: "收起经停站",
         pdfJa: "日文 PDF", pdfEn: "英文 PDF",
@@ -583,7 +585,7 @@
         departFrom: "From {stop}",
         payment: "Payment", change: "Change", ic: "IC cards", pass: "Day pass",
         transfer: "Transfers", weather: "Disruptions", arakawaSeason: "Arakawa bus",
-        disclaimer: "Reference only. Confirm at the bus stop and the <a href=\"https://yakukan.jp/trans/\" target=\"_blank\" rel=\"noopener\">tourism association</a> PDF.",
+        disclaimer: "Reference only. Confirm at the bus stop and the <a href=\"https://yakukan.jp/on-island.html\" target=\"_blank\" rel=\"noopener\">tourism association</a> timetable.",
         pdfTaneyaku: "Timetable PDF (Japanese)", pdfTaneyakuEn: "Timetable PDF (English)",
         pdfViewer: "Official timetable PDF", tripExpand: "Show stops", tripCollapse: "Hide stops",
         pdfJa: "Japanese PDF", pdfEn: "English PDF",
@@ -616,22 +618,22 @@
       ja: [
         { q: "屋久島バスの時刻表は最新ですか？", a: "2026年最新の公式ダイヤです。上の区間検索で次の便を確認できます。駅の掲示と各社の最新情報を優先してください。" },
         { q: "屋久島 バス 料金（運賃）はどこで見る？", a: "区間運賃の目安は<a href=\"/fare/\">路線図・運賃</a>ページで出発・到着を選んで確認できます。" },
-        { q: "屋久島空港から宮之浦港のバスは？", a: "平日9本・06:06–19:06発（2026年3月改定）。大人片道約¥590。出発を「屋久島空港」、到着を「宮之浦港」に選んで検索できます。" },
-        { q: "宮之浦港から白谷雲水峡のバスは何本？", a: "平日4本・08:20–15:30発。大人片道約¥530。常用区間「宮之浦港 ↔ 白谷」でも検索できます。" },
+        { q: "屋久島空港から宮之浦港のバスは？", a: "上の検索で「屋久島空港」→「宮之浦港」を選ぶと、現在の運行状況を反映した便が確認できます。大人片道の運賃目安は約¥590です。" },
+        { q: "宮之浦港から白谷雲水峡のバスは何本？", a: "上の検索で現在の運行状況を反映した便を確認してください。道路規制と運行情報は公式サイトもご確認ください。" },
         { q: "屋久島バスの乗り放題パスはいくら？", a: "ゆったり満喫乗車券の目安：1日¥2,500／3日¥4,000／4日¥5,000（小人半額）。詳細は<a href=\"/fare/\">路線・運賃</a>ページ。" },
       ],
       zh: [
         { q: "屋久岛公交时刻表是最新的吗？", a: "2026 最新官方班次。用上方区间搜索查下一班。请以站牌与各公司最新公告为准。" },
         { q: "哪里看巴士票价？", a: "在<a href=\"/fare/\">路线·票价</a>页选出发与到达，可查看区间票价。" },
         { q: "屋久岛机场到宫之浦港的巴士？", a: "平日 9 班，06:06–19:06 发车（2026 年 3 月改定），成人单程约 ¥590。可选「屋久岛机场」→「宫之浦港」搜索。" },
-        { q: "宫之浦港到白谷云水峡一天几班？", a: "平日 4 班，08:20–15:30 发车，成人单程约 ¥530。可用常用区间「宫之浦港 ↔ 白谷」。" },
+        { q: "宫之浦港到白谷云水峡一天几班？", a: "请在上方搜索当前可乘班次；出行前同时核对官方道路和运营公告。" },
         { q: "屋久岛公交一日券多少钱？", a: "乘车通票参考：1 日 ¥2,500／3 日 ¥4,000／4 日 ¥5,000（儿童半价）。详见<a href=\"/fare/\">路线·票价</a>。" },
       ],
       en: [
         { q: "Is the bus timetable up to date?", a: "2026 latest official schedules. Use route search above for the next departure. Confirm at the stop and on each operator’s site." },
         { q: "Where can I find bus fares?", a: "Section estimates on the <a href=\"/fare/\">routes &amp; fares</a> page — pick origin and destination." },
-        { q: "Bus from Yakushima Airport to Miyanoura Port?", a: "9 weekday departures, 06:06–19:06 (Mar 2026 timetable). Adult one-way about ¥590. Pick Airport → Miyanoura Port in search." },
-        { q: "How many buses from Miyanoura Port to Shiratani?", a: "4 on weekdays, departures 08:20–15:30. Adult one-way about ¥530. Try the Miyanoura Port ↔ Shiratani preset." },
+        { q: "Bus from Yakushima Airport to Miyanoura Port?", a: "Pick Airport → Miyanoura Port above for departures reflecting current service. Adult one-way fare estimate: about ¥590." },
+        { q: "How many buses from Miyanoura Port to Shiratani?", a: "Search above for departures reflecting current service, and check the official road and operator notices before travel." },
         { q: "How much is a Yakushima bus day pass?", a: "Reference: ¥2,500 (1 day), ¥4,000 (3 days), ¥5,000 (4 days); child half fare. See <a href=\"/fare/\">routes &amp; fares</a>." },
       ],
     };
@@ -891,7 +893,7 @@
 
     function initMeta() {
       const m = BUS_DATA.meta;
-      els.metaBar.textContent = `${t("valid")} ${m.validFrom}–${m.validTo}`;
+      els.metaBar.textContent = `${pick({ja:'掲載確認範囲',zh:'本站核查范围',en:'Verified display range'})} ${m.validFrom}–${m.validTo}`;
     }
 
     function applyPageHead() {
@@ -963,6 +965,9 @@
     }
 
     function explainEmpty(from, to, dayType, allTrips, trips, upcoming, refMins) {
+      const closed = [...(window.TransportStatus?.forStop(from) || []), ...(window.TransportStatus?.forStop(to) || [])].find(a => a.status === 'suspended');
+      if (closed) return { title: t('suspended'), hint: pick(closed.message), action: null, showAll: false };
+      if (!window.TransportStatus?.timetableAvailable()) return { title: pick({ja:'確認済み時刻表なし',zh:'暂无已核实时刻表',en:'No verified timetable'}), hint: pick({ja:'公式サイトでご確認ください。',zh:'请查看官方公告及来源。',en:'Please check official sources.'}), action: 'sources', showAll: false };
       const reverse = findTrips(to, from, dayType);
       const otherAvail = tripsByDayType(from, to).filter((x) => x.day !== dayType);
       const otherDay = otherAvail.length > 0;
@@ -1003,7 +1008,7 @@
         title: t("noTripsNoRoute"),
         hint: anyDay ? t("noTripsHint") : t("noTripsDataGapHint"),
         tips: getPracticalRouteTips(from, to, dayType, 0),
-        action: null,
+        action: "sources",
       };
     }
 
@@ -1012,6 +1017,11 @@
       if (info.hint) parts.push(`<p class="empty-hint">${info.hint}</p>`);
       if (info.tips?.length) {
         parts.push(`<div class="route-tips route-tips--empty">${renderRouteTipsInner(info.tips)}</div>`);
+      }
+      if (info.action === "sources") {
+        const label = pick({ja:"公式時刻表を確認",zh:"查看官方时刻表",en:"Check official timetables"});
+        const mapLabel = pick({ja:"停留所を地図で確認",zh:"在地图上查看站点",en:"View stops on the map"});
+        parts.push(`<a class="empty-action" href="${lang === "en" ? BUS_DATA.meta.sources.taneyakuEn : BUS_DATA.meta.sources.taneyaku}" target="_blank" rel="noopener">${label}</a> <a class="empty-action empty-action--ghost" href="/map/?lang=${lang}">${mapLabel}</a>`);
       }
       if (info.action === "swap") {
         parts.push(`<button type="button" class="empty-action" data-empty-swap>${t("swapRoute")}</button>`);
@@ -1193,7 +1203,7 @@
     const PORT_FROM_STOPS = new Set(["miyanoura_port", "anbo_port"]);
 
     function tripRunKey(tr) {
-      return `${tr.route.id}|${tr.arr}`;
+      return tr.trip;
     }
 
     function nearStopCandidates(stopId, role) {
@@ -1523,7 +1533,7 @@
       }
 
       els.resultsCount.textContent = t("tripCount", { n: trips.length });
-      syncResultsNotice(from, to, selectedDay, trips.length);
+      syncResultsNotice(from, to, selectedDay, allTrips.length);
       updateNextBar(allTrips, refMins, {
         upcomingActive: upcoming,
         upcomingExplicit: upcomingUserOverride && els.upcomingOnly.checked,
@@ -1623,7 +1633,7 @@
       els.ttPdfOpenNew.href = url;
       els.ttPdfOpenPrimary.href = url;
       els.ttPdfFallbackName.textContent = url.split("/").pop();
-      els.ttPdfSourceNote.innerHTML = `${t("pdfTaneyaku")} · <a href="${url}" target="_blank" rel="noopener">${url.split("/").pop()}</a>`;
+      els.ttPdfSourceNote.innerHTML = `${t(ttPdfLang === "en" ? "pdfTaneyakuEn" : "pdfTaneyaku")} · <a href="${url}" target="_blank" rel="noopener">${url.split("/").pop()}</a>`;
       els.ttPdfLangTabs.querySelectorAll("button").forEach((b) =>
         b.classList.toggle("active", b.dataset.pdfLang === ttPdfLang)
       );

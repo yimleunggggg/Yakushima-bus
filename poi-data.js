@@ -1335,7 +1335,7 @@ window.POI_DATA = {
       "sourceUrl": "https://yakukan.jp/safe-travel/shop.html",
       "name": {
         "ja": "ドラッグイレブン 屋久島店",
-        "zh": "毒药十一屋久岛店",
+        "zh": "Drug Eleven 药妆店（屋久岛店）",
         "en": "Drug Eleven Yakushima store"
       },
       "desc": {

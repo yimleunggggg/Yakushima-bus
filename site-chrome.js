@@ -74,9 +74,9 @@
         en: "Reference for Jomon Sugi, Taikoiwa, Miyanoura-dake and more. Check bus times separately.",
       },
       crossHtml: {
-        ja: '<a href="/?from=yakusugi_museum&lang=ja">自然館→荒川登山口のバス便</a>',
-        zh: '<a href="/?from=yakusugi_museum&lang=zh">自然馆→荒川登山口班次</a>',
-        en: '<a href="/?from=yakusugi_museum&lang=en">Museum → Arakawa trailhead buses</a>',
+        ja: '<a href="/?from=yakusugi_museum&to=arakawa_trailhead&lang=ja">自然館→荒川登山口のバス便</a>',
+        zh: '<a href="/?from=yakusugi_museum&to=arakawa_trailhead&lang=zh">自然馆→荒川登山口班次</a>',
+        en: '<a href="/?from=yakusugi_museum&to=arakawa_trailhead&lang=en">Museum → Arakawa trailhead buses</a>',
       },
     },
     intro: {
@@ -112,6 +112,8 @@
       navAbout: "このサイトについて",
       footerNavAria: "サイト内リンク",
       supportKofi: "コーヒーをおごる",
+      supportTitle: "この情報をまた使えるように",
+      supportBody: "バス・船・登山口の情報を個人で確認・更新しています。役に立ったら継続の応援をお願いします。",
       feedbackQ: "このサイトの情報は役に立ちましたか？",
       starLabel: "{n} / 5",
       starsAria: "満足度（1〜5）",
@@ -139,6 +141,8 @@
       navAbout: "关于本站",
       footerNavAria: "站内导航",
       supportKofi: "支持本站",
+      supportTitle: "让这些信息持续可用",
+      supportBody: "公交、船班和登山口信息由个人持续核查与更新。如果帮到了你，欢迎请我喝杯咖啡。",
       feedbackQ: "本站信息对你有帮助吗？",
       starLabel: "{n} 星",
       starsAria: "满意度（1–5 星）",
@@ -166,6 +170,8 @@
       navAbout: "About",
       footerNavAria: "Site links",
       supportKofi: "Buy me a coffee",
+      supportTitle: "Help keep this guide current",
+      supportBody: "I independently check and update bus, ferry and trail access information. If this helped, you can support the upkeep.",
       feedbackQ: "Was this site helpful for your trip?",
       starLabel: "{n} of 5",
       starsAria: "Rating 1 to 5",
@@ -244,6 +250,7 @@
       footer.appendChild(nav);
     }
     nav.setAttribute("aria-label", t("footerNavAria"));
+    const supportInCard = !/^\/(intro|about)\/?$/i.test(location.pathname);
     nav.innerHTML = `<a href="${langQs("/")}">${t("navTime")}</a>
       <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/fare/")}">${t("navMap")}</a>
@@ -253,8 +260,13 @@
       <a href="${langQs("/ferry/")}">${t("navAccess")}</a>
       <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/about/")}">${t("navAbout")}</a>
-      <span class="footer-sep" aria-hidden="true">·</span>
-      <a href="https://ko-fi.com/yimleung" target="_blank" rel="noopener noreferrer">${t("supportKofi")}</a>`;
+      ${supportInCard ? '' : `<span class="footer-sep" aria-hidden="true">·</span><a href="https://ko-fi.com/yimleung" target="_blank" rel="noopener noreferrer">${t("supportKofi")}</a>`}`;
+    if (supportInCard) {
+      const support = document.createElement('section');
+      support.className = 'app-footer-support';
+      support.innerHTML = `<div class="app-footer-support-copy"><strong>${t('supportTitle')}</strong><p>${t('supportBody')}</p></div><a class="app-footer-support-cta" href="https://ko-fi.com/yimleung" target="_blank" rel="noopener noreferrer">☕ ${t('supportKofi')} ↗</a>`;
+      footer.insertBefore(support, footer.firstChild);
+    }
     footer.querySelector(".app-footer-affiliate")?.remove();
   }
 
@@ -399,6 +411,7 @@
 
   function refresh() {
     lang = readLang();
+    window.TransportStatus?.render();
     renderMainNav(lang);
     renderFooter();
     const stored = readStore();
