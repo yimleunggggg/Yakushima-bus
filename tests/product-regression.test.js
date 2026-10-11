@@ -95,6 +95,21 @@ test('Klook localization preserves partner attribution in every language', () =>
   }
 });
 
+test('only verified Klook products show dated booking and review evidence', () => {
+  const c=runtime(), data=c.window.AFFILIATE_DATA;
+  const tour=data.experiences.find(x=>x.id==='klook_yakuzaru_day');
+  assert.equal(tour.socialProof.checkedAt,'2026-10-11');
+  assert.equal(data.items.senganEn.socialProof.reviews,193);
+  for (const [lang, booked, reviews] of [['ja','100件以上の予約','8件の評価'],['zh','100+ 次预订','8 条评价'],['en','100+ bookings','8 reviews']]) {
+    const tourHtml=c.window.AffiliateUI.experiencesSectionHtml(lang,'without-car');
+    assert.ok(tourHtml.includes(booked));
+    assert.ok(tourHtml.includes(reviews));
+    assert.equal((tourHtml.match(/affiliate-social-proof/g)||[]).length,1);
+    assert.match(c.window.AffiliateUI.ferryBottomHtml(lang),/2026-10-11/);
+  }
+  assert.doesNotMatch(c.window.AffiliateUI.experiencesSectionHtml('zh','without-car'),/人预订/);
+});
+
 test('current Shiratani suspension hides scheduled trips without hiding Arakawa service', () => {
   const c = runtime();
   const { core, bus } = c;

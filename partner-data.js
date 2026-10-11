@@ -9,15 +9,16 @@ window.AFFILIATE_DATA = {
       placement: "without_car_yakuzaru_day",
       pages: ["without-car"],
       url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1492158&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F156301-yakuzaru-sightseeing-bus-yakushima-island-full-day-tour",
+      socialProof: { booked: { ja: "100件以上の予約", zh: "100+ 次预订", en: "100+ bookings" }, rating: "5.0", reviews: 8, checkedAt: "2026-10-11" },
       title: {
         ja: "やくざる号・屋久島周遊（1日）",
         zh: "屋久岛观光巴士「やくざる号」（全天）",
         en: "Yakuzaru sightseeing bus (full day)",
       },
       body: {
-        ja: "車なしで滝・ヤクスギランドなどを巡る日本語ツアー。Klook 表示は100件以上の予約。",
-        zh: "不自驾串联瀑布、屋久杉 Land 等景点；日语导览。Klook 页面显示 100+ 人预订。",
-        en: "See waterfalls and Yakusugi Land without driving. Japanese-guided; Klook shows 100+ bookings.",
+        ja: "滝・ヤクスギランドなどを巡る日本語ガイド付き周遊ツアー。",
+        zh: "日语导览，串联瀑布、屋久杉 Land 等岛上景点。",
+        en: "Japanese-guided tour linking waterfalls, Yakusugi Land and other island sights.",
       },
       cta: { ja: "内容・空席を見る", zh: "查看行程与余位", en: "Check itinerary & dates" },
     },
@@ -174,15 +175,16 @@ window.AFFILIATE_DATA = {
       adid: "1492169",
       placement: "kagoshima_sengan_en",
       url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1492169&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F38419-sengan-en-garden-ticket-kagoshima",
+      socialProof: { booked: { ja: "1万件以上の予約", zh: "1 万+ 次预订", en: "10K+ bookings" }, rating: "4.8", reviews: 193, checkedAt: "2026-10-11" },
       label: {
         ja: "仙巌園の入場券",
         zh: "仙巖園门票",
         en: "Sengan-en admission",
       },
       note: {
-        ja: "鹿児島で半日過ごすなら。Klook 表示は1万件以上の予約",
-        zh: "在鹿儿岛多留半天时；Klook 页面显示 1 万+ 人预订",
-        en: "For extra time in Kagoshima; Klook shows 10K+ bookings",
+        ja: "鹿児島で時間に余裕がある場合に",
+        zh: "适合在鹿儿岛有空余时间时游览",
+        en: "For extra time in Kagoshima",
       },
     },
     samanaHotel: {
@@ -230,9 +232,9 @@ window.AFFILIATE_DATA = {
       en: "Yakushima tours & local experiences",
     },
     experiencesLead: {
-      ja: "車なしで巡る周遊バスと英語ガイド付き貸切ツアー。路線バスの時刻は本サイト、予約条件は各販売ページで確認してください。",
-      zh: "不自驾看岛上的两种方式：日语观光巴士或英文私人团。定线公交查本站，预订条件看商品页。",
-      en: "Two ways to explore without driving: a Japanese-guided sightseeing bus or an English-guided private tour. Check local bus times here and booking terms on each product page.",
+      ja: "島内観光には日本語ガイド付き周遊バスと英語ガイド付き貸切ツアーがあります。路線バスの時刻は本サイト、予約条件は各販売ページで確認してください。",
+      zh: "岛内观光可选日语导览巴士或英文私人团。定线公交查本站，预订条件看商品页。",
+      en: "Explore the island by Japanese-guided sightseeing bus or English-guided private tour. Check local bus times here and booking terms on each product page.",
     },
     trekkingExperiencesLead: {
       ja: "ガイド付き登山ツアー。希望コースと当日の道路状況を確認してください。",

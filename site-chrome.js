@@ -35,9 +35,9 @@
         en: "Official Yakushima bus timetables (2026 latest). Find your next departure.",
       },
       crossHtml: {
-        ja: '<a href="/fare/?lang=ja">運賃計算</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
-        zh: '<a href="/fare/?lang=zh">查票价</a> · <a href="/map/?lang=zh">便利设施地图</a> · <a href="/ferry/?lang=zh">船运上岛</a> · <a href="/without-car/?lang=zh">不租车攻略</a>',
-        en: '<a href="/fare/?lang=en">Fares</a> · <a href="/map/?lang=en">POI map</a> · <a href="/ferry/?lang=en">Ferry</a> · <a href="/without-car/?lang=en">Without a car</a>',
+        ja: '<a href="/fare/?lang=ja">運賃計算</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">島内の移動</a>',
+        zh: '<a href="/fare/?lang=zh">查票价</a> · <a href="/map/?lang=zh">便利设施地图</a> · <a href="/ferry/?lang=zh">船运上岛</a> · <a href="/without-car/?lang=zh">岛内出行</a>',
+        en: '<a href="/fare/?lang=en">Fares</a> · <a href="/map/?lang=en">POI map</a> · <a href="/ferry/?lang=en">Ferry</a> · <a href="/without-car/?lang=en">Getting around</a>',
       },
     },
     fare: {
@@ -48,9 +48,9 @@
         en: "Official route map and section fares (2026 latest). Tap a stop for timetables.",
       },
       crossHtml: {
-        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
-        zh: '<a href="/?lang=zh">查班次</a> · <a href="/map/?lang=zh">便利设施地图</a> · <a href="/without-car/?lang=zh">不租车攻略</a>',
-        en: '<a href="/?lang=en">Timetable</a> · <a href="/map/?lang=en">POI map</a> · <a href="/without-car/?lang=en">Without a car</a>',
+        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/without-car/?lang=ja">島内の移動</a>',
+        zh: '<a href="/?lang=zh">查班次</a> · <a href="/map/?lang=zh">便利设施地图</a> · <a href="/without-car/?lang=zh">岛内出行</a>',
+        en: '<a href="/?lang=en">Timetable</a> · <a href="/map/?lang=en">POI map</a> · <a href="/without-car/?lang=en">Getting around</a>',
       },
     },
     ferry: {
@@ -87,9 +87,9 @@
         en: "Trilingual bus timetables, fares, ferry access, and POI map — built from official sources.",
       },
       crossHtml: {
-        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/fare/?lang=ja">運賃</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">レンタカーなし</a>',
-        zh: '<a href="/?lang=zh">时刻表</a> · <a href="/fare/?lang=zh">票价</a> · <a href="/map/?lang=zh">便利设施地图</a> · <a href="/ferry/?lang=zh">船运上岛</a> · <a href="/without-car/?lang=zh">不租车攻略</a>',
-        en: '<a href="/?lang=en">Timetable</a> · <a href="/fare/?lang=en">Fares</a> · <a href="/map/?lang=en">POI map</a> · <a href="/ferry/?lang=en">Ferry</a> · <a href="/without-car/?lang=en">Without a car</a>',
+        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/fare/?lang=ja">運賃</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">島内の移動</a>',
+        zh: '<a href="/?lang=zh">时刻表</a> · <a href="/fare/?lang=zh">票价</a> · <a href="/map/?lang=zh">便利设施地图</a> · <a href="/ferry/?lang=zh">船运上岛</a> · <a href="/without-car/?lang=zh">岛内出行</a>',
+        en: '<a href="/?lang=en">Timetable</a> · <a href="/fare/?lang=en">Fares</a> · <a href="/map/?lang=en">POI map</a> · <a href="/ferry/?lang=en">Ferry</a> · <a href="/without-car/?lang=en">Getting around</a>',
       },
     },
   };

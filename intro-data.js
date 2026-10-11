@@ -48,7 +48,7 @@ window.INTRO_DATA = {
         },
         {
           icon: "🚐",
-          title: "レンタカーなし",
+          title: "島内の移動と観光",
           body: "バスとフェリーだけで主要エリアを回る考え方。よく使う区間と各ツールへの導線。",
           href: "/without-car/",
         },
@@ -99,7 +99,7 @@ window.INTRO_DATA = {
         },
         {
           icon: "🚐",
-          title: "不租车攻略",
+          title: "岛内出行指南",
           body: "靠公交与渡轮覆盖主要景点；常用区间说明，并链到本站各查询工具。",
           href: "/without-car/",
         },
@@ -151,7 +151,7 @@ window.INTRO_DATA = {
         },
         {
           icon: "🚐",
-          title: "Without a car",
+          title: "Getting around",
           body: "Plan Yakushima by bus and ferry — common legs and links to every tool on this site.",
           href: "/without-car/",
         },

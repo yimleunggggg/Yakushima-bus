@@ -2223,6 +2223,17 @@ body.modal-open {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.affiliate-social-proof {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+.affiliate-proof-date {
+  margin-left: 6px;
+  color: var(--muted);
+}
 .affiliate-card-route-notice {
   margin: 8px 0 0;
   padding: 8px 10px;

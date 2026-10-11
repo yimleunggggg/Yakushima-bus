@@ -70,6 +70,16 @@
     return `<span class="affiliate-card-stats-date">${pick(statsNote, lang).replace("{date}", ex.statsUpdated)}</span>`;
   }
 
+  function socialProofHtml(it, lang, showPartner = true) {
+    const proof = it.socialProof;
+    if (!proof || !proof.checkedAt || !proof.reviews || !proof.rating || !proof.booked) return "";
+    const booked = pick(proof.booked, lang);
+    const reviews = pick({ ja: `${proof.reviews}件の評価`, zh: `${proof.reviews} 条评价`, en: `${proof.reviews} reviews` }, lang);
+    const checked = pick({ ja: `${proof.checkedAt}確認`, zh: `${proof.checkedAt} 核对`, en: `checked ${proof.checkedAt}` }, lang);
+    const score = lang === "en" ? `${proof.rating}/5 (${reviews})` : `${proof.rating}/5（${reviews}）`;
+    return `<span class="affiliate-social-proof">${showPartner ? "Klook · " : ""}${booked} · ${score}<span class="affiliate-proof-date">${checked}</span></span>`;
+  }
+
   function routeNoticeHtml(it, lang) {
     if (!it.affectedRouteId || !it.closedHint) return "";
     const alert = (window.TransportStatus?.alerts?.() || []).find((a) =>
@@ -98,6 +108,7 @@
         </div>
         ${rating}
         ${body ? `<p class="affiliate-card-body">${body}</p>` : ""}
+        ${socialProofHtml(it, lang, false)}
         ${routeNoticeHtml(it, lang)}
         <div class="affiliate-card-foot">
           <a class="affiliate-offer-btn affiliate-card-cta" ${affAttrs(it, lang)}>${cta}</a>
@@ -211,7 +222,7 @@
         if (!it) return "";
         const label = pick(it.label || it.cta, lang);
         const note = it.note ? `<span class="link-sub">${pick(it.note, lang)}</span>` : "";
-        return `<a ${affAttrs(it, lang)}>${label}${note}</a>`;
+        return `<a ${affAttrs(it, lang)}>${label}${note}${socialProofHtml(it, lang)}</a>`;
       })
       .join("");
     return `<details class="aux-block aux-block--affiliate">
