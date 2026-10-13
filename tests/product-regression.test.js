@@ -71,8 +71,8 @@ test('affiliate placements have matching destinations, preserved attribution and
   for (const lang of ['ja','zh','en']) {
     assert.ok(c.window.AffiliateUI.jetfoilAffiliateHintHtml(lang).length>0);
     assert.doesNotMatch(c.window.AffiliateUI.trekkingSectionHtml(lang),/2026-05-20|affiliate-trust-stars/);
-    assert.match(c.window.AffiliateUI.trekkingSectionHtml(lang),/destination%2Fp60271491-yakushima/);
-    assert.match(c.window.AffiliateUI.trekkingSectionHtml(lang),/destination%2Fc21043/);
+    assert.doesNotMatch(c.window.AffiliateUI.trekkingSectionHtml(lang),/destination%2F/);
+    assert.match(c.window.AffiliateUI.travelGuideHtml(lang),/destination%2Fc21043/);
     assert.equal((c.window.AffiliateUI.ferryBottomHtml(lang).match(/destination%2Fp60271491-yakushima/g)||[]).length,1);
     assert.equal((c.window.AffiliateUI.ferryBottomHtml(lang).match(/destination%2Fc21043/g)||[]).length,1);
     assert.match(c.window.AffiliateUI.ferryBottomHtml(lang),/1492169/);
@@ -108,6 +108,33 @@ test('only verified Klook products show dated booking and review evidence', () =
     assert.match(c.window.AffiliateUI.ferryBottomHtml(lang),/2026-10-11/);
   }
   assert.doesNotMatch(c.window.AffiliateUI.experiencesSectionHtml('zh','without-car'),/人预订/);
+});
+
+test('travel guide groups sourced offers and withholds closed Shiratani booking links', () => {
+  const c=runtime(), d=c.window.AFFILIATE_DATA;
+  for (const [key,id] of Object.entries({shirataniWalking:'1492163',kagoshimaYakushimaDay:'1492168',senganSpecial:'1492172',kagoshimaKitchen:'1492170',ibusukiHotel:'1492174'})) {
+    assert.equal(d.items[key].adid,id);
+    assert.equal(new URL(d.items[key].url).searchParams.get('aff_adid'),id);
+  }
+  for (const lang of ['ja','zh','en']) {
+    const html=c.window.AffiliateUI.travelGuideHtml(lang);
+    for (const anchor of ['island-picks','island-stays','kagoshima-stop','hiking-routes']) assert.match(html,new RegExp(`#${anchor}`));
+    for (const id of ['1492158','1492165','1492166','1492169','1492172','1492170','1492174']) assert.match(html,new RegExp(id));
+    assert.doesNotMatch(html,/data-affiliate-id="1492163"|data-affiliate-id="1492168"/);
+    assert.match(html,/https:\/\/yakukan\.jp\/topics\/19316\.html/);
+    assert.doesNotMatch(html,/check_in=2026|check_out=2026/);
+  }
+  assert.match(c.window.AffiliateUI.travelGuideHtml('zh'),/4\.9\/5.*119 条评价/);
+  assert.match(c.window.AffiliateUI.jetfoilAffiliateHintHtml('zh'),/新用户券等优惠是否适用于这张船票/);
+  c.window.TransportStatus.alerts=()=>[];
+  const reopened=c.window.AffiliateUI.travelGuideHtml('zh');
+  assert.match(reopened,/data-affiliate-id="1492163"/);
+  assert.match(reopened,/data-affiliate-id="1492168"/);
+  delete c.window.TransportStatus;
+  const unknown=c.window.AffiliateUI.travelGuideHtml('zh');
+  assert.match(unknown,/暂时无法读取道路状态/);
+  assert.doesNotMatch(unknown,/data-affiliate-id="1492163"|data-affiliate-id="1492168"/);
+  assert.doesNotMatch(c.window.AffiliateUI.trekkingSectionHtml('zh'),/鹿儿岛专区/);
 });
 
 test('current Shiratani suspension hides scheduled trips without hiding Arakawa service', () => {

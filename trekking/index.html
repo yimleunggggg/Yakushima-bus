@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="屋久島トレッキング参考：縄文杉・太鼓岩・宮之浦岳。難易度とバス接続。屋久岛徒步一日游・当地体验（Viator）参考。Yakushima trekking & guided day tours.">
+  <meta name="description" content="屋久島の旅と体験：島内周遊、南部の宿、鹿児島での立ち寄りと登山ルート。Klookの予約実績・評価は確認日を明記。Yakushima travel, stays and trails.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#143a35">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://yakushimabus.com/trekking/">
-  <meta property="og:title" content="屋久島トレッキング参考 | Yakushima Trekking">
+  <meta property="og:title" content="屋久島の旅と体験 | Yakushima travel & trails">
   <meta property="og:url" content="https://yakushimabus.com/trekking/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
-  <title>登山・トレッキング参考 | 屋久岛徒步 | Yakushima Trekking</title>
-  <link rel="preload" href="/styles.css?v=f9a66e03ea89" as="style">
-  <link rel="stylesheet" href="/styles.css?v=f9a66e03ea89">
+  <title>屋久島の旅と体験・登山ルート | Yakushima travel & trails</title>
+  <link rel="preload" href="/styles.css?v=40845554c195" as="style">
+  <link rel="stylesheet" href="/styles.css?v=40845554c195">
   <script>
     (function () {
       var h = location.hostname;
@@ -28,9 +28,9 @@
   </script>
   <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
-  <script src="/site-chrome.js?v=9803c59c3e84" defer></script>
+  <script src="/site-chrome.js?v=7604c427a068" defer></script>
   <script src="/lang-boot.js?v=lang-v5"></script>
-  <script src="/seo-head-zh.js?v=642a2f900c41"></script>
+  <script src="/seo-head-zh.js?v=60a4b4d01bf8"></script>
   <script src="/transport-data.js?v=6cd6620d7fdd"></script>
   <script src="/transport-status.js?v=1e410c0c1a7a"></script>
 </head>
@@ -42,15 +42,15 @@
         <a href="/">時刻表</a>
         <a href="/fare/">運賃</a>
         <a href="/ferry/">フェリー</a>
-        <a href="/trekking/" class="active" aria-current="page">登山</a>
+        <a href="/trekking/" class="active" aria-current="page">旅と体験</a>
         <a href="/intro/">紹介</a>
       </nav>
-      <script src="/site-chrome-nav-boot.js?v=chrome-v23"></script>
+      <script src="/site-chrome-nav-boot.js?v=chrome-v24"></script>
     </div>
 
     <header class="header header-compact">
       <div class="header-main">
-        <h1 id="appTitle">登山ルート</h1>
+        <h1 id="appTitle">屋久島の旅と体験</h1>
       </div>
       <div class="header-actions">
         <div class="lang-switch" id="langSwitch">
@@ -63,6 +63,13 @@
 
     <p class="app-meta trek-lead" id="trekLead"></p>
     <p class="app-meta meta-links" id="pageCross"></p>
+
+    <div id="travelGuide"></div>
+
+    <div class="travel-trail-bridge" id="hiking-routes" aria-labelledby="travelTrailTitle">
+      <h2 id="travelTrailTitle"></h2>
+      <p id="travelTrailLead"></p>
+    </div>
 
     <section class="panel trek-season" aria-labelledby="trekSeasonTitle">
       <h2 class="page-section-title" id="trekSeasonTitle"></h2>
@@ -100,16 +107,16 @@
 
   <script src="/data.js?v=3aa1f2cda9d8"></script>
   <script src="/map-data.js?v=32bda5fae96a"></script>
-  <script src="/partner-data.js?v=e43261ea5668"></script>
-  <script src="/partner-ui.js?v=b5da2de06e53"></script>
+  <script src="/partner-data.js?v=b6fb930993df"></script>
+  <script src="/partner-ui.js?v=d59f8bfada96"></script>
   <script src="/source-links.js?v=src-v1"></script>
   <script src="/trekking-data.js?v=ba92f5444259"></script>
   <script src="/app-core.js?v=55bcddd6073f"></script>
   <script>
     const UI = {
-      ja: { sourceLabel: "出典：" },
-      zh: { sourceLabel: "来源：" },
-      en: { sourceLabel: "Source: " },
+      ja: { sourceLabel: "出典：", trailTitle: "登山ルートを調べる", trailLead: "季節の目安からコース・難易度・登山口へのバス接続まで。通行止めは各コースに表示します。" },
+      zh: { sourceLabel: "来源：", trailTitle: "继续查登山路线", trailLead: "从季节到路线、难度和登山口公交接驳；封闭状态会在对应路线里提示。" },
+      en: { sourceLabel: "Source: ", trailTitle: "Continue to hiking routes", trailLead: "Seasons, route difficulty and trailhead buses follow. Closures appear with each affected route." },
     };
 
     let lang = AppCore.getLang();
@@ -181,11 +188,16 @@
       const titleEl = document.getElementById("appTitle");
       const leadEl = document.getElementById("trekLead");
       const crossEl = document.getElementById("pageCross");
+      document.title = ({
+        ja: "屋久島の旅と体験｜島内観光・宿泊・登山ルート",
+        zh: "屋久岛旅行与体验｜精选行程、住宿与登山路线",
+        en: "Yakushima travel & experiences | Tours, stays and trails",
+      })[lang] || "屋久島の旅と体験";
       if (window.SiteChrome) {
         SiteChrome.applyPageHead("trek", { titleEl, leadEl, crossEl, lang });
         return;
       }
-      const titles = { ja: "登山ルート", zh: "登山路线", en: "Hiking routes" };
+      const titles = { ja: "屋久島の旅と体験", zh: "屋久岛旅行与体验", en: "Yakushima travel & experiences" };
       titleEl.textContent = titles[lang] || titles.ja;
       const d = window.TREKKING_DATA;
       if (d && leadEl) leadEl.textContent = pick(d.intro);
@@ -198,6 +210,9 @@
       window.__renderSiteChromeNav?.(lang);
       window.__syncPageTitle?.(lang);
       applyPageHead();
+      document.getElementById("travelGuide").innerHTML = window.AffiliateUI ? AffiliateUI.travelGuideHtml(lang) : "";
+      document.getElementById("travelTrailTitle").textContent = t("trailTitle");
+      document.getElementById("travelTrailLead").textContent = t("trailLead");
       document.getElementById("trekSeasonTitle").textContent = pick(d.seasonTitle);
       document.getElementById("trekSeasonLead").textContent = pick(d.seasonLead);
       document.getElementById("trekCoursesTitle").textContent = pick(d.coursesTitle);
