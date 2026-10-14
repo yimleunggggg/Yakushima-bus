@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#243e35">
+  <meta name="description" content="日本旅行の行き方を、公式情報から確かめる。JR・九州・屋久島を中心に、行程に合う選択肢と確認すべき点を案内する試作ガイド。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yakushimabus.com/explore/">
+  <link rel="alternate" hreflang="ja" href="https://yakushimabus.com/explore/?lang=ja">
+  <link rel="alternate" hreflang="en" href="https://yakushimabus.com/explore/?lang=en">
+  <link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/explore/?lang=zh">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/explore/style.css?v=20261013-3">
+  <title>日本の旅を、確かな情報から。 | Yaku Explore</title>
+  <script src="/transport-data.js"></script>
+  <script src="/partner-data.js"></script>
+  <script src="/explore/catalog.js?v=20261013-3" defer></script>
+  <script src="/explore/search-harness.js?v=20261013-3" defer></script>
+  <script src="/explore/app.js?v=20261013-3" defer></script>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-head">
+      <a class="brand" href="/explore/" aria-label="Yaku Explore home"><span class="brand-mark" aria-hidden="true">◒</span><span>YAKU <em>explore</em></span></a>
+      <div class="head-actions"><span class="prototype" id="prototypeLabel">試作版</span><nav class="langs" aria-label="Language"><button type="button" data-lang="ja">JA</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="zh">中文</button></nav></div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-copy"><p class="eyebrow" id="eyebrow">JAPAN, WITH CONTEXT</p><h1 id="heroTitle">日本の旅を、<br><i>確かな情報から。</i></h1><p class="hero-lead" id="heroLead">行き先を決める前にも、出発直前にも。公式情報と現地の交通事情を照らし合わせて、次に確認すべきことまで案内します。</p><a class="text-link" href="#search" id="heroJump">旅の相談を始める <span aria-hidden="true">↗</span></a></div>
+        <div class="hero-art" aria-hidden="true"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-sun"></div><div class="art-path"></div><span class="art-label north">N 35°</span><span class="art-label south">KYUSHU / YAKUSHIMA</span><span class="art-dot one"></span><span class="art-dot two"></span><span class="art-dot three"></span></div>
+      </section>
+
+      <section class="search-section" id="search" aria-labelledby="searchTitle">
+        <div class="section-heading"><div><p class="eyebrow" id="searchEyebrow">THE TRAVEL DESK</p><h2 id="searchTitle">旅の条件から探す</h2></div><p id="searchAside">検索結果の羅列ではなく、理由と確認先を添えて。</p></div>
+        <form id="searchForm" class="search-card">
+          <label for="question" id="questionLabel">何をしたいですか？</label>
+          <div class="query-row"><input id="question" name="q" type="search" autocomplete="off" maxlength="180" placeholder="例：九州をJRで巡る。パスは必要？" required><button type="submit" id="searchButton">調べる <span aria-hidden="true">↗</span></button></div>
+          <div class="search-bottom"><div class="examples" id="examples" aria-label="Examples"></div><div class="date-field"><label for="travelerType" id="travelerLabel">利用資格</label><select id="travelerType"><option value="unknown">未指定</option><option value="visitor">短期滞在の外国籍旅行者</option><option value="resident">日本在住</option></select></div><div class="date-field"><label for="travelDate" id="dateLabel">出発日</label><input id="travelDate" type="date"></div></div>
+        </form>
+        <div class="result-area" id="results" aria-live="polite" hidden></div>
+      </section>
+
+      <section class="editorial" aria-labelledby="guideTitle"><div class="editorial-intro"><p class="eyebrow" id="guideEyebrow">FIELD NOTES / 01</p><h2 id="guideTitle">JRに乗る前に、<br>確認したいこと。</h2><p id="guideLead">初めてでも、慣れていても。運行と料金は出発日で変わります。ここでは迷いやすい順番だけを整理しました。</p></div><ol class="guide-steps" id="guideSteps"></ol><div class="editorial-link"><a href="https://japanrailpass.net/en/use/" target="_blank" rel="noopener" id="guideSource">JR PASS 公式の使い方 ↗</a><a href="https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/" target="_blank" rel="noopener" id="guideSource2">JNTO 鉄道・バス案内 ↗</a></div></section>
+
+      <section class="method" aria-labelledby="methodTitle"><p class="eyebrow" id="methodEyebrow">HOW WE CHOOSE</p><h2 id="methodTitle">選ぶ理由を、隠さない。</h2><div class="method-grid" id="methodGrid"></div></section>
+    </main>
+    <footer><div><strong>YAKU <em>explore</em></strong><p id="footerText">Yakuから生まれた、日本の旅の情報案内。現在は限定的な検索・推薦の試作版です。</p></div><a href="/" id="backLink">屋久島バスへ戻る ↗</a></footer>
+  </div>
+</body>
+</html>

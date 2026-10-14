@@ -1,0 +1,58 @@
+(() => {
+  const dict = {
+    ja: {
+      prototype:'試作版', eyebrow:'JAPAN, WITH CONTEXT', hero:'日本の旅を、<br><i>確かな情報から。</i>', lead:'行き先を決める前にも、出発直前にも。公式情報と現地の交通事情を照らし合わせて、次に確認すべきことまで案内します。', jump:'旅の相談を始める ↗', search:'旅の条件から探す', aside:'検索結果の羅列ではなく、理由と確認先を添えて。', question:'何をしたいですか？', placeholder:'例：九州をJRで巡る。パスは必要？', button:'調べる ↗', date:'出発日', traveler:'利用資格', travelerOptions:['未指定','外国籍の短期滞在者','日本在住'], eligibility:'JR九州パスは外国籍の短期滞在者向けです。利用資格を確認してください。', ineligible:'日本在住の方はこのパスの対象外です。通常の乗車券をご確認ください。', examples:['九州をJRで巡りたい','屋久島へ船で行きたい','白谷雲水峡を歩きたい'], results:'確認した候補', dated:'出発日', official:'情報源', map:'地図で見る ↗', booking:'予約先で確認 ↗', disclosure:'予約リンクから当サイトに紹介料が入る場合があります。掲載や順位は購入を保証しません。', proof:'掲載先の参考値', proofDate:'確認', excluded:'今は勧められない候補', closed:'公式の通行止め情報を優先。再開を確認できるまで計画に入れないでください。', sourceReview:'資料の最終確認から30日以上経過しています。公式サイトで再確認してください。', review:'この交通情報は再確認時期を過ぎています。運休解除は確認されていません。必ず公式公告をご確認ください。', none:'この質問に合う確認済みの候補はまだありません。条件を変えるか、公式サイトで最新情報を調べてください。', trace:'どの情報で選んだ？', traceBody:'質問に含まれる地域・移動手段・目的を抽出し、編集済みの資料から候補を選びます。通行止め情報は共通交通データから判定し、該当候補を除外します。検索時のウェブ全体の再取得や在庫照会は、この試作版では行いません。', traceTags:'判定した条件', guide:'JRに乗る前に、<br>確認したいこと。', guideLead:'初めてでも、慣れていても。運行と料金は出発日で変わります。ここでは迷いやすい順番だけを整理しました。', steps:[['行き先と列車を決める','駅名・乗換・運行会社を確認。地方路線は便数が少ないことがあります。'],['切符とパスを比較する','一回ごとの運賃とパスの対象エリア・利用資格を照合します。'],['席と改札を確認する','指定席が必要か、どの切符を改札で使うか公式案内で確認します。']], method:'選ぶ理由を、隠さない。', methods:[['公式情報を先に','運行・通行可否・対象範囲は運営者の情報を優先。'],['合わない候補も説明','道路が閉じていれば商品が販売中でも推奨しません。'],['紹介リンクは明示','評価・予約数は掲載先の時点付き参考値。価格と空席は移動先で確認。']], footer:'Yakuから生まれた、日本の旅の情報案内。現在は限定的な検索・推薦の試作版です。', back:'屋久島バスへ戻る ↗', source1:'JR PASS 公式の使い方 ↗', source2:'JNTO 鉄道・バス案内 ↗' },
+    en: {
+      prototype:'Preview', eyebrow:'JAPAN, WITH CONTEXT', hero:'Plan Japan with<br><i>better context.</i>', lead:'Before you choose a route or head out, compare official sources with local transport conditions—and see what to verify next.', jump:'Ask a travel question ↗', search:'Search by your needs', aside:'Useful options, reasons and sources in one place.', question:'What are you trying to do?', placeholder:'e.g. Do I need a pass for a Kyushu rail trip?', button:'Explore ↗', date:'Travel date', traveler:'Pass eligibility', travelerOptions:['Not specified','Foreign temporary visitor','Japan resident'], eligibility:'JR Kyushu Rail Pass is for foreign temporary visitors. Verify eligibility first.', ineligible:'This pass is not for Japan residents. Check ordinary rail tickets instead.', examples:['Travel around Kyushu by JR','Ferry to Yakushima','Hike Shiratani'], results:'Relevant options', dated:'Travel date', official:'Sources', map:'Open map ↗', booking:'Check booking ↗', disclosure:'We may earn a commission from this link. Inclusion does not guarantee a booking or recommendation.', proof:'Platform snapshot', proofDate:'Checked', excluded:'Currently unsuitable', closed:'Official access closure takes priority. Do not plan this route until reopening is confirmed.', sourceReview:'Sources were checked over 30 days ago; recheck the official site.', review:'Transport data is due for recheck. Reopening is not confirmed; verify the official notice.', none:'No verified match yet. Try different terms or consult the official operator for current details.', trace:'How were these selected?', traceBody:'We match region and travel intent against a curated catalog, then exclude routes blocked in shared transport data. This preview does not perform live web-wide search or availability checks.', traceTags:'Detected', guide:'Before you<br>board JR.', guideLead:'A simple order for checking routes, tickets and seat rules. Services and prices can change by date.', steps:[['Choose the route','Confirm station names, transfers and operator; rural services can be infrequent.'],['Compare tickets and passes','Check single fares against pass coverage and eligibility.'],['Check seats and gates','Use official guidance for reservations and which ticket goes through the gate.']], method:'Show the reason, not just the link.', methods:[['Official sources first','Operator information decides service and access status.'],['Explain exclusions','A bookable product cannot override a road closure.'],['Disclose commercial links','Ratings and bookings are dated platform snapshots; verify price and availability there.']], footer:'A Japan travel information preview from Yaku. Search and recommendations cover a limited curated catalog.', back:'Back to Yakushima Bus ↗', source1:'JR PASS official guide ↗', source2:'JNTO train and bus guide ↗' },
+    zh: {
+      prototype:'试用版', eyebrow:'JAPAN, WITH CONTEXT', hero:'日本旅行，<br><i>从可信信息开始。</i>', lead:'决定目的地之前、临出发之时，把官方资料与当地交通状态放在一起核对，并明确下一步该查什么。', jump:'开始提问 ↗', search:'按出行需求查找', aside:'给出适合的选项，也说明理由和核查来源。', question:'你想怎么旅行？', placeholder:'例如：九州坐 JR 玩几座城市，通票划算吗？', button:'查找 ↗', date:'出发日期', traveler:'通票资格', travelerOptions:['暂不确定','符合条件的外籍短期访客','日本居民'], eligibility:'JR 九州通票面向外籍短期访客，请先核对购买资格。', ineligible:'日本居民通常不符合这款通票的购买资格，请查看普通车票。', examples:['九州坐JR玩几座城市','坐船去屋久岛','想去白谷云水峡徒步'], results:'可参考的选择', dated:'出发日期', official:'依据来源', map:'打开地图 ↗', booking:'前往预订页核对 ↗', disclosure:'经此链接预订，本站可能获得佣金。展示不代表保证适合或一定可订。', proof:'平台数据快照', proofDate:'核查', excluded:'目前不建议的选项', closed:'以官方封闭公告为准；未核实重新开放前，请勿将此路线纳入行程。', sourceReview:'资料核查已超过30天，请再次查看官网。', review:'交通资料已到复核期，尚未确认恢复。请再次查看官方公告。', none:'暂未找到经过核实且匹配的选项。可以换个说法，或到运营方官网查最新情况。', trace:'为什么推荐这些？', traceBody:'从问题提取地区、交通方式和目的，在编辑过的资料中匹配，再按统一交通状态排除封闭路线。试用版不会实时搜索全网或查询余票。', traceTags:'识别条件', guide:'坐 JR 之前，<br>先确认这三步。', guideLead:'无论第一次去，还是已经熟悉日本旅行，先弄清路线、票种和上车规则。', steps:[['确定路线和车次','核对站名、换乘与运营公司；地方线路班次可能很少。'],['比较单买与通票','核对单段票价、通票适用区域和购买资格。'],['确认指定席和检票','按官方说明核对预约要求、车票和闸机的使用方法。']], method:'把筛选理由摆出来。', methods:[['官方信息优先','运营、封路和通票范围以运营方为准。'],['不合适也要解释','道路封闭时，即使商品仍可购买，也不会推荐。'],['清楚标注商业链接','评价和预订量是带日期的平台快照；价格、余位去平台确认。']], footer:'由 Yaku 延伸的日本旅行信息试用版，目前只覆盖小范围的精选资料。', back:'返回屋久岛公交 ↗', source1:'JR PASS 官方使用说明 ↗', source2:'JNTO 铁路与巴士指南 ↗' }
+  };
+  const $ = id => document.getElementById(id);
+  const choose = (obj, lang) => obj?.[lang] || obj?.ja || '';
+  const node = (tag, cls, value) => { const e = document.createElement(tag); if (cls) e.className=cls; if (value != null) e.textContent=value; return e; };
+  const link = (label, href) => { const a=node('a','',label); a.href=href; if (!href.startsWith('/')) { a.target='_blank'; a.rel='noopener noreferrer sponsored'; } return a; };
+  let lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('explore-lang') || 'ja';
+  if (!dict[lang]) lang='ja';
+  const today = new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  $('travelDate').value=today;
+  function localize() {
+    const t=dict[lang]; document.documentElement.lang=lang==='zh'?'zh-CN':lang;
+    document.title=lang==='ja'?'日本の旅を、確かな情報から。 | Yaku Explore':lang==='zh'?'日本旅行，从可信信息开始 | Yaku Explore':'Japan travel, with context | Yaku Explore';
+    const set={prototypeLabel:t.prototype,eyebrow:t.eyebrow,heroLead:t.lead,heroJump:t.jump,searchTitle:t.search,searchAside:t.aside,questionLabel:t.question,searchButton:t.button,dateLabel:t.date,travelerLabel:t.traveler,guideLead:t.guideLead,methodTitle:t.method,footerText:t.footer,backLink:t.back,guideSource:t.source1,guideSource2:t.source2};
+    Object.entries(set).forEach(([id,value])=>$(id).textContent=value);
+    $('heroTitle').innerHTML=t.hero; $('guideTitle').innerHTML=t.guide; $('question').placeholder=t.placeholder; [...$('travelerType').options].forEach((o,i)=>o.textContent=t.travelerOptions[i]);
+    $('examples').replaceChildren(...t.examples.map(q=>{const b=node('button','',q); b.type='button'; b.addEventListener('click',()=>{$('question').value=q; search();}); return b;}));
+    $('guideSteps').replaceChildren(...t.steps.map((s,i)=>{const li=node('li');li.append(node('span','',String(i+1).padStart(2,'0')));const div=node('div');div.append(node('strong','',s[0]),node('p','',s[1]));li.append(div);return li;}));
+    $('methodGrid').replaceChildren(...t.methods.map(m=>{const a=node('article');a.append(node('strong','',m[0]),node('p','',m[1]));return a;}));
+    document.querySelectorAll('.langs button').forEach(b=>{b.classList.toggle('active',b.dataset.lang===lang);b.setAttribute('aria-pressed',b.dataset.lang===lang?'true':'false');});
+    if ($('question').value.trim()) search();
+  }
+  function card(item,index,t) {
+    const article=node('article','result-card'); article.append(node('span','result-number',String(index+1).padStart(2,'0')+' / EXPLORE'),node('h4','',choose(item.title,lang)),node('p','',choose(item.summary,lang)),node('p','next-step',item.reason));
+    if(item.sourceReviewDue)article.append(node('p','eligibility-note',t.sourceReview));
+    if(item.eligibility)article.append(node('p','eligibility-note',t.eligibility));
+    const actions=node('div','card-links'); actions.append(link(t.map,item.map));
+    if (item.affiliate?.url) actions.append(link(choose(item.affiliate.cta,lang)||t.booking,item.affiliate.url)); article.append(actions);
+    const sources=node('div','sources');sources.append(node('span','',t.official+' · '));item.sources.forEach(s=>sources.append(link(s.label+' · '+s.checkedAt,s.url)));article.append(sources);
+    if(item.affiliate?.socialProof){const p=item.affiliate.socialProof;article.append(node('div','proof',t.proof+' · '+(choose(p.booked,lang)||'')+(p.rating?' · '+p.rating+'/5':'')+(p.reviews?' · '+p.reviews+' reviews':'')+' · '+t.proofDate+' '+p.checkedAt));}
+    if(item.affiliate?.url)article.append(node('p','commercial',t.disclosure));
+    return article;
+  }
+  function search() {
+    const query=$('question').value.trim();if(!query)return;
+    const t=dict[lang], result=ExploreHarness.answer(query,{lang,date:$('travelDate').value,catalog:ExploreCatalog,transport:window.TRANSPORT_DATA,partners:window.AFFILIATE_DATA,travelerType:$('travelerType').value,today});
+    const box=$('results');box.hidden=false;box.replaceChildren();
+    const head=node('div','result-head');head.append(node('h3','',t.results),node('small','',t.dated+' · '+result.date));box.append(head);
+    if(result.needsReview)box.append(node('p','review-note',t.review));
+    if(result.matches.length){const grid=node('div','result-grid');result.matches.forEach((x,i)=>grid.append(card(x,i,t)));box.append(grid);}else box.append(node('p','no-results',t.none));
+    result.excluded.forEach(x=>{const a=node('article','excluded-card');a.append(node('span','result-number',t.excluded),node('h4','',choose(x.title,lang)),node('p','',x.ineligible?t.ineligible:(choose(x.blocking?.message,lang)||t.closed)));const l=link(t.official+' ↗',x.blocking?.sourceUrl||x.sources[0].url);a.append(l);box.append(a);});
+    const trace=node('details','trace');trace.append(node('summary','',t.trace),node('p','',t.traceBody),node('p','',t.traceTags+': '+[...result.parsed.regions,...result.parsed.intents].join(' · ')+' · '+result.date));box.append(trace);
+    history.replaceState(null,'','?lang='+lang+'&q='+encodeURIComponent(query)+'#search');
+  }
+  $('searchForm').addEventListener('submit',e=>{e.preventDefault();search();});
+  $('travelDate').addEventListener('change',()=>{if($('question').value.trim())search();});
+  $('travelerType').addEventListener('change',()=>{if($('question').value.trim())search();});
+  document.querySelectorAll('.langs button').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;localStorage.setItem('explore-lang',lang);const u=new URL(location.href);u.searchParams.set('lang',lang);history.replaceState(null,'',u);localize();}));
+  localize();
+  const initial=new URLSearchParams(location.search).get('q');if(initial){$('question').value=initial;search();}
+})();

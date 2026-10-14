@@ -97,6 +97,7 @@
   </script>
   <link rel="preload" href="styles.css?v=f3bb887ad4b6" as="style">
   <link rel="stylesheet" href="styles.css?v=f3bb887ad4b6">
+  <link rel="stylesheet" href="/explore/entry.css">
   <script>
     (function () {
       var h = location.hostname;
@@ -330,6 +331,11 @@
     </div>
     </div>
 
+    <a class="explore-entry" href="/explore/" id="exploreEntry">
+      <span class="explore-entry-mark" aria-hidden="true">◒</span>
+      <span class="explore-entry-copy"><strong>YAKU explore</strong><span class="explore-entry-ja">屋久島の先も。日本の旅を公式情報から考える、新しい試作ガイド。</span><span class="explore-entry-en">Beyond Yakushima: a source-backed Japan travel guide preview.</span><span class="explore-entry-zh">从屋久岛出发，探索更广的日本旅行。官方信息支持的试用指南。</span></span>
+      <span class="explore-entry-arrow" aria-hidden="true">↗</span>
+    </a>
     <footer class="app-footer"></footer>
   </div>
 
@@ -1599,6 +1605,7 @@
     function applyI18n() {
       AppCore.setLang(lang);
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+      document.getElementById('exploreEntry').href = `/explore/?lang=${lang}`;
       window.__syncPageTitle?.(lang);
       applyPageHead();
       els.liveClockTime.title = lang === "zh" ? "日本时间 (JST)" : "JST";
