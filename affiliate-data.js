@@ -273,10 +273,10 @@ window.AFFILIATE_DATA = {
     },
   },
   blocks: {
-    affiliateDisclosure: {
-      ja: "日付・空席・料金は各予約ページで確認してください。リンク経由の予約で当サイトに紹介料が入る場合があります。",
-      zh: "请在预订页确认日期、余位和价格。通过链接预订，本站可能获得佣金。",
-      en: "Check dates, availability and prices on the booking page. We may earn a commission from bookings through these links.",
+    bookingReminder: {
+      ja: "日付・空席・料金は各予約ページで確認してください。",
+      zh: "请在预订页确认日期、余位和价格。",
+      en: "Check dates, availability and prices on the booking page.",
     },
     experiencesTitle: {
       ja: "屋久島の現地体験・日帰りツアー",

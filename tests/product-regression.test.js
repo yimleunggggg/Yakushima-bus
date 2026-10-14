@@ -76,7 +76,8 @@ test('affiliate placements have matching destinations, preserved attribution and
     assert.equal((c.window.AffiliateUI.ferryBottomHtml(lang).match(/destination%2Fc21043/g)||[]).length,1);
     assert.match(c.window.AffiliateUI.ferryBottomHtml(lang),/1492169/);
     assert.doesNotMatch(c.window.AffiliateUI.ferryBottomHtml(lang),/jr_japan_7|1492176|1492181/);
-    assert.match(c.window.AffiliateUI.bookingNotesHtml(lang),/commission|佣金|紹介料/);
+    assert.ok(c.window.AffiliateUI.bookingNotesHtml(lang).length>0);
+    assert.doesNotMatch(c.window.AffiliateUI.bookingNotesHtml(lang),/commission|佣金|紹介料/);
     for (const html of [c.window.AffiliateUI.travelGuideHtml(lang),c.window.AffiliateUI.experiencesSectionHtml(lang,'without-car'),c.window.AffiliateUI.lodgingSectionHtml(lang),c.window.AffiliateUI.ferryBottomHtml(lang)]) {
       assert.doesNotMatch(html,/commission|佣金|紹介料/);
     }

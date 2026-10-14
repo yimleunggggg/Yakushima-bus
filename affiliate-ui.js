@@ -167,7 +167,7 @@
       zh: { title: "预订说明", proof: "评分、评价数、预订量和参与人数来自相应平台，截至卡片标注日期；不同地区的显示可能有差异。" },
       en: { title: "About booking links", proof: "Ratings, review totals, booking counts and participant numbers come from the named platforms as of the dates shown. Figures may vary by region." },
     }[lang] || { title: "予約について", proof: "" };
-    return `<details class="booking-notes"><summary>${c.title}</summary><p>${c.proof}</p><p>${pick(D()?.blocks?.affiliateDisclosure, lang)}</p></details>`;
+    return `<details class="booking-notes"><summary>${c.title}</summary><p>${c.proof}</p><p>${pick(D()?.blocks?.bookingReminder, lang)}</p></details>`;
   }
 
   /** 统一产品卡：标题 · 平台标 · 可选图 · 描述 · 评分 · CTA */
