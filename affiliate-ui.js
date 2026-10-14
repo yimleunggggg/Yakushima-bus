@@ -73,7 +73,8 @@
   function socialProofHtml(it, lang, showPartner = true) {
     const proof = it.socialProof;
     if (!proof || !proof.checkedAt || !proof.reviews || !proof.rating) return "";
-    const booked = proof.booked ? `${pick(proof.booked, lang)} · ` : "";
+    const count = proof.participants || proof.booked;
+    const booked = count ? `${pick(count, lang)} · ` : "";
     const reviews = pick({ ja: `${proof.reviews}件の評価`, zh: `${proof.reviews} 条评价`, en: `${proof.reviews} reviews` }, lang);
     const checked = pick({ ja: `${proof.checkedAt}時点`, zh: `截至 ${proof.checkedAt}`, en: `as of ${proof.checkedAt}` }, lang);
     const score = lang === "en" ? `${proof.rating}/5 (${reviews})` : `${proof.rating}/5（${reviews}）`;
@@ -162,19 +163,11 @@
 
   function bookingNotesHtml(lang) {
     const c = {
-      ja: { title: "予約について", proof: "評価・口コミ数・予約件数は各サービスの表示を、記載日の時点で確認したものです。地域設定により異なる場合があります。" },
-      zh: { title: "预订说明", proof: "评分、评价数和预订量来自相应平台，截至卡片标注日期；不同地区的显示可能有差异。" },
-      en: { title: "About booking links", proof: "Ratings, review totals and booking counts come from the named platforms as of the dates shown. Figures may vary by region." },
+      ja: { title: "予約について", proof: "評価・口コミ数・予約件数・参加人数は各サービスの表示を、記載日の時点で確認したものです。地域設定により異なる場合があります。" },
+      zh: { title: "预订说明", proof: "评分、评价数、预订量和参与人数来自相应平台，截至卡片标注日期；不同地区的显示可能有差异。" },
+      en: { title: "About booking links", proof: "Ratings, review totals, booking counts and participant numbers come from the named platforms as of the dates shown. Figures may vary by region." },
     }[lang] || { title: "予約について", proof: "" };
     return `<details class="booking-notes"><summary>${c.title}</summary><p>${c.proof}</p><p>${pick(D()?.blocks?.affiliateDisclosure, lang)}</p></details>`;
-  }
-
-  function routeNoticeHtml(it, lang) {
-    if (!it.affectedRouteId || !it.closedHint) return "";
-    const alert = (window.TransportStatus?.alerts?.() || []).find((a) =>
-      a.status === "suspended" && a.routeIds?.includes(it.affectedRouteId));
-    if (!alert) return "";
-    return `<p class="affiliate-card-route-notice">${pick(it.closedHint, lang)} <a href="${alert.sourceUrl}" target="_blank" rel="noopener">${pick({ ja: "公式情報", zh: "官方公告", en: "Official notice" }, lang)}</a></p>`;
   }
 
   /** 统一产品卡：标题 · 平台标 · 可选图 · 描述 · 评分 · CTA */
@@ -198,7 +191,6 @@
         ${rating}
         ${body ? `<p class="affiliate-card-body">${body}</p>` : ""}
         ${socialProofHtml(it, lang, false)}
-        ${routeNoticeHtml(it, lang)}
         <div class="affiliate-card-foot">
           <a class="affiliate-offer-btn affiliate-card-cta" ${affAttrs(it, lang)}>${cta}</a>
           ${stats}
