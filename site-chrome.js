@@ -69,14 +69,14 @@
     trek: {
       titleKey: "navTrekTitle",
       lead: {
-        ja: "島内体験・宿・鹿児島での立ち寄りと、縄文杉などの登山ルートを一緒に探せます。",
-        zh: "精选岛内体验、住宿、鹿儿岛中转与登山路线；查看卖点和有日期的 Klook 评价。",
-        en: "Explore island experiences, stays, Kagoshima stopovers and trail routes with dated Klook evidence.",
+        ja: "島内周遊、ガイド付き登山、温泉の宿。鹿児島での寄り道も一緒に。",
+        zh: "环岛观光、向导徒步、温泉住宿，也可以在鹿儿岛多留半天。",
+        en: "Island tours, guided hikes and hot-spring stays, with time for Kagoshima along the way.",
       },
       crossHtml: {
-        ja: '<a href="#hiking-routes">登山ルートへ</a> · <a href="/?from=yakusugi_museum&to=arakawa_trailhead&lang=ja">荒川登山口のバス便</a>',
-        zh: '<a href="#hiking-routes">直达登山路线</a> · <a href="/?from=yakusugi_museum&to=arakawa_trailhead&lang=zh">自然馆→荒川登山口班次</a>',
-        en: '<a href="#hiking-routes">Jump to trails</a> · <a href="/?from=yakusugi_museum&to=arakawa_trailhead&lang=en">Arakawa trailhead buses</a>',
+        ja: '',
+        zh: '',
+        en: '',
       },
     },
     intro: {
@@ -268,6 +268,13 @@
       footer.insertBefore(support, footer.firstChild);
     }
     footer.querySelector(".app-footer-affiliate")?.remove();
+    footer.querySelector(".app-footer-booking")?.remove();
+    if (window.AffiliateUI?.bookingNotesHtml) {
+      const notes = document.createElement("div");
+      notes.className = "app-footer-booking";
+      notes.innerHTML = window.AffiliateUI.bookingNotesHtml(lang);
+      footer.insertBefore(notes, footer.firstChild);
+    }
   }
 
   function mountFeedback(footer) {
@@ -405,7 +412,8 @@
     }
     if (crossEl && head.crossHtml) {
       const html = head.crossHtml[L] || head.crossHtml.ja;
-      crossEl.innerHTML = `<span class="meta-links">${html}</span>`;
+      crossEl.innerHTML = html ? `<span class="meta-links">${html}</span>` : "";
+      crossEl.hidden = !html;
     }
   }
 

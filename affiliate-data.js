@@ -91,9 +91,9 @@ window.AFFILIATE_DATA = {
       adid: "1492155",
       placement: "ferry_jetfoil",
       hint: {
-        ja: "Klook の新規ユーザー向けクーポンなどが使えるかは、決済画面でご確認ください。バウチャーは事前に印刷。往復は往路・復路を別々に選び、宮之浦／安房の港と確認書の便をご確認ください。リンク経由の予約で当サイトに紹介料が入る場合があります。",
-        zh: "Klook 新用户券等优惠是否适用于这张船票，请以结算页显示为准。请提前打印凭证。往返需分别选择去程和返程套餐，注意宫之浦／安房港；班次以确认单为准。通过链接预订，本站可能获得佣金。",
-        en: "Check at checkout whether a Klook new-user coupon or other offer applies to this ticket. Print your voucher in advance. For a return trip, select both outbound and inbound packages; check Miyanoura/Anbo port and confirmed sailings. We may earn a commission from bookings through this link.",
+        ja: "新規ユーザー特典の適用は Klook の決済画面で確認してください。バウチャーは事前に印刷。往復は往路・復路を選び、宮之浦／安房港と確認書の便名をご確認ください。",
+        zh: "新用户优惠是否适用，以 Klook 结算页为准。请提前打印凭证；往返分别选去程和返程，留意宫之浦／安房港，班次以确认单为准。",
+        en: "Check new-user offer eligibility at Klook checkout. Print your voucher, select outbound and return packages separately, and check the port and sailing on your confirmation.",
       },
       url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1492155&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F161058-round-trip-ticket-for-high-speed-jetfoil-toppy-or-rocket-to-yakushima",
       image: "/images/affiliate/jetfoil-klook.png",
@@ -109,9 +109,9 @@ window.AFFILIATE_DATA = {
       placement: "trekking_jomon",
       affectedRouteId: "shiratani",
       closedHint: {
-        ja: "白谷雲水峡コースは現在通行止めです。縄文杉・ヤクスギランドなど他のプランも、予約前に催行日と行程を確認してください。",
-        zh: "白谷云水峡路线目前封闭。选择绳文杉、屋久杉 Land 等其他套餐前，也请在预订页核对日期和具体路线。",
-        en: "The Shiratani route is currently closed. Check dates and itineraries before choosing another package, such as Jomon Sugi or Yakusugi Land.",
+        ja: "白谷雲水峡コースは通行止めです。縄文杉など、ほかのコースをご確認ください。",
+        zh: "白谷云水峡路线封闭，可查看绳文杉等其他路线套餐。",
+        en: "Shiratani is closed. Check alternative packages such as Jomon Sugi.",
       },
       image: "/images/affiliate/hiking-klook.png",
       url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1316225&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F150846-yakushima-hiking-tour",
@@ -121,14 +121,14 @@ window.AFFILIATE_DATA = {
         en: "Guided Yakushima hike (choose a route)",
       },
       body: {
-        ja: "最大6名の少人数ツアー。登山用品は事前リクエストで無料レンタル可。コース・送迎条件は予約ページで確認。",
-        zh: "最多 6 人的小团；可提前申请免费租用徒步装备。请在预订页核对所选路线和接送条件。",
-        en: "Groups of up to 6; hiking gear is free to rent on request. Check your selected route and pickup terms on the booking page.",
+        ja: "最大6名の少人数ツアー。登山用品は事前リクエストで無料レンタルできます。",
+        zh: "最多 6 人的小团，可提前申请免费租用徒步装备。",
+        en: "Groups of up to 6, with hiking gear available to rent free on request.",
       },
       cta: {
-        ja: "Klook で見る",
-        zh: "在 Klook 查看",
-        en: "View on Klook",
+        ja: "コース・空席を見る",
+        zh: "查看路线与余位",
+        en: "Check routes & availability",
       },
     },
     destYakushima: {
@@ -201,9 +201,9 @@ window.AFFILIATE_DATA = {
         en: "samana hotel Yakushima",
       },
       note: {
-        ja: "尾之間エリア・温泉と海景色。バス停名は「samana hotel Yakushima」",
-        zh: "尾之间区域，温泉与海景；本站有同名公交站",
-        en: "Onoaida area, hot spring and sea views; a same-name bus stop is in our timetable",
+        ja: "尾之間・温泉と海景色。最寄りバス停：samana hotel Yakushima",
+        zh: "尾之间 · 温泉与海景 · 公交 samana hotel Yakushima 站",
+        en: "Onoaida · hot spring & sea views · samana hotel Yakushima bus stop",
       },
     },
     iwasakiHotel: {
@@ -219,9 +219,9 @@ window.AFFILIATE_DATA = {
         en: "Yakushima Iwasaki Hotel",
       },
       note: {
-        ja: "尾之間エリア・山側の滞在。バス停名は「いわさきホテル」",
-        zh: "尾之间区域、山景住宿；本站有“岩崎酒店”公交站",
-        en: "Onoaida area, mountain setting; Iwasaki Hotel stop is in our timetable",
+        ja: "尾之間・山に囲まれた宿。最寄りバス停：いわさきホテル",
+        zh: "尾之间 · 山景住宿 · 公交岩崎酒店站",
+        en: "Onoaida · mountain setting · Iwasaki Hotel bus stop",
       },
     },
     shirataniWalking: {
@@ -289,9 +289,9 @@ window.AFFILIATE_DATA = {
       en: "Yakushima tours & local experiences",
     },
     experiencesLead: {
-      ja: "島内観光には日本語ガイド付き周遊バスと英語ガイド付き貸切ツアーがあります。路線バスの時刻は本サイト、予約条件は各販売ページで確認してください。",
-      zh: "岛内观光可选日语导览巴士或英文私人团。定线公交查本站，预订条件看商品页。",
-      en: "Explore the island by Japanese-guided sightseeing bus or English-guided private tour. Check local bus times here and booking terms on each product page.",
+      ja: "日本語ガイドの周遊バス、または英語ガイドの貸切ツアーで島を巡れます。",
+      zh: "日语导览巴士适合环岛观光，英文私人团可灵活安排行程。",
+      en: "See the island on a Japanese-guided bus tour or a flexible private tour with an English-speaking guide.",
     },
     trekkingExperiencesLead: {
       ja: "ガイド付き登山ツアー。希望コースと当日の道路状況を確認してください。",
@@ -314,14 +314,14 @@ window.AFFILIATE_DATA = {
       en: "More Yakushima experiences",
     },
     lodgingSummary: {
-      ja: "バス停から選ぶ屋久島の宿",
-      zh: "按公交站选屋久岛住宿",
-      en: "Yakushima stays near bus stops",
+      ja: "屋久島南部の宿",
+      zh: "屋久岛南部住宿",
+      en: "Stays in southern Yakushima",
     },
     lodgingLead: {
-      ja: "尾之間の2軒。宿のページで希望日を選び、バスは本サイトの時刻表で確認してください。紹介料が入る場合があります。",
-      zh: "两家位于尾之间区域；酒店页自行选入住日，公交班次请查本站时刻表。通过链接预订，本站可能获得佣金。",
-      en: "Two Onoaida-area stays. Choose your dates on the hotel page and check buses here. We may earn a commission.",
+      ja: "尾之間の2軒。港・空港からの移動には、ホテル前のバス停が使えます。",
+      zh: "两家酒店都位于尾之间，酒店前设公交站，可衔接港口与机场。",
+      en: "Two Onoaida stays with hotel bus stops for travel to the ports and airport.",
     },
     experiencesStatsNote: {
       ja: "評価・件数は Viator 表示（{date} 時点）",
@@ -334,9 +334,9 @@ window.AFFILIATE_DATA = {
       en: "Yakushima & Kagoshima booking links",
     },
     ferryBottomLead: {
-      ja: "第三者の予約サイトです。島内に JR はありません。時刻・運賃は上記公式情報を優先し、リンク経由の予約で当サイトに紹介料が入る場合があります。",
-      zh: "以下为第三方预订链接；岛上无 JR。船班时刻与票价请以上方官方信息为准。通过链接预订，本站可能获得佣金。",
-      en: "Third-party booking links. No JR on the island; use official timetables above. We may earn a commission from bookings through these links.",
+      ja: "船券、島内の体験、鹿児島での寄り道に。JR 九州パスは鹿児島までの鉄道移動向けです。",
+      zh: "船票、岛上体验和鹿儿岛停留可一起安排；九州 JR Pass 适用于到鹿儿岛的铁路行程。",
+      en: "Plan ferry tickets, island experiences and Kagoshima stopovers. JR Kyushu Pass is for the rail journey to Kagoshima.",
     },
   },
 };

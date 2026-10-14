@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="屋久島の旅と体験：島内周遊、南部の宿、鹿児島での立ち寄りと登山ルート。Klookの予約実績・評価は確認日を明記。Yakushima travel, stays and trails.">
+  <meta name="description" content="屋久島の旅と体験：島内周遊、ガイド付き登山、南部の温泉宿と鹿児島での寄り道。登山ルートとバス接続も。Yakushima tours, stays and trails.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#143a35">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -13,8 +13,8 @@
   <meta property="og:url" content="https://yakushimabus.com/trekking/">
   <meta property="og:image" content="https://yakushimabus.com/og-image.png">
   <title>屋久島の旅と体験・登山ルート | Yakushima travel & trails</title>
-  <link rel="preload" href="/styles.css?v=40845554c195" as="style">
-  <link rel="stylesheet" href="/styles.css?v=40845554c195">
+  <link rel="preload" href="/styles.css?v=f3bb887ad4b6" as="style">
+  <link rel="stylesheet" href="/styles.css?v=f3bb887ad4b6">
   <script>
     (function () {
       var h = location.hostname;
@@ -28,9 +28,9 @@
   </script>
   <script src="/analytics.js" defer></script>
   <script src="/analytics-events.js?v=analytics-v4" defer></script>
-  <script src="/site-chrome.js?v=7604c427a068" defer></script>
+  <script src="/site-chrome.js?v=781ec1ff3911" defer></script>
   <script src="/lang-boot.js?v=lang-v5"></script>
-  <script src="/seo-head-zh.js?v=60a4b4d01bf8"></script>
+  <script src="/seo-head-zh.js?v=e2ef2d8df9b2"></script>
   <script src="/transport-data.js?v=6cd6620d7fdd"></script>
   <script src="/transport-status.js?v=1e410c0c1a7a"></script>
 </head>
@@ -83,8 +83,6 @@
       <div class="trek-courses" id="trekCourses"></div>
     </section>
 
-    <section class="panel trek-partner" id="trekAffiliatePanel" hidden aria-labelledby="trekAffiliateTitle"></section>
-
     <div class="panel panel-aux">
       <div class="aux-sections aux-in-panel">
         <details class="aux-block">
@@ -107,16 +105,16 @@
 
   <script src="/data.js?v=3aa1f2cda9d8"></script>
   <script src="/map-data.js?v=32bda5fae96a"></script>
-  <script src="/partner-data.js?v=b6fb930993df"></script>
-  <script src="/partner-ui.js?v=d59f8bfada96"></script>
+  <script src="/partner-data.js?v=0ac9bd13aade"></script>
+  <script src="/partner-ui.js?v=65c33adfafc3"></script>
   <script src="/source-links.js?v=src-v1"></script>
   <script src="/trekking-data.js?v=ba92f5444259"></script>
   <script src="/app-core.js?v=55bcddd6073f"></script>
   <script>
     const UI = {
-      ja: { sourceLabel: "出典：", trailTitle: "登山ルートを調べる", trailLead: "季節の目安からコース・難易度・登山口へのバス接続まで。通行止めは各コースに表示します。" },
-      zh: { sourceLabel: "来源：", trailTitle: "继续查登山路线", trailLead: "从季节到路线、难度和登山口公交接驳；封闭状态会在对应路线里提示。" },
-      en: { sourceLabel: "Source: ", trailTitle: "Continue to hiking routes", trailLead: "Seasons, route difficulty and trailhead buses follow. Closures appear with each affected route." },
+      ja: { sourceLabel: "出典：", trailTitle: "登山ルート", trailLead: "季節の目安、所要時間・難易度と、登山口へのバス接続。" },
+      zh: { sourceLabel: "来源：", trailTitle: "登山路线", trailLead: "查看适合的季节、路线用时与难度，以及登山口公交接驳。" },
+      en: { sourceLabel: "Source: ", trailTitle: "Hiking routes", trailLead: "Seasons, walking times, difficulty and buses to the trailheads." },
     };
 
     let lang = AppCore.getLang();
@@ -240,13 +238,6 @@
         </div>`
         )
         .join("");
-
-      const trekAffiliatePanel = document.getElementById("trekAffiliatePanel");
-      if (trekAffiliatePanel) {
-        const affiliateHtml = window.AffiliateUI ? AffiliateUI.trekkingSectionHtml(lang) : "";
-        trekAffiliatePanel.innerHTML = affiliateHtml;
-        trekAffiliatePanel.hidden = !affiliateHtml;
-      }
 
       const L = d.labels;
       document.getElementById("trekCourses").innerHTML = d.courses
