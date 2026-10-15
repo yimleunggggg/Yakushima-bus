@@ -52,8 +52,8 @@
     ]
   }
   </script>
-  <link rel="preload" href="/styles.css?v=f3bb887ad4b6" as="style">
-  <link rel="stylesheet" href="/styles.css?v=f3bb887ad4b6">
+  <link rel="preload" href="/styles.css?v=08e8c873573f" as="style">
+  <link rel="stylesheet" href="/styles.css?v=08e8c873573f">
   <script>
     (function () {
       var h = location.hostname;
@@ -140,8 +140,8 @@
   </div>
 
   <script src="/source-links.js?v=src-v1"></script>
-  <script src="/partner-data.js?v=2b2518888ea5"></script>
-  <script src="/partner-ui.js?v=b373af420249"></script>
+  <script src="/partner-data.js?v=32811b0b485e"></script>
+  <script src="/partner-ui.js?v=3d29e6857a32"></script>
   <script src="/access-data.js?v=cfcb2eb02d1c"></script>
   <script src="/section-divider.js"></script>
   <script src="/app-core.js?v=55bcddd6073f"></script>
@@ -206,10 +206,6 @@
           item.id === "jetfoil" && window.AffiliateUI
             ? AffiliateUI.jetfoilSecondaryHtml(lang)
             : "";
-        const affiliateHint =
-          item.id === "jetfoil" && window.AffiliateUI
-            ? AffiliateUI.jetfoilAffiliateHintHtml(lang)
-            : "";
         cards.push(`<article class="access-booking-card access-booking-card--${item.id}">
           <div class="access-booking-head">
             <div class="access-booking-name-row">
@@ -224,7 +220,6 @@
               <a class="access-booking-btn access-booking-btn-primary" href="${item.ctaUrl}" target="_blank" rel="noopener">${pick(item.ctaLabel)}</a>
               ${affiliateBtn}
             </div>
-            ${affiliateHint}
           </div>
         </article>`);
       });

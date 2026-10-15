@@ -90,17 +90,12 @@ window.AFFILIATE_DATA = {
       partner: "klook",
       adid: "1492155",
       placement: "ferry_jetfoil",
-      hint: {
-        ja: "新規ユーザー特典の適用は Klook の決済画面で確認してください。バウチャーは事前に印刷。往復は往路・復路を選び、宮之浦／安房港と確認書の便名をご確認ください。",
-        zh: "新用户优惠是否适用，以 Klook 结算页为准。请提前打印凭证；往返分别选去程和返程，留意宫之浦／安房港，班次以确认单为准。",
-        en: "Check new-user offer eligibility at Klook checkout. Print your voucher, select outbound and return packages separately, and check the port and sailing on your confirmation.",
-      },
       url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1492155&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F161058-round-trip-ticket-for-high-speed-jetfoil-toppy-or-rocket-to-yakushima",
       image: "/images/affiliate/jetfoil-klook.png",
       cta: {
-        ja: "Klook で船券を見る",
-        zh: "在 Klook 查看船票",
-        en: "View tickets on Klook",
+        ja: "Klook で船券を見る（特典）",
+        zh: "在 Klook 查看船票（优惠）",
+        en: "Klook tickets (offers)",
       },
     },
     hiking: {

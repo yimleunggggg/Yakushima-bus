@@ -69,9 +69,10 @@ test('affiliate placements have matching destinations, preserved attribution and
     assert.match(target.pathname,/\/hotels\/detail\//);
   }
   for (const lang of ['ja','zh','en']) {
-    assert.ok(c.window.AffiliateUI.jetfoilAffiliateHintHtml(lang).length>0);
+    assert.ok(c.window.AffiliateUI.jetfoilSecondaryHtml(lang).length>0);
+    assert.equal(d.items.jetfoil.hint,undefined);
     assert.doesNotMatch(c.window.AffiliateUI.travelGuideHtml(lang),/2026-05-20|affiliate-trust-stars/);
-    assert.match(c.window.AffiliateUI.travelGuideHtml(lang),/destination%2Fc21043/);
+    assert.doesNotMatch(c.window.AffiliateUI.travelGuideHtml(lang),/destination%2F/);
     assert.equal((c.window.AffiliateUI.ferryBottomHtml(lang).match(/destination%2Fp60271491-yakushima/g)||[]).length,1);
     assert.equal((c.window.AffiliateUI.ferryBottomHtml(lang).match(/destination%2Fc21043/g)||[]).length,1);
     assert.match(c.window.AffiliateUI.ferryBottomHtml(lang),/1492169/);
@@ -121,10 +122,10 @@ test('travel guide groups sourced offers and withholds closed Shiratani booking 
   }
   for (const lang of ['ja','zh','en']) {
     const html=c.window.AffiliateUI.travelGuideHtml(lang);
-    for (const anchor of ['island-picks','island-stays','kagoshima-stop','hiking-routes']) assert.match(html,new RegExp(`#${anchor}`));
+    assert.equal((html.match(/href="#/g)||[]).length,1);
+    assert.match(html,/#hiking-routes/);
     for (const id of ['1492158','1492165','1492166','1492169','1492172','1492170','1492174']) assert.match(html,new RegExp(id));
     assert.doesNotMatch(html,/data-affiliate-id="1492163"|data-affiliate-id="1492168"/);
-    assert.match(html,/https:\/\/yakukan\.jp\/topics\/19316\.html/);
     assert.doesNotMatch(html,/check_in=2026|check_out=2026/);
   }
   assert.match(c.window.AffiliateUI.travelGuideHtml('zh'),/4\.9\/5.*119 条评价/);
@@ -135,15 +136,15 @@ test('travel guide groups sourced offers and withholds closed Shiratani booking 
   assert.match(hikingCard,/绳文杉/);
   assert.match(hikingCard,/50\+ 人参加过.*5\.0\/5.*3 条评价/);
   assert.doesNotMatch(hikingCard,/封闭|通行止め|closed|affiliate-card-route-notice/);
+  assert.equal((hikingCard.match(/data-affiliate-id="1316225"/g)||[]).length,1);
   assert.doesNotMatch(travel,/travel-hero|travel-paused|不展示|暂缓推荐|快照|卖点/);
-  assert.match(c.window.AffiliateUI.jetfoilAffiliateHintHtml('zh'),/新用户优惠是否适用/);
+  assert.match(c.window.AffiliateUI.jetfoilSecondaryHtml('zh'),/在 Klook 查看船票（优惠）/);
   c.window.TransportStatus.alerts=()=>[];
   const reopened=c.window.AffiliateUI.travelGuideHtml('zh');
   assert.match(reopened,/data-affiliate-id="1492163"/);
   assert.match(reopened,/data-affiliate-id="1492168"/);
   delete c.window.TransportStatus;
   const unknown=c.window.AffiliateUI.travelGuideHtml('zh');
-  assert.match(unknown,/白谷行程：先查通行情况/);
   assert.doesNotMatch(unknown,/data-affiliate-id="1492163"|data-affiliate-id="1492168"/);
   assert.doesNotMatch(fs.readFileSync(path.join(root,'trekking/index.html'),'utf8'),/trekAffiliatePanel/);
 });
@@ -165,8 +166,7 @@ test('suspended Shiratani tour is not promoted while the road is closed', () => 
   assert.doesNotMatch(html,/43454P739|146665|76916|白谷徒步/);
   assert.match(html,/1492158|43454P373/);
   const hike=c.window.AffiliateUI.travelGuideHtml('zh');
-  assert.match(hike,/目前无法进入白谷云水峡/);
-  assert.match(hike,/https:\/\/yakukan\.jp\/topics\/19316\.html/);
+  assert.doesNotMatch(hike,/data-affiliate-id="1492163"|data-affiliate-id="1492168"/);
   assert.doesNotMatch(hike,/43454P373/);
 });
 test('October timetable and ferry suspension respect current official dates', () => {
