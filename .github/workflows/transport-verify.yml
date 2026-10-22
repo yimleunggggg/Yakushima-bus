@@ -2,7 +2,7 @@ name: Transport source verification
 
 on:
   schedule:
-    - cron: '0 0 * * *' # 09:00 JST; overdue source reviews fail the gate
+    - cron: '0 3 * * 1' # Monday 11:00 Asia/Shanghai (12:00 JST); overdue source reviews fail the gate
   pull_request:
     paths:
       - 'sources/**'
