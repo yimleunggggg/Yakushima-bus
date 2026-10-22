@@ -66,7 +66,7 @@ python3 scripts/build_all.py --timetable  # 只重建时刻表
 
 ### 运价校验
 
-`build_all.py --validate` 会核对底表与生成文件、972 个公交时刻单元、常用区间、票价锚点、PDF 校验和/镜像/预览、全站资源版本和核查日期。`.github/workflows/transport-verify.yml` 在交通相关 PR、main 更新和每天 09:00 JST 定时执行同一校验；过了 `reviewAfter` 会失败，提醒先查官方来源，再修底表并重建。不要单独改页面数字或复制另一版表；临时停运需要新公告确认后才能解除。
+`build_all.py --validate` 会核对底表与生成文件、972 个公交时刻单元、常用区间、票价锚点、PDF 校验和/镜像/预览、全站资源版本和核查日期。`.github/workflows/transport-verify.yml` 在交通相关 PR、main 更新和每周一 11:00 北京时间（12:00 JST）定时执行同一校验；过了 `reviewAfter` 会失败，提醒先查官方来源，再修底表并重建。不要单独改页面数字或复制另一版表；临时停运需要新公告确认后才能解除。
 
 ## 运价说明
 
