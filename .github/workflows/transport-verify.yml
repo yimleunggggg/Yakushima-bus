@@ -12,7 +12,7 @@ on:
       - 'tests/**'
       - '*.js'
       - '*.html'
-      - '*/index.html'
+      - '**/index.html'
       - 'styles.css'
       - '.github/workflows/transport-verify.yml'
   push:
@@ -25,7 +25,7 @@ on:
       - 'tests/**'
       - '*.js'
       - '*.html'
-      - '*/index.html'
+      - '**/index.html'
       - 'styles.css'
       - '.github/workflows/transport-verify.yml'
   workflow_dispatch:

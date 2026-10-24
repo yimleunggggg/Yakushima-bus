@@ -1,45 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://yakushimabus.com/?lang=zh</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/" />
   </url>
   <url>
     <loc>https://yakushimabus.com/fare/?lang=zh</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://yakushimabus.com/map/?lang=zh</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-10-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/fare/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/fare/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/fare/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/fare/" />
   </url>
   <url>
     <loc>https://yakushimabus.com/ferry/?lang=zh</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/ferry/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/ferry/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/ferry/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/ferry/" />
   </url>
   <url>
-    <loc>https://yakushimabus.com/without-car/?lang=zh</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <loc>https://yakushimabus.com/map/?lang=zh</loc>
+    <lastmod>2026-10-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/map/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/map/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/map/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/map/" />
   </url>
   <url>
     <loc>https://yakushimabus.com/trekking/?lang=zh</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/trekking/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/trekking/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/trekking/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/trekking/" />
+  </url>
+  <url>
+    <loc>https://yakushimabus.com/without-car/?lang=zh</loc>
+    <lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/without-car/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/without-car/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/without-car/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/without-car/" />
   </url>
   <url>
     <loc>https://yakushimabus.com/about/?lang=zh</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <lastmod>2026-10-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/about/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/about/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/about/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/about/" />
+  </url>
+  <url>
+    <loc>https://yakushimabus.com/guides/yakushima-where-to-stay/?lang=zh</loc>
+    <lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/guides/yakushima-where-to-stay/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/guides/yakushima-where-to-stay/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/guides/yakushima-where-to-stay/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/guides/yakushima-where-to-stay/" />
+  </url>
+  <url>
+    <loc>https://yakushimabus.com/guides/yakushima-rainy-day/?lang=zh</loc>
+    <lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/guides/yakushima-rainy-day/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/guides/yakushima-rainy-day/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/guides/yakushima-rainy-day/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/guides/yakushima-rainy-day/" />
+  </url>
+  <url>
+    <loc>https://yakushimabus.com/guides/kagoshima-half-day/?lang=zh</loc>
+    <lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/guides/kagoshima-half-day/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/guides/kagoshima-half-day/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/guides/kagoshima-half-day/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/guides/kagoshima-half-day/" />
+  </url>
+  <url>
+    <loc>https://yakushimabus.com/guides/?lang=zh</loc>
+    <lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/guides/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/guides/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/guides/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/guides/" />
   </url>
 </urlset>

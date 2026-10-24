@@ -67,7 +67,7 @@
   function statsDateHtml(ex, lang) {
     const statsNote = D().blocks?.experiencesStatsNote;
     if (!ex.statsUpdated || !statsNote) return "";
-    return `<span class="affiliate-card-stats-date">${pick(statsNote, lang).replace("{date}", ex.statsUpdated)}</span>`;
+    return `<span class="affiliate-card-stats-date">${pick(statsNote, lang).replace("{date}", window.TransportStatus?.month(ex.statsUpdated, lang) || ex.statsUpdated.slice(0,7))}</span>`;
   }
 
   function socialProofHtml(it, lang, showPartner = true) {
@@ -76,7 +76,7 @@
     const count = proof.participants || proof.booked;
     const booked = count ? `${pick(count, lang)} · ` : "";
     const reviews = pick({ ja: `${proof.reviews}件の評価`, zh: `${proof.reviews} 条评价`, en: `${proof.reviews} reviews` }, lang);
-    const checked = pick({ ja: `${proof.checkedAt}時点`, zh: `截至 ${proof.checkedAt}`, en: `as of ${proof.checkedAt}` }, lang);
+    const checked = pick({ ja: `${(window.TransportStatus?.month(proof.checkedAt, lang) || proof.checkedAt.slice(0,7))}時点`, zh: `截至 ${(window.TransportStatus?.month(proof.checkedAt, lang) || proof.checkedAt.slice(0,7))}`, en: `as of ${(window.TransportStatus?.month(proof.checkedAt, lang) || proof.checkedAt.slice(0,7))}` }, lang);
     const score = lang === "en" ? `${proof.rating}/5 (${reviews})` : `${proof.rating}/5（${reviews}）`;
     return `<span class="affiliate-social-proof">${showPartner ? "Klook · " : ""}${booked}${score}<span class="affiliate-proof-date">${checked}</span></span>`;
   }
@@ -123,6 +123,16 @@
   }
 
   /** 统一产品卡：标题 · 平台标 · 可选图 · 描述 · 评分 · CTA */
+  function routeAdvisoryHtml(it, lang) {
+    const routeId = it.affectedRouteId || it.requiresRouteId;
+    if (!routeId) return '';
+    const notice = window.TransportStatus?.alerts?.().find(a => a.status === 'notice' && a.routeIds?.includes(routeId));
+    if (!notice) return '';
+    const escape = value => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+    const label = pick({ja:'公式情報・予約条件を確認',zh:'核对官方公告及预订条件',en:'Check the official notice and booking terms'}, lang);
+    return `<p class="affiliate-card-body affiliate-route-note">${escape(pick(notice.message, lang))} <a href="${escape(notice.sourceUrl)}" target="_blank" rel="noopener">${label}</a></p>`;
+  }
+
   function productCard(it, lang, linkTitle = true) {
     const partner = it.partner || "klook";
     const title = pick(it.title || it.label, lang);
@@ -142,6 +152,7 @@
         </div>
         ${rating}
         ${body ? `<p class="affiliate-card-body">${body}</p>` : ""}
+        ${routeAdvisoryHtml(it, lang)}
         ${socialProofHtml(it, lang, false)}
         <div class="affiliate-card-foot">
           <a class="affiliate-offer-btn affiliate-card-cta" ${affAttrs(it, lang)}>${cta}</a>
@@ -171,7 +182,7 @@
     const b = D().blocks;
     const cards = list.filter((ex) => !ex.compact).map((ex) => experienceCard(ex, lang)).join("");
     const more = list.filter((ex) => ex.compact).map((ex) =>
-      `<a class="affiliate-browse-link" ${affAttrs(ex, lang)}><strong>${pick(ex.title, lang)}</strong><span>${pick(ex.body, lang)}</span></a>`).join("");
+      `<a class="affiliate-browse-link" ${affAttrs(ex, lang)}><strong>${pick(ex.title, lang)}</strong><span>${pick(ex.body, lang)}</span></a>${routeAdvisoryHtml(ex, lang)}`).join("");
     return `<section class="panel affiliate-experiences" aria-labelledby="affiliateExpTitle">
       <h2 class="affiliate-section-title" id="affiliateExpTitle">${pick(b.experiencesTitle, lang)}</h2>
       <p class="affiliate-block-lead">${pick(b.experiencesLead, lang)}</p>

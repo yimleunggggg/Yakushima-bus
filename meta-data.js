@@ -2,7 +2,7 @@
 const META_DATA = {
   "revision": "2026",
   "updatedAt": "2026-05-20",
-  "builtAt": "2026-10-10",
+  "builtAt": "2026-10-24",
   "holidays": [
     "2026-01-01",
     "2026-01-12",

@@ -1,7 +1,7 @@
 {
-  "revision": "2026-10-09",
-  "checkedAt": "2026-10-10",
-  "reviewAfter": "2026-10-16",
+  "revision": "2026-10-24",
+  "checkedAt": "2026-10-24",
+  "reviewAfter": "2026-10-31",
   "datePolicy": "validFrom on open-ended notices is the first verified observation used here, not a claim about the original incident date. An overdue review never reopens a suspended route.",
   "alerts": [
     {
@@ -11,8 +11,13 @@
         "shiratani",
         "matsubanda_shiratani"
       ],
-      "courseIds": ["taikoiwa"],
-      "alternativeCourseIds": ["janokuchi", "tachudake"],
+      "courseIds": [
+        "taikoiwa"
+      ],
+      "alternativeCourseIds": [
+        "janokuchi",
+        "tachudake"
+      ],
       "courseMessage": {
         "ja": "白谷への道路が通行止めのため、太鼓岩コースは現在入山できません。",
         "zh": "通往白谷的道路封闭，太鼓岩路线目前不可进入。",
@@ -22,9 +27,9 @@
         "shiratani"
       ],
       "validFrom": "2026-10-08",
-      "validTo": null,
-      "checkedAt": "2026-10-10",
-      "reviewAfter": "2026-10-16",
+      "validTo": "2026-10-17",
+      "checkedAt": "2026-10-24",
+      "reviewAfter": "2026-10-31",
       "sourceUrl": "https://yakukan.jp/topics/19316.html",
       "corroboratingUrl": "https://www.iwasaki-corp.com/",
       "message": {
@@ -40,9 +45,9 @@
         "matsubanda"
       ],
       "validFrom": "2026-10-09",
-      "validTo": null,
-      "checkedAt": "2026-10-09",
-      "reviewAfter": "2026-10-16",
+      "validTo": "2026-10-23",
+      "checkedAt": "2026-10-24",
+      "reviewAfter": "2026-10-31",
       "sourceUrl": "https://yakushima.co.jp/route_bus/",
       "message": {
         "ja": "まつばんだ交通の公式ページは終日運休と案内しています。種子島・屋久島交通とは別会社です。荒川登山バス自体の運休を意味しません。",
@@ -62,6 +67,52 @@
         "ja": "10/16〜28は橋梁点検による一部町道の通行止めがあります。千尋の滝方面を含む対象箇所・迂回路は公式案内をご確認ください。",
         "zh": "10月16–28日部分町道因桥梁检查封闭，涉及千寻瀑布方向；具体日期、路段和绕行以官方公告为准。",
         "en": "Some town roads close for bridge inspections Oct 16–28, including access toward Senpiro Falls. Check the official notice for each location, date and detour."
+      }
+    },
+    {
+      "id": "shiratani-reopened-partial-trails",
+      "status": "notice",
+      "routeIds": [
+        "shiratani"
+      ],
+      "courseIds": [
+        "taikoiwa"
+      ],
+      "stopIds": [
+        "shiratani"
+      ],
+      "validFrom": "2026-10-18",
+      "validTo": null,
+      "checkedAt": "2026-10-24",
+      "reviewAfter": "2026-10-31",
+      "sourceUrl": "https://www.iwasaki-corp.com/",
+      "corroboratingUrl": "https://y-rekumori.com/",
+      "message": {
+        "ja": "種子島・屋久島交通は白谷雲水峡線を10月18日から再開と案内。太鼓岩・奉行杉は通行可能ですが、園内の一部歩道は通行止めが続きます。出発前に運行・道路・歩道をそれぞれ確認してください。",
+        "zh": "种子岛·屋久岛交通公告白谷线路10月18日起恢复；太鼓岩与奉行杉路线可通行，园内仍有部分步道封闭。出发前分别核对公交、道路和步道状态。",
+        "en": "Taneyaku announced the Shiratani bus service resumed from Oct 18. Taiko-iwa and Bugyo-sugi routes are accessible, with some other trails still closed. Check buses, roads and trails separately before travel."
+      },
+      "courseMessage": {
+        "ja": "太鼓岩往復・奉行杉は通行可能。一部歩道の閉鎖が続いています。管理者の案内と当日の状況を確認してください。",
+        "zh": "太鼓岩往返与奉行杉路线可通行，部分步道仍封闭；请核对管理方公告及当日条件。",
+        "en": "Taiko-iwa and Bugyo-sugi routes are accessible; other trail sections remain closed. Check the manager’s notices and conditions."
+      }
+    },
+    {
+      "id": "matsubanda-shiratani-suspended",
+      "status": "suspended",
+      "routeIds": [
+        "matsubanda_shiratani"
+      ],
+      "validFrom": "2026-10-24",
+      "validTo": null,
+      "checkedAt": "2026-10-24",
+      "reviewAfter": "2026-10-31",
+      "sourceUrl": "https://yakushima.co.jp/route_bus/",
+      "message": {
+        "ja": "まつばんだ交通の白谷雲水峡線は公式時刻欄で運休表示。種子島・屋久島交通の再開案内とは別会社です。まつばんだ全路線の運休を意味しません。",
+        "zh": "松叶交通白谷线路的官方时刻栏仍标注停运；它与已公告恢复的种子岛·屋久岛交通是不同公司，不代表松叶所有线路停运。",
+        "en": "Matsubanda’s Shiratani timetable still shows suspension. This is a different operator from the reopened Taneyaku service and does not mean every Matsubanda route is suspended."
       }
     }
   ]

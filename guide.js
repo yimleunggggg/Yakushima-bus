@@ -606,7 +606,7 @@
     applyPageHead();
     els.sourceLabel.textContent = t("source");
     const updated = data.meta?.updatedAt;
-    els.updated.textContent = updated ? `${t("updated")} ${updated}` : "";
+    els.updated.textContent = updated ? `${t("updated")} ${TransportStatus.month(window.SEO_PAGES?.['/map/']?.modified || updated, lang)}` : "";
     renderFilters(data);
     renderPdfLayers(data);
     renderSpaGuide(data);

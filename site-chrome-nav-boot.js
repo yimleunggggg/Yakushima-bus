@@ -8,12 +8,14 @@
     { href: "/fare/", key: "navMap", active: /^\/fare\/?$/i },
     { href: "/ferry/", key: "navAccess", active: /^\/ferry\/?$/i },
     { href: "/trekking/", key: "navTrek", active: /^\/trekking\/?$/i },
-    { href: "/intro/", key: "navIntro", active: /^\/intro\/?$/i },
+    { href: "/guides/", key: "navTravelGuides", active: /^\/guides(?:\/|$)/i },
   ];
 
   const NAV_UI = {
     ja: {
       navAria: "メインメニュー",
+      navTravelGuides: "旅行ガイド",
+      navTravelGuidesTitle: "旅行ガイド",
       navGuide: "マップ",
       navGuideTitle: "スポット地図",
       navTime: "時刻表",
@@ -29,6 +31,8 @@
     },
     zh: {
       navAria: "主菜单",
+      navTravelGuides: "旅行攻略",
+      navTravelGuidesTitle: "旅行攻略",
       navGuide: "地图",
       navGuideTitle: "便利设施地图",
       navTime: "时刻表",
@@ -44,6 +48,8 @@
     },
     en: {
       navAria: "Main menu",
+      navTravelGuides: "Guides",
+      navTravelGuidesTitle: "Guides",
       navGuide: "Map",
       navGuideTitle: "Island POI map",
       navTime: "Times",

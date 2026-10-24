@@ -13,7 +13,10 @@ function runtime(){
 }
 test('suspension does not silently reopen when a review is overdue',()=>{
  const {window:w}=runtime();
- for(const date of ['2026-10-09','2026-10-17','2027-04-01']) assert.equal(w.TransportStatus.blocked({id:'shiratani',operator:'taneyaku'},date),true);
+ for(const date of ['2026-10-24','2026-11-01','2027-04-01']) assert.equal(w.TransportStatus.blocked({id:'matsubanda_shiratani',operator:'matsubanda'},date),true);
+ assert.equal(w.TransportStatus.blocked({id:'shiratani',operator:'taneyaku'},'2026-10-17'),true);
+ assert.equal(w.TransportStatus.blocked({id:'shiratani',operator:'taneyaku'},'2026-10-18'),false);
+ assert.equal(w.TransportStatus.forCourse('taikoiwa','2026-10-24').some(a=>a.status==='suspended'),false);
  assert.equal(w.TransportStatus.blocked({id:'arakawa',operator:'taneyaku'},'2026-10-09'),false);
 });
 test('unknown or expired bus validity fails closed in both search and stop departures',()=>{
@@ -90,4 +93,13 @@ test('without-car route table stores pairs only and shares timetable and fare so
   assert.ok(w.TransportStatus && row.from && row.to);
   assert.ok(!('buses' in row) && !('hours' in row) && !('fare' in row));
  }
+});
+
+test('October reopening restores Taneyaku without reopening Matsubanda Shiratani',()=>{
+ const {core,window:w}=runtime();
+ core.japanParts=()=>({iso:'2026-10-24',weekday:6});
+ assert.ok(core.findTrips('shiratani','miyanoura_port','saturday').length>0);
+ assert.equal(w.TransportStatus.blocked({id:'matsubanda_shiratani',operator:'matsubanda'},'2026-10-24'),true);
+ assert.equal(w.TransportStatus.forStop('shiratani','2026-10-24').some(a=>a.status==='suspended'),false);
+ assert.ok(w.TransportStatus.forCourse('taikoiwa','2026-10-24').some(a=>a.status==='notice'));
 });

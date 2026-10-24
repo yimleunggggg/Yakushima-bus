@@ -85,6 +85,7 @@ def main():
         subprocess.check_call([sys.executable, str(ROOT / "scripts" / script)], cwd=ROOT)
 
     if args.validate:
+        run("check_seo.py")
         validate()
         subprocess.check_call([sys.executable, str(ROOT / "scripts" / "check_transport_data.py"), "--strict-freshness"], cwd=ROOT)
         for script in ("audit_october_timetable.py", "audit_pdf_trips.py", "audit_presets.py", "audit_segment_bounds.py"):
@@ -103,6 +104,7 @@ def main():
             run("build_access_data.py")
         run("build_sources_data.py")
         run("build_transport_data.py")
+        run("build_seo.py")
         run("sync_transport_assets.py")
         if all_:
             validate()

@@ -9,6 +9,9 @@ function runtime() {
   vm.createContext(c);
   for (const file of ['transport-data.js', 'transport-status.js', 'data.js', 'meta-data.js', 'app-core.js', 'access-data.js', 'access-schedule.js', 'partner-data.js', 'partner-ui.js']) vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8').replace('AppCore.applyDocLang(AppCore.getLang());',''),c);
   vm.runInContext('this.core=AppCore;this.bus=BUS_DATA;this.access=ACCESS_DATA;this.schedule=AccessSchedule;',c);
+  // These regression fixtures describe the recorded October 9 closure.
+  const datedAlerts = c.window.TransportStatus.alerts;
+  c.window.TransportStatus.alerts = (date='2026-10-09') => datedAlerts(date);
   return c;
 }
 test('nearby port matches collapse to four real return buses on all day types', () => {
@@ -109,7 +112,7 @@ test('only verified Klook products show dated booking and review evidence', () =
     assert.ok(tourHtml.includes(booked));
     assert.ok(tourHtml.includes(reviews));
     assert.equal((tourHtml.match(/affiliate-social-proof/g)||[]).length,1);
-    assert.match(c.window.AffiliateUI.ferryBottomHtml(lang),/2026-10-11/);
+    assert.match(c.window.AffiliateUI.ferryBottomHtml(lang),lang==='en'?/Oct 2026/:/2026年10月/);
   }
   assert.doesNotMatch(c.window.AffiliateUI.experiencesSectionHtml('zh','without-car'),/人预订/);
 });
@@ -149,11 +152,12 @@ test('travel guide groups sourced offers and withholds closed Shiratani booking 
   assert.doesNotMatch(fs.readFileSync(path.join(root,'trekking/index.html'),'utf8'),/trekAffiliatePanel/);
 });
 
-test('current Shiratani suspension hides scheduled trips without hiding Arakawa service', () => {
+test('historical Shiratani suspension hides scheduled trips without hiding Arakawa service', () => {
   const c = runtime();
+  c.core.japanParts = () => ({iso:'2026-10-09',weekday:5});
   const { core, bus } = c;
   assert.equal(c.window.TransportStatus.timetableAvailable(), true);
-  assert.equal(c.window.TransportStatus.blocked(bus.routes.find(r=>r.id==='shiratani')), true);
+  assert.equal(c.window.TransportStatus.blocked(bus.routes.find(r=>r.id==='shiratani'),'2026-10-09'), true);
   assert.equal(core.findTrips('shiratani', 'miyanoura_port', 'weekday').length, 0);
   assert.ok(core.findTrips('yakusugi_museum', 'arakawa_trailhead', 'weekday').length > 0);
   const matsubanda=bus.routes.find(r=>r.id.startsWith('matsubanda'));

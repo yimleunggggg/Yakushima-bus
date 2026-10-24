@@ -6,6 +6,14 @@
   const pick = (value, lang) => value?.[lang] || value?.ja || '';
   const api = {
     today,
+    month(value, lang = 'ja') {
+      const match = String(value || '').match(/^(\d{4})-(\d{2})(?:-\d{2})?$/);
+      if (!match) return value || '—';
+      const [, year, rawMonth] = match;
+      const number = Number(rawMonth);
+      if (number < 1 || number > 12) return value;
+      return lang === 'en' ? `${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][number - 1]} ${year}` : `${year}年${number}月`;
+    },
     alerts(date = today()) { return (data()?.alerts || []).filter(a => active(a, date)); },
     blocked(route, date = today()) {
       return !data() || this.alerts(date).some(a => a.status === 'suspended'
@@ -65,7 +73,7 @@
         p.append(link); body.append(p);
       }
       const stamp = document.createElement('small');
-      stamp.textContent = pick({ ja: '最終確認', zh: '最近核查', en: 'Last checked' }, lang) + ': ' + (data()?.checkedAt || '—');
+      stamp.textContent = pick({ ja: '最終確認', zh: '最近核查', en: 'Last checked' }, lang) + ': ' + this.month(data()?.checkedAt, lang);
       if (data()?.reviewAfter < today()) stamp.textContent += ' · ' + pick({ ja: '再確認が必要です。運休の解除は未確認です。', zh: '已到复核期，尚未确认停运解除。', en: 'Recheck due; suspended services are not confirmed reopened.' }, lang);
       body.append(stamp);
       box.append(body);

@@ -14,6 +14,21 @@
 
 三语站名：日文为主，中/英来自目录与英文 PDF 对照。
 
+## 三语旅行攻略
+
+`/guides/`提供屋久岛与鹿儿岛攻略目录，JA / ZH / EN可在全站切换并跨页保留。正文维护在`sources/guides.json`，由`scripts/build_guides.py`配合`scripts/build_seo.py`生成；不要分别手改三份文章。无车行程整合在`/without-car/`，住宿区域、雨天备选、鹿儿岛半天分别有独立攻略地址。每篇附官方来源，时刻和运行事实继续从原有交通底表读取。
+
+内容修改后运行：
+
+```bash
+python3 scripts/build_seo.py
+python3 scripts/sync_transport_assets.py
+bash scripts/seo_check.sh
+python3 scripts/build_all.py --validate
+```
+
+页面摘要维护于`sources/seo-pages.json`；只对实质修改的页面更新`modified`。介绍页保持noindex，仅预览Demo不进入sitemap。更新标签显示月份，底表、JSON-LD、sitemap和实际行程日期保留精确值。发布不能绕过交通复核门禁。
+
 ## 文件
 
 | 文件 | 作用 |
