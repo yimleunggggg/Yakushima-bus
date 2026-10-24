@@ -4,7 +4,7 @@ const BUS_DATA = {
     "version": "2026-10-01",
     "validFrom": "2026-10-01",
     "validTo": "2026-11-30",
-    "updatedAt": "2026-10-09",
+    "updatedAt": "2026-10-24",
     "sources": {
       "taneyaku": "https://yakukan.jp/wp-content/uploads/2026/09/2b161555d2a768da24648735b71d8390.pdf",
       "taneyakuEn": "https://yakukan.jp/wp-content/uploads/2026/09/3791b74916c1e22726378f29c90f1568.pdf",

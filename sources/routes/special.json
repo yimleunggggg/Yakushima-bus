@@ -461,7 +461,7 @@
     }
   ],
   "sourceRevision": "2026-10-01",
-  "checkedAt": "2026-10-09",
+  "checkedAt": "2026-10-24",
   "sourceKey": "taneyaku",
-  "verification": "All Shiratani, Kigen and Arakawa cells visually compared to official 2026-10-01 Japanese PDF. Planned timetable only; transport-status.json overrides availability."
+  "verification": "Rechecked October 2026 JA/EN operator PDFs on 2026-10-24, including all Shiratani, Kigen and Arakawa cells. PDF revision remains 2026-10-01; reopening is recorded separately in transport-status.json."
 }

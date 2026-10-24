@@ -1,52 +1,43 @@
-# Yakushima Bus / 屋久岛公交查询 (yakushimabus.com)
+# YakuBus / Yakushima Bus / 屋久島バス / 屋久岛公交
 
-> Independent trilingual bus timetable and island travel tool for Yakushima (Kagoshima, Japan). Mobile-first: next bus, fares, ferry access, POI map, trekking refs. Data from official operator PDFs; not affiliated with Tanegashima Yakushima Kotsu.
+> Independent trilingual transport tool for Yakushima, Kagoshima, Japan. Not the bus or ferry operator.
 
 ## Pages
 
-- [Bus timetable & next departure](https://yakushimabus.com/): Search 48 stops, day types (weekday/Sat/sun-holiday), next departure in JST, presets (Miyanoura–Anbo, Shiratani, Arakawa trailhead Mar–Nov). Official PDF embedded.
-- [Routes & fares](https://yakushimabus.com/fare/): Official route map PDF (JA/EN), mobile image preview, stop picker, adult one-way fare lookup, day pass sales points.
-- [Island POI map](https://yakushimabus.com/map/): Historic sites, hot springs, beaches, souvenirs, supermarkets, pharmacies, ATMs; verified bus stops with navigation and timetable links.
-- [Ferry & island access](https://yakushimabus.com/ferry/): Jetfoil and ferry Kagoshima–Yakushima, airport bus, fares and seasonal notes.
-- [Trekking reference](https://yakushimabus.com/trekking/): Jomon Sugi, Taikoiwa, Miyanoura-dake courses with bus connections and official PDFs.
-- [Travel without a car](https://yakushimabus.com/without-car/): How to cover Yakushima by bus and ferry; links to all tools above.
-- [About this site](https://yakushimabus.com/about/): Maintainer, data sources, contact (yimleung.ly@gmail.com).
-- [Product intro & demo video](https://yakushimabus.com/intro/): Feature overview (noindex; for humans sharing the site).
+- [Yakushima Bus Timetable October 2026 | YakuBus](https://yakushimabus.com/): Find the next bus between Miyanoura Port, Yakushima Airport and Anbo. Check weekday, Saturday and holiday schedules, official PDF revisions, suspension notices, fares and trailhead connections. Independent travel tool.
+- [Yakushima Bus Map, Fares & Day Passes | YakuBus](https://yakushimabus.com/fare/): View official Yakushima bus route maps and fare PDFs. Select stops for adult one-way fare estimates, day pass information and suspended-route notices. Fare-table revisions are separate from timetable revisions.
+- [Yakushima Ferry & Jetfoil Times from Kagoshima | YakuBus](https://yakushimabus.com/ferry/): Compare Toppy/Rocket jetfoils and Ferry Yakushima 2 from Kagoshima and Ibusuki. Check date-specific seasonal schedules, fares, planned cancellations, official booking links and onward buses from Miyanoura or Anbo.
+- [Yakushima Map: Hot Springs, Shops & Bus Stops | YakuBus](https://yakushimabus.com/map/): Explore Yakushima hot springs, beaches, historic sites, supermarkets, pharmacies, ATMs and bus stops. Read place descriptions, open navigation and follow links to bus timetables. Check road notices for mountain destinations.
+- [Yakushima Travel & Hikes: Shiratani, Jomon Sugi & Buses | YakuBus](https://yakushimabus.com/trekking/): Compare Yakushima tours, stays and hiking routes. Shiratani has partially reopened and Taneyaku buses have resumed; some trail sections remain closed. Check official notices, trailhead connections and booking conditions.
+- [Yakushima Without a Car: Bus & Ferry Guide | YakuBus](https://yakushimabus.com/without-car/): Travel Yakushima without renting a car. Find port and airport buses, planned weekday services, fare estimates, day passes and trailhead transfers. Check suspensions and conditional departures before planning your trip.
+- [About YakuBus: Yakushima Transport Sources & Contact](https://yakushimabus.com/about/): YakuBus is an independent Yakushima bus, fare and ferry information site. Find official operator PDFs, tourism association sources and contact details. Planned timetables and temporary service suspensions are recorded separately.
 
-## Languages
+## Data scope and dates
 
-Japanese (primary), Simplified Chinese, English — `?lang=ja|zh|en` on any page; stop names always show Japanese for on-site recognition.
+Timetable revision: Oct 2026; fare-table revision: Mar 2024. Sources checked: Oct 2026. Recheck official information for the travel day. Planned departures do not guarantee same-day service.
+All times use Japan Standard Time (JST, UTC+9). Choose the actual travel day and check each conditional service note.
+The internal display horizon is a conservative review policy, not an official PDF expiry date.
+Japanese, Simplified Chinese and English are selected using ?lang=ja, ?lang=zh or ?lang=en.
 
-## Official data sources
+## Official sources
 
-- Bus timetables: Tanegashima Yakushima Kotsu / Yakushima Tourism Association PDFs (yakukan.jp), Mar 2026 revision
-- Fares: official route map fare table (Mar 2024 revision; estimates for some stops)
-- Ferry: TYKousoku / operator sites (see access page)
+- [taneyaku](https://yakukan.jp/wp-content/uploads/2026/09/2b161555d2a768da24648735b71d8390.pdf) — revision 2026-10-01
+- [taneyakuEn](https://yakukan.jp/wp-content/uploads/2026/09/3791b74916c1e22726378f29c90f1568.pdf) — revision 2026-10-01
+- [fare](https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin.pdf) — revision 2024-03-01
+- [notice](https://yakukan.jp/on-island.html)
+- [TaneYaku Jetfoil (Toppy/Rocket)](https://www.tykousoku.jp/fare_time/)
+- [Ferry Yakushima 2 (Orita Steamship)](https://ferryyakusima2.com/timetable)
+- [Yakushima day pass](https://www.iwasaki-corp.com/kagoshima_kotsu/route-bus/yakushima-free-pass/)
 
-## Coverage
+## Recorded service notices — recheck before travel
 
-Yakushima Island buses: Miyanoura Port, Anbo, Shiratani Unsuikyo, Yakusugi Museum, Arakawa trail bus (Mar–Nov), Matsubanda winter routes.
+These are dated source records, not live confirmation. An overdue review does not establish that a suspended route has reopened.
 
-## Key facts (weekday · Mar 2026 timetable · adult one-way)
-
-| Route | Buses | First–last dep. | Fare |
-|-------|-------|-----------------|------|
-| Miyanoura Port → Yakushima Airport | 10 | 05:50–15:20 | ¥590 |
-| Yakushima Airport → Miyanoura Port | 9 | 06:06–19:06 | ¥590 |
-| Miyanoura Port → Shiratani Unsuikyo | 4 | 08:20–15:30 | ¥530 |
-| Shiratani → Miyanoura Port | 4 | 09:00–16:10 | ¥530 |
-| Miyanoura Port → Anbo | 9 | 08:00–15:20 | ¥870 |
-| Anbo → Yakusugi Museum | 3 | 05:23–13:38 | ¥240 |
-
-- Day pass (reference): ¥2,500 (1 day), ¥4,000 (3 days), ¥5,000 (4 days); child half fare.
-- Jomon Sugi: route bus to Yakusugi Museum, then Arakawa shuttle Mar–Nov (separate fare).
-- Fares from official table Mar 2024 revision. Independent site — not the bus operator.
-
-## Contact
-
-- Email: yimleung.ly@gmail.com
-- Site: https://yakushimabus.com/
+- Shiratani has partially reopened: Taiko-iwa, the moss forest and Bugyosugi routes are accessible. Taneyaku buses have resumed. Parts of the Yayoi-sugi course and other sections remain closed. Checked 2026-10-24; review due 2026-10-31; notice scope 2026-10-18 to until further notice. Source: https://y-rekumori.com/
+- Matsubanda still lists its own Shiratani route as suspended. This is separate from the reopened Taneyaku service. Checked 2026-10-24; review due 2026-10-31; notice scope 2026-10-09 to until further notice. Source: https://yakushima.co.jp/route_bus/
+- Some town roads close for bridge inspections Oct 16–28, including access toward Senpiro Falls. Check the official notice for each location, date and detour. Checked 2026-10-09; review due 2026-10-29; notice scope 2026-10-09 to 2026-10-28. Source: https://yakukan.jp/topics/19545.html
 
 ## Optional
 
-Full sitemap: https://yakushimabus.com/sitemap.xml
+- [Sitemap](https://yakushimabus.com/sitemap.xml)
+- [Contact and provenance](https://yakushimabus.com/about/)

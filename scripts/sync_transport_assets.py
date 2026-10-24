@@ -4,7 +4,7 @@ import argparse,hashlib,re
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 PAGES=['index.html']+[p+'/index.html' for p in ['fare','ferry','map','trekking','intro','about','without-car']]
-ASSETS={'data.js','meta-data.js','map-data.js','access-data.js','access-schedule.js','sources-data.js','transport-data.js','transport-status.js','pdf-viewer.js','app-core.js','guide.js','site-chrome.js','seo-head-zh.js','intro-data.js','partner-data.js','partner-ui.js','affiliate-data.js','affiliate-ui.js','styles.css','trekking-data.js','without-car-data.js'}
+ASSETS={'seo-data.js','data.js','meta-data.js','map-data.js','access-data.js','access-schedule.js','sources-data.js','transport-data.js','transport-status.js','pdf-viewer.js','app-core.js','guide.js','site-chrome.js','seo-head-zh.js','intro-data.js','partner-data.js','partner-ui.js','affiliate-data.js','affiliate-ui.js','styles.css','trekking-data.js','without-car-data.js'}
 def synced(text):
     def replace(m):
         filename=m[2].lstrip('/')

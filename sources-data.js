@@ -22,9 +22,9 @@ window.SOURCES_DATA = {
           "sourceRef": "bus:taneyaku",
           "url": "https://yakukan.jp/wp-content/uploads/2026/09/2b161555d2a768da24648735b71d8390.pdf",
           "note": {
-            "ja": "改定 2026-10-01 · 確認 2026-10-09",
-            "zh": "改订 2026-10-01 · 核查 2026-10-09",
-            "en": "Revised 2026-10-01 · Checked 2026-10-09"
+            "ja": "改定 2026-10-01 · 確認 2026-10-24",
+            "zh": "改订 2026-10-01 · 核查 2026-10-24",
+            "en": "Revised 2026-10-01 · Checked 2026-10-24"
           }
         },
         {
@@ -36,9 +36,9 @@ window.SOURCES_DATA = {
           "sourceRef": "bus:taneyakuEn",
           "url": "https://yakukan.jp/wp-content/uploads/2026/09/3791b74916c1e22726378f29c90f1568.pdf",
           "note": {
-            "ja": "改定 2026-10-01 · 確認 2026-10-09",
-            "zh": "改订 2026-10-01 · 核查 2026-10-09",
-            "en": "Revised 2026-10-01 · Checked 2026-10-09"
+            "ja": "改定 2026-10-01 · 確認 2026-10-24",
+            "zh": "改订 2026-10-01 · 核查 2026-10-24",
+            "en": "Revised 2026-10-01 · Checked 2026-10-24"
           }
         },
         {

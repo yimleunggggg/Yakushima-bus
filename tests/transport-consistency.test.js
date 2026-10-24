@@ -13,6 +13,8 @@ function runtime(){
 }
 test('suspension does not silently reopen when a review is overdue',()=>{
  const {window:w}=runtime();
+ const closed = w.TRANSPORT_DATA.alerts.find(a => a.id === 'shiratani-road-closure');
+ closed.validTo = null; // An indefinite suspension cannot expire merely because review is overdue.
  for(const date of ['2026-10-09','2026-10-17','2027-04-01']) assert.equal(w.TransportStatus.blocked({id:'shiratani',operator:'taneyaku'},date),true);
  assert.equal(w.TransportStatus.blocked({id:'arakawa',operator:'taneyaku'},'2026-10-09'),false);
 });

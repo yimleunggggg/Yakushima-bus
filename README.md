@@ -98,3 +98,10 @@ git push origin main   # 推送后自动发布
 ```
 
 DNS：根域名 4 条 A 记录 → GitHub Pages IP（见部署文档）。
+
+
+## 每次修改的 SEO / GEO 收尾
+
+页面与交通信息修改后，运行 `python3 scripts/build_seo.py`、`python3 scripts/sync_transport_assets.py`、`bash scripts/seo_check.sh` 和 `python3 scripts/build_all.py --validate`。SEO 文案源为 `sources/seo-pages.json`，只在页面有实质变化时更新该页 `modified`；交通事实仍维护于既有底表。三语元数据、来源摘要、sitemap 与 `llms.txt` 由脚本生成，介绍页保持 noindex。
+
+前端更新标识显示月份，底表和机器可读日期保持精确。道路或线路恢复时，必须区分运营商与仍封闭的路段，并一起复核查车、票价、地图、攻略和分销提示。相关 PR/main 更新通过 `.github/workflows/seo-verify.yml` 检查。

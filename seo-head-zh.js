@@ -1,57 +1,41 @@
-/** 语言为 zh 时同步 <title> / description / og（利于百度等中文爬虫） */
+/** Shared metadata for JA/ZH/EN; filename retained for existing page references. */
 (function () {
-  if (window.SiteLang?.current !== "zh") return;
+  const path = (location.pathname.replace(/\/+$/, "") || "") + "/";
+  const page = window.SEO_PAGES?.[path];
+  if (!page) return;
 
-  const path = location.pathname.replace(/\/+$/, "") || "/";
-  const META = {
-    "/": {
-      title: "屋久岛公交时刻表 2026最新｜下一班车查询",
-      description:
-        "屋久岛巴士官方时刻表2026最新版，依据官方PDF免费查询。平日/周末祝日，宫之浦港、空港、安房、白谷、荒川登山口等全线路下一班车；路线图、区间票价、上岛船运见专用页。中日英三语，手机可用。",
-    },
-    "/fare": {
-      title: "屋久岛公交路线图·票价 2026最新｜区间票价查询",
-      description:
-        "屋久岛巴士官方路线图与区间票价2026最新。宫之浦港、白谷、自然馆、荒川登山口；选站查成人单程票价。",
-    },
-    "/map": {
-      title: "屋久岛便利指南地图｜温泉·海滩·超市·景点",
-      description:
-        "屋久岛名胜古迹、温泉、海滩、纪念品、超市药店、ATM 地图；已核实公交站，可导航并查时刻表。",
-    },
-    "/ferry": {
-      title: "屋久岛船运上岛｜鹿儿岛↔屋久岛 高速船与渡轮",
-      description:
-        "鹿儿岛、指宿至宫之浦港高速船与渡轮时刻票价，2026夏季班期。种子屋久航线、屋久岛2号、おがわ丸等预约乘船参考。上岛后公交时刻表、路线图、票价同站查询。中日英三语。",
-    },
-    "/without-car": {
-      title: "屋久岛岛内出行指南 2026｜公交·船运与游览",
-      description:
-        "屋久岛岛内出行参考：公交时刻表、路线图、票价、上岛船运；附当地体验与一日游参考。",
-    },
-    "/trekking": {
-      title: "屋久岛旅行与体验｜精选行程、住宿与登山路线",
-      description:
-        "屋久岛环岛巴士、向导徒步、南部温泉住宿与鹿儿岛停留；查看行程、平台评价、登山路线和公交接驳。",
-    },
-    "/about": {
-      title: "关于屋久岛公交查询站｜数据来源与联系",
-      description: "独立整理的屋久岛公交时刻表、票价与上岛信息；数据来源与联系方式。",
-    },
-  };
+  function sync(lang) {
+    const selected = page[lang] ? lang : "ja";
+    const [title, description] = page[selected];
+    const url = "https://yakushimabus.com" + path + "?lang=" + selected;
+    document.title = title;
+    const values = {
+      'meta[name="description"]': description,
+      'meta[property="og:title"]': title,
+      'meta[property="og:description"]': description,
+      'meta[property="og:url"]': url,
+      'meta[name="twitter:title"]': title,
+      'meta[name="twitter:description"]': description,
+    };
+    for (const [selector, value] of Object.entries(values)) {
+      document.querySelector(selector)?.setAttribute("content", value);
+    }
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", url);
+    document.querySelectorAll("[data-seo-lang]").forEach(el => {
+      el.hidden = el.dataset.seoLang !== selected;
+    });
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(el => {
+      const data = JSON.parse(el.textContent);
+      for (const node of data["@graph"] || [data]) {
+        if (["WebPage", "AboutPage", "WebApplication"].includes(node["@type"])) {
+          Object.assign(node, { name: title, description, url, inLanguage: selected === "zh" ? "zh-CN" : selected });
+        }
+      }
+      el.textContent = JSON.stringify(data);
+    });
+  }
 
-  const m = META[path];
-  if (!m) return;
-
-  document.title = m.title;
-  const desc = document.querySelector('meta[name="description"]');
-  if (desc) desc.setAttribute("content", m.description);
-  const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle) ogTitle.setAttribute("content", m.title);
-  const ogDesc = document.querySelector('meta[property="og:description"]');
-  if (ogDesc) ogDesc.setAttribute("content", m.description);
-  const twTitle = document.querySelector('meta[name="twitter:title"]');
-  if (twTitle) twTitle.setAttribute("content", m.title);
-  const twDesc = document.querySelector('meta[name="twitter:description"]');
-  if (twDesc) twDesc.setAttribute("content", m.description);
+  sync(window.SiteLang?.current || "ja");
+  document.addEventListener("DOMContentLoaded", () => sync(window.SiteLang?.current || "ja"));
+  window.addEventListener("yakushima-bus-lang", event => sync(event.detail?.lang || window.SiteLang?.current || "ja"));
 })();

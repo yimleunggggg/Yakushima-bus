@@ -9,6 +9,9 @@ function runtime() {
   vm.createContext(c);
   for (const file of ['transport-data.js', 'transport-status.js', 'data.js', 'meta-data.js', 'app-core.js', 'access-data.js', 'access-schedule.js', 'partner-data.js', 'partner-ui.js']) vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8').replace('AppCore.applyDocLang(AppCore.getLang());',''),c);
   vm.runInContext('this.core=AppCore;this.bus=BUS_DATA;this.access=ACCESS_DATA;this.schedule=AccessSchedule;',c);
+  const recordedAlerts = c.window.TransportStatus.alerts.bind(c.window.TransportStatus);
+  c.window.TransportStatus.alerts = () => recordedAlerts('2026-10-10');
+  c.core.japanParts = () => ({iso:'2026-10-10',weekday:6});
   return c;
 }
 test('nearby port matches collapse to four real return buses on all day types', () => {
@@ -109,7 +112,8 @@ test('only verified Klook products show dated booking and review evidence', () =
     assert.ok(tourHtml.includes(booked));
     assert.ok(tourHtml.includes(reviews));
     assert.equal((tourHtml.match(/affiliate-social-proof/g)||[]).length,1);
-    assert.match(c.window.AffiliateUI.ferryBottomHtml(lang),/2026-10-11/);
+    assert.match(c.window.AffiliateUI.ferryBottomHtml(lang), lang === 'en' ? /Oct 2026/ : /2026年10月/);
+    assert.doesNotMatch(c.window.AffiliateUI.ferryBottomHtml(lang),/2026-10-11/);
   }
   assert.doesNotMatch(c.window.AffiliateUI.experiencesSectionHtml('zh','without-car'),/人预订/);
 });
@@ -149,7 +153,7 @@ test('travel guide groups sourced offers and withholds closed Shiratani booking 
   assert.doesNotMatch(fs.readFileSync(path.join(root,'trekking/index.html'),'utf8'),/trekAffiliatePanel/);
 });
 
-test('current Shiratani suspension hides scheduled trips without hiding Arakawa service', () => {
+test('historical Shiratani suspension hides scheduled trips without hiding Arakawa service', () => {
   const c = runtime();
   const { core, bus } = c;
   assert.equal(c.window.TransportStatus.timetableAvailable(), true);

@@ -1,0 +1,30 @@
+name: SEO and GEO verification
+
+on:
+  pull_request:
+    paths: ['*.html', '*/index.html', '*.js', '*.css', '*.xml', 'llms.txt', 'robots.txt', 'sources/**', 'scripts/**', 'tests/**', '.github/workflows/seo-verify.yml']
+  push:
+    branches: [main]
+    paths: ['*.html', '*/index.html', '*.js', '*.css', '*.xml', 'llms.txt', 'robots.txt', 'sources/**', 'scripts/**', 'tests/**', '.github/workflows/seo-verify.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify crawlable content, metadata, language URLs and generated facts
+        run: bash scripts/seo_check.sh
+      - name: Verify language switches update metadata and structured data
+        run: node --test tests/seo-metadata.test.js tests/shiratani-reopening.test.js
+      - name: Verify first-build metadata stability
+        run: python tests/test_seo_generator.py
