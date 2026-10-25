@@ -4364,3 +4364,15 @@ button,input,select,textarea { font-family:inherit; }
 .guide-page-intro-lead,.intro-hero-copy p,.header-sub { font-size:var(--text-body); line-height:1.75; }
 .guide-chip { font-size:var(--text-label); min-height:36px; padding:6px 10px; }
 .guide-list-name { font-size:var(--heading-item); }
+
+/* Supplementary references are one quiet group, below the page's main task. */
+.page-reference-group { margin:24px 0 0; padding:8px 16px; background:var(--surface-tint); border:1px solid var(--border); border-radius:var(--radius); color:var(--muted); font-size:var(--text-label); }
+.page-reference-group :is(.panel,.aux-block,.guide-related) { margin:0; padding:0; border:0; background:transparent; box-shadow:none; }
+.page-reference-group :is(.seo-evidence,#guideRelated) { border-top:1px solid var(--border); }
+.page-reference-group>:first-child { border-top:0; }
+.page-reference-group :is(.aux-summary,.guide-related>summary) { min-height:44px; padding:12px 0; color:var(--muted); font-size:var(--text-label); font-weight:500; line-height:1.6; cursor:pointer; }
+.page-reference-group .aux-body { padding:0 0 12px; }
+.page-reference-group :is(p,li) { font-size:var(--text-label); line-height:1.8; }
+.page-reference-group .trek-disclaimer { margin:12px 0 6px; }
+.page-reference-group .trek-source { margin:0 0 12px; }
+.page-reference-group summary:focus-visible { outline:2px solid var(--primary); outline-offset:2px; }

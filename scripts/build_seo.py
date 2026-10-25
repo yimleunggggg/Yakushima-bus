@@ -98,7 +98,7 @@ def evidence_html(path, page, manifest, status, include_alerts):
         parts.append('<p>' + ' · '.join(f'<a href="{escape(url)}">{escape(label)}</a>' for url, label in source_links) + '</p>')
         parts.append('<p>' + ' · '.join(f'<a href="{url}?lang={lang}">{label}</a>' for url, label in links) + '</p>')
         hidden = '' if lang == 'ja' else ' hidden'
-        sections.append(f'<div data-seo-lang="{lang}" lang="{tag}"{hidden}><h3 class="page-section-title">{titles[lang]}</h3>' + ''.join(parts) + '</div>')
+        sections.append(f'<div data-seo-lang="{lang}" lang="{tag}"{hidden}>' + ''.join(parts) + '</div>')
     summaries = ''.join(f'<span data-seo-lang="{lang}" lang="{tag}"' + ('' if lang == 'ja' else ' hidden') + f'>{titles[lang]}</span>' for lang, tag in LANGS.items())
     return f'{START}\n    <details class="aux-block seo-evidence"><summary class="aux-summary">{summaries}</summary><div class="aux-body">' + ''.join(sections) + f'</div></details>\n    {END}'
 

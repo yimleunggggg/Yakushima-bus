@@ -52,7 +52,7 @@ def article(g,L,data,embedded=False):
    body+=booking_checklist(s['paragraphs'][0],L)+''.join('<p>'+e(p)+'</p>' for p in s['paragraphs'][1:])
   else:body+=''.join('<p>'+e(p)+'</p>' for p in s['paragraphs'])
   body+='</section>'
- body+=f'<aside class="guide-note">{e(c["notice"])}</aside>'+actions(L)
+ body+=f'<section class="guide-tools"><h{3 if embedded else 2}>{u["tools"]}</h{3 if embedded else 2}><p>{e(c["notice"])}</p>'+actions(L)+'</section>'
  body+=f'<details class="guide-sources"><summary>{c["sources"]}</summary><p>{e(c["sourceNote"])}</p>'
  if g['area']=='kagoshima':body+='<p>'+e(c['cityNote'])+'</p>'
  body+='<ul>'+''.join(f'<li><a href="{e(data["sources"][k]["url"])}" data-guide-source="{k}">{e(data["sources"][k]["label"][L])} ↗</a></li>' for k in g['sources'])+'</ul></details></div></div></article>'

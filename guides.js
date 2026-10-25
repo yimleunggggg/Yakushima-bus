@@ -37,6 +37,13 @@
     document.querySelector('.travel-guide-page #langSwitch')?.addEventListener('click',e=>{
       const b=e.target.closest('button[data-lang]');if(b && labels[b.dataset.lang]) AppCore.setLang(b.dataset.lang);
     });
+    // Keep supplementary references together, below the primary page task.
+    const footer=document.querySelector('.app-footer');
+    const supplements=[...document.querySelectorAll('.trek-reference-resources,.trek-disclaimer,.trek-source,.seo-evidence,#guideRelated')];
+    if(footer && supplements.length){
+      const group=document.createElement('aside');group.className='page-reference-group';
+      footer.before(group);supplements.forEach(el=>group.append(el));
+    }
     sync();
     document.addEventListener('click',e=>{
       const a=e.target.closest('[data-guide-source], [data-guide-link], .guide-card');if(!a)return;
