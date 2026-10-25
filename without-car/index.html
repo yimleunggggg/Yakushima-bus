@@ -58,8 +58,8 @@
   ]
 }
   </script>
-  <link rel="preload" href="/styles.css?v=697e31773584" as="style">
-  <link rel="stylesheet" href="/styles.css?v=697e31773584">
+  <link rel="preload" href="/styles.css?v=b06954818e83" as="style">
+  <link rel="stylesheet" href="/styles.css?v=b06954818e83">
   <script>
     (function () {
       var h = location.hostname;
@@ -171,6 +171,7 @@
       const head = [c.route, c.buses, c.hours, c.fare].map((col) => `<th>${pick(col)}</th>`).join("");
       const unavailable = pick({ja:'運休',zh:'停运',en:'Suspended'});
       const noData = pick({ja:'要確認',zh:'需核查',en:'Recheck needed'});
+      const routeCards = [];
       const body = ev.rows
         .map((row) => {
           const from = BUS_DATA.stops[row.from], to = BUS_DATA.stops[row.to];
@@ -184,7 +185,10 @@
           const conditional = unique.some(tr => tr.trip?.condition);
           const state = !verified ? noData : closed ? unavailable : String(unique.length) + (conditional ? '＊' : '');
           const hours = !verified || closed || !unique.length ? '—' : `${AppCore.formatTime(unique[0].dep)}–${AppCore.formatTime(unique.at(-1).dep)}`;
-          return `<tr><td>${pick(from)} → ${pick(to)}</td><td>${state}</td><td>${hours}</td><td>${verified && !closed && fare ? `¥${fare.toLocaleString()}` : '—'}</td></tr>`;
+          const price = verified && !closed && fare ? `¥${fare.toLocaleString()}` : '—';
+          const route = `${pick(from)} → ${pick(to)}`;
+          routeCards.push(`<li><h3>${route}</h3><dl><div><dt>${pick(c.buses)}</dt><dd>${state}</dd></div><div><dt>${pick(c.hours)}</dt><dd>${hours}</dd></div><div><dt>${pick(c.fare)}</dt><dd>${price}</dd></div></dl></li>`);
+          return `<tr><td>${route}</td><td>${state}</td><td>${hours}</td><td>${price}</td></tr>`;
         })
         .join("");
       const trail = pick(ev.trailText).replace(/\?lang=(ja|zh|en)/g, `?lang=${lang}`);
@@ -193,7 +197,8 @@
         <section class="panel without-car-section" id="geo-evidence">
           <h2 class="page-section-title">${pick(ev.title)}</h2>
           <p class="page-section-lead">${pick(ev.lead)}</p>
-          <div class="table-wrap">
+          <ul class="route-summary-cards">${routeCards.join('')}</ul>
+          <div class="table-wrap route-summary-table">
             <table class="data-table geo-evidence-table">
               <thead><tr>${head}</tr></thead>
               <tbody>${body}</tbody>

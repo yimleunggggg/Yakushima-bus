@@ -4376,3 +4376,42 @@ button,input,select,textarea { font-family:inherit; }
 .page-reference-group .trek-disclaimer { margin:12px 0 6px; }
 .page-reference-group .trek-source { margin:0 0 12px; }
 .page-reference-group summary:focus-visible { outline:2px solid var(--primary); outline-offset:2px; }
+
+/* Mobile task order: controls first, supporting detail on demand. */
+.guide-category-select,.route-summary-cards { display:none; }
+.fare-stop-details>summary { min-height:44px; padding:12px 0; cursor:pointer; font-size:var(--text-label); font-weight:600; color:var(--muted); }
+.fare-stop-details .stop-panel { border:0; padding:0; background:transparent; }
+.fare-page .map-tools-panel { background:var(--surface); box-shadow:none; border-color:var(--border); }
+.fare-page .map-tools-fare { padding-bottom:16px; }
+.fare-stop-details { border-top:1px solid var(--border); }
+@media(max-width:767px) {
+ .guide-page .header-compact .clock-wrap,.fare-page .header-compact .clock-wrap { display:none; }
+ .guide-page .header-compact,.fare-page .header-compact { flex-wrap:nowrap; align-items:center; margin-block:14px; }
+ .guide-page .header-compact .header-main,.fare-page .header-compact .header-main { flex:1 1 0; }
+ .guide-page .header-compact h1,.fare-page .header-compact h1 { font-size:var(--heading-page); margin:0; }
+ .guide-page .header-actions,.fare-page .header-actions { flex:0 0 auto; }
+ .guide-page-intro-lead { font-size:var(--text-label); line-height:1.65; }
+ .guide-page .guide-filters { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px; }
+ .guide-category-select { display:block; min-width:0; width:100%; min-height:44px; padding:8px 12px; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--surface); font-size:16px; color:var(--primary-dark); }
+ .guide-page .guide-chip:not(.guide-chip-bus) { display:none; }
+ .guide-page .guide-chip-bus { min-height:44px; border-radius:var(--radius-sm); background:var(--surface); color:var(--muted); border:1px solid var(--border); font-weight:500; }
+ .guide-page .guide-chip-bus.active { background:var(--primary-light); color:var(--primary-dark); border-color:var(--primary); }
+ .guide-page .guide-map { height: min(43dvh,340px); }
+ .fare-page .page-seo-lead { font-size:var(--text-label); line-height:1.65; margin-bottom:8px; }
+ .fare-page .map-tools-panel .sec { padding:14px; }
+ .fare-page .map-tools-panel .fare-stop-details { padding-block:0; }
+ .fare-page .map-tools-fare>.sec-title { font-size:var(--heading-item); color:var(--primary-dark); margin-bottom:12px; }
+ .fare-page .map-tools-stop .stop-panel { padding-bottom:14px; }
+ .route-summary-table { display:none; }
+ .route-summary-cards { display:grid; list-style:none; gap:10px; padding:0; margin:16px 0; }
+ .route-summary-cards>li { padding:14px; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--surface); }
+ .app .route-summary-cards h3 { font-size:var(--heading-item); line-height:1.6; margin:0 0 12px; }
+ .route-summary-cards dl { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin:0; }
+ .route-summary-cards dl>div:nth-child(2) { grid-column:1/-1; grid-row:2; }
+ .route-summary-cards dt { font-size:var(--text-small); color:var(--muted); line-height:1.6; }
+ .route-summary-cards dd { font-size:var(--text-body); color:var(--text); margin:4px 0 0; line-height:1.5; font-variant-numeric:tabular-nums; }
+ .without-car-section { padding:16px; }
+ #geo-evidence :is(.page-section-lead,.page-section-note) { line-height:1.8; overflow-wrap:anywhere; }
+}
+
+@media(max-width:767px) { .guide-page .guide-chip-bus::before { content:"+"; margin-right:5px; } .guide-page .guide-chip-bus.active::before { content:"✓"; } }

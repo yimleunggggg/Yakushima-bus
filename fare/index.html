@@ -77,8 +77,8 @@
   ]
 }
   </script>
-  <link rel="preload" href="/styles.css?v=697e31773584" as="style">
-  <link rel="stylesheet" href="/styles.css?v=697e31773584">
+  <link rel="preload" href="/styles.css?v=b06954818e83" as="style">
+  <link rel="stylesheet" href="/styles.css?v=b06954818e83">
   <script>
     (function () {
       var h = location.hostname;
@@ -106,7 +106,7 @@
   <link rel="alternate" hreflang="en" href="https://yakushimabus.com/fare/?lang=en">
   <link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/fare/">
 </head>
-<body>
+<body class="fare-page">
   <div class="app">
     <div class="app-nav-sticky">
       <nav class="nav nav-main nav-main--6" id="mainNav">
@@ -183,24 +183,6 @@
 
     <div class="map-layout-secondary">
     <div class="panel map-tools-panel">
-      <div class="sec map-tools-sec map-tools-stop">
-        <label for="lookupStopInput" class="sec-title sec-title-inset" data-i18n="stopLookup">停留所</label>
-        <div class="stop-panel show" id="stopPanel">
-          <div class="stop-alt" id="lookupAlt" hidden></div>
-          <div class="stop-picker" id="lookupPicker">
-            <input type="text" id="lookupStopInput" class="picker-input" autocomplete="off" spellcheck="false">
-            <input type="hidden" id="lookupStop" value="miyanoura_port">
-            <ul class="picker-list" role="listbox" hidden></ul>
-          </div>
-          <div class="stop-panel-badges" id="panelBadges"></div>
-          <div class="actions">
-            <button type="button" class="primary" id="panelTimeBtn" data-i18n="showTimetable">時刻表を見る</button>
-            <button type="button" id="panelFromBtn" data-i18n="setFrom">出発に設定</button>
-            <button type="button" id="panelToBtn" data-i18n="setTo">到着に設定</button>
-          </div>
-        </div>
-      </div>
-      <div class="map-tools-split" aria-hidden="true"></div>
       <div class="sec map-tools-sec map-tools-fare" id="farePanel">
         <div class="sec-title sec-title-inset" data-i18n="fareLookup">運賃検索（大人片道）</div>
         <div class="fare-form">
@@ -226,6 +208,23 @@
         <div class="fare-result" id="fareResult">—</div>
         <p class="fare-disclaimer" id="fareDisclaimer"></p>
       </div>
+      <details class="sec map-tools-sec map-tools-stop fare-stop-details">
+        <summary data-i18n="stopLookup">停留所</summary>
+        <div class="stop-panel show" id="stopPanel">
+          <div class="stop-alt" id="lookupAlt" hidden></div>
+          <div class="stop-picker" id="lookupPicker">
+            <input type="text" id="lookupStopInput" class="picker-input" autocomplete="off" spellcheck="false">
+            <input type="hidden" id="lookupStop" value="miyanoura_port">
+            <ul class="picker-list" role="listbox" hidden></ul>
+          </div>
+          <div class="stop-panel-badges" id="panelBadges"></div>
+          <div class="actions">
+            <button type="button" class="primary" id="panelTimeBtn" data-i18n="showTimetable">時刻表を見る</button>
+            <button type="button" id="panelFromBtn" data-i18n="setFrom">出発に設定</button>
+            <button type="button" id="panelToBtn" data-i18n="setTo">到着に設定</button>
+          </div>
+        </div>
+      </details>
       <div class="sec sec-map-ref map-tools-sec">
         <div class="sec-title sec-title-inset" data-i18n="fareNotes">運賃の注意</div>
         <ul class="info-list info-list-plain" id="fareNotes"></ul>
@@ -296,7 +295,7 @@
       ja: {
         navAria: "メインメニュー", siteBrand: "屋久島バス",
         title: "屋久島バス路線図・料金", sub: "種子島・屋久島交通", valid: "適用",
-        stopLookup: "停留所",
+        stopLookup: "停留所ごとの時刻表",
         linkNotice: "運休・遅延は",
         linkTaneyaku: "種屋時刻表", linkMatsubanda: "まつばんだ", linkTozan: "荒川登山バス",
         routeMap: "公式路線図", fareLookup: "運賃検索（大人片道）", fareNotes: "運賃の注意",
@@ -329,7 +328,7 @@
       zh: {
         navAria: "主菜单", siteBrand: "屋久岛公交",
         title: "公交票价查询", sub: "种子岛·屋久岛交通", valid: "有效",
-        stopLookup: "站点",
+        stopLookup: "按站点查时刻",
         linkNotice: "停运延误见",
         linkTaneyaku: "种屋时刻表", linkMatsubanda: "松叶", linkTozan: "荒川登山巴士",
         routeMap: "官方路线图", fareLookup: "运价查询（成人单程）", fareNotes: "运价说明",
@@ -362,7 +361,7 @@
       en: {
         navAria: "Main menu", siteBrand: "Yakushima Bus",
         title: "Yakushima Bus Map & Fares", sub: "Tanegashima Yakushima Kotsu", valid: "Valid",
-        stopLookup: "Stop",
+        stopLookup: "Timetable for a stop",
         linkNotice: "Disruptions:",
         linkTaneyaku: "Taneyaku PDF", linkMatsubanda: "Matsubanda", linkTozan: "Arakawa shuttle",
         routeMap: "Official route map", fareLookup: "Fare lookup (adult one-way)", fareNotes: "Fare notes",
@@ -924,6 +923,7 @@
         lookupPicker.setValue(params.get("stop"), false);
         selectedStop = params.get("stop");
         updateStopPanel();
+        document.querySelector(".fare-stop-details").open = true;
       }
     });
   </script>

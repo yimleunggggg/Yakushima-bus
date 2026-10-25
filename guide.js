@@ -47,6 +47,7 @@
   const UI = {
     ja: {
       filterAll: "すべて",
+      filterCategory: "場所の種類",
       filterBus: "バス停",
       stopHint: "地図は公式時刻表の52停留所のみ。OSMの他バス停は参考表示で、当サイトでは扱いません。",
       stopListCat: "バス停",
@@ -65,6 +66,7 @@
     },
     zh: {
       filterAll: "全部",
+      filterCategory: "地点分类",
       filterBus: "公交站",
       stopHint: "地图只标官方时刻表 52 站；OSM 上其他公交站不在本站范围内（无时刻/运价）。",
       stopListCat: "公交站",
@@ -83,6 +85,7 @@
     },
     en: {
       filterAll: "All",
+      filterCategory: "Place category",
       filterBus: "Bus stops",
       stopHint: "Map shows 52 official timetable stops only. Other OSM bus stops are not in our data.",
       stopListCat: "Bus stop",
@@ -416,7 +419,18 @@
         return `<button type="button" class="guide-chip guide-cat--${c}${on ? " active" : ""}" data-cat="${c}" aria-pressed="${on ? "true" : "false"}">${chipLabel(catLabel(c, data), counts[c] || 0)}</button>`;
       }),
     ];
-    els.filters.innerHTML = chips.join("");
+    const current = allOn ? "__all__" : enabledCats.size===1 ? [...enabledCats][0] : "__custom__";
+    const options = [["__all__",t("filterAll")], ...cats.map(c=>[c,`${catLabel(c,data)} (${counts[c] || 0})`])];
+    if(current==="__custom__") options.unshift(["__custom__",[...enabledCats].map(c=>catLabel(c,data)).join(" / ") || t("noResults")]);
+    els.filters.innerHTML = `<select class="guide-category-select" aria-label="${escapeHtml(t("filterCategory"))}">${options.map(([id,label])=>`<option value="${id}"${id===current?' selected':''}${id==='__custom__'?' disabled':''}>${escapeHtml(label)}</option>`).join("")}</select>` + chips.join("");
+    els.filters.querySelector('select').addEventListener('change',event=>{
+      const cat=event.target.value;
+      enabledCats.clear();
+      (cat==="__all__"?cats:[cat]).forEach(c=>enabledCats.add(c));
+      track("guide_filter", {category:cat, enabled:true});
+      renderFilters(data); renderList(data); updateMarkers(data);
+      els.filters.querySelector('select').focus();
+    });
     els.filters.querySelectorAll(".guide-chip").forEach((btn) => {
       btn.addEventListener("click", () => {
         const cat = btn.dataset.cat;
