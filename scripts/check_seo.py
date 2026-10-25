@@ -78,10 +78,11 @@ def check():
                 assert all(a.attrib['href'] in set(urls) for a in entry.findall('x:link', ns)), 'Missing reciprocal sitemap URL'
     intro = Page((ROOT / 'intro/index.html').read_text())
     assert any(m.get('name') == 'robots' and 'noindex' in m.get('content', '') for m in intro.meta), 'Intro must remain noindex'
+    assert (ROOT / 'googlef464172b97bd6d41.html').exists(), 'Missing GSC verification file'
     robots = (ROOT / 'robots.txt').read_text()
     assert 'Sitemap: ' + BASE + '/sitemap.xml' in robots
     assert not re.search(r'^Disallow:\s*/\s*$', robots, re.M), 'Site blocked in robots.txt'
-    print('SEO/GEO checks passed: 7 indexed pages, 21 translations, reciprocal sitemaps, provenance and local links')
+    print(f'SEO/GEO checks passed: {len(pages)} indexed pages, {len(pages)*3} translations, reciprocal sitemaps, provenance and local links')
 
 
 if __name__ == '__main__':

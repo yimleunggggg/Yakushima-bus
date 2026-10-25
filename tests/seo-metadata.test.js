@@ -48,6 +48,11 @@ for (const pagePath of Object.keys(pages)) {
               assert.equal(node.name, c.document.title);
               assert.equal(node.inLanguage, selected === 'zh' ? 'zh-CN' : selected);
             }
+            if (node['@type'] === 'Article') {
+              assert.equal(node.headline, c.document.title);
+              assert.equal(node.url, `https://yakushimabus.com${pagePath}?lang=${selected}`);
+              assert.equal(node.inLanguage, selected === 'zh' ? 'zh-CN' : selected);
+            }
           }
         }
       }

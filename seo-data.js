@@ -3,20 +3,20 @@ window.SEO_PAGES = {
   "/": {
     "modified": "2026-10-24",
     "ja": [
-      "屋久島バス時刻表 2026年10月｜次の便・運行状況",
+      "屋久島バス時刻表｜次の便・運行状況 | YakuBus",
       "屋久島の宮之浦港・空港・安房を結ぶバスの次の便を検索。平日・土曜・日祝に対応し、公式PDFの改訂日と運休情報を確認できます。路線図・運賃・登山口への接続も案内する非公式の無料ツールです。"
     ],
     "zh": [
-      "屋久岛公交时刻表 2026年10月｜下一班车与运营信息",
+      "屋久岛公交时刻表｜下一班车与停运信息 | YakuBus",
       "查询屋久岛宫之浦港、机场、安房等站点的下一班公交，支持工作日、周六与日祝。查看官方PDF改订日期、停运提示、路线票价与登山接驳。本站为独立整理的免费工具，出行请核对运营商公告。"
     ],
     "en": [
-      "Yakushima Bus Timetable October 2026 | YakuBus",
+      "Yakushima Bus Timetable & Service Notices | YakuBus",
       "Find the next bus between Miyanoura Port, Yakushima Airport and Anbo. Check weekday, Saturday and holiday schedules, official PDF revisions, suspension notices, fares and trailhead connections. Independent travel tool."
     ]
   },
   "/fare/": {
-    "modified": "2026-10-24",
+    "modified": "2026-10-23",
     "ja": [
       "屋久島バス路線図・運賃｜区間料金と乗車券 | YakuBus",
       "屋久島バスの公式路線図・運賃表PDFと区間運賃検索。宮之浦港・空港・安房などの大人片道運賃の目安、乗車券と運休中の区間を確認できます。料金の改定日は出典で確認してください。"
@@ -46,7 +46,7 @@ window.SEO_PAGES = {
     ]
   },
   "/map/": {
-    "modified": "2026-10-24",
+    "modified": "2026-10-23",
     "ja": [
       "屋久島観光マップ｜温泉・買い物・バス停 | YakuBus",
       "屋久島の温泉・ビーチ・史跡・スーパー・薬局・ATMとバス停を地図で検索。スポットの説明、ナビ、バス時刻表へのリンクから、現地での移動と買い物を計画できます。"
@@ -63,35 +63,36 @@ window.SEO_PAGES = {
   "/trekking/": {
     "modified": "2026-10-24",
     "ja": [
-      "屋久島の旅と体験｜白谷・縄文杉・登山バス | YakuBus",
-      "屋久島の観光体験・宿泊・登山ルートを比較。白谷雲水峡の一部開園、太鼓岩コース、屋久島交通バス再開と残る通行止めを確認し、公式情報と予約条件を照合して計画できます。"
+      "屋久島の旅と体験｜行程・宿・登山と交通 | YakuBus",
+      "屋久島の島内周遊、ガイド付き体験、温泉の宿と登山ルート。公式情報と道路状況を確認し、移動や旅行ガイドと合わせて計画できます。"
     ],
     "zh": [
-      "屋久岛旅行与体验｜白谷·绳文杉·登山接驳 | YakuBus",
-      "查看屋久岛精选体验、住宿与徒步路线。白谷云水峡部分开放、太鼓岩可通行，屋久岛交通白谷线已恢复；部分路段仍封闭。结合官方公告、公交接驳与平台预订条件规划行程。"
+      "屋久岛旅行与体验｜行程·住宿·徒步与交通 | YakuBus",
+      "屋久岛环岛观光、向导体验、温泉住宿与徒步路线参考。结合官方资料和道路状态规划，连接公交与旅行攻略；预订条件以服务方为准。"
     ],
     "en": [
-      "Yakushima Travel & Hikes: Shiratani, Jomon Sugi & Buses | YakuBus",
-      "Compare Yakushima tours, stays and hiking routes. Shiratani has partially reopened and Taneyaku buses have resumed; some trail sections remain closed. Check official notices, trailhead connections and booking conditions."
+      "Yakushima Travel & Experiences: Hikes, Stays & Transport | YakuBus",
+      "Explore Yakushima island tours, guided experiences, hot-spring stays and hiking routes. Plan with official sources, road notices, bus connections and practical travel guides."
     ]
   },
   "/without-car/": {
     "modified": "2026-10-24",
+    "kind": "article",
     "ja": [
-      "屋久島レンタカーなし｜バス・フェリーで回る | YakuBus",
-      "屋久島をレンタカーなしで旅行するためのバス・フェリー案内。港・空港からの移動、主要区間の計画便、区間運賃と乗車券、登山口への接続を確認。運休や条件付き運行に注意して計画できます。"
+      "レンタカーなしで屋久島へ。2泊3日の組み立て方 | YakuBus",
+      "港・宿・一番したい体験を先に決めて、移動に無理のない旅へ。固定の時刻ではなく、予定を組む順番を紹介します。"
     ],
     "zh": [
-      "屋久岛不租车攻略｜公交·船运·登山接驳 | YakuBus",
-      "不租车游屋久岛：查看港口和机场公交、主要区间计划班次、票价与乘车通票，以及绳文杉等登山接驳。结合停运、条件班次和官方来源安排行程，附当地体验参考。"
+      "屋久岛不租车，2晚3天怎么安排 | YakuBus",
+      "先确定抵达地点、住宿和最想做的一件事，再填入每天的活动。这里提供安排顺序，具体班次按实际出行日期查询。"
     ],
     "en": [
-      "Yakushima Without a Car: Bus & Ferry Guide | YakuBus",
-      "Travel Yakushima without renting a car. Find port and airport buses, planned weekday services, fare estimates, day passes and trailhead transfers. Check suspensions and conditional departures before planning your trip."
+      "Yakushima without a car: plan two nights and three days | YakuBus",
+      "Start with your arrival port, accommodation and one main activity. This guide explains the planning order; use your travel date to look up departures."
     ]
   },
   "/about/": {
-    "modified": "2026-10-24",
+    "modified": "2026-10-23",
     "ja": [
       "YakuBusについて｜屋久島交通の出典・連絡先",
       "YakuBusは屋久島のバス時刻表・運賃・船運を整理する非公式サイトです。公式PDF、観光協会や運行会社の情報源と連絡先を掲載。計画ダイヤと臨時運休を区別し、出発前の公式確認を案内します。"
@@ -103,6 +104,69 @@ window.SEO_PAGES = {
     "en": [
       "About YakuBus: Yakushima Transport Sources & Contact",
       "YakuBus is an independent Yakushima bus, fare and ferry information site. Find official operator PDFs, tourism association sources and contact details. Planned timetables and temporary service suspensions are recorded separately."
+    ]
+  },
+  "/guides/yakushima-where-to-stay/": {
+    "modified": "2026-10-24",
+    "kind": "article",
+    "ja": [
+      "宮之浦か安房か。車なし旅の宿選び | YakuBus",
+      "ホテル名を探す前に、到着港・早朝の予定・夕食の三つを確認しましょう。地区だけで便利さは決まりません。"
+    ],
+    "zh": [
+      "宫之浦还是安房？不自驾住宿区域怎么选 | YakuBus",
+      "先看抵达港、早出发安排和晚餐，再选酒店。地区名称可以缩小范围，但不等于每家住宿都方便。"
+    ],
+    "en": [
+      "Miyanoura or Anbo? Choose a base without a car | YakuBus",
+      "Compare your arrival port, early starts and dinner arrangements before choosing a hotel. An area name alone does not tell you how easy a stay will be."
+    ]
+  },
+  "/guides/yakushima-rainy-day/": {
+    "modified": "2026-10-24",
+    "kind": "article",
+    "ja": [
+      "屋久島の雨の日。予定を変えるときの考え方 | YakuBus",
+      "雨でもできることを探す前に、道路・運行・活動場所の状況を確認。屋内体験と近場の予定を一つ用意しておきましょう。"
+    ],
+    "zh": [
+      "屋久岛下雨怎么办？备选活动与改行程顺序 | YakuBus",
+      "先查道路、交通和活动地点，再选雨天玩法。准备一个室内体验或住宿附近的备选，比把每天排满更容易调整。"
+    ],
+    "en": [
+      "Rain in Yakushima: alternatives and changing plans | YakuBus",
+      "Check the roads, transport and activity location first. Keep one indoor option or a plan near your accommodation instead of filling every day."
+    ]
+  },
+  "/guides/kagoshima-half-day/": {
+    "modified": "2026-10-24",
+    "kind": "article",
+    "ja": [
+      "屋久島の前後に、鹿児島で半日 | YakuBus",
+      "港周辺で過ごすか、市街地を回るか。観光に使える時間と船の手続きから、無理のない寄り道を選びます。"
+    ],
+    "zh": [
+      "去屋久岛前后，鹿儿岛半天怎么安排 | YakuBus",
+      "在港口附近散步，还是去市区看一个地方？先扣除行李、移动和乘船手续所需时间，再决定能玩多久。"
+    ],
+    "en": [
+      "A half-day in Kagoshima before or after Yakushima | YakuBus",
+      "Stay by the waterfront or choose one city sight. Work out your usable time after luggage, travel and boarding formalities before deciding how far to go."
+    ]
+  },
+  "/guides/": {
+    "modified": "2026-10-24",
+    "ja": [
+      "屋久島・鹿児島の旅行ガイド | YakuBus",
+      "屋久島と鹿児島。宿・雨の日・車なしの行程・船旅の前後を、公式資料と交通ツールで計画。非公式の三語旅行ガイド。"
+    ],
+    "zh": [
+      "屋久岛与鹿儿岛旅行攻略 | YakuBus",
+      "屋久岛、鹿儿岛实用旅行攻略：不租车行程、住宿区域、雨天备选及船旅前后的半日安排。附官方来源和公交、地图入口。"
+    ],
+    "en": [
+      "Yakushima & Kagoshima Travel Guides | YakuBus",
+      "Practical Yakushima and Kagoshima guides: plan a car-free stay, choose a base, prepare for rain and use a half-day around your ferry journey. Official references and transport tools."
     ]
   }
 };

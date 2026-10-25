@@ -55,7 +55,7 @@ test('update labels use months while exact source and effective dates stay machi
   assert.equal(w.TransportStatus.month('2026-10-24','ja'),'2026年10月');
   assert.equal(w.TransportStatus.month('2026-10-24','en'),'Oct 2026');
   assert.equal(w.TRANSPORT_DATA.checkedAt,'2026-10-24');
-  assert.equal(w.TRANSPORT_DATA.alerts.find(a=>a.id==='shiratani-partial-reopening').validFrom,'2026-10-18');
+  assert.equal(w.TRANSPORT_DATA.alerts.find(a=>a.id==='shiratani-reopened-partial-trails').validFrom,'2026-10-18');
   const llms=fs.readFileSync(path.join(root,'llms.txt'),'utf8');
   assert.match(llms,/partially reopened/);
   assert.doesNotMatch(llms,/Shiratani Unsuikyo is closed to access|all-day suspension/);

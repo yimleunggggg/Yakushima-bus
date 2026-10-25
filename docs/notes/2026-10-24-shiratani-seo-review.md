@@ -40,3 +40,10 @@
 - [松叶交通官方时刻与停运](https://yakushima.co.jp/route_bus/)
 - [官方交通入口与日英 PDF](https://yakukan.jp/on-island.html)
 - [白谷徒步产品](https://www.klook.com/zh-CN/activity/76916-yakushima-walking-tour/) 与 [鹿儿岛出发高速船徒步产品](https://www.klook.com/zh-CN/activity/146665-yakushima-private-tour-from-kagoshima-via-high-speed-jetfoil-toppy/)
+
+## 发布合并复核（2026-10-25）
+
+- 按用户“推送”授权，先合并远端 `16b8d4a`，保留 `6ecbb27` 已发布的三语攻略、文章 schema、导航与最新日报；没有覆盖远端为旧页面快照。
+- 合并后保留本轮白谷部分复开、四班查询与月份标识，并补回首次 schema 构建稳定性检查。白谷告示沿用管理方来源，保留交通运营商佐证；攻略文章继续使用各自来源。
+- 重新生成交通告示和内容哈希，SEO/GEO 覆盖 11 个索引页面、33 个语言版本。`build_all.py --validate` 全部通过：41 项 Node 回归、972 个时刻单元、84 个站行、34 趟、17 个视觉锚点、106 对票价锚点及严格复核期限门禁。`tests/test_seo_generator.py` 与 `git diff --check` 通过。
+- GSC 现有只读 OAuth 实测返回 `invalid_grant`；已打开 Google 官方重新授权流程。收到授权并完成 API 与自动日报验证前，不宣称 GSC 已连通。

@@ -10,7 +10,7 @@
     { href: "/fare/", key: "navMap", active: /^\/fare\/?$/i },
     { href: "/ferry/", key: "navAccess", active: /^\/ferry\/?$/i },
     { href: "/trekking/", key: "navTrek", active: /^\/trekking\/?$/i },
-    { href: "/intro/", key: "navIntro", active: /^\/intro\/?$/i },
+    { href: "/guides/", key: "navTravelGuides", active: /^\/guides(?:\/|$)/i },
   ];
 
   const PAGE_HEAD = {
@@ -97,6 +97,8 @@
   const UI = {
     ja: {
       navAria: "メインメニュー",
+      navTravelGuides: "旅行ガイド",
+      navTravelGuidesTitle: "旅行ガイド",
       navGuide: "マップ",
       navGuideTitle: "スポット地図",
       navTime: "時刻表",
@@ -126,6 +128,8 @@
     },
     zh: {
       navAria: "主菜单",
+      navTravelGuides: "旅行攻略",
+      navTravelGuidesTitle: "旅行攻略",
       navGuide: "地图",
       navGuideTitle: "便利设施地图",
       navTime: "时刻表",
@@ -155,6 +159,8 @@
     },
     en: {
       navAria: "Main menu",
+      navTravelGuides: "Guides",
+      navTravelGuidesTitle: "Guides",
       navGuide: "Map",
       navGuideTitle: "Island POI map",
       navTime: "Times",
@@ -259,7 +265,7 @@
       <span class="footer-sep" aria-hidden="true">·</span>
       <a href="${langQs("/ferry/")}">${t("navAccess")}</a>
       <span class="footer-sep" aria-hidden="true">·</span>
-      <a href="${langQs("/about/")}">${t("navAbout")}</a>
+      <a href="${langQs("/guides/")}">${t("navTravelGuides")}</a><span class="footer-sep" aria-hidden="true">·</span><a href="${langQs("/intro/")}">${t("navIntro")}</a><span class="footer-sep" aria-hidden="true">·</span><a href="${langQs("/about/")}">${t("navAbout")}</a>
       ${supportInCard ? '' : `<span class="footer-sep" aria-hidden="true">·</span><a href="https://ko-fi.com/yimleung" target="_blank" rel="noopener noreferrer">${t("supportKofi")}</a>`}`;
     if (supportInCard) {
       const support = document.createElement('section');

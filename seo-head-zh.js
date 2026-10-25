@@ -30,6 +30,7 @@
         if (["WebPage", "AboutPage", "WebApplication"].includes(node["@type"])) {
           Object.assign(node, { name: title, description, url, inLanguage: selected === "zh" ? "zh-CN" : selected });
         }
+        if (node['@type'] === 'Article') Object.assign(node, { headline:title, description, url, mainEntityOfPage:url, inLanguage:selected === 'zh' ? 'zh-CN' : selected });
       }
       el.textContent = JSON.stringify(data);
     });

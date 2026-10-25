@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Use content digests on every page reference to transport scripts/styles."""
-import argparse,hashlib,re
+import argparse,hashlib,re,json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-PAGES=['index.html']+[p+'/index.html' for p in ['fare','ferry','map','trekking','intro','about','without-car']]
-ASSETS={'seo-data.js','data.js','meta-data.js','map-data.js','access-data.js','access-schedule.js','sources-data.js','transport-data.js','transport-status.js','pdf-viewer.js','app-core.js','guide.js','site-chrome.js','seo-head-zh.js','intro-data.js','partner-data.js','partner-ui.js','affiliate-data.js','affiliate-ui.js','styles.css','trekking-data.js','without-car-data.js'}
-def synced(text):
+PAGES=sorted(set(['index.html','intro/index.html']+[p.lstrip('/')+'index.html' for p in json.loads((ROOT/'sources/seo-pages.json').read_text())]))
+ASSETS={'seo-data.js','guides.js','guides.css','site-chrome-nav-boot.js','lang-boot.js','data.js','meta-data.js','map-data.js','access-data.js','access-schedule.js','sources-data.js','transport-data.js','transport-status.js','pdf-viewer.js','app-core.js','guide.js','site-chrome.js','seo-head-zh.js','intro-data.js','partner-data.js','partner-ui.js','affiliate-data.js','affiliate-ui.js','styles.css','trekking-data.js','without-car-data.js'}
+def synced(text,contents=None):
     def replace(m):
         filename=m[2].lstrip('/')
         if filename not in ASSETS:return m[0]
-        digest=hashlib.sha256((ROOT/filename).read_bytes()).hexdigest()[:12]
+        digest=hashlib.sha256(contents[filename].encode() if contents and filename in contents else (ROOT/filename).read_bytes()).hexdigest()[:12]
         return m[1]+m[2]+'?v='+digest+'"'
     return re.sub(r'((?:src|href)=")(/?[^"?]+)(?:\?[^" ]*)?"',replace,text)
 def main(check=False):
