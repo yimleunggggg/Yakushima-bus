@@ -49,6 +49,7 @@
       if (nav) {
         event("nav_click", {
           link_url: nav.getAttribute("href") || "",
+          nav_group: nav.dataset.navPlacement || "primary",
           link_text: (nav.textContent || "").trim().slice(0, 40),
         });
         return;

@@ -35,7 +35,7 @@ def article(g,L,data,embedded=False):
  body=f'<article class="guide-article" data-guide-lang="{L}" data-seo-lang="{L}" lang="{LANGS[L]}"'+(' hidden' if L!='ja' else '')+'>'
  body+=f'<header class="guide-article-header"><p class="guide-kicker">{area} / {e(v["card"]["topic"])}</p><{heading}>{e(v["title"])}</{heading}><p class="guide-dek">{e(v["dek"])}</p>'
  body+=f'<p class="guide-date">{c["date"]} <time datetime="{data["modified"]}">{display_date}</time></p><p class="guide-editorial-note">{u["editorial"]}</p></header>'
- body+=f'<div class="guide-layout"><nav class="guide-toc" aria-label="{u["toc"]}"><p>{u["toc"]}</p><ol>'
+ body+=f'<div class="guide-reading-layout"><nav class="guide-toc" aria-label="{u["toc"]}"><p>{u["toc"]}</p><ol>'
  for i,s in enumerate(v['sections'],1):
   body+=f'<li><a href="#{section_id(g,L,i)}"><span aria-hidden="true">{i:02}</span>{e(s["nav"])}</a></li>'
  body+='</ol></nav><div class="guide-reading">'

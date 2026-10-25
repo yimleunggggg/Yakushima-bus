@@ -4,7 +4,7 @@ import argparse,hashlib,re,json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 PAGES=sorted(set(['index.html','intro/index.html']+[p.lstrip('/')+'index.html' for p in json.loads((ROOT/'sources/seo-pages.json').read_text())]))
-ASSETS={'seo-data.js','guides.js','guides.css','site-chrome-nav-boot.js','lang-boot.js','data.js','meta-data.js','map-data.js','access-data.js','access-schedule.js','sources-data.js','transport-data.js','transport-status.js','pdf-viewer.js','app-core.js','guide.js','site-chrome.js','seo-head-zh.js','intro-data.js','partner-data.js','partner-ui.js','affiliate-data.js','affiliate-ui.js','styles.css','trekking-data.js','without-car-data.js'}
+ASSETS={'analytics-events.js','seo-data.js','guides.js','guides.css','site-chrome-nav-boot.js','lang-boot.js','data.js','meta-data.js','map-data.js','access-data.js','access-schedule.js','sources-data.js','transport-data.js','transport-status.js','pdf-viewer.js','app-core.js','guide.js','site-chrome.js','seo-head-zh.js','intro-data.js','partner-data.js','partner-ui.js','affiliate-data.js','affiliate-ui.js','styles.css','trekking-data.js','without-car-data.js'}
 def synced(text,contents=None):
     def replace(m):
         filename=m[2].lstrip('/')
