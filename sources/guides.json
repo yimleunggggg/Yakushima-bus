@@ -1,5 +1,5 @@
 {
-  "modified": "2026-10-24",
+  "modified": "2026-10-25",
   "sources": {
     "planning": {
       "url": "https://yakukan.jp/preparing-trip.html",
@@ -118,7 +118,8 @@
             "paragraphs": [
               "到着するのは宮之浦港、安房港、それとも空港でしょうか。宿までの移動を確認してから、初日の予定を決めます。船や飛行機が遅れる可能性も考え、到着日に長い登山を組み込まない方が調整しやすくなります。",
               "帰る日は出発便だけでなく、乗船・搭乗手続きの締切と宿から港までの移動も確認します。同じ日に長い登山と島外への移動を重ねる場合は、下山の遅れや欠航時の代案まで必要です。"
-            ]
+            ],
+            "nav": "到着と出発"
           },
           {
             "title": "2泊3日は「到着・主目的・出発」で考える",
@@ -126,23 +127,36 @@
               "1日目は宿へ移動し、歩ける範囲で買い物や食事、翌日の準備を。遅い到着なら、夕食が宿で取れるか、店が開いているかを先に確認します。",
               "2日目は登山、ガイド付き体験、集落散策など、旅の主目的を一つ選びます。往路より先に復路を調べ、現地で過ごせる時間を逆算してください。複数の遠いスポットを一日で回れるとは限りません。",
               "3日目は荷物を回収して港・空港へ。出発まで時間があれば宿や乗船地の近くを回り、山や離れた集落へ出かける予定は慎重に。これは日程の枠組みで、乗継を保証する行程ではありません。"
-            ]
+            ],
+            "nav": "3日間の組み方"
           },
           {
             "title": "宿と移動手段をセットで選ぶ",
             "paragraphs": [
               "宮之浦・安房などの地区名だけでなく、最寄り停留所までの距離、坂道、夕食、早朝出発、荷物の扱いを宿に確認します。「送迎あり」でも利用時間や対象区間は宿ごとに異なります。",
               "路線バスだけで行きにくい体験は、送迎付きガイドや予約したタクシーを検討します。路線バスは西部林道の栗生〜永田間を走らないため、環島ドライブの行程をそのままバス旅に置き換えることはできません。"
-            ]
+            ],
+            "nav": "宿と交通"
           },
           {
             "title": "雨の日の代案を一つ持つ",
             "paragraphs": [
               "雨天用の屋内体験や宿の近くの過ごし方を用意し、変更・取消条件も確認しておきます。少しの雨と、警報・増水・道路規制は別です。",
               "実際の出発日を選んで下の交通ツールを使い、往復の便と運行条件を確認してください。地図や公式資料は出発前に保存しておくと、電波が弱い場所でも役立ちます。"
-            ]
+            ],
+            "nav": "雨の代案"
           }
-        ]
+        ],
+        "card": {
+          "topic": "旅程を組む",
+          "title": "車なしで、2泊3日",
+          "summary": "到着・主目的・出発。毎日の役割から旅を組み立てる。",
+          "steps": [
+            "到着・準備",
+            "主な体験",
+            "荷物・出発"
+          ]
+        }
       },
       "zh": {
         "title": "屋久岛不租车，2晚3天怎么安排",
@@ -153,7 +167,8 @@
             "paragraphs": [
               "先确认抵达宫之浦港、安房港还是机场，再查询到住宿的交通。抵达当天安排长距离登山，遇到航班或船班延误时很难调整，适合先留作入住、采购和附近散步。",
               "离岛日除了船或飞机的出发时间，还要核对办理手续的截止时间、住宿到港口的交通和取行李的安排。长距离登山后当天离岛，需要额外考虑下山延误和交通中断。"
-            ]
+            ],
+            "nav": "抵达与离岛"
           },
           {
             "title": "用“抵达—主活动—离岛”搭框架",
@@ -161,23 +176,36 @@
               "第1天：去住宿、在步行范围内补给和吃饭、准备次日装备。如果到得晚，提前确认能否在住宿用晚餐，或附近店铺是否营业。",
               "第2天：选择一项主活动，例如长距离徒步、向导体验或村落散步。先查回程，再倒推现场能停留多久；相距较远的景点不一定能在一天内靠公交串起来。",
               "第3天：取回行李，前往港口或机场。有余量再安排住宿或乘船点附近活动，不要默认离岛前还能进山。这个框架不保证任何具体换乘。"
-            ]
+            ],
+            "nav": "三天行程框架"
           },
           {
             "title": "住宿和交通一起选",
             "paragraphs": [
               "不要只看“宫之浦”或“安房”的地区名称。还要向住宿确认最近站点、步行距离与坡道、晚餐、早出发和行李处理。“提供接送”也可能有时间及区域限制。",
               "公交难以覆盖的活动，可以考虑有接送的向导或提前预约出租车。官方说明路线上不覆盖西部林道的栗生至永田段，因此不能把自驾环岛攻略直接照搬成公交行程。"
-            ]
+            ],
+            "nav": "住宿与交通"
           },
           {
             "title": "准备一个下雨时的替代方案",
             "paragraphs": [
               "可先留一个室内体验或住宿附近的备选，同时确认预订能否调整。普通小雨与警报、河流涨水、道路封闭是不同情况；不要仅凭天气图标决定进山。",
               "使用下方交通工具选择实际日期，分别核对去程、回程和运行条件。提前保存地图及官方资料，也能减少岛上弱网带来的麻烦。"
-            ]
+            ],
+            "nav": "雨天备选"
           }
-        ]
+        ],
+        "card": {
+          "topic": "行程安排",
+          "title": "不租车，安排2晚3天",
+          "summary": "从抵达、主活动到离岛，先搭好每天的框架。",
+          "steps": [
+            "抵达安顿",
+            "一项主活动",
+            "取行李离岛"
+          ]
+        }
       },
       "en": {
         "title": "Yakushima without a car: plan two nights and three days",
@@ -188,7 +216,8 @@
             "paragraphs": [
               "Check whether you arrive at Miyanoura Port, Anbo Port or the airport, then work out how to reach your accommodation. An arrival-day hike leaves little room for a delayed boat or flight; check-in, supplies and a nearby walk are easier to adjust.",
               "For departure day, confirm the check-in deadline as well as the departure time, your journey to the terminal and luggage collection. A long hike followed by an off-island connection needs a credible plan for a late descent or disrupted transport."
-            ]
+            ],
+            "nav": "Arrival & departure"
           },
           {
             "title": "Give each day a clear role",
@@ -196,23 +225,36 @@
               "Day 1: reach your accommodation, find dinner and supplies nearby, and prepare for tomorrow. If you arrive late, ask about a meal at your accommodation or check opening hours before relying on a restaurant.",
               "Day 2: choose one main activity, such as a longer hike, a guided experience or time around a village. Look up the return journey first and work backwards. Distant sights may not fit into one day by bus.",
               "Day 3: collect your bags and travel to your port or airport. Add something nearby only if the timing allows it. This is a planning framework, not a guaranteed connection itinerary."
-            ]
+            ],
+            "nav": "Your three days"
           },
           {
             "title": "Choose accommodation and transport together",
             "paragraphs": [
               "Ask about the actual walk from the nearest stop, hills, dinner, early departures and luggage. A property advertising a shuttle may limit its hours or service area.",
               "For activities poorly served by buses, consider a guide with transport or a pre-booked taxi. Official guidance says neither bus operator serves the western forest-road section between Kurio and Nagata, so a driving loop cannot simply become a bus itinerary."
-            ]
+            ],
+            "nav": "Base & transport"
           },
           {
             "title": "Keep a wet-weather alternative",
             "paragraphs": [
               "Choose an indoor experience or something near your accommodation, and check booking-change conditions. Light rain is different from a warning, rising river or closed road.",
               "Use the tools below with your actual date to check both directions and service conditions. Save maps and official references before travel for places with weak mobile coverage."
-            ]
+            ],
+            "nav": "Wet-weather plan"
           }
-        ]
+        ],
+        "card": {
+          "topic": "Itinerary",
+          "title": "Three days without a car",
+          "summary": "Build your trip around arrival, one main activity and departure.",
+          "steps": [
+            "Arrive & settle in",
+            "One main activity",
+            "Collect bags & leave"
+          ]
+        }
       }
     },
     {
@@ -233,30 +275,40 @@
             "paragraphs": [
               "宮之浦港を利用する旅や、宮之浦側で過ごす時間が多い旅では、宿から港と停留所へ歩けるかをまず確認します。宮之浦地区の宿でも港のすぐ隣とは限りません。",
               "地図で店や施設を見つけたら、営業日や夕食の受付時間は各店に確認します。地図に載っていることと、到着した夜に利用できることは別です。"
-            ]
+            ],
+            "nav": "宮之浦"
           },
           {
             "title": "安房を選ぶとき",
             "paragraphs": [
               "安房港を利用する場合や、屋久杉自然館方面へ移動する予定がある場合は、安房周辺の宿と実際の接続を比較します。長い登山の日は、バスの時刻だけでなく、ガイドの集合場所や送迎範囲も確認してください。",
               "「安房に泊まれば登山送迎が付く」「港からどの宿にも歩ける」とは限りません。荷物を持つ日の道のりを個別に確認します。"
-            ]
+            ],
+            "nav": "安房"
           },
           {
             "title": "空港周辺・南部も、目的が合えば候補に",
             "paragraphs": [
               "空港周辺は航空便との位置関係、南部は宿で過ごす時間や温泉などの目的と合わせて考えます。広い地区名だけでバスの使いやすさや夕食の選択肢を判断しないでください。",
               "宿の魅力を優先するなら、到着・主活動・出発の三つの移動を先に成立させます。送迎やタクシーが必要な場合は予約方法も含めて確認します。"
-            ]
+            ],
+            "nav": "空港周辺・南部"
           },
           {
             "title": "予約前に聞く五つのこと",
             "paragraphs": [
               "最寄りの停留所と徒歩ルート／到着が遅れた時の対応／夕食・朝食・登山弁当の手配／送迎の時間と範囲／チェックイン前後の荷物。この五点を確認すると、同じ地区の宿も比較しやすくなります。",
               "公式の地区別地図と宿泊一覧を参考に、下の地図・時刻表で確認を。特定の宿の価格、空室、荷物預かりや送迎を、このガイドが保証するものではありません。"
-            ]
+            ],
+            "nav": "予約前の5項目"
           }
-        ]
+        ],
+        "card": {
+          "topic": "宿を選ぶ",
+          "title": "宮之浦、それとも安房？",
+          "summary": "到着港・早朝の予定・夕食から、泊まる場所を考える。",
+          "steps": []
+        }
       },
       "zh": {
         "title": "宫之浦还是安房？不自驾住宿区域怎么选",
@@ -267,30 +319,40 @@
             "paragraphs": [
               "如果从宫之浦港抵达或离岛，或主要活动集中在宫之浦一侧，可以先比较这里的住宿。重点是住宿到港口、公交站的实际步行路线，写着“宫之浦地区”不等于就在港口旁。",
               "地图上能找到餐馆或超市，只能说明有这个地点。抵达那天是否营业、晚餐最晚几点接待，仍需向店铺确认。"
-            ]
+            ],
+            "nav": "宫之浦"
           },
           {
             "title": "什么时候先看安房",
             "paragraphs": [
               "如果使用安房港，或计划向屋久杉自然馆方向移动，可以把安房周边列入比较。长距离登山日还要核对向导集合位置、接送范围及实际交通连接。",
               "不要默认“住安房就包登山接送”，也不要默认安房地区所有住宿都能从港口轻松走到。带着行李时，距离、坡道和雨天步行条件都值得单独看。"
-            ]
+            ],
+            "nav": "安房"
           },
           {
             "title": "机场周边和南部怎么考虑",
             "paragraphs": [
               "机场周边可以结合航班选择；南部则更适合把住宿本身、温泉或周边活动作为目的之一的旅程。但这些是选址角度，不是交通便利程度的保证。",
               "想优先选择喜欢的住宿，就先分别解决抵达、主活动和离岛的移动。需要接送或出租车时，连同预约方式、费用和服务时间一起确认。"
-            ]
+            ],
+            "nav": "机场周边与南部"
           },
           {
             "title": "订房前问这五件事",
             "paragraphs": [
               "最近公交站及步行路线；晚到或交通延误如何处理；晚餐、早餐和登山便当如何安排；接送覆盖哪里、什么时间；入住前后行李能否存放。用同一组问题比较，比只看地区名更有效。",
               "下方提供官方地区地图、住宿目录以及本站地图、查车入口。本攻略不保证任何具体住宿的价格、空房、行李寄存或接送服务。"
-            ]
+            ],
+            "nav": "预订前五问"
           }
-        ]
+        ],
+        "card": {
+          "topic": "住宿选址",
+          "title": "宫之浦，还是安房？",
+          "summary": "按抵达港口、早出发和晚餐需求，缩小住宿范围。",
+          "steps": []
+        }
       },
       "en": {
         "title": "Miyanoura or Anbo? Choose a base without a car",
@@ -301,30 +363,40 @@
             "paragraphs": [
               "Start here if you use Miyanoura Port or expect to spend much of your time on this side of the island. Check the actual walk to the port and bus stop: a Miyanoura address does not necessarily mean next to the terminal.",
               "A shop or restaurant shown on a map is a useful lead, not confirmation that it will be open on your arrival night. Check the day and last dinner orders directly."
-            ]
+            ],
+            "nav": "Miyanoura"
           },
           {
             "title": "When to look around Anbo",
             "paragraphs": [
               "Compare Anbo accommodation if you use Anbo Port or plan journeys towards the Yakusugi Museum. For a long hiking day, check the guide meeting point, pickup area and actual onward connection.",
               "An Anbo stay does not automatically include a hiking transfer, nor is every property an easy walk from the port. Check the route with luggage and wet-weather walking in mind."
-            ]
+            ],
+            "nav": "Anbo"
           },
           {
             "title": "Airport-area and southern stays",
             "paragraphs": [
               "Consider the airport area in relation to your flights, and southern stays when the property, a hot spring or nearby activities are part of the trip. These are selection criteria, not promises of frequent transport.",
               "If a particular property is your priority, make the arrival, main-activity and departure journeys work first. Confirm reservations, hours and costs for any required transfer or taxi."
-            ]
+            ],
+            "nav": "Airport & south"
           },
           {
             "title": "Five questions before booking",
             "paragraphs": [
               "Ask about the nearest stop and walking route; late arrival or transport disruption; dinner, breakfast and hiking lunch arrangements; transfer hours and coverage; and luggage before or after check-in.",
               "Use the official area maps and accommodation directory alongside the map and timetable below. This guide does not confirm individual room availability, prices, luggage storage or shuttle services."
-            ]
+            ],
+            "nav": "Five booking checks"
           }
-        ]
+        ],
+        "card": {
+          "topic": "Where to stay",
+          "title": "Miyanoura or Anbo?",
+          "summary": "Choose a base around your port, early starts and dinner plans.",
+          "steps": []
+        }
       }
     },
     {
@@ -346,30 +418,40 @@
             "paragraphs": [
               "少しの雨と、警報・増水・通行止めは分けて考えます。晴れていても前日までの雨で影響が残ることがあり、雨が止んだことだけでは安全を判断できません。",
               "登山や川・海の体験は、施設管理者や催行事業者の判断を確認します。このページは活動可否を判定するものではありません。"
-            ]
+            ],
+            "nav": "状況を確認"
           },
           {
             "title": "屋内体験を、無理なく行ける範囲で",
             "paragraphs": [
               "観光協会の雨天向け一覧には屋久杉の手作り、革小物、香りやコーヒーなどの体験が掲載されています。興味のある種類を選び、予約の要否・時間・対象年齢・言語・現地までの移動を確認します。",
               "雨天向け一覧には海の体験も含まれますが、荒天でも開催するという意味ではありません。海況や事業者の判断を優先してください。"
-            ]
+            ],
+            "nav": "屋内体験"
           },
           {
             "title": "近場で過ごす日も、食事と帰りを先に",
             "paragraphs": [
               "宿の近くで食事、買い物、屋内施設などを組み合わせる日は、歩く距離を短くして、営業日と帰りの手段を確認します。「屋内」でも入口までの移動やバス待ちは屋外です。",
               "荷物やスマートフォンを濡らさない準備と、着替えを。地図と予約情報を保存しておくと、通信が不安定な場所でも確認しやすくなります。"
-            ]
+            ],
+            "nav": "宿の近くで"
           },
           {
             "title": "船や飛行機が止まったとき",
             "paragraphs": [
               "運行会社で自分の便の状態と変更手続きを確認し、宿にも連絡します。別の交通機関が必ず動いているとは限らないため、乗継を急いで買い直す前に条件を確認します。",
               "体験の変更・取消、追加の宿泊、荷物の扱いは各事業者へ。予約前に条件を読んでおくと、天候が変わったときの判断を減らせます。"
-            ]
+            ],
+            "nav": "欠航時の手順"
           }
-        ]
+        ],
+        "card": {
+          "topic": "雨の日の備え",
+          "title": "雨なら、どう過ごす？",
+          "summary": "道路と運行を確認してから、屋内体験や近場の予定へ。",
+          "steps": []
+        }
       },
       "zh": {
         "title": "屋久岛下雨怎么办？备选活动与改行程顺序",
@@ -380,30 +462,40 @@
             "paragraphs": [
               "小雨与警报、河流涨水、道路封闭需要分别判断。即使天气转晴，之前降雨造成的影响仍可能持续；雨停了不等于路线已经安全。",
               "登山、河流和海上活动，要核对管理方或活动运营者的安排。本页提供改计划的顺序，不判断当天是否适合开展户外活动。"
-            ]
+            ],
+            "nav": "先查运行条件"
           },
           {
             "title": "室内体验先看能否方便到达",
             "paragraphs": [
               "协会雨天体验目录列有屋久杉手作、皮革、香氛、咖啡等类别。选好感兴趣的类型，再核对是否预约、活动时长、年龄要求、服务语言和往返交通。",
               "该目录也收录部分海上活动，但这不表示恶劣天气下仍可进行。是否出发应以海况和运营方判断为准。"
-            ]
+            ],
+            "nav": "室内体验"
           },
           {
             "title": "住处附近过一天，也要先安排吃饭和回程",
             "paragraphs": [
               "可以在住宿附近组合餐食、补给和室内设施，缩短雨中移动距离。先查营业日与回程，室内活动并不代表到门口的路、候车和排队也在室内。",
               "为行李和手机做好防水，准备干衣物。提前保存地图和预约信息，遇到弱网也更容易处理变更。"
-            ]
+            ],
+            "nav": "住处附近"
           },
           {
             "title": "船或飞机停了，按什么顺序处理",
             "paragraphs": [
               "先向运营方确认自己的班次及改签办法，再联系住宿。不要默认另一种交通一定正常；购买替代交通前，先核对运行、连接时间和退改条件。",
               "活动改期、取消、额外住宿和行李处理都应分别联系相关服务方。预订时提前读清条件，能减少天气变化后临时做决定的压力。"
-            ]
+            ],
+            "nav": "停航后的处理"
           }
-        ]
+        ],
+        "card": {
+          "topic": "天气与备选",
+          "title": "下雨了，怎么改计划",
+          "summary": "先确认道路与交通，再找室内体验和附近安排。",
+          "steps": []
+        }
       },
       "en": {
         "title": "Rain in Yakushima: alternatives and changing plans",
@@ -414,30 +506,40 @@
             "paragraphs": [
               "Light rain is different from a warning, rising water or a road closure. Earlier rainfall can still affect a route after the sky clears; rain stopping does not establish that access is safe.",
               "For hikes, river trips and sea activities, check the relevant manager or operator. This page explains how to change plans; it does not decide whether an outdoor activity is safe that day."
-            ]
+            ],
+            "nav": "Check conditions"
           },
           {
             "title": "Choose an indoor option you can reach",
             "paragraphs": [
               "The tourism association lists activities such as cedar crafts, leather work, scent workshops and coffee experiences. Confirm booking, duration, age limits, available languages and the journey in both directions.",
               "Its rainy-day directory also contains sea activities. Inclusion does not mean an activity operates in rough weather: sea conditions and the operator’s decision still govern."
-            ]
+            ],
+            "nav": "Indoor options"
           },
           {
             "title": "Plan food and the return journey for a local day",
             "paragraphs": [
               "Combine food, supplies or an indoor venue near your accommodation, keeping exposed walks short. Check opening days and your way back. Reaching an indoor activity can still involve outdoor walking or waiting for a bus.",
               "Protect bags and phones from water, and keep dry clothing available. Save maps and booking details before heading into areas with weak reception."
-            ]
+            ],
+            "nav": "Stay local"
           },
           {
             "title": "If a boat or flight is cancelled",
             "paragraphs": [
               "Check your own service and change procedure with the operator, then contact your accommodation. Another mode may also be disrupted; confirm operation, connection time and cancellation terms before buying a replacement.",
               "Contact each provider about activity changes, extra accommodation and luggage. Reading the terms before booking makes later decisions easier."
-            ]
+            ],
+            "nav": "Cancellations"
           }
-        ]
+        ],
+        "card": {
+          "topic": "Weather & alternatives",
+          "title": "When rain changes your plans",
+          "summary": "Check access first, then find an indoor or nearby alternative.",
+          "steps": []
+        }
       }
     },
     {
@@ -459,30 +561,40 @@
             "paragraphs": [
               "屋久島行き高速船、フェリー屋久島2、桜島フェリーは同じ乗船場所ではありません。「鹿児島港」とだけ入力せず、予約票の船会社と乗船地を確認します。",
               "観光に使える時間は、出発までの残り時間から、荷物の受取・移動・手続きに必要な時間を引いて考えます。チェックイン締切は船会社の案内を確認してください。"
-            ]
+            ],
+            "nav": "乗船地の確認"
           },
           {
             "title": "港の近くで過ごすなら、ウォーターフロント",
             "paragraphs": [
               "市の公式モデルコースには水族館と海沿いの散歩を組み合わせた徒歩コースがあります。水族館に入るか、外の散歩だけにするかで、滞在を調整できます。",
               "入館するなら営業・休館・料金を施設公式で確認します。公式の「3時間」は観光の参考で、屋久島への手続き、別ターミナルへの移動や荷物預かりまで含む時間ではありません。"
-            ]
+            ],
+            "nav": "海沿いを歩く"
           },
           {
             "title": "余裕があれば、市街地の一か所を選ぶ",
             "paragraphs": [
               "城山からの眺め、仙巌園、天文館などは鹿児島観光の候補です。限られた半日なら一か所を軸にし、交通待ちと歩く時間も含めて戻れるか確認します。",
               "市の5時間モデルコースを出発直前の空き時間へそのまま入れないでください。雨や眺望、荷物、移動手段に合わせて短くする方が組み立てやすくなります。"
-            ]
+            ],
+            "nav": "市内の一か所"
           },
           {
             "title": "桜島へ渡るのは、時間と帰りを確保してから",
             "paragraphs": [
               "桜島は別途フェリーと島内移動を伴います。屋久島行きの直前に少し時間が余っただけなら、渡らず鹿児島側で過ごす選択もあります。",
               "観光後に屋久島へ向かう日は予約済みの乗船地へ戻る経路を確認。荷物預かりやロッカーは空き・営業時間を個別に確認し、このガイドの記載だけで利用を前提にしないでください。"
-            ]
+            ],
+            "nav": "桜島の時間"
           }
-        ]
+        ],
+        "card": {
+          "topic": "屋久島の前後に",
+          "title": "鹿児島で、半日の寄り道",
+          "summary": "港の近くか、市街地の一か所か。船までの余裕で選ぶ。",
+          "steps": []
+        }
       },
       "zh": {
         "title": "去屋久岛前后，鹿儿岛半天怎么安排",
@@ -493,30 +605,40 @@
             "paragraphs": [
               "屋久岛高速船、屋久岛2号渡轮与樱岛渡轮不是同一个乘船点。导航时不要只输入“鹿儿岛港”，要对照预订凭证确认船公司和具体码头。",
               "可游览时间应从出发前的余量中，扣除取行李、到码头及办理手续所需时间。手续截止时间以船公司规定为准，不能只看开船时刻。"
-            ]
+            ],
+            "nav": "认清码头"
           },
           {
             "title": "想留在港口附近：海滨步行路线",
             "paragraphs": [
               "市旅游官网有水族馆与海滨散步组合的步行方案。是否进入水族馆，可以根据手头时间调整；只选附近散步，也是一个完整的短暂停留。",
               "入馆前需在设施官网核对营业、休馆与票价。官方“3小时”是游览参考，不包含你的行李安排、换乘到其他码头和屋久岛船班手续。"
-            ]
+            ],
+            "nav": "海滨步行"
           },
           {
             "title": "有更多余量：市区只选一个主点",
             "paragraphs": [
               "城山眺望、仙岩园或天文馆都可作为候选。只有半天时，以一个地方为主，并把候车、步行和返回时间算进去，比连续打卡更容易控制。",
               "不要把官方5小时市区路线直接塞进开船前的空档。根据天气、能见度、行李和交通删减，才能判断是否适合当天。"
-            ]
+            ],
+            "nav": "市区选一处"
           },
           {
             "title": "樱岛另留时间，不当成临时顺路",
             "paragraphs": [
               "去樱岛还涉及另一段渡轮和岛内移动。如果只是去屋久岛前多出一点时间，可以留在鹿儿岛一侧，不必为了顺路而跨海。",
               "游览后前往屋久岛，要确认回到自己所订乘船点的路线。寄存或储物柜也需单独确认位置、营业和空位，不能仅凭攻略默认一定可用。"
-            ]
+            ],
+            "nav": "樱岛另留时间"
           }
-        ]
+        ],
+        "card": {
+          "topic": "上岛前后",
+          "title": "鹿儿岛，留半天走走",
+          "summary": "海滨散步或市区一个主点，按乘船前的余量来选。",
+          "steps": []
+        }
       },
       "en": {
         "title": "A half-day in Kagoshima before or after Yakushima",
@@ -527,30 +649,40 @@
             "paragraphs": [
               "Yakushima jetfoils, Ferry Yakushima 2 and the Sakurajima ferry do not share one boarding point. Use the operator and terminal on your reservation rather than navigating only to “Kagoshima Port.”",
               "Subtract luggage collection, travel to the terminal and check-in from your remaining time. Check the operator’s deadline; departure time alone is not the last time you can arrive."
-            ]
+            ],
+            "nav": "Your terminal"
           },
           {
             "title": "For a nearby option, consider the waterfront",
             "paragraphs": [
               "The city’s official walking course combines the aquarium and waterfront. You can adjust the visit by deciding whether to enter the aquarium or just walk outside.",
               "Check opening days, admission and hours with the facility before entering. The official three-hour label is a sightseeing reference: it does not include your luggage arrangements, a transfer to another terminal or Yakushima check-in."
-            ]
+            ],
+            "nav": "Waterfront walk"
           },
           {
             "title": "With more time, choose one city anchor",
             "paragraphs": [
               "Shiroyama’s view, Sengan-en and Tenmonkan are possible city stops. For a limited half-day, build around one of them and include waiting and walking time in your return plan.",
               "Do not insert the entire official five-hour city route into a gap before sailing. Shorten it for the weather, visibility, luggage and available transport."
-            ]
+            ],
+            "nav": "One city sight"
           },
           {
             "title": "Allow a separate plan for Sakurajima",
             "paragraphs": [
               "Sakurajima adds another ferry crossing and transport on the island. If you only have a small gap before leaving for Yakushima, remaining on the Kagoshima side is a useful option.",
               "After sightseeing, return to the boarding point for your booked service. Confirm storage or lockers individually, including location, hours and availability; this guide does not guarantee space."
-            ]
+            ],
+            "nav": "Allow for Sakurajima"
           }
-        ]
+        ],
+        "card": {
+          "topic": "Before or after the island",
+          "title": "A half-day in Kagoshima",
+          "summary": "A waterfront walk or one city sight, with time to return for your boat.",
+          "steps": []
+        }
       }
     }
   ]

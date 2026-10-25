@@ -50,7 +50,6 @@ const AppCore = {
 
   notifyLangChange(lang = this.getLang()) {
     window.dispatchEvent(new CustomEvent("yakushima-bus-lang", { detail: { lang } }));
-    window.SiteChrome?.refresh();
   },
 
   applyDocLang(lang = this.getLang()) {

@@ -76,7 +76,7 @@ window.SEO_PAGES = {
     ]
   },
   "/without-car/": {
-    "modified": "2026-10-24",
+    "modified": "2026-10-25",
     "kind": "article",
     "ja": [
       "レンタカーなしで屋久島へ。2泊3日の組み立て方 | YakuBus",
@@ -107,7 +107,7 @@ window.SEO_PAGES = {
     ]
   },
   "/guides/yakushima-where-to-stay/": {
-    "modified": "2026-10-24",
+    "modified": "2026-10-25",
     "kind": "article",
     "ja": [
       "宮之浦か安房か。車なし旅の宿選び | YakuBus",
@@ -123,7 +123,7 @@ window.SEO_PAGES = {
     ]
   },
   "/guides/yakushima-rainy-day/": {
-    "modified": "2026-10-24",
+    "modified": "2026-10-25",
     "kind": "article",
     "ja": [
       "屋久島の雨の日。予定を変えるときの考え方 | YakuBus",
@@ -139,7 +139,7 @@ window.SEO_PAGES = {
     ]
   },
   "/guides/kagoshima-half-day/": {
-    "modified": "2026-10-24",
+    "modified": "2026-10-25",
     "kind": "article",
     "ja": [
       "屋久島の前後に、鹿児島で半日 | YakuBus",
@@ -155,7 +155,7 @@ window.SEO_PAGES = {
     ]
   },
   "/guides/": {
-    "modified": "2026-10-24",
+    "modified": "2026-10-25",
     "ja": [
       "屋久島・鹿児島の旅行ガイド | YakuBus",
       "屋久島と鹿児島。宿・雨の日・車なしの行程・船旅の前後を、公式資料と交通ツールで計画。非公式の三語旅行ガイド。"

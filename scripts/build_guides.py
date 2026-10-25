@@ -11,27 +11,66 @@ COPY={
  'en':{'hub':'Travel guides','lead':'Yakushima and Kagoshima. Plan around your base, the weather and your transport.','eyebrow':'Before you go','sources':'Sources and editorial note','sourceNote':'An independent, unofficial guide edited by YakuBus using official public references. Confirm opening, bookings and actual operations with each provider before travel.','date':'Article updated','back':'All travel guides','actions':'Check your transport next','time':'Bus timetable','map':'Open the map','ferry':'Ferry and island access','notice':'Transport and road conditions change. Select your actual date on the transport pages and check service conditions.','cityNote':'The Kagoshima City tourism site showed a maintenance notice when these materials were compiled. Model-course durations are references. Prioritize facility and operator notices; JNTO is also linked below.'}}
 START,END='<!-- travel-guide:start -->','<!-- travel-guide:end -->'
 def load():return json.loads((ROOT/'sources/guides.json').read_text())
+UI={
+ 'ja':{'toc':'このガイドの内容','read':'ガイドを読む','start':'まずはここから','island':'屋久島を旅する','city':'鹿児島に立ち寄る','tools':'日程が決まったら、交通を確認','editorial':'非公式ガイド · 観光協会などの公式資料を参考に編集','day':'日目'},
+ 'zh':{'toc':'本篇内容','read':'阅读攻略','start':'第一次去，从这里开始','island':'在屋久岛旅行','city':'顺路逛鹿儿岛','tools':'定好行程，再核对交通','editorial':'非官方攻略 · 依据观光协会等官方资料整理','day':'天'},
+ 'en':{'toc':'In this guide','read':'Read guide','start':'Start planning here','island':'On Yakushima','city':'A stop in Kagoshima','tools':'Ready to check your transport?','editorial':'Independent guide · Edited using official tourism references','day':'Day'}
+}
 def actions(L):
- c=COPY[L];return '<nav class="guide-actions" aria-label="'+c['actions']+'">'+''.join(f'<a href="{p}?lang={L}">{c[k]} →</a>' for p,k in [('/','time'),('/map/','map'),('/ferry/','ferry')])+'</nav>'
+ c=COPY[L]
+ return '<nav class="guide-actions" aria-label="'+c['actions']+'">'+''.join(f'<a href="{p}?lang={L}">{c[k]} <span aria-hidden="true">→</span></a>' for p,k in [('/','time'),('/map/','map'),('/ferry/','ferry')])+'</nav>'
+def section_id(g,L,i):return f'{g["id"]}-{L}-{i}'
+def booking_checklist(text,L):
+ # Keep the source wording, turning the existing five checks into a readable list.
+ sentence,sep,tail=text.partition('.' if L=='en' else '。')
+ items=sentence.split({'ja':'／','zh':'；','en':';'}[L])
+ if len(items)!=5:raise ValueError(f'Expected five accommodation checks for {L}')
+ return '<ul class="guide-checklist">'+''.join('<li>'+e(item.strip())+'</li>' for item in items)+'</ul>'+('<p>'+e(tail)+'</p>' if tail else '')
+
 def article(g,L,data,embedded=False):
- c=COPY[L];v=g[L];heading='h2' if embedded else 'h1';year,month=data['modified'][:7].split('-');display_date=(f'{year}年{int(month)}月' if L!='en' else f"{['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][int(month)-1]} {year}");area='屋久島' if g['area']=='yakushima' else '鹿児島'
+ c=COPY[L];u=UI[L];v=g[L];heading='h2' if embedded else 'h1'
+ year,month=data['modified'][:7].split('-')
+ display_date=(f'{year}年{int(month)}月' if L!='en' else f"{['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][int(month)-1]} {year}")
+ area={'ja':{'yakushima':'屋久島','kagoshima':'鹿児島'},'zh':{'yakushima':'屋久岛','kagoshima':'鹿儿岛'},'en':{'yakushima':'Yakushima','kagoshima':'Kagoshima'}}[L][g['area']]
  body=f'<article class="guide-article" data-guide-lang="{L}" data-seo-lang="{L}" lang="{LANGS[L]}"'+(' hidden' if L!='ja' else '')+'>'
- body+=f'<p class="guide-kicker">{area} / {e(c["eyebrow"])}</p><{heading}>{e(v["title"])}</{heading}><p class="guide-dek">{e(v["dek"])}</p>'
- body+=f'<p class="guide-date">{c["date"]} <time datetime="{data["modified"]}">{display_date}</time></p>'
- body+='<div class="guide-reading">'
+ body+=f'<header class="guide-article-header"><p class="guide-kicker">{area} / {e(v["card"]["topic"])}</p><{heading}>{e(v["title"])}</{heading}><p class="guide-dek">{e(v["dek"])}</p>'
+ body+=f'<p class="guide-date">{c["date"]} <time datetime="{data["modified"]}">{display_date}</time></p><p class="guide-editorial-note">{u["editorial"]}</p></header>'
+ body+=f'<div class="guide-layout"><nav class="guide-toc" aria-label="{u["toc"]}"><p>{u["toc"]}</p><ol>'
+ for i,s in enumerate(v['sections'],1):
+  body+=f'<li><a href="#{section_id(g,L,i)}"><span aria-hidden="true">{i:02}</span>{e(s["nav"])}</a></li>'
+ body+='</ol></nav><div class="guide-reading">'
  for i,s in enumerate(v['sections'],1):
   h='h3' if embedded else 'h2'
-  body+=f'<section><{h}><span class="guide-step" aria-hidden="true">{i:02}</span>{e(s["title"])}</{h}>'+''.join('<p>'+e(p)+'</p>' for p in s['paragraphs'])+'</section>'
+  body+=f'<section class="guide-section" id="{section_id(g,L,i)}"><{h}><span class="guide-step" aria-hidden="true">{i:02}</span>{e(s["title"])}</{h}>'
+  if g['id']=='without-car' and i==2:
+   body+='<ol class="guide-days">'
+   for day,p in enumerate(s['paragraphs'],1):
+    label=f'Day {day}' if L=='en' else (f'第{day}天' if L=='zh' else f'{day}日目')
+    body+=f'<li><span class="guide-day-label">{label}</span><p>{e(p)}</p></li>'
+   body+='</ol>'
+  elif g['id']=='where-to-stay' and i==4:
+   body+=booking_checklist(s['paragraphs'][0],L)+''.join('<p>'+e(p)+'</p>' for p in s['paragraphs'][1:])
+  else:body+=''.join('<p>'+e(p)+'</p>' for p in s['paragraphs'])
+  body+='</section>'
  body+=f'<aside class="guide-note">{e(c["notice"])}</aside>'+actions(L)
- body+=f'<section class="guide-sources"><h{3 if embedded else 2}>{c["sources"]}</h{3 if embedded else 2}><p>{e(c["sourceNote"])}</p>'
+ body+=f'<details class="guide-sources"><summary>{c["sources"]}</summary><p>{e(c["sourceNote"])}</p>'
  if g['area']=='kagoshima':body+='<p>'+e(c['cityNote'])+'</p>'
- body+='<ul>'+''.join(f'<li><a href="{e(data["sources"][k]["url"])}" data-guide-source="{k}">{e(data["sources"][k]["label"][L])} ↗</a></li>' for k in g['sources'])+'</ul></section></div></article>'
+ body+='<ul>'+''.join(f'<li><a href="{e(data["sources"][k]["url"])}" data-guide-source="{k}">{e(data["sources"][k]["label"][L])} ↗</a></li>' for k in g['sources'])+'</ul></details></div></div></article>'
  return body
+def card(g,L,kind=''):
+ v=g[L]['card'];u=UI[L]
+ body=f'<a class="guide-card {kind}" href="{g["path"]}?lang={L}"><span class="guide-card-topic">{e(v["topic"])}</span><h3>{e(v["title"])}</h3><p>{e(v["summary"])}</p>'
+ if v['steps']:
+  body+='<ol class="guide-card-journey">'+''.join(f'<li><span>0{i}</span>{e(s)}</li>' for i,s in enumerate(v['steps'],1))+'</ol>'
+ return body+f'<span class="guide-card-cta">{u["read"]} <span aria-hidden="true">→</span></span></a>'
 def hub(L,data):
- c=COPY[L];body=f'<section data-guide-lang="{L}" data-seo-lang="{L}" lang="{LANGS[L]}"'+(' hidden' if L!='ja' else '')+f'><p class="guide-kicker">YAKUSHIMA / KAGOSHIMA</p><h1>{c["hub"]}</h1><p class="guide-dek">{c["lead"]}</p><div class="guide-grid">'
- for i,g in enumerate(data['guides'],1):
-  body+=f'<a class="guide-card" href="{g["path"]}?lang={L}"><span class="guide-card-number">0{i}</span><h2>{e(g[L]["title"])}</h2><p>{e(g[L]["dek"])}</p><span class="guide-card-arrow" aria-hidden="true">↗</span></a>'
- return body+'</div>'+actions(L)+'</section>'
+ c=COPY[L];u=UI[L];guides=data['guides']
+ body=f'<section class="guide-hub" data-guide-lang="{L}" data-seo-lang="{L}" lang="{LANGS[L]}"'+(' hidden' if L!='ja' else '')+f'><header class="guide-hub-header"><p class="guide-kicker">YAKUSHIMA / KAGOSHIMA</p><h1>{c["hub"]}</h1><p class="guide-dek">{c["lead"]}</p></header>'
+ body+=f'<section class="guide-island"><div class="guide-group-heading"><h2>{u["island"]}</h2><p>{u["start"]}</p></div><div class="guide-grid">'
+ body+=card(guides[0],L,'guide-card-featured')+'<div class="guide-secondary">'+''.join(card(g,L) for g in guides[1:3])+'</div></div></section>'
+ body+=f'<section class="guide-city"><h2>{u["city"]}</h2>'+card(guides[3],L,'guide-card-city')+'</section>'
+ body+=f'<section class="guide-tools"><h2>{u["tools"]}</h2>'+actions(L)+'</section></section>'
+ return body
 def shell(path,body):
  return '''<!DOCTYPE html>
 <html lang="ja"><head>
@@ -45,7 +84,7 @@ def shell(path,body):
 <script src="/transport-data.js"></script><script src="/transport-status.js"></script>
 <script src="/app-core.js" defer></script><script src="/site-chrome.js" defer></script><script src="/guides.js" defer></script>
 <script src="/analytics.js" defer></script><script src="/analytics-events.js" defer></script>
-</head><body class="app-page-narrow"><div class="app travel-guide-page">
+</head><body class="app-page-narrow guide-reading-page"><div class="app travel-guide-page">
 <div class="app-nav-sticky"><nav class="nav nav-main nav-main--6" id="mainNav" aria-label="メインメニュー">
 <a href="/map/?lang=ja">マップ</a><a href="/?lang=ja">時刻表</a><a href="/fare/?lang=ja">運賃</a><a href="/ferry/?lang=ja">フェリー</a><a href="/trekking/?lang=ja">旅と体験</a><a href="/guides/?lang=ja" aria-current="page">旅行ガイド</a>
 </nav><script src="/site-chrome-nav-boot.js"></script></div>
@@ -58,7 +97,7 @@ def outputs():
  for g in data['guides']:
   body=''.join(article(g,L,data,g['path']=='/without-car/') for L in LANGS)
   if g['path']=='/without-car/':
-   f=ROOT/'without-car/index.html';text=f.read_text();block=START+'\n<div class="travel-guide-embedded">'+body+'</div>\n'+END
+   f=ROOT/'without-car/index.html';text=f.read_text();text=text.replace('class="app-page-narrow"','class="app-page-narrow guide-reading-page"');block=START+'\n<div class="travel-guide-embedded">'+body+'</div>\n'+END
    if START in text:text=re.sub(re.escape(START)+'.*?'+re.escape(END),lambda _:block,text,flags=re.S)
    else:text=text.replace('    <div id="geoEvidence">',block+'\n    <div id="geoEvidence">',1)
    out['without-car/index.html']=text

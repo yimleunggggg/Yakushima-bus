@@ -8,7 +8,7 @@
     { href: "/fare/", key: "navMap", active: /^\/fare\/?$/i },
     { href: "/ferry/", key: "navAccess", active: /^\/ferry\/?$/i },
     { href: "/trekking/", key: "navTrek", active: /^\/trekking\/?$/i },
-    { href: "/guides/", key: "navTravelGuides", active: /^\/guides(?:\/|$)/i },
+    { href: "/guides/", key: "navTravelGuides", active: /^\/(?:guides(?:\/|$)|without-car\/?$)/i },
   ];
 
   const NAV_UI = {

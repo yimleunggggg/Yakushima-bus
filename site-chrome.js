@@ -10,7 +10,7 @@
     { href: "/fare/", key: "navMap", active: /^\/fare\/?$/i },
     { href: "/ferry/", key: "navAccess", active: /^\/ferry\/?$/i },
     { href: "/trekking/", key: "navTrek", active: /^\/trekking\/?$/i },
-    { href: "/guides/", key: "navTravelGuides", active: /^\/guides(?:\/|$)/i },
+    { href: "/guides/", key: "navTravelGuides", active: /^\/(?:guides(?:\/|$)|without-car\/?$)/i },
   ];
 
   const PAGE_HEAD = {
@@ -446,7 +446,7 @@
     renderMainNav(lang);
     renderFooter();
     renderFeedback();
-    document.addEventListener("yakushima-bus-lang", (e) => {
+    window.addEventListener("yakushima-bus-lang", (e) => {
       const next = e.detail?.lang;
       if (next) lang = next;
       refresh();
