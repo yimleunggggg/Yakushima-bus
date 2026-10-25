@@ -2,10 +2,10 @@ name: SEO and GEO verification
 
 on:
   pull_request:
-    paths: ['*.html', '**/index.html', '*.js', '*.css', '*.xml', 'llms.txt', 'robots.txt', 'sources/**', 'scripts/**', 'tests/**', '.github/workflows/seo-verify.yml']
+    paths: ['*.html', '**/index.html', '*.js', '*.css', '*.xml', 'llms.txt', 'robots.txt', 'ads.txt', 'sources/**', 'scripts/**', 'tests/**', '.github/workflows/seo-verify.yml']
   push:
     branches: [main]
-    paths: ['*.html', '**/index.html', '*.js', '*.css', '*.xml', 'llms.txt', 'robots.txt', 'sources/**', 'scripts/**', 'tests/**', '.github/workflows/seo-verify.yml']
+    paths: ['*.html', '**/index.html', '*.js', '*.css', '*.xml', 'llms.txt', 'robots.txt', 'ads.txt', 'sources/**', 'scripts/**', 'tests/**', '.github/workflows/seo-verify.yml']
   workflow_dispatch:
 
 permissions:

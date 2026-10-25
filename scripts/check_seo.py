@@ -7,7 +7,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit
 from xml.etree import ElementTree as ET
 
-from build_seo import BASE, LANGS, ROOT, load, main as check_generated
+from build_seo import ADSENSE_CODE, ADS_TXT, BASE, LANGS, ROOT, load, main as check_generated
 from sync_transport_assets import main as check_assets
 
 
@@ -76,6 +76,11 @@ def check():
         if name == 'sitemap.xml':
             for entry in entries:
                 assert all(a.attrib['href'] in set(urls) for a in entry.findall('x:link', ns)), 'Missing reciprocal sitemap URL'
+    for path in [*pages, '/intro/']:
+        text = (ROOT / (path.lstrip('/') + 'index.html')).read_text()
+        head = text.split('</head>', 1)[0]
+        assert head.count(ADSENSE_CODE) == 1 and text.count('adsbygoogle.js') == 1, f'{path}: missing or duplicate AdSense code'
+    assert (ROOT / 'ads.txt').read_text() == ADS_TXT, 'Incorrect AdSense ads.txt publisher'
     intro = Page((ROOT / 'intro/index.html').read_text())
     assert any(m.get('name') == 'robots' and 'noindex' in m.get('content', '') for m in intro.meta), 'Intro must remain noindex'
     assert (ROOT / 'googlef464172b97bd6d41.html').exists(), 'Missing GSC verification file'
