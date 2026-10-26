@@ -19,7 +19,9 @@ def card(payload, url):
         return f"{label}：{r['current']}（{period}{r.get('change', '暂不能比较')}）"
     ga=payload.get("ga4_daily", {})
     day=ga.get("period", {}).get("yesterday", "暂缺")
-    lines=["**流量 · "+day+"完整日**",
+    timezone=ga.get("timezone", "时区未知")
+    timezone={"America/Los_Angeles":"洛杉矶时间", "Asia/Shanghai":"北京时间"}.get(timezone, timezone)
+    lines=["**流量 · "+day+"完整日（"+timezone+"）**",
            number("活跃用户·日环比", "活跃访客", "比前一天"),
            number("会话·日环比", "访问次数", "比前一天"),
            number("搜索点击·日环比", "Google搜索点击", "比前一天"),
