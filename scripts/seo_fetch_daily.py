@@ -188,6 +188,8 @@ def main() -> int:
             payload.update({key:{"error":type(e).__name__} for key in ["gsc_7d","gsc_28d"]})
     else:
         payload.update({key:{"error":gsc_err or "GSC授权不可用"} for key in ["gsc_7d","gsc_28d"]})
+    from seo_daily_diagnosis import fetch_details
+    payload["diagnostics"]=fetch_details(sa,gsc_creds,ga4_id,site,payload)
     enrich(payload)
 
     out_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")

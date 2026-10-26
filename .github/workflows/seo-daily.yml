@@ -1,10 +1,10 @@
-# 每日17:00北京时间 → 真实数据、每日变化、接入状态 → 固定飞书表格 + Git存档
+# 每日10:00北京时间 → 真实数据、每日变化、接入状态 → 固定飞书表格 + Git存档
 # 失败自动重跑 1 次（job 内）；两次均失败 → 高优先级 ntfy 告警
 name: SEO daily report
 
 on:
   schedule:
-    - cron: "0 9 * * *"
+    - cron: "0 2 * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -38,6 +38,7 @@ jobs:
         run: |
           python3 tests/test_daily_reporting.py
           python3 tests/test_daily_publish.py
+          python3 tests/test_daily_diagnosis.py
 
       - name: Run daily pipeline (up to 2 attempts)
         env:

@@ -26,19 +26,16 @@ def card(payload, url):
            number("会话·日环比", "访问次数", "比前一天"),
            number("搜索点击·日环比", "Google搜索点击", "比前一天"),
            number("自然搜索会话·周环比", "自然搜索近7天访问", "比前7天"), ""]
-    weekly=metric("活跃用户·周环比")
-    if weekly.get("current") is not None and weekly.get("previous"):
-        change=weekly["current"]/weekly["previous"]-1
-        if change<=-0.05: focus="本周访客减少，优先看哪些搜索入口掉了。"
-        elif change<0.05: focus="本周访客变化不大，还没有明显增长。"
-        else: focus="本周访客增加，继续看能否保持。"
-    else: focus="周数据不全，暂时不能判断有没有增长。"
-    lines += ["**今天重点** · "+focus]
+    from seo_daily_diagnosis import analyse
+    analysis=payload.get("analysis") or analyse(payload)
+    lines += ["**已查到**"]+["• "+fact for fact in analysis["card_findings"]]
+    lines += ["**判断** · "+analysis["judgment"]]
+    done=next((a for a in analysis['agent_actions'] if a.startswith('已核验')),None)
+    if not done:done=analysis['agent_actions'][-1] if analysis['agent_actions'] else '已自动完成可用数据对比。'
+    lines += ["**我已处理** · "+done]
+    for action in analysis.get("user_actions",[]):lines.append("**需要你操作** · "+action)
     integrations=payload.get("integrations", [])
     failed=[r["service"] for r in integrations if "失败" in r["status"] or "异常" in r["status"]]
-    if "GSC" in failed: lines.append("**待处理** · 搜索数据没更新，先修复连接。")
-    elif failed: lines.append("**待处理** · "+"、".join(failed)+"数据异常，需要检查。")
-    else: lines.append("**下一步** · 对照看板查看变化最大的入口页。")
     status=[]
     for r in integrations:
         service=r["service"]
@@ -86,7 +83,7 @@ def send(payload):
     url=meta.get("url") or "https://my.feishu.cn/sheets/"+spreadsheet
     if meta.get("dashboard_sheet_id"): url+="?sheet="+meta["dashboard_sheet_id"]
     body={"receive_id":recipient, "msg_type":"interactive", "content":json.dumps(card(payload, url), ensure_ascii=False),
-          "uuid":str(uuid.uuid5(uuid.NAMESPACE_URL, "yakubus-daily:"+payload["fetched_at"]+":"+kind+":"+recipient))}
+          "uuid":str(uuid.uuid5(uuid.NAMESPACE_URL, "yakubus-diagnosed-daily-v1:"+payload["fetched_at"]+":"+kind+":"+recipient))}
     data=fu.api_json("POST", "/im/v1/messages?receive_id_type="+kind, token, json=body)
     message_id=data.get("data", {}).get("message_id")
     if not message_id: raise RuntimeError("飞书没有返回消息ID，不能确认发送成功")

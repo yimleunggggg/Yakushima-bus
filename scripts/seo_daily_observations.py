@@ -115,18 +115,9 @@ def enrich(payload):
             changes.append(comparison('GSC',label+'·'+suffix,a.get(key) if not a.get('error') else None,b.get(key) if not b.get('error') else None,window,'个百分点' if key=='ctr' else '%'))
     payload['daily_changes']=changes
     payload['integrations']=integration_checks(payload)
-    actions=[]
-    for row in payload['integrations']:
-        if '失败' in row['status'] or '异常' in row['status']:actions.append(row['service']+'：'+row['action'])
-    weekly=next((r for r in changes if r['metric']=='活跃用户·周环比'),{})
-    if weekly.get('current') is not None and weekly.get('previous'):
-        ratio=weekly['current']/weekly['previous']
-        actions.append('总访客尚未明显增长，优先检查搜索入口及新增攻略落地页。' if ratio<1.05 else '总访客周环比增加；继续观察两周并核对参与质量，暂不归因单次改版。')
-    day_click=next((r for r in changes if r['metric']=='搜索点击·日环比'),{})
-    if day_click.get('current') is not None and (day_click.get('previous') or 0)>=20 and day_click['current']<day_click['previous']*0.7:
-        actions.append(f"最新完整日搜索点击{day_click['current']}，前日{day_click['previous']}（{day_click['change']}）；先核对下降的查询词和页面，再看同星期表现，勿凭一天判定改版影响。")
-    actions+=['AdSense审核/收益需后台核验；当前只验证网站代码。' ,'AI渠道增加不等于已验证AI引用增长；分销点击不等于成交。']
-    payload['daily_actions']=actions
+    from seo_daily_diagnosis import analyse
+    payload['analysis']=analyse(payload)
+    payload['daily_actions']=payload['analysis']['card_findings']+[payload['analysis']['judgment']]+payload['analysis']['agent_actions']
     return payload
 
 

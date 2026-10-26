@@ -21,6 +21,7 @@ from seo_week_util import wow_pct  # noqa: E402
 SHEETS = [
     dashboard.TITLE,
     "今日重点",
+    "分析明细",
     "每日变化",
     "功能使用",
     "接入状态",
@@ -298,8 +299,22 @@ def integration_rows(days):
     return rows
 
 
+def diagnosis_rows(days):
+    d=dashboard.latest_payload(days)
+    from seo_daily_diagnosis import analyse
+    a=d.get('analysis') or analyse(d)
+    rows=[["报告日期","类别","对象/结论","前期","当前","变化","指标/口径","比较周期"]]
+    for fact in a['findings']:rows.append([d.get('fetched_at'),"结论",fact,"","","","",""])
+    for e in a['evidence']:
+        period=a['periods']['gsc'] if e['source'].startswith('GSC') or e['source']=='GA4 aligned Google' else a['periods']['ga4']
+        rows.append([d.get('fetched_at'),e['source'],e['key'],e['previous'],e['current'],e['delta'],e['metric'],str(period)])
+    for action in a['agent_actions']:rows.append([d.get('fetched_at'),"由自动任务处理",action,"","","","",""])
+    return rows
+
+
 def sync_all(token: str, spreadsheet_token: str, days: list[dict]) -> None:
     builders = {
+        "分析明细":lambda:diagnosis_rows(days),
         dashboard.TITLE:lambda:dashboard.build_dashboard(days),
         "今日重点":lambda:focus_rows(days),
         "功能使用":lambda:event_rows(days),

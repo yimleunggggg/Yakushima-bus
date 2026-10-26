@@ -50,6 +50,10 @@ import json,sys
 from pathlib import Path
 d=json.loads(Path("docs/seo/metrics/daily-latest.json").read_text())
 failed=[name for name in ("ga4_daily","gsc_28d","gsc_7d") if d.get(name,{}).get("error")]
+gaps=d.get("analysis",{}).get("gaps",[])
+if gaps:
+    print("✗ 分析所需明细未齐全："+", ".join(gaps))
+    sys.exit(1)
 if failed:
     print("✗ 飞书已收到失败状态，但以下来源仍未恢复："+", ".join(failed))
     sys.exit(1)

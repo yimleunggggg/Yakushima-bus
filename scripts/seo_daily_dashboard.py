@@ -45,7 +45,7 @@ def build_dashboard(days):
     clicks=metric("搜索点击·日环比"); organic=metric("自然搜索会话·周环比")
     rows=[
         ["YakuBus · 总览看板", "", "", "", "", "", "", ""],
-        ["报告更新", d.get("fetched_at_iso", d.get("fetched_at", "")), "GA4完整日", p.get("yesterday", "未取得"), "GSC final截至", d.get("gsc_latest_complete_day", "未取得"), "每天17:00北京时间启动", ""],
+        ["报告更新", d.get("fetched_at_iso", d.get("fetched_at", "")), "GA4完整日", p.get("yesterday", "未取得"), "GSC final截至", d.get("gsc_latest_complete_day", "未取得"), "每天10:00北京时间启动", ""],
         ["① 核心表现", "", "", "", "", "", "", ""],
         ["日活跃用户", "日会话", "日搜索点击", "自然搜索会话·7日", "", "", "", ""],
         [users[0], sessions[0], clicks[0], organic[0], "", "", "", ""],

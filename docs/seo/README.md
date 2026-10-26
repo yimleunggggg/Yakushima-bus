@@ -4,6 +4,8 @@
 
 **https://github.com/yimleunggggg/vibe-coding-static-site-guide/tree/main/seo/tutorial/README.md**
 
+新增：[GA4/GSC → 自动分析 → 飞书看板与私聊 SOP](DAILY_REPORT_SOP.md)，含原理图、配置、验收、排错及跨项目迁移。
+
 ## 本仓保留什么
 
 | 路径 | 用途 |
@@ -18,7 +20,7 @@
 
 | 任务 | UTC | 北京 | 产出 |
 |------|-----|------|------|
-| 日报 | 09:00 每天 | 17:00 | `reports/daily/` + ntfy/邮件 |
+| 日报 | 02:00 每天 | 10:00启动 | 自动分析 + 飞书看板/私聊 + `reports/daily/` |
 | 周报 | 09:30 每周一 | 17:30 | `metrics/weekly-*.json` + 飞书表格 |
 
 飞书配置（日报 doc / 追踪 doc / **周报表**）：[FEISHU_SETUP.md](FEISHU_SETUP.md)
