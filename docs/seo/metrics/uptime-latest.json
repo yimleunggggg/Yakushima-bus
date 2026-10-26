@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-25T13:36:32Z",
+  "checked_at": "2026-10-26T11:23:39Z",
   "site": "https://yakushimabus.com",
   "ok": true,
   "urls": [
@@ -9,13 +9,28 @@
       "status": 200
     },
     {
+      "path": "/fare/",
+      "url": "https://yakushimabus.com/fare/",
+      "status": 200
+    },
+    {
       "path": "/map/",
       "url": "https://yakushimabus.com/map/",
       "status": 200
     },
     {
-      "path": "/access/",
-      "url": "https://yakushimabus.com/access/",
+      "path": "/ferry/",
+      "url": "https://yakushimabus.com/ferry/",
+      "status": 200
+    },
+    {
+      "path": "/trekking/",
+      "url": "https://yakushimabus.com/trekking/",
+      "status": 200
+    },
+    {
+      "path": "/guides/",
+      "url": "https://yakushimabus.com/guides/",
       "status": 200
     },
     {
