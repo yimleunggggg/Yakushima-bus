@@ -158,6 +158,15 @@ def write_range(token: str, spreadsheet_token: str, sheet_title: str, values: li
         check=api_json("GET",f"/sheets/v2/spreadsheets/{spreadsheet_token}/values/{quote(rng,safe='')}",token)
         actual=(check.get("data") or {}).get("valueRange",{}).get("values") or []
         if [trimmed(r) for r in actual] != [trimmed(r) for r in chunk]:
+            for i,(expected_row,actual_row) in enumerate(zip(chunk,actual)):
+                if trimmed(expected_row)!=trimmed(actual_row):
+                    for j in range(max(len(expected_row),len(actual_row))):
+                        wanted=expected_row[j] if j<len(expected_row) else ""
+                        got=actual_row[j] if j<len(actual_row) else ""
+                        if wanted!=got:
+                            print("Feishu read-back mismatch:",json.dumps({"sheet":sheet_title,"cell":[offset+i+1,j+1],"expected":wanted,"actual":got},ensure_ascii=False)[:700],flush=True)
+                            break
+                    break
             raise RuntimeError("飞书回读与写入不一致: "+sheet_title)
     if len(old) > rows:
         blank = [[""] * cols for _ in range(len(old) - rows)]
