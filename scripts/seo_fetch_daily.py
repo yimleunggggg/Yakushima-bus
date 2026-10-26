@@ -5,7 +5,8 @@ from __future__ import annotations
 import json
 import os
 import sys
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -64,6 +65,7 @@ def ga4_report(
         Dimension,
         Metric,
         RunReportRequest,
+        OrderBy,
     )
 
     dims = dims or []
@@ -73,8 +75,9 @@ def ga4_report(
         dimensions=[Dimension(name=d) for d in dims],
         metrics=[Metric(name=n) for n in GA4_METRICS],
         limit=limit,
+        order_bys=[OrderBy(metric=OrderBy.MetricOrderBy(metric_name="sessions"),desc=True)] if dims else [],
     )
-    resp = client.run_report(req)
+    resp = client.run_report(req, timeout=35)
     rows = []
     for row in resp.rows:
         rec = _parse_metrics(row)
@@ -99,10 +102,22 @@ def fetch_ga4_daily(credentials, property_id: str) -> dict:
         return out
     prop = f"properties/{property_id}"
     try:
-        client = BetaAnalyticsDataClient(credentials=credentials)
-        yday = (date.today() - timedelta(days=1)).isoformat()
-        day_before = (date.today() - timedelta(days=2)).isoformat()
-        wk_start = (date.today() - timedelta(days=7)).isoformat()
+        client = BetaAnalyticsDataClient(credentials=credentials, transport="rest")
+        from google.analytics.data_v1beta.types import RunReportRequest, DateRange, Metric
+        probe = client.run_report(RunReportRequest(property=prop, date_ranges=[DateRange(start_date="yesterday", end_date="yesterday")], metrics=[Metric(name="activeUsers")]), timeout=35)
+        from seo_daily_observations import complete_windows
+        out["timezone"] = probe.metadata.time_zone
+        end, before, start, previous_start = complete_windows(out["timezone"])
+        yday, day_before, wk_start = str(end), str(before), str(start)
+        previous_end = str(start-timedelta(days=1))
+        out["previous_7d"] = ga4_report(client,prop,str(previous_start),previous_end)
+        out["channels_previous_7d"] = ga4_report(client,prop,str(previous_start),previous_end,dims=["sessionDefaultChannelGroup"],limit=15)
+        from google.analytics.data_v1beta.types import Dimension
+        try:
+            response=client.run_report(RunReportRequest(property=prop,date_ranges=[DateRange(start_date=yday,end_date=yday)],dimensions=[Dimension(name="eventName")],metrics=[Metric(name="eventCount")],limit=100), timeout=35)
+            out["events_yesterday"]=[{"event_name":r.dimension_values[0].value,"event_count":int(r.metric_values[0].value)} for r in response.rows]
+        except Exception as e:
+            out["events_error"]=type(e).__name__
 
         out["yesterday"] = ga4_report(client, prop, yday, yday)
         out["day_before"] = ga4_report(client, prop, day_before, day_before)
@@ -130,6 +145,7 @@ def fetch_ga4_daily(credentials, property_id: str) -> dict:
 
         out["period"] = {
             "yesterday": yday,
+            "previous_7d": str(previous_start)+"~"+previous_end,
             "day_before": day_before,
             "last_7d_start": wk_start,
             "last_7d_end": yday,
@@ -148,7 +164,7 @@ def delta_pct(cur: int, prev: int) -> str:
 
 def main() -> int:
     METRICS_DIR.mkdir(parents=True, exist_ok=True)
-    today = date.today().isoformat()
+    today = datetime.now(ZoneInfo("Asia/Shanghai")).date().isoformat()
     out_file = METRICS_DIR / f"daily-{today}.json"
 
     sa, err = m.load_service_account_credentials()
@@ -163,23 +179,16 @@ def main() -> int:
     seo_oauth_util.oauth_preflight_log()
     print(f"GSC auth: {gsc_via or 'none'}")
 
-    # GSC 滞后约 2–3 天：7日/28日窗口 end = today-3
-    gsc_end = date.today() - timedelta(days=3)
-    gsc_7_start = (gsc_end - timedelta(days=6)).isoformat()
-    gsc_28_start = (gsc_end - timedelta(days=27)).isoformat()
-    gsc_end_s = gsc_end.isoformat()
-
-    payload = {
-        "fetched_at": today,
-        "ga4_daily": fetch_ga4_daily(sa, ga4_id),
-        "gsc_28d": m.fetch_gsc(gsc_creds, site) if gsc_creds else {"error": gsc_err},
-    }
+    payload = {"fetched_at":today,"fetched_at_iso":datetime.now(ZoneInfo("Asia/Shanghai")).isoformat(),
+               "ga4_daily":fetch_ga4_daily(sa,ga4_id)}
+    from seo_daily_observations import fetch_gsc_windows, enrich
     if gsc_creds:
-        from seo_fetch_weekly import fetch_gsc_range  # noqa: E402
-
-        payload["gsc_7d"] = fetch_gsc_range(gsc_creds, site, gsc_7_start, gsc_end_s)
+        try: payload.update(fetch_gsc_windows(gsc_creds,site))
+        except Exception as e:
+            payload.update({key:{"error":type(e).__name__} for key in ["gsc_7d","gsc_28d"]})
     else:
-        payload["gsc_7d"] = {"error": gsc_err, "period": {"start": gsc_7_start, "end": gsc_end_s}}
+        payload.update({key:{"error":gsc_err or "GSC授权不可用"} for key in ["gsc_7d","gsc_28d"]})
+    enrich(payload)
 
     out_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     (METRICS_DIR / "daily-latest.json").write_text(

@@ -88,21 +88,26 @@ def create_spreadsheet(token: str, title: str, folder_token: str | None = None) 
     raise RuntimeError(f"飞书建表均失败: {last_err}")
 
 
-def ensure_sheet_tab(token: str, spreadsheet_token: str, title: str) -> None:
-    data = api_json(
-        "GET",
-        f"/sheets/v3/spreadsheets/{spreadsheet_token}/sheets/query",
-        token,
-    )
-    titles = {s.get("title") for s in (data.get("data") or {}).get("sheets") or []}
-    if title in titles:
-        return
-    api_json(
-        "POST",
-        f"/sheets/v2/spreadsheets/{spreadsheet_token}/sheets_batch_update",
-        token,
-        json={"requests": [{"addSheet": {"properties": {"title": title}}}]},
-    )
+_SHEET_IDS = {}
+
+
+def ensure_sheet_tab(token: str, spreadsheet_token: str, title: str) -> str:
+    key = (spreadsheet_token, title)
+    if key in _SHEET_IDS:
+        return _SHEET_IDS[key]
+    def query():
+        data=api_json("GET",f"/sheets/v3/spreadsheets/{spreadsheet_token}/sheets/query",token)
+        return (data.get("data") or {}).get("sheets") or []
+    sheets=query()
+    sheet=next((s for s in sheets if s.get("title")==title),None)
+    if sheet is None:
+        api_json("POST",f"/sheets/v2/spreadsheets/{spreadsheet_token}/sheets_batch_update",token,
+                 json={"requests":[{"addSheet":{"properties":{"title":title}}}]})
+        sheet=next((s for s in query() if s.get("title")==title),None)
+    if not sheet or not sheet.get("sheet_id"):
+        raise RuntimeError("工作表ID无法解析: "+title)
+    _SHEET_IDS[key]=sheet["sheet_id"]
+    return sheet["sheet_id"]
 
 
 def col_letter(n: int) -> str:
@@ -117,7 +122,8 @@ def col_letter(n: int) -> str:
 def read_range(token: str, spreadsheet_token: str, sheet_title: str, end_col: str = "Z") -> list[list]:
     from urllib.parse import quote
 
-    rng = quote(f"{sheet_title}!A1:{end_col}1000", safe="")
+    sheet_id = ensure_sheet_tab(token,spreadsheet_token,sheet_title)
+    rng = quote(f"{sheet_id}!A1:{end_col}1000", safe="")
     try:
         data = api_json(
             "GET",
@@ -136,16 +142,26 @@ def write_range(token: str, spreadsheet_token: str, sheet_title: str, values: li
     rows = len(values)
     end_col = col_letter(cols)
     old = read_range(token, spreadsheet_token, sheet_title, end_col)
-    rng = f"{sheet_title}!A1:{end_col}{rows}"
-    api_json(
-        "PUT",
-        f"/sheets/v2/spreadsheets/{spreadsheet_token}/values",
-        token,
-        json={"valueRange": {"range": rng, "values": values}},
-    )
+    sheet_id = ensure_sheet_tab(token,spreadsheet_token,sheet_title)
+    from urllib.parse import quote
+    def trimmed(row):
+        row=list(row)
+        while row and row[-1] in ("",None):row.pop()
+        return row
+    # Bound each request and read-back instead of relying on an unbounded history range.
+    chunk_size=max(1,min(500,4000//cols))
+    for offset in range(0,rows,chunk_size):
+        chunk=values[offset:offset+chunk_size]
+        rng=f"{sheet_id}!A{offset+1}:{end_col}{offset+len(chunk)}"
+        api_json("PUT",f"/sheets/v2/spreadsheets/{spreadsheet_token}/values",token,
+                 json={"valueRange":{"range":rng,"values":chunk}})
+        check=api_json("GET",f"/sheets/v2/spreadsheets/{spreadsheet_token}/values/{quote(rng,safe='')}",token)
+        actual=(check.get("data") or {}).get("valueRange",{}).get("values") or []
+        if [trimmed(r) for r in actual] != [trimmed(r) for r in chunk]:
+            raise RuntimeError("飞书回读与写入不一致: "+sheet_title)
     if len(old) > rows:
         blank = [[""] * cols for _ in range(len(old) - rows)]
-        clear_rng = f"{sheet_title}!A{rows + 1}:{end_col}{len(old)}"
+        clear_rng = f"{sheet_id}!A{rows + 1}:{end_col}{len(old)}"
         api_json(
             "PUT",
             f"/sheets/v2/spreadsheets/{spreadsheet_token}/values",

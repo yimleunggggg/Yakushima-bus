@@ -18,6 +18,10 @@ from seo_fetch_weekly import channel_metric  # noqa: E402
 from seo_week_util import wow_pct  # noqa: E402
 
 SHEETS = [
+    "今日重点",
+    "每日变化",
+    "功能使用",
+    "接入状态",
     "日报汇总",
     "日报-维度明细",
     "日报-国家×渠道",
@@ -256,8 +260,48 @@ def merge_country_channel(days: list[dict]) -> list[list]:
     return cc + cc7[1:]
 
 
+def focus_rows(days):
+    rows=[["报告日期","重点","建议或结论","GA4完整日","GSC完整日","原始快照"]]
+    for d in reversed(days):
+        for i,action in enumerate(d.get("daily_actions",[]),1):
+            rows.append([d.get("fetched_at",""),i,action,(d.get("ga4_daily",{}).get("period") or {}).get("yesterday",""),d.get("gsc_latest_complete_day",""),"https://github.com/yimleunggggg/Yakushima-bus/blob/main/docs/seo/metrics/daily-"+d.get("fetched_at","")+".json"])
+    return rows
+
+
+def event_rows(days):
+    rows=[["报告日期","GA4完整日","功能","事件名","次数","口径"]]
+    labels={"affiliate_click":"分销商品点击","timetable_preset":"快捷查车","file_download":"PDF下载","nav_click":"站内导航","nav_more_open":"展开更多","lang_switch":"切换语言","timetable_day_tab":"切换日种"}
+    for d in reversed(days):
+        g=d.get("ga4_daily",{});events=g.get("events_yesterday")
+        if events is None:continue
+        lookup={r["event_name"]:r["event_count"] for r in events}
+        for name,label in labels.items():
+            rows.append([d.get("fetched_at",""),g.get("period",{}).get("yesterday",""),label,name,lookup.get(name,0),"GA4事件次数；点击不等于成交，快捷查车不等于成功乘车"])
+    return rows
+
+
+def change_rows(days):
+    rows=[["报告日期","来源","指标","比较窗口","当前","前期","变化","数据状态"]]
+    for d in reversed(days):
+        for r in d.get("daily_changes",[]):
+            rows.append([d.get("fetched_at",""),r["source"],r["metric"],r["window"],md.cell(r.get("current")),md.cell(r.get("previous")),r["change"],r["status"]])
+    return rows
+
+
+def integration_rows(days):
+    rows=[["报告日期","服务","状态","实际依据","下一步"]]
+    for d in reversed(days):
+        for r in d.get("integrations",[]):
+            rows.append([d.get("fetched_at",""),r["service"],r["status"],r["evidence"],r["action"]])
+    return rows
+
+
 def sync_all(token: str, spreadsheet_token: str, days: list[dict]) -> None:
     builders = {
+        "今日重点":lambda:focus_rows(days),
+        "功能使用":lambda:event_rows(days),
+        "每日变化":lambda:change_rows(days),
+        "接入状态":lambda:integration_rows(days),
         "日报汇总": lambda: summary_rows(days),
         "日报-维度明细": lambda: dim_detail_rows(days),
         "日报-国家×渠道": lambda: merge_country_channel(days),
@@ -271,8 +315,7 @@ def sync_all(token: str, spreadsheet_token: str, days: list[dict]) -> None:
 
 def sync_sheet() -> int:
     if not fu.cfg("FEISHU_APP_ID") or not fu.cfg("FEISHU_APP_SECRET"):
-        print("ℹ 未配置飞书 App，跳过（见 docs/seo/FEISHU_SETUP.md）")
-        return 0
+        raise RuntimeError("日报必须写入飞书：缺少FEISHU_APP_ID/FEISHU_APP_SECRET")
 
     days = load_daily_files()
     if not days:
@@ -283,8 +326,7 @@ def sync_sheet() -> int:
     try:
         ss_token, meta, folder = fu.resolve_spreadsheet_token()
     except RuntimeError as e:
-        print(f"ℹ {e}")
-        return 0
+        raise RuntimeError("日报未绑定飞书表格") from e
 
     if not ss_token:
         try:

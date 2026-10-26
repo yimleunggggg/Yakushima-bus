@@ -191,6 +191,9 @@ def _todo_section(gsc: dict, priorities: dict) -> list[str]:
 
 def build_report(date_str: str, metrics_path: Path, check_ok: bool) -> str:
     d = json.loads(metrics_path.read_text(encoding="utf-8"))
+    if "daily_changes" in d:
+        from seo_daily_observations import brief
+        return brief(d,check_ok)
     uptime_path = ROOT / "docs/seo/metrics/uptime-latest.json"
     if uptime_path.is_file():
         d["uptime"] = json.loads(uptime_path.read_text(encoding="utf-8"))
@@ -480,10 +483,8 @@ def main() -> int:
         print("无 metrics 文件", file=sys.stderr)
         return 1
 
-    check_ok = True
     check_log = os.environ.get("SEO_CHECK_LOG", "")
-    if check_log and "All checks passed" not in check_log:
-        check_ok = False
+    check_ok = os.environ.get("SEO_CHECK_OK") == "1" if "SEO_CHECK_OK" in os.environ else ("SEO/GEO checks passed" in check_log or "All checks passed" in check_log)
 
     out_dir = ROOT / "docs/seo/reports/daily"
     out_dir.mkdir(parents=True, exist_ok=True)

@@ -9,7 +9,11 @@ CHECK_LOG=""
 if [[ -f /tmp/seo-check.log ]]; then
   CHECK_LOG="$(cat /tmp/seo-check.log)"
 else
-  CHECK_LOG="$(bash "$ROOT/scripts/seo_check.sh" 2>&1)" || true
+  if CHECK_LOG="$(bash "$ROOT/scripts/seo_check.sh" 2>&1)"; then
+    export SEO_CHECK_OK=1
+  else
+    export SEO_CHECK_OK=0
+  fi
 fi
 export SEO_CHECK_LOG="$CHECK_LOG"
 

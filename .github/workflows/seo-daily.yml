@@ -1,4 +1,4 @@
-# 每日 SEO/GA4 日报 → Git 存档 + 可选飞书
+# 每日17:00北京时间 → 真实数据、每日变化、接入状态 → 固定飞书表格 + Git存档
 # 失败自动重跑 1 次（job 内）；两次均失败 → 高优先级 ntfy 告警
 name: SEO daily report
 
@@ -6,6 +6,13 @@ on:
   schedule:
     - cron: "0 9 * * *"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/seo-daily.yml', 'scripts/seo_daily_*.py', 'scripts/seo_fetch_daily.py', 'scripts/seo_feishu_*.py', 'scripts/seo_daily_ci*.sh', 'scripts/seo_report_daily.sh', 'tests/test_daily_reporting.py']
+
+concurrency:
+  group: seo-daily-report
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -13,6 +20,9 @@ permissions:
 jobs:
   seo-daily:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      TZ: Asia/Shanghai
     steps:
       - uses: actions/checkout@v4
 
@@ -23,6 +33,9 @@ jobs:
 
       - name: Install SEO dependencies
         run: pip install -r scripts/requirements-seo.txt
+
+      - name: Verify daily report failure cases
+        run: python3 tests/test_daily_reporting.py
 
       - name: Run daily pipeline (up to 2 attempts)
         env:

@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = os.environ.get("SITE_URL", "https://yakushimabus.com").rstrip("/")
-PATHS = ["/", "/map/", "/access/", "/about/"]
+PATHS = ["/", "/fare/", "/map/", "/ferry/", "/trekking/", "/guides/", "/about/"]
 OUT = Path(os.environ.get("UPTIME_JSON", ROOT / "docs/seo/metrics/uptime-latest.json"))
 
 

@@ -12,6 +12,7 @@ if ! python3 scripts/seo_site_uptime.py; then
 fi
 
 bash scripts/seo_check.sh 2>&1 | tee /tmp/seo-check.log
+export SEO_CHECK_OK=1
 
 fetch_ok=0
 for i in 1 2 3; do
@@ -23,13 +24,14 @@ for i in 1 2 3; do
   sleep 30
 done
 if [[ $fetch_ok -eq 0 ]]; then
-  echo "⚠ GA4/GSC 三次均失败，继续用已有 metrics 写报告"
+  echo "✗ 本轮采集失败，禁止用旧文件伪装今天日报"
+  exit 1
 fi
 
 REPORT="$(bash scripts/seo_report_daily.sh)"
 echo "report_path=$REPORT"
 
-python3 scripts/seo_feishu_daily_sheet.py sync || true
+python3 scripts/seo_feishu_daily_sheet.py sync
 
 SUBJ="[YakuBus] 日报 $(date +%Y-%m-%d) GA4/GSC"
 if [[ "$ATTEMPT" -gt 1 ]]; then
@@ -37,7 +39,7 @@ if [[ "$ATTEMPT" -gt 1 ]]; then
 fi
 bash scripts/seo_notify.sh "$REPORT" "$SUBJ"
 
-python3 scripts/seo_feishu_journal.py checkpoint "$REPORT" || true
+echo "✓ 飞书电子表格已写入并回读；未另建无权限的云文档"
 
 git config user.name "github-actions[bot]"
 git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -59,5 +61,15 @@ if [[ $push_ok -eq 0 ]]; then
   echo "✗ git push 三次均失败"
   exit 1
 fi
+
+python3 - <<'CHECK_DATA'
+import json,sys
+from pathlib import Path
+d=json.loads(Path("docs/seo/metrics/daily-latest.json").read_text())
+failed=[name for name in ("ga4_daily","gsc_28d","gsc_7d") if d.get(name,{}).get("error")]
+if failed:
+    print("✗ 飞书已收到失败状态，但以下来源仍未恢复："+", ".join(failed))
+    sys.exit(1)
+CHECK_DATA
 
 echo "✓ SEO daily job complete (attempt ${ATTEMPT})"
