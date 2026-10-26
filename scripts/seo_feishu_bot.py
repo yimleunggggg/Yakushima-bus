@@ -5,29 +5,54 @@ import sys
 import uuid
 from pathlib import Path
 import seo_feishu_util as fu
-from seo_daily_dashboard import value
 
 ROOT=Path(__file__).resolve().parents[1]
 
 
 def card(payload, url):
     rows=payload.get("daily_changes", [])
-    lines=[]
-    for name in ["活跃用户·日环比", "会话·日环比", "搜索点击·日环比", "自然搜索会话·周环比"]:
-        r=next((r for r in rows if r["metric"]==name), {})
-        lines.append(f"**{name}**：{value(r.get('current'))} · {r.get('change', '缺失，不能比较')}")
+    def metric(name):
+        return next((r for r in rows if r["metric"]==name), {})
+    def number(name, label, period):
+        r=metric(name)
+        if r.get("current") is None:return label+"：暂缺"
+        return f"{label}：{r['current']}（{period}{r.get('change', '暂不能比较')}）"
     ga=payload.get("ga4_daily", {})
-    lines += ["", "**今天优先处理**"]+["• "+a for a in payload.get("daily_actions", [])[:3]]
-    lines += ["", "**接入状态**"]+[r["service"]+"："+r["status"] for r in payload.get("integrations", [])]
-    lines += ["", "GA4完整日："+ga.get("period", {}).get("yesterday", "未取得")+"（"+ga.get("timezone", "未知时区")+"）",
-              "GSC final截至："+payload.get("gsc_latest_complete_day", "未取得"),
-              "采集："+payload.get("fetched_at_iso", "未知"),
-              "缺失不补零；分销点击不等于订单，AdSense收益未接入。"]
-    partial=any("失败" in r["status"] for r in payload.get("integrations", []))
+    day=ga.get("period", {}).get("yesterday", "暂缺")
+    lines=["**流量 · "+day+"完整日**",
+           number("活跃用户·日环比", "活跃访客", "比前一天"),
+           number("会话·日环比", "访问次数", "比前一天"),
+           number("搜索点击·日环比", "Google搜索点击", "比前一天"),
+           number("自然搜索会话·周环比", "自然搜索近7天访问", "比前7天"), ""]
+    weekly=metric("活跃用户·周环比")
+    if weekly.get("current") is not None and weekly.get("previous"):
+        change=weekly["current"]/weekly["previous"]-1
+        if change<=-0.05: focus="本周访客减少，优先看哪些搜索入口掉了。"
+        elif change<0.05: focus="本周访客变化不大，还没有明显增长。"
+        else: focus="本周访客增加，继续看能否保持。"
+    else: focus="周数据不全，暂时不能判断有没有增长。"
+    lines += ["**今天重点** · "+focus]
+    integrations=payload.get("integrations", [])
+    failed=[r["service"] for r in integrations if "失败" in r["status"] or "异常" in r["status"]]
+    if "GSC" in failed: lines.append("**待处理** · 搜索数据没更新，先修复连接。")
+    elif failed: lines.append("**待处理** · "+"、".join(failed)+"数据异常，需要检查。")
+    else: lines.append("**下一步** · 对照看板查看变化最大的入口页。")
+    status=[]
+    for r in integrations:
+        service=r["service"]
+        if service=="GA4":status.append("访问统计异常" if service in failed else "访问统计正常")
+        elif service=="GSC":status.append("搜索数据待恢复" if service in failed else "搜索数据正常")
+        elif service=="AdSense":status.append("广告代码异常" if service in failed else "广告收益未接入")
+        elif service=="Clarity":status.append("录屏后台未接入")
+        elif "分销" in service:status.append("分销仅有点击，暂无订单数据")
+    if status:lines += ["", "状态："+"；".join(status)]
+    final_day=payload.get("gsc_latest_complete_day")
+    if final_day:lines.append("搜索数据截至 "+final_day)
+    partial=bool(failed)
     return {"config":{"wide_screen_mode":True},
-            "header":{"template":"orange" if partial else "blue", "title":{"tag":"plain_text", "content":"YakuBus 每日重点 · "+payload.get("fetched_at", "")+(" · 数据不完整" if partial else "")}},
+            "header":{"template":"orange" if partial else "blue", "title":{"tag":"plain_text", "content":"YakuBus 日报 · "+payload.get("fetched_at", "")}},
             "elements":[{"tag":"div", "text":{"tag":"lark_md", "content":"\n".join(lines)}},
-                        {"tag":"action", "actions":[{"tag":"button", "text":{"tag":"plain_text", "content":"打开总览看板"}, "url":url, "type":"primary"}]}]}
+                        {"tag":"action", "actions":[{"tag":"button", "text":{"tag":"plain_text", "content":"查看看板和明细"}, "url":url, "type":"primary"}]}]}
 
 
 def send(payload):
