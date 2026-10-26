@@ -1,6 +1,6 @@
 {
   "fetched_at": "2026-10-26",
-  "fetched_at_iso": "2026-10-26T23:24:48.122432+08:00",
+  "fetched_at_iso": "2026-10-26T23:35:59.226776+08:00",
   "ga4_daily": {
     "property_id": "538426834",
     "error": null,
@@ -2088,11 +2088,662 @@
       "last_7d": "2026-10-19~2026-10-25"
     }
   },
-  "gsc_7d": {
-    "error": "OAuth refresh 失败: ('invalid_grant: Bad Request', {'error': 'invalid_grant', 'error_description': 'Bad Request'})"
+  "gsc_daily_final": {
+    "rows": [
+      {
+        "keys": [
+          "2026-09-16"
+        ],
+        "clicks": 58,
+        "impressions": 408,
+        "ctr": 0.14215686274509803,
+        "position": 4.406862745098039
+      },
+      {
+        "keys": [
+          "2026-09-17"
+        ],
+        "clicks": 41,
+        "impressions": 379,
+        "ctr": 0.10817941952506596,
+        "position": 4.633245382585752
+      },
+      {
+        "keys": [
+          "2026-09-18"
+        ],
+        "clicks": 65,
+        "impressions": 456,
+        "ctr": 0.1425438596491228,
+        "position": 4.37280701754386
+      },
+      {
+        "keys": [
+          "2026-09-19"
+        ],
+        "clicks": 70,
+        "impressions": 514,
+        "ctr": 0.13618677042801555,
+        "position": 4.406614785992218
+      },
+      {
+        "keys": [
+          "2026-09-20"
+        ],
+        "clicks": 57,
+        "impressions": 555,
+        "ctr": 0.10270270270270271,
+        "position": 4.715315315315316
+      },
+      {
+        "keys": [
+          "2026-09-21"
+        ],
+        "clicks": 47,
+        "impressions": 423,
+        "ctr": 0.1111111111111111,
+        "position": 4.15130023640662
+      },
+      {
+        "keys": [
+          "2026-09-22"
+        ],
+        "clicks": 45,
+        "impressions": 469,
+        "ctr": 0.09594882729211088,
+        "position": 4.454157782515992
+      },
+      {
+        "keys": [
+          "2026-09-23"
+        ],
+        "clicks": 57,
+        "impressions": 465,
+        "ctr": 0.12258064516129032,
+        "position": 4.3462365591397845
+      },
+      {
+        "keys": [
+          "2026-09-24"
+        ],
+        "clicks": 51,
+        "impressions": 361,
+        "ctr": 0.14127423822714683,
+        "position": 3.7506925207756234
+      },
+      {
+        "keys": [
+          "2026-09-25"
+        ],
+        "clicks": 50,
+        "impressions": 293,
+        "ctr": 0.17064846416382254,
+        "position": 3.5563139931740615
+      },
+      {
+        "keys": [
+          "2026-09-26"
+        ],
+        "clicks": 63,
+        "impressions": 296,
+        "ctr": 0.21283783783783783,
+        "position": 4.023648648648649
+      },
+      {
+        "keys": [
+          "2026-09-27"
+        ],
+        "clicks": 46,
+        "impressions": 277,
+        "ctr": 0.16606498194945848,
+        "position": 4.610108303249097
+      },
+      {
+        "keys": [
+          "2026-09-28"
+        ],
+        "clicks": 46,
+        "impressions": 256,
+        "ctr": 0.1796875,
+        "position": 4.01953125
+      },
+      {
+        "keys": [
+          "2026-09-29"
+        ],
+        "clicks": 43,
+        "impressions": 255,
+        "ctr": 0.16862745098039217,
+        "position": 5.023529411764706
+      },
+      {
+        "keys": [
+          "2026-09-30"
+        ],
+        "clicks": 53,
+        "impressions": 275,
+        "ctr": 0.19272727272727272,
+        "position": 4.029090909090909
+      },
+      {
+        "keys": [
+          "2026-10-01"
+        ],
+        "clicks": 50,
+        "impressions": 307,
+        "ctr": 0.16286644951140064,
+        "position": 4.0032573289902285
+      },
+      {
+        "keys": [
+          "2026-10-02"
+        ],
+        "clicks": 66,
+        "impressions": 298,
+        "ctr": 0.2214765100671141,
+        "position": 3.8557046979865772
+      },
+      {
+        "keys": [
+          "2026-10-03"
+        ],
+        "clicks": 65,
+        "impressions": 340,
+        "ctr": 0.19117647058823528,
+        "position": 4.302941176470588
+      },
+      {
+        "keys": [
+          "2026-10-04"
+        ],
+        "clicks": 79,
+        "impressions": 372,
+        "ctr": 0.21236559139784947,
+        "position": 3.6586021505376345
+      },
+      {
+        "keys": [
+          "2026-10-05"
+        ],
+        "clicks": 51,
+        "impressions": 316,
+        "ctr": 0.16139240506329114,
+        "position": 3.7341772151898733
+      },
+      {
+        "keys": [
+          "2026-10-06"
+        ],
+        "clicks": 45,
+        "impressions": 295,
+        "ctr": 0.15254237288135594,
+        "position": 3.8847457627118644
+      },
+      {
+        "keys": [
+          "2026-10-07"
+        ],
+        "clicks": 54,
+        "impressions": 324,
+        "ctr": 0.16666666666666666,
+        "position": 3.7685185185185186
+      },
+      {
+        "keys": [
+          "2026-10-08"
+        ],
+        "clicks": 61,
+        "impressions": 328,
+        "ctr": 0.18597560975609756,
+        "position": 3.817073170731707
+      },
+      {
+        "keys": [
+          "2026-10-09"
+        ],
+        "clicks": 68,
+        "impressions": 445,
+        "ctr": 0.15280898876404495,
+        "position": 4.033707865168539
+      },
+      {
+        "keys": [
+          "2026-10-10"
+        ],
+        "clicks": 57,
+        "impressions": 326,
+        "ctr": 0.17484662576687116,
+        "position": 4.38036809815951
+      },
+      {
+        "keys": [
+          "2026-10-11"
+        ],
+        "clicks": 46,
+        "impressions": 349,
+        "ctr": 0.1318051575931232,
+        "position": 3.7277936962750715
+      },
+      {
+        "keys": [
+          "2026-10-12"
+        ],
+        "clicks": 41,
+        "impressions": 307,
+        "ctr": 0.13355048859934854,
+        "position": 4.319218241042345
+      },
+      {
+        "keys": [
+          "2026-10-13"
+        ],
+        "clicks": 36,
+        "impressions": 294,
+        "ctr": 0.12244897959183673,
+        "position": 4.0272108843537415
+      },
+      {
+        "keys": [
+          "2026-10-14"
+        ],
+        "clicks": 46,
+        "impressions": 309,
+        "ctr": 0.1488673139158576,
+        "position": 4.284789644012945
+      },
+      {
+        "keys": [
+          "2026-10-15"
+        ],
+        "clicks": 55,
+        "impressions": 294,
+        "ctr": 0.1870748299319728,
+        "position": 4
+      },
+      {
+        "keys": [
+          "2026-10-16"
+        ],
+        "clicks": 41,
+        "impressions": 290,
+        "ctr": 0.1413793103448276,
+        "position": 4.4896551724137925
+      },
+      {
+        "keys": [
+          "2026-10-17"
+        ],
+        "clicks": 55,
+        "impressions": 282,
+        "ctr": 0.1950354609929078,
+        "position": 4.035460992907801
+      },
+      {
+        "keys": [
+          "2026-10-18"
+        ],
+        "clicks": 79,
+        "impressions": 348,
+        "ctr": 0.22701149425287356,
+        "position": 4.482758620689655
+      },
+      {
+        "keys": [
+          "2026-10-19"
+        ],
+        "clicks": 66,
+        "impressions": 326,
+        "ctr": 0.20245398773006135,
+        "position": 4.113496932515337
+      },
+      {
+        "keys": [
+          "2026-10-20"
+        ],
+        "clicks": 61,
+        "impressions": 292,
+        "ctr": 0.2089041095890411,
+        "position": 4.082191780821917
+      },
+      {
+        "keys": [
+          "2026-10-21"
+        ],
+        "clicks": 38,
+        "impressions": 240,
+        "ctr": 0.15833333333333333,
+        "position": 3.904166666666667
+      },
+      {
+        "keys": [
+          "2026-10-22"
+        ],
+        "clicks": 60,
+        "impressions": 334,
+        "ctr": 0.17964071856287425,
+        "position": 4.308383233532934
+      },
+      {
+        "keys": [
+          "2026-10-23"
+        ],
+        "clicks": 35,
+        "impressions": 236,
+        "ctr": 0.1483050847457627,
+        "position": 4.161016949152542
+      },
+      {
+        "keys": [
+          "2026-10-24"
+        ],
+        "clicks": 36,
+        "impressions": 263,
+        "ctr": 0.13688212927756654,
+        "position": 4.931558935361217
+      }
+    ],
+    "responseAggregationType": "byProperty"
   },
+  "gsc_latest_complete_day": "2026-10-24",
   "gsc_28d": {
-    "error": "OAuth refresh 失败: ('invalid_grant: Bad Request', {'error': 'invalid_grant', 'error_description': 'Bad Request'})"
+    "period": {
+      "start": "2026-09-27",
+      "end": "2026-10-24"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 1479,
+    "impressions": 8578,
+    "ctr": 17.24,
+    "position": 4.129,
+    "error": null,
+    "data_state": "final",
+    "top_queries": [
+      {
+        "query": "屋久島 バス時刻表 2026",
+        "clicks": 216,
+        "impressions": 532,
+        "ctr": 40.6,
+        "position": 1.981
+      },
+      {
+        "query": "屋久島 バス 時刻表",
+        "clicks": 158,
+        "impressions": 699,
+        "ctr": 22.6,
+        "position": 2.106
+      },
+      {
+        "query": "屋久島 バス",
+        "clicks": 130,
+        "impressions": 1028,
+        "ctr": 12.65,
+        "position": 2.825
+      },
+      {
+        "query": "屋久島バス時刻表",
+        "clicks": 68,
+        "impressions": 353,
+        "ctr": 19.26,
+        "position": 2.054
+      },
+      {
+        "query": "屋久島バス",
+        "clicks": 49,
+        "impressions": 246,
+        "ctr": 19.92,
+        "position": 2.764
+      },
+      {
+        "query": "屋久島 バス 料金 2026",
+        "clicks": 48,
+        "impressions": 82,
+        "ctr": 58.54,
+        "position": 1.183
+      },
+      {
+        "query": "屋久島 バス時刻表 最新",
+        "clicks": 44,
+        "impressions": 91,
+        "ctr": 48.35,
+        "position": 1.286
+      },
+      {
+        "query": "屋久島交通バス時刻表",
+        "clicks": 44,
+        "impressions": 144,
+        "ctr": 30.56,
+        "position": 1.792
+      },
+      {
+        "query": "屋久島 バス時刻表",
+        "clicks": 35,
+        "impressions": 161,
+        "ctr": 21.74,
+        "position": 2.106
+      },
+      {
+        "query": "屋久島交通 バス時刻表",
+        "clicks": 31,
+        "impressions": 126,
+        "ctr": 24.6,
+        "position": 1.889
+      },
+      {
+        "query": "屋久島交通 時刻表",
+        "clicks": 30,
+        "impressions": 75,
+        "ctr": 40.0,
+        "position": 1.32
+      },
+      {
+        "query": "yakushima bus timetable 2026",
+        "clicks": 24,
+        "impressions": 33,
+        "ctr": 72.73,
+        "position": 1
+      },
+      {
+        "query": "yakushima bus timetable",
+        "clicks": 20,
+        "impressions": 45,
+        "ctr": 44.44,
+        "position": 1.978
+      },
+      {
+        "query": "屋久島 路線バス時刻表",
+        "clicks": 18,
+        "impressions": 34,
+        "ctr": 52.94,
+        "position": 2.118
+      },
+      {
+        "query": "屋久島交通",
+        "clicks": 16,
+        "impressions": 231,
+        "ctr": 6.93,
+        "position": 6.874
+      },
+      {
+        "query": "屋久島交通 バス",
+        "clicks": 16,
+        "impressions": 141,
+        "ctr": 11.35,
+        "position": 2.823
+      },
+      {
+        "query": "屋久島 バス 料金",
+        "clicks": 14,
+        "impressions": 94,
+        "ctr": 14.89,
+        "position": 2.404
+      },
+      {
+        "query": "屋久島 路線バス 時刻表",
+        "clicks": 14,
+        "impressions": 58,
+        "ctr": 24.14,
+        "position": 2.259
+      },
+      {
+        "query": "屋久島 バス 時刻表 2026",
+        "clicks": 12,
+        "impressions": 32,
+        "ctr": 37.5,
+        "position": 1.969
+      },
+      {
+        "query": "屋久島路線バス時刻表",
+        "clicks": 11,
+        "impressions": 24,
+        "ctr": 45.83,
+        "position": 2.083
+      }
+    ],
+    "top_pages": [
+      {
+        "page": "https://yakushimabus.com/",
+        "clicks": 1207,
+        "impressions": 6438,
+        "ctr": 18.75,
+        "position": 3.746
+      },
+      {
+        "page": "https://yakushimabus.com/fare/",
+        "clicks": 155,
+        "impressions": 1237,
+        "ctr": 12.53,
+        "position": 5.233
+      },
+      {
+        "page": "https://yakushimabus.com/?lang=ja",
+        "clicks": 80,
+        "impressions": 1509,
+        "ctr": 5.3,
+        "position": 5.517
+      },
+      {
+        "page": "https://yakushimabus.com/fare/?lang=ja",
+        "clicks": 18,
+        "impressions": 222,
+        "ctr": 8.11,
+        "position": 3.932
+      },
+      {
+        "page": "https://yakushimabus.com/?lang=en",
+        "clicks": 17,
+        "impressions": 157,
+        "ctr": 10.83,
+        "position": 3.815
+      },
+      {
+        "page": "https://yakushimabus.com/without-car/?lang=ja",
+        "clicks": 9,
+        "impressions": 678,
+        "ctr": 1.33,
+        "position": 9.105
+      },
+      {
+        "page": "https://yakushimabus.com/fare/?lang=en",
+        "clicks": 7,
+        "impressions": 22,
+        "ctr": 31.82,
+        "position": 2
+      },
+      {
+        "page": "https://yakushimabus.com/map/",
+        "clicks": 6,
+        "impressions": 261,
+        "ctr": 2.3,
+        "position": 9.816
+      },
+      {
+        "page": "https://yakushimabus.com/map/?lang=en",
+        "clicks": 2,
+        "impressions": 6,
+        "ctr": 33.33,
+        "position": 2
+      },
+      {
+        "page": "https://yakushimabus.com/about/",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 8
+      },
+      {
+        "page": "https://yakushimabus.com/map/?lang=ja",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 3
+      },
+      {
+        "page": "https://yakushimabus.com/map/?lang=zh",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 6
+      },
+      {
+        "page": "https://yakushimabus.com/trekking/",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 9
+      }
+    ]
+  },
+  "gsc_7d": {
+    "period": {
+      "start": "2026-10-18",
+      "end": "2026-10-24"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 375,
+    "impressions": 2039,
+    "ctr": 18.39,
+    "position": 4.29,
+    "error": null,
+    "data_state": "final"
+  },
+  "gsc_previous_7d": {
+    "period": {
+      "start": "2026-10-11",
+      "end": "2026-10-17"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 320,
+    "impressions": 2125,
+    "ctr": 15.06,
+    "position": 4.118,
+    "error": null,
+    "data_state": "final"
+  },
+  "gsc_latest_day": {
+    "period": {
+      "start": "2026-10-24",
+      "end": "2026-10-24"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 36,
+    "impressions": 263,
+    "ctr": 13.69,
+    "position": 4.932,
+    "error": null,
+    "data_state": "final"
+  },
+  "gsc_previous_day": {
+    "period": {
+      "start": "2026-10-23",
+      "end": "2026-10-23"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 35,
+    "impressions": 236,
+    "ctr": 14.83,
+    "position": 4.161,
+    "error": null,
+    "data_state": "final"
   },
   "daily_changes": [
     {
@@ -2170,56 +2821,56 @@
     {
       "source": "GSC",
       "metric": "搜索点击·日环比",
-      "current": null,
-      "previous": null,
-      "change": "缺失，不能比较",
-      "window": "未知~未知 对 未知~未知（GSC final）",
-      "status": "缺失"
+      "current": 36,
+      "previous": 35,
+      "change": "+2.9%",
+      "window": "2026-10-24~2026-10-24 对 2026-10-23~2026-10-23（GSC final）",
+      "status": "可比较"
     },
     {
       "source": "GSC",
       "metric": "搜索展示·日环比",
-      "current": null,
-      "previous": null,
-      "change": "缺失，不能比较",
-      "window": "未知~未知 对 未知~未知（GSC final）",
-      "status": "缺失"
+      "current": 263,
+      "previous": 236,
+      "change": "+11.4%",
+      "window": "2026-10-24~2026-10-24 对 2026-10-23~2026-10-23（GSC final）",
+      "status": "可比较"
     },
     {
       "source": "GSC",
       "metric": "搜索CTR·日环比",
-      "current": null,
-      "previous": null,
-      "change": "缺失，不能比较",
-      "window": "未知~未知 对 未知~未知（GSC final）",
-      "status": "缺失"
+      "current": 13.69,
+      "previous": 14.83,
+      "change": "-1.14个百分点",
+      "window": "2026-10-24~2026-10-24 对 2026-10-23~2026-10-23（GSC final）",
+      "status": "可比较"
     },
     {
       "source": "GSC",
       "metric": "搜索点击·周环比",
-      "current": null,
-      "previous": null,
-      "change": "缺失，不能比较",
-      "window": "未知~未知 对 未知~未知（GSC final）",
-      "status": "缺失"
+      "current": 375,
+      "previous": 320,
+      "change": "+17.2%",
+      "window": "2026-10-18~2026-10-24 对 2026-10-11~2026-10-17（GSC final）",
+      "status": "可比较"
     },
     {
       "source": "GSC",
       "metric": "搜索展示·周环比",
-      "current": null,
-      "previous": null,
-      "change": "缺失，不能比较",
-      "window": "未知~未知 对 未知~未知（GSC final）",
-      "status": "缺失"
+      "current": 2039,
+      "previous": 2125,
+      "change": "-4.0%",
+      "window": "2026-10-18~2026-10-24 对 2026-10-11~2026-10-17（GSC final）",
+      "status": "可比较"
     },
     {
       "source": "GSC",
       "metric": "搜索CTR·周环比",
-      "current": null,
-      "previous": null,
-      "change": "缺失，不能比较",
-      "window": "未知~未知 对 未知~未知（GSC final）",
-      "status": "缺失"
+      "current": 18.39,
+      "previous": 15.06,
+      "change": "+3.33个百分点",
+      "window": "2026-10-18~2026-10-24 对 2026-10-11~2026-10-17（GSC final）",
+      "status": "可比较"
     }
   ],
   "integrations": [
@@ -2231,9 +2882,9 @@
     },
     {
       "service": "GSC",
-      "status": "拉取失败",
-      "evidence": "OAuth refresh 失败: ('invalid_grant: Bad Request', {'error': 'invalid_grant', 'error_description': 'Bad Request'})",
-      "action": "重新授权GSC"
+      "status": "已取数",
+      "evidence": "final数据截至2026-10-24；本站已授权",
+      "action": "关注点击、展示、CTR及查询词/页面"
     },
     {
       "service": "AdSense",
@@ -2255,7 +2906,6 @@
     }
   ],
   "daily_actions": [
-    "GSC：重新授权GSC",
     "总访客尚未明显增长，优先检查搜索入口及新增攻略落地页。",
     "AdSense审核/收益需后台核验；当前只验证网站代码。",
     "AI渠道增加不等于已验证AI引用增长；分销点击不等于成交。"
