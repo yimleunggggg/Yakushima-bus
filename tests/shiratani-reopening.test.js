@@ -54,7 +54,9 @@ test('update labels use months while exact source and effective dates stay machi
   assert.equal(w.TransportStatus.month('2026-10-24','zh'),'2026年10月');
   assert.equal(w.TransportStatus.month('2026-10-24','ja'),'2026年10月');
   assert.equal(w.TransportStatus.month('2026-10-24','en'),'Oct 2026');
-  assert.equal(w.TRANSPORT_DATA.checkedAt,'2026-10-24');
+  const source=JSON.parse(fs.readFileSync(path.join(root,'sources/transport-status.json'),'utf8'));
+  assert.equal(w.TRANSPORT_DATA.checkedAt,source.checkedAt);
+  assert.match(w.TRANSPORT_DATA.checkedAt,/^\d{4}-\d{2}-\d{2}$/);
   assert.equal(w.TRANSPORT_DATA.alerts.find(a=>a.id==='shiratani-reopened-partial-trails').validFrom,'2026-10-18');
   const llms=fs.readFileSync(path.join(root,'llms.txt'),'utf8');
   assert.match(llms,/partially reopened/);

@@ -1,7 +1,7 @@
 {
   "revision": "2026-10-24",
-  "checkedAt": "2026-10-24",
-  "reviewAfter": "2026-10-31",
+  "checkedAt": "2026-10-26",
+  "reviewAfter": "2026-11-02",
   "datePolicy": "validFrom on open-ended notices is the first verified observation used here, not a claim about the original incident date. An overdue review never reopens a suspended route.",
   "alerts": [
     {
@@ -60,8 +60,8 @@
       "status": "notice",
       "validFrom": "2026-10-09",
       "validTo": "2026-10-28",
-      "checkedAt": "2026-10-09",
-      "reviewAfter": "2026-10-29",
+      "checkedAt": "2026-10-26",
+      "reviewAfter": "2026-11-02",
       "sourceUrl": "https://yakukan.jp/topics/19545.html",
       "message": {
         "ja": "10/16〜28は橋梁点検による一部町道の通行止めがあります。千尋の滝方面を含む対象箇所・迂回路は公式案内をご確認ください。",
@@ -83,8 +83,8 @@
       ],
       "validFrom": "2026-10-18",
       "validTo": null,
-      "checkedAt": "2026-10-24",
-      "reviewAfter": "2026-10-31",
+      "checkedAt": "2026-10-26",
+      "reviewAfter": "2026-11-02",
       "sourceUrl": "https://y-rekumori.com/",
       "corroboratingUrl": "https://www.iwasaki-corp.com/kagoshima_kotsu/",
       "message": {
@@ -111,8 +111,8 @@
       ],
       "validFrom": "2026-10-24",
       "validTo": null,
-      "checkedAt": "2026-10-24",
-      "reviewAfter": "2026-10-31",
+      "checkedAt": "2026-10-26",
+      "reviewAfter": "2026-11-02",
       "sourceUrl": "https://yakushima.co.jp/route_bus/",
       "message": {
         "ja": "まつばんだ交通の白谷雲水峡線は公式時刻欄で運休表示。種子島・屋久島交通の再開案内とは別会社です。まつばんだ全路線の運休を意味しません。",

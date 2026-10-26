@@ -7,6 +7,11 @@ ROOT=Path(__file__).resolve().parents[1]
 def load(path):return json.loads((ROOT/path).read_text())
 def js(path):
     raw=(ROOT/path).read_text();return json.loads(raw[raw.index('{'):raw.rindex('}')+1])
+def notice_review_overdue(notice,ref):
+    # An explicit, evidence-backed end date makes this a historical notice.
+    # Missing end dates still require review; an overdue suspension never reopens.
+    if notice.get('validTo') and date.fromisoformat(notice['validTo'])<ref:return False
+    return date.fromisoformat(notice['reviewAfter'])<ref
 def check(as_of=None,strict=False):
     ref=as_of or date.today();warnings=[]
     manifest=load('sources/manifest.json');bus=js('data.js');access=js('access-data.js');meta=js('meta-data.js');status=js('transport-data.js')
@@ -40,7 +45,7 @@ def check(as_of=None,strict=False):
         assert set(notice.get('courseIds',[]))<=course_ids, f'Unknown closed course: {notice["id"]}'
         assert set(notice.get('alternativeCourseIds',[]))<=course_ids, f'Unknown alternative course: {notice["id"]}'
         assert not (set(notice.get('courseIds',[])) & set(notice.get('alternativeCourseIds',[]))), f'Closed course recommended: {notice["id"]}'
-        if date.fromisoformat(notice['reviewAfter'])<ref:warnings.append('Operational notice needs recheck: '+notice['id'])
+        if notice_review_overdue(notice,ref):warnings.append('Operational notice needs recheck: '+notice['id'])
     if date.fromisoformat(manifest['reviewAfter'])<ref:warnings.append('Timetable/official index needs recheck')
     special=load('sources/routes/special.json')
     assert special['sourceRevision']==manifest['revision'],'Special routes were not reviewed with this PDF revision'

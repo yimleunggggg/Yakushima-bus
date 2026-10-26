@@ -88,6 +88,7 @@ def main():
         run("check_seo.py")
         validate()
         subprocess.check_call([sys.executable, str(ROOT / "scripts" / "check_transport_data.py"), "--strict-freshness"], cwd=ROOT)
+        subprocess.check_call([sys.executable, str(ROOT / "tests" / "test_transport_review.py")], cwd=ROOT)
         for script in ("audit_october_timetable.py", "audit_pdf_trips.py", "audit_presets.py", "audit_segment_bounds.py"):
             run(script)
         subprocess.check_call(["node", "--test", *map(str, sorted((ROOT / "tests").glob("*.test.js")))], cwd=ROOT)

@@ -26,7 +26,8 @@
         "ja": "フェリー屋久島2（折田汽船）",
         "zh": "屋久岛2号渡轮（折田汽船）",
         "en": "Ferry Yakushima 2 (Orita Steamship)"
-      }
+      },
+      "checkedAt": "2026-10-26"
     },
     "airportShuttle": {
       "url": "https://nangoku-kotsu.com/ashuttle/kagoshima/",
@@ -50,7 +51,8 @@
         "ja": "屋久島観光協会 交通",
         "zh": "屋久岛观光协会 交通",
         "en": "Yakushima tourism — transport"
-      }
+      },
+      "checkedAt": "2026-10-26"
     },
     "yakukanAbout": {
       "url": "https://yakukan.jp/tourism-association/",

@@ -22,9 +22,9 @@ window.SOURCES_DATA = {
           "sourceRef": "bus:taneyaku",
           "url": "https://yakukan.jp/wp-content/uploads/2026/09/2b161555d2a768da24648735b71d8390.pdf",
           "note": {
-            "ja": "改定 2026-10-01 · 確認 2026-10-24",
-            "zh": "改订 2026-10-01 · 核查 2026-10-24",
-            "en": "Revised 2026-10-01 · Checked 2026-10-24"
+            "ja": "改定 2026-10-01 · 確認 2026-10-26",
+            "zh": "改订 2026-10-01 · 核查 2026-10-26",
+            "en": "Revised 2026-10-01 · Checked 2026-10-26"
           }
         },
         {
@@ -36,9 +36,9 @@ window.SOURCES_DATA = {
           "sourceRef": "bus:taneyakuEn",
           "url": "https://yakukan.jp/wp-content/uploads/2026/09/3791b74916c1e22726378f29c90f1568.pdf",
           "note": {
-            "ja": "改定 2026-10-01 · 確認 2026-10-24",
-            "zh": "改订 2026-10-01 · 核查 2026-10-24",
-            "en": "Revised 2026-10-01 · Checked 2026-10-24"
+            "ja": "改定 2026-10-01 · 確認 2026-10-26",
+            "zh": "改订 2026-10-01 · 核查 2026-10-26",
+            "en": "Revised 2026-10-01 · Checked 2026-10-26"
           }
         },
         {
@@ -50,9 +50,9 @@ window.SOURCES_DATA = {
           "sourceRef": "bus:matsubanda",
           "url": "https://yakukan.jp/wp-content/uploads/2026/03/matsubanda-timetable-20260301.pdf",
           "note": {
-            "ja": "改定 2026-03-01",
-            "zh": "改订 2026-03-01",
-            "en": "Revised 2026-03-01"
+            "ja": "改定 2026-03-01 · 確認 2026-10-26",
+            "zh": "改订 2026-03-01 · 核查 2026-10-26",
+            "en": "Revised 2026-03-01 · Checked 2026-10-26"
           }
         }
       ]
@@ -73,9 +73,9 @@ window.SOURCES_DATA = {
           "sourceRef": "bus:fare",
           "url": "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin.pdf",
           "note": {
-            "ja": "改定 2024-03-01",
-            "zh": "改订 2024-03-01",
-            "en": "Revised 2024-03-01"
+            "ja": "改定 2024-03-01 · 確認 2026-10-26",
+            "zh": "改订 2024-03-01 · 核查 2026-10-26",
+            "en": "Revised 2024-03-01 · Checked 2026-10-26"
           }
         },
         {
@@ -87,9 +87,9 @@ window.SOURCES_DATA = {
           "sourceRef": "bus:fareEn",
           "url": "https://yakukan.jp/wp-content/uploads/2024/12/yakushimabus-map-unchin-en.pdf",
           "note": {
-            "ja": "改定 2024-03-01",
-            "zh": "改订 2024-03-01",
-            "en": "Revised 2024-03-01"
+            "ja": "改定 2024-03-01 · 確認 2026-10-26",
+            "zh": "改订 2024-03-01 · 核查 2026-10-26",
+            "en": "Revised 2024-03-01 · Checked 2026-10-26"
           }
         }
       ]
@@ -126,7 +126,12 @@ window.SOURCES_DATA = {
             "en": "Ferry Yakushima 2 (Orita) — timetable"
           },
           "sourceRef": "access:ferry",
-          "url": "https://ferryyakusima2.com/timetable"
+          "url": "https://ferryyakusima2.com/timetable",
+          "note": {
+            "ja": "確認 2026-10-26",
+            "zh": "核查 2026-10-26",
+            "en": "Checked 2026-10-26"
+          }
         },
         {
           "label": {
@@ -256,7 +261,12 @@ window.SOURCES_DATA = {
             "en": "Yakushima route buses — today’s service"
           },
           "sourceRef": "bus:serviceStatus",
-          "url": "https://yakushima.co.jp/route_bus/"
+          "url": "https://yakushima.co.jp/route_bus/",
+          "note": {
+            "ja": "確認 2026-10-26",
+            "zh": "核查 2026-10-26",
+            "en": "Checked 2026-10-26"
+          }
         },
         {
           "label": {
@@ -291,7 +301,12 @@ window.SOURCES_DATA = {
             "en": "Transport & timetable index"
           },
           "sourceRef": "bus:notice",
-          "url": "https://yakukan.jp/on-island.html"
+          "url": "https://yakukan.jp/on-island.html",
+          "note": {
+            "ja": "確認 2026-10-26",
+            "zh": "核查 2026-10-26",
+            "en": "Checked 2026-10-26"
+          }
         },
         {
           "label": {
