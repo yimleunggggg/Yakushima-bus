@@ -72,4 +72,18 @@ class DashboardBotTests(unittest.TestCase):
             self.assertEqual(bot.send({'fetched_at':'2026-10-26'}),2)
             auth.assert_not_called()
 
+class BotConfigTests(unittest.TestCase):
+    def test_json_bundle_uses_matched_app_and_recipient(self):
+        import json
+        import seo_feishu_bot as bot
+        bundle={"app_id":"right-app","app_secret":"fake-unit-test-secret","receive_id":"right-recipient","receive_id_type":"open_id"}
+        with patch.object(fu,'cfg',side_effect=lambda k:json.dumps(bundle) if k=='FEISHU_BOT_CONFIG_JSON' else 'different-legacy-value'):
+            self.assertEqual(bot.bot_config(),bundle)
+    def test_broken_bundle_is_rejected_without_echoing_credential(self):
+        import seo_feishu_bot as bot
+        for raw in ['not-json','{"app_secret":"fake-secret"}','[]']:
+            with patch.object(fu,'cfg',return_value=raw),self.assertRaises(RuntimeError) as error:
+                bot.bot_config()
+            self.assertNotIn('fake-secret',str(error.exception))
+
 if __name__=='__main__':unittest.main()

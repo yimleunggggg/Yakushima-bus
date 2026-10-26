@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['.github/workflows/seo-daily.yml', 'scripts/seo_daily_*.py', 'scripts/seo_fetch_daily.py', 'scripts/seo_feishu_*.py', 'scripts/seo_daily_ci*.sh', 'scripts/seo_report_daily.sh', 'tests/test_daily_reporting.py']
+    paths: ['.github/workflows/seo-daily.yml', 'scripts/seo_daily_*.py', 'scripts/seo_fetch_daily.py', 'scripts/seo_feishu_*.py', 'scripts/seo_daily_ci*.sh', 'scripts/seo_report_daily.sh', 'tests/test_daily_*.py']
 
 concurrency:
   group: seo-daily-report
@@ -35,7 +35,9 @@ jobs:
         run: pip install -r scripts/requirements-seo.txt
 
       - name: Verify daily report failure cases
-        run: python3 tests/test_daily_reporting.py
+        run: |
+          python3 tests/test_daily_reporting.py
+          python3 tests/test_daily_publish.py
 
       - name: Run daily pipeline (up to 2 attempts)
         env:
@@ -65,6 +67,7 @@ jobs:
           FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
           FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
           FEISHU_SHEET_TOKEN: ${{ secrets.FEISHU_SHEET_TOKEN }}
+          FEISHU_BOT_CONFIG_JSON: ${{ secrets.FEISHU_BOT_CONFIG_JSON }}
           FEISHU_BOT_APP_ID: ${{ secrets.FEISHU_BOT_APP_ID }}
           FEISHU_BOT_APP_SECRET: ${{ secrets.FEISHU_BOT_APP_SECRET }}
           FEISHU_BOT_RECEIVE_ID: ${{ secrets.FEISHU_BOT_RECEIVE_ID }}

@@ -57,15 +57,29 @@ def card(payload, url):
                         {"tag":"action", "actions":[{"tag":"button", "text":{"tag":"plain_text", "content":"查看看板和明细"}, "url":url, "type":"primary"}]}]}
 
 
+def bot_config():
+    raw=fu.cfg("FEISHU_BOT_CONFIG_JSON")
+    if raw:
+        try: config=json.loads(raw)
+        except (ValueError, TypeError):raise RuntimeError("飞书机器人配置JSON格式无效") from None
+        keys=("app_id", "app_secret", "receive_id", "receive_id_type")
+        if not isinstance(config, dict) or any(not isinstance(config.get(k), str) or not config[k].strip() for k in keys):
+            raise RuntimeError("飞书机器人配置缺少必要字段")
+        return {k:config[k].strip() for k in keys}
+    return {"app_id":fu.cfg("FEISHU_BOT_APP_ID"), "app_secret":fu.cfg("FEISHU_BOT_APP_SECRET"),
+            "receive_id":fu.cfg("FEISHU_BOT_RECEIVE_ID"), "receive_id_type":fu.cfg("FEISHU_BOT_RECEIVE_ID_TYPE") or "open_id"}
+
+
 def send(payload):
-    recipient=fu.cfg("FEISHU_BOT_RECEIVE_ID")
-    kind=fu.cfg("FEISHU_BOT_RECEIVE_ID_TYPE") or "open_id"
+    config=bot_config()
+    recipient=config["receive_id"]
+    kind=config["receive_id_type"]
     if not recipient:
         print("⚠ 飞书机器人未发送：尚未指定收件人；表格更新不代表消息已送达", flush=True)
         return 2
     if kind not in {"open_id", "user_id", "union_id", "email", "chat_id"}:
         raise RuntimeError("飞书机器人收件人类型无效")
-    app_id=fu.cfg("FEISHU_BOT_APP_ID"); app_secret=fu.cfg("FEISHU_BOT_APP_SECRET")
+    app_id=config["app_id"]; app_secret=config["app_secret"]
     if bool(app_id)!=bool(app_secret):raise RuntimeError("机器人应用ID与密钥必须成对配置")
     token=fu.tenant_token(app_id,app_secret)
     spreadsheet,meta,_=fu.resolve_spreadsheet_token()

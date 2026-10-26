@@ -43,24 +43,7 @@ echo "✓ 飞书电子表格已写入并回读；未另建无权限的云文档"
 
 git config user.name "github-actions[bot]"
 git config user.email "github-actions[bot]@users.noreply.github.com"
-git add docs/seo/reports/daily/ docs/seo/metrics/ docs/seo/SEO-JOURNAL.md
-[[ -f docs/seo/feishu-sheet.json ]] && git add docs/seo/feishu-sheet.json
-git diff --staged --quiet || git commit -m "docs(seo): daily report and metrics $(date +%Y-%m-%d)"
-
-push_ok=0
-for i in 1 2 3; do
-  if git push; then
-    push_ok=1
-    break
-  fi
-  echo "⚠ git push failed ($i/3), pull --rebase and retry…"
-  git pull --rebase origin main || true
-  sleep 10
-done
-if [[ $push_ok -eq 0 ]]; then
-  echo "✗ git push 三次均失败"
-  exit 1
-fi
+python3 scripts/seo_daily_publish.py
 
 python3 - <<'CHECK_DATA'
 import json,sys

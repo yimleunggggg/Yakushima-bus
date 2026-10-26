@@ -150,3 +150,10 @@ Workflow 会：
 参考：[官方发送消息API](https://open.feishu.cn/document/server-docs/im-v1/message/create)、[官方Sheets与Base看板区别](https://www.feishu.cn/hc/en-US/articles/360024868314-overview-of-the-chart-types-in-sheets)。当前交付为电子表格中的总览页，不宣称已经迁移为Base原生仪表盘。
 
 如果发消息的机器人与表格应用不同，可配置独立的 `FEISHU_BOT_APP_ID` / `FEISHU_BOT_APP_SECRET`，不替换表格应用的既有凭据。open_id具有应用作用域，必须使用识别用户的同一应用。机器人只发送摘要与表格链接，不需要额外申请文档读写权限。
+
+
+### 一次粘贴配置机器人
+
+可将同一应用范围内的 `app_id`、`app_secret`、`receive_id`、`receive_id_type` 保存为一个 GitHub Secret：`FEISHU_BOT_CONFIG_JSON`。优先使用该完整配置；保留原有独立Secrets兼容。不要把密钥或完整配置发到聊天或提交Git。先验证该应用密钥有效，再保存Secret；云端返回消息ID才确认每天私聊接通。
+
+日报存档在临时工作树中基于最新main提交，仅包含生成的日报和元数据；并发更新则重试，原工作区本次采集数据保持原样。不会在冲突中继续拉取或将冲突标记写回报告。远端已有更新快照时保留更新存档。
