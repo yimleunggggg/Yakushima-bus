@@ -87,7 +87,8 @@ jobs:
               raise SystemExit("本次执行没有新快照，禁止把历史报告冒充新采集结果")
           code=send(payload)
           if code==2:
-              print("::warning::飞书每日私聊尚未启用：缺少明确收件人配置")
+              print("::error::飞书每日私聊尚未启用：缺少明确收件人配置")
+              raise SystemExit(code)
           else:
               raise SystemExit(code)
           PYTHON
