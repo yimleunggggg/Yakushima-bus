@@ -135,6 +135,16 @@ def read_range(token: str, spreadsheet_token: str, sheet_title: str, end_col: st
         return []
 
 
+def canonical_cell(value):
+    # Feishu returns pasted URLs as rich-text runs. Preserve both visible text and target.
+    if isinstance(value,list) and all(isinstance(part,dict) and part.get("type") in ("text","url") for part in value):
+        for part in value:
+            if part.get("type")=="url" and part.get("link")!=part.get("text"):
+                return ("url-target-mismatch",str(value))
+        return "".join(str(part.get("text","")) for part in value)
+    return value
+
+
 def write_range(token: str, spreadsheet_token: str, sheet_title: str, values: list[list]) -> None:
     if not values:
         return
@@ -145,7 +155,7 @@ def write_range(token: str, spreadsheet_token: str, sheet_title: str, values: li
     sheet_id = ensure_sheet_tab(token,spreadsheet_token,sheet_title)
     from urllib.parse import quote
     def trimmed(row):
-        row=list(row)
+        row=[canonical_cell(cell) for cell in row]
         while row and row[-1] in ("",None):row.pop()
         return row
     # Bound each request and read-back instead of relying on an unbounded history range.
@@ -177,6 +187,8 @@ def write_range(token: str, spreadsheet_token: str, sheet_title: str, values: li
             token,
             json={"valueRange": {"range": clear_rng, "values": blank}},
         )
+
+    print(f"✓ 飞书写入并回读通过: {sheet_title} ({rows}行 × {cols}列)",flush=True)
 
 
 def resolve_spreadsheet_token() -> tuple[str, dict, str | None]:

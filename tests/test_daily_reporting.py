@@ -35,6 +35,10 @@ class ReportingTests(unittest.TestCase):
         put=next(c for c in calls if c[0]=='PUT')
         self.assertEqual(put[2]['json']['valueRange']['range'],'real-id!A1:B2')
         self.assertTrue(any(c[0]=='GET' and 'real-id' in c[1] for c in calls))
+    def test_feishu_url_rich_text_keeps_visible_text_and_target(self):
+        url='https://example.com/report'
+        self.assertEqual(fu.canonical_cell([{'type':'url','text':url,'link':url,'cellPosition':None}]),url)
+        self.assertNotEqual(fu.canonical_cell([{'type':'url','text':url,'link':'https://wrong.example'}]),url)
     def test_failed_readback_fails_delivery(self):
         fu._SHEET_IDS.clear()
         def api(method,path,token,**kwargs):
