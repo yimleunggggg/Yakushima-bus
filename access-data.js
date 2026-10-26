@@ -951,13 +951,13 @@ const ACCESS_DATA = {
     ]
   },
   "ferryCalendar": {
-    "checkedAt": "2026-10-09",
+    "checkedAt": "2026-10-26",
     "periods": [
       {
         "validFrom": "2026-07-01",
         "validTo": "2026-11-30",
         "announcedAt": "2026-05-08",
-        "checkedAt": "2026-10-09",
+        "checkedAt": "2026-10-26",
         "sourceUrl": "https://ferryyakusima2.com/news/10207",
         "dates": [
           "2026-07-05",
@@ -981,7 +981,7 @@ const ACCESS_DATA = {
         "validFrom": "2026-12-01",
         "validTo": "2027-01-31",
         "announcedAt": "2026-10-08",
-        "checkedAt": "2026-10-09",
+        "checkedAt": "2026-10-26",
         "sourceUrl": "https://ferryyakusima2.com/news/15420",
         "dates": [
           "2026-12-06",
@@ -1446,14 +1446,14 @@ const ACCESS_DATA = {
       },
       "fareKey": "type",
       "note": {
-        "ja": "2026-10-01以降の公式掲載額（2026-10-09確認、燃料油価格変動調整金込み）。将来の運賃を保証するものではありません。乗船日の料金は公式でご確認ください。",
-        "zh": "2026-10-01起官网列价（2026-10-09核对，含燃油调整金）。不保证未来票价不变，请在出行前核对官网。",
-        "en": "Official listed fares from 2026-10-01, checked 2026-10-09, including fuel adjustment. Future fares may change; check the operator before travel."
+        "ja": "2026-10-01以降の公式掲載額（2026-10-26確認、燃料油価格変動調整金込み）。将来の運賃を保証するものではありません。乗船日の料金は公式でご確認ください。",
+        "zh": "2026-10-01起官网列价（2026-10-26核对，含燃油调整金）。不保证未来票价不变，请在出行前核对官网。",
+        "en": "Official listed fares from 2026-10-01, checked 2026-10-26, including fuel adjustment. Future fares may change; check the operator before travel."
       },
       "validity": {
         "validFrom": "2026-10-01",
         "validTo": null,
-        "checkedAt": "2026-10-09",
+        "checkedAt": "2026-10-26",
         "sourceUrl": "https://ferryyakusima2.com/timetable",
         "changeUrl": "https://ferryyakusima2.com/news/14684",
         "includesFuelAdjustment": true

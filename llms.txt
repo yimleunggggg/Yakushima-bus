@@ -18,7 +18,7 @@
 
 ## Data scope and dates
 
-Timetable revision: 2026-10-01; fare revision: 2024-03-01; checked 2026-10-24; review due 2026-10-31. Recheck official information before travel.
+Timetable revision: 2026-10-01; fare revision: 2024-03-01; checked 2026-10-26; review due 2026-11-02. Recheck official information before travel.
 All times use Japan Standard Time (JST, UTC+9). Choose the actual travel day and check each conditional service note.
 The internal display horizon is a conservative review policy, not an official PDF expiry date.
 Japanese, Simplified Chinese and English are selected using ?lang=ja, ?lang=zh or ?lang=en.
@@ -37,9 +37,9 @@ Japanese, Simplified Chinese and English are selected using ?lang=ja, ?lang=zh o
 
 These are dated source records, not live confirmation. An overdue review does not establish that a suspended route has reopened.
 
-- Some town roads close for bridge inspections Oct 16–28, including access toward Senpiro Falls. Check the official notice for each location, date and detour. Checked 2026-10-09; review due 2026-10-29; notice scope 2026-10-09 to 2026-10-28. Source: https://yakukan.jp/topics/19545.html
-- Shiratani has partially reopened: Taiko-iwa, the moss forest and Bugyosugi routes are accessible. Taneyaku buses have resumed. Parts of the Yayoi-sugi course and other sections remain closed. Checked 2026-10-24; review due 2026-10-31; notice scope 2026-10-18 to until further notice. Source: https://y-rekumori.com/
-- Matsubanda’s Shiratani timetable still shows suspension. This is a different operator from the reopened Taneyaku service and does not mean every Matsubanda route is suspended. Checked 2026-10-24; review due 2026-10-31; notice scope 2026-10-24 to until further notice. Source: https://yakushima.co.jp/route_bus/
+- Some town roads close for bridge inspections Oct 16–28, including access toward Senpiro Falls. Check the official notice for each location, date and detour. Checked 2026-10-26; review due 2026-11-02; notice scope 2026-10-09 to 2026-10-28. Source: https://yakukan.jp/topics/19545.html
+- Shiratani has partially reopened: Taiko-iwa, the moss forest and Bugyosugi routes are accessible. Taneyaku buses have resumed. Parts of the Yayoi-sugi course and other sections remain closed. Checked 2026-10-26; review due 2026-11-02; notice scope 2026-10-18 to until further notice. Source: https://y-rekumori.com/
+- Matsubanda’s Shiratani timetable still shows suspension. This is a different operator from the reopened Taneyaku service and does not mean every Matsubanda route is suspended. Checked 2026-10-26; review due 2026-11-02; notice scope 2026-10-24 to until further notice. Source: https://yakushima.co.jp/route_bus/
 
 ## Optional
 
