@@ -139,3 +139,14 @@ Workflow 会：
 
 - 总教程：[RUNBOOK.md](RUNBOOK.md)
 - 报告样例：`docs/seo/reports/2026-05-21-reminder.md`
+
+
+## 飞书每日重点（2026-10）
+
+每天北京时间17:00启动现有云端日报，先更新固定表格的“总览看板”，再由应用机器人发送一张摘要卡片。卡片列出完整日活跃用户/会话/搜索点击、自然搜索周变化、优先事项与各服务状态，并直达看板。GSC失效或收益未接入会明确显示，不填造0。日报重试使用同一消息UUID，避免重复私聊。
+
+配置已有应用所需 Secrets：`FEISHU_BOT_RECEIVE_ID`（经用户明确指定的open_id或飞书邮箱），以及 `FEISHU_BOT_RECEIVE_ID_TYPE`（open_id/email等）。应用需官方 `im:message:send_as_bot` 权限，收件人需在应用可用范围内。手机号或个人加好友邀请链接不是消息API的receive_id；手机号需先经授权通讯录接口解析，不能直接冒充open_id。未配置时日志明确“未发送”，不会声称已启用。飞书返回message_id才记为发送接受成功；不等于已读。
+
+参考：[官方发送消息API](https://open.feishu.cn/document/server-docs/im-v1/message/create)、[官方Sheets与Base看板区别](https://www.feishu.cn/hc/en-US/articles/360024868314-overview-of-the-chart-types-in-sheets)。当前交付为电子表格中的总览页，不宣称已经迁移为Base原生仪表盘。
+
+如果发消息的机器人与表格应用不同，可配置独立的 `FEISHU_BOT_APP_ID` / `FEISHU_BOT_APP_SECRET`，不替换表格应用的既有凭据。open_id具有应用作用域，必须使用识别用户的同一应用。机器人只发送摘要与表格链接，不需要额外申请文档读写权限。

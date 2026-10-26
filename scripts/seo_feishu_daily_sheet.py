@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 METRICS_DIR = ROOT / "docs/seo" / "metrics"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import seo_daily_dashboard as dashboard
 import seo_feishu_columns as cols  # noqa: E402
 import seo_feishu_util as fu  # noqa: E402
 import seo_metrics_derive as md  # noqa: E402
@@ -18,6 +19,7 @@ from seo_fetch_weekly import channel_metric  # noqa: E402
 from seo_week_util import wow_pct  # noqa: E402
 
 SHEETS = [
+    dashboard.TITLE,
     "今日重点",
     "每日变化",
     "功能使用",
@@ -298,6 +300,7 @@ def integration_rows(days):
 
 def sync_all(token: str, spreadsheet_token: str, days: list[dict]) -> None:
     builders = {
+        dashboard.TITLE:lambda:dashboard.build_dashboard(days),
         "今日重点":lambda:focus_rows(days),
         "功能使用":lambda:event_rows(days),
         "每日变化":lambda:change_rows(days),
@@ -310,7 +313,13 @@ def sync_all(token: str, spreadsheet_token: str, days: list[dict]) -> None:
     }
     for title in SHEETS:
         fu.ensure_sheet_tab(token, spreadsheet_token, title)
-        fu.write_range(token, spreadsheet_token, title, builders[title]())
+        if title==dashboard.TITLE:
+            sid=fu.ensure_sheet_tab(token, spreadsheet_token, title)
+            fu.api_json("POST", f"/sheets/v2/spreadsheets/{spreadsheet_token}/unmerge_cells", token,json={"range":sid+"!A1:H60"})
+        rows=builders[title]()
+        fu.write_range(token, spreadsheet_token, title, rows)
+        if title==dashboard.TITLE:
+            dashboard.format_dashboard(fu, token, spreadsheet_token, rows)
 
 
 def sync_sheet() -> int:

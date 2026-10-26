@@ -17,9 +17,9 @@ def cfg(name: str) -> str:
     return os.environ.get(name, "").strip()
 
 
-def tenant_token() -> str:
-    app_id = cfg("FEISHU_APP_ID")
-    app_secret = cfg("FEISHU_APP_SECRET")
+def tenant_token(app_id=None, app_secret=None) -> str:
+    app_id = app_id or cfg("FEISHU_APP_ID")
+    app_secret = app_secret or cfg("FEISHU_APP_SECRET")
     if not app_id or not app_secret:
         raise RuntimeError("缺少 FEISHU_APP_ID / FEISHU_APP_SECRET")
     r = requests.post(

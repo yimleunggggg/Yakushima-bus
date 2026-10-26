@@ -56,3 +56,32 @@ jobs:
           GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_SERVER_URL: ${{ github.server_url }}
         run: bash scripts/seo_daily_ci_with_retry.sh
+
+      - name: Send daily highlights to Feishu bot
+        if: always()
+        env:
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_SHEET_TOKEN: ${{ secrets.FEISHU_SHEET_TOKEN }}
+          FEISHU_BOT_APP_ID: ${{ secrets.FEISHU_BOT_APP_ID }}
+          FEISHU_BOT_APP_SECRET: ${{ secrets.FEISHU_BOT_APP_SECRET }}
+          FEISHU_BOT_RECEIVE_ID: ${{ secrets.FEISHU_BOT_RECEIVE_ID }}
+          FEISHU_BOT_RECEIVE_ID_TYPE: ${{ secrets.FEISHU_BOT_RECEIVE_ID_TYPE }}
+        run: |
+          python3 - <<'PYTHON'
+          import json, os, sys
+          from pathlib import Path
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          sys.path.insert(0, "scripts")
+          from seo_feishu_bot import send
+          path=Path("docs/seo/metrics/daily-latest.json")
+          payload=json.loads(path.read_text())
+          if payload.get("fetched_at") != str(datetime.now(ZoneInfo("Asia/Shanghai")).date()):
+              raise SystemExit("本次采集未生成今日快照，禁止推送旧日报")
+          code=send(payload)
+          if code==2:
+              print("::warning::飞书每日私聊尚未启用：缺少明确收件人配置")
+          else:
+              raise SystemExit(code)
+          PYTHON

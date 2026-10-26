@@ -46,4 +46,30 @@ class ReportingTests(unittest.TestCase):
             return {'data':{'valueRange':{'values':[['wrong']]}}}
         with patch.object(fu,'api_json',side_effect=api),self.assertRaisesRegex(RuntimeError,'回读与写入不一致'):
             fu.write_range('token','sheet','日报',[['expected']])
+class DashboardBotTests(unittest.TestCase):
+    def test_latest_dashboard_does_not_sum_rolling_windows_or_fill_gaps(self):
+        from seo_daily_dashboard import build_dashboard,trend_rows
+        d={"fetched_at":"2026-10-26","ga4_daily":{"period":{"yesterday":"2026-10-25"},"yesterday":{"active_users":7}},"daily_changes":[]}
+        trends=trend_rows([d],d)
+        self.assertEqual(len(trends),14)
+        self.assertEqual(trends[-1][1],7)
+        self.assertEqual(trends[-2][1],"未取得")
+        self.assertEqual(build_dashboard([d])[4][2],"未取得")
+    def test_bot_retry_uses_same_uuid_and_requires_acceptance(self):
+        import seo_feishu_bot as bot
+        payload={"fetched_at":"2026-10-26"}
+        config={"FEISHU_BOT_RECEIVE_ID":"target","FEISHU_BOT_RECEIVE_ID_TYPE":"open_id"}
+        with patch.object(fu,'cfg',side_effect=lambda k:config.get(k,'')),patch.object(fu,'tenant_token',return_value='token'),patch.object(fu,'resolve_spreadsheet_token',return_value=('sheet',{},None)),patch.object(fu,'ensure_sheet_tab',return_value='home'),patch.object(fu,'api_json',return_value={'data':{'message_id':'message'}}) as api:
+            self.assertEqual(bot.send(payload),0)
+            first=api.call_args.kwargs['json']
+            bot.send(payload)
+            self.assertEqual(first['uuid'],api.call_args.kwargs['json']['uuid'])
+            api.return_value={'data':{}}
+            with self.assertRaisesRegex(RuntimeError,'消息ID'):bot.send(payload)
+    def test_bot_without_recipient_does_not_send(self):
+        import seo_feishu_bot as bot
+        with patch.object(fu,'cfg',return_value=''),patch.object(fu,'tenant_token') as auth:
+            self.assertEqual(bot.send({'fetched_at':'2026-10-26'}),2)
+            auth.assert_not_called()
+
 if __name__=='__main__':unittest.main()
