@@ -55,7 +55,9 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_SERVER_URL: ${{ github.server_url }}
-        run: bash scripts/seo_daily_ci_with_retry.sh
+        run: |
+          echo "DAILY_PIPELINE_STARTED_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+          bash scripts/seo_daily_ci_with_retry.sh
 
       - name: Send daily highlights to Feishu bot
         if: always()
@@ -79,6 +81,10 @@ jobs:
           payload=json.loads(path.read_text())
           if payload.get("fetched_at") != str(datetime.now(ZoneInfo("Asia/Shanghai")).date()):
               raise SystemExit("本次采集未生成今日快照，禁止推送旧日报")
+          started=os.environ.get("DAILY_PIPELINE_STARTED_AT")
+          fetched=payload.get("fetched_at_iso")
+          if not started or not fetched or datetime.fromisoformat(fetched) < datetime.fromisoformat(started.replace("Z", "+00:00")):
+              raise SystemExit("本次执行没有新快照，禁止把历史报告冒充新采集结果")
           code=send(payload)
           if code==2:
               print("::warning::飞书每日私聊尚未启用：缺少明确收件人配置")
