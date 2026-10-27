@@ -61,6 +61,14 @@ class PublishTests(unittest.TestCase):
         self.assertEqual(command("git","--git-dir",str(self.remote),"show","main:app.py"),"source changed during publish")
         self.assertEqual(command("git","--git-dir",str(self.remote),"show","main:"+self.metric),incoming)
         self.assertFalse((self.root/".git/rebase-merge").exists())
+    def test_receipt_only_publish_cannot_overwrite_current_metrics(self):
+        (self.root/self.metric).write_text(self.snapshot(3))
+        path='docs/seo/delivery/2026-10-27-test.json'
+        p=self.root/path;p.parent.mkdir(parents=True);p.write_text('{"message_id":"om-test"}')
+        pub.publish(self.root,paths=['docs/seo/delivery'])
+        self.assertEqual(command('git','--git-dir',str(self.remote),'show','main:'+self.metric),self.snapshot(1))
+        self.assertEqual(command('git','--git-dir',str(self.remote),'show','main:'+path),p.read_text())
+        self.assertEqual((self.root/self.metric).read_text(),self.snapshot(3))
     def test_newer_remote_snapshot_cannot_be_replaced_by_old_run(self):
         (self.root/self.metric).write_text(self.snapshot(2))
         remote_new=self.snapshot(4);(self.other/self.metric).write_text(remote_new);self.commit(self.other,"newer report")

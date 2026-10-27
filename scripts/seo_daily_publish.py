@@ -22,12 +22,13 @@ def timestamp(content):
     except (ValueError, KeyError, TypeError):return None
 
 
-def publish(root=ROOT, retries=3):
+def publish(root=ROOT, retries=3, paths=None):
     root=Path(root)
+    paths=paths or PATHS
     if git(root, "diff", "--name-only", "--diff-filter=U").stdout.strip():
         raise RuntimeError("日报工作区存在未解决冲突；停止存档，保留采集结果")
-    changed=set(git(root, "diff", "--name-only", "HEAD", "--", *PATHS).stdout.splitlines())
-    changed.update(git(root, "ls-files", "--others", "--exclude-standard", "--", *PATHS).stdout.splitlines())
+    changed=set(git(root, "diff", "--name-only", "HEAD", "--", *paths).stdout.splitlines())
+    changed.update(git(root, "ls-files", "--others", "--exclude-standard", "--", *paths).stdout.splitlines())
     if not changed:
         print("✓ 日报存档没有新变化", flush=True);return
     files={name:(root/name).read_bytes() for name in changed if (root/name).is_file()}

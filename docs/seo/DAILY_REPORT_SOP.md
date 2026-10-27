@@ -8,7 +8,7 @@
 
 ```mermaid
 flowchart TD
-    TIMER["每天北京时间10:00<br/>GitHub 定时触发"] --> RUNNER["GitHub Actions<br/>启动临时云端运行环境"]
+    TIMER["09:43起提前准备<br/>目标北京时间10:00投递"] --> RUNNER["GitHub Actions<br/>启动临时云端运行环境"]
     CODE["仓库中的工作流和Python脚本<br/>决定运行步骤"] --> RUNNER
     SECRET["GitHub Secrets<br/>私密授权凭据"] -. "运行时注入" .-> RUNNER
     RUNNER --> FETCH["向Google接口发请求<br/>拉取真实指标和明细"]
@@ -97,18 +97,20 @@ Secret内容必须是完整JSON，不能只粘贴App Secret、网页地址、Mar
 
 本项目入口为 `.github/workflows/seo-daily.yml`，运行在GitHub托管的Ubuntu环境，使用Python 3.12并安装 `scripts/requirements-seo.txt`。默认分支上的工作流负责定时；`TZ=Asia/Shanghai`用于报告日期计算，不能据此认为cron也自动换了时区。
 
-本项目用UTC表达北京时间10:00：
+本项目使用UTC配置提前准备、10点目标投递及上午兜底：
 
 ```yaml
 on:
   schedule:
-    - cron: "0 2 * * *"
+    - cron: "43,53 1 * * *"
+    - cron: "0,7,22,37,52 2 * * *"
+    - cron: "7 3 * * *"
   workflow_dispatch:
 ```
 
 保留现有并发互斥，防止同一日报同时写表；仅给日报存档所需的仓库写权限，避免报告机器人提交再次无限触发日报。新项目还需检查Actions是否允许执行和写入仓库。
 
-这是**10:00触发**，不是承诺10:00:00手机一定响。数据采集和回读要时间，GitHub排队也可能延迟。默认分支、公有仓库长期不活跃停用等限制也要纳入巡检。严格到点送达的业务，应另选有相应运行保证的调度方案。见[GitHub官方schedule说明](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)。
+这是**目标10:00投递**：提前完成采集后等待10点；迟到触发则尽快补发，并不是承诺10:00:00手机一定响。数据采集和回读要时间，GitHub排队也可能延迟。默认分支、公有仓库长期不活跃停用等限制也要纳入巡检。严格到点送达的业务，应另选有相应运行保证的调度方案。见[GitHub官方schedule说明](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)。
 
 ### 步骤F：手动跑通，再验收自然定时
 
@@ -231,3 +233,14 @@ on:
 “先自行调查再汇报”的项目规则已写入 `AGENTS.md`，不是仅停留在本轮口头约定。
 
 参考入口：[运行手册](RUNBOOK.md)、[通知配置](NOTIFICATIONS.md)、[Google配置](GOOGLE_SETUP.md)、[飞书配置](FEISHU_SETUP.md)。
+
+
+## 2026-10-27 漏触发修复：准备、投递与凭证分开
+
+当天10:41用户未收到，检查发现10点没有创建schedule运行，workflow仍active且默认分支时间正确；不能把“没创建运行”说成“正在排队”，也不能据此断言GitHub内部具体故障。10:54通过人工补跑完成真实投递。
+
+现调整为09:43/09:53提前准备；若按时启动，在数据与表格完成后等待到北京10:00发送；10:00/10:07/10:22/10:37/10:52及11:07安排补跑机会。GitHub仍可能延迟或丢触发，多个cron只降低单点风险，不提供独立调度保证。严格准点和独立缺席告警需要进一步接入不同故障域的云端调度/监测，尚未因本次修复自动上线。
+
+真实发送后在 `docs/seo/delivery/` 保存业务日、10:00时段、收件对象指纹、消息ID及平台接受时间；不保存密钥或完整收件ID。兜底先查最新远端凭证，已投递则跳过，不重复拉全量历史或私聊；凭证只在真实API确认后写入并提交。飞书UUID有自身去重时限，不能把固定UUID当作永久每日投递记录。凌晨测试与10点正式投递分开，测试不能冒充当天业务时段已发送。
+
+实现入口为 `scripts/seo_daily_delivery.py`：标准库门禁在安装依赖前检查，投递阶段等待目标时刻并记录真实回执。该门禁本身也依赖GitHub任务先被触发，所以仍不能代替独立缺席监测。

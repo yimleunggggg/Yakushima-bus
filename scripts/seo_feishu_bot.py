@@ -67,7 +67,7 @@ def bot_config():
             "receive_id":fu.cfg("FEISHU_BOT_RECEIVE_ID"), "receive_id_type":fu.cfg("FEISHU_BOT_RECEIVE_ID_TYPE") or "open_id"}
 
 
-def send(payload):
+def send(payload, delivery_key=None, receipt_callback=None):
     config=bot_config()
     recipient=config["receive_id"]
     kind=config["receive_id_type"]
@@ -83,14 +83,16 @@ def send(payload):
     url=meta.get("url") or "https://my.feishu.cn/sheets/"+spreadsheet
     if meta.get("dashboard_sheet_id"): url+="?sheet="+meta["dashboard_sheet_id"]
     body={"receive_id":recipient, "msg_type":"interactive", "content":json.dumps(card(payload, url), ensure_ascii=False),
-          "uuid":str(uuid.uuid5(uuid.NAMESPACE_URL, "yakubus-diagnosed-daily-v1:"+payload["fetched_at"]+":"+kind+":"+recipient))}
+          "uuid":str(uuid.uuid5(uuid.NAMESPACE_URL, (delivery_key or "yakubus-diagnosed-daily-v1:"+payload["fetched_at"])+":"+kind+":"+recipient))}
     data=fu.api_json("POST", "/im/v1/messages?receive_id_type="+kind, token, json=body)
     message_id=data.get("data", {}).get("message_id")
     if not message_id: raise RuntimeError("飞书没有返回消息ID，不能确认发送成功")
     # Feishu acknowledgement proves accepted delivery, not that the recipient read it.
     print("✓ 飞书机器人已接受日报消息："+message_id, flush=True)
+    if receipt_callback:receipt_callback(message_id)
     return 0
 
 
 if __name__=="__main__":
-    sys.exit(send(json.loads((ROOT/"docs/seo/metrics/daily-latest.json").read_text())))
+    from seo_daily_delivery import deliver
+    sys.exit(deliver(json.loads((ROOT/"docs/seo/metrics/daily-latest.json").read_text())))

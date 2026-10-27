@@ -4,7 +4,10 @@ name: SEO daily report
 
 on:
   schedule:
-    - cron: "0 2 * * *"
+    # 提前准备，整点发送；避开单一整点触发，并在上午补跑。
+    - cron: "43,53 1 * * *"
+    - cron: "0,7,22,37,52 2 * * *"
+    - cron: "7 3 * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -31,16 +34,29 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Check business-day delivery receipt
+        id: delivery_gate
+        env:
+          FEISHU_BOT_CONFIG_JSON: ${{ secrets.FEISHU_BOT_CONFIG_JSON }}
+          FEISHU_BOT_APP_ID: ${{ secrets.FEISHU_BOT_APP_ID }}
+          FEISHU_BOT_RECEIVE_ID: ${{ secrets.FEISHU_BOT_RECEIVE_ID }}
+          FEISHU_BOT_RECEIVE_ID_TYPE: ${{ secrets.FEISHU_BOT_RECEIVE_ID_TYPE }}
+        run: python3 scripts/seo_daily_delivery.py gate
+
       - name: Install SEO dependencies
+        if: steps.delivery_gate.outputs.should_run == 'true'
         run: pip install -r scripts/requirements-seo.txt
 
       - name: Verify daily report failure cases
+        if: steps.delivery_gate.outputs.should_run == 'true'
         run: |
           python3 tests/test_daily_reporting.py
           python3 tests/test_daily_publish.py
           python3 tests/test_daily_diagnosis.py
+          python3 tests/test_daily_delivery.py
 
       - name: Run daily pipeline (up to 2 attempts)
+        if: steps.delivery_gate.outputs.should_run == 'true'
         env:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           GOOGLE_OAUTH_CLIENT_JSON: ${{ secrets.GOOGLE_OAUTH_CLIENT_JSON }}
@@ -63,7 +79,7 @@ jobs:
           bash scripts/seo_daily_ci_with_retry.sh
 
       - name: Send daily highlights to Feishu bot
-        if: always()
+        if: ${{ always() && steps.delivery_gate.outputs.should_run == 'true' }}
         env:
           FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
           FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
@@ -80,7 +96,7 @@ jobs:
           from datetime import datetime
           from zoneinfo import ZoneInfo
           sys.path.insert(0, "scripts")
-          from seo_feishu_bot import send
+          from seo_daily_delivery import deliver
           path=Path("docs/seo/metrics/daily-latest.json")
           payload=json.loads(path.read_text())
           if payload.get("fetched_at") != str(datetime.now(ZoneInfo("Asia/Shanghai")).date()):
@@ -89,7 +105,7 @@ jobs:
           fetched=payload.get("fetched_at_iso")
           if not started or not fetched or datetime.fromisoformat(fetched) < datetime.fromisoformat(started.replace("Z", "+00:00")):
               raise SystemExit("本次执行没有新快照，禁止把历史报告冒充新采集结果")
-          code=send(payload)
+          code=deliver(payload)
           if code==2:
               print("::error::飞书每日私聊尚未启用：缺少明确收件人配置")
               raise SystemExit(code)

@@ -1,0 +1,12 @@
+{
+  "business_date": "2026-10-27",
+  "slot": "10:00",
+  "recipient_fingerprint": "fc66b7686da9eda3f576978016cb19bc67f08d6dd888b29d5d365294a1a7eabe",
+  "accepted_at": "2026-10-27T10:54:14.372766+08:00",
+  "message_id": "om_x100b61356b9054a0ddf233d6fd0061e",
+  "run_id": "40371467983",
+  "run_attempt": 2,
+  "job_id": 121980270318,
+  "event": "manual-catchup",
+  "evidence": "verified official cloud job log; recovered receipt, not a new send"
+}
