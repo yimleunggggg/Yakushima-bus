@@ -1,6 +1,670 @@
 {
   "fetched_at": "2026-10-27",
-  "fetched_at_iso": "2026-10-27T14:16:17.773028+08:00",
+  "fetched_at_iso": "2026-10-27T17:38:48.166911+08:00",
+  "gsc_daily_final": {
+    "rows": [
+      {
+        "keys": [
+          "2026-09-17"
+        ],
+        "clicks": 41,
+        "impressions": 379,
+        "ctr": 0.10817941952506596,
+        "position": 4.633245382585752
+      },
+      {
+        "keys": [
+          "2026-09-18"
+        ],
+        "clicks": 65,
+        "impressions": 456,
+        "ctr": 0.1425438596491228,
+        "position": 4.37280701754386
+      },
+      {
+        "keys": [
+          "2026-09-19"
+        ],
+        "clicks": 70,
+        "impressions": 514,
+        "ctr": 0.13618677042801555,
+        "position": 4.406614785992218
+      },
+      {
+        "keys": [
+          "2026-09-20"
+        ],
+        "clicks": 57,
+        "impressions": 555,
+        "ctr": 0.10270270270270271,
+        "position": 4.715315315315316
+      },
+      {
+        "keys": [
+          "2026-09-21"
+        ],
+        "clicks": 47,
+        "impressions": 423,
+        "ctr": 0.1111111111111111,
+        "position": 4.15130023640662
+      },
+      {
+        "keys": [
+          "2026-09-22"
+        ],
+        "clicks": 45,
+        "impressions": 469,
+        "ctr": 0.09594882729211088,
+        "position": 4.454157782515992
+      },
+      {
+        "keys": [
+          "2026-09-23"
+        ],
+        "clicks": 57,
+        "impressions": 465,
+        "ctr": 0.12258064516129032,
+        "position": 4.3462365591397845
+      },
+      {
+        "keys": [
+          "2026-09-24"
+        ],
+        "clicks": 51,
+        "impressions": 361,
+        "ctr": 0.14127423822714683,
+        "position": 3.7506925207756234
+      },
+      {
+        "keys": [
+          "2026-09-25"
+        ],
+        "clicks": 50,
+        "impressions": 293,
+        "ctr": 0.17064846416382254,
+        "position": 3.5563139931740615
+      },
+      {
+        "keys": [
+          "2026-09-26"
+        ],
+        "clicks": 63,
+        "impressions": 296,
+        "ctr": 0.21283783783783783,
+        "position": 4.023648648648649
+      },
+      {
+        "keys": [
+          "2026-09-27"
+        ],
+        "clicks": 46,
+        "impressions": 277,
+        "ctr": 0.16606498194945848,
+        "position": 4.610108303249097
+      },
+      {
+        "keys": [
+          "2026-09-28"
+        ],
+        "clicks": 46,
+        "impressions": 256,
+        "ctr": 0.1796875,
+        "position": 4.01953125
+      },
+      {
+        "keys": [
+          "2026-09-29"
+        ],
+        "clicks": 43,
+        "impressions": 255,
+        "ctr": 0.16862745098039217,
+        "position": 5.023529411764706
+      },
+      {
+        "keys": [
+          "2026-09-30"
+        ],
+        "clicks": 53,
+        "impressions": 275,
+        "ctr": 0.19272727272727272,
+        "position": 4.029090909090909
+      },
+      {
+        "keys": [
+          "2026-10-01"
+        ],
+        "clicks": 50,
+        "impressions": 307,
+        "ctr": 0.16286644951140064,
+        "position": 4.0032573289902285
+      },
+      {
+        "keys": [
+          "2026-10-02"
+        ],
+        "clicks": 66,
+        "impressions": 298,
+        "ctr": 0.2214765100671141,
+        "position": 3.8557046979865772
+      },
+      {
+        "keys": [
+          "2026-10-03"
+        ],
+        "clicks": 65,
+        "impressions": 340,
+        "ctr": 0.19117647058823528,
+        "position": 4.302941176470588
+      },
+      {
+        "keys": [
+          "2026-10-04"
+        ],
+        "clicks": 79,
+        "impressions": 372,
+        "ctr": 0.21236559139784947,
+        "position": 3.6586021505376345
+      },
+      {
+        "keys": [
+          "2026-10-05"
+        ],
+        "clicks": 51,
+        "impressions": 316,
+        "ctr": 0.16139240506329114,
+        "position": 3.7341772151898733
+      },
+      {
+        "keys": [
+          "2026-10-06"
+        ],
+        "clicks": 45,
+        "impressions": 295,
+        "ctr": 0.15254237288135594,
+        "position": 3.8847457627118644
+      },
+      {
+        "keys": [
+          "2026-10-07"
+        ],
+        "clicks": 54,
+        "impressions": 324,
+        "ctr": 0.16666666666666666,
+        "position": 3.7685185185185186
+      },
+      {
+        "keys": [
+          "2026-10-08"
+        ],
+        "clicks": 61,
+        "impressions": 328,
+        "ctr": 0.18597560975609756,
+        "position": 3.817073170731707
+      },
+      {
+        "keys": [
+          "2026-10-09"
+        ],
+        "clicks": 68,
+        "impressions": 445,
+        "ctr": 0.15280898876404495,
+        "position": 4.033707865168539
+      },
+      {
+        "keys": [
+          "2026-10-10"
+        ],
+        "clicks": 57,
+        "impressions": 326,
+        "ctr": 0.17484662576687116,
+        "position": 4.38036809815951
+      },
+      {
+        "keys": [
+          "2026-10-11"
+        ],
+        "clicks": 46,
+        "impressions": 349,
+        "ctr": 0.1318051575931232,
+        "position": 3.7277936962750715
+      },
+      {
+        "keys": [
+          "2026-10-12"
+        ],
+        "clicks": 41,
+        "impressions": 307,
+        "ctr": 0.13355048859934854,
+        "position": 4.319218241042345
+      },
+      {
+        "keys": [
+          "2026-10-13"
+        ],
+        "clicks": 36,
+        "impressions": 294,
+        "ctr": 0.12244897959183673,
+        "position": 4.0272108843537415
+      },
+      {
+        "keys": [
+          "2026-10-14"
+        ],
+        "clicks": 46,
+        "impressions": 309,
+        "ctr": 0.1488673139158576,
+        "position": 4.284789644012945
+      },
+      {
+        "keys": [
+          "2026-10-15"
+        ],
+        "clicks": 55,
+        "impressions": 294,
+        "ctr": 0.1870748299319728,
+        "position": 4
+      },
+      {
+        "keys": [
+          "2026-10-16"
+        ],
+        "clicks": 41,
+        "impressions": 290,
+        "ctr": 0.1413793103448276,
+        "position": 4.4896551724137925
+      },
+      {
+        "keys": [
+          "2026-10-17"
+        ],
+        "clicks": 55,
+        "impressions": 282,
+        "ctr": 0.1950354609929078,
+        "position": 4.035460992907801
+      },
+      {
+        "keys": [
+          "2026-10-18"
+        ],
+        "clicks": 79,
+        "impressions": 348,
+        "ctr": 0.22701149425287356,
+        "position": 4.482758620689655
+      },
+      {
+        "keys": [
+          "2026-10-19"
+        ],
+        "clicks": 66,
+        "impressions": 326,
+        "ctr": 0.20245398773006135,
+        "position": 4.113496932515337
+      },
+      {
+        "keys": [
+          "2026-10-20"
+        ],
+        "clicks": 61,
+        "impressions": 292,
+        "ctr": 0.2089041095890411,
+        "position": 4.082191780821917
+      },
+      {
+        "keys": [
+          "2026-10-21"
+        ],
+        "clicks": 38,
+        "impressions": 240,
+        "ctr": 0.15833333333333333,
+        "position": 3.904166666666667
+      },
+      {
+        "keys": [
+          "2026-10-22"
+        ],
+        "clicks": 60,
+        "impressions": 334,
+        "ctr": 0.17964071856287425,
+        "position": 4.308383233532934
+      },
+      {
+        "keys": [
+          "2026-10-23"
+        ],
+        "clicks": 35,
+        "impressions": 236,
+        "ctr": 0.1483050847457627,
+        "position": 4.161016949152542
+      },
+      {
+        "keys": [
+          "2026-10-24"
+        ],
+        "clicks": 36,
+        "impressions": 263,
+        "ctr": 0.13688212927756654,
+        "position": 4.931558935361217
+      },
+      {
+        "keys": [
+          "2026-10-25"
+        ],
+        "clicks": 30,
+        "impressions": 334,
+        "ctr": 0.08982035928143713,
+        "position": 5.164670658682635
+      }
+    ],
+    "responseAggregationType": "byProperty"
+  },
+  "gsc_latest_complete_day": "2026-10-25",
+  "gsc_28d": {
+    "period": {
+      "start": "2026-09-28",
+      "end": "2026-10-25"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 1463,
+    "impressions": 8635,
+    "ctr": 16.94,
+    "position": 4.154,
+    "error": null,
+    "data_state": "final",
+    "top_queries": [
+      {
+        "query": "屋久島 バス時刻表 2026",
+        "clicks": 212,
+        "impressions": 543,
+        "ctr": 39.04,
+        "position": 2.044
+      },
+      {
+        "query": "屋久島 バス 時刻表",
+        "clicks": 152,
+        "impressions": 693,
+        "ctr": 21.93,
+        "position": 2.175
+      },
+      {
+        "query": "屋久島 バス",
+        "clicks": 126,
+        "impressions": 1027,
+        "ctr": 12.27,
+        "position": 2.927
+      },
+      {
+        "query": "屋久島バス時刻表",
+        "clicks": 67,
+        "impressions": 358,
+        "ctr": 18.72,
+        "position": 2.092
+      },
+      {
+        "query": "屋久島 バス 料金 2026",
+        "clicks": 47,
+        "impressions": 82,
+        "ctr": 57.32,
+        "position": 1.207
+      },
+      {
+        "query": "屋久島バス",
+        "clicks": 45,
+        "impressions": 240,
+        "ctr": 18.75,
+        "position": 2.817
+      },
+      {
+        "query": "屋久島交通バス時刻表",
+        "clicks": 45,
+        "impressions": 145,
+        "ctr": 31.03,
+        "position": 1.807
+      },
+      {
+        "query": "屋久島 バス時刻表 最新",
+        "clicks": 43,
+        "impressions": 86,
+        "ctr": 50.0,
+        "position": 1.279
+      },
+      {
+        "query": "屋久島 バス時刻表",
+        "clicks": 34,
+        "impressions": 164,
+        "ctr": 20.73,
+        "position": 2.14
+      },
+      {
+        "query": "屋久島交通 バス時刻表",
+        "clicks": 31,
+        "impressions": 124,
+        "ctr": 25.0,
+        "position": 1.992
+      },
+      {
+        "query": "屋久島交通 時刻表",
+        "clicks": 30,
+        "impressions": 77,
+        "ctr": 38.96,
+        "position": 1.39
+      },
+      {
+        "query": "yakushima bus timetable 2026",
+        "clicks": 24,
+        "impressions": 34,
+        "ctr": 70.59,
+        "position": 1
+      },
+      {
+        "query": "yakushima bus timetable",
+        "clicks": 19,
+        "impressions": 46,
+        "ctr": 41.3,
+        "position": 1.935
+      },
+      {
+        "query": "屋久島 路線バス時刻表",
+        "clicks": 17,
+        "impressions": 30,
+        "ctr": 56.67,
+        "position": 2.133
+      },
+      {
+        "query": "屋久島交通",
+        "clicks": 16,
+        "impressions": 229,
+        "ctr": 6.99,
+        "position": 6.869
+      },
+      {
+        "query": "屋久島交通 バス",
+        "clicks": 16,
+        "impressions": 137,
+        "ctr": 11.68,
+        "position": 2.839
+      },
+      {
+        "query": "屋久島 バス 料金",
+        "clicks": 14,
+        "impressions": 95,
+        "ctr": 14.74,
+        "position": 2.453
+      },
+      {
+        "query": "屋久島 路線バス 時刻表",
+        "clicks": 14,
+        "impressions": 55,
+        "ctr": 25.45,
+        "position": 2.255
+      },
+      {
+        "query": "屋久島 バス 時刻表 2026",
+        "clicks": 12,
+        "impressions": 32,
+        "ctr": 37.5,
+        "position": 1.969
+      },
+      {
+        "query": "yakushima bus schedule",
+        "clicks": 10,
+        "impressions": 29,
+        "ctr": 34.48,
+        "position": 2.828
+      }
+    ],
+    "top_pages": [
+      {
+        "page": "https://yakushimabus.com/",
+        "clicks": 1195,
+        "impressions": 6432,
+        "ctr": 18.58,
+        "position": 3.763
+      },
+      {
+        "page": "https://yakushimabus.com/fare/",
+        "clicks": 156,
+        "impressions": 1252,
+        "ctr": 12.46,
+        "position": 5.171
+      },
+      {
+        "page": "https://yakushimabus.com/?lang=ja",
+        "clicks": 77,
+        "impressions": 1530,
+        "ctr": 5.03,
+        "position": 5.582
+      },
+      {
+        "page": "https://yakushimabus.com/?lang=en",
+        "clicks": 19,
+        "impressions": 172,
+        "ctr": 11.05,
+        "position": 3.657
+      },
+      {
+        "page": "https://yakushimabus.com/fare/?lang=ja",
+        "clicks": 15,
+        "impressions": 212,
+        "ctr": 7.08,
+        "position": 3.925
+      },
+      {
+        "page": "https://yakushimabus.com/without-car/?lang=ja",
+        "clicks": 9,
+        "impressions": 705,
+        "ctr": 1.28,
+        "position": 9.035
+      },
+      {
+        "page": "https://yakushimabus.com/fare/?lang=en",
+        "clicks": 7,
+        "impressions": 25,
+        "ctr": 28.0,
+        "position": 1.92
+      },
+      {
+        "page": "https://yakushimabus.com/map/",
+        "clicks": 5,
+        "impressions": 255,
+        "ctr": 1.96,
+        "position": 9.847
+      },
+      {
+        "page": "https://yakushimabus.com/map/?lang=en",
+        "clicks": 2,
+        "impressions": 7,
+        "ctr": 28.57,
+        "position": 2
+      },
+      {
+        "page": "https://yakushimabus.com/about/",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 8
+      },
+      {
+        "page": "https://yakushimabus.com/guides/yakushima-where-to-stay/?lang=ja",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 12
+      },
+      {
+        "page": "https://yakushimabus.com/map/?lang=ja",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 3
+      },
+      {
+        "page": "https://yakushimabus.com/map/?lang=zh",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 6
+      },
+      {
+        "page": "https://yakushimabus.com/trekking/",
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 9
+      }
+    ]
+  },
+  "gsc_7d": {
+    "period": {
+      "start": "2026-10-19",
+      "end": "2026-10-25"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 326,
+    "impressions": 2025,
+    "ctr": 16.1,
+    "position": 4.401,
+    "error": null,
+    "data_state": "final"
+  },
+  "gsc_previous_7d": {
+    "period": {
+      "start": "2026-10-12",
+      "end": "2026-10-18"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 353,
+    "impressions": 2124,
+    "ctr": 16.62,
+    "position": 4.242,
+    "error": null,
+    "data_state": "final"
+  },
+  "gsc_latest_day": {
+    "period": {
+      "start": "2026-10-25",
+      "end": "2026-10-25"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 30,
+    "impressions": 334,
+    "ctr": 8.98,
+    "position": 5.165,
+    "error": null,
+    "data_state": "final"
+  },
+  "gsc_previous_day": {
+    "period": {
+      "start": "2026-10-24",
+      "end": "2026-10-24"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 36,
+    "impressions": 263,
+    "ctr": 13.69,
+    "position": 4.932,
+    "error": null,
+    "data_state": "final"
+  },
   "ga4_daily": {
     "property_id": "538426834",
     "error": null,
@@ -2022,665 +2686,9 @@
       "last_7d": "2026-10-19~2026-10-25"
     }
   },
-  "gsc_daily_final": {
-    "rows": [
-      {
-        "keys": [
-          "2026-09-16"
-        ],
-        "clicks": 58,
-        "impressions": 408,
-        "ctr": 0.14215686274509803,
-        "position": 4.406862745098039
-      },
-      {
-        "keys": [
-          "2026-09-17"
-        ],
-        "clicks": 41,
-        "impressions": 379,
-        "ctr": 0.10817941952506596,
-        "position": 4.633245382585752
-      },
-      {
-        "keys": [
-          "2026-09-18"
-        ],
-        "clicks": 65,
-        "impressions": 456,
-        "ctr": 0.1425438596491228,
-        "position": 4.37280701754386
-      },
-      {
-        "keys": [
-          "2026-09-19"
-        ],
-        "clicks": 70,
-        "impressions": 514,
-        "ctr": 0.13618677042801555,
-        "position": 4.406614785992218
-      },
-      {
-        "keys": [
-          "2026-09-20"
-        ],
-        "clicks": 57,
-        "impressions": 555,
-        "ctr": 0.10270270270270271,
-        "position": 4.715315315315316
-      },
-      {
-        "keys": [
-          "2026-09-21"
-        ],
-        "clicks": 47,
-        "impressions": 423,
-        "ctr": 0.1111111111111111,
-        "position": 4.15130023640662
-      },
-      {
-        "keys": [
-          "2026-09-22"
-        ],
-        "clicks": 45,
-        "impressions": 469,
-        "ctr": 0.09594882729211088,
-        "position": 4.454157782515992
-      },
-      {
-        "keys": [
-          "2026-09-23"
-        ],
-        "clicks": 57,
-        "impressions": 465,
-        "ctr": 0.12258064516129032,
-        "position": 4.3462365591397845
-      },
-      {
-        "keys": [
-          "2026-09-24"
-        ],
-        "clicks": 51,
-        "impressions": 361,
-        "ctr": 0.14127423822714683,
-        "position": 3.7506925207756234
-      },
-      {
-        "keys": [
-          "2026-09-25"
-        ],
-        "clicks": 50,
-        "impressions": 293,
-        "ctr": 0.17064846416382254,
-        "position": 3.5563139931740615
-      },
-      {
-        "keys": [
-          "2026-09-26"
-        ],
-        "clicks": 63,
-        "impressions": 296,
-        "ctr": 0.21283783783783783,
-        "position": 4.023648648648649
-      },
-      {
-        "keys": [
-          "2026-09-27"
-        ],
-        "clicks": 46,
-        "impressions": 277,
-        "ctr": 0.16606498194945848,
-        "position": 4.610108303249097
-      },
-      {
-        "keys": [
-          "2026-09-28"
-        ],
-        "clicks": 46,
-        "impressions": 256,
-        "ctr": 0.1796875,
-        "position": 4.01953125
-      },
-      {
-        "keys": [
-          "2026-09-29"
-        ],
-        "clicks": 43,
-        "impressions": 255,
-        "ctr": 0.16862745098039217,
-        "position": 5.023529411764706
-      },
-      {
-        "keys": [
-          "2026-09-30"
-        ],
-        "clicks": 53,
-        "impressions": 275,
-        "ctr": 0.19272727272727272,
-        "position": 4.029090909090909
-      },
-      {
-        "keys": [
-          "2026-10-01"
-        ],
-        "clicks": 50,
-        "impressions": 307,
-        "ctr": 0.16286644951140064,
-        "position": 4.0032573289902285
-      },
-      {
-        "keys": [
-          "2026-10-02"
-        ],
-        "clicks": 66,
-        "impressions": 298,
-        "ctr": 0.2214765100671141,
-        "position": 3.8557046979865772
-      },
-      {
-        "keys": [
-          "2026-10-03"
-        ],
-        "clicks": 65,
-        "impressions": 340,
-        "ctr": 0.19117647058823528,
-        "position": 4.302941176470588
-      },
-      {
-        "keys": [
-          "2026-10-04"
-        ],
-        "clicks": 79,
-        "impressions": 372,
-        "ctr": 0.21236559139784947,
-        "position": 3.6586021505376345
-      },
-      {
-        "keys": [
-          "2026-10-05"
-        ],
-        "clicks": 51,
-        "impressions": 316,
-        "ctr": 0.16139240506329114,
-        "position": 3.7341772151898733
-      },
-      {
-        "keys": [
-          "2026-10-06"
-        ],
-        "clicks": 45,
-        "impressions": 295,
-        "ctr": 0.15254237288135594,
-        "position": 3.8847457627118644
-      },
-      {
-        "keys": [
-          "2026-10-07"
-        ],
-        "clicks": 54,
-        "impressions": 324,
-        "ctr": 0.16666666666666666,
-        "position": 3.7685185185185186
-      },
-      {
-        "keys": [
-          "2026-10-08"
-        ],
-        "clicks": 61,
-        "impressions": 328,
-        "ctr": 0.18597560975609756,
-        "position": 3.817073170731707
-      },
-      {
-        "keys": [
-          "2026-10-09"
-        ],
-        "clicks": 68,
-        "impressions": 445,
-        "ctr": 0.15280898876404495,
-        "position": 4.033707865168539
-      },
-      {
-        "keys": [
-          "2026-10-10"
-        ],
-        "clicks": 57,
-        "impressions": 326,
-        "ctr": 0.17484662576687116,
-        "position": 4.38036809815951
-      },
-      {
-        "keys": [
-          "2026-10-11"
-        ],
-        "clicks": 46,
-        "impressions": 349,
-        "ctr": 0.1318051575931232,
-        "position": 3.7277936962750715
-      },
-      {
-        "keys": [
-          "2026-10-12"
-        ],
-        "clicks": 41,
-        "impressions": 307,
-        "ctr": 0.13355048859934854,
-        "position": 4.319218241042345
-      },
-      {
-        "keys": [
-          "2026-10-13"
-        ],
-        "clicks": 36,
-        "impressions": 294,
-        "ctr": 0.12244897959183673,
-        "position": 4.0272108843537415
-      },
-      {
-        "keys": [
-          "2026-10-14"
-        ],
-        "clicks": 46,
-        "impressions": 309,
-        "ctr": 0.1488673139158576,
-        "position": 4.284789644012945
-      },
-      {
-        "keys": [
-          "2026-10-15"
-        ],
-        "clicks": 55,
-        "impressions": 294,
-        "ctr": 0.1870748299319728,
-        "position": 4
-      },
-      {
-        "keys": [
-          "2026-10-16"
-        ],
-        "clicks": 41,
-        "impressions": 290,
-        "ctr": 0.1413793103448276,
-        "position": 4.4896551724137925
-      },
-      {
-        "keys": [
-          "2026-10-17"
-        ],
-        "clicks": 55,
-        "impressions": 282,
-        "ctr": 0.1950354609929078,
-        "position": 4.035460992907801
-      },
-      {
-        "keys": [
-          "2026-10-18"
-        ],
-        "clicks": 79,
-        "impressions": 348,
-        "ctr": 0.22701149425287356,
-        "position": 4.482758620689655
-      },
-      {
-        "keys": [
-          "2026-10-19"
-        ],
-        "clicks": 66,
-        "impressions": 326,
-        "ctr": 0.20245398773006135,
-        "position": 4.113496932515337
-      },
-      {
-        "keys": [
-          "2026-10-20"
-        ],
-        "clicks": 61,
-        "impressions": 292,
-        "ctr": 0.2089041095890411,
-        "position": 4.082191780821917
-      },
-      {
-        "keys": [
-          "2026-10-21"
-        ],
-        "clicks": 38,
-        "impressions": 240,
-        "ctr": 0.15833333333333333,
-        "position": 3.904166666666667
-      },
-      {
-        "keys": [
-          "2026-10-22"
-        ],
-        "clicks": 60,
-        "impressions": 334,
-        "ctr": 0.17964071856287425,
-        "position": 4.308383233532934
-      },
-      {
-        "keys": [
-          "2026-10-23"
-        ],
-        "clicks": 35,
-        "impressions": 236,
-        "ctr": 0.1483050847457627,
-        "position": 4.161016949152542
-      },
-      {
-        "keys": [
-          "2026-10-24"
-        ],
-        "clicks": 36,
-        "impressions": 263,
-        "ctr": 0.13688212927756654,
-        "position": 4.931558935361217
-      }
-    ],
-    "responseAggregationType": "byProperty"
-  },
-  "gsc_latest_complete_day": "2026-10-24",
-  "gsc_28d": {
-    "period": {
-      "start": "2026-09-27",
-      "end": "2026-10-24"
-    },
-    "site_url": "https://yakushimabus.com/",
-    "clicks": 1479,
-    "impressions": 8578,
-    "ctr": 17.24,
-    "position": 4.129,
-    "error": null,
-    "data_state": "final",
-    "top_queries": [
-      {
-        "query": "屋久島 バス時刻表 2026",
-        "clicks": 216,
-        "impressions": 532,
-        "ctr": 40.6,
-        "position": 1.981
-      },
-      {
-        "query": "屋久島 バス 時刻表",
-        "clicks": 158,
-        "impressions": 699,
-        "ctr": 22.6,
-        "position": 2.106
-      },
-      {
-        "query": "屋久島 バス",
-        "clicks": 130,
-        "impressions": 1028,
-        "ctr": 12.65,
-        "position": 2.825
-      },
-      {
-        "query": "屋久島バス時刻表",
-        "clicks": 68,
-        "impressions": 353,
-        "ctr": 19.26,
-        "position": 2.054
-      },
-      {
-        "query": "屋久島バス",
-        "clicks": 49,
-        "impressions": 246,
-        "ctr": 19.92,
-        "position": 2.764
-      },
-      {
-        "query": "屋久島 バス 料金 2026",
-        "clicks": 48,
-        "impressions": 82,
-        "ctr": 58.54,
-        "position": 1.183
-      },
-      {
-        "query": "屋久島 バス時刻表 最新",
-        "clicks": 44,
-        "impressions": 91,
-        "ctr": 48.35,
-        "position": 1.286
-      },
-      {
-        "query": "屋久島交通バス時刻表",
-        "clicks": 44,
-        "impressions": 144,
-        "ctr": 30.56,
-        "position": 1.792
-      },
-      {
-        "query": "屋久島 バス時刻表",
-        "clicks": 35,
-        "impressions": 161,
-        "ctr": 21.74,
-        "position": 2.106
-      },
-      {
-        "query": "屋久島交通 バス時刻表",
-        "clicks": 31,
-        "impressions": 126,
-        "ctr": 24.6,
-        "position": 1.889
-      },
-      {
-        "query": "屋久島交通 時刻表",
-        "clicks": 30,
-        "impressions": 75,
-        "ctr": 40.0,
-        "position": 1.32
-      },
-      {
-        "query": "yakushima bus timetable 2026",
-        "clicks": 24,
-        "impressions": 33,
-        "ctr": 72.73,
-        "position": 1
-      },
-      {
-        "query": "yakushima bus timetable",
-        "clicks": 20,
-        "impressions": 45,
-        "ctr": 44.44,
-        "position": 1.978
-      },
-      {
-        "query": "屋久島 路線バス時刻表",
-        "clicks": 18,
-        "impressions": 34,
-        "ctr": 52.94,
-        "position": 2.118
-      },
-      {
-        "query": "屋久島交通",
-        "clicks": 16,
-        "impressions": 231,
-        "ctr": 6.93,
-        "position": 6.874
-      },
-      {
-        "query": "屋久島交通 バス",
-        "clicks": 16,
-        "impressions": 141,
-        "ctr": 11.35,
-        "position": 2.823
-      },
-      {
-        "query": "屋久島 バス 料金",
-        "clicks": 14,
-        "impressions": 94,
-        "ctr": 14.89,
-        "position": 2.404
-      },
-      {
-        "query": "屋久島 路線バス 時刻表",
-        "clicks": 14,
-        "impressions": 58,
-        "ctr": 24.14,
-        "position": 2.259
-      },
-      {
-        "query": "屋久島 バス 時刻表 2026",
-        "clicks": 12,
-        "impressions": 32,
-        "ctr": 37.5,
-        "position": 1.969
-      },
-      {
-        "query": "屋久島路線バス時刻表",
-        "clicks": 11,
-        "impressions": 24,
-        "ctr": 45.83,
-        "position": 2.083
-      }
-    ],
-    "top_pages": [
-      {
-        "page": "https://yakushimabus.com/",
-        "clicks": 1207,
-        "impressions": 6438,
-        "ctr": 18.75,
-        "position": 3.746
-      },
-      {
-        "page": "https://yakushimabus.com/fare/",
-        "clicks": 155,
-        "impressions": 1237,
-        "ctr": 12.53,
-        "position": 5.233
-      },
-      {
-        "page": "https://yakushimabus.com/?lang=ja",
-        "clicks": 80,
-        "impressions": 1509,
-        "ctr": 5.3,
-        "position": 5.517
-      },
-      {
-        "page": "https://yakushimabus.com/fare/?lang=ja",
-        "clicks": 18,
-        "impressions": 222,
-        "ctr": 8.11,
-        "position": 3.932
-      },
-      {
-        "page": "https://yakushimabus.com/?lang=en",
-        "clicks": 17,
-        "impressions": 157,
-        "ctr": 10.83,
-        "position": 3.815
-      },
-      {
-        "page": "https://yakushimabus.com/without-car/?lang=ja",
-        "clicks": 9,
-        "impressions": 678,
-        "ctr": 1.33,
-        "position": 9.105
-      },
-      {
-        "page": "https://yakushimabus.com/fare/?lang=en",
-        "clicks": 7,
-        "impressions": 22,
-        "ctr": 31.82,
-        "position": 2
-      },
-      {
-        "page": "https://yakushimabus.com/map/",
-        "clicks": 6,
-        "impressions": 261,
-        "ctr": 2.3,
-        "position": 9.816
-      },
-      {
-        "page": "https://yakushimabus.com/map/?lang=en",
-        "clicks": 2,
-        "impressions": 6,
-        "ctr": 33.33,
-        "position": 2
-      },
-      {
-        "page": "https://yakushimabus.com/about/",
-        "clicks": 0,
-        "impressions": 1,
-        "ctr": 0,
-        "position": 8
-      },
-      {
-        "page": "https://yakushimabus.com/map/?lang=ja",
-        "clicks": 0,
-        "impressions": 2,
-        "ctr": 0,
-        "position": 3
-      },
-      {
-        "page": "https://yakushimabus.com/map/?lang=zh",
-        "clicks": 0,
-        "impressions": 1,
-        "ctr": 0,
-        "position": 6
-      },
-      {
-        "page": "https://yakushimabus.com/trekking/",
-        "clicks": 0,
-        "impressions": 2,
-        "ctr": 0,
-        "position": 9
-      }
-    ]
-  },
-  "gsc_7d": {
-    "period": {
-      "start": "2026-10-18",
-      "end": "2026-10-24"
-    },
-    "site_url": "https://yakushimabus.com/",
-    "clicks": 375,
-    "impressions": 2039,
-    "ctr": 18.39,
-    "position": 4.29,
-    "error": null,
-    "data_state": "final"
-  },
-  "gsc_previous_7d": {
-    "period": {
-      "start": "2026-10-11",
-      "end": "2026-10-17"
-    },
-    "site_url": "https://yakushimabus.com/",
-    "clicks": 320,
-    "impressions": 2125,
-    "ctr": 15.06,
-    "position": 4.118,
-    "error": null,
-    "data_state": "final"
-  },
-  "gsc_latest_day": {
-    "period": {
-      "start": "2026-10-24",
-      "end": "2026-10-24"
-    },
-    "site_url": "https://yakushimabus.com/",
-    "clicks": 36,
-    "impressions": 263,
-    "ctr": 13.69,
-    "position": 4.932,
-    "error": null,
-    "data_state": "final"
-  },
-  "gsc_previous_day": {
-    "period": {
-      "start": "2026-10-23",
-      "end": "2026-10-23"
-    },
-    "site_url": "https://yakushimabus.com/",
-    "clicks": 35,
-    "impressions": 236,
-    "ctr": 14.83,
-    "position": 4.161,
-    "error": null,
-    "data_state": "final"
-  },
+  "aligned_period": true,
   "diagnostics": {
-    "collected_at": "2026-10-27T14:16:29.726743+08:00",
+    "collected_at": "2026-10-27T17:38:53.430096+08:00",
     "ga4_landing": {
       "current": {
         "period": {
@@ -3591,90 +3599,108 @@
     "gsc_pages": {
       "current": {
         "period": {
-          "start": "2026-10-18",
-          "end": "2026-10-24"
+          "start": "2026-10-19",
+          "end": "2026-10-25"
         },
         "rows": [
           {
             "keys": [
               "https://yakushimabus.com/"
             ],
-            "clicks": 298,
-            "impressions": 1475,
-            "ctr": 0.20203389830508475,
-            "position": 3.9749152542372883
+            "clicks": 255,
+            "impressions": 1416,
+            "ctr": 0.18008474576271186,
+            "position": 3.9505649717514126
           },
           {
             "keys": [
               "https://yakushimabus.com/fare/"
             ],
-            "clicks": 52,
-            "impressions": 327,
-            "ctr": 0.15902140672782875,
-            "position": 5.125382262996942
+            "clicks": 47,
+            "impressions": 329,
+            "ctr": 0.14285714285714285,
+            "position": 5.261398176291793
           },
           {
             "keys": [
               "https://yakushimabus.com/?lang=ja"
             ],
-            "clicks": 19,
-            "impressions": 536,
-            "ctr": 0.03544776119402985,
-            "position": 6.003731343283582
+            "clicks": 17,
+            "impressions": 503,
+            "ctr": 0.033797216699801194,
+            "position": 6.007952286282306
           },
           {
             "keys": [
               "https://yakushimabus.com/?lang=en"
             ],
-            "clicks": 3,
-            "impressions": 51,
-            "ctr": 0.058823529411764705,
-            "position": 3.9411764705882355
+            "clicks": 5,
+            "impressions": 65,
+            "ctr": 0.07692307692307693,
+            "position": 3.4923076923076923
           },
           {
             "keys": [
               "https://yakushimabus.com/fare/?lang=ja"
             ],
-            "clicks": 3,
-            "impressions": 60,
-            "ctr": 0.05,
-            "position": 5.05
+            "clicks": 2,
+            "impressions": 51,
+            "ctr": 0.0392156862745098,
+            "position": 5.196078431372549
           },
           {
             "keys": [
               "https://yakushimabus.com/map/"
             ],
             "clicks": 2,
-            "impressions": 45,
-            "ctr": 0.044444444444444446,
-            "position": 9.133333333333333
+            "impressions": 50,
+            "ctr": 0.04,
+            "position": 8.9
           },
           {
             "keys": [
               "https://yakushimabus.com/fare/?lang=en"
             ],
             "clicks": 1,
-            "impressions": 3,
-            "ctr": 0.3333333333333333,
-            "position": 1
+            "impressions": 6,
+            "ctr": 0.16666666666666666,
+            "position": 1.1666666666666667
           },
           {
             "keys": [
-              "https://yakushimabus.com/without-car/?lang=ja"
+              "https://yakushimabus.com/guides/yakushima-where-to-stay/?lang=ja"
             ],
-            "clicks": 1,
-            "impressions": 160,
-            "ctr": 0.00625,
-            "position": 9.44375
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 12
           },
           {
             "keys": [
               "https://yakushimabus.com/map/?lang=en"
             ],
             "clicks": 0,
-            "impressions": 2,
+            "impressions": 3,
             "ctr": 0,
-            "position": 1
+            "position": 1.3333333333333333
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/trekking/"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 9
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/without-car/?lang=ja"
+            ],
+            "clicks": 0,
+            "impressions": 176,
+            "ctr": 0,
+            "position": 9.193181818181818
           }
         ],
         "complete": true,
@@ -3682,45 +3708,63 @@
       },
       "previous": {
         "period": {
-          "start": "2026-10-11",
-          "end": "2026-10-17"
+          "start": "2026-10-12",
+          "end": "2026-10-18"
         },
         "rows": [
           {
             "keys": [
               "https://yakushimabus.com/"
             ],
-            "clicks": 261,
-            "impressions": 1629,
-            "ctr": 0.16022099447513813,
-            "position": 3.8060159607120934
+            "clicks": 288,
+            "impressions": 1619,
+            "ctr": 0.1778875849289685,
+            "position": 3.925262507720815
           },
           {
             "keys": [
               "https://yakushimabus.com/fare/"
             ],
-            "clicks": 33,
-            "impressions": 286,
-            "ctr": 0.11538461538461539,
-            "position": 5.108391608391608
+            "clicks": 37,
+            "impressions": 281,
+            "ctr": 0.13167259786476868,
+            "position": 5.309608540925267
           },
           {
             "keys": [
               "https://yakushimabus.com/?lang=ja"
             ],
-            "clicks": 17,
-            "impressions": 380,
-            "ctr": 0.04473684210526316,
-            "position": 5.531578947368421
+            "clicks": 20,
+            "impressions": 422,
+            "ctr": 0.04739336492890995,
+            "position": 5.599526066350711
           },
           {
             "keys": [
               "https://yakushimabus.com/?lang=en"
             ],
-            "clicks": 6,
-            "impressions": 38,
-            "ctr": 0.15789473684210525,
-            "position": 3.9473684210526314
+            "clicks": 4,
+            "impressions": 33,
+            "ctr": 0.12121212121212122,
+            "position": 3.787878787878788
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/fare/?lang=ja"
+            ],
+            "clicks": 4,
+            "impressions": 33,
+            "ctr": 0.12121212121212122,
+            "position": 3.6363636363636362
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/without-car/?lang=ja"
+            ],
+            "clicks": 4,
+            "impressions": 203,
+            "ctr": 0.019704433497536946,
+            "position": 9.22167487684729
           },
           {
             "keys": [
@@ -3733,30 +3777,12 @@
           },
           {
             "keys": [
-              "https://yakushimabus.com/fare/?lang=ja"
-            ],
-            "clicks": 3,
-            "impressions": 26,
-            "ctr": 0.11538461538461539,
-            "position": 2.769230769230769
-          },
-          {
-            "keys": [
-              "https://yakushimabus.com/without-car/?lang=ja"
-            ],
-            "clicks": 3,
-            "impressions": 193,
-            "ctr": 0.015544041450777202,
-            "position": 8.77720207253886
-          },
-          {
-            "keys": [
               "https://yakushimabus.com/map/"
             ],
             "clicks": 0,
             "impressions": 40,
             "ctr": 0,
-            "position": 12.1
+            "position": 12.075
           },
           {
             "keys": [
@@ -3784,135 +3810,135 @@
     "gsc_queries": {
       "current": {
         "period": {
-          "start": "2026-10-18",
-          "end": "2026-10-24"
+          "start": "2026-10-19",
+          "end": "2026-10-25"
         },
         "rows": [
           {
             "keys": [
               "屋久島 バス時刻表 2026"
             ],
-            "clicks": 63,
-            "impressions": 138,
-            "ctr": 0.45652173913043476,
-            "position": 2.0072463768115942
+            "clicks": 51,
+            "impressions": 136,
+            "ctr": 0.375,
+            "position": 2.2573529411764706
           },
           {
             "keys": [
               "屋久島 バス 時刻表"
             ],
-            "clicks": 41,
-            "impressions": 147,
-            "ctr": 0.2789115646258503,
-            "position": 2.1360544217687076
+            "clicks": 33,
+            "impressions": 146,
+            "ctr": 0.22602739726027396,
+            "position": 2.4589041095890414
           },
           {
             "keys": [
               "屋久島 バス"
             ],
-            "clicks": 25,
-            "impressions": 235,
-            "ctr": 0.10638297872340426,
-            "position": 3.4170212765957446
+            "clicks": 18,
+            "impressions": 216,
+            "ctr": 0.08333333333333333,
+            "position": 3.7453703703703702
           },
           {
             "keys": [
               "屋久島バス時刻表"
             ],
-            "clicks": 19,
-            "impressions": 69,
-            "ctr": 0.2753623188405797,
-            "position": 2.0434782608695654
+            "clicks": 15,
+            "impressions": 70,
+            "ctr": 0.21428571428571427,
+            "position": 2.257142857142857
           },
           {
             "keys": [
               "屋久島バス"
             ],
-            "clicks": 17,
-            "impressions": 68,
-            "ctr": 0.25,
-            "position": 2.6470588235294117
-          },
-          {
-            "keys": [
-              "屋久島 バス 料金 2026"
-            ],
-            "clicks": 14,
-            "impressions": 20,
-            "ctr": 0.7,
-            "position": 1.3
-          },
-          {
-            "keys": [
-              "屋久島交通 時刻表"
-            ],
-            "clicks": 11,
-            "impressions": 18,
-            "ctr": 0.6111111111111112,
-            "position": 1.3888888888888888
+            "clicks": 12,
+            "impressions": 54,
+            "ctr": 0.2222222222222222,
+            "position": 2.833333333333333
           },
           {
             "keys": [
               "屋久島 バス時刻表"
             ],
+            "clicks": 11,
+            "impressions": 40,
+            "ctr": 0.275,
+            "position": 2.25
+          },
+          {
+            "keys": [
+              "屋久島 バス 料金 2026"
+            ],
             "clicks": 10,
-            "impressions": 39,
-            "ctr": 0.2564102564102564,
-            "position": 2.0769230769230766
+            "impressions": 17,
+            "ctr": 0.5882352941176471,
+            "position": 1.4705882352941178
           },
           {
             "keys": [
-              "屋久島路線バス時刻表"
+              "屋久島交通 時刻表"
             ],
-            "clicks": 6,
-            "impressions": 8,
-            "ctr": 0.75,
-            "position": 2.125
-          },
-          {
-            "keys": [
-              "yakushima bus timetable 2026"
-            ],
-            "clicks": 5,
-            "impressions": 7,
-            "ctr": 0.7142857142857143,
-            "position": 1
+            "clicks": 9,
+            "impressions": 16,
+            "ctr": 0.5625,
+            "position": 1.8125
           },
           {
             "keys": [
               "屋久島 路線バス 時刻表"
             ],
             "clicks": 5,
-            "impressions": 17,
-            "ctr": 0.29411764705882354,
-            "position": 2.4117647058823533
+            "impressions": 16,
+            "ctr": 0.3125,
+            "position": 2.4375
           },
           {
             "keys": [
-              "屋久島交通 バス時刻表"
+              "bus yakushima"
             ],
-            "clicks": 5,
-            "impressions": 28,
-            "ctr": 0.17857142857142858,
-            "position": 2.0357142857142856
+            "clicks": 4,
+            "impressions": 7,
+            "ctr": 0.5714285714285714,
+            "position": 2
+          },
+          {
+            "keys": [
+              "yakushima bus timetable 2026"
+            ],
+            "clicks": 4,
+            "impressions": 7,
+            "ctr": 0.5714285714285714,
+            "position": 1
           },
           {
             "keys": [
               "屋久島バス料金"
             ],
             "clicks": 4,
-            "impressions": 14,
-            "ctr": 0.2857142857142857,
-            "position": 2.7857142857142856
+            "impressions": 16,
+            "ctr": 0.25,
+            "position": 3.5625
           },
           {
             "keys": [
               "屋久島交通 バス"
             ],
             "clicks": 4,
-            "impressions": 36,
-            "ctr": 0.1111111111111111,
-            "position": 2.888888888888889
+            "impressions": 30,
+            "ctr": 0.13333333333333333,
+            "position": 3
+          },
+          {
+            "keys": [
+              "屋久島交通 バス時刻表"
+            ],
+            "clicks": 4,
+            "impressions": 27,
+            "ctr": 0.14814814814814814,
+            "position": 2.4814814814814814
           },
           {
             "keys": [
@@ -3921,16 +3947,7 @@
             "clicks": 4,
             "impressions": 20,
             "ctr": 0.2,
-            "position": 2.1
-          },
-          {
-            "keys": [
-              "bus yakushima"
-            ],
-            "clicks": 3,
-            "impressions": 3,
-            "ctr": 1,
-            "position": 2.333333333333333
+            "position": 2.2
           },
           {
             "keys": [
@@ -3939,15 +3956,15 @@
             "clicks": 3,
             "impressions": 10,
             "ctr": 0.3,
-            "position": 2.8
+            "position": 2.7
           },
           {
             "keys": [
               "yakushima bus timetable"
             ],
             "clicks": 3,
-            "impressions": 8,
-            "ctr": 0.375,
+            "impressions": 10,
+            "ctr": 0.3,
             "position": 1.5
           },
           {
@@ -3955,62 +3972,71 @@
               "バス時刻表"
             ],
             "clicks": 3,
-            "impressions": 3,
-            "ctr": 1,
-            "position": 1
+            "impressions": 4,
+            "ctr": 0.75,
+            "position": 2
           },
           {
             "keys": [
-              "屋久島 路線バス時刻表"
+              "屋久島路線バス時刻表"
             ],
             "clicks": 3,
-            "impressions": 6,
-            "ctr": 0.5,
-            "position": 2.5
+            "impressions": 9,
+            "ctr": 0.3333333333333333,
+            "position": 3.4444444444444446
           },
           {
             "keys": [
-              "屋久島 バス 料金"
+              "yakushima bus"
             ],
             "clicks": 2,
-            "impressions": 23,
-            "ctr": 0.08695652173913043,
-            "position": 3.130434782608696
+            "impressions": 14,
+            "ctr": 0.14285714285714285,
+            "position": 3.642857142857143
           },
           {
             "keys": [
               "屋久島 バス 運賃"
             ],
             "clicks": 2,
-            "impressions": 7,
-            "ctr": 0.2857142857142857,
-            "position": 2
+            "impressions": 8,
+            "ctr": 0.25,
+            "position": 3
           },
           {
             "keys": [
               "屋久島 バス路線図"
             ],
             "clicks": 2,
-            "impressions": 16,
-            "ctr": 0.125,
-            "position": 4.875
+            "impressions": 14,
+            "ctr": 0.14285714285714285,
+            "position": 4.785714285714286
           },
           {
             "keys": [
               "屋久島 空港 バス"
             ],
             "clicks": 2,
-            "impressions": 6,
-            "ctr": 0.3333333333333333,
-            "position": 6.5
+            "impressions": 4,
+            "ctr": 0.5,
+            "position": 6
+          },
+          {
+            "keys": [
+              "屋久島 路線バス時刻表"
+            ],
+            "clicks": 2,
+            "impressions": 4,
+            "ctr": 0.5,
+            "position": 2.75
           },
           {
             "keys": [
               "屋久島バス 時刻表"
             ],
             "clicks": 2,
-            "impressions": 11,
-            "ctr": 0.18181818181818182,
+            "impressions": 9,
+            "ctr": 0.2222222222222222,
             "position": 2
           },
           {
@@ -4018,54 +4044,63 @@
               "屋久島バス路線図"
             ],
             "clicks": 2,
-            "impressions": 13,
-            "ctr": 0.15384615384615385,
-            "position": 5.615384615384615
+            "impressions": 12,
+            "ctr": 0.16666666666666666,
+            "position": 5.416666666666667
           },
           {
             "keys": [
               "屋久島交通"
             ],
             "clicks": 2,
-            "impressions": 43,
-            "ctr": 0.046511627906976744,
-            "position": 6.767441860465116
-          },
-          {
-            "keys": [
-              "屋久島交通 運賃"
-            ],
-            "clicks": 2,
-            "impressions": 13,
-            "ctr": 0.15384615384615385,
-            "position": 2.8461538461538463
+            "impressions": 34,
+            "ctr": 0.058823529411764705,
+            "position": 6.4411764705882355
           },
           {
             "keys": [
               "屋久島空港 バス 時刻表"
             ],
             "clicks": 2,
-            "impressions": 21,
-            "ctr": 0.09523809523809523,
-            "position": 4.428571428571429
+            "impressions": 20,
+            "ctr": 0.1,
+            "position": 4.75
           },
           {
             "keys": [
               "屋久島路線バス"
             ],
             "clicks": 2,
-            "impressions": 8,
-            "ctr": 0.25,
-            "position": 3.75
+            "impressions": 7,
+            "ctr": 0.2857142857142857,
+            "position": 3.4285714285714284
           },
           {
             "keys": [
-              "yakushima bus"
+              "times"
             ],
             "clicks": 1,
-            "impressions": 11,
-            "ctr": 0.09090909090909091,
-            "position": 4.363636363636363
+            "impressions": 1,
+            "ctr": 1,
+            "position": 6
+          },
+          {
+            "keys": [
+              "yakushima kotsu"
+            ],
+            "clicks": 1,
+            "impressions": 3,
+            "ctr": 0.3333333333333333,
+            "position": 3
+          },
+          {
+            "keys": [
+              "yakushima kotsu bus"
+            ],
+            "clicks": 1,
+            "impressions": 3,
+            "ctr": 0.3333333333333333,
+            "position": 3.6666666666666665
           },
           {
             "keys": [
@@ -4078,88 +4113,7 @@
           },
           {
             "keys": [
-              "バスです"
-            ],
-            "clicks": 1,
-            "impressions": 1,
-            "ctr": 1,
-            "position": 4
-          },
-          {
-            "keys": [
               "バス時刻表 屋久島"
-            ],
-            "clicks": 1,
-            "impressions": 3,
-            "ctr": 0.3333333333333333,
-            "position": 2.333333333333333
-          },
-          {
-            "keys": [
-              "屋久島 バス 料金 表"
-            ],
-            "clicks": 1,
-            "impressions": 7,
-            "ctr": 0.14285714285714285,
-            "position": 4.571428571428571
-          },
-          {
-            "keys": [
-              "屋久島 バス 時刻表 2026"
-            ],
-            "clicks": 1,
-            "impressions": 3,
-            "ctr": 0.3333333333333333,
-            "position": 2
-          },
-          {
-            "keys": [
-              "屋久島 バス 路線図"
-            ],
-            "clicks": 1,
-            "impressions": 33,
-            "ctr": 0.030303030303030304,
-            "position": 6.03030303030303
-          },
-          {
-            "keys": [
-              "屋久島 バス時刻表 最新"
-            ],
-            "clicks": 1,
-            "impressions": 1,
-            "ctr": 1,
-            "position": 1
-          },
-          {
-            "keys": [
-              "屋久島 路線バス"
-            ],
-            "clicks": 1,
-            "impressions": 20,
-            "ctr": 0.05,
-            "position": 5.1
-          },
-          {
-            "keys": [
-              "屋久島ゆったり満喫乗車券"
-            ],
-            "clicks": 1,
-            "impressions": 2,
-            "ctr": 0.5,
-            "position": 15
-          },
-          {
-            "keys": [
-              "屋久島交通 バス 料金"
-            ],
-            "clicks": 1,
-            "impressions": 8,
-            "ctr": 0.125,
-            "position": 3.375
-          },
-          {
-            "keys": [
-              "屋久島巴士時刻表"
             ],
             "clicks": 1,
             "impressions": 2,
@@ -4168,21 +4122,66 @@
           },
           {
             "keys": [
+              "屋久島 バス 料金"
+            ],
+            "clicks": 1,
+            "impressions": 19,
+            "ctr": 0.05263157894736842,
+            "position": 3.6315789473684212
+          },
+          {
+            "keys": [
+              "屋久島 バス 路線図"
+            ],
+            "clicks": 1,
+            "impressions": 31,
+            "ctr": 0.03225806451612903,
+            "position": 6.032258064516129
+          },
+          {
+            "keys": [
+              "屋久島交通 バス 料金"
+            ],
+            "clicks": 1,
+            "impressions": 6,
+            "ctr": 0.16666666666666666,
+            "position": 3.3333333333333335
+          },
+          {
+            "keys": [
+              "屋久島交通 運賃"
+            ],
+            "clicks": 1,
+            "impressions": 10,
+            "ctr": 0.1,
+            "position": 2.6
+          },
+          {
+            "keys": [
               "屋久島空港 バス"
             ],
             "clicks": 1,
-            "impressions": 17,
-            "ctr": 0.058823529411764705,
-            "position": 7.647058823529412
+            "impressions": 15,
+            "ctr": 0.06666666666666667,
+            "position": 7.266666666666667
           },
           {
             "keys": [
               "屋久島空港から安房 バス"
             ],
             "clicks": 1,
-            "impressions": 13,
-            "ctr": 0.07692307692307693,
-            "position": 6.846153846153846
+            "impressions": 14,
+            "ctr": 0.07142857142857142,
+            "position": 6.857142857142857
+          },
+          {
+            "keys": [
+              "bus stop near me"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 1
           },
           {
             "keys": [
@@ -4195,16 +4194,7 @@
           },
           {
             "keys": [
-              "yakushima bus map"
-            ],
-            "clicks": 0,
-            "impressions": 8,
-            "ctr": 0,
-            "position": 5
-          },
-          {
-            "keys": [
-              "yakushima buses"
+              "yakushima"
             ],
             "clicks": 0,
             "impressions": 1,
@@ -4213,12 +4203,30 @@
           },
           {
             "keys": [
+              "yakushima bus map"
+            ],
+            "clicks": 0,
+            "impressions": 7,
+            "ctr": 0,
+            "position": 5.428571428571429
+          },
+          {
+            "keys": [
+              "yakushima buses"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 3
+          },
+          {
+            "keys": [
               "yakushima island map"
             ],
             "clicks": 0,
-            "impressions": 1,
+            "impressions": 3,
             "ctr": 0,
-            "position": 8
+            "position": 8.333333333333332
           },
           {
             "keys": [
@@ -4231,21 +4239,30 @@
           },
           {
             "keys": [
-              "yakushima kotsu bus"
-            ],
-            "clicks": 0,
-            "impressions": 2,
-            "ctr": 0,
-            "position": 4
-          },
-          {
-            "keys": [
               "yakushima mapa"
             ],
             "clicks": 0,
             "impressions": 1,
             "ctr": 0,
             "position": 9
+          },
+          {
+            "keys": [
+              "yakushima public transport"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 5.5
+          },
+          {
+            "keys": [
+              "yakushima trail map"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 10
           },
           {
             "keys": [
@@ -4279,9 +4296,9 @@
               "バス 屋久島"
             ],
             "clicks": 0,
-            "impressions": 8,
+            "impressions": 9,
             "ctr": 0,
-            "position": 3.375
+            "position": 3.5555555555555554
           },
           {
             "keys": [
@@ -4294,21 +4311,21 @@
           },
           {
             "keys": [
-              "バスの時刻表"
-            ],
-            "clicks": 0,
-            "impressions": 1,
-            "ctr": 0,
-            "position": 4
-          },
-          {
-            "keys": [
               "バススケジュール"
             ],
             "clicks": 0,
             "impressions": 1,
             "ctr": 0,
             "position": 9
+          },
+          {
+            "keys": [
+              "バス乗りたい"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 8
           },
           {
             "keys": [
@@ -4333,9 +4350,9 @@
               "安房 宮之浦 バス"
             ],
             "clicks": 0,
-            "impressions": 1,
+            "impressions": 2,
             "ctr": 0,
-            "position": 4
+            "position": 7
           },
           {
             "keys": [
@@ -4345,6 +4362,15 @@
             "impressions": 2,
             "ctr": 0,
             "position": 7
+          },
+          {
+            "keys": [
+              "安房から屋久杉自然館 バス"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 10
           },
           {
             "keys": [
@@ -4360,18 +4386,27 @@
               "宮之浦 から 安房 バス時刻表"
             ],
             "clicks": 0,
-            "impressions": 5,
+            "impressions": 4,
             "ctr": 0,
-            "position": 8
+            "position": 9
           },
           {
             "keys": [
               "宮之浦 バス"
             ],
             "clicks": 0,
-            "impressions": 3,
+            "impressions": 2,
             "ctr": 0,
-            "position": 6.333333333333333
+            "position": 8.5
+          },
+          {
+            "keys": [
+              "宮之浦 安房"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 12
           },
           {
             "keys": [
@@ -4387,27 +4422,27 @@
               "宮之浦 安房 バス 料金"
             ],
             "clicks": 0,
-            "impressions": 4,
+            "impressions": 5,
             "ctr": 0,
-            "position": 6
+            "position": 6.6
           },
           {
             "keys": [
               "宮之浦から安房 バス"
             ],
             "clicks": 0,
-            "impressions": 4,
+            "impressions": 2,
             "ctr": 0,
-            "position": 10.25
+            "position": 10
           },
           {
             "keys": [
               "宮之浦港 バス"
             ],
             "clicks": 0,
-            "impressions": 19,
+            "impressions": 14,
             "ctr": 0,
-            "position": 8.052631578947368
+            "position": 7.785714285714286
           },
           {
             "keys": [
@@ -4447,12 +4482,30 @@
           },
           {
             "keys": [
+              "屋久島 バス 料金 表"
+            ],
+            "clicks": 0,
+            "impressions": 6,
+            "ctr": 0,
+            "position": 4.5
+          },
+          {
+            "keys": [
+              "屋久島 バス 時刻表 2026"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 2
+          },
+          {
+            "keys": [
               "屋久島 バス 運行状況"
             ],
             "clicks": 0,
-            "impressions": 4,
+            "impressions": 3,
             "ctr": 0,
-            "position": 2.75
+            "position": 3
           },
           {
             "keys": [
@@ -4474,30 +4527,12 @@
           },
           {
             "keys": [
-              "屋久島 バス停 地図"
-            ],
-            "clicks": 0,
-            "impressions": 1,
-            "ctr": 0,
-            "position": 11
-          },
-          {
-            "keys": [
               "屋久島 バス運行状況"
-            ],
-            "clicks": 0,
-            "impressions": 3,
-            "ctr": 0,
-            "position": 4.333333333333334
-          },
-          {
-            "keys": [
-              "屋久島 マップ"
             ],
             "clicks": 0,
             "impressions": 2,
             "ctr": 0,
-            "position": 8.5
+            "position": 5
           },
           {
             "keys": [
@@ -4507,6 +4542,15 @@
             "impressions": 7,
             "ctr": 0,
             "position": 6
+          },
+          {
+            "keys": [
+              "屋久島 地図"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 9
           },
           {
             "keys": [
@@ -4522,9 +4566,9 @@
               "屋久島 日帰り 車なし"
             ],
             "clicks": 0,
-            "impressions": 2,
+            "impressions": 1,
             "ctr": 0,
-            "position": 10.5
+            "position": 10
           },
           {
             "keys": [
@@ -4549,9 +4593,9 @@
               "屋久島 空港 から 宮之浦 バス 料金"
             ],
             "clicks": 0,
-            "impressions": 4,
+            "impressions": 2,
             "ctr": 0,
-            "position": 6.5
+            "position": 7.5
           },
           {
             "keys": [
@@ -4567,9 +4611,9 @@
               "屋久島 空港 安房 バス時刻表"
             ],
             "clicks": 0,
-            "impressions": 4,
+            "impressions": 5,
             "ctr": 0,
-            "position": 4.5
+            "position": 5.6
           },
           {
             "keys": [
@@ -4582,12 +4626,21 @@
           },
           {
             "keys": [
+              "屋久島 路線バス"
+            ],
+            "clicks": 0,
+            "impressions": 15,
+            "ctr": 0,
+            "position": 4.866666666666667
+          },
+          {
+            "keys": [
               "屋久島 路線バス 路線図"
             ],
             "clicks": 0,
-            "impressions": 5,
+            "impressions": 7,
             "ctr": 0,
-            "position": 7
+            "position": 7.142857142857143
           },
           {
             "keys": [
@@ -4612,36 +4665,45 @@
               "屋久島マップ"
             ],
             "clicks": 0,
-            "impressions": 3,
+            "impressions": 2,
             "ctr": 0,
-            "position": 9
+            "position": 8
           },
           {
             "keys": [
               "屋久島交通バス"
             ],
             "clicks": 0,
-            "impressions": 10,
+            "impressions": 7,
             "ctr": 0,
-            "position": 2.7
+            "position": 2.7142857142857144
+          },
+          {
+            "keys": [
+              "屋久島巴士時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 3
           },
           {
             "keys": [
               "屋久島空港 から 安房 バス"
             ],
             "clicks": 0,
-            "impressions": 4,
+            "impressions": 3,
             "ctr": 0,
-            "position": 6.5
+            "position": 5.666666666666667
           },
           {
             "keys": [
               "屋久島空港 から 宮之浦 バス時刻表"
             ],
             "clicks": 0,
-            "impressions": 10,
+            "impressions": 9,
             "ctr": 0,
-            "position": 8.9
+            "position": 8.777777777777779
           },
           {
             "keys": [
@@ -4657,9 +4719,9 @@
               "屋久島空港 バス時刻表"
             ],
             "clicks": 0,
-            "impressions": 7,
+            "impressions": 10,
             "ctr": 0,
-            "position": 5.142857142857143
+            "position": 5.4
           },
           {
             "keys": [
@@ -4675,9 +4737,9 @@
               "屋久島空港 宮之浦港 バス"
             ],
             "clicks": 0,
-            "impressions": 3,
+            "impressions": 4,
             "ctr": 0,
-            "position": 7.333333333333333
+            "position": 8.25
           },
           {
             "keys": [
@@ -4687,6 +4749,15 @@
             "impressions": 1,
             "ctr": 0,
             "position": 11
+          },
+          {
+            "keys": [
+              "屋久島空港から宮之浦港 バス"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 10
           },
           {
             "keys": [
@@ -4711,18 +4782,9 @@
               "時刻表"
             ],
             "clicks": 0,
-            "impressions": 2,
-            "ctr": 0,
-            "position": 3
-          },
-          {
-            "keys": [
-              "時刻表を出して"
-            ],
-            "clicks": 0,
             "impressions": 1,
             "ctr": 0,
-            "position": 7
+            "position": 4
           },
           {
             "keys": [
@@ -4739,144 +4801,144 @@
       },
       "previous": {
         "period": {
-          "start": "2026-10-11",
-          "end": "2026-10-17"
+          "start": "2026-10-12",
+          "end": "2026-10-18"
         },
         "rows": [
           {
             "keys": [
               "屋久島 バス時刻表 2026"
             ],
-            "clicks": 42,
-            "impressions": 118,
-            "ctr": 0.3559322033898305,
-            "position": 1.957627118644068
+            "clicks": 51,
+            "impressions": 126,
+            "ctr": 0.40476190476190477,
+            "position": 1.9603174603174605
           },
           {
             "keys": [
               "屋久島 バス 時刻表"
             ],
-            "clicks": 41,
-            "impressions": 172,
-            "ctr": 0.23837209302325582,
-            "position": 2.052325581395349
+            "clicks": 43,
+            "impressions": 166,
+            "ctr": 0.25903614457831325,
+            "position": 2.0602409638554215
           },
           {
             "keys": [
               "屋久島 バス"
             ],
-            "clicks": 39,
-            "impressions": 314,
-            "ctr": 0.12420382165605096,
-            "position": 2.82484076433121
-          },
-          {
-            "keys": [
-              "屋久島 バス 料金 2026"
-            ],
-            "clicks": 11,
-            "impressions": 15,
-            "ctr": 0.7333333333333333,
-            "position": 1.3333333333333333
-          },
-          {
-            "keys": [
-              "屋久島 バス時刻表"
-            ],
-            "clicks": 11,
-            "impressions": 46,
-            "ctr": 0.2391304347826087,
-            "position": 2.1739130434782608
+            "clicks": 37,
+            "impressions": 292,
+            "ctr": 0.1267123287671233,
+            "position": 2.9863013698630136
           },
           {
             "keys": [
               "屋久島バス時刻表"
             ],
-            "clicks": 9,
+            "clicks": 13,
             "impressions": 62,
-            "ctr": 0.14516129032258066,
-            "position": 2.0483870967741935
+            "ctr": 0.20967741935483872,
+            "position": 2.0161290322580645
           },
           {
             "keys": [
-              "屋久島交通 バス時刻表"
+              "屋久島 バス 料金 2026"
             ],
-            "clicks": 8,
-            "impressions": 26,
-            "ctr": 0.3076923076923077,
-            "position": 1.9230769230769231
-          },
-          {
-            "keys": [
-              "yakushima bus timetable 2026"
-            ],
-            "clicks": 7,
-            "impressions": 9,
-            "ctr": 0.7777777777777778,
-            "position": 1
+            "clicks": 12,
+            "impressions": 16,
+            "ctr": 0.75,
+            "position": 1.3125
           },
           {
             "keys": [
               "屋久島バス"
             ],
-            "clicks": 6,
-            "impressions": 68,
-            "ctr": 0.08823529411764706,
-            "position": 3.0588235294117645
+            "clicks": 11,
+            "impressions": 78,
+            "ctr": 0.14102564102564102,
+            "position": 2.9615384615384617
+          },
+          {
+            "keys": [
+              "屋久島 バス時刻表"
+            ],
+            "clicks": 10,
+            "impressions": 46,
+            "ctr": 0.21739130434782608,
+            "position": 2.1956521739130435
+          },
+          {
+            "keys": [
+              "yakushima bus timetable 2026"
+            ],
+            "clicks": 8,
+            "impressions": 10,
+            "ctr": 0.8,
+            "position": 1
+          },
+          {
+            "keys": [
+              "屋久島交通 時刻表"
+            ],
+            "clicks": 8,
+            "impressions": 17,
+            "ctr": 0.47058823529411764,
+            "position": 1.1764705882352942
+          },
+          {
+            "keys": [
+              "屋久島交通 バス時刻表"
+            ],
+            "clicks": 7,
+            "impressions": 28,
+            "ctr": 0.25,
+            "position": 1.9642857142857144
           },
           {
             "keys": [
               "屋久島交通バス時刻表"
             ],
-            "clicks": 6,
-            "impressions": 36,
-            "ctr": 0.16666666666666666,
-            "position": 1.8888888888888888
+            "clicks": 7,
+            "impressions": 37,
+            "ctr": 0.1891891891891892,
+            "position": 1.864864864864865
           },
           {
             "keys": [
               "yakushima bus timetable"
             ],
             "clicks": 5,
-            "impressions": 11,
-            "ctr": 0.45454545454545453,
-            "position": 2.3636363636363633
+            "impressions": 10,
+            "ctr": 0.5,
+            "position": 2.4
+          },
+          {
+            "keys": [
+              "屋久島 バス 時刻表 2026"
+            ],
+            "clicks": 5,
+            "impressions": 10,
+            "ctr": 0.5,
+            "position": 2
           },
           {
             "keys": [
               "屋久島交通"
             ],
             "clicks": 5,
-            "impressions": 69,
-            "ctr": 0.07246376811594203,
-            "position": 6.507246376811594
+            "impressions": 68,
+            "ctr": 0.07352941176470588,
+            "position": 6.779411764705882
           },
           {
             "keys": [
-              "屋久島交通 時刻表"
-            ],
-            "clicks": 5,
-            "impressions": 13,
-            "ctr": 0.38461538461538464,
-            "position": 1.2307692307692308
-          },
-          {
-            "keys": [
-              "屋久島 バス 時刻表 2026"
+              "屋久島 バス 料金"
             ],
             "clicks": 4,
-            "impressions": 12,
-            "ctr": 0.3333333333333333,
-            "position": 2
-          },
-          {
-            "keys": [
-              "屋久島 路線バス時刻表"
-            ],
-            "clicks": 4,
-            "impressions": 6,
-            "ctr": 0.6666666666666666,
-            "position": 2
+            "impressions": 25,
+            "ctr": 0.16,
+            "position": 2.2800000000000002
           },
           {
             "keys": [
@@ -4885,88 +4947,97 @@
             "clicks": 3,
             "impressions": 11,
             "ctr": 0.2727272727272727,
-            "position": 3.5454545454545454
+            "position": 3.4545454545454546
+          },
+          {
+            "keys": [
+              "yakushima bus schedule"
+            ],
+            "clicks": 3,
+            "impressions": 8,
+            "ctr": 0.375,
+            "position": 2.5
           },
           {
             "keys": [
               "バス時刻表 屋久島"
             ],
             "clicks": 3,
-            "impressions": 7,
-            "ctr": 0.42857142857142855,
+            "impressions": 8,
+            "ctr": 0.375,
             "position": 2
           },
           {
             "keys": [
-              "屋久島 バス 料金"
+              "屋久島 バス 料金 表"
             ],
             "clicks": 3,
-            "impressions": 25,
-            "ctr": 0.12,
-            "position": 2.2800000000000002
+            "impressions": 9,
+            "ctr": 0.3333333333333333,
+            "position": 3.111111111111111
           },
           {
             "keys": [
-              "屋久島バス料金"
+              "屋久島 路線バス時刻表"
             ],
             "clicks": 3,
             "impressions": 6,
             "ctr": 0.5,
-            "position": 2.166666666666667
-          },
-          {
-            "keys": [
-              "屋久島交通 バス"
-            ],
-            "clicks": 3,
-            "impressions": 41,
-            "ctr": 0.07317073170731707,
-            "position": 2.8536585365853657
+            "position": 2
           },
           {
             "keys": [
               "屋久島空港 バス時刻表"
             ],
             "clicks": 3,
-            "impressions": 8,
-            "ctr": 0.375,
-            "position": 4.125
-          },
-          {
-            "keys": [
-              "yakushima bus schedule"
-            ],
-            "clicks": 2,
-            "impressions": 8,
-            "ctr": 0.25,
-            "position": 2.75
-          },
-          {
-            "keys": [
-              "屋久島 バス 料金 表"
-            ],
-            "clicks": 2,
             "impressions": 7,
-            "ctr": 0.2857142857142857,
-            "position": 2.142857142857143
+            "ctr": 0.42857142857142855,
+            "position": 4
+          },
+          {
+            "keys": [
+              "屋久島路線バス時刻表"
+            ],
+            "clicks": 3,
+            "impressions": 6,
+            "ctr": 0.5,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島 バス時刻表 最新"
+            ],
+            "clicks": 2,
+            "impressions": 4,
+            "ctr": 0.5,
+            "position": 1.25
           },
           {
             "keys": [
               "屋久島 路線バス 時刻表"
             ],
             "clicks": 2,
-            "impressions": 15,
-            "ctr": 0.13333333333333333,
-            "position": 2.1333333333333333
+            "impressions": 12,
+            "ctr": 0.16666666666666666,
+            "position": 2
           },
           {
             "keys": [
-              "19 october 2026"
+              "屋久島バス料金"
             ],
-            "clicks": 1,
-            "impressions": 1,
-            "ctr": 1,
-            "position": 8
+            "clicks": 2,
+            "impressions": 4,
+            "ctr": 0.5,
+            "position": 2.25
+          },
+          {
+            "keys": [
+              "屋久島交通 バス"
+            ],
+            "clicks": 2,
+            "impressions": 43,
+            "ctr": 0.046511627906976744,
+            "position": 2.7674418604651163
           },
           {
             "keys": [
@@ -4997,29 +5068,47 @@
           },
           {
             "keys": [
-              "安房 宮之浦 バス時刻表"
+              "バスです"
             ],
             "clicks": 1,
-            "impressions": 9,
-            "ctr": 0.1111111111111111,
-            "position": 6.111111111111111
+            "impressions": 1,
+            "ctr": 1,
+            "position": 4
           },
           {
             "keys": [
-              "屋久島 バス時刻表 最新"
+              "安房 宮之浦 バス時刻表"
             ],
             "clicks": 1,
-            "impressions": 3,
-            "ctr": 0.3333333333333333,
-            "position": 1.3333333333333333
+            "impressions": 8,
+            "ctr": 0.125,
+            "position": 5.875
+          },
+          {
+            "keys": [
+              "屋久島 路線バス"
+            ],
+            "clicks": 1,
+            "impressions": 17,
+            "ctr": 0.058823529411764705,
+            "position": 5.235294117647059
+          },
+          {
+            "keys": [
+              "屋久島ゆったり満喫乗車券"
+            ],
+            "clicks": 1,
+            "impressions": 2,
+            "ctr": 0.5,
+            "position": 15
           },
           {
             "keys": [
               "屋久島バス 時刻表"
             ],
             "clicks": 1,
-            "impressions": 8,
-            "ctr": 0.125,
+            "impressions": 10,
+            "ctr": 0.1,
             "position": 2
           },
           {
@@ -5027,9 +5116,9 @@
               "屋久島バス路線図"
             ],
             "clicks": 1,
-            "impressions": 10,
-            "ctr": 0.1,
-            "position": 6.2
+            "impressions": 9,
+            "ctr": 0.1111111111111111,
+            "position": 6.555555555555555
           },
           {
             "keys": [
@@ -5042,30 +5131,48 @@
           },
           {
             "keys": [
+              "屋久島交通 運賃"
+            ],
+            "clicks": 1,
+            "impressions": 8,
+            "ctr": 0.125,
+            "position": 4.375
+          },
+          {
+            "keys": [
+              "屋久島巴士時刻表"
+            ],
+            "clicks": 1,
+            "impressions": 3,
+            "ctr": 0.3333333333333333,
+            "position": 5.666666666666667
+          },
+          {
+            "keys": [
               "屋久島空港 バス 時刻表"
             ],
             "clicks": 1,
-            "impressions": 22,
-            "ctr": 0.045454545454545456,
-            "position": 4.181818181818182
+            "impressions": 21,
+            "ctr": 0.047619047619047616,
+            "position": 4.190476190476191
           },
           {
             "keys": [
               "屋久島路線バス"
             ],
             "clicks": 1,
-            "impressions": 6,
-            "ctr": 0.16666666666666666,
-            "position": 4.166666666666666
+            "impressions": 7,
+            "ctr": 0.14285714285714285,
+            "position": 4.428571428571429
           },
           {
             "keys": [
               "時刻表"
             ],
             "clicks": 1,
-            "impressions": 1,
-            "ctr": 1,
-            "position": 3
+            "impressions": 2,
+            "ctr": 0.5,
+            "position": 2.5
           },
           {
             "keys": [
@@ -5141,15 +5248,6 @@
           },
           {
             "keys": [
-              "public transport"
-            ],
-            "clicks": 0,
-            "impressions": 1,
-            "ctr": 0,
-            "position": 2
-          },
-          {
-            "keys": [
               "sobre las 15:00"
             ],
             "clicks": 0,
@@ -5173,25 +5271,16 @@
             "clicks": 0,
             "impressions": 6,
             "ctr": 0,
-            "position": 3.1666666666666665
-          },
-          {
-            "keys": [
-              "やめときます"
-            ],
-            "clicks": 0,
-            "impressions": 1,
-            "ctr": 0,
-            "position": 1
+            "position": 4.333333333333334
           },
           {
             "keys": [
               "バス"
             ],
             "clicks": 0,
-            "impressions": 2,
+            "impressions": 1,
             "ctr": 0,
-            "position": 11.5
+            "position": 9
           },
           {
             "keys": [
@@ -5207,9 +5296,9 @@
               "バスの時刻表"
             ],
             "clicks": 0,
-            "impressions": 1,
+            "impressions": 2,
             "ctr": 0,
-            "position": 7
+            "position": 5.5
           },
           {
             "keys": [
@@ -5263,16 +5352,16 @@
             "clicks": 0,
             "impressions": 4,
             "ctr": 0,
-            "position": 8.25
+            "position": 6.75
           },
           {
             "keys": [
               "宮之浦 バス"
             ],
             "clicks": 0,
-            "impressions": 2,
+            "impressions": 3,
             "ctr": 0,
-            "position": 8.5
+            "position": 6.333333333333333
           },
           {
             "keys": [
@@ -5297,36 +5386,36 @@
               "宮之浦から安房 バス"
             ],
             "clicks": 0,
-            "impressions": 10,
+            "impressions": 12,
             "ctr": 0,
-            "position": 4.4
+            "position": 5.416666666666667
           },
           {
             "keys": [
               "宮之浦港 バス"
             ],
             "clicks": 0,
-            "impressions": 6,
+            "impressions": 9,
             "ctr": 0,
-            "position": 8.166666666666668
+            "position": 8.555555555555555
           },
           {
             "keys": [
               "宮之浦港 バス 時刻表"
             ],
             "clicks": 0,
-            "impressions": 9,
+            "impressions": 7,
             "ctr": 0,
-            "position": 3.4444444444444446
+            "position": 3.2857142857142856
           },
           {
             "keys": [
               "宮之浦港から安房港 バス"
             ],
             "clicks": 0,
-            "impressions": 3,
+            "impressions": 2,
             "ctr": 0,
-            "position": 5
+            "position": 3.5
           },
           {
             "keys": [
@@ -5360,18 +5449,27 @@
               "屋久島 バス 路線図"
             ],
             "clicks": 0,
-            "impressions": 29,
+            "impressions": 28,
             "ctr": 0,
-            "position": 6.068965517241379
+            "position": 6.107142857142857
+          },
+          {
+            "keys": [
+              "屋久島 バス 運行状況"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 2
           },
           {
             "keys": [
               "屋久島 バス 運賃"
             ],
             "clicks": 0,
-            "impressions": 7,
+            "impressions": 5,
             "ctr": 0,
-            "position": 1.8571428571428572
+            "position": 2
           },
           {
             "keys": [
@@ -5396,36 +5494,36 @@
               "屋久島 バス停 地図"
             ],
             "clicks": 0,
-            "impressions": 2,
+            "impressions": 3,
             "ctr": 0,
-            "position": 7
+            "position": 8.333333333333332
           },
           {
             "keys": [
               "屋久島 バス路線図"
             ],
             "clicks": 0,
-            "impressions": 6,
+            "impressions": 8,
             "ctr": 0,
-            "position": 5
+            "position": 5.125
           },
           {
             "keys": [
               "屋久島 バス運行状況"
             ],
             "clicks": 0,
-            "impressions": 1,
+            "impressions": 2,
             "ctr": 0,
-            "position": 2
+            "position": 2.5
           },
           {
             "keys": [
               "屋久島 マップ"
             ],
             "clicks": 0,
-            "impressions": 5,
+            "impressions": 4,
             "ctr": 0,
-            "position": 8.8
+            "position": 9
           },
           {
             "keys": [
@@ -5441,9 +5539,9 @@
               "屋久島 地図"
             ],
             "clicks": 0,
-            "impressions": 5,
+            "impressions": 4,
             "ctr": 0,
-            "position": 10.8
+            "position": 11
           },
           {
             "keys": [
@@ -5456,12 +5554,21 @@
           },
           {
             "keys": [
+              "屋久島 日帰り 車なし"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 11
+          },
+          {
+            "keys": [
               "屋久島 空港 から 宮之浦 バス 料金"
             ],
             "clicks": 0,
-            "impressions": 2,
+            "impressions": 3,
             "ctr": 0,
-            "position": 2
+            "position": 4.333333333333334
           },
           {
             "keys": [
@@ -5470,16 +5577,16 @@
             "clicks": 0,
             "impressions": 6,
             "ctr": 0,
-            "position": 5.666666666666667
+            "position": 5.5
           },
           {
             "keys": [
               "屋久島 空港 安房 バス時刻表"
             ],
             "clicks": 0,
-            "impressions": 12,
+            "impressions": 8,
             "ctr": 0,
-            "position": 6.916666666666667
+            "position": 6.25
           },
           {
             "keys": [
@@ -5492,30 +5599,12 @@
           },
           {
             "keys": [
-              "屋久島 路線バス"
-            ],
-            "clicks": 0,
-            "impressions": 14,
-            "ctr": 0,
-            "position": 5.142857142857143
-          },
-          {
-            "keys": [
               "屋久島 路線バス 路線図"
             ],
             "clicks": 0,
             "impressions": 5,
             "ctr": 0,
             "position": 7.8
-          },
-          {
-            "keys": [
-              "屋久島 車なし"
-            ],
-            "clicks": 0,
-            "impressions": 1,
-            "ctr": 0,
-            "position": 7
           },
           {
             "keys": [
@@ -5540,36 +5629,27 @@
               "屋久島マップ"
             ],
             "clicks": 0,
-            "impressions": 5,
+            "impressions": 6,
             "ctr": 0,
-            "position": 13.6
+            "position": 13.166666666666666
           },
           {
             "keys": [
               "屋久島交通 バス 料金"
             ],
             "clicks": 0,
-            "impressions": 5,
+            "impressions": 4,
             "ctr": 0,
-            "position": 6.4
-          },
-          {
-            "keys": [
-              "屋久島交通 運賃"
-            ],
-            "clicks": 0,
-            "impressions": 7,
-            "ctr": 0,
-            "position": 4.428571428571429
+            "position": 5.25
           },
           {
             "keys": [
               "屋久島交通バス"
             ],
             "clicks": 0,
-            "impressions": 3,
+            "impressions": 5,
             "ctr": 0,
-            "position": 2.666666666666667
+            "position": 2.6
           },
           {
             "keys": [
@@ -5582,48 +5662,39 @@
           },
           {
             "keys": [
-              "屋久島巴士時刻表"
-            ],
-            "clicks": 0,
-            "impressions": 2,
-            "ctr": 0,
-            "position": 7.5
-          },
-          {
-            "keys": [
               "屋久島空港 から 安房 バス"
             ],
             "clicks": 0,
-            "impressions": 2,
+            "impressions": 3,
             "ctr": 0,
-            "position": 5.5
+            "position": 6.666666666666667
           },
           {
             "keys": [
               "屋久島空港 から 宮之浦 バス時刻表"
             ],
             "clicks": 0,
-            "impressions": 11,
+            "impressions": 8,
             "ctr": 0,
-            "position": 7.7272727272727275
+            "position": 7.875
           },
           {
             "keys": [
               "屋久島空港 バス"
             ],
             "clicks": 0,
-            "impressions": 26,
+            "impressions": 25,
             "ctr": 0,
-            "position": 7.538461538461538
+            "position": 7.88
           },
           {
             "keys": [
               "屋久島空港から安房 バス"
             ],
             "clicks": 0,
-            "impressions": 5,
+            "impressions": 6,
             "ctr": 0,
-            "position": 8
+            "position": 7.666666666666667
           },
           {
             "keys": [
@@ -5636,15 +5707,6 @@
           },
           {
             "keys": [
-              "屋久島路線バス時刻表"
-            ],
-            "clicks": 0,
-            "impressions": 2,
-            "ctr": 0,
-            "position": 2
-          },
-          {
-            "keys": [
               "時刻表は？"
             ],
             "clicks": 0,
@@ -5654,12 +5716,12 @@
           },
           {
             "keys": [
-              "時刻表教えて"
+              "時刻表を出して"
             ],
             "clicks": 0,
             "impressions": 1,
             "ctr": 0,
-            "position": 9
+            "position": 7
           },
           {
             "keys": [
@@ -5678,8 +5740,8 @@
     "ga4_aligned_source": {
       "current": {
         "period": {
-          "start": "2026-10-18",
-          "end": "2026-10-24"
+          "start": "2026-10-19",
+          "end": "2026-10-25"
         },
         "complete": true,
         "rows": [
@@ -5687,37 +5749,37 @@
             "keys": [
               "google / organic"
             ],
-            "sessions": 471
-          },
-          {
-            "keys": [
-              "(direct) / (none)"
-            ],
-            "sessions": 87
+            "sessions": 418
           },
           {
             "keys": [
               "chatgpt.com / ai-assistant"
             ],
-            "sessions": 80
+            "sessions": 81
+          },
+          {
+            "keys": [
+              "(direct) / (none)"
+            ],
+            "sessions": 76
           },
           {
             "keys": [
               "yahoo / organic"
             ],
-            "sessions": 71
+            "sessions": 62
           },
           {
             "keys": [
               "bing / organic"
             ],
-            "sessions": 59
+            "sessions": 52
           },
           {
             "keys": [
               "map_popup / (not set)"
             ],
-            "sessions": 30
+            "sessions": 32
           },
           {
             "keys": [
@@ -5733,15 +5795,15 @@
           },
           {
             "keys": [
-              "(not set)"
-            ],
-            "sessions": 6
-          },
-          {
-            "keys": [
               "ecosia.org / organic"
             ],
             "sessions": 5
+          },
+          {
+            "keys": [
+              "(not set)"
+            ],
+            "sessions": 4
           },
           {
             "keys": [
@@ -5763,18 +5825,6 @@
           },
           {
             "keys": [
-              "copilot.com / ai-assistant"
-            ],
-            "sessions": 1
-          },
-          {
-            "keys": [
-              "duckduckgo / organic"
-            ],
-            "sessions": 1
-          },
-          {
-            "keys": [
               "openai / (not set)"
             ],
             "sessions": 1
@@ -5783,8 +5833,8 @@
       },
       "previous": {
         "period": {
-          "start": "2026-10-11",
-          "end": "2026-10-17"
+          "start": "2026-10-12",
+          "end": "2026-10-18"
         },
         "complete": true,
         "rows": [
@@ -5792,13 +5842,13 @@
             "keys": [
               "google / organic"
             ],
-            "sessions": 425
+            "sessions": 458
           },
           {
             "keys": [
               "(direct) / (none)"
             ],
-            "sessions": 160
+            "sessions": 154
           },
           {
             "keys": [
@@ -5810,37 +5860,43 @@
             "keys": [
               "chatgpt.com / ai-assistant"
             ],
-            "sessions": 45
+            "sessions": 63
           },
           {
             "keys": [
               "bing / organic"
             ],
-            "sessions": 44
+            "sessions": 54
           },
           {
             "keys": [
               "map_popup / (not set)"
             ],
-            "sessions": 18
-          },
-          {
-            "keys": [
-              "ecosia.org / organic"
-            ],
-            "sessions": 7
+            "sessions": 20
           },
           {
             "keys": [
               "openai / organic"
             ],
-            "sessions": 7
+            "sessions": 8
           },
           {
             "keys": [
               "duckduckgo / organic"
             ],
-            "sessions": 6
+            "sessions": 7
+          },
+          {
+            "keys": [
+              "ecosia.org / organic"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "(not set)"
+            ],
+            "sessions": 3
           },
           {
             "keys": [
@@ -5850,13 +5906,19 @@
           },
           {
             "keys": [
-              "(not set)"
+              "copilot.com / ai-assistant"
             ],
-            "sessions": 2
+            "sessions": 1
           },
           {
             "keys": [
               "m.facebook.com / referral"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "service.smt.docomo.ne.jp / referral"
             ],
             "sessions": 1
           }
@@ -5956,55 +6018,55 @@
     {
       "source": "GSC",
       "metric": "搜索点击·日环比",
-      "current": 36,
-      "previous": 35,
-      "change": "+2.9%",
-      "window": "2026-10-24~2026-10-24 对 2026-10-23~2026-10-23（GSC final）",
+      "current": 30,
+      "previous": 36,
+      "change": "-16.7%",
+      "window": "2026-10-25~2026-10-25 对 2026-10-24~2026-10-24（GSC final）",
       "status": "可比较"
     },
     {
       "source": "GSC",
       "metric": "搜索展示·日环比",
-      "current": 263,
-      "previous": 236,
-      "change": "+11.4%",
-      "window": "2026-10-24~2026-10-24 对 2026-10-23~2026-10-23（GSC final）",
+      "current": 334,
+      "previous": 263,
+      "change": "+27.0%",
+      "window": "2026-10-25~2026-10-25 对 2026-10-24~2026-10-24（GSC final）",
       "status": "可比较"
     },
     {
       "source": "GSC",
       "metric": "搜索CTR·日环比",
-      "current": 13.69,
-      "previous": 14.83,
-      "change": "-1.14个百分点",
-      "window": "2026-10-24~2026-10-24 对 2026-10-23~2026-10-23（GSC final）",
+      "current": 8.98,
+      "previous": 13.69,
+      "change": "-4.71个百分点",
+      "window": "2026-10-25~2026-10-25 对 2026-10-24~2026-10-24（GSC final）",
       "status": "可比较"
     },
     {
       "source": "GSC",
       "metric": "搜索点击·周环比",
-      "current": 375,
-      "previous": 320,
-      "change": "+17.2%",
-      "window": "2026-10-18~2026-10-24 对 2026-10-11~2026-10-17（GSC final）",
+      "current": 326,
+      "previous": 353,
+      "change": "-7.6%",
+      "window": "2026-10-19~2026-10-25 对 2026-10-12~2026-10-18（GSC final）",
       "status": "可比较"
     },
     {
       "source": "GSC",
       "metric": "搜索展示·周环比",
-      "current": 2039,
-      "previous": 2125,
-      "change": "-4.0%",
-      "window": "2026-10-18~2026-10-24 对 2026-10-11~2026-10-17（GSC final）",
+      "current": 2025,
+      "previous": 2124,
+      "change": "-4.7%",
+      "window": "2026-10-19~2026-10-25 对 2026-10-12~2026-10-18（GSC final）",
       "status": "可比较"
     },
     {
       "source": "GSC",
       "metric": "搜索CTR·周环比",
-      "current": 18.39,
-      "previous": 15.06,
-      "change": "+3.33个百分点",
-      "window": "2026-10-18~2026-10-24 对 2026-10-11~2026-10-17（GSC final）",
+      "current": 16.1,
+      "previous": 16.62,
+      "change": "-0.52个百分点",
+      "window": "2026-10-19~2026-10-25 对 2026-10-12~2026-10-18（GSC final）",
       "status": "可比较"
     }
   ],
@@ -6018,7 +6080,7 @@
     {
       "service": "GSC",
       "status": "已取数",
-      "evidence": "final数据截至2026-10-24；本站已授权",
+      "evidence": "final数据截至2026-10-25；本站已授权",
       "action": "关注点击、展示、CTR及查询词/页面"
     },
     {
@@ -6045,18 +6107,18 @@
       "首页的减少细分：直接访问 122→45次；Google搜索 365→333次。",
       "入口页减少最多：首页 674→553次；/fare 89→71次。"
     ],
-    "judgment": "Google同周期（2026-10-18~2026-10-24 对 2026-10-11~2026-10-17）：点击320→375，访问425→471；与整站统计周不同，不能直接归因排名。",
+    "judgment": "Google同周期（2026-10-19~2026-10-25 对 2026-10-12~2026-10-18）：点击353→326，访问458→418；点击与访问口径不同，不能直接归因排名。",
     "findings": [
       "本周活跃访客549→479（-12.8%）。",
       "减少集中在直接访问154→76次、自然搜索614→549次；这里比较访问次数，不把各渠道人数相加。",
       "入口页减少最多：首页 674→553次；/fare 89→71次。",
-      "Google搜索点击320→375；统计周相差一天，不能直接拿来解释整站涨跌。",
-      "可见搜索词中下降最多：“屋久島 バス” 39→25次点击；不含隐藏词。",
-      "对齐GSC统计周后，GA4的Google自然搜索访问425→471次。",
+      "Google搜索点击353→326；点击和访问次数口径不同，不能直接等同。",
+      "Google点击下降最多的页面：/ 312→277。",
+      "可见搜索词中下降最多：“屋久島 バス” 37→18次点击；不含隐藏词。",
+      "对齐GSC统计周后，GA4的Google自然搜索访问458→418次。",
       "首页的减少细分：直接访问 122→45次；Google搜索 365→333次。"
     ],
     "agent_actions": [
-      "目前不能把访客减少归因于Google搜索流量下降。",
       "已核验首页、/fare可打开，未见禁止收录标记。",
       "已自动对比两周渠道、入口页和可见搜索词；后续每日按相同窗口继续核对。"
     ],
@@ -6095,10 +6157,18 @@
         "metric": "sessions"
       },
       {
+        "key": "/",
+        "current": 277,
+        "previous": 312,
+        "delta": -35,
+        "source": "GSC page",
+        "metric": "clicks"
+      },
+      {
         "key": "/without-car",
-        "current": 1,
-        "previous": 3,
-        "delta": -2,
+        "current": 0,
+        "previous": 4,
+        "delta": -4,
         "source": "GSC page",
         "metric": "clicks"
       },
@@ -6112,46 +6182,46 @@
       },
       {
         "key": "/fare",
-        "current": 56,
-        "previous": 39,
-        "delta": 17,
-        "source": "GSC page",
-        "metric": "clicks"
-      },
-      {
-        "key": "/",
-        "current": 320,
-        "previous": 284,
-        "delta": 36,
+        "current": 50,
+        "previous": 44,
+        "delta": 6,
         "source": "GSC page",
         "metric": "clicks"
       },
       {
         "key": "屋久島 バス",
-        "current": 25,
-        "previous": 39,
-        "delta": -14,
+        "current": 18,
+        "previous": 37,
+        "delta": -19,
+        "source": "GSC visible query",
+        "metric": "clicks"
+      },
+      {
+        "key": "屋久島 バス 時刻表",
+        "current": 33,
+        "previous": 43,
+        "delta": -10,
         "source": "GSC visible query",
         "metric": "clicks"
       },
       {
         "key": "屋久島 バス 時刻表 2026",
-        "current": 1,
-        "previous": 4,
-        "delta": -3,
-        "source": "GSC visible query",
-        "metric": "clicks"
-      },
-      {
-        "key": "屋久島交通",
-        "current": 2,
+        "current": 0,
         "previous": 5,
-        "delta": -3,
+        "delta": -5,
         "source": "GSC visible query",
         "metric": "clicks"
       },
       {
-        "key": "屋久島空港 バス時刻表",
+        "key": "yakushima bus timetable 2026",
+        "current": 4,
+        "previous": 8,
+        "delta": -4,
+        "source": "GSC visible query",
+        "metric": "clicks"
+      },
+      {
+        "key": "屋久島 バス 料金 表",
         "current": 0,
         "previous": 3,
         "delta": -3,
@@ -6159,18 +6229,10 @@
         "metric": "clicks"
       },
       {
-        "key": "屋久島交通 バス時刻表",
-        "current": 5,
-        "previous": 8,
-        "delta": -3,
-        "source": "GSC visible query",
-        "metric": "clicks"
-      },
-      {
         "key": "google / organic",
-        "current": 471,
-        "previous": 425,
-        "delta": 46,
+        "current": 418,
+        "previous": 458,
+        "delta": -40,
         "source": "GA4 aligned Google",
         "metric": "sessions"
       },
@@ -6246,15 +6308,15 @@
         "delta": -7
       },
       {
-        "key": "/fare ← (direct) / (none)",
-        "current": 1,
-        "previous": 7,
-        "delta": -6
-      },
-      {
         "key": "/map ← google / organic",
         "current": 15,
         "previous": 21,
+        "delta": -6
+      },
+      {
+        "key": "/fare ← (direct) / (none)",
+        "current": 1,
+        "previous": 7,
         "delta": -6
       },
       {
@@ -6264,27 +6326,27 @@
         "delta": -5
       },
       {
-        "key": "/trekking ← (direct) / (none)",
-        "current": 0,
-        "previous": 4,
-        "delta": -4
-      },
-      {
         "key": "/without-car ← google / organic",
         "current": 0,
         "previous": 4,
         "delta": -4
       },
       {
-        "key": "/ ← duckduckgo / organic",
+        "key": "/trekking ← (direct) / (none)",
         "current": 0,
-        "previous": 3,
-        "delta": -3
+        "previous": 4,
+        "delta": -4
       },
       {
         "key": "/fare ← chatgpt.com / ai-assistant",
         "current": 3,
         "previous": 6,
+        "delta": -3
+      },
+      {
+        "key": "/ ← duckduckgo / organic",
+        "current": 0,
+        "previous": 3,
         "delta": -3
       },
       {
@@ -6306,54 +6368,6 @@
         "delta": -2
       },
       {
-        "key": "/fare ← duckduckgo / organic",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/fare ← ecosia.org / organic",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/fare ← bing / organic",
-        "current": 4,
-        "previous": 5,
-        "delta": -1
-      },
-      {
-        "key": "/fare ← m.facebook.com / referral",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/ferry ← (direct) / (none)",
-        "current": 7,
-        "previous": 8,
-        "delta": -1
-      },
-      {
-        "key": "(not set) ← chatgpt.com / ai-assistant",
-        "current": 1,
-        "previous": 2,
-        "delta": -1
-      },
-      {
-        "key": "/ferry ← openai / (not set)",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/ ← openai / (not set)",
-        "current": 1,
-        "previous": 2,
-        "delta": -1
-      },
-      {
         "key": "/ferry ← copilot.com / ai-assistant",
         "current": 0,
         "previous": 1,
@@ -6372,10 +6386,52 @@
         "delta": -1
       },
       {
-        "key": "(not set) ← yahoo / organic",
-        "current": 2,
+        "key": "(not set) ← chatgpt.com / ai-assistant",
+        "current": 1,
         "previous": 2,
-        "delta": 0
+        "delta": -1
+      },
+      {
+        "key": "/ferry ← (direct) / (none)",
+        "current": 7,
+        "previous": 8,
+        "delta": -1
+      },
+      {
+        "key": "/fare ← duckduckgo / organic",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/ ← openai / (not set)",
+        "current": 1,
+        "previous": 2,
+        "delta": -1
+      },
+      {
+        "key": "/fare ← m.facebook.com / referral",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/ferry ← openai / (not set)",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/fare ← ecosia.org / organic",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/fare ← bing / organic",
+        "current": 4,
+        "previous": 5,
+        "delta": -1
       },
       {
         "key": "/ ← (not set)",
@@ -6396,6 +6452,24 @@
         "delta": 0
       },
       {
+        "key": "(not set) ← yahoo / organic",
+        "current": 2,
+        "previous": 2,
+        "delta": 0
+      },
+      {
+        "key": "/fare ← service.smt.docomo.ne.jp / referral",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "(not set) ← (not set)",
+        "current": 2,
+        "previous": 1,
+        "delta": 1
+      },
+      {
         "key": "/without-car ← (direct) / (none)",
         "current": 1,
         "previous": 0,
@@ -6408,7 +6482,13 @@
         "delta": 1
       },
       {
-        "key": "/without-car ← chatgpt.com / ai-assistant",
+        "key": "/without-car ← openai / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "(not set) ← cn.bing.com / referral",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -6420,25 +6500,7 @@
         "delta": 1
       },
       {
-        "key": "/without-car ← openai / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "(not set) ← (not set)",
-        "current": 2,
-        "previous": 1,
-        "delta": 1
-      },
-      {
-        "key": "(not set) ← cn.bing.com / referral",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/fare ← service.smt.docomo.ne.jp / referral",
+        "key": "/without-car ← chatgpt.com / ai-assistant",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -6468,15 +6530,15 @@
         "delta": 3
       },
       {
-        "key": "(not set) ← bing / organic",
-        "current": 7,
-        "previous": 3,
-        "delta": 4
-      },
-      {
         "key": "/map ← m.facebook.com / referral",
         "current": 4,
         "previous": 0,
+        "delta": 4
+      },
+      {
+        "key": "(not set) ← bing / organic",
+        "current": 7,
+        "previous": 3,
         "delta": 4
       },
       {
@@ -6492,15 +6554,15 @@
         "delta": 5
       },
       {
-        "key": "/fare ← yahoo / organic",
-        "current": 16,
-        "previous": 10,
-        "delta": 6
-      },
-      {
         "key": "/ferry ← bing / organic",
         "current": 8,
         "previous": 2,
+        "delta": 6
+      },
+      {
+        "key": "/fare ← yahoo / organic",
+        "current": 16,
+        "previous": 10,
         "delta": 6
       },
       {
@@ -6550,8 +6612,8 @@
         "last_7d": "2026-10-19~2026-10-25"
       },
       "gsc": {
-        "start": "2026-10-18",
-        "end": "2026-10-24"
+        "start": "2026-10-19",
+        "end": "2026-10-25"
       }
     },
     "landing_changes": [
@@ -6672,13 +6734,13 @@
         "delta": 3
       },
       {
-        "key": "facebook.com / referral",
+        "key": "cn.bing.com / referral",
         "current": 4,
         "previous": 0,
         "delta": 4
       },
       {
-        "key": "cn.bing.com / referral",
+        "key": "facebook.com / referral",
         "current": 4,
         "previous": 0,
         "delta": 4
@@ -6704,10 +6766,16 @@
     ],
     "gsc_page_changes": [
       {
+        "key": "/",
+        "current": 277,
+        "previous": 312,
+        "delta": -35
+      },
+      {
         "key": "/without-car",
-        "current": 1,
-        "previous": 3,
-        "delta": -2
+        "current": 0,
+        "previous": 4,
+        "delta": -4
       },
       {
         "key": "/map",
@@ -6717,26 +6785,50 @@
       },
       {
         "key": "/fare",
-        "current": 56,
-        "previous": 39,
-        "delta": 17
-      },
-      {
-        "key": "/",
-        "current": 320,
-        "previous": 284,
-        "delta": 36
+        "current": 50,
+        "previous": 44,
+        "delta": 6
       }
     ],
     "gsc_visible_query_changes": [
       {
         "key": "屋久島 バス",
-        "current": 25,
-        "previous": 39,
-        "delta": -14
+        "current": 18,
+        "previous": 37,
+        "delta": -19
+      },
+      {
+        "key": "屋久島 バス 時刻表",
+        "current": 33,
+        "previous": 43,
+        "delta": -10
       },
       {
         "key": "屋久島 バス 時刻表 2026",
+        "current": 0,
+        "previous": 5,
+        "delta": -5
+      },
+      {
+        "key": "yakushima bus timetable 2026",
+        "current": 4,
+        "previous": 8,
+        "delta": -4
+      },
+      {
+        "key": "屋久島 バス 料金 表",
+        "current": 0,
+        "previous": 3,
+        "delta": -3
+      },
+      {
+        "key": "屋久島交通 バス時刻表",
+        "current": 4,
+        "previous": 7,
+        "delta": -3
+      },
+      {
+        "key": "屋久島 バス 料金",
         "current": 1,
         "previous": 4,
         "delta": -3
@@ -6748,27 +6840,21 @@
         "delta": -3
       },
       {
+        "key": "屋久島交通バス時刻表",
+        "current": 4,
+        "previous": 7,
+        "delta": -3
+      },
+      {
         "key": "屋久島空港 バス時刻表",
         "current": 0,
         "previous": 3,
         "delta": -3
       },
       {
-        "key": "屋久島交通 バス時刻表",
-        "current": 5,
-        "previous": 8,
-        "delta": -3
-      },
-      {
-        "key": "yakushima bus timetable 2026",
-        "current": 5,
-        "previous": 7,
-        "delta": -2
-      },
-      {
-        "key": "yakushima bus timetable",
-        "current": 3,
-        "previous": 5,
+        "key": "屋久島 バス 料金 2026",
+        "current": 10,
+        "previous": 12,
         "delta": -2
       },
       {
@@ -6778,33 +6864,15 @@
         "delta": -2
       },
       {
-        "key": "屋久島交通バス時刻表",
-        "current": 4,
-        "previous": 6,
+        "key": "yakushima bus timetable",
+        "current": 3,
+        "previous": 5,
         "delta": -2
       },
       {
         "key": "yakushima bus",
-        "current": 1,
+        "current": 2,
         "previous": 3,
-        "delta": -2
-      },
-      {
-        "key": "yakushima kotsu bus",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "バス 屋久島",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "屋久島 バス 料金 表",
-        "current": 1,
-        "previous": 2,
         "delta": -1
       },
       {
@@ -6820,37 +6888,31 @@
         "delta": -1
       },
       {
-        "key": "屋久島 路線バス時刻表",
-        "current": 3,
-        "previous": 4,
+        "key": "バス 屋久島",
+        "current": 0,
+        "previous": 1,
         "delta": -1
       },
       {
-        "key": "屋久島 バス 料金",
+        "key": "屋久島 路線バス時刻表",
         "current": 2,
         "previous": 3,
         "delta": -1
       },
       {
-        "key": "屋久島 バス時刻表",
-        "current": 10,
-        "previous": 11,
+        "key": "屋久島 路線バス",
+        "current": 0,
+        "previous": 1,
         "delta": -1
       },
       {
-        "key": "屋久島 バス停 地図",
+        "key": "屋久島巴士時刻表",
         "current": 0,
-        "previous": 0,
-        "delta": 0
+        "previous": 1,
+        "delta": -1
       },
       {
-        "key": "宮之浦港から屋久島空港 バス",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島 路線バス 路線図",
+        "key": "宮之浦 から 安房 バス時刻表",
         "current": 0,
         "previous": 0,
         "delta": 0
@@ -6862,9 +6924,159 @@
         "delta": 0
       },
       {
+        "key": "屋久島バス停",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 交通",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島空港 から 安房 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "yakushima kotsu bus",
+        "current": 1,
+        "previous": 1,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 地図",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦 安房 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
         "key": "屋久島 空港 安房 バス時刻表",
         "current": 0,
         "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦 安房 バス 料金",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "夜行バス 屋久島",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮浦港 バス 時刻表",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 日帰り 車なし",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "yakushima bus map",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 バス時刻表 2026",
+        "current": 51,
+        "previous": 51,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 路線バス 路線図",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "安房 宮之浦 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦から安房 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦港 バス 時刻表",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦港から屋久島空港 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島交通 運賃",
+        "current": 1,
+        "previous": 1,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 バス 運行状況",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 空港 から 宮之浦 バス 料金",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島マップ",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島空港 から 宮之浦 バス時刻表",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島路線バス時刻表",
+        "current": 3,
+        "previous": 3,
         "delta": 0
       },
       {
@@ -6880,169 +7092,43 @@
         "delta": 0
       },
       {
-        "key": "屋久島 バス 時刻表",
-        "current": 41,
-        "previous": 41,
-        "delta": 0
-      },
-      {
-        "key": "バス",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島 空港 から 宮之浦 バス 料金",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "安房 宮之浦 バス",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "宮之浦 安房 バス 料金",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島空港 から 宮之浦 バス時刻表",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "夜行バス 屋久島",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "宮之浦 安房 バス",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
         "key": "屋久島交通バス",
         "current": 0,
         "previous": 0,
         "delta": 0
       },
       {
-        "key": "屋久島バス停",
-        "current": 0,
-        "previous": 0,
+        "key": "yakushima bus schedule",
+        "current": 3,
+        "previous": 3,
         "delta": 0
       },
       {
-        "key": "yakushima bus map",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "宮之浦港 バス 時刻表",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "バスの時刻表",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島マップ",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島 マップ",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島 交通",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "宮之浦から安房 バス",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島空港 から 安房 バス",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "宮浦港 バス 時刻表",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島 バス時刻表 最新",
+        "key": "屋久島空港から安房 バス",
         "current": 1,
-        "previous": 1,
-        "delta": 0
-      },
-      {
-        "key": "宮之浦 から 安房 バス時刻表",
-        "current": 0,
         "previous": 0,
-        "delta": 0
+        "delta": 1
       },
       {
-        "key": "宮之浦 バス",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島バス路線図",
+        "key": "屋久島バス 時刻表",
         "current": 2,
         "previous": 1,
         "delta": 1
       },
       {
-        "key": "屋久島バス料金",
-        "current": 4,
-        "previous": 3,
+        "key": "屋久島交通 バス 料金",
+        "current": 1,
+        "previous": 0,
         "delta": 1
       },
       {
-        "key": "屋久島巴士時刻表",
-        "current": 1,
-        "previous": 0,
+        "key": "屋久島バス",
+        "current": 12,
+        "previous": 11,
         "delta": 1
       },
       {
         "key": "屋久島 バス 路線図",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "屋久島路線バス",
-        "current": 2,
-        "previous": 1,
-        "delta": 1
-      },
-      {
-        "key": "屋久島 路線バス",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -7054,9 +7140,21 @@
         "delta": 1
       },
       {
-        "key": "屋久島バス 時刻表",
+        "key": "屋久島バス路線図",
         "current": 2,
         "previous": 1,
+        "delta": 1
+      },
+      {
+        "key": "屋久島路線バス",
+        "current": 2,
+        "previous": 1,
+        "delta": 1
+      },
+      {
+        "key": "屋久島 バス時刻表",
+        "current": 11,
+        "previous": 10,
         "delta": 1
       },
       {
@@ -7066,27 +7164,9 @@
         "delta": 1
       },
       {
-        "key": "yakushima bus schedule",
-        "current": 3,
-        "previous": 2,
-        "delta": 1
-      },
-      {
-        "key": "屋久島交通 バス 料金",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "屋久島空港から安房 バス",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "屋久島交通 バス",
-        "current": 4,
-        "previous": 3,
+        "key": "屋久島交通 時刻表",
+        "current": 9,
+        "previous": 8,
         "delta": 1
       },
       {
@@ -7096,21 +7176,21 @@
         "delta": 2
       },
       {
+        "key": "屋久島交通 バス",
+        "current": 4,
+        "previous": 2,
+        "delta": 2
+      },
+      {
         "key": "屋久島 空港 バス",
         "current": 2,
         "previous": 0,
         "delta": 2
       },
       {
-        "key": "屋久島交通 運賃",
-        "current": 2,
-        "previous": 0,
-        "delta": 2
-      },
-      {
-        "key": "bus yakushima",
-        "current": 3,
-        "previous": 1,
+        "key": "屋久島バス料金",
+        "current": 4,
+        "previous": 2,
         "delta": 2
       },
       {
@@ -7120,54 +7200,29 @@
         "delta": 2
       },
       {
+        "key": "屋久島バス時刻表",
+        "current": 15,
+        "previous": 13,
+        "delta": 2
+      },
+      {
+        "key": "bus yakushima",
+        "current": 4,
+        "previous": 1,
+        "delta": 3
+      },
+      {
         "key": "屋久島 路線バス 時刻表",
         "current": 5,
         "previous": 2,
         "delta": 3
-      },
-      {
-        "key": "屋久島 バス 料金 2026",
-        "current": 14,
-        "previous": 11,
-        "delta": 3
-      },
-      {
-        "key": "屋久島交通 時刻表",
-        "current": 11,
-        "previous": 5,
-        "delta": 6
-      },
-      {
-        "key": "屋久島路線バス時刻表",
-        "current": 6,
-        "previous": 0,
-        "delta": 6
-      },
-      {
-        "key": "屋久島バス時刻表",
-        "current": 19,
-        "previous": 9,
-        "delta": 10
-      },
-      {
-        "key": "屋久島バス",
-        "current": 17,
-        "previous": 6,
-        "delta": 11
-      },
-      {
-        "key": "屋久島 バス時刻表 2026",
-        "current": 63,
-        "previous": 42,
-        "delta": 21
       }
     ]
   },
   "daily_actions": [
     "首页的减少细分：直接访问 122→45次；Google搜索 365→333次。",
     "入口页减少最多：首页 674→553次；/fare 89→71次。",
-    "Google同周期（2026-10-18~2026-10-24 对 2026-10-11~2026-10-17）：点击320→375，访问425→471；与整站统计周不同，不能直接归因排名。",
-    "目前不能把访客减少归因于Google搜索流量下降。",
+    "Google同周期（2026-10-19~2026-10-25 对 2026-10-12~2026-10-18）：点击353→326，访问458→418；点击与访问口径不同，不能直接归因排名。",
     "已核验首页、/fare可打开，未见禁止收录标记。",
     "已自动对比两周渠道、入口页和可见搜索词；后续每日按相同窗口继续核对。"
   ]
