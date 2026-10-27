@@ -93,7 +93,7 @@ def ga4_report(
     return rows
 
 
-def fetch_ga4_daily(credentials, property_id: str) -> dict:
+def fetch_ga4_daily(credentials, property_id: str, latest_allowed=None) -> dict:
     from google.analytics.data_v1beta import BetaAnalyticsDataClient
 
     out = {"property_id": property_id, "error": None}
@@ -108,6 +108,9 @@ def fetch_ga4_daily(credentials, property_id: str) -> dict:
         from seo_daily_observations import complete_windows
         out["timezone"] = probe.metadata.time_zone
         end, before, start, previous_start = complete_windows(out["timezone"])
+        if latest_allowed:
+            end = min(end, date.fromisoformat(latest_allowed))
+            before, start, previous_start = end-timedelta(days=1), end-timedelta(days=6), end-timedelta(days=13)
         yday, day_before, wk_start = str(end), str(before), str(start)
         previous_end = str(start-timedelta(days=1))
         out["previous_7d"] = ga4_report(client,prop,str(previous_start),previous_end)
@@ -179,8 +182,7 @@ def main() -> int:
     seo_oauth_util.oauth_preflight_log()
     print(f"GSC auth: {gsc_via or 'none'}")
 
-    payload = {"fetched_at":today,"fetched_at_iso":datetime.now(ZoneInfo("Asia/Shanghai")).isoformat(),
-               "ga4_daily":fetch_ga4_daily(sa,ga4_id)}
+    payload = {"fetched_at":today,"fetched_at_iso":datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()}
     from seo_daily_observations import fetch_gsc_windows, enrich
     if gsc_creds:
         try: payload.update(fetch_gsc_windows(gsc_creds,site))
@@ -188,6 +190,12 @@ def main() -> int:
             payload.update({key:{"error":type(e).__name__} for key in ["gsc_7d","gsc_28d"]})
     else:
         payload.update({key:{"error":gsc_err or "GSC授权不可用"} for key in ["gsc_7d","gsc_28d"]})
+    payload["ga4_daily"] = fetch_ga4_daily(sa, ga4_id, payload.get("gsc_latest_complete_day"))
+    # Never describe mismatched windows as aligned, including missing/stale GSC.
+    ga_day = payload["ga4_daily"].get("period", {}).get("yesterday")
+    gsc_day = payload.get("gsc_latest_complete_day")
+    payload["aligned_period"] = bool(ga_day and gsc_day and ga_day == gsc_day and
+                                     not payload.get("gsc_7d", {}).get("error"))
     from seo_daily_diagnosis import fetch_details
     payload["diagnostics"]=fetch_details(sa,gsc_creds,ga4_id,site,payload)
     enrich(payload)

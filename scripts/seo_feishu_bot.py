@@ -10,48 +10,46 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def card(payload, url):
-    rows=payload.get("daily_changes", [])
-    def metric(name):
-        return next((r for r in rows if r["metric"]==name), {})
-    def number(name, label, period):
-        r=metric(name)
-        if r.get("current") is None:return label+"：暂缺"
-        return f"{label}：{r['current']}（{period}{r.get('change', '暂不能比较')}）"
-    ga=payload.get("ga4_daily", {})
-    day=ga.get("period", {}).get("yesterday", "暂缺")
-    timezone=ga.get("timezone", "时区未知")
-    timezone={"America/Los_Angeles":"洛杉矶时间", "Asia/Shanghai":"北京时间"}.get(timezone, timezone)
-    lines=["**流量 · "+day+"完整日（"+timezone+"）**",
-           number("活跃用户·日环比", "活跃访客", "比前一天"),
-           number("会话·日环比", "访问次数", "比前一天"),
-           number("搜索点击·日环比", "Google搜索点击", "比前一天"),
-           number("自然搜索会话·周环比", "自然搜索近7天访问", "比前7天"), ""]
     from seo_daily_diagnosis import analyse
+    rows=payload.get("daily_changes", [])
+    ga=payload.get("ga4_daily", {})
+    period=ga.get("period", {})
+    end=period.get("yesterday")
+    gsc=payload.get("gsc_latest_complete_day")
+    aligned=bool(end and gsc and end==gsc and not ga.get("error") and not payload.get("gsc_7d",{}).get("error"))
     analysis=payload.get("analysis") or analyse(payload)
-    lines += ["**已查到**"]+["• "+fact for fact in analysis["card_findings"]]
-    lines += ["**判断** · "+analysis["judgment"]]
-    done=next((a for a in analysis['agent_actions'] if a.startswith('已核验')),None)
-    if not done:done=analysis['agent_actions'][-1] if analysis['agent_actions'] else '已自动完成可用数据对比。'
-    lines += ["**我已处理** · "+done]
-    for action in analysis.get("user_actions",[]):lines.append("**需要你操作** · "+action)
-    integrations=payload.get("integrations", [])
-    failed=[r["service"] for r in integrations if "失败" in r["status"] or "异常" in r["status"]]
-    status=[]
-    for r in integrations:
-        service=r["service"]
-        if service=="GA4":status.append("访问统计异常" if service in failed else "访问统计正常")
-        elif service=="GSC":status.append("搜索数据待恢复" if service in failed else "搜索数据正常")
-        elif service=="AdSense":status.append("广告代码异常" if service in failed else "广告收益未接入")
-        elif service=="Clarity":status.append("录屏后台未接入")
-        elif "分销" in service:status.append("分销仅有点击，暂无订单数据")
-    if status:lines += ["", "状态："+"；".join(status)]
-    final_day=payload.get("gsc_latest_complete_day")
-    if final_day:lines.append("搜索数据截至 "+final_day)
-    partial=bool(failed)
-    return {"config":{"wide_screen_mode":True},
-            "header":{"template":"orange" if partial else "blue", "title":{"tag":"plain_text", "content":"YakuBus 日报 · "+payload.get("fetched_at", "")}},
-            "elements":[{"tag":"div", "text":{"tag":"lark_md", "content":"\n".join(lines)}},
-                        {"tag":"action", "actions":[{"tag":"button", "text":{"tag":"plain_text", "content":"查看看板和明细"}, "url":url, "type":"primary"}]}]}
+    def metric(name):return next((r for r in rows if r.get("metric")==name), {})
+    def value(name):
+        r=metric(name)
+        return f"{r['current']}（{r.get('change','无法比较')}）" if r.get('current') is not None else '暂缺'
+    def block(content):return {"tag":"div", "text":{"tag":"lark_md", "content":content}}
+    def comparison(name):
+        r=metric(name)
+        if r.get('current') is None or r.get('previous') is None:return '暂缺'
+        return f"{r['previous']}→{r['current']}（{r.get('change','无法比较')}）"
+    def clean(s):return str(s).replace('**','').replace('<','＜').replace('>','＞')
+    findings=analysis.get('card_findings',[])[:2]
+    headline='\n'.join('• '+clean(f) for f in findings) or '可比较的数据不足，暂不能判断变化。'
+    elements=[block('📌 **重点发现**\n'+headline), {"tag":"hr"}]
+    if aligned:
+        elements.append(block('📊 **共同数据日：'+end+'**\n活跃访客 '+value('活跃用户·日环比')+' · 访问 '+value('会话·日环比')+'\nGoogle搜索点击 '+value('搜索点击·日环比')+'\n较前一完整日；来源口径不同。'))
+        elements.append(block('📈 **近7天：'+str(period.get('last_7d','未知'))+'**\n活跃访客 '+comparison('活跃用户·周环比')+'\n自然搜索访问 '+comparison('自然搜索会话·周环比')+'\nGoogle搜索点击 '+comparison('搜索点击·周环比')))
+        queries=analysis.get('gsc_visible_query_changes',[])
+        decline=next((q for q in queries if q.get('delta',0)<=-5 and q.get('previous',0)>=10),None)
+        if decline:elements.append(block('🔎 **搜索词变化**\n“'+clean(decline['key'][:35])+'”点击 '+str(decline['previous'])+'→'+str(decline['current'])+'；仅限可见搜索词。'))
+        elements.append(block('💡 **判断**\n'+clean(analysis.get('judgment','数据不足，暂不能判断原因。'))))
+    else:
+        elements.append(block('⚠️ **数据未对齐**\nGA4截至 '+str(end or '未取得')+'；GSC截至 '+str(gsc or '未取得')+'。本轮暂停跨平台共同周期结论，自动任务将继续采集。'))
+    actions=analysis.get('agent_actions',[])
+    checks=next((a for a in actions if a.startswith('已核验')),None)
+    if checks:elements.append(block('✅ **已检查**\n'+clean(checks)))
+    for action in analysis.get('user_actions',[]):elements.append(block('⚠️ **需要你操作**\n'+clean(action)))
+    errors=[r.get('service','服务') for r in payload.get('integrations',[]) if '失败' in r.get('status','') or '异常' in r.get('status','')]
+    note='报告日 '+str(payload.get('fetched_at','未知'))+'（北京时间）｜数据按太平洋时区完整日统计；GA4访问与GSC点击口径不同。'
+    if errors:note+=' 异常：'+'、'.join(errors)
+    elements.extend([{'tag':'note','elements':[{'tag':'plain_text','content':note}]},
+      {'tag':'action','actions':[{'tag':'button','text':{'tag':'plain_text','content':'查看看板和明细'},'url':url,'type':'primary'}]}])
+    return {'config':{'wide_screen_mode':True},'header':{'template':'blue' if aligned and not errors else 'orange','title':{'tag':'plain_text','content':'YakuBus 日报 · '+str(payload.get('fetched_at','未知'))}},'elements':elements}
 
 
 def bot_config():

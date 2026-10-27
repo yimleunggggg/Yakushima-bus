@@ -32,6 +32,16 @@ class DiagnosisTests(unittest.TestCase):
         self.assertNotIn("对照看板查看",text)
         self.assertNotIn("优先看哪些搜索入口",text)
         self.assertEqual(a['user_actions'],[])
+    def test_card_labels_shared_dates_and_stops_cross_platform_claim_on_mismatch(self):
+        base={"fetched_at":"2026-10-27", "ga4_daily":{"timezone":"America/Los_Angeles", "period":{"yesterday":"2026-10-24","last_7d":"2026-10-18~2026-10-24"}}, "gsc_latest_complete_day":"2026-10-24", "gsc_7d":{}, "analysis":{"card_findings":["有依据的发现"],"judgment":"同周期判断", "agent_actions":[],"user_actions":[]}}
+        rendered=str(card(base,"https://example.com"))
+        self.assertIn("共同数据日：2026-10-24", rendered)
+        self.assertIn("2026-10-18~2026-10-24", rendered)
+        base['gsc_latest_complete_day']='2026-10-23'
+        rendered=str(card(base,"https://example.com"))
+        self.assertIn("数据未对齐",rendered)
+        self.assertNotIn("同周期判断",rendered)
+
     def test_noindex_is_detected_regardless_of_meta_attribute_order(self):
         p=HeadTags();p.feed('<meta content="noindex,follow" name="robots"><link href="https://yakushimabus.com/" rel="canonical">')
         self.assertTrue(p.noindex);self.assertEqual(p.canonical,"https://yakushimabus.com/")

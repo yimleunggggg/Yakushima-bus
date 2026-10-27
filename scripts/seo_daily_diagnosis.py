@@ -157,7 +157,9 @@ def analyse(payload):
     judgment="尚不足以判定变化原因；我会继续自动补齐对比数据。"
     if google and gs.get('clicks') is not None and old.get('clicks') is not None:
         window=gs.get('period',{});prior=old.get('period',{})
-        judgment=f"Google同周期（{window.get('start')}~{window.get('end')} 对 {prior.get('start')}~{prior.get('end')}）：点击{old['clicks']}→{gs['clicks']}，访问{google['previous']}→{google['current']}；与整站统计周不同，不能直接归因排名。"
+        same=ga.get('period',{}).get('last_7d_start')==window.get('start') and ga.get('period',{}).get('last_7d_end')==window.get('end')
+        caution="点击与访问口径不同，不能直接归因排名。" if same else "与整站统计周不同，不能直接归因排名。"
+        judgment=f"Google同周期（{window.get('start')}~{window.get('end')} 对 {prior.get('start')}~{prior.get('end')}）：点击{old['clicks']}→{gs['clicks']}，访问{google['previous']}→{google['current']}；"+caution
     elif gs.get('clicks') is not None and old.get('clicks') is not None:
         judgment=next((f for f in facts if f.startswith("Google搜索点击")),judgment)
     if not card_findings:card_findings=[facts[0]]
