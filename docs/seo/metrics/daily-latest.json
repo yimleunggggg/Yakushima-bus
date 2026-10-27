@@ -1,6 +1,6 @@
 {
   "fetched_at": "2026-10-27",
-  "fetched_at_iso": "2026-10-27T10:50:51.364419+08:00",
+  "fetched_at_iso": "2026-10-27T11:10:11.237373+08:00",
   "ga4_daily": {
     "property_id": "538426834",
     "error": null,
@@ -2680,7 +2680,7 @@
     "data_state": "final"
   },
   "diagnostics": {
-    "collected_at": "2026-10-27T10:51:00.021294+08:00",
+    "collected_at": "2026-10-27T11:10:18.178779+08:00",
     "ga4_landing": {
       "current": {
         "period": {
@@ -6135,22 +6135,6 @@
         "metric": "clicks"
       },
       {
-        "key": "屋久島 バス 時刻表 2026",
-        "current": 1,
-        "previous": 4,
-        "delta": -3,
-        "source": "GSC visible query",
-        "metric": "clicks"
-      },
-      {
-        "key": "屋久島交通 バス時刻表",
-        "current": 5,
-        "previous": 8,
-        "delta": -3,
-        "source": "GSC visible query",
-        "metric": "clicks"
-      },
-      {
         "key": "屋久島交通",
         "current": 2,
         "previous": 5,
@@ -6162,6 +6146,22 @@
         "key": "屋久島空港 バス時刻表",
         "current": 0,
         "previous": 3,
+        "delta": -3,
+        "source": "GSC visible query",
+        "metric": "clicks"
+      },
+      {
+        "key": "屋久島 バス 時刻表 2026",
+        "current": 1,
+        "previous": 4,
+        "delta": -3,
+        "source": "GSC visible query",
+        "metric": "clicks"
+      },
+      {
+        "key": "屋久島交通 バス時刻表",
+        "current": 5,
+        "previous": 8,
         "delta": -3,
         "source": "GSC visible query",
         "metric": "clicks"
@@ -6288,12 +6288,6 @@
         "delta": -3
       },
       {
-        "key": "(not set) ← map_popup / (not set)",
-        "current": 0,
-        "previous": 2,
-        "delta": -2
-      },
-      {
         "key": "/ferry ← duckduckgo / organic",
         "current": 0,
         "previous": 2,
@@ -6306,10 +6300,10 @@
         "delta": -2
       },
       {
-        "key": "/fare ← ecosia.org / organic",
+        "key": "(not set) ← map_popup / (not set)",
         "current": 0,
-        "previous": 1,
-        "delta": -1
+        "previous": 2,
+        "delta": -2
       },
       {
         "key": "/ferry ← openai / (not set)",
@@ -6318,27 +6312,9 @@
         "delta": -1
       },
       {
-        "key": "/ferry ← copilot.com / ai-assistant",
+        "key": "/fare ← ecosia.org / organic",
         "current": 0,
         "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/without-car ← duckduckgo / organic",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/ferry ← ecosia.org / organic",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/fare ← bing / organic",
-        "current": 4,
-        "previous": 5,
         "delta": -1
       },
       {
@@ -6354,19 +6330,43 @@
         "delta": -1
       },
       {
-        "key": "/ ← openai / (not set)",
-        "current": 1,
-        "previous": 2,
-        "delta": -1
-      },
-      {
         "key": "/ferry ← (direct) / (none)",
         "current": 7,
         "previous": 8,
         "delta": -1
       },
       {
+        "key": "/ ← openai / (not set)",
+        "current": 1,
+        "previous": 2,
+        "delta": -1
+      },
+      {
+        "key": "/ferry ← ecosia.org / organic",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/fare ← bing / organic",
+        "current": 4,
+        "previous": 5,
+        "delta": -1
+      },
+      {
         "key": "/fare ← m.facebook.com / referral",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/without-car ← duckduckgo / organic",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/ferry ← copilot.com / ai-assistant",
         "current": 0,
         "previous": 1,
         "delta": -1
@@ -6384,25 +6384,25 @@
         "delta": 0
       },
       {
-        "key": "(not set) ← yahoo / organic",
-        "current": 2,
-        "previous": 2,
-        "delta": 0
-      },
-      {
         "key": "/ ← (not set)",
         "current": 1,
         "previous": 1,
         "delta": 0
       },
       {
-        "key": "/ ← facebook.com / referral",
-        "current": 1,
-        "previous": 0,
+        "key": "(not set) ← yahoo / organic",
+        "current": 2,
+        "previous": 2,
+        "delta": 0
+      },
+      {
+        "key": "/ ← openai / organic",
+        "current": 7,
+        "previous": 6,
         "delta": 1
       },
       {
-        "key": "/without-car ← openai / organic",
+        "key": "/without-car ← (direct) / (none)",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -6414,19 +6414,13 @@
         "delta": 1
       },
       {
-        "key": "/without-car ← (direct) / (none)",
+        "key": "(not set) ← cn.bing.com / referral",
         "current": 1,
         "previous": 0,
         "delta": 1
       },
       {
-        "key": "/fare ← openai / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/fare ← service.smt.docomo.ne.jp / referral",
+        "key": "/without-car ← openai / organic",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -6438,15 +6432,21 @@
         "delta": 1
       },
       {
-        "key": "(not set) ← cn.bing.com / referral",
+        "key": "/fare ← service.smt.docomo.ne.jp / referral",
         "current": 1,
         "previous": 0,
         "delta": 1
       },
       {
-        "key": "/ ← openai / organic",
-        "current": 7,
-        "previous": 6,
+        "key": "/fare ← openai / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/ ← facebook.com / referral",
+        "current": 1,
+        "previous": 0,
         "delta": 1
       },
       {
@@ -6468,22 +6468,16 @@
         "delta": 3
       },
       {
-        "key": "(not set) ← bing / organic",
-        "current": 7,
-        "previous": 3,
-        "delta": 4
-      },
-      {
         "key": "/map ← m.facebook.com / referral",
         "current": 4,
         "previous": 0,
         "delta": 4
       },
       {
-        "key": "/ ← map_popup / (not set)",
-        "current": 10,
-        "previous": 5,
-        "delta": 5
+        "key": "(not set) ← bing / organic",
+        "current": 7,
+        "previous": 3,
+        "delta": 4
       },
       {
         "key": "/guides ← (direct) / (none)",
@@ -6492,15 +6486,21 @@
         "delta": 5
       },
       {
-        "key": "/fare ← yahoo / organic",
-        "current": 16,
-        "previous": 10,
-        "delta": 6
+        "key": "/ ← map_popup / (not set)",
+        "current": 10,
+        "previous": 5,
+        "delta": 5
       },
       {
         "key": "/ferry ← bing / organic",
         "current": 8,
         "previous": 2,
+        "delta": 6
+      },
+      {
+        "key": "/fare ← yahoo / organic",
+        "current": 16,
+        "previous": 10,
         "delta": 6
       },
       {
@@ -6522,15 +6522,15 @@
         "delta": 9
       },
       {
-        "key": "/ ← chatgpt.com / ai-assistant",
-        "current": 66,
-        "previous": 54,
-        "delta": 12
-      },
-      {
         "key": "/map ← (direct) / (none)",
         "current": 17,
         "previous": 5,
+        "delta": 12
+      },
+      {
+        "key": "/ ← chatgpt.com / ai-assistant",
+        "current": 66,
+        "previous": 54,
         "delta": 12
       },
       {
@@ -6654,15 +6654,15 @@
         "delta": 0
       },
       {
-        "key": "(not set)",
-        "current": 4,
-        "previous": 3,
-        "delta": 1
-      },
-      {
         "key": "openai / organic",
         "current": 9,
         "previous": 8,
+        "delta": 1
+      },
+      {
+        "key": "(not set)",
+        "current": 4,
+        "previous": 3,
         "delta": 1
       },
       {
@@ -6736,18 +6736,6 @@
         "delta": -14
       },
       {
-        "key": "屋久島 バス 時刻表 2026",
-        "current": 1,
-        "previous": 4,
-        "delta": -3
-      },
-      {
-        "key": "屋久島交通 バス時刻表",
-        "current": 5,
-        "previous": 8,
-        "delta": -3
-      },
-      {
         "key": "屋久島交通",
         "current": 2,
         "previous": 5,
@@ -6760,15 +6748,33 @@
         "delta": -3
       },
       {
-        "key": "yakushima bus timetable",
-        "current": 3,
-        "previous": 5,
+        "key": "屋久島 バス 時刻表 2026",
+        "current": 1,
+        "previous": 4,
+        "delta": -3
+      },
+      {
+        "key": "屋久島交通 バス時刻表",
+        "current": 5,
+        "previous": 8,
+        "delta": -3
+      },
+      {
+        "key": "屋久島交通バス時刻表",
+        "current": 4,
+        "previous": 6,
         "delta": -2
       },
       {
         "key": "バス時刻表 屋久島",
         "current": 1,
         "previous": 3,
+        "delta": -2
+      },
+      {
+        "key": "yakushima bus timetable",
+        "current": 3,
+        "previous": 5,
         "delta": -2
       },
       {
@@ -6784,15 +6790,9 @@
         "delta": -2
       },
       {
-        "key": "屋久島交通バス時刻表",
-        "current": 4,
-        "previous": 6,
-        "delta": -2
-      },
-      {
-        "key": "バス 屋久島",
-        "current": 0,
-        "previous": 1,
+        "key": "屋久島 バス 料金 表",
+        "current": 1,
+        "previous": 2,
         "delta": -1
       },
       {
@@ -6826,49 +6826,19 @@
         "delta": -1
       },
       {
+        "key": "バス 屋久島",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
         "key": "時刻表",
         "current": 0,
         "previous": 1,
         "delta": -1
       },
       {
-        "key": "屋久島 バス 料金 表",
-        "current": 1,
-        "previous": 2,
-        "delta": -1
-      },
-      {
-        "key": "屋久島 空港 安房 バス時刻表",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島交通バス",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島 バス運行状況",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島 マップ",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "宮之浦 安房 バス 料金",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "宮之浦 から 安房 バス時刻表",
+        "key": "宮之浦港 バス",
         "current": 0,
         "previous": 0,
         "delta": 0
@@ -6880,19 +6850,37 @@
         "delta": 0
       },
       {
-        "key": "宮之浦港 バス 時刻表",
+        "key": "屋久島 バス時刻表 最新",
+        "current": 1,
+        "previous": 1,
+        "delta": 0
+      },
+      {
+        "key": "バス",
         "current": 0,
         "previous": 0,
         "delta": 0
       },
       {
-        "key": "屋久島空港 から 安房 バス",
+        "key": "屋久島交通バス",
         "current": 0,
         "previous": 0,
         "delta": 0
       },
       {
-        "key": "屋久島 空港 から 宮之浦 バス 料金",
+        "key": "屋久島マップ",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 マップ",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 バス停",
         "current": 0,
         "previous": 0,
         "delta": 0
@@ -6916,7 +6904,13 @@
         "delta": 0
       },
       {
-        "key": "宮之浦から安房 バス",
+        "key": "屋久島バス停",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 空港 安房 バス時刻表",
         "current": 0,
         "previous": 0,
         "delta": 0
@@ -6928,55 +6922,19 @@
         "delta": 0
       },
       {
-        "key": "夜行バス 屋久島",
+        "key": "宮之浦から安房 バス",
         "current": 0,
         "previous": 0,
         "delta": 0
       },
       {
-        "key": "屋久島 バス停",
+        "key": "屋久島空港 から 安房 バス",
         "current": 0,
         "previous": 0,
         "delta": 0
       },
       {
-        "key": "安房 宮之浦 バス",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "yakushima bus map",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島 交通",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "バスの時刻表",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "宮之浦港 バス",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島空港 から 宮之浦 バス時刻表",
-        "current": 0,
-        "previous": 0,
-        "delta": 0
-      },
-      {
-        "key": "屋久島マップ",
+        "key": "宮之浦 安房 バス 料金",
         "current": 0,
         "previous": 0,
         "delta": 0
@@ -6988,19 +6946,55 @@
         "delta": 0
       },
       {
-        "key": "屋久島 バス時刻表 最新",
-        "current": 1,
-        "previous": 1,
-        "delta": 0
-      },
-      {
-        "key": "屋久島バス停",
+        "key": "宮之浦港 バス 時刻表",
         "current": 0,
         "previous": 0,
         "delta": 0
       },
       {
-        "key": "バス",
+        "key": "yakushima bus map",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 バス運行状況",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島空港 から 宮之浦 バス時刻表",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦 から 安房 バス時刻表",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "夜行バス 屋久島",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "安房 宮之浦 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 交通",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 空港 から 宮之浦 バス 料金",
         "current": 0,
         "previous": 0,
         "delta": 0
@@ -7012,13 +7006,61 @@
         "delta": 0
       },
       {
-        "key": "屋久島 バス 路線図",
+        "key": "バスの時刻表",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 路線バス",
         "current": 1,
         "previous": 0,
         "delta": 1
       },
       {
+        "key": "屋久島バス路線図",
+        "current": 2,
+        "previous": 1,
+        "delta": 1
+      },
+      {
+        "key": "屋久島路線バス",
+        "current": 2,
+        "previous": 1,
+        "delta": 1
+      },
+      {
         "key": "屋久島バス 時刻表",
+        "current": 2,
+        "previous": 1,
+        "delta": 1
+      },
+      {
+        "key": "屋久島巴士時刻表",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "yakushima bus schedule",
+        "current": 3,
+        "previous": 2,
+        "delta": 1
+      },
+      {
+        "key": "屋久島空港から安房 バス",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "屋久島バス料金",
+        "current": 4,
+        "previous": 3,
+        "delta": 1
+      },
+      {
+        "key": "屋久島空港 バス 時刻表",
         "current": 2,
         "previous": 1,
         "delta": 1
@@ -7030,49 +7072,7 @@
         "delta": 1
       },
       {
-        "key": "屋久島交通 バス",
-        "current": 4,
-        "previous": 3,
-        "delta": 1
-      },
-      {
-        "key": "屋久島バス路線図",
-        "current": 2,
-        "previous": 1,
-        "delta": 1
-      },
-      {
-        "key": "屋久島バス料金",
-        "current": 4,
-        "previous": 3,
-        "delta": 1
-      },
-      {
-        "key": "屋久島路線バス",
-        "current": 2,
-        "previous": 1,
-        "delta": 1
-      },
-      {
-        "key": "屋久島空港から安房 バス",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "屋久島空港 バス 時刻表",
-        "current": 2,
-        "previous": 1,
-        "delta": 1
-      },
-      {
-        "key": "yakushima bus schedule",
-        "current": 3,
-        "previous": 2,
-        "delta": 1
-      },
-      {
-        "key": "屋久島巴士時刻表",
+        "key": "屋久島 バス 路線図",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -7084,22 +7084,10 @@
         "delta": 1
       },
       {
-        "key": "屋久島 路線バス",
-        "current": 1,
-        "previous": 0,
+        "key": "屋久島交通 バス",
+        "current": 4,
+        "previous": 3,
         "delta": 1
-      },
-      {
-        "key": "bus yakushima",
-        "current": 3,
-        "previous": 1,
-        "delta": 2
-      },
-      {
-        "key": "屋久島 バス路線図",
-        "current": 2,
-        "previous": 0,
-        "delta": 2
       },
       {
         "key": "屋久島 バス 運賃",
@@ -7108,7 +7096,7 @@
         "delta": 2
       },
       {
-        "key": "屋久島交通 運賃",
+        "key": "屋久島 バス路線図",
         "current": 2,
         "previous": 0,
         "delta": 2
@@ -7120,15 +7108,27 @@
         "delta": 2
       },
       {
-        "key": "屋久島 バス 料金 2026",
-        "current": 14,
-        "previous": 11,
-        "delta": 3
+        "key": "bus yakushima",
+        "current": 3,
+        "previous": 1,
+        "delta": 2
+      },
+      {
+        "key": "屋久島交通 運賃",
+        "current": 2,
+        "previous": 0,
+        "delta": 2
       },
       {
         "key": "屋久島 路線バス 時刻表",
         "current": 5,
         "previous": 2,
+        "delta": 3
+      },
+      {
+        "key": "屋久島 バス 料金 2026",
+        "current": 14,
+        "previous": 11,
         "delta": 3
       },
       {
