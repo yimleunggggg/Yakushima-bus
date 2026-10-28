@@ -1,0 +1,7229 @@
+{
+  "fetched_at": "2026-10-28",
+  "fetched_at_iso": "2026-10-28T10:16:50.129371+08:00",
+  "gsc_daily_final": {
+    "rows": [
+      {
+        "keys": [
+          "2026-09-17"
+        ],
+        "clicks": 41,
+        "impressions": 379,
+        "ctr": 0.10817941952506596,
+        "position": 4.633245382585752
+      },
+      {
+        "keys": [
+          "2026-09-18"
+        ],
+        "clicks": 65,
+        "impressions": 456,
+        "ctr": 0.1425438596491228,
+        "position": 4.37280701754386
+      },
+      {
+        "keys": [
+          "2026-09-19"
+        ],
+        "clicks": 70,
+        "impressions": 514,
+        "ctr": 0.13618677042801555,
+        "position": 4.406614785992218
+      },
+      {
+        "keys": [
+          "2026-09-20"
+        ],
+        "clicks": 57,
+        "impressions": 555,
+        "ctr": 0.10270270270270271,
+        "position": 4.715315315315316
+      },
+      {
+        "keys": [
+          "2026-09-21"
+        ],
+        "clicks": 47,
+        "impressions": 423,
+        "ctr": 0.1111111111111111,
+        "position": 4.15130023640662
+      },
+      {
+        "keys": [
+          "2026-09-22"
+        ],
+        "clicks": 45,
+        "impressions": 469,
+        "ctr": 0.09594882729211088,
+        "position": 4.454157782515992
+      },
+      {
+        "keys": [
+          "2026-09-23"
+        ],
+        "clicks": 57,
+        "impressions": 465,
+        "ctr": 0.12258064516129032,
+        "position": 4.3462365591397845
+      },
+      {
+        "keys": [
+          "2026-09-24"
+        ],
+        "clicks": 51,
+        "impressions": 361,
+        "ctr": 0.14127423822714683,
+        "position": 3.7506925207756234
+      },
+      {
+        "keys": [
+          "2026-09-25"
+        ],
+        "clicks": 50,
+        "impressions": 293,
+        "ctr": 0.17064846416382254,
+        "position": 3.5563139931740615
+      },
+      {
+        "keys": [
+          "2026-09-26"
+        ],
+        "clicks": 63,
+        "impressions": 296,
+        "ctr": 0.21283783783783783,
+        "position": 4.023648648648649
+      },
+      {
+        "keys": [
+          "2026-09-27"
+        ],
+        "clicks": 46,
+        "impressions": 277,
+        "ctr": 0.16606498194945848,
+        "position": 4.610108303249097
+      },
+      {
+        "keys": [
+          "2026-09-28"
+        ],
+        "clicks": 46,
+        "impressions": 256,
+        "ctr": 0.1796875,
+        "position": 4.01953125
+      },
+      {
+        "keys": [
+          "2026-09-29"
+        ],
+        "clicks": 43,
+        "impressions": 255,
+        "ctr": 0.16862745098039217,
+        "position": 5.023529411764706
+      },
+      {
+        "keys": [
+          "2026-09-30"
+        ],
+        "clicks": 53,
+        "impressions": 275,
+        "ctr": 0.19272727272727272,
+        "position": 4.029090909090909
+      },
+      {
+        "keys": [
+          "2026-10-01"
+        ],
+        "clicks": 50,
+        "impressions": 307,
+        "ctr": 0.16286644951140064,
+        "position": 4.0032573289902285
+      },
+      {
+        "keys": [
+          "2026-10-02"
+        ],
+        "clicks": 66,
+        "impressions": 298,
+        "ctr": 0.2214765100671141,
+        "position": 3.8557046979865772
+      },
+      {
+        "keys": [
+          "2026-10-03"
+        ],
+        "clicks": 65,
+        "impressions": 340,
+        "ctr": 0.19117647058823528,
+        "position": 4.302941176470588
+      },
+      {
+        "keys": [
+          "2026-10-04"
+        ],
+        "clicks": 79,
+        "impressions": 372,
+        "ctr": 0.21236559139784947,
+        "position": 3.6586021505376345
+      },
+      {
+        "keys": [
+          "2026-10-05"
+        ],
+        "clicks": 51,
+        "impressions": 316,
+        "ctr": 0.16139240506329114,
+        "position": 3.7341772151898733
+      },
+      {
+        "keys": [
+          "2026-10-06"
+        ],
+        "clicks": 45,
+        "impressions": 295,
+        "ctr": 0.15254237288135594,
+        "position": 3.8847457627118644
+      },
+      {
+        "keys": [
+          "2026-10-07"
+        ],
+        "clicks": 54,
+        "impressions": 324,
+        "ctr": 0.16666666666666666,
+        "position": 3.7685185185185186
+      },
+      {
+        "keys": [
+          "2026-10-08"
+        ],
+        "clicks": 61,
+        "impressions": 328,
+        "ctr": 0.18597560975609756,
+        "position": 3.817073170731707
+      },
+      {
+        "keys": [
+          "2026-10-09"
+        ],
+        "clicks": 68,
+        "impressions": 445,
+        "ctr": 0.15280898876404495,
+        "position": 4.033707865168539
+      },
+      {
+        "keys": [
+          "2026-10-10"
+        ],
+        "clicks": 57,
+        "impressions": 326,
+        "ctr": 0.17484662576687116,
+        "position": 4.38036809815951
+      },
+      {
+        "keys": [
+          "2026-10-11"
+        ],
+        "clicks": 46,
+        "impressions": 349,
+        "ctr": 0.1318051575931232,
+        "position": 3.7277936962750715
+      },
+      {
+        "keys": [
+          "2026-10-12"
+        ],
+        "clicks": 41,
+        "impressions": 307,
+        "ctr": 0.13355048859934854,
+        "position": 4.319218241042345
+      },
+      {
+        "keys": [
+          "2026-10-13"
+        ],
+        "clicks": 36,
+        "impressions": 294,
+        "ctr": 0.12244897959183673,
+        "position": 4.0272108843537415
+      },
+      {
+        "keys": [
+          "2026-10-14"
+        ],
+        "clicks": 46,
+        "impressions": 309,
+        "ctr": 0.1488673139158576,
+        "position": 4.284789644012945
+      },
+      {
+        "keys": [
+          "2026-10-15"
+        ],
+        "clicks": 55,
+        "impressions": 294,
+        "ctr": 0.1870748299319728,
+        "position": 4
+      },
+      {
+        "keys": [
+          "2026-10-16"
+        ],
+        "clicks": 41,
+        "impressions": 290,
+        "ctr": 0.1413793103448276,
+        "position": 4.4896551724137925
+      },
+      {
+        "keys": [
+          "2026-10-17"
+        ],
+        "clicks": 55,
+        "impressions": 282,
+        "ctr": 0.1950354609929078,
+        "position": 4.035460992907801
+      },
+      {
+        "keys": [
+          "2026-10-18"
+        ],
+        "clicks": 79,
+        "impressions": 348,
+        "ctr": 0.22701149425287356,
+        "position": 4.482758620689655
+      },
+      {
+        "keys": [
+          "2026-10-19"
+        ],
+        "clicks": 66,
+        "impressions": 326,
+        "ctr": 0.20245398773006135,
+        "position": 4.113496932515337
+      },
+      {
+        "keys": [
+          "2026-10-20"
+        ],
+        "clicks": 61,
+        "impressions": 292,
+        "ctr": 0.2089041095890411,
+        "position": 4.082191780821917
+      },
+      {
+        "keys": [
+          "2026-10-21"
+        ],
+        "clicks": 38,
+        "impressions": 240,
+        "ctr": 0.15833333333333333,
+        "position": 3.904166666666667
+      },
+      {
+        "keys": [
+          "2026-10-22"
+        ],
+        "clicks": 60,
+        "impressions": 334,
+        "ctr": 0.17964071856287425,
+        "position": 4.308383233532934
+      },
+      {
+        "keys": [
+          "2026-10-23"
+        ],
+        "clicks": 35,
+        "impressions": 236,
+        "ctr": 0.1483050847457627,
+        "position": 4.161016949152542
+      },
+      {
+        "keys": [
+          "2026-10-24"
+        ],
+        "clicks": 36,
+        "impressions": 263,
+        "ctr": 0.13688212927756654,
+        "position": 4.931558935361217
+      },
+      {
+        "keys": [
+          "2026-10-25"
+        ],
+        "clicks": 30,
+        "impressions": 334,
+        "ctr": 0.08982035928143713,
+        "position": 5.164670658682635
+      }
+    ],
+    "responseAggregationType": "byProperty"
+  },
+  "gsc_latest_complete_day": "2026-10-25",
+  "gsc_28d": {
+    "period": {
+      "start": "2026-09-28",
+      "end": "2026-10-25"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 1463,
+    "impressions": 8635,
+    "ctr": 16.94,
+    "position": 4.154,
+    "error": null,
+    "data_state": "final",
+    "top_queries": [
+      {
+        "query": "屋久島 バス時刻表 2026",
+        "clicks": 212,
+        "impressions": 543,
+        "ctr": 39.04,
+        "position": 2.044
+      },
+      {
+        "query": "屋久島 バス 時刻表",
+        "clicks": 152,
+        "impressions": 693,
+        "ctr": 21.93,
+        "position": 2.175
+      },
+      {
+        "query": "屋久島 バス",
+        "clicks": 126,
+        "impressions": 1027,
+        "ctr": 12.27,
+        "position": 2.927
+      },
+      {
+        "query": "屋久島バス時刻表",
+        "clicks": 67,
+        "impressions": 358,
+        "ctr": 18.72,
+        "position": 2.092
+      },
+      {
+        "query": "屋久島 バス 料金 2026",
+        "clicks": 47,
+        "impressions": 82,
+        "ctr": 57.32,
+        "position": 1.207
+      },
+      {
+        "query": "屋久島バス",
+        "clicks": 45,
+        "impressions": 240,
+        "ctr": 18.75,
+        "position": 2.817
+      },
+      {
+        "query": "屋久島交通バス時刻表",
+        "clicks": 45,
+        "impressions": 145,
+        "ctr": 31.03,
+        "position": 1.807
+      },
+      {
+        "query": "屋久島 バス時刻表 最新",
+        "clicks": 43,
+        "impressions": 86,
+        "ctr": 50.0,
+        "position": 1.279
+      },
+      {
+        "query": "屋久島 バス時刻表",
+        "clicks": 34,
+        "impressions": 164,
+        "ctr": 20.73,
+        "position": 2.14
+      },
+      {
+        "query": "屋久島交通 バス時刻表",
+        "clicks": 31,
+        "impressions": 124,
+        "ctr": 25.0,
+        "position": 1.992
+      },
+      {
+        "query": "屋久島交通 時刻表",
+        "clicks": 30,
+        "impressions": 77,
+        "ctr": 38.96,
+        "position": 1.39
+      },
+      {
+        "query": "yakushima bus timetable 2026",
+        "clicks": 24,
+        "impressions": 34,
+        "ctr": 70.59,
+        "position": 1
+      },
+      {
+        "query": "yakushima bus timetable",
+        "clicks": 19,
+        "impressions": 46,
+        "ctr": 41.3,
+        "position": 1.935
+      },
+      {
+        "query": "屋久島 路線バス時刻表",
+        "clicks": 17,
+        "impressions": 30,
+        "ctr": 56.67,
+        "position": 2.133
+      },
+      {
+        "query": "屋久島交通",
+        "clicks": 16,
+        "impressions": 229,
+        "ctr": 6.99,
+        "position": 6.869
+      },
+      {
+        "query": "屋久島交通 バス",
+        "clicks": 16,
+        "impressions": 137,
+        "ctr": 11.68,
+        "position": 2.839
+      },
+      {
+        "query": "屋久島 バス 料金",
+        "clicks": 14,
+        "impressions": 95,
+        "ctr": 14.74,
+        "position": 2.453
+      },
+      {
+        "query": "屋久島 路線バス 時刻表",
+        "clicks": 14,
+        "impressions": 55,
+        "ctr": 25.45,
+        "position": 2.255
+      },
+      {
+        "query": "屋久島 バス 時刻表 2026",
+        "clicks": 12,
+        "impressions": 32,
+        "ctr": 37.5,
+        "position": 1.969
+      },
+      {
+        "query": "yakushima bus schedule",
+        "clicks": 10,
+        "impressions": 29,
+        "ctr": 34.48,
+        "position": 2.828
+      }
+    ],
+    "top_pages": [
+      {
+        "page": "https://yakushimabus.com/",
+        "clicks": 1195,
+        "impressions": 6432,
+        "ctr": 18.58,
+        "position": 3.763
+      },
+      {
+        "page": "https://yakushimabus.com/fare/",
+        "clicks": 156,
+        "impressions": 1252,
+        "ctr": 12.46,
+        "position": 5.171
+      },
+      {
+        "page": "https://yakushimabus.com/?lang=ja",
+        "clicks": 77,
+        "impressions": 1530,
+        "ctr": 5.03,
+        "position": 5.582
+      },
+      {
+        "page": "https://yakushimabus.com/?lang=en",
+        "clicks": 19,
+        "impressions": 172,
+        "ctr": 11.05,
+        "position": 3.657
+      },
+      {
+        "page": "https://yakushimabus.com/fare/?lang=ja",
+        "clicks": 15,
+        "impressions": 212,
+        "ctr": 7.08,
+        "position": 3.925
+      },
+      {
+        "page": "https://yakushimabus.com/without-car/?lang=ja",
+        "clicks": 9,
+        "impressions": 705,
+        "ctr": 1.28,
+        "position": 9.035
+      },
+      {
+        "page": "https://yakushimabus.com/fare/?lang=en",
+        "clicks": 7,
+        "impressions": 25,
+        "ctr": 28.0,
+        "position": 1.92
+      },
+      {
+        "page": "https://yakushimabus.com/map/",
+        "clicks": 5,
+        "impressions": 255,
+        "ctr": 1.96,
+        "position": 9.847
+      },
+      {
+        "page": "https://yakushimabus.com/map/?lang=en",
+        "clicks": 2,
+        "impressions": 7,
+        "ctr": 28.57,
+        "position": 2
+      },
+      {
+        "page": "https://yakushimabus.com/about/",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 8
+      },
+      {
+        "page": "https://yakushimabus.com/guides/yakushima-where-to-stay/?lang=ja",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 12
+      },
+      {
+        "page": "https://yakushimabus.com/map/?lang=ja",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 3
+      },
+      {
+        "page": "https://yakushimabus.com/map/?lang=zh",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 6
+      },
+      {
+        "page": "https://yakushimabus.com/trekking/",
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 9
+      }
+    ]
+  },
+  "gsc_7d": {
+    "period": {
+      "start": "2026-10-19",
+      "end": "2026-10-25"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 326,
+    "impressions": 2025,
+    "ctr": 16.1,
+    "position": 4.401,
+    "error": null,
+    "data_state": "final"
+  },
+  "gsc_previous_7d": {
+    "period": {
+      "start": "2026-10-12",
+      "end": "2026-10-18"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 353,
+    "impressions": 2124,
+    "ctr": 16.62,
+    "position": 4.242,
+    "error": null,
+    "data_state": "final"
+  },
+  "gsc_latest_day": {
+    "period": {
+      "start": "2026-10-25",
+      "end": "2026-10-25"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 30,
+    "impressions": 334,
+    "ctr": 8.98,
+    "position": 5.165,
+    "error": null,
+    "data_state": "final"
+  },
+  "gsc_previous_day": {
+    "period": {
+      "start": "2026-10-24",
+      "end": "2026-10-24"
+    },
+    "site_url": "https://yakushimabus.com/",
+    "clicks": 36,
+    "impressions": 263,
+    "ctr": 13.69,
+    "position": 4.932,
+    "error": null,
+    "data_state": "final"
+  },
+  "ga4_daily": {
+    "property_id": "538426834",
+    "error": null,
+    "timezone": "America/Los_Angeles",
+    "previous_7d": {
+      "active_users": 549,
+      "new_users": 508,
+      "sessions": 860,
+      "engaged_sessions": 605,
+      "engagement_rate": 70.3,
+      "avg_session_sec": 375.2,
+      "pageviews": 1378
+    },
+    "channels_previous_7d": [
+      {
+        "active_users": 423,
+        "new_users": 386,
+        "sessions": 614,
+        "engaged_sessions": 451,
+        "engagement_rate": 73.5,
+        "avg_session_sec": 331.0,
+        "pageviews": 928,
+        "sessionDefaultChannelGroup": "Organic Search",
+        "dimension": "Organic Search"
+      },
+      {
+        "active_users": 77,
+        "new_users": 73,
+        "sessions": 154,
+        "engaged_sessions": 91,
+        "engagement_rate": 59.1,
+        "avg_session_sec": 654.7,
+        "pageviews": 303,
+        "sessionDefaultChannelGroup": "Direct",
+        "dimension": "Direct"
+      },
+      {
+        "active_users": 45,
+        "new_users": 44,
+        "sessions": 64,
+        "engaged_sessions": 50,
+        "engagement_rate": 78.1,
+        "avg_session_sec": 215.7,
+        "pageviews": 99,
+        "sessionDefaultChannelGroup": "AI Assistant",
+        "dimension": "AI Assistant"
+      },
+      {
+        "active_users": 12,
+        "new_users": 3,
+        "sessions": 26,
+        "engaged_sessions": 12,
+        "engagement_rate": 46.2,
+        "avg_session_sec": 182.2,
+        "pageviews": 46,
+        "sessionDefaultChannelGroup": "Unassigned",
+        "dimension": "Unassigned"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 14.5,
+        "pageviews": 1,
+        "sessionDefaultChannelGroup": "Organic Social",
+        "dimension": "Organic Social"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 37.6,
+        "pageviews": 1,
+        "sessionDefaultChannelGroup": "Referral",
+        "dimension": "Referral"
+      }
+    ],
+    "events_yesterday": [
+      {
+        "event_name": "timetable_search",
+        "event_count": 327
+      },
+      {
+        "event_name": "page_view",
+        "event_count": 168
+      },
+      {
+        "event_name": "session_start",
+        "event_count": 86
+      },
+      {
+        "event_name": "user_engagement",
+        "event_count": 59
+      },
+      {
+        "event_name": "timetable_swap",
+        "event_count": 51
+      },
+      {
+        "event_name": "guide_filter",
+        "event_count": 49
+      },
+      {
+        "event_name": "first_visit",
+        "event_count": 48
+      },
+      {
+        "event_name": "fare_lookup",
+        "event_count": 45
+      },
+      {
+        "event_name": "timetable_day_tab",
+        "event_count": 45
+      },
+      {
+        "event_name": "scroll",
+        "event_count": 35
+      },
+      {
+        "event_name": "nav_click",
+        "event_count": 34
+      },
+      {
+        "event_name": "timetable_preset",
+        "event_count": 33
+      },
+      {
+        "event_name": "timetable_upcoming_toggle",
+        "event_count": 25
+      },
+      {
+        "event_name": "click",
+        "event_count": 24
+      },
+      {
+        "event_name": "internal_link",
+        "event_count": 19
+      },
+      {
+        "event_name": "timetable_time_open",
+        "event_count": 13
+      },
+      {
+        "event_name": "open_timetable",
+        "event_count": 10
+      },
+      {
+        "event_name": "pdf_lang_switch",
+        "event_count": 10
+      },
+      {
+        "event_name": "file_download",
+        "event_count": 9
+      },
+      {
+        "event_name": "lang_switch",
+        "event_count": 8
+      },
+      {
+        "event_name": "guide_stop_select",
+        "event_count": 7
+      },
+      {
+        "event_name": "section_open",
+        "event_count": 7
+      },
+      {
+        "event_name": "nav_more_open",
+        "event_count": 6
+      },
+      {
+        "event_name": "open_maps",
+        "event_count": 6
+      },
+      {
+        "event_name": "guide_open",
+        "event_count": 4
+      },
+      {
+        "event_name": "guide_poi_select",
+        "event_count": 4
+      },
+      {
+        "event_name": "affiliate_click",
+        "event_count": 2
+      },
+      {
+        "event_name": "faq_open",
+        "event_count": 1
+      }
+    ],
+    "yesterday": {
+      "active_users": 57,
+      "new_users": 48,
+      "sessions": 85,
+      "engaged_sessions": 62,
+      "engagement_rate": 72.9,
+      "avg_session_sec": 408.3,
+      "pageviews": 168
+    },
+    "day_before": {
+      "active_users": 62,
+      "new_users": 51,
+      "sessions": 89,
+      "engaged_sessions": 59,
+      "engagement_rate": 66.3,
+      "avg_session_sec": 336.7,
+      "pageviews": 134
+    },
+    "last_7d": {
+      "active_users": 479,
+      "new_users": 428,
+      "sessions": 762,
+      "engaged_sessions": 514,
+      "engagement_rate": 67.5,
+      "avg_session_sec": 294.2,
+      "pageviews": 1227
+    },
+    "channels_yesterday": [
+      {
+        "active_users": 31,
+        "new_users": 27,
+        "sessions": 50,
+        "engaged_sessions": 42,
+        "engagement_rate": 84.0,
+        "avg_session_sec": 572.1,
+        "pageviews": 112,
+        "sessionDefaultChannelGroup": "Organic Search",
+        "dimension": "Organic Search"
+      },
+      {
+        "active_users": 16,
+        "new_users": 14,
+        "sessions": 20,
+        "engaged_sessions": 15,
+        "engagement_rate": 75.0,
+        "avg_session_sec": 195.2,
+        "pageviews": 28,
+        "sessionDefaultChannelGroup": "AI Assistant",
+        "dimension": "AI Assistant"
+      },
+      {
+        "active_users": 8,
+        "new_users": 6,
+        "sessions": 10,
+        "engaged_sessions": 3,
+        "engagement_rate": 30.0,
+        "avg_session_sec": 45.3,
+        "pageviews": 22,
+        "sessionDefaultChannelGroup": "Direct",
+        "dimension": "Direct"
+      },
+      {
+        "active_users": 2,
+        "new_users": 0,
+        "sessions": 4,
+        "engaged_sessions": 1,
+        "engagement_rate": 25.0,
+        "avg_session_sec": 3.5,
+        "pageviews": 5,
+        "sessionDefaultChannelGroup": "Unassigned",
+        "dimension": "Unassigned"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 1728.1,
+        "pageviews": 1,
+        "sessionDefaultChannelGroup": "Referral",
+        "dimension": "Referral"
+      }
+    ],
+    "countries_yesterday": [
+      {
+        "active_users": 40,
+        "new_users": 33,
+        "sessions": 62,
+        "engaged_sessions": 49,
+        "engagement_rate": 79.0,
+        "avg_session_sec": 405.6,
+        "pageviews": 131,
+        "country": "Japan",
+        "dimension": "Japan"
+      },
+      {
+        "active_users": 3,
+        "new_users": 2,
+        "sessions": 6,
+        "engaged_sessions": 4,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 129.7,
+        "pageviews": 12,
+        "country": "Hong Kong",
+        "dimension": "Hong Kong"
+      },
+      {
+        "active_users": 5,
+        "new_users": 4,
+        "sessions": 5,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 2.2,
+        "pageviews": 5,
+        "country": "China",
+        "dimension": "China"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 4,
+        "engaged_sessions": 3,
+        "engagement_rate": 75.0,
+        "avg_session_sec": 395.5,
+        "pageviews": 4,
+        "country": "South Korea",
+        "dimension": "South Korea"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 3,
+        "engaged_sessions": 2,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 621.5,
+        "pageviews": 6,
+        "country": "Mexico",
+        "dimension": "Mexico"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 2,
+        "engaged_sessions": 1,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 9.0,
+        "pageviews": 2,
+        "country": "Switzerland",
+        "dimension": "Switzerland"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 864.0,
+        "pageviews": 2,
+        "country": "Singapore",
+        "dimension": "Singapore"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 295.0,
+        "pageviews": 1,
+        "country": "Belgium",
+        "dimension": "Belgium"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 3259.9,
+        "pageviews": 4,
+        "country": "United Kingdom",
+        "dimension": "United Kingdom"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 23.4,
+        "pageviews": 1,
+        "country": "United States",
+        "dimension": "United States"
+      }
+    ],
+    "source_medium_yesterday": [
+      {
+        "active_users": 22,
+        "new_users": 19,
+        "sessions": 39,
+        "engaged_sessions": 33,
+        "engagement_rate": 84.6,
+        "avg_session_sec": 696.3,
+        "pageviews": 99,
+        "sessionSourceMedium": "google / organic",
+        "dimension": "google / organic"
+      },
+      {
+        "active_users": 16,
+        "new_users": 14,
+        "sessions": 20,
+        "engaged_sessions": 15,
+        "engagement_rate": 75.0,
+        "avg_session_sec": 195.2,
+        "pageviews": 28,
+        "sessionSourceMedium": "chatgpt.com / ai-assistant",
+        "dimension": "chatgpt.com / ai-assistant"
+      },
+      {
+        "active_users": 8,
+        "new_users": 6,
+        "sessions": 10,
+        "engaged_sessions": 3,
+        "engagement_rate": 30.0,
+        "avg_session_sec": 45.3,
+        "pageviews": 22,
+        "sessionSourceMedium": "(direct) / (none)",
+        "dimension": "(direct) / (none)"
+      },
+      {
+        "active_users": 4,
+        "new_users": 3,
+        "sessions": 5,
+        "engaged_sessions": 4,
+        "engagement_rate": 80.0,
+        "avg_session_sec": 198.7,
+        "pageviews": 6,
+        "sessionSourceMedium": "bing / organic",
+        "dimension": "bing / organic"
+      },
+      {
+        "active_users": 4,
+        "new_users": 4,
+        "sessions": 5,
+        "engaged_sessions": 4,
+        "engagement_rate": 80.0,
+        "avg_session_sec": 39.6,
+        "pageviews": 4,
+        "sessionSourceMedium": "yahoo / organic",
+        "dimension": "yahoo / organic"
+      },
+      {
+        "active_users": 2,
+        "new_users": 0,
+        "sessions": 4,
+        "engaged_sessions": 1,
+        "engagement_rate": 25.0,
+        "avg_session_sec": 3.5,
+        "pageviews": 5,
+        "sessionSourceMedium": "map_popup / (not set)",
+        "dimension": "map_popup / (not set)"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 257.2,
+        "pageviews": 3,
+        "sessionSourceMedium": "openai / organic",
+        "dimension": "openai / organic"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 1728.1,
+        "pageviews": 1,
+        "sessionSourceMedium": "service.smt.docomo.ne.jp / referral",
+        "dimension": "service.smt.docomo.ne.jp / referral"
+      }
+    ],
+    "landing_pages_yesterday": [
+      {
+        "active_users": 39,
+        "new_users": 33,
+        "sessions": 55,
+        "engaged_sessions": 44,
+        "engagement_rate": 80.0,
+        "avg_session_sec": 457.4,
+        "pageviews": 121,
+        "landingPage": "/",
+        "dimension": "/"
+      },
+      {
+        "active_users": 10,
+        "new_users": 9,
+        "sessions": 11,
+        "engaged_sessions": 5,
+        "engagement_rate": 45.5,
+        "avg_session_sec": 167.1,
+        "pageviews": 11,
+        "landingPage": "/ferry",
+        "dimension": "/ferry"
+      },
+      {
+        "active_users": 6,
+        "new_users": 5,
+        "sessions": 7,
+        "engaged_sessions": 7,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 439.3,
+        "pageviews": 13,
+        "landingPage": "/fare",
+        "dimension": "/fare"
+      },
+      {
+        "active_users": 4,
+        "new_users": 0,
+        "sessions": 4,
+        "engaged_sessions": 3,
+        "engagement_rate": 75.0,
+        "avg_session_sec": 742.8,
+        "pageviews": 7,
+        "landingPage": "/map",
+        "dimension": "/map"
+      },
+      {
+        "active_users": 3,
+        "new_users": 0,
+        "sessions": 4,
+        "engaged_sessions": 1,
+        "engagement_rate": 25.0,
+        "avg_session_sec": 314.2,
+        "pageviews": 0,
+        "landingPage": "(not set)",
+        "dimension": "(not set)"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 3,
+        "engaged_sessions": 1,
+        "engagement_rate": 33.3,
+        "avg_session_sec": 115.8,
+        "pageviews": 14,
+        "landingPage": "/guides",
+        "dimension": "/guides"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 58.8,
+        "pageviews": 2,
+        "landingPage": "/without-car",
+        "dimension": "/without-car"
+      }
+    ],
+    "pages_yesterday": [
+      {
+        "active_users": 42,
+        "new_users": 33,
+        "sessions": 64,
+        "engaged_sessions": 50,
+        "engagement_rate": 78.1,
+        "avg_session_sec": 374.7,
+        "pageviews": 96,
+        "pagePath": "/",
+        "dimension": "/"
+      },
+      {
+        "active_users": 14,
+        "new_users": 5,
+        "sessions": 16,
+        "engaged_sessions": 16,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 359.5,
+        "pageviews": 21,
+        "pagePath": "/fare/",
+        "dimension": "/fare/"
+      },
+      {
+        "active_users": 12,
+        "new_users": 0,
+        "sessions": 16,
+        "engaged_sessions": 15,
+        "engagement_rate": 93.8,
+        "avg_session_sec": 141.7,
+        "pageviews": 24,
+        "pagePath": "/map/",
+        "dimension": "/map/"
+      },
+      {
+        "active_users": 12,
+        "new_users": 9,
+        "sessions": 13,
+        "engaged_sessions": 7,
+        "engagement_rate": 53.8,
+        "avg_session_sec": 143.8,
+        "pageviews": 13,
+        "pagePath": "/ferry/",
+        "dimension": "/ferry/"
+      },
+      {
+        "active_users": 4,
+        "new_users": 1,
+        "sessions": 4,
+        "engaged_sessions": 4,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 34.6,
+        "pageviews": 5,
+        "pagePath": "/without-car/",
+        "dimension": "/without-car/"
+      },
+      {
+        "active_users": 2,
+        "new_users": 0,
+        "sessions": 4,
+        "engaged_sessions": 2,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 84.9,
+        "pageviews": 5,
+        "pagePath": "/guides/",
+        "dimension": "/guides/"
+      },
+      {
+        "active_users": 2,
+        "new_users": 0,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 176.8,
+        "pageviews": 3,
+        "pagePath": "/trekking/",
+        "dimension": "/trekking/"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 6.0,
+        "pageviews": 1,
+        "pagePath": "/guides/yakushima-where-to-stay/",
+        "dimension": "/guides/yakushima-where-to-stay/"
+      }
+    ],
+    "devices_yesterday": [
+      {
+        "active_users": 39,
+        "new_users": 33,
+        "sessions": 61,
+        "engaged_sessions": 43,
+        "engagement_rate": 70.5,
+        "avg_session_sec": 357.9,
+        "pageviews": 108,
+        "deviceCategory": "mobile",
+        "dimension": "mobile"
+      },
+      {
+        "active_users": 18,
+        "new_users": 15,
+        "sessions": 24,
+        "engaged_sessions": 19,
+        "engagement_rate": 79.2,
+        "avg_session_sec": 536.3,
+        "pageviews": 60,
+        "deviceCategory": "desktop",
+        "dimension": "desktop"
+      }
+    ],
+    "country_channel_yesterday": [
+      {
+        "active_users": 23,
+        "new_users": 21,
+        "sessions": 41,
+        "engaged_sessions": 34,
+        "engagement_rate": 82.9,
+        "avg_session_sec": 510.8,
+        "pageviews": 90,
+        "country": "Japan",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 12,
+        "new_users": 10,
+        "sessions": 14,
+        "engaged_sessions": 11,
+        "engagement_rate": 78.6,
+        "avg_session_sec": 144.8,
+        "pageviews": 22,
+        "country": "Japan",
+        "sessionDefaultChannelGroup": "AI Assistant"
+      },
+      {
+        "active_users": 3,
+        "new_users": 1,
+        "sessions": 5,
+        "engaged_sessions": 3,
+        "engagement_rate": 60.0,
+        "avg_session_sec": 88.1,
+        "pageviews": 17,
+        "country": "Japan",
+        "sessionDefaultChannelGroup": "Direct"
+      },
+      {
+        "active_users": 4,
+        "new_users": 4,
+        "sessions": 4,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 2.5,
+        "pageviews": 4,
+        "country": "China",
+        "sessionDefaultChannelGroup": "Direct"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 4,
+        "engaged_sessions": 3,
+        "engagement_rate": 75.0,
+        "avg_session_sec": 395.5,
+        "pageviews": 4,
+        "country": "South Korea",
+        "sessionDefaultChannelGroup": "AI Assistant"
+      },
+      {
+        "active_users": 3,
+        "new_users": 2,
+        "sessions": 3,
+        "engaged_sessions": 3,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 256.0,
+        "pageviews": 8,
+        "country": "Hong Kong",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 3,
+        "engaged_sessions": 1,
+        "engagement_rate": 33.3,
+        "avg_session_sec": 3.4,
+        "pageviews": 4,
+        "country": "Hong Kong",
+        "sessionDefaultChannelGroup": "Unassigned"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 931.0,
+        "pageviews": 5,
+        "country": "Mexico",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 864.0,
+        "pageviews": 2,
+        "country": "Singapore",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 295.0,
+        "pageviews": 1,
+        "country": "Belgium",
+        "sessionDefaultChannelGroup": "AI Assistant"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 1.2,
+        "pageviews": 1,
+        "country": "China",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 1728.1,
+        "pageviews": 1,
+        "country": "Japan",
+        "sessionDefaultChannelGroup": "Referral"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 4.0,
+        "pageviews": 1,
+        "country": "Japan",
+        "sessionDefaultChannelGroup": "Unassigned"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 2.4,
+        "pageviews": 1,
+        "country": "Mexico",
+        "sessionDefaultChannelGroup": "Direct"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 0.0,
+        "pageviews": 1,
+        "country": "Switzerland",
+        "sessionDefaultChannelGroup": "AI Assistant"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 18.0,
+        "pageviews": 1,
+        "country": "Switzerland",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 3259.9,
+        "pageviews": 4,
+        "country": "United Kingdom",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 23.4,
+        "pageviews": 1,
+        "country": "United States",
+        "sessionDefaultChannelGroup": "Organic Search"
+      }
+    ],
+    "channels_7d": [
+      {
+        "active_users": 345,
+        "new_users": 306,
+        "sessions": 549,
+        "engaged_sessions": 392,
+        "engagement_rate": 71.4,
+        "avg_session_sec": 308.6,
+        "pageviews": 901,
+        "sessionDefaultChannelGroup": "Organic Search",
+        "dimension": "Organic Search"
+      },
+      {
+        "active_users": 68,
+        "new_users": 61,
+        "sessions": 81,
+        "engaged_sessions": 62,
+        "engagement_rate": 76.5,
+        "avg_session_sec": 194.8,
+        "pageviews": 117,
+        "sessionDefaultChannelGroup": "AI Assistant",
+        "dimension": "AI Assistant"
+      },
+      {
+        "active_users": 51,
+        "new_users": 48,
+        "sessions": 76,
+        "engaged_sessions": 29,
+        "engagement_rate": 38.2,
+        "avg_session_sec": 212.0,
+        "pageviews": 119,
+        "sessionDefaultChannelGroup": "Direct",
+        "dimension": "Direct"
+      },
+      {
+        "active_users": 9,
+        "new_users": 2,
+        "sessions": 37,
+        "engaged_sessions": 18,
+        "engagement_rate": 48.6,
+        "avg_session_sec": 516.3,
+        "pageviews": 63,
+        "sessionDefaultChannelGroup": "Unassigned",
+        "dimension": "Unassigned"
+      },
+      {
+        "active_users": 4,
+        "new_users": 4,
+        "sessions": 10,
+        "engaged_sessions": 10,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 316.2,
+        "pageviews": 16,
+        "sessionDefaultChannelGroup": "Referral",
+        "dimension": "Referral"
+      },
+      {
+        "active_users": 7,
+        "new_users": 7,
+        "sessions": 8,
+        "engaged_sessions": 3,
+        "engagement_rate": 37.5,
+        "avg_session_sec": 76.9,
+        "pageviews": 11,
+        "sessionDefaultChannelGroup": "Organic Social",
+        "dimension": "Organic Social"
+      }
+    ],
+    "sources_7d": [
+      {
+        "active_users": 254,
+        "new_users": 224,
+        "sessions": 418,
+        "engaged_sessions": 298,
+        "engagement_rate": 71.3,
+        "avg_session_sec": 330.7,
+        "pageviews": 706,
+        "sessionSource": "google",
+        "dimension": "google"
+      },
+      {
+        "active_users": 68,
+        "new_users": 61,
+        "sessions": 81,
+        "engaged_sessions": 62,
+        "engagement_rate": 76.5,
+        "avg_session_sec": 194.8,
+        "pageviews": 117,
+        "sessionSource": "chatgpt.com",
+        "dimension": "chatgpt.com"
+      },
+      {
+        "active_users": 51,
+        "new_users": 48,
+        "sessions": 76,
+        "engaged_sessions": 29,
+        "engagement_rate": 38.2,
+        "avg_session_sec": 212.0,
+        "pageviews": 119,
+        "sessionSource": "(direct)",
+        "dimension": "(direct)"
+      },
+      {
+        "active_users": 39,
+        "new_users": 33,
+        "sessions": 62,
+        "engaged_sessions": 47,
+        "engagement_rate": 75.8,
+        "avg_session_sec": 173.4,
+        "pageviews": 86,
+        "sessionSource": "yahoo",
+        "dimension": "yahoo"
+      },
+      {
+        "active_users": 39,
+        "new_users": 35,
+        "sessions": 52,
+        "engaged_sessions": 33,
+        "engagement_rate": 63.5,
+        "avg_session_sec": 342.0,
+        "pageviews": 80,
+        "sessionSource": "bing",
+        "dimension": "bing"
+      },
+      {
+        "active_users": 5,
+        "new_users": 1,
+        "sessions": 32,
+        "engaged_sessions": 17,
+        "engagement_rate": 53.1,
+        "avg_session_sec": 583.5,
+        "pageviews": 59,
+        "sessionSource": "map_popup",
+        "dimension": "map_popup"
+      },
+      {
+        "active_users": 10,
+        "new_users": 10,
+        "sessions": 10,
+        "engaged_sessions": 9,
+        "engagement_rate": 90.0,
+        "avg_session_sec": 180.2,
+        "pageviews": 17,
+        "sessionSource": "openai",
+        "dimension": "openai"
+      },
+      {
+        "active_users": 4,
+        "new_users": 4,
+        "sessions": 10,
+        "engaged_sessions": 10,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 316.2,
+        "pageviews": 16,
+        "sessionSource": "service.smt.docomo.ne.jp",
+        "dimension": "service.smt.docomo.ne.jp"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 5,
+        "engaged_sessions": 4,
+        "engagement_rate": 80.0,
+        "avg_session_sec": 132.3,
+        "pageviews": 10,
+        "sessionSource": "ecosia.org",
+        "dimension": "ecosia.org"
+      },
+      {
+        "active_users": 4,
+        "new_users": 0,
+        "sessions": 4,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 88.0,
+        "pageviews": 3,
+        "sessionSource": "(not set)",
+        "dimension": "(not set)"
+      },
+      {
+        "active_users": 4,
+        "new_users": 4,
+        "sessions": 4,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 0.0,
+        "pageviews": 4,
+        "sessionSource": "m.facebook.com",
+        "dimension": "m.facebook.com"
+      },
+      {
+        "active_users": 3,
+        "new_users": 3,
+        "sessions": 4,
+        "engaged_sessions": 2,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 68.1,
+        "pageviews": 3,
+        "sessionSource": "cn.bing.com",
+        "dimension": "cn.bing.com"
+      },
+      {
+        "active_users": 3,
+        "new_users": 3,
+        "sessions": 4,
+        "engaged_sessions": 3,
+        "engagement_rate": 75.0,
+        "avg_session_sec": 153.8,
+        "pageviews": 7,
+        "sessionSource": "facebook.com",
+        "dimension": "facebook.com"
+      }
+    ],
+    "source_medium_7d": [
+      {
+        "active_users": 254,
+        "new_users": 224,
+        "sessions": 418,
+        "engaged_sessions": 298,
+        "engagement_rate": 71.3,
+        "avg_session_sec": 330.7,
+        "pageviews": 706,
+        "sessionSourceMedium": "google / organic",
+        "dimension": "google / organic"
+      },
+      {
+        "active_users": 68,
+        "new_users": 61,
+        "sessions": 81,
+        "engaged_sessions": 62,
+        "engagement_rate": 76.5,
+        "avg_session_sec": 194.8,
+        "pageviews": 117,
+        "sessionSourceMedium": "chatgpt.com / ai-assistant",
+        "dimension": "chatgpt.com / ai-assistant"
+      },
+      {
+        "active_users": 51,
+        "new_users": 48,
+        "sessions": 76,
+        "engaged_sessions": 29,
+        "engagement_rate": 38.2,
+        "avg_session_sec": 212.0,
+        "pageviews": 119,
+        "sessionSourceMedium": "(direct) / (none)",
+        "dimension": "(direct) / (none)"
+      },
+      {
+        "active_users": 39,
+        "new_users": 33,
+        "sessions": 62,
+        "engaged_sessions": 47,
+        "engagement_rate": 75.8,
+        "avg_session_sec": 173.4,
+        "pageviews": 86,
+        "sessionSourceMedium": "yahoo / organic",
+        "dimension": "yahoo / organic"
+      },
+      {
+        "active_users": 39,
+        "new_users": 35,
+        "sessions": 52,
+        "engaged_sessions": 33,
+        "engagement_rate": 63.5,
+        "avg_session_sec": 342.0,
+        "pageviews": 80,
+        "sessionSourceMedium": "bing / organic",
+        "dimension": "bing / organic"
+      },
+      {
+        "active_users": 5,
+        "new_users": 1,
+        "sessions": 32,
+        "engaged_sessions": 17,
+        "engagement_rate": 53.1,
+        "avg_session_sec": 583.5,
+        "pageviews": 59,
+        "sessionSourceMedium": "map_popup / (not set)",
+        "dimension": "map_popup / (not set)"
+      },
+      {
+        "active_users": 4,
+        "new_users": 4,
+        "sessions": 10,
+        "engaged_sessions": 10,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 316.2,
+        "pageviews": 16,
+        "sessionSourceMedium": "service.smt.docomo.ne.jp / referral",
+        "dimension": "service.smt.docomo.ne.jp / referral"
+      },
+      {
+        "active_users": 9,
+        "new_users": 9,
+        "sessions": 9,
+        "engaged_sessions": 8,
+        "engagement_rate": 88.9,
+        "avg_session_sec": 191.4,
+        "pageviews": 16,
+        "sessionSourceMedium": "openai / organic",
+        "dimension": "openai / organic"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 5,
+        "engaged_sessions": 4,
+        "engagement_rate": 80.0,
+        "avg_session_sec": 132.3,
+        "pageviews": 10,
+        "sessionSourceMedium": "ecosia.org / organic",
+        "dimension": "ecosia.org / organic"
+      },
+      {
+        "active_users": 4,
+        "new_users": 0,
+        "sessions": 4,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 88.0,
+        "pageviews": 3,
+        "sessionSourceMedium": "(not set)",
+        "dimension": "(not set)"
+      },
+      {
+        "active_users": 4,
+        "new_users": 4,
+        "sessions": 4,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 0.0,
+        "pageviews": 4,
+        "sessionSourceMedium": "m.facebook.com / referral",
+        "dimension": "m.facebook.com / referral"
+      },
+      {
+        "active_users": 3,
+        "new_users": 3,
+        "sessions": 4,
+        "engaged_sessions": 2,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 68.1,
+        "pageviews": 3,
+        "sessionSourceMedium": "cn.bing.com / referral",
+        "dimension": "cn.bing.com / referral"
+      },
+      {
+        "active_users": 3,
+        "new_users": 3,
+        "sessions": 4,
+        "engaged_sessions": 3,
+        "engagement_rate": 75.0,
+        "avg_session_sec": 153.8,
+        "pageviews": 7,
+        "sessionSourceMedium": "facebook.com / referral",
+        "dimension": "facebook.com / referral"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 79.2,
+        "pageviews": 1,
+        "sessionSourceMedium": "openai / (not set)",
+        "dimension": "openai / (not set)"
+      }
+    ],
+    "landing_pages_7d": [
+      {
+        "active_users": 388,
+        "new_users": 343,
+        "sessions": 553,
+        "engaged_sessions": 386,
+        "engagement_rate": 69.8,
+        "avg_session_sec": 308.1,
+        "pageviews": 934,
+        "landingPage": "/",
+        "dimension": "/"
+      },
+      {
+        "active_users": 58,
+        "new_users": 43,
+        "sessions": 71,
+        "engaged_sessions": 71,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 314.4,
+        "pageviews": 140,
+        "landingPage": "/fare",
+        "dimension": "/fare"
+      },
+      {
+        "active_users": 29,
+        "new_users": 19,
+        "sessions": 63,
+        "engaged_sessions": 31,
+        "engagement_rate": 49.2,
+        "avg_session_sec": 355.2,
+        "pageviews": 100,
+        "landingPage": "/map",
+        "dimension": "/map"
+      },
+      {
+        "active_users": 29,
+        "new_users": 0,
+        "sessions": 38,
+        "engaged_sessions": 7,
+        "engagement_rate": 18.4,
+        "avg_session_sec": 70.3,
+        "pageviews": 0,
+        "landingPage": "(not set)",
+        "dimension": "(not set)"
+      },
+      {
+        "active_users": 21,
+        "new_users": 20,
+        "sessions": 29,
+        "engaged_sessions": 14,
+        "engagement_rate": 48.3,
+        "avg_session_sec": 146.6,
+        "pageviews": 32,
+        "landingPage": "/ferry",
+        "dimension": "/ferry"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 5,
+        "engaged_sessions": 2,
+        "engagement_rate": 40.0,
+        "avg_session_sec": 404.8,
+        "pageviews": 17,
+        "landingPage": "/guides",
+        "dimension": "/guides"
+      },
+      {
+        "active_users": 3,
+        "new_users": 3,
+        "sessions": 3,
+        "engaged_sessions": 3,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 61.0,
+        "pageviews": 4,
+        "landingPage": "/without-car",
+        "dimension": "/without-car"
+      }
+    ],
+    "pages_7d": [
+      {
+        "active_users": 401,
+        "new_users": 343,
+        "sessions": 608,
+        "engaged_sessions": 420,
+        "engagement_rate": 69.1,
+        "avg_session_sec": 266.3,
+        "pageviews": 833,
+        "pagePath": "/",
+        "dimension": "/"
+      },
+      {
+        "active_users": 98,
+        "new_users": 43,
+        "sessions": 127,
+        "engaged_sessions": 120,
+        "engagement_rate": 94.5,
+        "avg_session_sec": 216.7,
+        "pageviews": 164,
+        "pagePath": "/fare/",
+        "dimension": "/fare/"
+      },
+      {
+        "active_users": 69,
+        "new_users": 19,
+        "sessions": 119,
+        "engaged_sessions": 83,
+        "engagement_rate": 69.7,
+        "avg_session_sec": 218.4,
+        "pageviews": 150,
+        "pagePath": "/map/",
+        "dimension": "/map/"
+      },
+      {
+        "active_users": 33,
+        "new_users": 20,
+        "sessions": 44,
+        "engaged_sessions": 26,
+        "engagement_rate": 59.1,
+        "avg_session_sec": 115.9,
+        "pageviews": 44,
+        "pagePath": "/ferry/",
+        "dimension": "/ferry/"
+      },
+      {
+        "active_users": 9,
+        "new_users": 0,
+        "sessions": 9,
+        "engaged_sessions": 9,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 146.4,
+        "pageviews": 12,
+        "pagePath": "/trekking/",
+        "dimension": "/trekking/"
+      },
+      {
+        "active_users": 8,
+        "new_users": 3,
+        "sessions": 8,
+        "engaged_sessions": 8,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 34.2,
+        "pageviews": 8,
+        "pagePath": "/without-car/",
+        "dimension": "/without-car/"
+      },
+      {
+        "active_users": 3,
+        "new_users": 0,
+        "sessions": 7,
+        "engaged_sessions": 4,
+        "engagement_rate": 57.1,
+        "avg_session_sec": 288.8,
+        "pageviews": 9,
+        "pagePath": "/guides/",
+        "dimension": "/guides/"
+      },
+      {
+        "active_users": 6,
+        "new_users": 0,
+        "sessions": 6,
+        "engaged_sessions": 6,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 7.5,
+        "pageviews": 6,
+        "pagePath": "/intro/",
+        "dimension": "/intro/"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 6.0,
+        "pageviews": 1,
+        "pagePath": "/guides/yakushima-where-to-stay/",
+        "dimension": "/guides/yakushima-where-to-stay/"
+      }
+    ],
+    "countries_7d": [
+      {
+        "active_users": 414,
+        "new_users": 366,
+        "sessions": 666,
+        "engaged_sessions": 466,
+        "engagement_rate": 70.0,
+        "avg_session_sec": 306.3,
+        "pageviews": 1081,
+        "country": "Japan",
+        "dimension": "Japan"
+      },
+      {
+        "active_users": 21,
+        "new_users": 19,
+        "sessions": 23,
+        "engaged_sessions": 3,
+        "engagement_rate": 13.0,
+        "avg_session_sec": 14.4,
+        "pageviews": 23,
+        "country": "China",
+        "dimension": "China"
+      },
+      {
+        "active_users": 6,
+        "new_users": 6,
+        "sessions": 15,
+        "engaged_sessions": 8,
+        "engagement_rate": 53.3,
+        "avg_session_sec": 270.0,
+        "pageviews": 22,
+        "country": "Taiwan",
+        "dimension": "Taiwan"
+      },
+      {
+        "active_users": 8,
+        "new_users": 7,
+        "sessions": 8,
+        "engaged_sessions": 5,
+        "engagement_rate": 62.5,
+        "avg_session_sec": 63.7,
+        "pageviews": 18,
+        "country": "United States",
+        "dimension": "United States"
+      },
+      {
+        "active_users": 4,
+        "new_users": 3,
+        "sessions": 8,
+        "engaged_sessions": 5,
+        "engagement_rate": 62.5,
+        "avg_session_sec": 99.0,
+        "pageviews": 14,
+        "country": "Hong Kong",
+        "dimension": "Hong Kong"
+      },
+      {
+        "active_users": 5,
+        "new_users": 5,
+        "sessions": 7,
+        "engaged_sessions": 5,
+        "engagement_rate": 71.4,
+        "avg_session_sec": 256.4,
+        "pageviews": 10,
+        "country": "South Korea",
+        "dimension": "South Korea"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 5,
+        "engaged_sessions": 2,
+        "engagement_rate": 40.0,
+        "avg_session_sec": 33.4,
+        "pageviews": 6,
+        "country": "Germany",
+        "dimension": "Germany"
+      },
+      {
+        "active_users": 3,
+        "new_users": 3,
+        "sessions": 3,
+        "engaged_sessions": 1,
+        "engagement_rate": 33.3,
+        "avg_session_sec": 6.5,
+        "pageviews": 3,
+        "country": "Sweden",
+        "dimension": "Sweden"
+      },
+      {
+        "active_users": 2,
+        "new_users": 1,
+        "sessions": 3,
+        "engaged_sessions": 3,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 665.0,
+        "pageviews": 10,
+        "country": "Israel",
+        "dimension": "Israel"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 3,
+        "engaged_sessions": 2,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 621.5,
+        "pageviews": 6,
+        "country": "Mexico",
+        "dimension": "Mexico"
+      },
+      {
+        "active_users": 2,
+        "new_users": 1,
+        "sessions": 3,
+        "engaged_sessions": 2,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 576.0,
+        "pageviews": 3,
+        "country": "Singapore",
+        "dimension": "Singapore"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 3,
+        "engaged_sessions": 3,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 271.5,
+        "pageviews": 6,
+        "country": "Australia",
+        "dimension": "Australia"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 3,
+        "engaged_sessions": 1,
+        "engagement_rate": 33.3,
+        "avg_session_sec": 53.2,
+        "pageviews": 5,
+        "country": "Portugal",
+        "dimension": "Portugal"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 3,
+        "engaged_sessions": 1,
+        "engagement_rate": 33.3,
+        "avg_session_sec": 412.3,
+        "pageviews": 3,
+        "country": "Vietnam",
+        "dimension": "Vietnam"
+      },
+      {
+        "active_users": 2,
+        "new_users": 1,
+        "sessions": 2,
+        "engaged_sessions": 1,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 21.9,
+        "pageviews": 3,
+        "country": "France",
+        "dimension": "France"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 2,
+        "engaged_sessions": 1,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 9.0,
+        "pageviews": 2,
+        "country": "Switzerland",
+        "dimension": "Switzerland"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 232.0,
+        "pageviews": 2,
+        "country": "Czechia",
+        "dimension": "Czechia"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 0.0,
+        "pageviews": 1,
+        "country": "(not set)",
+        "dimension": "(not set)"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 295.0,
+        "pageviews": 1,
+        "country": "Belgium",
+        "dimension": "Belgium"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 528.8,
+        "pageviews": 1,
+        "country": "Brazil",
+        "dimension": "Brazil"
+      }
+    ],
+    "devices_7d": [
+      {
+        "active_users": 335,
+        "new_users": 301,
+        "sessions": 559,
+        "engaged_sessions": 385,
+        "engagement_rate": 68.9,
+        "avg_session_sec": 287.5,
+        "pageviews": 891,
+        "deviceCategory": "mobile",
+        "dimension": "mobile"
+      },
+      {
+        "active_users": 141,
+        "new_users": 124,
+        "sessions": 197,
+        "engaged_sessions": 123,
+        "engagement_rate": 62.4,
+        "avg_session_sec": 299.3,
+        "pageviews": 322,
+        "deviceCategory": "desktop",
+        "dimension": "desktop"
+      },
+      {
+        "active_users": 3,
+        "new_users": 3,
+        "sessions": 6,
+        "engaged_sessions": 6,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 758.3,
+        "pageviews": 14,
+        "deviceCategory": "tablet",
+        "dimension": "tablet"
+      }
+    ],
+    "country_channel_7d": [
+      {
+        "active_users": 321,
+        "new_users": 283,
+        "sessions": 505,
+        "engaged_sessions": 364,
+        "engagement_rate": 72.1,
+        "avg_session_sec": 307.1,
+        "pageviews": 828,
+        "country": "Japan",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 57,
+        "new_users": 50,
+        "sessions": 66,
+        "engaged_sessions": 51,
+        "engagement_rate": 77.3,
+        "avg_session_sec": 193.9,
+        "pageviews": 97,
+        "country": "Japan",
+        "sessionDefaultChannelGroup": "AI Assistant"
+      },
+      {
+        "active_users": 27,
+        "new_users": 25,
+        "sessions": 48,
+        "engaged_sessions": 22,
+        "engagement_rate": 45.8,
+        "avg_session_sec": 276.2,
+        "pageviews": 76,
+        "country": "Japan",
+        "sessionDefaultChannelGroup": "Direct"
+      },
+      {
+        "active_users": 7,
+        "new_users": 2,
+        "sessions": 33,
+        "engaged_sessions": 17,
+        "engagement_rate": 51.5,
+        "avg_session_sec": 578.5,
+        "pageviews": 58,
+        "country": "Japan",
+        "sessionDefaultChannelGroup": "Unassigned"
+      },
+      {
+        "active_users": 17,
+        "new_users": 17,
+        "sessions": 18,
+        "engaged_sessions": 2,
+        "engagement_rate": 11.1,
+        "avg_session_sec": 3.7,
+        "pageviews": 19,
+        "country": "China",
+        "sessionDefaultChannelGroup": "Direct"
+      },
+      {
+        "active_users": 5,
+        "new_users": 5,
+        "sessions": 11,
+        "engaged_sessions": 5,
+        "engagement_rate": 45.5,
+        "avg_session_sec": 129.1,
+        "pageviews": 15,
+        "country": "Taiwan",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 4,
+        "new_users": 4,
+        "sessions": 10,
+        "engaged_sessions": 10,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 316.2,
+        "pageviews": 16,
+        "country": "Japan",
+        "sessionDefaultChannelGroup": "Referral"
+      },
+      {
+        "active_users": 4,
+        "new_users": 4,
+        "sessions": 6,
+        "engaged_sessions": 5,
+        "engagement_rate": 83.3,
+        "avg_session_sec": 299.1,
+        "pageviews": 9,
+        "country": "South Korea",
+        "sessionDefaultChannelGroup": "AI Assistant"
+      },
+      {
+        "active_users": 5,
+        "new_users": 4,
+        "sessions": 5,
+        "engaged_sessions": 4,
+        "engagement_rate": 80.0,
+        "avg_session_sec": 80.5,
+        "pageviews": 6,
+        "country": "United States",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 3,
+        "new_users": 2,
+        "sessions": 4,
+        "engaged_sessions": 1,
+        "engagement_rate": 25.0,
+        "avg_session_sec": 65.0,
+        "pageviews": 3,
+        "country": "China",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 3,
+        "new_users": 3,
+        "sessions": 4,
+        "engaged_sessions": 4,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 195.4,
+        "pageviews": 9,
+        "country": "Hong Kong",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 4,
+        "engaged_sessions": 1,
+        "engagement_rate": 25.0,
+        "avg_session_sec": 38.1,
+        "pageviews": 5,
+        "country": "Germany",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 4,
+        "engaged_sessions": 3,
+        "engagement_rate": 75.0,
+        "avg_session_sec": 657.6,
+        "pageviews": 7,
+        "country": "Taiwan",
+        "sessionDefaultChannelGroup": "Direct"
+      },
+      {
+        "active_users": 3,
+        "new_users": 3,
+        "sessions": 3,
+        "engaged_sessions": 1,
+        "engagement_rate": 33.3,
+        "avg_session_sec": 6.5,
+        "pageviews": 3,
+        "country": "Sweden",
+        "sessionDefaultChannelGroup": "Organic Social"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 3,
+        "engaged_sessions": 2,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 198.6,
+        "pageviews": 6,
+        "country": "Japan",
+        "sessionDefaultChannelGroup": "Organic Social"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 3,
+        "engaged_sessions": 3,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 271.5,
+        "pageviews": 6,
+        "country": "Australia",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 3,
+        "engaged_sessions": 1,
+        "engagement_rate": 33.3,
+        "avg_session_sec": 3.4,
+        "pageviews": 4,
+        "country": "Hong Kong",
+        "sessionDefaultChannelGroup": "Unassigned"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 3,
+        "engaged_sessions": 1,
+        "engagement_rate": 33.3,
+        "avg_session_sec": 53.2,
+        "pageviews": 5,
+        "country": "Portugal",
+        "sessionDefaultChannelGroup": "AI Assistant"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 3,
+        "engaged_sessions": 1,
+        "engagement_rate": 33.3,
+        "avg_session_sec": 412.3,
+        "pageviews": 3,
+        "country": "Vietnam",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 2,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 0.0,
+        "pageviews": 2,
+        "country": "United States",
+        "sessionDefaultChannelGroup": "Organic Social"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 232.0,
+        "pageviews": 2,
+        "country": "Czechia",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 946.7,
+        "pageviews": 9,
+        "country": "Israel",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 931.0,
+        "pageviews": 5,
+        "country": "Mexico",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 864.0,
+        "pageviews": 2,
+        "country": "Singapore",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 0.0,
+        "pageviews": 1,
+        "country": "(not set)",
+        "sessionDefaultChannelGroup": "Direct"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 295.0,
+        "pageviews": 1,
+        "country": "Belgium",
+        "sessionDefaultChannelGroup": "AI Assistant"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 528.8,
+        "pageviews": 1,
+        "country": "Brazil",
+        "sessionDefaultChannelGroup": "AI Assistant"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 4.9,
+        "pageviews": 1,
+        "country": "China",
+        "sessionDefaultChannelGroup": "Unassigned"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 42.8,
+        "pageviews": 2,
+        "country": "France",
+        "sessionDefaultChannelGroup": "Direct"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 0.9,
+        "pageviews": 1,
+        "country": "France",
+        "sessionDefaultChannelGroup": "Organic Search"
+      }
+    ],
+    "period": {
+      "yesterday": "2026-10-25",
+      "previous_7d": "2026-10-12~2026-10-18",
+      "day_before": "2026-10-24",
+      "last_7d_start": "2026-10-19",
+      "last_7d_end": "2026-10-25",
+      "last_7d": "2026-10-19~2026-10-25"
+    }
+  },
+  "aligned_period": true,
+  "diagnostics": {
+    "collected_at": "2026-10-28T10:16:58.471955+08:00",
+    "ga4_landing": {
+      "current": {
+        "period": {
+          "start": "2026-10-19",
+          "end": "2026-10-25"
+        },
+        "complete": true,
+        "rows": [
+          {
+            "keys": [
+              "/"
+            ],
+            "sessions": 553
+          },
+          {
+            "keys": [
+              "/fare"
+            ],
+            "sessions": 71
+          },
+          {
+            "keys": [
+              "/map"
+            ],
+            "sessions": 63
+          },
+          {
+            "keys": [
+              "(not set)"
+            ],
+            "sessions": 38
+          },
+          {
+            "keys": [
+              "/ferry"
+            ],
+            "sessions": 29
+          },
+          {
+            "keys": [
+              "/guides"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "/without-car"
+            ],
+            "sessions": 3
+          }
+        ]
+      },
+      "previous": {
+        "period": {
+          "start": "2026-10-12",
+          "end": "2026-10-18"
+        },
+        "complete": true,
+        "rows": [
+          {
+            "keys": [
+              "/"
+            ],
+            "sessions": 674
+          },
+          {
+            "keys": [
+              "/fare"
+            ],
+            "sessions": 89
+          },
+          {
+            "keys": [
+              "/map"
+            ],
+            "sessions": 36
+          },
+          {
+            "keys": [
+              "(not set)"
+            ],
+            "sessions": 34
+          },
+          {
+            "keys": [
+              "/ferry"
+            ],
+            "sessions": 19
+          },
+          {
+            "keys": [
+              "/without-car"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "/trekking"
+            ],
+            "sessions": 4
+          }
+        ]
+      }
+    },
+    "ga4_source": {
+      "current": {
+        "period": {
+          "start": "2026-10-19",
+          "end": "2026-10-25"
+        },
+        "complete": true,
+        "rows": [
+          {
+            "keys": [
+              "google / organic"
+            ],
+            "sessions": 418
+          },
+          {
+            "keys": [
+              "chatgpt.com / ai-assistant"
+            ],
+            "sessions": 81
+          },
+          {
+            "keys": [
+              "(direct) / (none)"
+            ],
+            "sessions": 76
+          },
+          {
+            "keys": [
+              "yahoo / organic"
+            ],
+            "sessions": 62
+          },
+          {
+            "keys": [
+              "bing / organic"
+            ],
+            "sessions": 52
+          },
+          {
+            "keys": [
+              "map_popup / (not set)"
+            ],
+            "sessions": 32
+          },
+          {
+            "keys": [
+              "service.smt.docomo.ne.jp / referral"
+            ],
+            "sessions": 10
+          },
+          {
+            "keys": [
+              "openai / organic"
+            ],
+            "sessions": 9
+          },
+          {
+            "keys": [
+              "ecosia.org / organic"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "(not set)"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "cn.bing.com / referral"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "facebook.com / referral"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "m.facebook.com / referral"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "openai / (not set)"
+            ],
+            "sessions": 1
+          }
+        ]
+      },
+      "previous": {
+        "period": {
+          "start": "2026-10-12",
+          "end": "2026-10-18"
+        },
+        "complete": true,
+        "rows": [
+          {
+            "keys": [
+              "google / organic"
+            ],
+            "sessions": 458
+          },
+          {
+            "keys": [
+              "(direct) / (none)"
+            ],
+            "sessions": 154
+          },
+          {
+            "keys": [
+              "yahoo / organic"
+            ],
+            "sessions": 83
+          },
+          {
+            "keys": [
+              "chatgpt.com / ai-assistant"
+            ],
+            "sessions": 63
+          },
+          {
+            "keys": [
+              "bing / organic"
+            ],
+            "sessions": 54
+          },
+          {
+            "keys": [
+              "map_popup / (not set)"
+            ],
+            "sessions": 20
+          },
+          {
+            "keys": [
+              "openai / organic"
+            ],
+            "sessions": 8
+          },
+          {
+            "keys": [
+              "duckduckgo / organic"
+            ],
+            "sessions": 7
+          },
+          {
+            "keys": [
+              "ecosia.org / organic"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "(not set)"
+            ],
+            "sessions": 3
+          },
+          {
+            "keys": [
+              "openai / (not set)"
+            ],
+            "sessions": 3
+          },
+          {
+            "keys": [
+              "copilot.com / ai-assistant"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "m.facebook.com / referral"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "service.smt.docomo.ne.jp / referral"
+            ],
+            "sessions": 1
+          }
+        ]
+      }
+    },
+    "ga4_source_landing": {
+      "current": {
+        "period": {
+          "start": "2026-10-19",
+          "end": "2026-10-25"
+        },
+        "complete": true,
+        "rows": [
+          {
+            "keys": [
+              "/",
+              "google / organic"
+            ],
+            "sessions": 333
+          },
+          {
+            "keys": [
+              "/",
+              "chatgpt.com / ai-assistant"
+            ],
+            "sessions": 66
+          },
+          {
+            "keys": [
+              "/",
+              "(direct) / (none)"
+            ],
+            "sessions": 45
+          },
+          {
+            "keys": [
+              "/fare",
+              "google / organic"
+            ],
+            "sessions": 45
+          },
+          {
+            "keys": [
+              "/",
+              "yahoo / organic"
+            ],
+            "sessions": 42
+          },
+          {
+            "keys": [
+              "/",
+              "bing / organic"
+            ],
+            "sessions": 33
+          },
+          {
+            "keys": [
+              "(not set)",
+              "google / organic"
+            ],
+            "sessions": 24
+          },
+          {
+            "keys": [
+              "/map",
+              "map_popup / (not set)"
+            ],
+            "sessions": 22
+          },
+          {
+            "keys": [
+              "/map",
+              "(direct) / (none)"
+            ],
+            "sessions": 17
+          },
+          {
+            "keys": [
+              "/fare",
+              "yahoo / organic"
+            ],
+            "sessions": 16
+          },
+          {
+            "keys": [
+              "/map",
+              "google / organic"
+            ],
+            "sessions": 15
+          },
+          {
+            "keys": [
+              "/",
+              "map_popup / (not set)"
+            ],
+            "sessions": 10
+          },
+          {
+            "keys": [
+              "/ferry",
+              "chatgpt.com / ai-assistant"
+            ],
+            "sessions": 10
+          },
+          {
+            "keys": [
+              "/",
+              "service.smt.docomo.ne.jp / referral"
+            ],
+            "sessions": 9
+          },
+          {
+            "keys": [
+              "/ferry",
+              "bing / organic"
+            ],
+            "sessions": 8
+          },
+          {
+            "keys": [
+              "(not set)",
+              "bing / organic"
+            ],
+            "sessions": 7
+          },
+          {
+            "keys": [
+              "/",
+              "openai / organic"
+            ],
+            "sessions": 7
+          },
+          {
+            "keys": [
+              "/ferry",
+              "(direct) / (none)"
+            ],
+            "sessions": 7
+          },
+          {
+            "keys": [
+              "/",
+              "ecosia.org / organic"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "/guides",
+              "(direct) / (none)"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "/fare",
+              "bing / organic"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "/map",
+              "m.facebook.com / referral"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "/fare",
+              "chatgpt.com / ai-assistant"
+            ],
+            "sessions": 3
+          },
+          {
+            "keys": [
+              "/ferry",
+              "cn.bing.com / referral"
+            ],
+            "sessions": 3
+          },
+          {
+            "keys": [
+              "/map",
+              "facebook.com / referral"
+            ],
+            "sessions": 3
+          },
+          {
+            "keys": [
+              "(not set)",
+              "(not set)"
+            ],
+            "sessions": 2
+          },
+          {
+            "keys": [
+              "(not set)",
+              "yahoo / organic"
+            ],
+            "sessions": 2
+          },
+          {
+            "keys": [
+              "/map",
+              "yahoo / organic"
+            ],
+            "sessions": 2
+          },
+          {
+            "keys": [
+              "(not set)",
+              "(direct) / (none)"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "(not set)",
+              "chatgpt.com / ai-assistant"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "(not set)",
+              "cn.bing.com / referral"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/",
+              "(not set)"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/",
+              "facebook.com / referral"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/",
+              "openai / (not set)"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/fare",
+              "(direct) / (none)"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/fare",
+              "openai / organic"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/fare",
+              "service.smt.docomo.ne.jp / referral"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/ferry",
+              "(not set)"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/without-car",
+              "(direct) / (none)"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/without-car",
+              "chatgpt.com / ai-assistant"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/without-car",
+              "openai / organic"
+            ],
+            "sessions": 1
+          }
+        ]
+      },
+      "previous": {
+        "period": {
+          "start": "2026-10-12",
+          "end": "2026-10-18"
+        },
+        "complete": true,
+        "rows": [
+          {
+            "keys": [
+              "/",
+              "google / organic"
+            ],
+            "sessions": 365
+          },
+          {
+            "keys": [
+              "/",
+              "(direct) / (none)"
+            ],
+            "sessions": 122
+          },
+          {
+            "keys": [
+              "/",
+              "yahoo / organic"
+            ],
+            "sessions": 69
+          },
+          {
+            "keys": [
+              "/",
+              "chatgpt.com / ai-assistant"
+            ],
+            "sessions": 54
+          },
+          {
+            "keys": [
+              "/fare",
+              "google / organic"
+            ],
+            "sessions": 53
+          },
+          {
+            "keys": [
+              "/",
+              "bing / organic"
+            ],
+            "sessions": 44
+          },
+          {
+            "keys": [
+              "/map",
+              "google / organic"
+            ],
+            "sessions": 21
+          },
+          {
+            "keys": [
+              "(not set)",
+              "google / organic"
+            ],
+            "sessions": 16
+          },
+          {
+            "keys": [
+              "/fare",
+              "yahoo / organic"
+            ],
+            "sessions": 10
+          },
+          {
+            "keys": [
+              "(not set)",
+              "(direct) / (none)"
+            ],
+            "sessions": 8
+          },
+          {
+            "keys": [
+              "/ferry",
+              "(direct) / (none)"
+            ],
+            "sessions": 8
+          },
+          {
+            "keys": [
+              "/map",
+              "map_popup / (not set)"
+            ],
+            "sessions": 8
+          },
+          {
+            "keys": [
+              "/fare",
+              "(direct) / (none)"
+            ],
+            "sessions": 7
+          },
+          {
+            "keys": [
+              "/",
+              "openai / organic"
+            ],
+            "sessions": 6
+          },
+          {
+            "keys": [
+              "/fare",
+              "chatgpt.com / ai-assistant"
+            ],
+            "sessions": 6
+          },
+          {
+            "keys": [
+              "/",
+              "map_popup / (not set)"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "/fare",
+              "bing / organic"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "/fare",
+              "map_popup / (not set)"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "/map",
+              "(direct) / (none)"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "/trekking",
+              "(direct) / (none)"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "/without-car",
+              "google / organic"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "(not set)",
+              "bing / organic"
+            ],
+            "sessions": 3
+          },
+          {
+            "keys": [
+              "/",
+              "duckduckgo / organic"
+            ],
+            "sessions": 3
+          },
+          {
+            "keys": [
+              "/",
+              "ecosia.org / organic"
+            ],
+            "sessions": 3
+          },
+          {
+            "keys": [
+              "(not set)",
+              "chatgpt.com / ai-assistant"
+            ],
+            "sessions": 2
+          },
+          {
+            "keys": [
+              "(not set)",
+              "map_popup / (not set)"
+            ],
+            "sessions": 2
+          },
+          {
+            "keys": [
+              "(not set)",
+              "yahoo / organic"
+            ],
+            "sessions": 2
+          },
+          {
+            "keys": [
+              "/",
+              "openai / (not set)"
+            ],
+            "sessions": 2
+          },
+          {
+            "keys": [
+              "/ferry",
+              "bing / organic"
+            ],
+            "sessions": 2
+          },
+          {
+            "keys": [
+              "/ferry",
+              "duckduckgo / organic"
+            ],
+            "sessions": 2
+          },
+          {
+            "keys": [
+              "/ferry",
+              "openai / organic"
+            ],
+            "sessions": 2
+          },
+          {
+            "keys": [
+              "/map",
+              "yahoo / organic"
+            ],
+            "sessions": 2
+          },
+          {
+            "keys": [
+              "(not set)",
+              "(not set)"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/",
+              "(not set)"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/",
+              "service.smt.docomo.ne.jp / referral"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/fare",
+              "duckduckgo / organic"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/fare",
+              "ecosia.org / organic"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/fare",
+              "m.facebook.com / referral"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/ferry",
+              "(not set)"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/ferry",
+              "chatgpt.com / ai-assistant"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/ferry",
+              "copilot.com / ai-assistant"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/ferry",
+              "ecosia.org / organic"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/ferry",
+              "openai / (not set)"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/without-car",
+              "duckduckgo / organic"
+            ],
+            "sessions": 1
+          }
+        ]
+      }
+    },
+    "gsc_pages": {
+      "current": {
+        "period": {
+          "start": "2026-10-19",
+          "end": "2026-10-25"
+        },
+        "rows": [
+          {
+            "keys": [
+              "https://yakushimabus.com/"
+            ],
+            "clicks": 255,
+            "impressions": 1416,
+            "ctr": 0.18008474576271186,
+            "position": 3.9505649717514126
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/fare/"
+            ],
+            "clicks": 47,
+            "impressions": 329,
+            "ctr": 0.14285714285714285,
+            "position": 5.261398176291793
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/?lang=ja"
+            ],
+            "clicks": 17,
+            "impressions": 503,
+            "ctr": 0.033797216699801194,
+            "position": 6.007952286282306
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/?lang=en"
+            ],
+            "clicks": 5,
+            "impressions": 65,
+            "ctr": 0.07692307692307693,
+            "position": 3.4923076923076923
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/fare/?lang=ja"
+            ],
+            "clicks": 2,
+            "impressions": 51,
+            "ctr": 0.0392156862745098,
+            "position": 5.196078431372549
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/map/"
+            ],
+            "clicks": 2,
+            "impressions": 50,
+            "ctr": 0.04,
+            "position": 8.9
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/fare/?lang=en"
+            ],
+            "clicks": 1,
+            "impressions": 6,
+            "ctr": 0.16666666666666666,
+            "position": 1.1666666666666667
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/guides/yakushima-where-to-stay/?lang=ja"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 12
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/map/?lang=en"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 1.3333333333333333
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/trekking/"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 9
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/without-car/?lang=ja"
+            ],
+            "clicks": 0,
+            "impressions": 176,
+            "ctr": 0,
+            "position": 9.193181818181818
+          }
+        ],
+        "complete": true,
+        "visible_only": false
+      },
+      "previous": {
+        "period": {
+          "start": "2026-10-12",
+          "end": "2026-10-18"
+        },
+        "rows": [
+          {
+            "keys": [
+              "https://yakushimabus.com/"
+            ],
+            "clicks": 288,
+            "impressions": 1619,
+            "ctr": 0.1778875849289685,
+            "position": 3.925262507720815
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/fare/"
+            ],
+            "clicks": 37,
+            "impressions": 281,
+            "ctr": 0.13167259786476868,
+            "position": 5.309608540925267
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/?lang=ja"
+            ],
+            "clicks": 20,
+            "impressions": 422,
+            "ctr": 0.04739336492890995,
+            "position": 5.599526066350711
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/?lang=en"
+            ],
+            "clicks": 4,
+            "impressions": 33,
+            "ctr": 0.12121212121212122,
+            "position": 3.787878787878788
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/fare/?lang=ja"
+            ],
+            "clicks": 4,
+            "impressions": 33,
+            "ctr": 0.12121212121212122,
+            "position": 3.6363636363636362
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/without-car/?lang=ja"
+            ],
+            "clicks": 4,
+            "impressions": 203,
+            "ctr": 0.019704433497536946,
+            "position": 9.22167487684729
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/fare/?lang=en"
+            ],
+            "clicks": 3,
+            "impressions": 4,
+            "ctr": 0.75,
+            "position": 2
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/map/"
+            ],
+            "clicks": 0,
+            "impressions": 40,
+            "ctr": 0,
+            "position": 12.075
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/map/?lang=ja"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 2
+          },
+          {
+            "keys": [
+              "https://yakushimabus.com/map/?lang=zh"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 6
+          }
+        ],
+        "complete": true,
+        "visible_only": false
+      }
+    },
+    "gsc_queries": {
+      "current": {
+        "period": {
+          "start": "2026-10-19",
+          "end": "2026-10-25"
+        },
+        "rows": [
+          {
+            "keys": [
+              "屋久島 バス時刻表 2026"
+            ],
+            "clicks": 51,
+            "impressions": 136,
+            "ctr": 0.375,
+            "position": 2.2573529411764706
+          },
+          {
+            "keys": [
+              "屋久島 バス 時刻表"
+            ],
+            "clicks": 33,
+            "impressions": 146,
+            "ctr": 0.22602739726027396,
+            "position": 2.4589041095890414
+          },
+          {
+            "keys": [
+              "屋久島 バス"
+            ],
+            "clicks": 18,
+            "impressions": 216,
+            "ctr": 0.08333333333333333,
+            "position": 3.7453703703703702
+          },
+          {
+            "keys": [
+              "屋久島バス時刻表"
+            ],
+            "clicks": 15,
+            "impressions": 70,
+            "ctr": 0.21428571428571427,
+            "position": 2.257142857142857
+          },
+          {
+            "keys": [
+              "屋久島バス"
+            ],
+            "clicks": 12,
+            "impressions": 54,
+            "ctr": 0.2222222222222222,
+            "position": 2.833333333333333
+          },
+          {
+            "keys": [
+              "屋久島 バス時刻表"
+            ],
+            "clicks": 11,
+            "impressions": 40,
+            "ctr": 0.275,
+            "position": 2.25
+          },
+          {
+            "keys": [
+              "屋久島 バス 料金 2026"
+            ],
+            "clicks": 10,
+            "impressions": 17,
+            "ctr": 0.5882352941176471,
+            "position": 1.4705882352941178
+          },
+          {
+            "keys": [
+              "屋久島交通 時刻表"
+            ],
+            "clicks": 9,
+            "impressions": 16,
+            "ctr": 0.5625,
+            "position": 1.8125
+          },
+          {
+            "keys": [
+              "屋久島 路線バス 時刻表"
+            ],
+            "clicks": 5,
+            "impressions": 16,
+            "ctr": 0.3125,
+            "position": 2.4375
+          },
+          {
+            "keys": [
+              "bus yakushima"
+            ],
+            "clicks": 4,
+            "impressions": 7,
+            "ctr": 0.5714285714285714,
+            "position": 2
+          },
+          {
+            "keys": [
+              "yakushima bus timetable 2026"
+            ],
+            "clicks": 4,
+            "impressions": 7,
+            "ctr": 0.5714285714285714,
+            "position": 1
+          },
+          {
+            "keys": [
+              "屋久島バス料金"
+            ],
+            "clicks": 4,
+            "impressions": 16,
+            "ctr": 0.25,
+            "position": 3.5625
+          },
+          {
+            "keys": [
+              "屋久島交通 バス"
+            ],
+            "clicks": 4,
+            "impressions": 30,
+            "ctr": 0.13333333333333333,
+            "position": 3
+          },
+          {
+            "keys": [
+              "屋久島交通 バス時刻表"
+            ],
+            "clicks": 4,
+            "impressions": 27,
+            "ctr": 0.14814814814814814,
+            "position": 2.4814814814814814
+          },
+          {
+            "keys": [
+              "屋久島交通バス時刻表"
+            ],
+            "clicks": 4,
+            "impressions": 20,
+            "ctr": 0.2,
+            "position": 2.2
+          },
+          {
+            "keys": [
+              "yakushima bus schedule"
+            ],
+            "clicks": 3,
+            "impressions": 10,
+            "ctr": 0.3,
+            "position": 2.7
+          },
+          {
+            "keys": [
+              "yakushima bus timetable"
+            ],
+            "clicks": 3,
+            "impressions": 10,
+            "ctr": 0.3,
+            "position": 1.5
+          },
+          {
+            "keys": [
+              "バス時刻表"
+            ],
+            "clicks": 3,
+            "impressions": 4,
+            "ctr": 0.75,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島路線バス時刻表"
+            ],
+            "clicks": 3,
+            "impressions": 9,
+            "ctr": 0.3333333333333333,
+            "position": 3.4444444444444446
+          },
+          {
+            "keys": [
+              "yakushima bus"
+            ],
+            "clicks": 2,
+            "impressions": 14,
+            "ctr": 0.14285714285714285,
+            "position": 3.642857142857143
+          },
+          {
+            "keys": [
+              "屋久島 バス 運賃"
+            ],
+            "clicks": 2,
+            "impressions": 8,
+            "ctr": 0.25,
+            "position": 3
+          },
+          {
+            "keys": [
+              "屋久島 バス路線図"
+            ],
+            "clicks": 2,
+            "impressions": 14,
+            "ctr": 0.14285714285714285,
+            "position": 4.785714285714286
+          },
+          {
+            "keys": [
+              "屋久島 空港 バス"
+            ],
+            "clicks": 2,
+            "impressions": 4,
+            "ctr": 0.5,
+            "position": 6
+          },
+          {
+            "keys": [
+              "屋久島 路線バス時刻表"
+            ],
+            "clicks": 2,
+            "impressions": 4,
+            "ctr": 0.5,
+            "position": 2.75
+          },
+          {
+            "keys": [
+              "屋久島バス 時刻表"
+            ],
+            "clicks": 2,
+            "impressions": 9,
+            "ctr": 0.2222222222222222,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島バス路線図"
+            ],
+            "clicks": 2,
+            "impressions": 12,
+            "ctr": 0.16666666666666666,
+            "position": 5.416666666666667
+          },
+          {
+            "keys": [
+              "屋久島交通"
+            ],
+            "clicks": 2,
+            "impressions": 34,
+            "ctr": 0.058823529411764705,
+            "position": 6.4411764705882355
+          },
+          {
+            "keys": [
+              "屋久島空港 バス 時刻表"
+            ],
+            "clicks": 2,
+            "impressions": 20,
+            "ctr": 0.1,
+            "position": 4.75
+          },
+          {
+            "keys": [
+              "屋久島路線バス"
+            ],
+            "clicks": 2,
+            "impressions": 7,
+            "ctr": 0.2857142857142857,
+            "position": 3.4285714285714284
+          },
+          {
+            "keys": [
+              "times"
+            ],
+            "clicks": 1,
+            "impressions": 1,
+            "ctr": 1,
+            "position": 6
+          },
+          {
+            "keys": [
+              "yakushima kotsu"
+            ],
+            "clicks": 1,
+            "impressions": 3,
+            "ctr": 0.3333333333333333,
+            "position": 3
+          },
+          {
+            "keys": [
+              "yakushima kotsu bus"
+            ],
+            "clicks": 1,
+            "impressions": 3,
+            "ctr": 0.3333333333333333,
+            "position": 3.6666666666666665
+          },
+          {
+            "keys": [
+              "yakushima map"
+            ],
+            "clicks": 1,
+            "impressions": 4,
+            "ctr": 0.25,
+            "position": 6
+          },
+          {
+            "keys": [
+              "バス時刻表 屋久島"
+            ],
+            "clicks": 1,
+            "impressions": 2,
+            "ctr": 0.5,
+            "position": 2.5
+          },
+          {
+            "keys": [
+              "屋久島 バス 料金"
+            ],
+            "clicks": 1,
+            "impressions": 19,
+            "ctr": 0.05263157894736842,
+            "position": 3.6315789473684212
+          },
+          {
+            "keys": [
+              "屋久島 バス 路線図"
+            ],
+            "clicks": 1,
+            "impressions": 31,
+            "ctr": 0.03225806451612903,
+            "position": 6.032258064516129
+          },
+          {
+            "keys": [
+              "屋久島交通 バス 料金"
+            ],
+            "clicks": 1,
+            "impressions": 6,
+            "ctr": 0.16666666666666666,
+            "position": 3.3333333333333335
+          },
+          {
+            "keys": [
+              "屋久島交通 運賃"
+            ],
+            "clicks": 1,
+            "impressions": 10,
+            "ctr": 0.1,
+            "position": 2.6
+          },
+          {
+            "keys": [
+              "屋久島空港 バス"
+            ],
+            "clicks": 1,
+            "impressions": 15,
+            "ctr": 0.06666666666666667,
+            "position": 7.266666666666667
+          },
+          {
+            "keys": [
+              "屋久島空港から安房 バス"
+            ],
+            "clicks": 1,
+            "impressions": 14,
+            "ctr": 0.07142857142857142,
+            "position": 6.857142857142857
+          },
+          {
+            "keys": [
+              "bus stop near me"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 1
+          },
+          {
+            "keys": [
+              "buses october 25"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 1
+          },
+          {
+            "keys": [
+              "yakushima"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 2
+          },
+          {
+            "keys": [
+              "yakushima bus map"
+            ],
+            "clicks": 0,
+            "impressions": 7,
+            "ctr": 0,
+            "position": 5.428571428571429
+          },
+          {
+            "keys": [
+              "yakushima buses"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 3
+          },
+          {
+            "keys": [
+              "yakushima island map"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 8.333333333333332
+          },
+          {
+            "keys": [
+              "yakushima karte"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 10
+          },
+          {
+            "keys": [
+              "yakushima mapa"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 9
+          },
+          {
+            "keys": [
+              "yakushima public transport"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 5.5
+          },
+          {
+            "keys": [
+              "yakushima trail map"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 10
+          },
+          {
+            "keys": [
+              "お願いします"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 13
+          },
+          {
+            "keys": [
+              "まつ ばん だ 交通バス時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 11
+          },
+          {
+            "keys": [
+              "バス"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 4
+          },
+          {
+            "keys": [
+              "バス 屋久島"
+            ],
+            "clicks": 0,
+            "impressions": 9,
+            "ctr": 0,
+            "position": 3.5555555555555554
+          },
+          {
+            "keys": [
+              "バス 時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 1
+          },
+          {
+            "keys": [
+              "バススケジュール"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 9
+          },
+          {
+            "keys": [
+              "バス乗りたい"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 8
+          },
+          {
+            "keys": [
+              "バス時刻"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 19
+          },
+          {
+            "keys": [
+              "夜行バス 屋久島"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 15
+          },
+          {
+            "keys": [
+              "安房 宮之浦 バス"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 7
+          },
+          {
+            "keys": [
+              "安房 宮之浦 バス時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 7
+          },
+          {
+            "keys": [
+              "安房から屋久杉自然館 バス"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 10
+          },
+          {
+            "keys": [
+              "安房港 バス停"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 15.5
+          },
+          {
+            "keys": [
+              "宮之浦 から 安房 バス時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 4,
+            "ctr": 0,
+            "position": 9
+          },
+          {
+            "keys": [
+              "宮之浦 バス"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 8.5
+          },
+          {
+            "keys": [
+              "宮之浦 安房"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 12
+          },
+          {
+            "keys": [
+              "宮之浦 安房 バス"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 8.5
+          },
+          {
+            "keys": [
+              "宮之浦 安房 バス 料金"
+            ],
+            "clicks": 0,
+            "impressions": 5,
+            "ctr": 0,
+            "position": 6.6
+          },
+          {
+            "keys": [
+              "宮之浦から安房 バス"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 10
+          },
+          {
+            "keys": [
+              "宮之浦港 バス"
+            ],
+            "clicks": 0,
+            "impressions": 14,
+            "ctr": 0,
+            "position": 7.785714285714286
+          },
+          {
+            "keys": [
+              "宮之浦港 バス 時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 5
+          },
+          {
+            "keys": [
+              "宮之浦港から屋久島空港 バス"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 3.3333333333333335
+          },
+          {
+            "keys": [
+              "宮浦港 バス 時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 4,
+            "ctr": 0,
+            "position": 8.75
+          },
+          {
+            "keys": [
+              "屋久島 バス 乗り放題"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 19
+          },
+          {
+            "keys": [
+              "屋久島 バス 料金 表"
+            ],
+            "clicks": 0,
+            "impressions": 6,
+            "ctr": 0,
+            "position": 4.5
+          },
+          {
+            "keys": [
+              "屋久島 バス 時刻表 2026"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島 バス 運行状況"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 3
+          },
+          {
+            "keys": [
+              "屋久島 バス乗り放題"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 10
+          },
+          {
+            "keys": [
+              "屋久島 バス停"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 9.666666666666666
+          },
+          {
+            "keys": [
+              "屋久島 バス運行状況"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 5
+          },
+          {
+            "keys": [
+              "屋久島 交通"
+            ],
+            "clicks": 0,
+            "impressions": 7,
+            "ctr": 0,
+            "position": 6
+          },
+          {
+            "keys": [
+              "屋久島 地図"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 9
+          },
+          {
+            "keys": [
+              "屋久島 宮古島"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 20
+          },
+          {
+            "keys": [
+              "屋久島 日帰り 車なし"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 10
+          },
+          {
+            "keys": [
+              "屋久島 生き方"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 62
+          },
+          {
+            "keys": [
+              "屋久島 登山バス時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 14
+          },
+          {
+            "keys": [
+              "屋久島 空港 から 宮之浦 バス 料金"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 7.5
+          },
+          {
+            "keys": [
+              "屋久島 空港 から 宮之浦港 バス"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 3
+          },
+          {
+            "keys": [
+              "屋久島 空港 安房 バス時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 5,
+            "ctr": 0,
+            "position": 5.6
+          },
+          {
+            "keys": [
+              "屋久島 観光 マップ"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 27
+          },
+          {
+            "keys": [
+              "屋久島 路線バス"
+            ],
+            "clicks": 0,
+            "impressions": 15,
+            "ctr": 0,
+            "position": 4.866666666666667
+          },
+          {
+            "keys": [
+              "屋久島 路線バス 路線図"
+            ],
+            "clicks": 0,
+            "impressions": 7,
+            "ctr": 0,
+            "position": 7.142857142857143
+          },
+          {
+            "keys": [
+              "屋久島ゆうらんバス"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 29
+          },
+          {
+            "keys": [
+              "屋久島バス停"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 7
+          },
+          {
+            "keys": [
+              "屋久島マップ"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 8
+          },
+          {
+            "keys": [
+              "屋久島交通バス"
+            ],
+            "clicks": 0,
+            "impressions": 7,
+            "ctr": 0,
+            "position": 2.7142857142857144
+          },
+          {
+            "keys": [
+              "屋久島巴士時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 3
+          },
+          {
+            "keys": [
+              "屋久島空港 から 安房 バス"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 5.666666666666667
+          },
+          {
+            "keys": [
+              "屋久島空港 から 宮之浦 バス時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 9,
+            "ctr": 0,
+            "position": 8.777777777777779
+          },
+          {
+            "keys": [
+              "屋久島空港 バス停"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 8
+          },
+          {
+            "keys": [
+              "屋久島空港 バス時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 10,
+            "ctr": 0,
+            "position": 5.4
+          },
+          {
+            "keys": [
+              "屋久島空港 安房 バス 料金"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 9
+          },
+          {
+            "keys": [
+              "屋久島空港 宮之浦港 バス"
+            ],
+            "clicks": 0,
+            "impressions": 4,
+            "ctr": 0,
+            "position": 8.25
+          },
+          {
+            "keys": [
+              "屋久島空港から宮之浦 バス"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 11
+          },
+          {
+            "keys": [
+              "屋久島空港から宮之浦港 バス"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 10
+          },
+          {
+            "keys": [
+              "屋久島観光地図"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 9
+          },
+          {
+            "keys": [
+              "巴士班次"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 37
+          },
+          {
+            "keys": [
+              "時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 4
+          },
+          {
+            "keys": [
+              "金額はいくらになりますか"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 7
+          }
+        ],
+        "complete": true,
+        "visible_only": true
+      },
+      "previous": {
+        "period": {
+          "start": "2026-10-12",
+          "end": "2026-10-18"
+        },
+        "rows": [
+          {
+            "keys": [
+              "屋久島 バス時刻表 2026"
+            ],
+            "clicks": 51,
+            "impressions": 126,
+            "ctr": 0.40476190476190477,
+            "position": 1.9603174603174605
+          },
+          {
+            "keys": [
+              "屋久島 バス 時刻表"
+            ],
+            "clicks": 43,
+            "impressions": 166,
+            "ctr": 0.25903614457831325,
+            "position": 2.0602409638554215
+          },
+          {
+            "keys": [
+              "屋久島 バス"
+            ],
+            "clicks": 37,
+            "impressions": 292,
+            "ctr": 0.1267123287671233,
+            "position": 2.9863013698630136
+          },
+          {
+            "keys": [
+              "屋久島バス時刻表"
+            ],
+            "clicks": 13,
+            "impressions": 62,
+            "ctr": 0.20967741935483872,
+            "position": 2.0161290322580645
+          },
+          {
+            "keys": [
+              "屋久島 バス 料金 2026"
+            ],
+            "clicks": 12,
+            "impressions": 16,
+            "ctr": 0.75,
+            "position": 1.3125
+          },
+          {
+            "keys": [
+              "屋久島バス"
+            ],
+            "clicks": 11,
+            "impressions": 78,
+            "ctr": 0.14102564102564102,
+            "position": 2.9615384615384617
+          },
+          {
+            "keys": [
+              "屋久島 バス時刻表"
+            ],
+            "clicks": 10,
+            "impressions": 46,
+            "ctr": 0.21739130434782608,
+            "position": 2.1956521739130435
+          },
+          {
+            "keys": [
+              "yakushima bus timetable 2026"
+            ],
+            "clicks": 8,
+            "impressions": 10,
+            "ctr": 0.8,
+            "position": 1
+          },
+          {
+            "keys": [
+              "屋久島交通 時刻表"
+            ],
+            "clicks": 8,
+            "impressions": 17,
+            "ctr": 0.47058823529411764,
+            "position": 1.1764705882352942
+          },
+          {
+            "keys": [
+              "屋久島交通 バス時刻表"
+            ],
+            "clicks": 7,
+            "impressions": 28,
+            "ctr": 0.25,
+            "position": 1.9642857142857144
+          },
+          {
+            "keys": [
+              "屋久島交通バス時刻表"
+            ],
+            "clicks": 7,
+            "impressions": 37,
+            "ctr": 0.1891891891891892,
+            "position": 1.864864864864865
+          },
+          {
+            "keys": [
+              "yakushima bus timetable"
+            ],
+            "clicks": 5,
+            "impressions": 10,
+            "ctr": 0.5,
+            "position": 2.4
+          },
+          {
+            "keys": [
+              "屋久島 バス 時刻表 2026"
+            ],
+            "clicks": 5,
+            "impressions": 10,
+            "ctr": 0.5,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島交通"
+            ],
+            "clicks": 5,
+            "impressions": 68,
+            "ctr": 0.07352941176470588,
+            "position": 6.779411764705882
+          },
+          {
+            "keys": [
+              "屋久島 バス 料金"
+            ],
+            "clicks": 4,
+            "impressions": 25,
+            "ctr": 0.16,
+            "position": 2.2800000000000002
+          },
+          {
+            "keys": [
+              "yakushima bus"
+            ],
+            "clicks": 3,
+            "impressions": 11,
+            "ctr": 0.2727272727272727,
+            "position": 3.4545454545454546
+          },
+          {
+            "keys": [
+              "yakushima bus schedule"
+            ],
+            "clicks": 3,
+            "impressions": 8,
+            "ctr": 0.375,
+            "position": 2.5
+          },
+          {
+            "keys": [
+              "バス時刻表 屋久島"
+            ],
+            "clicks": 3,
+            "impressions": 8,
+            "ctr": 0.375,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島 バス 料金 表"
+            ],
+            "clicks": 3,
+            "impressions": 9,
+            "ctr": 0.3333333333333333,
+            "position": 3.111111111111111
+          },
+          {
+            "keys": [
+              "屋久島 路線バス時刻表"
+            ],
+            "clicks": 3,
+            "impressions": 6,
+            "ctr": 0.5,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島空港 バス時刻表"
+            ],
+            "clicks": 3,
+            "impressions": 7,
+            "ctr": 0.42857142857142855,
+            "position": 4
+          },
+          {
+            "keys": [
+              "屋久島路線バス時刻表"
+            ],
+            "clicks": 3,
+            "impressions": 6,
+            "ctr": 0.5,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島 バス時刻表 最新"
+            ],
+            "clicks": 2,
+            "impressions": 4,
+            "ctr": 0.5,
+            "position": 1.25
+          },
+          {
+            "keys": [
+              "屋久島 路線バス 時刻表"
+            ],
+            "clicks": 2,
+            "impressions": 12,
+            "ctr": 0.16666666666666666,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島バス料金"
+            ],
+            "clicks": 2,
+            "impressions": 4,
+            "ctr": 0.5,
+            "position": 2.25
+          },
+          {
+            "keys": [
+              "屋久島交通 バス"
+            ],
+            "clicks": 2,
+            "impressions": 43,
+            "ctr": 0.046511627906976744,
+            "position": 2.7674418604651163
+          },
+          {
+            "keys": [
+              "bus yakushima"
+            ],
+            "clicks": 1,
+            "impressions": 5,
+            "ctr": 0.2,
+            "position": 2.8
+          },
+          {
+            "keys": [
+              "yakushima kotsu bus"
+            ],
+            "clicks": 1,
+            "impressions": 1,
+            "ctr": 1,
+            "position": 2
+          },
+          {
+            "keys": [
+              "バス 屋久島"
+            ],
+            "clicks": 1,
+            "impressions": 8,
+            "ctr": 0.125,
+            "position": 3.125
+          },
+          {
+            "keys": [
+              "バスです"
+            ],
+            "clicks": 1,
+            "impressions": 1,
+            "ctr": 1,
+            "position": 4
+          },
+          {
+            "keys": [
+              "安房 宮之浦 バス時刻表"
+            ],
+            "clicks": 1,
+            "impressions": 8,
+            "ctr": 0.125,
+            "position": 5.875
+          },
+          {
+            "keys": [
+              "屋久島 路線バス"
+            ],
+            "clicks": 1,
+            "impressions": 17,
+            "ctr": 0.058823529411764705,
+            "position": 5.235294117647059
+          },
+          {
+            "keys": [
+              "屋久島ゆったり満喫乗車券"
+            ],
+            "clicks": 1,
+            "impressions": 2,
+            "ctr": 0.5,
+            "position": 15
+          },
+          {
+            "keys": [
+              "屋久島バス 時刻表"
+            ],
+            "clicks": 1,
+            "impressions": 10,
+            "ctr": 0.1,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島バス路線図"
+            ],
+            "clicks": 1,
+            "impressions": 9,
+            "ctr": 0.1111111111111111,
+            "position": 6.555555555555555
+          },
+          {
+            "keys": [
+              "屋久島交通 バス 時刻表"
+            ],
+            "clicks": 1,
+            "impressions": 1,
+            "ctr": 1,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島交通 運賃"
+            ],
+            "clicks": 1,
+            "impressions": 8,
+            "ctr": 0.125,
+            "position": 4.375
+          },
+          {
+            "keys": [
+              "屋久島巴士時刻表"
+            ],
+            "clicks": 1,
+            "impressions": 3,
+            "ctr": 0.3333333333333333,
+            "position": 5.666666666666667
+          },
+          {
+            "keys": [
+              "屋久島空港 バス 時刻表"
+            ],
+            "clicks": 1,
+            "impressions": 21,
+            "ctr": 0.047619047619047616,
+            "position": 4.190476190476191
+          },
+          {
+            "keys": [
+              "屋久島路線バス"
+            ],
+            "clicks": 1,
+            "impressions": 7,
+            "ctr": 0.14285714285714285,
+            "position": 4.428571428571429
+          },
+          {
+            "keys": [
+              "時刻表"
+            ],
+            "clicks": 1,
+            "impressions": 2,
+            "ctr": 0.5,
+            "position": 2.5
+          },
+          {
+            "keys": [
+              "2026年10月"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 2
+          },
+          {
+            "keys": [
+              "bus schedule"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 5
+          },
+          {
+            "keys": [
+              "by bus"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 1
+          },
+          {
+            "keys": [
+              "iya"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 7
+          },
+          {
+            "keys": [
+              "jal3746"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 3
+          },
+          {
+            "keys": [
+              "kolik to stojí?"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 1
+          },
+          {
+            "keys": [
+              "map yakushima"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 9
+          },
+          {
+            "keys": [
+              "no rental car"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 1
+          },
+          {
+            "keys": [
+              "sobre las 15:00"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 4
+          },
+          {
+            "keys": [
+              "timetable"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 7
+          },
+          {
+            "keys": [
+              "yakushima bus map"
+            ],
+            "clicks": 0,
+            "impressions": 6,
+            "ctr": 0,
+            "position": 4.333333333333334
+          },
+          {
+            "keys": [
+              "バス"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 9
+          },
+          {
+            "keys": [
+              "バスの時刻を教えて"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 7
+          },
+          {
+            "keys": [
+              "バスの時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 5.5
+          },
+          {
+            "keys": [
+              "レンタカーない"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 1
+          },
+          {
+            "keys": [
+              "交通機関の運行状況"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 2
+          },
+          {
+            "keys": [
+              "合庁前 バス停"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 12
+          },
+          {
+            "keys": [
+              "夜行バス 屋久島"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 14
+          },
+          {
+            "keys": [
+              "安房 宮之浦 バス"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 11
+          },
+          {
+            "keys": [
+              "宮之浦 から 安房 バス時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 4,
+            "ctr": 0,
+            "position": 6.75
+          },
+          {
+            "keys": [
+              "宮之浦 バス"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 6.333333333333333
+          },
+          {
+            "keys": [
+              "宮之浦 安房 バス"
+            ],
+            "clicks": 0,
+            "impressions": 6,
+            "ctr": 0,
+            "position": 9.166666666666666
+          },
+          {
+            "keys": [
+              "宮之浦 安房 バス 料金"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 6
+          },
+          {
+            "keys": [
+              "宮之浦から安房 バス"
+            ],
+            "clicks": 0,
+            "impressions": 12,
+            "ctr": 0,
+            "position": 5.416666666666667
+          },
+          {
+            "keys": [
+              "宮之浦港 バス"
+            ],
+            "clicks": 0,
+            "impressions": 9,
+            "ctr": 0,
+            "position": 8.555555555555555
+          },
+          {
+            "keys": [
+              "宮之浦港 バス 時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 7,
+            "ctr": 0,
+            "position": 3.2857142857142856
+          },
+          {
+            "keys": [
+              "宮之浦港から安房港 バス"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 3.5
+          },
+          {
+            "keys": [
+              "宮之浦港から屋久島空港 バス"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 18
+          },
+          {
+            "keys": [
+              "宮浦港 バス 時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 7
+          },
+          {
+            "keys": [
+              "屋久島 バス 路線 図"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 4
+          },
+          {
+            "keys": [
+              "屋久島 バス 路線図"
+            ],
+            "clicks": 0,
+            "impressions": 28,
+            "ctr": 0,
+            "position": 6.107142857142857
+          },
+          {
+            "keys": [
+              "屋久島 バス 運行状況"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島 バス 運賃"
+            ],
+            "clicks": 0,
+            "impressions": 5,
+            "ctr": 0,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島 バス停"
+            ],
+            "clicks": 0,
+            "impressions": 4,
+            "ctr": 0,
+            "position": 9
+          },
+          {
+            "keys": [
+              "屋久島 バス停 マップ"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 11
+          },
+          {
+            "keys": [
+              "屋久島 バス停 地図"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 8.333333333333332
+          },
+          {
+            "keys": [
+              "屋久島 バス路線図"
+            ],
+            "clicks": 0,
+            "impressions": 8,
+            "ctr": 0,
+            "position": 5.125
+          },
+          {
+            "keys": [
+              "屋久島 バス運行状況"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 2.5
+          },
+          {
+            "keys": [
+              "屋久島 マップ"
+            ],
+            "clicks": 0,
+            "impressions": 4,
+            "ctr": 0,
+            "position": 9
+          },
+          {
+            "keys": [
+              "屋久島 交通"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 2
+          },
+          {
+            "keys": [
+              "屋久島 地図"
+            ],
+            "clicks": 0,
+            "impressions": 4,
+            "ctr": 0,
+            "position": 11
+          },
+          {
+            "keys": [
+              "屋久島 地図 観光"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 9.5
+          },
+          {
+            "keys": [
+              "屋久島 日帰り 車なし"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 11
+          },
+          {
+            "keys": [
+              "屋久島 空港 から 宮之浦 バス 料金"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 4.333333333333334
+          },
+          {
+            "keys": [
+              "屋久島 空港 バス"
+            ],
+            "clicks": 0,
+            "impressions": 6,
+            "ctr": 0,
+            "position": 5.5
+          },
+          {
+            "keys": [
+              "屋久島 空港 安房 バス時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 8,
+            "ctr": 0,
+            "position": 6.25
+          },
+          {
+            "keys": [
+              "屋久島 観光 車無し"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 10
+          },
+          {
+            "keys": [
+              "屋久島 路線バス 路線図"
+            ],
+            "clicks": 0,
+            "impressions": 5,
+            "ctr": 0,
+            "position": 7.8
+          },
+          {
+            "keys": [
+              "屋久島の地図"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 7
+          },
+          {
+            "keys": [
+              "屋久島バス停"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 11
+          },
+          {
+            "keys": [
+              "屋久島マップ"
+            ],
+            "clicks": 0,
+            "impressions": 6,
+            "ctr": 0,
+            "position": 13.166666666666666
+          },
+          {
+            "keys": [
+              "屋久島交通 バス 料金"
+            ],
+            "clicks": 0,
+            "impressions": 4,
+            "ctr": 0,
+            "position": 5.25
+          },
+          {
+            "keys": [
+              "屋久島交通バス"
+            ],
+            "clicks": 0,
+            "impressions": 5,
+            "ctr": 0,
+            "position": 2.6
+          },
+          {
+            "keys": [
+              "屋久島地図"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 11
+          },
+          {
+            "keys": [
+              "屋久島空港 から 安房 バス"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 6.666666666666667
+          },
+          {
+            "keys": [
+              "屋久島空港 から 宮之浦 バス時刻表"
+            ],
+            "clicks": 0,
+            "impressions": 8,
+            "ctr": 0,
+            "position": 7.875
+          },
+          {
+            "keys": [
+              "屋久島空港 バス"
+            ],
+            "clicks": 0,
+            "impressions": 25,
+            "ctr": 0,
+            "position": 7.88
+          },
+          {
+            "keys": [
+              "屋久島空港から安房 バス"
+            ],
+            "clicks": 0,
+            "impressions": 6,
+            "ctr": 0,
+            "position": 7.666666666666667
+          },
+          {
+            "keys": [
+              "屋久島観光マップ"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 26
+          },
+          {
+            "keys": [
+              "時刻表は？"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 9.5
+          },
+          {
+            "keys": [
+              "時刻表を出して"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 7
+          },
+          {
+            "keys": [
+              "路線バス"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 1
+          }
+        ],
+        "complete": true,
+        "visible_only": true
+      }
+    },
+    "ga4_aligned_source": {
+      "current": {
+        "period": {
+          "start": "2026-10-19",
+          "end": "2026-10-25"
+        },
+        "complete": true,
+        "rows": [
+          {
+            "keys": [
+              "google / organic"
+            ],
+            "sessions": 418
+          },
+          {
+            "keys": [
+              "chatgpt.com / ai-assistant"
+            ],
+            "sessions": 81
+          },
+          {
+            "keys": [
+              "(direct) / (none)"
+            ],
+            "sessions": 76
+          },
+          {
+            "keys": [
+              "yahoo / organic"
+            ],
+            "sessions": 62
+          },
+          {
+            "keys": [
+              "bing / organic"
+            ],
+            "sessions": 52
+          },
+          {
+            "keys": [
+              "map_popup / (not set)"
+            ],
+            "sessions": 32
+          },
+          {
+            "keys": [
+              "service.smt.docomo.ne.jp / referral"
+            ],
+            "sessions": 10
+          },
+          {
+            "keys": [
+              "openai / organic"
+            ],
+            "sessions": 9
+          },
+          {
+            "keys": [
+              "ecosia.org / organic"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "(not set)"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "cn.bing.com / referral"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "facebook.com / referral"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "m.facebook.com / referral"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "openai / (not set)"
+            ],
+            "sessions": 1
+          }
+        ]
+      },
+      "previous": {
+        "period": {
+          "start": "2026-10-12",
+          "end": "2026-10-18"
+        },
+        "complete": true,
+        "rows": [
+          {
+            "keys": [
+              "google / organic"
+            ],
+            "sessions": 458
+          },
+          {
+            "keys": [
+              "(direct) / (none)"
+            ],
+            "sessions": 154
+          },
+          {
+            "keys": [
+              "yahoo / organic"
+            ],
+            "sessions": 83
+          },
+          {
+            "keys": [
+              "chatgpt.com / ai-assistant"
+            ],
+            "sessions": 63
+          },
+          {
+            "keys": [
+              "bing / organic"
+            ],
+            "sessions": 54
+          },
+          {
+            "keys": [
+              "map_popup / (not set)"
+            ],
+            "sessions": 20
+          },
+          {
+            "keys": [
+              "openai / organic"
+            ],
+            "sessions": 8
+          },
+          {
+            "keys": [
+              "duckduckgo / organic"
+            ],
+            "sessions": 7
+          },
+          {
+            "keys": [
+              "ecosia.org / organic"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "(not set)"
+            ],
+            "sessions": 3
+          },
+          {
+            "keys": [
+              "openai / (not set)"
+            ],
+            "sessions": 3
+          },
+          {
+            "keys": [
+              "copilot.com / ai-assistant"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "m.facebook.com / referral"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "service.smt.docomo.ne.jp / referral"
+            ],
+            "sessions": 1
+          }
+        ]
+      }
+    },
+    "page_checks": [
+      {
+        "page": "/",
+        "url": "https://yakushimabus.com/",
+        "status": 200,
+        "noindex": false,
+        "canonical": "https://yakushimabus.com/"
+      },
+      {
+        "page": "/fare",
+        "url": "https://yakushimabus.com/fare/",
+        "status": 200,
+        "noindex": false,
+        "canonical": "https://yakushimabus.com/fare/"
+      }
+    ]
+  },
+  "daily_changes": [
+    {
+      "source": "GA4",
+      "metric": "活跃用户·日环比",
+      "current": 57,
+      "previous": 62,
+      "change": "-8.1%",
+      "window": "2026-10-25 对 2026-10-24（America/Los_Angeles）",
+      "status": "可比较"
+    },
+    {
+      "source": "GA4",
+      "metric": "会话·日环比",
+      "current": 85,
+      "previous": 89,
+      "change": "-4.5%",
+      "window": "2026-10-25 对 2026-10-24（America/Los_Angeles）",
+      "status": "可比较"
+    },
+    {
+      "source": "GA4",
+      "metric": "页面浏览·日环比",
+      "current": 168,
+      "previous": 134,
+      "change": "+25.4%",
+      "window": "2026-10-25 对 2026-10-24（America/Los_Angeles）",
+      "status": "可比较"
+    },
+    {
+      "source": "GA4",
+      "metric": "参与率·日环比",
+      "current": 72.9,
+      "previous": 66.3,
+      "change": "+6.60个百分点",
+      "window": "2026-10-25 对 2026-10-24（America/Los_Angeles）",
+      "status": "可比较"
+    },
+    {
+      "source": "GA4",
+      "metric": "活跃用户·周环比",
+      "current": 479,
+      "previous": 549,
+      "change": "-12.8%",
+      "window": "2026-10-19~2026-10-25 对 2026-10-12~2026-10-18",
+      "status": "可比较"
+    },
+    {
+      "source": "GA4",
+      "metric": "会话·周环比",
+      "current": 762,
+      "previous": 860,
+      "change": "-11.4%",
+      "window": "2026-10-19~2026-10-25 对 2026-10-12~2026-10-18",
+      "status": "可比较"
+    },
+    {
+      "source": "GA4",
+      "metric": "自然搜索会话·周环比",
+      "current": 549,
+      "previous": 614,
+      "change": "-10.6%",
+      "window": "2026-10-19~2026-10-25 对 2026-10-12~2026-10-18",
+      "status": "可比较"
+    },
+    {
+      "source": "GA4",
+      "metric": "AI渠道活跃用户·周环比",
+      "current": 68,
+      "previous": 45,
+      "change": "+51.1%",
+      "window": "2026-10-19~2026-10-25 对 2026-10-12~2026-10-18",
+      "status": "可比较"
+    },
+    {
+      "source": "GSC",
+      "metric": "搜索点击·日环比",
+      "current": 30,
+      "previous": 36,
+      "change": "-16.7%",
+      "window": "2026-10-25~2026-10-25 对 2026-10-24~2026-10-24（GSC final）",
+      "status": "可比较"
+    },
+    {
+      "source": "GSC",
+      "metric": "搜索展示·日环比",
+      "current": 334,
+      "previous": 263,
+      "change": "+27.0%",
+      "window": "2026-10-25~2026-10-25 对 2026-10-24~2026-10-24（GSC final）",
+      "status": "可比较"
+    },
+    {
+      "source": "GSC",
+      "metric": "搜索CTR·日环比",
+      "current": 8.98,
+      "previous": 13.69,
+      "change": "-4.71个百分点",
+      "window": "2026-10-25~2026-10-25 对 2026-10-24~2026-10-24（GSC final）",
+      "status": "可比较"
+    },
+    {
+      "source": "GSC",
+      "metric": "搜索点击·周环比",
+      "current": 326,
+      "previous": 353,
+      "change": "-7.6%",
+      "window": "2026-10-19~2026-10-25 对 2026-10-12~2026-10-18（GSC final）",
+      "status": "可比较"
+    },
+    {
+      "source": "GSC",
+      "metric": "搜索展示·周环比",
+      "current": 2025,
+      "previous": 2124,
+      "change": "-4.7%",
+      "window": "2026-10-19~2026-10-25 对 2026-10-12~2026-10-18（GSC final）",
+      "status": "可比较"
+    },
+    {
+      "source": "GSC",
+      "metric": "搜索CTR·周环比",
+      "current": 16.1,
+      "previous": 16.62,
+      "change": "-0.52个百分点",
+      "window": "2026-10-19~2026-10-25 对 2026-10-12~2026-10-18（GSC final）",
+      "status": "可比较"
+    }
+  ],
+  "integrations": [
+    {
+      "service": "GA4",
+      "status": "已取数",
+      "evidence": "属性538426834；时区America/Los_Angeles；完整日2026-10-25",
+      "action": "按完整周期比较，不把活跃用户直接称作真人"
+    },
+    {
+      "service": "GSC",
+      "status": "已取数",
+      "evidence": "final数据截至2026-10-25；本站已授权",
+      "action": "关注点击、展示、CTR及查询词/页面"
+    },
+    {
+      "service": "AdSense",
+      "status": "代码检测通过；收益未接入",
+      "evidence": "首页脚本=True；ads.txt HTTP200；发布商匹配=True；未取得后台审核/收益数据",
+      "action": "后台确认Ready与Authorized；收益API未授权，金额留空，不填0"
+    },
+    {
+      "service": "Clarity",
+      "status": "前端代码存在；后台未取数",
+      "evidence": "仅检测公开首页，不代表录屏/热图已产生",
+      "action": "后台复核录屏、热图和异常点击，当前不编造数量"
+    },
+    {
+      "service": "Klook等分销",
+      "status": "GA4点击可查；订单收益未接入",
+      "evidence": "最新完整日affiliate_click=2；不等同订单或佣金",
+      "action": "看分销点击变化；订单/佣金必须来自平台后台"
+    }
+  ],
+  "analysis": {
+    "card_findings": [
+      "首页的减少细分：直接访问 122→45次；Google搜索 365→333次。",
+      "入口页减少最多：首页 674→553次；/fare 89→71次。"
+    ],
+    "judgment": "Google同周期（2026-10-19~2026-10-25 对 2026-10-12~2026-10-18）：点击353→326，访问458→418；点击与访问口径不同，不能直接归因排名。",
+    "findings": [
+      "本周活跃访客549→479（-12.8%）。",
+      "减少集中在直接访问154→76次、自然搜索614→549次；这里比较访问次数，不把各渠道人数相加。",
+      "入口页减少最多：首页 674→553次；/fare 89→71次。",
+      "Google搜索点击353→326；点击和访问次数口径不同，不能直接等同。",
+      "Google点击下降最多的页面：/ 312→277。",
+      "可见搜索词中下降最多：“屋久島 バス” 37→18次点击；不含隐藏词。",
+      "对齐GSC统计周后，GA4的Google自然搜索访问458→418次。",
+      "首页的减少细分：直接访问 122→45次；Google搜索 365→333次。"
+    ],
+    "agent_actions": [
+      "已核验首页、/fare可打开，未见禁止收录标记。",
+      "已自动对比两周渠道、入口页和可见搜索词；后续每日按相同窗口继续核对。"
+    ],
+    "user_actions": [],
+    "evidence": [
+      {
+        "key": "Direct",
+        "current": 76,
+        "previous": 154,
+        "delta": -78,
+        "source": "GA4 channel",
+        "metric": "sessions"
+      },
+      {
+        "key": "Organic Search",
+        "current": 549,
+        "previous": 614,
+        "delta": -65,
+        "source": "GA4 channel",
+        "metric": "sessions"
+      },
+      {
+        "key": "/",
+        "current": 553,
+        "previous": 674,
+        "delta": -121,
+        "source": "GA4 landing",
+        "metric": "sessions"
+      },
+      {
+        "key": "/fare",
+        "current": 71,
+        "previous": 89,
+        "delta": -18,
+        "source": "GA4 landing",
+        "metric": "sessions"
+      },
+      {
+        "key": "/",
+        "current": 277,
+        "previous": 312,
+        "delta": -35,
+        "source": "GSC page",
+        "metric": "clicks"
+      },
+      {
+        "key": "/without-car",
+        "current": 0,
+        "previous": 4,
+        "delta": -4,
+        "source": "GSC page",
+        "metric": "clicks"
+      },
+      {
+        "key": "/map",
+        "current": 2,
+        "previous": 0,
+        "delta": 2,
+        "source": "GSC page",
+        "metric": "clicks"
+      },
+      {
+        "key": "/fare",
+        "current": 50,
+        "previous": 44,
+        "delta": 6,
+        "source": "GSC page",
+        "metric": "clicks"
+      },
+      {
+        "key": "屋久島 バス",
+        "current": 18,
+        "previous": 37,
+        "delta": -19,
+        "source": "GSC visible query",
+        "metric": "clicks"
+      },
+      {
+        "key": "屋久島 バス 時刻表",
+        "current": 33,
+        "previous": 43,
+        "delta": -10,
+        "source": "GSC visible query",
+        "metric": "clicks"
+      },
+      {
+        "key": "屋久島 バス 時刻表 2026",
+        "current": 0,
+        "previous": 5,
+        "delta": -5,
+        "source": "GSC visible query",
+        "metric": "clicks"
+      },
+      {
+        "key": "yakushima bus timetable 2026",
+        "current": 4,
+        "previous": 8,
+        "delta": -4,
+        "source": "GSC visible query",
+        "metric": "clicks"
+      },
+      {
+        "key": "屋久島交通バス時刻表",
+        "current": 4,
+        "previous": 7,
+        "delta": -3,
+        "source": "GSC visible query",
+        "metric": "clicks"
+      },
+      {
+        "key": "google / organic",
+        "current": 418,
+        "previous": 458,
+        "delta": -40,
+        "source": "GA4 aligned Google",
+        "metric": "sessions"
+      },
+      {
+        "key": "/ ← (direct) / (none)",
+        "current": 45,
+        "previous": 122,
+        "delta": -77,
+        "source": "GA4 source + landing",
+        "metric": "sessions"
+      },
+      {
+        "key": "/ ← google / organic",
+        "current": 333,
+        "previous": 365,
+        "delta": -32,
+        "source": "GA4 source + landing",
+        "metric": "sessions"
+      }
+    ],
+    "gaps": [],
+    "page_checks": [
+      {
+        "page": "/",
+        "url": "https://yakushimabus.com/",
+        "status": 200,
+        "noindex": false,
+        "canonical": "https://yakushimabus.com/"
+      },
+      {
+        "page": "/fare",
+        "url": "https://yakushimabus.com/fare/",
+        "status": 200,
+        "noindex": false,
+        "canonical": "https://yakushimabus.com/fare/"
+      }
+    ],
+    "landing_source_changes": [
+      {
+        "key": "/ ← (direct) / (none)",
+        "current": 45,
+        "previous": 122,
+        "delta": -77
+      },
+      {
+        "key": "/ ← google / organic",
+        "current": 333,
+        "previous": 365,
+        "delta": -32
+      },
+      {
+        "key": "/ ← yahoo / organic",
+        "current": 42,
+        "previous": 69,
+        "delta": -27
+      },
+      {
+        "key": "/ ← bing / organic",
+        "current": 33,
+        "previous": 44,
+        "delta": -11
+      },
+      {
+        "key": "/fare ← google / organic",
+        "current": 45,
+        "previous": 53,
+        "delta": -8
+      },
+      {
+        "key": "(not set) ← (direct) / (none)",
+        "current": 1,
+        "previous": 8,
+        "delta": -7
+      },
+      {
+        "key": "/fare ← (direct) / (none)",
+        "current": 1,
+        "previous": 7,
+        "delta": -6
+      },
+      {
+        "key": "/map ← google / organic",
+        "current": 15,
+        "previous": 21,
+        "delta": -6
+      },
+      {
+        "key": "/fare ← map_popup / (not set)",
+        "current": 0,
+        "previous": 5,
+        "delta": -5
+      },
+      {
+        "key": "/without-car ← google / organic",
+        "current": 0,
+        "previous": 4,
+        "delta": -4
+      },
+      {
+        "key": "/trekking ← (direct) / (none)",
+        "current": 0,
+        "previous": 4,
+        "delta": -4
+      },
+      {
+        "key": "/fare ← chatgpt.com / ai-assistant",
+        "current": 3,
+        "previous": 6,
+        "delta": -3
+      },
+      {
+        "key": "/ ← duckduckgo / organic",
+        "current": 0,
+        "previous": 3,
+        "delta": -3
+      },
+      {
+        "key": "/ferry ← openai / organic",
+        "current": 0,
+        "previous": 2,
+        "delta": -2
+      },
+      {
+        "key": "(not set) ← map_popup / (not set)",
+        "current": 0,
+        "previous": 2,
+        "delta": -2
+      },
+      {
+        "key": "/ferry ← duckduckgo / organic",
+        "current": 0,
+        "previous": 2,
+        "delta": -2
+      },
+      {
+        "key": "/ferry ← copilot.com / ai-assistant",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "(not set) ← chatgpt.com / ai-assistant",
+        "current": 1,
+        "previous": 2,
+        "delta": -1
+      },
+      {
+        "key": "/fare ← duckduckgo / organic",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/fare ← m.facebook.com / referral",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/fare ← bing / organic",
+        "current": 4,
+        "previous": 5,
+        "delta": -1
+      },
+      {
+        "key": "/ ← openai / (not set)",
+        "current": 1,
+        "previous": 2,
+        "delta": -1
+      },
+      {
+        "key": "/ferry ← openai / (not set)",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/ferry ← (direct) / (none)",
+        "current": 7,
+        "previous": 8,
+        "delta": -1
+      },
+      {
+        "key": "/ferry ← ecosia.org / organic",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/fare ← ecosia.org / organic",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/without-car ← duckduckgo / organic",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "(not set) ← yahoo / organic",
+        "current": 2,
+        "previous": 2,
+        "delta": 0
+      },
+      {
+        "key": "/ ← (not set)",
+        "current": 1,
+        "previous": 1,
+        "delta": 0
+      },
+      {
+        "key": "/ferry ← (not set)",
+        "current": 1,
+        "previous": 1,
+        "delta": 0
+      },
+      {
+        "key": "/map ← yahoo / organic",
+        "current": 2,
+        "previous": 2,
+        "delta": 0
+      },
+      {
+        "key": "/without-car ← (direct) / (none)",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "(not set) ← cn.bing.com / referral",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/ ← openai / organic",
+        "current": 7,
+        "previous": 6,
+        "delta": 1
+      },
+      {
+        "key": "(not set) ← (not set)",
+        "current": 2,
+        "previous": 1,
+        "delta": 1
+      },
+      {
+        "key": "/without-car ← openai / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/fare ← service.smt.docomo.ne.jp / referral",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/ ← facebook.com / referral",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/without-car ← chatgpt.com / ai-assistant",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/fare ← openai / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/ ← ecosia.org / organic",
+        "current": 5,
+        "previous": 3,
+        "delta": 2
+      },
+      {
+        "key": "/map ← facebook.com / referral",
+        "current": 3,
+        "previous": 0,
+        "delta": 3
+      },
+      {
+        "key": "/ferry ← cn.bing.com / referral",
+        "current": 3,
+        "previous": 0,
+        "delta": 3
+      },
+      {
+        "key": "(not set) ← bing / organic",
+        "current": 7,
+        "previous": 3,
+        "delta": 4
+      },
+      {
+        "key": "/map ← m.facebook.com / referral",
+        "current": 4,
+        "previous": 0,
+        "delta": 4
+      },
+      {
+        "key": "/guides ← (direct) / (none)",
+        "current": 5,
+        "previous": 0,
+        "delta": 5
+      },
+      {
+        "key": "/ ← map_popup / (not set)",
+        "current": 10,
+        "previous": 5,
+        "delta": 5
+      },
+      {
+        "key": "/fare ← yahoo / organic",
+        "current": 16,
+        "previous": 10,
+        "delta": 6
+      },
+      {
+        "key": "/ferry ← bing / organic",
+        "current": 8,
+        "previous": 2,
+        "delta": 6
+      },
+      {
+        "key": "/ ← service.smt.docomo.ne.jp / referral",
+        "current": 9,
+        "previous": 1,
+        "delta": 8
+      },
+      {
+        "key": "(not set) ← google / organic",
+        "current": 24,
+        "previous": 16,
+        "delta": 8
+      },
+      {
+        "key": "/ferry ← chatgpt.com / ai-assistant",
+        "current": 10,
+        "previous": 1,
+        "delta": 9
+      },
+      {
+        "key": "/ ← chatgpt.com / ai-assistant",
+        "current": 66,
+        "previous": 54,
+        "delta": 12
+      },
+      {
+        "key": "/map ← (direct) / (none)",
+        "current": 17,
+        "previous": 5,
+        "delta": 12
+      },
+      {
+        "key": "/map ← map_popup / (not set)",
+        "current": 22,
+        "previous": 8,
+        "delta": 14
+      }
+    ],
+    "periods": {
+      "ga4": {
+        "yesterday": "2026-10-25",
+        "previous_7d": "2026-10-12~2026-10-18",
+        "day_before": "2026-10-24",
+        "last_7d_start": "2026-10-19",
+        "last_7d_end": "2026-10-25",
+        "last_7d": "2026-10-19~2026-10-25"
+      },
+      "gsc": {
+        "start": "2026-10-19",
+        "end": "2026-10-25"
+      }
+    },
+    "landing_changes": [
+      {
+        "key": "/",
+        "current": 553,
+        "previous": 674,
+        "delta": -121
+      },
+      {
+        "key": "/fare",
+        "current": 71,
+        "previous": 89,
+        "delta": -18
+      },
+      {
+        "key": "/trekking",
+        "current": 0,
+        "previous": 4,
+        "delta": -4
+      },
+      {
+        "key": "/without-car",
+        "current": 3,
+        "previous": 5,
+        "delta": -2
+      },
+      {
+        "key": "(not set)",
+        "current": 38,
+        "previous": 34,
+        "delta": 4
+      },
+      {
+        "key": "/guides",
+        "current": 5,
+        "previous": 0,
+        "delta": 5
+      },
+      {
+        "key": "/ferry",
+        "current": 29,
+        "previous": 19,
+        "delta": 10
+      },
+      {
+        "key": "/map",
+        "current": 63,
+        "previous": 36,
+        "delta": 27
+      }
+    ],
+    "source_changes": [
+      {
+        "key": "(direct) / (none)",
+        "current": 76,
+        "previous": 154,
+        "delta": -78
+      },
+      {
+        "key": "google / organic",
+        "current": 418,
+        "previous": 458,
+        "delta": -40
+      },
+      {
+        "key": "yahoo / organic",
+        "current": 62,
+        "previous": 83,
+        "delta": -21
+      },
+      {
+        "key": "duckduckgo / organic",
+        "current": 0,
+        "previous": 7,
+        "delta": -7
+      },
+      {
+        "key": "bing / organic",
+        "current": 52,
+        "previous": 54,
+        "delta": -2
+      },
+      {
+        "key": "openai / (not set)",
+        "current": 1,
+        "previous": 3,
+        "delta": -2
+      },
+      {
+        "key": "copilot.com / ai-assistant",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "ecosia.org / organic",
+        "current": 5,
+        "previous": 5,
+        "delta": 0
+      },
+      {
+        "key": "(not set)",
+        "current": 4,
+        "previous": 3,
+        "delta": 1
+      },
+      {
+        "key": "openai / organic",
+        "current": 9,
+        "previous": 8,
+        "delta": 1
+      },
+      {
+        "key": "m.facebook.com / referral",
+        "current": 4,
+        "previous": 1,
+        "delta": 3
+      },
+      {
+        "key": "cn.bing.com / referral",
+        "current": 4,
+        "previous": 0,
+        "delta": 4
+      },
+      {
+        "key": "facebook.com / referral",
+        "current": 4,
+        "previous": 0,
+        "delta": 4
+      },
+      {
+        "key": "service.smt.docomo.ne.jp / referral",
+        "current": 10,
+        "previous": 1,
+        "delta": 9
+      },
+      {
+        "key": "map_popup / (not set)",
+        "current": 32,
+        "previous": 20,
+        "delta": 12
+      },
+      {
+        "key": "chatgpt.com / ai-assistant",
+        "current": 81,
+        "previous": 63,
+        "delta": 18
+      }
+    ],
+    "gsc_page_changes": [
+      {
+        "key": "/",
+        "current": 277,
+        "previous": 312,
+        "delta": -35
+      },
+      {
+        "key": "/without-car",
+        "current": 0,
+        "previous": 4,
+        "delta": -4
+      },
+      {
+        "key": "/map",
+        "current": 2,
+        "previous": 0,
+        "delta": 2
+      },
+      {
+        "key": "/fare",
+        "current": 50,
+        "previous": 44,
+        "delta": 6
+      }
+    ],
+    "gsc_visible_query_changes": [
+      {
+        "key": "屋久島 バス",
+        "current": 18,
+        "previous": 37,
+        "delta": -19
+      },
+      {
+        "key": "屋久島 バス 時刻表",
+        "current": 33,
+        "previous": 43,
+        "delta": -10
+      },
+      {
+        "key": "屋久島 バス 時刻表 2026",
+        "current": 0,
+        "previous": 5,
+        "delta": -5
+      },
+      {
+        "key": "yakushima bus timetable 2026",
+        "current": 4,
+        "previous": 8,
+        "delta": -4
+      },
+      {
+        "key": "屋久島交通バス時刻表",
+        "current": 4,
+        "previous": 7,
+        "delta": -3
+      },
+      {
+        "key": "屋久島 バス 料金",
+        "current": 1,
+        "previous": 4,
+        "delta": -3
+      },
+      {
+        "key": "屋久島交通 バス時刻表",
+        "current": 4,
+        "previous": 7,
+        "delta": -3
+      },
+      {
+        "key": "屋久島空港 バス時刻表",
+        "current": 0,
+        "previous": 3,
+        "delta": -3
+      },
+      {
+        "key": "屋久島交通",
+        "current": 2,
+        "previous": 5,
+        "delta": -3
+      },
+      {
+        "key": "屋久島 バス 料金 表",
+        "current": 0,
+        "previous": 3,
+        "delta": -3
+      },
+      {
+        "key": "バス時刻表 屋久島",
+        "current": 1,
+        "previous": 3,
+        "delta": -2
+      },
+      {
+        "key": "屋久島 バス 料金 2026",
+        "current": 10,
+        "previous": 12,
+        "delta": -2
+      },
+      {
+        "key": "yakushima bus timetable",
+        "current": 3,
+        "previous": 5,
+        "delta": -2
+      },
+      {
+        "key": "yakushima bus",
+        "current": 2,
+        "previous": 3,
+        "delta": -1
+      },
+      {
+        "key": "屋久島巴士時刻表",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "安房 宮之浦 バス時刻表",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "屋久島 路線バス時刻表",
+        "current": 2,
+        "previous": 3,
+        "delta": -1
+      },
+      {
+        "key": "時刻表",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "バス 屋久島",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "屋久島 路線バス",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "夜行バス 屋久島",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦港 バス 時刻表",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦 から 安房 バス時刻表",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦 安房 バス 料金",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島バス停",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島マップ",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島空港 から 宮之浦 バス時刻表",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "yakushima bus map",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 日帰り 車なし",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 空港 から 宮之浦 バス 料金",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦港から屋久島空港 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "yakushima bus schedule",
+        "current": 3,
+        "previous": 3,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦港 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮浦港 バス 時刻表",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 バス運行状況",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 路線バス 路線図",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 バス停",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島路線バス時刻表",
+        "current": 3,
+        "previous": 3,
+        "delta": 0
+      },
+      {
+        "key": "屋久島空港 から 安房 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島交通 運賃",
+        "current": 1,
+        "previous": 1,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 交通",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島交通バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 バス 運行状況",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦 安房 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "宮之浦から安房 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 バス時刻表 2026",
+        "current": 51,
+        "previous": 51,
+        "delta": 0
+      },
+      {
+        "key": "安房 宮之浦 バス",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "yakushima kotsu bus",
+        "current": 1,
+        "previous": 1,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 地図",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島 空港 安房 バス時刻表",
+        "current": 0,
+        "previous": 0,
+        "delta": 0
+      },
+      {
+        "key": "屋久島バス",
+        "current": 12,
+        "previous": 11,
+        "delta": 1
+      },
+      {
+        "key": "屋久島バス 時刻表",
+        "current": 2,
+        "previous": 1,
+        "delta": 1
+      },
+      {
+        "key": "屋久島 バス時刻表",
+        "current": 11,
+        "previous": 10,
+        "delta": 1
+      },
+      {
+        "key": "屋久島空港 バス",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "屋久島 バス 路線図",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "屋久島交通 バス 料金",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "屋久島路線バス",
+        "current": 2,
+        "previous": 1,
+        "delta": 1
+      },
+      {
+        "key": "屋久島空港 バス 時刻表",
+        "current": 2,
+        "previous": 1,
+        "delta": 1
+      },
+      {
+        "key": "屋久島バス路線図",
+        "current": 2,
+        "previous": 1,
+        "delta": 1
+      },
+      {
+        "key": "屋久島交通 時刻表",
+        "current": 9,
+        "previous": 8,
+        "delta": 1
+      },
+      {
+        "key": "屋久島空港から安房 バス",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "屋久島 バス路線図",
+        "current": 2,
+        "previous": 0,
+        "delta": 2
+      },
+      {
+        "key": "屋久島 空港 バス",
+        "current": 2,
+        "previous": 0,
+        "delta": 2
+      },
+      {
+        "key": "屋久島 バス 運賃",
+        "current": 2,
+        "previous": 0,
+        "delta": 2
+      },
+      {
+        "key": "屋久島バス料金",
+        "current": 4,
+        "previous": 2,
+        "delta": 2
+      },
+      {
+        "key": "屋久島バス時刻表",
+        "current": 15,
+        "previous": 13,
+        "delta": 2
+      },
+      {
+        "key": "屋久島交通 バス",
+        "current": 4,
+        "previous": 2,
+        "delta": 2
+      },
+      {
+        "key": "屋久島 路線バス 時刻表",
+        "current": 5,
+        "previous": 2,
+        "delta": 3
+      },
+      {
+        "key": "bus yakushima",
+        "current": 4,
+        "previous": 1,
+        "delta": 3
+      }
+    ]
+  },
+  "daily_actions": [
+    "首页的减少细分：直接访问 122→45次；Google搜索 365→333次。",
+    "入口页减少最多：首页 674→553次；/fare 89→71次。",
+    "Google同周期（2026-10-19~2026-10-25 对 2026-10-12~2026-10-18）：点击353→326，访问458→418；点击与访问口径不同，不能直接归因排名。",
+    "已核验首页、/fare可打开，未见禁止收录标记。",
+    "已自动对比两周渠道、入口页和可见搜索词；后续每日按相同窗口继续核对。"
+  ]
+}
