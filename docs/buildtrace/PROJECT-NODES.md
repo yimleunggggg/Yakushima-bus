@@ -43,6 +43,65 @@
 
 ## 节点
 
+## 2026-10-28 - GitHub Pages 全站 404：重跑部署后恢复
+
+**status**: confirmed (confirmed)
+**scenario**: 运维/发布 (ops-release)
+**type**: 运维 (ops)
+**review_due**: none（建议回看日，不是审核）
+**date_confidence**: 用户确认 (user-confirmed)
+**hidden**: false
+**doc_ref**: ../PROJECT-NODES.md
+
+### 当时为什么做
+- 原话: 帮我重新部署一下，404了；重新来 你想办法
+- 理解/提炼: 恢复既有生产站访问。
+- 可信度: 用户已确认 (confirmed-by-user)
+
+### 人话摘要
+- 发生了什么: 用户报告全站 404。现有代码未修改；通过 GitHub API 重跑已有 Pages deploy job 后，首页、地图、票价、船运、无车攻略及攻略目录均返回 HTTP 200。
+- 为什么重要: 
+
+### 场景细节
+- 问题/机会: 
+- 这一轮解决方案: 
+- 成功信号: 
+- 风险/未解决: 
+
+### 项目变化
+- 加了: 
+- 改了: 重跑 Pages 工作流 40620316727 的 deploy job；原始 job 122592635362，新 job 122779714188 成功。
+- 减去了: 
+- 优化了: 
+
+### 技术实现
+- 技术备注: 
+- 相关文件: 
+- 数据或结构: 
+- 架构/配置: 原有 GitHub Pages 发布，无代码或 DNS 变更。
+- 验证: build_all.py --validate 通过（41 项 Node 测试、972 个时刻单元）；build_seo.py、sync_transport_assets.py、seo_check.sh 通过。curl 验证 /、/map/、/fare/、/ferry/、/without-car/、/guides/ HTTP 200。公开 SEO/GEO 内容未变。
+
+### 依据/来源
+- sourceRefs: 
+- evidence: url: https://github.com/yimleunggggg/Yakushima-bus/actions/runs/40620316727: 重新部署 job 122779714188 success；发布源 97c8fe0ef317612fd5522f4fba95fec7bdb38c4f。; manual: https://yakushimabus.com/: 2026-10-28T11:08:40Z 首页 HEAD 200；发布前 HEAD 404。
+- 日期依据: 用户确认 (user-confirmed)
+
+### 用户备注
+- 
+
+### 外部时间线
+- GA4/PostHog: 暂无
+- GitHub/Vercel: 暂无
+- Stripe/交易: 暂无
+- 手填/其他: 暂无
+
+### 结果回看
+- 回看时观察什么: 
+- 当前结果: 无需回看 (not-needed)
+- 经验/结论: 早先部署 success 不代表当前站点可访问；本次重部署恢复访问，404 的具体根因未确定。
+
+---
+
 ## 2026-06-30 - Bing 建议：加长 meta description（首页与旧 /access/）
 
 **status**: 待回看 (pending-review)

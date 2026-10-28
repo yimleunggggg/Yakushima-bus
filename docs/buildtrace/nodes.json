@@ -121,6 +121,53 @@
   },
   "nodes": [
     {
+      "id": "2026-10-28-pages-404-redeploy",
+      "date": "2026-10-28",
+      "title": "GitHub Pages 全站 404：重跑部署后恢复",
+      "plainSummary": "用户报告全站 404。现有代码未修改；通过 GitHub API 重跑已有 Pages deploy job 后，首页、地图、票价、船运、无车攻略及攻略目录均返回 HTTP 200。",
+      "status": "confirmed",
+      "types": [
+        "ops"
+      ],
+      "scenario": "ops-release",
+      "reviewDue": "none",
+      "dateConfidence": "user-confirmed",
+      "humanIntent": {
+        "original": "帮我重新部署一下，404了；重新来 你想办法",
+        "interpretation": "恢复既有生产站访问。",
+        "confidence": "confirmed-by-user"
+      },
+      "changes": {
+        "added": [],
+        "changed": [
+          "重跑 Pages 工作流 40620316727 的 deploy job；原始 job 122592635362，新 job 122779714188 成功。"
+        ],
+        "removed": [],
+        "optimized": []
+      },
+      "technical": {
+        "files": [],
+        "architecture": "原有 GitHub Pages 发布，无代码或 DNS 变更。",
+        "validation": "build_all.py --validate 通过（41 项 Node 测试、972 个时刻单元）；build_seo.py、sync_transport_assets.py、seo_check.sh 通过。curl 验证 /、/map/、/fare/、/ferry/、/without-car/、/guides/ HTTP 200。公开 SEO/GEO 内容未变。"
+      },
+      "evidence": [
+        {
+          "kind": "url",
+          "ref": "https://github.com/yimleunggggg/Yakushima-bus/actions/runs/40620316727",
+          "note": "重新部署 job 122779714188 success；发布源 97c8fe0ef317612fd5522f4fba95fec7bdb38c4f。"
+        },
+        {
+          "kind": "manual",
+          "ref": "https://yakushimabus.com/",
+          "note": "2026-10-28T11:08:40Z 首页 HEAD 200；发布前 HEAD 404。"
+        }
+      ],
+      "review": {
+        "result": "not-needed",
+        "learning": "早先部署 success 不代表当前站点可访问；本次重部署恢复访问，404 的具体根因未确定。"
+      }
+    },
+    {
       "id": "2026-06-30-bing-meta-description",
       "date": "2026-06-30",
       "title": "Bing 建议：加长 meta description（首页与旧 /access/）",
