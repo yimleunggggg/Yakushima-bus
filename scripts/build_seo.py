@@ -80,6 +80,8 @@ def evidence_html(path, page, manifest, status, include_alerts):
                 'en': f'Last jetfoil season in the published source data: {dates}. Select the travel date and check planned cancellations and arrival ports. Confirm same-day weather and operations with the operator.',
             }[lang]
         parts = [f'<p>{escape(copy)}</p>', f'<p>{escape(note)}</p>']
+        for question, answer in page.get('bookingFaq', {}).get(lang, []):
+            parts.append(f'<h3>{escape(question)}</h3><p>{escape(answer)}</p>')
         if include_alerts:
             for alert in [a for a in status['alerts'] if a['validFrom'] <= status['checkedAt'] and (not a.get('validTo') or a['validTo'] >= status['checkedAt'])]:
                 review_label = {'ja': '再確認期限', 'zh': '应复核', 'en': 'review due'}[lang]
@@ -145,6 +147,13 @@ def update_head(text, path, page):
                            dateModified=page['modified'], inLanguage=list(LANGS.values()),
                            author={'@type': 'Organization', 'name': 'YakuBus'},
                            mainEntityOfPage=BASE + path)
+        if page.get('bookingFaq'):
+            nodes = [n for n in nodes if n.get('@type') != 'FAQPage']
+            for lang, entries in page['bookingFaq'].items():
+                nodes.append({'@type': 'FAQPage', '@id': BASE + path + '#faq-' + lang,
+                              'inLanguage': LANGS[lang],
+                              'mainEntity': [{'@type': 'Question', 'name': q,
+                                              'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in entries]})
         data = {'@context': 'https://schema.org', '@graph': nodes}
         return '<script type="application/ld+json">\n' + json.dumps(data, ensure_ascii=False, indent=2) + '\n  </script>'
     if 'application/ld+json' not in text:

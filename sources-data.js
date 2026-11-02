@@ -112,12 +112,17 @@ window.SOURCES_DATA = {
         },
         {
           "label": {
-            "ja": "高速船 オンライン予約",
-            "zh": "高速船 在线预约",
-            "en": "Jetfoil online booking"
+            "ja": "高速船予約（旅行会社HIS）",
+            "zh": "高速船预约（HIS 旅行社）",
+            "en": "Jetfoil booking (HIS travel agency)"
           },
           "sourceRef": "access:jetfoilBook",
-          "url": "https://www.tykousoku.jp/reserve/"
+          "url": "https://hisvisitjapan.com/en-US/product/A-0609",
+          "note": {
+            "ja": "確認 2026-11-02",
+            "zh": "核查 2026-11-02",
+            "en": "Checked 2026-11-02"
+          }
         },
         {
           "label": {

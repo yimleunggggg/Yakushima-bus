@@ -72,7 +72,10 @@ test('affiliate placements have matching destinations, preserved attribution and
     assert.match(target.pathname,/\/hotels\/detail\//);
   }
   for (const lang of ['ja','zh','en']) {
-    assert.ok(c.window.AffiliateUI.jetfoilSecondaryHtml(lang).length>0);
+    const booking=c.window.AffiliateUI.jetfoilPrimaryHtml(lang);
+    assert.match(booking,/access-booking-btn-primary/);
+    assert.match(booking,/access-booking-offer-badge/);
+    assert.match(booking,/data-affiliate-id="1492155"/);
     assert.equal(d.items.jetfoil.hint,undefined);
     assert.doesNotMatch(c.window.AffiliateUI.travelGuideHtml(lang),/2026-05-20|affiliate-trust-stars/);
     assert.doesNotMatch(c.window.AffiliateUI.travelGuideHtml(lang),/destination%2F/);
@@ -133,7 +136,7 @@ test('travel guide groups sourced offers and withholds closed Shiratani booking 
   }
   assert.match(c.window.AffiliateUI.travelGuideHtml('zh'),/4\.9\/5.*119 条评价/);
   const travel=c.window.AffiliateUI.travelGuideHtml('zh');
-  assert.equal((travel.match(/<article class="affiliate-card affiliate-card--klook">/g)||[]).length,6);
+  assert.equal((travel.match(/<article class="affiliate-card affiliate-card--klook[^"]*">/g)||[]).length,6);
   assert.match(travel,/data-affiliate-id="1316225"/);
   const hikingCard=travel.split('<article').find(card=>card.includes('data-affiliate-id="1316225"')).split('</article>')[0];
   assert.match(hikingCard,/绳文杉/);
@@ -141,7 +144,7 @@ test('travel guide groups sourced offers and withholds closed Shiratani booking 
   assert.doesNotMatch(hikingCard,/封闭|通行止め|closed|affiliate-card-route-notice/);
   assert.equal((hikingCard.match(/data-affiliate-id="1316225"/g)||[]).length,1);
   assert.doesNotMatch(travel,/travel-hero|travel-paused|不展示|暂缓推荐|快照|卖点/);
-  assert.match(c.window.AffiliateUI.jetfoilSecondaryHtml('zh'),/在 Klook 查看船票（优惠）/);
+  assert.match(c.window.AffiliateUI.jetfoilPrimaryHtml('zh'),/Klook 在线订船票/);
   c.window.TransportStatus.alerts=()=>[];
   const reopened=c.window.AffiliateUI.travelGuideHtml('zh');
   assert.match(reopened,/data-affiliate-id="1492163"/);
@@ -171,7 +174,7 @@ test('suspended Shiratani tour is not promoted while the road is closed', () => 
   assert.match(html,/1492158|43454P373/);
   const hike=c.window.AffiliateUI.travelGuideHtml('zh');
   assert.doesNotMatch(hike,/data-affiliate-id="1492163"|data-affiliate-id="1492168"/);
-  assert.doesNotMatch(hike,/43454P373/);
+  assert.match(hike,/43454P373/);
 });
 test('October timetable and ferry suspension respect current official dates', () => {
   const { core, access, schedule } = runtime();
@@ -183,4 +186,16 @@ test('October timetable and ferry suspension respect current official dates', ()
   assert.equal(ferry('2026-10-19').rows.length, 2);
   assert.equal(schedule.sections(access,'2026-09-30').find(s=>s.id==='ferry_fare').rows.length,0);
   assert.match(schedule.sections(access,'2026-10-09').find(s=>s.id==='ferry_fare').rows[0].adult,/7,000/);
+});
+
+test('Viator reviews distinguish supplier reputation and preserve attribution',()=>{
+ const c=runtime(),d=c.window.AFFILIATE_DATA;
+ for(const code of ['13441P80','13441P81','424579P1','43454P373','43454P391','43454P739']) {
+  const it=d.experiences.find(x=>x.productCode===code);assert.ok(it);
+  const u=new URL(it.url);assert.equal(u.searchParams.get('pid'),'P00307180');assert.equal(u.searchParams.get('mcid'),'42383');assert.equal(u.searchParams.get('medium'),'link');
+  assert.ok(it.image);assert.equal(it.socialProof?.participants,undefined);
+ }
+ assert.equal(d.experiences.find(x=>x.productCode==='13441P80').operatorReviews.count,3086);
+ assert.equal(d.experiences.find(x=>x.productCode==='424579P1').socialProof.reviews,42);
+ const html=c.window.AffiliateUI.travelGuideHtml('zh');assert.match(html,/Tripadvisor 运营商评价/);assert.match(html,/3,086/);assert.match(html,/Beauty of Japan/);
 });

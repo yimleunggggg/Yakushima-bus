@@ -10,7 +10,7 @@ const ACCESS_DATA = {
     },
     "sources": {
       "jetfoil": "https://www.tykousoku.jp/fare_time/",
-      "jetfoilBook": "https://www.tykousoku.jp/reserve/",
+      "jetfoilBook": "https://hisvisitjapan.com/en-US/product/A-0609",
       "ferry": "https://ferryyakusima2.com/timetable",
       "airportShuttle": "https://nangoku-kotsu.com/ashuttle/kagoshima/",
       "pass": "https://www.iwasaki-corp.com/kagoshima_kotsu/route-bus/yakushima-free-pass/",
@@ -24,9 +24,9 @@ const ACCESS_DATA = {
         "en": "TaneYaku Jetfoil (Toppy/Rocket)"
       },
       "jetfoilBook": {
-        "ja": "高速船 オンライン予約",
-        "zh": "高速船 在线预约",
-        "en": "Jetfoil online booking"
+        "ja": "高速船予約（旅行会社HIS）",
+        "zh": "高速船预约（HIS 旅行社）",
+        "en": "Jetfoil booking (HIS travel agency)"
       },
       "ferry": {
         "ja": "フェリー屋久島2（折田汽船）",
@@ -908,15 +908,15 @@ const ACCESS_DATA = {
           "en": "Jetfoil (Toppy / Rocket)"
         },
         "body": {
-          "ja": "公式サイトからオンライン予約・購入できます（T&Rフレンド登録、クレジット・コンビニ払い）。乗船2ヶ月前の同一日9:00から予約開始。繁忙期は早めの予約を。",
-          "zh": "可在官网在线预约购票（需注册 T&R 会员，支持信用卡/便利店支付）。一般于乘船日 2 个月前同日上午 9:00 起开放预约，旺季建议尽早订。",
-          "en": "Book and pay on the official site (T&R Friend signup; card or convenience-store payment). Opens ~2 months before sailing at 9:00. Book early in peak season."
+          "ja": "鹿児島〜屋久島（宮之浦・安房）の片道・往復券をオンラインで予約。港・便・往復の組合せを選び、印刷したバウチャーをご用意ください。特典の適用は決済画面でご確認ください。",
+          "zh": "在线预订鹿儿岛往返屋久岛（宫之浦／安房）的单程或往返船票。请核对港口、班次及去返程套餐，并打印凭证；优惠适用以结算页为准。",
+          "en": "Book one-way or return tickets between Kagoshima and Yakushima (Miyanoura or Anbo). Check your ports, sailings and return options, and print your voucher. Offer eligibility is shown at checkout."
         },
-        "ctaUrl": "https://www.tykousoku.jp/reserve/",
+        "ctaUrl": "https://hisvisitjapan.com/en-US/product/A-0609",
         "ctaLabel": {
-          "ja": "オンライン予約（公式）",
-          "zh": "在线预约（官网）",
-          "en": "Book online (official)"
+          "ja": "HISで予約",
+          "zh": "HIS 预约",
+          "en": "Book with HIS"
         }
       },
       {
@@ -1574,9 +1574,9 @@ const ACCESS_DATA = {
     {
       "key": "jetfoilBook",
       "label": {
-        "ja": "高速船 オンライン予約",
-        "zh": "高速船 在线预约",
-        "en": "Jetfoil online booking"
+        "ja": "高速船予約（旅行会社HIS）",
+        "zh": "高速船预约（HIS 旅行社）",
+        "en": "Jetfoil booking (HIS travel agency)"
       }
     },
     {

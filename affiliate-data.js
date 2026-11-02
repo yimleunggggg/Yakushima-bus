@@ -1,4 +1,4 @@
-/** 联盟链 — Klook + Viator；官方预约/时刻仍为主链 */
+/** Booking links and dated review snapshots from Klook, Viator and Tripadvisor. */
 window.AFFILIATE_DATA = {
   /** Viator 等 — 按 pages 出现在对应页面 */
   experiences: [
@@ -23,45 +23,84 @@ window.AFFILIATE_DATA = {
       cta: { ja: "内容・空席を見る", zh: "查看行程与余位", en: "Check itinerary & dates" },
     },
     {
-      id: "viator_jetfoil_day",
-      requiresRouteId: "shiratani",
-      partner: "viator",
-      productCode: "43454P739",
-      placement: "viator_jetfoil_day",
-      pages: ["trekking", "without-car"],
-      tags: ["day_trip", "jetfoil", "trekking", "shiratani"],
-      url: "https://www.viator.com/tours/Kagoshima-Prefecture/Day-trip-to-Yakushima-by-high-speed-Jetfoil-Toppy-from-Kagoshima/d50190-43454P739?pid=P00307180&mcid=42383&medium=link&medium_version=selector",
-      title: {
-        ja: "鹿児島発・高速船屋久島日帰り（白谷雲水峡ハイキング）",
-        zh: "鹿儿岛出发 · 高速船屋久岛一日游（白谷徒步）",
-        en: "Yakushima day trip by jetfoil from Kagoshima (Shiratani hike)",
+      "id": "viator_jetfoil_day",
+      "partner": "viator",
+      "productCode": "43454P739",
+      "placement": "viator_jetfoil_day",
+      "pages": [
+        "trekking",
+        "without-car"
+      ],
+      "url": "https://www.viator.com/tours/Kagoshima-Prefecture/Day-trip-to-Yakushima-by-high-speed-Jetfoil-Toppy-from-Kagoshima/d50190-43454P739?pid=P00307180&mcid=42383&medium=link",
+      "title": {
+        "ja": "鹿児島発・高速船＋白谷日帰り",
+        "zh": "鹿儿岛出发：高速船＋白谷徒步",
+        "en": "Kagoshima jetfoil & Shiratani day trip"
       },
-      body: {
-        ja: "トッピー往復＋英語ガイド付き森林ハイキング。時間がない方向けの定番コース。",
-        zh: "含 Toppy 往返高速船与英文向导森林徒步，适合时间紧的屋久岛一日游。",
-        en: "Round-trip Toppy jetfoil plus guided Shiratani forest hike — classic day tour.",
+      "body": {
+        "ja": "鹿児島〜宮之浦の往復高速船と英語ガイド付き白谷ハイキング。昼食・島内移動込み。",
+        "zh": "含鹿儿岛至宫之浦往返高速船、英文向导白谷徒步、午餐和岛内交通；这是组合行程。",
+        "en": "Round-trip Kagoshima–Miyanoura jetfoil, English-guided Shiratani hiking, lunch and island transport in one day."
       },
-      cta: { ja: "Viator で見る", zh: "在 Viator 查看", en: "View on Viator" },
+      "features": {
+        "ja": "約8時間 · 英語 · 往復高速船込み",
+        "zh": "约 8 小时 · 英文向导 · 含往返高速船",
+        "en": "About 8 hr · English guide · Return jetfoil included"
+      },
+      "image": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/15/e4/17/f9.jpg",
+      "imageSourceUrl": "https://www.viator.com/tours/Kagoshima-Prefecture/Day-trip-to-Yakushima-by-high-speed-Jetfoil-Toppy-from-Kagoshima/d50190-43454P739",
+      "cta": {
+        "ja": "Viatorで詳細・空席を見る",
+        "zh": "在 Viator 查看日期",
+        "en": "View dates on Viator"
+      },
+      "operatorReviews": {
+        "name": "H.I.S. Kyushu Inbound Team (Kagoshima)",
+        "count": 20,
+        "checkedAt": "2026-11-02",
+        "source": "Tripadvisor",
+        "rating": "4.9"
+      },
+      "requiresRouteId": "shiratani"
     },
     {
-      id: "viator_private_sights",
-      partner: "viator",
-      productCode: "43454P373",
-      placement: "viator_private_sights",
-      pages: ["without-car"],
-      tags: ["day_trip", "sightseeing", "private"],
-      url: "https://www.viator.com/tours/Kagoshima-Prefecture/Yakushima-Private-Island-Sights-Tour-with-ENGLISH-Speaking-Guide/d50190-43454P373?pid=P00307180&mcid=42383&medium=link&medium_version=selector",
-      title: {
-        ja: "屋久島プライベート島内観光（英語ガイド）",
-        zh: "屋久岛私人环岛观光（英文向导）",
-        en: "Private Yakushima sights tour (English guide)",
+      "id": "viator_private_sights",
+      "partner": "viator",
+      "productCode": "43454P373",
+      "placement": "viator_private_sights",
+      "pages": [
+        "trekking",
+        "without-car"
+      ],
+      "url": "https://www.viator.com/tours/Kagoshima-Prefecture/Yakushima-Private-Island-Sights-Tour-with-ENGLISH-Speaking-Guide/d50190-43454P373?pid=P00307180&mcid=42383&medium=link",
+      "title": {
+        "ja": "屋久島・英語ガイド貸切観光",
+        "zh": "屋久岛英文向导私人环岛游",
+        "en": "Private Yakushima sights tour"
       },
-      body: {
-        ja: "永田いなか浜・大川の滝など。貸切で柔軟な島内体験。",
-        zh: "永田海滩、大川瀑布等景点，私人团灵活安排当地体验。",
-        en: "Nagata beach, Ohko Falls & more — flexible private island tour.",
+      "body": {
+        "ja": "海岸や滝、軽い散策を希望に合わせて。永田いなか浜・西部林道・大川の滝などが候補。弁当付き。",
+        "zh": "海岸、瀑布与轻徒步可按喜好安排，候选包括永田海滩、西部林道和大川瀑布；含盒饭。",
+        "en": "Customize coast, waterfall and light-walking stops. Options include Nagata beach, Seibu forest road and Ohko Falls. Boxed lunch included."
       },
-      cta: { ja: "Viator で見る", zh: "在 Viator 查看", en: "View on Viator" },
+      "features": {
+        "ja": "4〜7時間 · 英語 · ホテル送迎",
+        "zh": "4–7 小时 · 英文向导 · 酒店接送",
+        "en": "4–7 hr · English guide · Hotel pickup"
+      },
+      "image": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/12/25/25/4d.jpg",
+      "imageSourceUrl": "https://www.viator.com/tours/Kagoshima-Prefecture/Yakushima-Private-Island-Sights-Tour-with-ENGLISH-Speaking-Guide/d50190-43454P373",
+      "cta": {
+        "ja": "Viatorで詳細・空席を見る",
+        "zh": "在 Viator 查看日期",
+        "en": "View dates on Viator"
+      },
+      "operatorReviews": {
+        "name": "H.I.S. Kyushu Inbound Team",
+        "count": 249,
+        "checkedAt": "2026-11-02",
+        "source": "Tripadvisor"
+      }
     },
     {
       id: "viator_snorkel_turtle",
@@ -84,18 +123,175 @@ window.AFFILIATE_DATA = {
       },
       cta: { ja: "Viator で見る", zh: "在 Viator 查看", en: "View on Viator" },
     },
+    {
+      "id": "viator_shiratani_walk",
+      "partner": "viator",
+      "productCode": "13441P80",
+      "placement": "viator_shiratani_walk",
+      "pages": [
+        "trekking"
+      ],
+      "url": "https://www.viator.com/tours/Kagoshima-Prefecture/Walking-Tour-of-Shiratani-Unsuikyo/d50190-13441P80?pid=P00307180&mcid=42383&medium=link",
+      "title": {
+        "ja": "白谷雲水峡・貸切トレッキング",
+        "zh": "白谷云水峡私人徒步",
+        "en": "Private Shiratani forest hike"
+      },
+      "body": {
+        "ja": "苔むす森から、体力に合わせて太鼓岩まで。英語ガイドと昼食付き。",
+        "zh": "走进白谷苔森林，可按体力调整路线、延伸至太鼓岩；含英文向导与午餐。",
+        "en": "Explore the moss forest with an English-speaking guide; adjust the route to your fitness, with an option to continue to Taiko-iwa. Lunch included."
+      },
+      "features": {
+        "ja": "約6時間 · 最大4名 · ホテル送迎",
+        "zh": "约 6 小时 · 最多 4 人 · 酒店接送",
+        "en": "About 6 hr · Up to 4 guests · Hotel pickup"
+      },
+      "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/e5/b0/18.jpg",
+      "imageSourceUrl": "https://www.viator.com/tours/Kagoshima-Prefecture/Walking-Tour-of-Shiratani-Unsuikyo/d50190-13441P80",
+      "cta": {
+        "ja": "Viatorで詳細・空席を見る",
+        "zh": "在 Viator 查看日期",
+        "en": "View dates on Viator"
+      },
+      "operatorReviews": {
+        "name": "Beauty of Japan",
+        "count": 3086,
+        "checkedAt": "2026-11-02",
+        "source": "Tripadvisor",
+        "rating": "4.9"
+      },
+      "requiresRouteId": "shiratani"
+    },
+    {
+      "id": "viator_tachudake",
+      "partner": "viator",
+      "productCode": "13441P81",
+      "placement": "viator_tachudake",
+      "pages": [
+        "trekking"
+      ],
+      "url": "https://www.viator.com/tours/Kagoshima-Prefecture/Full-Day-Trekking-Tour-to-the-Granite-Obelisk-in-Yakushima/d50190-13441P81?pid=P00307180&mcid=42383&medium=link",
+      "title": {
+        "ja": "太忠岳・天柱石トレッキング",
+        "zh": "太忠岳天柱石全天徒步",
+        "en": "Tachudake granite-obelisk trek"
+      },
+      "body": {
+        "ja": "ヤクスギランドから巨杉の森を抜けて天柱石へ。ロープを使う区間があり、体力のある方向け。",
+        "zh": "从屋久杉 Land 穿过古杉森林，登向天柱石；有攀绳路段，适合有体力的徒步者。",
+        "en": "Walk through ancient cedars from Yakusugi Land to Tachudake’s granite obelisk. Rope sections make this a demanding hike."
+      },
+      "features": {
+        "ja": "約9時間 · 英語 · 最大4名",
+        "zh": "约 9 小时 · 英文向导 · 最多 4 人",
+        "en": "About 9 hr · English guide · Up to 4 guests"
+      },
+      "image": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/07/00/8e/f3.jpg",
+      "imageSourceUrl": "https://www.viator.com/tours/Kagoshima-Prefecture/Full-Day-Trekking-Tour-to-the-Granite-Obelisk-in-Yakushima/d50190-13441P81",
+      "cta": {
+        "ja": "Viatorで詳細・空席を見る",
+        "zh": "在 Viator 查看日期",
+        "en": "View dates on Viator"
+      },
+      "operatorReviews": {
+        "name": "Beauty of Japan",
+        "count": 3086,
+        "checkedAt": "2026-11-02",
+        "source": "Tripadvisor",
+        "rating": "4.9"
+      }
+    },
+    {
+      "id": "viator_yakusugi_halfday",
+      "partner": "viator",
+      "productCode": "43454P391",
+      "placement": "viator_yakusugi_halfday",
+      "pages": [
+        "trekking"
+      ],
+      "url": "https://www.viator.com/tours/Kagoshima-Prefecture/Yakushima-half-day-YAKUSUGILAND-Walking-with-ENG-Speaking-Guide/d50190-43454P391?pid=P00307180&mcid=42383&medium=link",
+      "title": {
+        "ja": "ヤクスギランド半日ウォーク",
+        "zh": "屋久杉 Land 英文半日徒步",
+        "en": "Yakusugi Land half-day walk"
+      },
+      "body": {
+        "ja": "巨杉・吊り橋・清流を英語ガイドと歩く貸切ツアー。装備と入園料は別途。",
+        "zh": "跟随英文向导看古杉、吊桥与溪流，私人团含酒店接送；装备和园区门票另计。",
+        "en": "A private English-guided walk among old cedars, suspension bridges and streams, with hotel pickup. Equipment and park admission cost extra."
+      },
+      "features": {
+        "ja": "約3時間 · 2名から · ホテル送迎",
+        "zh": "约 3 小时 · 2 人起订 · 酒店接送",
+        "en": "About 3 hr · Minimum 2 guests · Hotel pickup"
+      },
+      "image": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/12/33/39/2f.jpg",
+      "imageSourceUrl": "https://www.viator.com/tours/Kagoshima-Prefecture/Yakushima-half-day-YAKUSUGILAND-Walking-with-ENG-Speaking-Guide/d50190-43454P391",
+      "cta": {
+        "ja": "Viatorで詳細・空席を見る",
+        "zh": "在 Viator 查看日期",
+        "en": "View dates on Viator"
+      },
+      "operatorReviews": {
+        "name": "H.I.S. Kyushu Inbound Team",
+        "count": 140,
+        "checkedAt": "2026-11-02",
+        "source": "Tripadvisor",
+        "rating": "4.8"
+      }
+    },
+    {
+      "id": "viator_kagoshima_custom",
+      "partner": "viator",
+      "productCode": "424579P1",
+      "placement": "viator_kagoshima_custom",
+      "pages": [
+        "trekking"
+      ],
+      "url": "https://www.viator.com/tours/Kagoshima/Private-and-Custom-Tours-in-Kagoshima/d4663-424579P1?pid=P00307180&mcid=42383&medium=link",
+      "title": {
+        "ja": "鹿児島・貸切カスタムツアー",
+        "zh": "鹿儿岛专车私人定制游",
+        "en": "Private custom tour of Kagoshima"
+      },
+      "body": {
+        "ja": "通訳案内士と専用車で、候補から2〜3か所を選択。入場料・食事等は別途。",
+        "zh": "持证向导搭配专车，从候选景点选择 2–3 处；门票、餐食等另计。",
+        "en": "Choose two or three sights with a licensed guide and private vehicle. Admission, meals and other listed extras are not included."
+      },
+      "features": {
+        "ja": "約6時間 · 英語ほか · 送迎あり",
+        "zh": "约 6 小时 · 英语等语言 · 可接送",
+        "en": "About 6 hr · English and other languages · Pickup"
+      },
+      "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/11/f7/01/ed.jpg",
+      "imageSourceUrl": "https://www.viator.com/tours/Kagoshima/Private-and-Custom-Tours-in-Kagoshima/d4663-424579P1",
+      "cta": {
+        "ja": "Viatorで詳細・空席を見る",
+        "zh": "在 Viator 查看日期",
+        "en": "View dates on Viator"
+      },
+      "socialProof": {
+        "rating": "4.9",
+        "reviews": 42,
+        "checkedAt": "2026-11-02",
+        "source": "Viator & Tripadvisor"
+      }
+    },
   ],
   items: {
     jetfoil: {
       partner: "klook",
       adid: "1492155",
       placement: "ferry_jetfoil",
+      offerBadge: { ja: "特典", zh: "优惠", en: "Offers" },
       url: "https://affiliate.klook.com/redirect?aid=125410&aff_adid=1492155&k_site=https%3A%2F%2Fwww.klook.com%2Fzh-CN%2Factivity%2F161058-round-trip-ticket-for-high-speed-jetfoil-toppy-or-rocket-to-yakushima",
       image: "/images/affiliate/jetfoil-klook.png",
       cta: {
-        ja: "Klook で船券を見る（特典）",
-        zh: "在 Klook 查看船票（优惠）",
-        en: "Klook tickets (offers)",
+        ja: "Klookで船券予約",
+        zh: "Klook 在线订船票",
+        en: "Book tickets on Klook",
       },
     },
     hiking: {

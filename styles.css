@@ -2008,11 +2008,15 @@ body.modal-open {
   color: #fff;
   border-color: var(--primary);
 }
-.access-booking-btn-affiliate {
-  background: var(--bg);
-  color: var(--primary-dark);
-  border-color: var(--border);
+/* Offer label stays attached to the Klook booking action. */
+.access-booking-btn-klook { position: relative; margin: 5px 8px 0 0; min-height: 42px; }
+.access-booking-offer-badge {
+  position: absolute; top: -9px; right: -8px;
+  padding: 2px 7px; border: 1px solid #e8b773; border-radius: 999px;
+  background: #ffe1a8; color: #6b3605; font-size: 0.6875rem; line-height: 1.4;
+  font-weight: 700; white-space: nowrap;
 }
+.access-booking-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
 .access-booking-affiliate-hint {
   margin: 0;
   font-size: var(--text-label);
@@ -2784,7 +2788,15 @@ body.modal-open {
 .travel-section > h2 { margin: 0 0 10px; }
 .travel-card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; gap: 12px; }
 .travel-section .affiliate-card { border-radius: var(--radius-sm); background: var(--surface); }
-.travel-section .affiliate-card-media { display: none; }
+.travel-section .affiliate-card--with-image { display: grid; grid-template-columns: 108px minmax(0, 1fr); }
+.travel-section .affiliate-card-media { display: block; }
+.travel-section .affiliate-card-img { width: 108px; height: 100%; min-height: 150px; object-fit: cover; }
+.affiliate-operator-reviews { margin: 6px 0 0; color: #176440; font-size: var(--text-small); line-height: 1.5; }
+.travel-secondary { margin: -10px 0 22px; }
+@media (max-width: 400px) {
+  .travel-section .affiliate-card--with-image { grid-template-columns: 84px minmax(0, 1fr); }
+  .travel-section .affiliate-card-img { width: 84px; }
+}
 .travel-section .affiliate-card-main { padding: 14px 15px; }
 .travel-section .affiliate-card-body { margin-top: 3px; font-size: var(--text-body); }
 .travel-section .affiliate-social-proof { color: var(--primary-dark); font-size: var(--text-small); font-weight: 600; }
@@ -4415,3 +4427,6 @@ button,input,select,textarea { font-family:inherit; }
 }
 
 @media(max-width:767px) { .guide-page .guide-chip-bus::before { content:"+"; margin-right:5px; } .guide-page .guide-chip-bus.active::before { content:"✓"; } }
+
+.affiliate-card-features { margin: 0 0 5px; color: var(--primary-dark); font-size: var(--text-small); font-weight: 600; }
+.affiliate-operator-reviews .affiliate-proof-date { display: block; margin: 3px 0 0; font-size: 11px; }

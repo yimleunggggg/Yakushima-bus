@@ -56,9 +56,9 @@
     ferry: {
       titleKey: "navAccessTitle",
       lead: {
-        ja: "鹿児島↔屋久島の高速船・フェリー時刻と運賃（指宿発含む）。上島後のバス接続は時刻表へ。",
-        zh: "鹿儿岛↔屋久岛 高速船与渡轮时刻、票价（含指宿出发）；上岛后查公交时刻表。",
-        en: "Kagoshima ↔ Yakushima jetfoil and ferry times and fares (incl. Ibusuki). Bus timetable after you land.",
+        ja: "鹿児島↔屋久島の船券をオンライン予約。トッピー・ロケットの公式時刻・運賃資料と、到着後のバス接続を確認。",
+        zh: "鹿儿岛↔屋久岛船票在线预订，查看优惠、官方时刻与票价资料；抵达宫之浦或安房后可查公交接驳。",
+        en: "Book Kagoshima ↔ Yakushima tickets online. Compare offers, official timetable and fare references, and buses from Miyanoura or Anbo.",
       },
       crossHtml: {
         ja: '<a href="/?lang=ja">上島後は時刻表で接続便を検索</a>',

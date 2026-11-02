@@ -80,9 +80,9 @@
         },
         {
           "label": {
-            "ja": "高速船 オンライン予約",
-            "zh": "高速船 在线预约",
-            "en": "Jetfoil online booking"
+            "ja": "高速船予約（旅行会社HIS）",
+            "zh": "高速船预约（HIS 旅行社）",
+            "en": "Jetfoil booking (HIS travel agency)"
           },
           "sourceRef": "access:jetfoilBook"
         },

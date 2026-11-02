@@ -31,19 +31,63 @@ window.SEO_PAGES = {
     ]
   },
   "/ferry/": {
-    "modified": "2026-10-24",
+    "modified": "2026-11-02",
     "ja": [
-      "屋久島フェリー・高速船｜鹿児島発の時刻・運賃 | YakuBus",
-      "鹿児島・指宿と屋久島を結ぶ高速船トッピー・ロケット、フェリー屋久島2の時刻・運賃・公式予約先。日付別の季節ダイヤと計画休航を確認し、宮之浦・安房到着後のバスへ接続できます。"
+      "屋久島の船券予約｜鹿児島発の高速船・時刻・特典 | YakuBus",
+      "鹿児島〜屋久島のトッピー・ロケット船券をKlookで手軽に予約、特典条件を確認。HIS予約先、公式の時刻・運賃資料、宮之浦・安房の港とバス接続を案内する非公式ガイドです。当日の運航は船会社へご確認ください。"
     ],
     "zh": [
-      "屋久岛船运｜鹿儿岛高速船·渡轮时刻与票价 | YakuBus",
-      "查看鹿儿岛、指宿往返屋久岛的Toppy/Rocket高速船及屋久岛2号渡轮时刻、票价与官方预约入口。按出行日期核对季节班期及计划停航，衔接宫之浦港、安房港公交；当日运行以船公司公告为准。"
+      "屋久岛船票预订｜鹿儿岛高速船·时刻与优惠 | YakuBus",
+      "便捷预订鹿儿岛往返屋久岛Toppy／Rocket高速船票，查看Klook优惠条件与HIS预约入口。整理船公司官方时刻、票价资料及宫之浦／安房港公交接驳。本站为非官方指南，当日运行以船公司公告为准。"
     ],
     "en": [
-      "Yakushima Ferry & Jetfoil Times from Kagoshima | YakuBus",
-      "Compare Toppy/Rocket jetfoils and Ferry Yakushima 2 from Kagoshima and Ibusuki. Check date-specific seasonal schedules, fares, planned cancellations, official booking links and onward buses from Miyanoura or Anbo."
-    ]
+      "Yakushima Ferry Tickets | Kagoshima Jetfoil Booking & Offers",
+      "Book Kagoshima–Yakushima Toppy/Rocket tickets on Klook, check offer terms or use HIS. Independent guide to official timetable and fare references, Miyanoura/Anbo ports and bus connections. Confirm same-day sailings with the operator."
+    ],
+    "bookingFaq": {
+      "ja": [
+        [
+          "どこで船券を予約できますか？",
+          "高速船はKlookでオンライン予約でき、HIS（旅行会社）も選べます。船会社サイトに接続できない場合も、各販売先で空席と条件をご確認ください。YakuBusは非公式の案内サイトです。"
+        ],
+        [
+          "宮之浦と安房、どちらの港を選べばよいですか？",
+          "屋久島側の到着港・出発港は便やプランにより異なります。宿と島内バスへの接続を見て選び、往復の場合は両区間の港・日時をご確認ください。"
+        ],
+        [
+          "特典や新規利用者向けクーポンは使えますか？",
+          "利用できる特典はアカウント、地域、日付、プランにより異なります。Klookの決済画面で適用を確認してください。固定の割引額や最安値は保証していません。"
+        ]
+      ],
+      "zh": [
+        [
+          "屋久岛船票在哪里预订？",
+          "高速船票可在Klook在线预订，也可选择HIS旅行社。船公司网站无法访问时，可分别查看销售平台的余位与条款。YakuBus是非官方信息指南。"
+        ],
+        [
+          "宫之浦港和安房港怎么选？",
+          "屋久岛的到达港、出发港随班次和套餐而异。结合住宿及岛内公交接驳选择；购买往返行程时，分别核对去程与返程的港口、日期和时间。"
+        ],
+        [
+          "优惠或新人券一定能用吗？",
+          "可用优惠取决于账户、地区、日期和套餐，请在Klook结算页确认是否适用。本站不承诺固定折扣或最低价。"
+        ]
+      ],
+      "en": [
+        [
+          "Where can I book Yakushima boat tickets?",
+          "Book jetfoil tickets online with Klook or use HIS, a travel agency. If the operator site is unavailable, check each seller for availability and terms. YakuBus is an independent, unofficial guide."
+        ],
+        [
+          "Should I choose Miyanoura or Anbo?",
+          "The Yakushima arrival and departure port varies by sailing and package. Choose for your accommodation and bus connections. For a return journey, check both ports, dates and times separately."
+        ],
+        [
+          "Are offers or new-user coupons guaranteed?",
+          "Eligibility varies by account, region, date and package. Check the Klook checkout before paying. YakuBus does not guarantee a fixed discount or the lowest price."
+        ]
+      ]
+    }
   },
   "/map/": {
     "modified": "2026-10-23",
@@ -61,22 +105,22 @@ window.SEO_PAGES = {
     ]
   },
   "/trekking/": {
-    "modified": "2026-10-24",
+    "modified": "2026-11-02",
     "ja": [
       "屋久島の旅と体験｜行程・宿・登山と交通 | YakuBus",
-      "屋久島の島内周遊、ガイド付き体験、温泉の宿と登山ルート。公式情報と道路状況を確認し、移動や旅行ガイドと合わせて計画できます。"
+      "屋久島の英語ガイド観光、白谷・太忠岳の登山、宿と鹿児島発の日帰り旅行。Viator・Klookの行程や口コミ、Tripadvisor事業者評価を確認し、公式道路情報とバス接続で計画。"
     ],
     "zh": [
       "屋久岛旅行与体验｜行程·住宿·徒步与交通 | YakuBus",
-      "屋久岛环岛观光、向导体验、温泉住宿与徒步路线参考。结合官方资料和道路状态规划，连接公交与旅行攻略；预订条件以服务方为准。"
+      "屋久岛英文向导观光、白谷森林与太忠岳徒步、温泉住宿及鹿儿岛出发一日游。比较Viator与Klook行程，查看行程评价与Tripadvisor运营商评价，结合官方道路资料和公交接驳规划。"
     ],
     "en": [
       "Yakushima Travel & Experiences: Hikes, Stays & Transport | YakuBus",
-      "Explore Yakushima island tours, guided experiences, hot-spring stays and hiking routes. Plan with official sources, road notices, bus connections and practical travel guides."
+      "Compare Viator and Klook Yakushima tours, forest walks, Tachudake treks, stays and Kagoshima day trips. See tour reviews separately from Tripadvisor operator reviews, with official road notices and bus connections."
     ]
   },
   "/without-car/": {
-    "modified": "2026-10-25",
+    "modified": "2026-11-02",
     "kind": "article",
     "ja": [
       "レンタカーなしで屋久島へ。2泊3日の組み立て方 | YakuBus",
@@ -92,7 +136,7 @@ window.SEO_PAGES = {
     ]
   },
   "/about/": {
-    "modified": "2026-10-23",
+    "modified": "2026-11-02",
     "ja": [
       "YakuBusについて｜屋久島交通の出典・連絡先",
       "YakuBusは屋久島のバス時刻表・運賃・船運を整理する非公式サイトです。公式PDF、観光協会や運行会社の情報源と連絡先を掲載。計画ダイヤと臨時運休を区別し、出発前の公式確認を案内します。"

@@ -78,39 +78,46 @@
     const reviews = pick({ ja: `${proof.reviews}件の評価`, zh: `${proof.reviews} 条评价`, en: `${proof.reviews} reviews` }, lang);
     const checked = pick({ ja: `${(window.TransportStatus?.month(proof.checkedAt, lang) || proof.checkedAt.slice(0,7))}時点`, zh: `截至 ${(window.TransportStatus?.month(proof.checkedAt, lang) || proof.checkedAt.slice(0,7))}`, en: `as of ${(window.TransportStatus?.month(proof.checkedAt, lang) || proof.checkedAt.slice(0,7))}` }, lang);
     const score = lang === "en" ? `${proof.rating}/5 (${reviews})` : `${proof.rating}/5（${reviews}）`;
-    return `<span class="affiliate-social-proof">${showPartner ? "Klook · " : ""}${booked}${score}<span class="affiliate-proof-date">${checked}</span></span>`;
+    return `<span class="affiliate-social-proof">${showPartner ? (it.partner === "viator" ? "Viator · " : "Klook · ") : ""}${booked}${score}<span class="affiliate-proof-date">${checked}</span></span>`;
+  }
+
+  function operatorReviewsHtml(it, lang) {
+    const proof = it.operatorReviews;
+    if (!proof?.count || !proof.checkedAt) return "";
+    const count = Number(proof.count).toLocaleString("en-US");
+    const label = pick({ja:`Tripadvisor 事業者の口コミ ${count}件`,zh:`Tripadvisor 运营商评价 · ${count} 条`,en:`${count} operator reviews on Tripadvisor`}, lang);
+    const score = proof.rating ? `<strong>${proof.rating}/5</strong> · ` : "";
+    return `<p class="affiliate-operator-reviews">${score}${label}<span class="affiliate-proof-date">${proof.name} · ${pick({ja:"確認",zh:"核查",en:"Checked"},lang)} ${proof.checkedAt.slice(0,7)}</span></p>`;
   }
 
   const TRAVEL_COPY = {
-    ja: { islandTitle: "屋久島の体験", stayTitle: "屋久島の宿", gatewayTitle: "鹿児島での滞在", extrasLabel: "食事体験・指宿の温泉宿", hikeJump: "登山ルートへ ↓" },
-    zh: { islandTitle: "屋久岛体验", stayTitle: "屋久岛住宿", gatewayTitle: "鹿儿岛停留", extrasLabel: "餐食体验与指宿温泉住宿", hikeJump: "查看登山路线 ↓" },
-    en: { islandTitle: "Yakushima experiences", stayTitle: "Yakushima stays", gatewayTitle: "Kagoshima stopover", extrasLabel: "Local dining & Ibusuki stays", hikeJump: "Hiking routes ↓" },
+    ja: { islandTitle: "島内観光", forestTitle: "森歩き・ガイド付き登山", stayTitle: "屋久島の宿", gatewayTitle: "鹿児島発・鹿児島での滞在", extrasLabel: "食事体験・指宿の温泉宿", hikeJump: "登山ルートへ ↓", otherForest: "白谷雲水峡のほかのプラン", otherGateway: "鹿児島発のほかのプラン" },
+    zh: { islandTitle: "屋久岛观光", forestTitle: "森林体验与向导徒步", stayTitle: "屋久岛住宿", gatewayTitle: "鹿儿岛出发与停留", extrasLabel: "餐食体验与指宿温泉住宿", hikeJump: "查看登山路线 ↓", otherForest: "其他白谷云水峡套餐", otherGateway: "其他鹿儿岛出发套餐" },
+    en: { islandTitle: "Around Yakushima", forestTitle: "Forest walks & guided hikes", stayTitle: "Yakushima stays", gatewayTitle: "From Kagoshima & city stopovers", extrasLabel: "Local dining & Ibusuki stays", hikeJump: "Hiking routes ↓", otherForest: "More Shiratani options", otherGateway: "More trips from Kagoshima" },
   };
 
   function travelGuideHtml(lang) {
     const c = TRAVEL_COPY[lang] || TRAVEL_COPY.ja;
-    const bus = (D()?.experiences || []).find((it) => it.id === "klook_yakuzaru_day");
     const statusReady = typeof window.TransportStatus?.alerts === "function";
-    const routeBlocked = !statusReady || window.TransportStatus.alerts().some((a) => a.status === "suspended" && a.routeIds?.includes("shiratani"));
-    const cards = (keys) => keys.map(item).filter(Boolean).map((it) => productCard(it, lang, false)).join("");
+    const blocked = (it) => (it.requiresRouteId || it.affectedRouteId) && (!statusReady || window.TransportStatus.alerts().some(a => a.status === "suspended" && a.routeIds?.includes(it.requiresRouteId || it.affectedRouteId)));
+    const ex = (id) => (D()?.experiences || []).find(it => it.id === id);
+    const viator = (code) => (D()?.experiences || []).find(it => it.productCode === code);
+    const cards = (items) => items.filter(it => it && !blocked(it)).map(it => productCard(it, lang, false)).join("");
+    const section = (id, title, items) => `<section class="travel-section" id="${id}" aria-labelledby="${id}-title"><h2 id="${id}-title">${title}</h2><div class="travel-card-grid">${cards(items)}</div></section>`;
     const mini = (key) => {
       const it = item(key);
-      return it ? `<a class="travel-mini-link" ${affAttrs(it, lang)}><strong>${pick(it.label, lang)}</strong><span>${pick(it.note, lang)}</span>${socialProofHtml(it, lang)}</a>` : "";
+      return it && !blocked(it) ? `<a class="travel-mini-link" ${affAttrs(it, lang)}><strong>${pick(it.label, lang)}</strong><span>${pick(it.note, lang)}</span>${socialProofHtml(it, lang)}</a>${routeAdvisoryHtml(it, lang)}` : "";
     };
-    return `<p class="travel-shortcut"><a href="#hiking-routes">${c.hikeJump}</a></p>
-    <section class="travel-section" id="island-picks" aria-labelledby="travelIslandTitle">
-      <h2 id="travelIslandTitle">${c.islandTitle}</h2>
-      <div class="travel-card-grid">${bus ? productCard(bus, lang, false) : ""}${cards(["hiking"])}${routeBlocked ? "" : cards(["shirataniWalking", "kagoshimaYakushimaDay"])}</div>
-    </section>
-    <section class="travel-section" id="island-stays" aria-labelledby="travelStayTitle">
-      <h2 id="travelStayTitle">${c.stayTitle}</h2>
-      <div class="travel-card-grid">${cards(["samanaHotel", "iwasakiHotel"])}</div>
-    </section>
-    <section class="travel-section" id="kagoshima-stop" aria-labelledby="travelGatewayTitle">
-      <h2 id="travelGatewayTitle">${c.gatewayTitle}</h2>
-      <div class="travel-card-grid">${cards(["senganEn", "senganSpecial"])}</div>
-      <details class="travel-extras"><summary>${c.extrasLabel}</summary><div class="travel-mini-grid">${mini("kagoshimaKitchen")}${mini("ibusukiHotel")}</div></details>
-    </section>`;
+    const forestExtra = mini("shirataniWalking");
+    const gatewayExtra = mini("kagoshimaYakushimaDay");
+    return `<p class="travel-shortcut"><a href="#hiking-routes">${c.hikeJump}</a></p>`
+      + section("island-picks", c.islandTitle, [viator("43454P373"), ex("klook_yakuzaru_day")])
+      + section("forest-picks", c.forestTitle, [viator("43454P391"), viator("13441P80"), viator("13441P81"), item("hiking")])
+      + (forestExtra ? `<details class="travel-extras travel-secondary"><summary>${c.otherForest}</summary><div class="travel-mini-grid">${forestExtra}</div></details>` : "")
+      + section("island-stays", c.stayTitle, [item("samanaHotel"), item("iwasakiHotel")])
+      + section("kagoshima-stop", c.gatewayTitle, [viator("43454P739"), viator("424579P1"), item("senganEn"), item("senganSpecial")])
+      + (gatewayExtra ? `<details class="travel-extras travel-secondary"><summary>${c.otherGateway}</summary><div class="travel-mini-grid">${gatewayExtra}</div></details>` : "")
+      + `<details class="travel-extras travel-secondary"><summary>${c.extrasLabel}</summary><div class="travel-mini-grid">${mini("kagoshimaKitchen")}${mini("ibusukiHotel")}</div></details>`;
   }
 
   function bookingNotesHtml(lang) {
@@ -130,7 +137,7 @@
     if (!notice) return '';
     const escape = value => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
     const label = pick({ja:'公式情報・予約条件を確認',zh:'核对官方公告及预订条件',en:'Check the official notice and booking terms'}, lang);
-    return `<p class="affiliate-card-body affiliate-route-note">${escape(pick(notice.message, lang))} <a href="${escape(notice.sourceUrl)}" target="_blank" rel="noopener">${label}</a></p>`;
+    return `<p class="affiliate-card-body affiliate-route-note">${escape(pick(notice.courseMessage || notice.message, lang))} <a href="${escape(notice.sourceUrl)}" target="_blank" rel="noopener">${label}</a></p>`;
   }
 
   function productCard(it, lang, linkTitle = true) {
@@ -143,7 +150,7 @@
       : "";
     const rating = ratingHtml(it, lang);
     const stats = statsDateHtml(it, lang);
-    return `<article class="affiliate-card affiliate-card--${partner}">
+    return `<article class="affiliate-card affiliate-card--${partner}${it.image ? " affiliate-card--with-image" : ""}">
       ${media}
       <div class="affiliate-card-main">
         <div class="affiliate-card-head">
@@ -151,9 +158,11 @@
           ${partnerBadge(partner)}
         </div>
         ${rating}
+        ${it.features ? `<p class="affiliate-card-features">${pick(it.features,lang)}</p>` : ""}
         ${body ? `<p class="affiliate-card-body">${body}</p>` : ""}
         ${routeAdvisoryHtml(it, lang)}
         ${socialProofHtml(it, lang, false)}
+        ${operatorReviewsHtml(it, lang)}
         <div class="affiliate-card-foot">
           <a class="affiliate-offer-btn affiliate-card-cta" ${affAttrs(it, lang)}>${cta}</a>
           ${stats}
@@ -177,7 +186,7 @@
   }
 
   function experiencesSectionHtml(lang, pageId) {
-    const list = experiencesForPage(pageId);
+    const list = experiencesForPage(pageId).sort((a,b) => Number(b.partner === "viator") - Number(a.partner === "viator"));
     if (!list.length) return "";
     const b = D().blocks;
     const cards = list.filter((ex) => !ex.compact).map((ex) => experienceCard(ex, lang)).join("");
@@ -196,7 +205,7 @@
     const b = D().blocks;
     const links = ["samanaHotel", "iwasakiHotel"].map((key) => {
       const it = item(key);
-      return it ? `<a class="affiliate-browse-link" ${affAttrs(it, lang)}><strong>${pick(it.label, lang)}</strong><span>${pick(it.note, lang)}</span>${socialProofHtml(it, lang)}</a>` : "";
+      return it ? `<a class="affiliate-browse-link" ${affAttrs(it, lang)}><strong>${pick(it.label, lang)}</strong><span>${pick(it.note, lang)}</span>${socialProofHtml(it, lang)}</a>${routeAdvisoryHtml(it, lang)}` : "";
     }).join("");
     if (!links) return "";
     return `<section class="panel affiliate-lodging"><details class="affiliate-more">
@@ -206,10 +215,10 @@
     </details></section>`;
   }
 
-  function jetfoilSecondaryHtml(lang) {
+  function jetfoilPrimaryHtml(lang) {
     const it = item("jetfoil");
     if (!it) return "";
-    return `<a class="access-booking-btn access-booking-btn-affiliate" ${affAttrs(it, lang)}>${pick(it.cta, lang)}</a>`;
+    return `<a class="access-booking-btn access-booking-btn-primary access-booking-btn-klook" ${affAttrs(it, lang)}><span>${pick(it.cta, lang)}</span> <span class="access-booking-offer-badge">${pick(it.offerBadge, lang)}</span></a>`;
   }
 
   function ferryBottomHtml(lang) {
@@ -238,7 +247,7 @@
   window.AffiliateUI = {
     localizedUrl,
     pick,
-    jetfoilSecondaryHtml,
+    jetfoilPrimaryHtml,
     ferryBottomHtml,
     experiencesSectionHtml,
     lodgingSectionHtml,

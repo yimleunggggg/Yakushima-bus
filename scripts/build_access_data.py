@@ -224,7 +224,7 @@ def build_data() -> dict:
         "links": [
             {"key": "yakukan", "label": {"ja": "屋久島観光協会（交通）", "zh": "屋久岛观光协会（交通）", "en": "Yakushima tourism — transport"}},
             {"key": "jetfoil", "label": {"ja": "高速船 予約・時刻表", "zh": "高速船 预约·时刻表", "en": "Jetfoil booking & timetable"}},
-            {"key": "jetfoilBook", "label": {"ja": "高速船 オンライン予約", "zh": "高速船 在线预约", "en": "Jetfoil online booking"}},
+            {"key": "jetfoilBook", "label": MANIFEST["sources"]["jetfoilBook"]["label"]},
             {"key": "ferry", "label": {"ja": "フェリー屋久島2", "zh": "屋久岛2号渡轮", "en": "Ferry Yakushima 2"}},
             {"key": "pass", "label": {"ja": "ゆったり満喫乗車券（詳細）", "zh": "悠享乘车券（详情）", "en": "Day pass details"}},
         ],

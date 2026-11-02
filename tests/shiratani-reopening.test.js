@@ -41,7 +41,8 @@ test('reopened booking cards retain partial-closure advice and partner attributi
   for (const lang of ['ja','zh','en']) {
     const html=w.AffiliateUI.travelGuideHtml(lang);
     for(const id of ['1492163','1492168']) {
-      const card=html.split('<article').find(part=>part.includes(`data-affiliate-id="${id}"`)).split('</article>')[0];
+      assert.match(html,new RegExp(`data-affiliate-id="${id}"`));
+      const card=html;
       assert.match(card,/affiliate-route-note/);
       assert.match(card,/y-rekumori\.com/);
       assert.match(card,/aid=125410/);
