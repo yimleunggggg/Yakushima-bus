@@ -3,30 +3,30 @@ window.SEO_PAGES = {
   "/": {
     "modified": "2026-11-02",
     "ja": [
-      "屋久島バス時刻表｜次の便・運行状況 | YakuBus",
+      "屋久島バス時刻表 2026｜次の便・料金 | YakuBus",
       "YakuBusで屋久島の次のバス、時刻表・路線・運賃を検索。宮之浦港・空港・安房や登山口への移動を計画し、島内観光マップ、船券予約、旅行ガイドも確認できます。公式資料をもとにした非公式の無料ツールです。"
     ],
     "zh": [
-      "屋久岛公交时刻表｜下一班车与停运信息 | YakuBus",
+      "屋久岛公交时刻表2026｜下一班车·票价 | YakuBus",
       "用YakuBus查询屋久岛下一班公交、时刻表、路线与票价，规划宫之浦港、机场、安房及登山口接驳。结合全岛旅游地图、船票预订和旅行攻略安排行程。本站为依据官方资料整理的非官方免费工具。"
     ],
     "en": [
-      "Yakushima Bus Timetable & Service Notices | YakuBus",
+      "Yakushima Bus Timetable 2026: Next Bus & Fares | YakuBus",
       "Find your next Yakushima bus, timetables, routes and fares with YakuBus. Plan port, airport and trailhead connections, explore the island map, and find ferry booking links and travel guides. Independent free tool based on official sources."
     ]
   },
   "/fare/": {
-    "modified": "2026-10-23",
+    "modified": "2026-11-02",
     "ja": [
-      "屋久島バス路線図・運賃｜区間料金と乗車券 | YakuBus",
+      "屋久島バス料金 2026｜路線図・運賃・乗車券 | YakuBus",
       "屋久島バスの公式路線図・運賃表PDFと区間運賃検索。宮之浦港・空港・安房などの大人片道運賃の目安、乗車券と運休中の区間を確認できます。料金の改定日は出典で確認してください。"
     ],
     "zh": [
-      "屋久岛公交路线图·票价｜区间运价与通票 | YakuBus",
+      "屋久岛公交票价2026｜路线图·区间运价·通票 | YakuBus",
       "查看屋久岛公交官方路线图与运价表PDF，选择宫之浦港、机场、安房等站点查询成人单程票价参考。提供通票说明及停运区间提示，票价改订日期与时刻表日期分别标注。"
     ],
     "en": [
-      "Yakushima Bus Map, Fares & Day Passes | YakuBus",
+      "Yakushima Bus Fares 2026: Route Map & Day Passes | YakuBus",
       "View official Yakushima bus route maps and fare PDFs. Select stops for adult one-way fare estimates, day pass information and suspended-route notices. Fare-table revisions are separate from timetable revisions."
     ]
   },
