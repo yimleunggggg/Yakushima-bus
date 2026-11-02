@@ -107,7 +107,7 @@
       navMapTitle: "運賃計算",
       navAccess: "フェリー",
       navAccessTitle: "フェリー・上島",
-      navTrek: "旅と体験",
+      navTrek: "ツアー・体験",
       navTrekTitle: "屋久島の旅と体験",
       navIntro: "紹介",
       navIntroTitle: "サイト紹介",
@@ -138,7 +138,7 @@
       navMapTitle: "公交票价查询",
       navAccess: "船运",
       navAccessTitle: "船运·上岛",
-      navTrek: "旅行体验",
+      navTrek: "行程与体验",
       navTrekTitle: "屋久岛旅行与体验",
       navIntro: "介绍",
       navIntroTitle: "网站介绍",
@@ -169,7 +169,7 @@
       navMapTitle: "Fare calculator",
       navAccess: "Ferry",
       navAccessTitle: "Ferry & access",
-      navTrek: "Explore",
+      navTrek: "Tours & Activities",
       navTrekTitle: "Yakushima travel & experiences",
       navIntro: "Intro",
       navIntroTitle: "About this site",
@@ -271,15 +271,16 @@
       const support = document.createElement('section');
       support.className = 'app-footer-support';
       support.innerHTML = `<div class="app-footer-support-copy"><strong>${t('supportTitle')}</strong><p>${t('supportBody')}</p></div><a class="app-footer-support-cta" href="https://ko-fi.com/yimleung" target="_blank" rel="noopener noreferrer">☕ ${t('supportKofi')} ↗</a>`;
-      footer.insertBefore(support, footer.firstChild);
+      footer.appendChild(support);
     }
     footer.querySelector(".app-footer-affiliate")?.remove();
-    footer.querySelector(".app-footer-booking")?.remove();
+    document.querySelectorAll(".app-footer-booking").forEach(el=>el.remove());
     if (window.AffiliateUI?.bookingNotesHtml) {
       const notes = document.createElement("div");
       notes.className = "app-footer-booking";
       notes.innerHTML = window.AffiliateUI.bookingNotesHtml(lang);
-      footer.insertBefore(notes, footer.firstChild);
+      const sources = document.querySelector(".journey-end");
+      if (sources) sources.appendChild(notes); else footer.insertBefore(notes, footer.firstChild);
     }
   }
 

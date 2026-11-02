@@ -18,7 +18,7 @@ test('planned suspensions suppress both directions including October and New Yea
   }
   for (const date of ['2026-10-11','2026-11-01','2026-12-27','2027-01-31']) {
     assert.equal(section(date,'ferry').rows.length, 2, date);
-    assert.match(section(date,'ferry').alert.zh, /不在已公布/);
+    assert.match(section(date,'ferry').alert.zh, /按时刻表运行/);
   }
   assert.match(section('2027-02-01','ferry').alert.zh, /尚未核实/);
   assert.equal(section('2026-02-30','ferry').rows.length, 0);

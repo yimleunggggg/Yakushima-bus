@@ -4,6 +4,7 @@ window.AFFILIATE_DATA = {
   experiences: [
     {
       id: "klook_yakuzaru_day",
+      image: "/images/affiliate/bus-klook.jpg",
       partner: "klook",
       adid: "1492158",
       placement: "without_car_yakuzaru_day",
@@ -47,7 +48,7 @@ window.AFFILIATE_DATA = {
         "zh": "约 8 小时 · 英文向导 · 含往返高速船",
         "en": "About 8 hr · English guide · Return jetfoil included"
       },
-      "image": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/15/e4/17/f9.jpg",
+      "image": "/images/affiliate/viator-1.jpg",
       "imageSourceUrl": "https://www.viator.com/tours/Kagoshima-Prefecture/Day-trip-to-Yakushima-by-high-speed-Jetfoil-Toppy-from-Kagoshima/d50190-43454P739",
       "cta": {
         "ja": "Viatorで詳細・空席を見る",
@@ -88,7 +89,7 @@ window.AFFILIATE_DATA = {
         "zh": "4–7 小时 · 英文向导 · 酒店接送",
         "en": "4–7 hr · English guide · Hotel pickup"
       },
-      "image": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/12/25/25/4d.jpg",
+      "image": "/images/affiliate/viator-2.jpg",
       "imageSourceUrl": "https://www.viator.com/tours/Kagoshima-Prefecture/Yakushima-Private-Island-Sights-Tour-with-ENGLISH-Speaking-Guide/d50190-43454P373",
       "cta": {
         "ja": "Viatorで詳細・空席を見る",
@@ -147,7 +148,7 @@ window.AFFILIATE_DATA = {
         "zh": "约 6 小时 · 最多 4 人 · 酒店接送",
         "en": "About 6 hr · Up to 4 guests · Hotel pickup"
       },
-      "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/e5/b0/18.jpg",
+      "image": "/images/affiliate/viator-3.jpg",
       "imageSourceUrl": "https://www.viator.com/tours/Kagoshima-Prefecture/Walking-Tour-of-Shiratani-Unsuikyo/d50190-13441P80",
       "cta": {
         "ja": "Viatorで詳細・空席を見る",
@@ -187,7 +188,7 @@ window.AFFILIATE_DATA = {
         "zh": "约 9 小时 · 英文向导 · 最多 4 人",
         "en": "About 9 hr · English guide · Up to 4 guests"
       },
-      "image": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/07/00/8e/f3.jpg",
+      "image": "/images/affiliate/viator-4.jpg",
       "imageSourceUrl": "https://www.viator.com/tours/Kagoshima-Prefecture/Full-Day-Trekking-Tour-to-the-Granite-Obelisk-in-Yakushima/d50190-13441P81",
       "cta": {
         "ja": "Viatorで詳細・空席を見る",
@@ -226,7 +227,7 @@ window.AFFILIATE_DATA = {
         "zh": "约 3 小时 · 2 人起订 · 酒店接送",
         "en": "About 3 hr · Minimum 2 guests · Hotel pickup"
       },
-      "image": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/12/33/39/2f.jpg",
+      "image": "/images/affiliate/viator-5.jpg",
       "imageSourceUrl": "https://www.viator.com/tours/Kagoshima-Prefecture/Yakushima-half-day-YAKUSUGILAND-Walking-with-ENG-Speaking-Guide/d50190-43454P391",
       "cta": {
         "ja": "Viatorで詳細・空席を見る",
@@ -265,7 +266,7 @@ window.AFFILIATE_DATA = {
         "zh": "约 6 小时 · 英语等语言 · 可接送",
         "en": "About 6 hr · English and other languages · Pickup"
       },
-      "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/11/f7/01/ed.jpg",
+      "image": "/images/affiliate/viator-6.jpg",
       "imageSourceUrl": "https://www.viator.com/tours/Kagoshima/Private-and-Custom-Tours-in-Kagoshima/d4663-424579P1",
       "cta": {
         "ja": "Viatorで詳細・空席を見る",
@@ -357,6 +358,7 @@ window.AFFILIATE_DATA = {
       },
     },
     senganEn: {
+      image: "/images/affiliate/sengan-klook.jpg",
       partner: "klook",
       adid: "1492169",
       placement: "kagoshima_sengan_en",
@@ -375,6 +377,7 @@ window.AFFILIATE_DATA = {
       },
     },
     samanaHotel: {
+      image: "/images/affiliate/samana-klook.jpg",
       partner: "klook",
       adid: "1492165",
       placement: "without_car_samana_hotel",
@@ -393,6 +396,7 @@ window.AFFILIATE_DATA = {
       },
     },
     iwasakiHotel: {
+      image: "/images/affiliate/iwasaki-klook.jpg",
       partner: "klook",
       adid: "1492166",
       placement: "without_car_iwasaki_hotel",
@@ -433,6 +437,7 @@ window.AFFILIATE_DATA = {
       cta: { ja: "催行状況を見る", zh: "查看行程状态", en: "Check tour status" },
     },
     senganSpecial: {
+      image: "/images/affiliate/special-klook.jpg",
       partner: "klook",
       adid: "1492172",
       placement: "travel_sengan_special",

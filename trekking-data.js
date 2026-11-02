@@ -59,8 +59,8 @@ window.TREKKING_DATA = {
     duration: { ja: "所要時間", zh: "用时", en: "Time" },
     elevation: { ja: "標高差", zh: "爬升", en: "Elevation" },
     yakukan: { ja: "観光協会", zh: "观光协会", en: "Tourism assoc." },
-    yamap: { ja: "YAMAP", zh: "YAMAP", en: "YAMAP" },
-    allTrails: { ja: "AllTrails", zh: "AllTrails", en: "AllTrails" },
+    yamap: { ja: "YAMAP ルート図", zh: "YAMAP 路线图", en: "YAMAP trail map" },
+    allTrails: { ja: "AllTrails ルート図", zh: "AllTrails 路线图", en: "AllTrails trail map" },
     busAccess: { ja: "バス接続", zh: "公交接驳", en: "Bus access" },
     checkShuttle: { ja: "接驳查询", zh: "查接驳", en: "Bus times" },
     busTimetableNote: {

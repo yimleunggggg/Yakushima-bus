@@ -29,7 +29,7 @@
     // Keep recommendations after the primary page task, immediately before footer.
     if(!location.pathname.startsWith('/guides/') && !/^\/(intro|about)\/?$/.test(location.pathname)){
       const footer=document.querySelector('.app-footer');
-      if(footer && !document.getElementById('guideRelated')) {
+      if(footer && !document.querySelector('.journey-end') && !document.getElementById('guideRelated')) {
         const box=document.createElement('details');box.id='guideRelated';box.className='guide-related';
         box.innerHTML='<summary></summary><ul></ul>';footer.before(box);
       }
@@ -39,7 +39,7 @@
     });
     // Keep supplementary references together, below the primary page task.
     const footer=document.querySelector('.app-footer');
-    const supplements=[...document.querySelectorAll('.trek-reference-resources,.trek-disclaimer,.trek-source,.seo-evidence,#guideRelated')];
+    const supplements=[...document.querySelectorAll('.trek-reference-resources,.trek-disclaimer,.trek-source,.seo-evidence,#guideRelated')].filter(el=>!el.matches('.trek-disclaimer,.trek-source') || !el.closest('.trek-reference-resources'));
     if(footer && supplements.length){
       const group=document.createElement('aside');group.className='page-reference-group';
       footer.before(group);supplements.forEach(el=>group.append(el));

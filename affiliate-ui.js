@@ -2,6 +2,7 @@
 (function () {
   const D = () => window.AFFILIATE_DATA;
 
+
   function pick(o, lang) {
     if (o == null) return "";
     if (typeof o === "string" || typeof o === "number") return String(o);
@@ -78,7 +79,7 @@
     const reviews = pick({ ja: `${proof.reviews}件の評価`, zh: `${proof.reviews} 条评价`, en: `${proof.reviews} reviews` }, lang);
     const checked = pick({ ja: `${(window.TransportStatus?.month(proof.checkedAt, lang) || proof.checkedAt.slice(0,7))}時点`, zh: `截至 ${(window.TransportStatus?.month(proof.checkedAt, lang) || proof.checkedAt.slice(0,7))}`, en: `as of ${(window.TransportStatus?.month(proof.checkedAt, lang) || proof.checkedAt.slice(0,7))}` }, lang);
     const score = lang === "en" ? `${proof.rating}/5 (${reviews})` : `${proof.rating}/5（${reviews}）`;
-    return `<span class="affiliate-social-proof">${showPartner ? (it.partner === "viator" ? "Viator · " : "Klook · ") : ""}${booked}${score}<span class="affiliate-proof-date">${checked}</span></span>`;
+    return `<span class="affiliate-social-proof">${showPartner ? (it.partner === "viator" ? "Viator · " : "Klook · ") : ""}${booked}${score}<span class="affiliate-proof-date" title="${checked}">${checked}</span></span>`;
   }
 
   function operatorReviewsHtml(it, lang) {
@@ -87,9 +88,24 @@
     const count = Number(proof.count).toLocaleString("en-US");
     const label = pick({ja:`Tripadvisor 事業者の口コミ ${count}件`,zh:`Tripadvisor 运营商评价 · ${count} 条`,en:`${count} operator reviews on Tripadvisor`}, lang);
     const score = proof.rating ? `<strong>${proof.rating}/5</strong> · ` : "";
-    return `<p class="affiliate-operator-reviews">${score}${label}<span class="affiliate-proof-date">${proof.name} · ${pick({ja:"確認",zh:"核查",en:"Checked"},lang)} ${proof.checkedAt.slice(0,7)}</span></p>`;
+    return `<div class="affiliate-operator-reviews" title="${proof.name.replace(/&/g, "&amp;").replace(/"/g, "&quot;")}"><span>${score}${label}</span></div>`;
   }
 
+  const ICON_PATHS = {
+    compass:'<circle cx="12" cy="12" r="9"/><path d="m16 8-3 5-5 3 3-5Z"/>',
+    forest:'<path d="m12 3-7 10h4l-5 6h16l-5-6h4Z"/><path d="M12 19v3"/>',
+    stay:'<path d="M3 19V7m0 9h18v3m0-3V9H3m3 0V6h5v3m2 0V6h5v3"/>',
+    city:'<path d="M3 21V9h7v12m0-16h8v16m0-10h3v10M6 12v1m0 3v1m8-9v1m0 3v1m0 3v1M2 21h20"/>',
+    mountain:'<path d="m2 20 7-12 4 6 3-10 6 16Z"/><path d="m7 12 2 2 2-2m3-2 2 2 2-2"/>',
+    clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    people:'<circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m0-16a3 3 0 0 1 0 6m3 4a6 6 0 0 1 3 5"/>',
+    language:'<path d="M3 5h12M9 2v3m-4 0c1 5 4 8 9 10m-2-10c-1 5-4 8-9 10m11 6 4-10 4 10m-7-3h6"/>',
+    pin:'<path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 0 1 14 0Z"/><circle cx="12" cy="10" r="2"/>'
+  };
+  function icon(name) { return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[name] || ICON_PATHS.compass}</svg>`; }
+  function featureChips(it, lang) {
+    return pick(it.features,lang).split(' · ').filter(Boolean).map((t,i)=>`<span>${icon(i===0?'clock':/英|English|Japanese|日语|日本語/.test(t)?'language':/接送|送迎|pickup/i.test(t)?'pin':'people')}${t}</span>`).join('');
+  }
   const TRAVEL_COPY = {
     ja: { islandTitle: "島内観光", forestTitle: "森歩き・ガイド付き登山", stayTitle: "屋久島の宿", gatewayTitle: "鹿児島発・鹿児島での滞在", extrasLabel: "食事体験・指宿の温泉宿", hikeJump: "登山ルートへ ↓", otherForest: "白谷雲水峡のほかのプラン", otherGateway: "鹿児島発のほかのプラン" },
     zh: { islandTitle: "屋久岛观光", forestTitle: "森林体验与向导徒步", stayTitle: "屋久岛住宿", gatewayTitle: "鹿儿岛出发与停留", extrasLabel: "餐食体验与指宿温泉住宿", hikeJump: "查看登山路线 ↓", otherForest: "其他白谷云水峡套餐", otherGateway: "其他鹿儿岛出发套餐" },
@@ -103,28 +119,33 @@
     const ex = (id) => (D()?.experiences || []).find(it => it.id === id);
     const viator = (code) => (D()?.experiences || []).find(it => it.productCode === code);
     const cards = (items) => items.filter(it => it && !blocked(it)).map(it => productCard(it, lang, false)).join("");
-    const section = (id, title, items) => `<section class="travel-section" id="${id}" aria-labelledby="${id}-title"><h2 id="${id}-title">${title}</h2><div class="travel-card-grid">${cards(items)}</div></section>`;
+    const section = (id, title, items, extra = "") => `<section class="travel-section" id="${id}" aria-labelledby="${id}-title"><h2 id="${id}-title">${title}</h2><div class="travel-card-grid">${cards(items)}</div>${extra}</section>`;
     const mini = (key) => {
       const it = item(key);
-      return it && !blocked(it) ? `<a class="travel-mini-link" ${affAttrs(it, lang)}><strong>${pick(it.label, lang)}</strong><span>${pick(it.note, lang)}</span>${socialProofHtml(it, lang)}</a>${routeAdvisoryHtml(it, lang)}` : "";
+      return it && !blocked(it) ? `<a class="travel-mini-link" ${affAttrs(it, lang)}><strong>${pick(it.label, lang)}</strong><span>${pick(it.note, lang)}</span>${socialProofHtml(it, lang)}</a>${routeAdvisoryHtml(it, lang) ? `<details class="trip-access-details"><summary>${pick({ja:"道路・歩道の情報",zh:"道路与步道提示",en:"Road & trail notice"},lang)}</summary>${routeAdvisoryHtml(it,lang)}</details>` : ""}` : "";
     };
     const forestExtra = mini("shirataniWalking");
     const gatewayExtra = mini("kagoshimaYakushimaDay");
-    return `<p class="travel-shortcut"><a href="#hiking-routes">${c.hikeJump}</a></p>`
+    const categories = [
+      ['all','compass',pick({ja:'すべて',zh:'全部体验',en:'All experiences'},lang)],
+      ['island-picks','compass',pick({ja:'島内観光',zh:'环岛观光',en:'Island tours'},lang)],
+      ['forest-picks','forest',pick({ja:'森歩き',zh:'森林徒步',en:'Forest walks'},lang)],
+      ['island-stays','stay',pick({ja:'宿泊',zh:'温泉住宿',en:'Stays'},lang)],
+      ['kagoshima-stop','city',pick({ja:'鹿児島',zh:'鹿儿岛',en:'Kagoshima'},lang)],
+      ['hiking-routes','mountain',pick({ja:'登山ルート',zh:'登山路线参考',en:'Hiking trail guide'},lang)]
+    ];
+    return `<nav class="travel-local-nav" aria-label="${pick({ja:'体験のカテゴリー',zh:'体验分类',en:'Experience categories'},lang)}">${categories.map(([id,type,label])=>id==='all'?`<button type="button" class="is-active" data-travel-filter="all" aria-pressed="true">${icon(type)}${label}</button>`:`<a href="#${id}" data-travel-filter="${id}">${icon(type)}${label}</a>`).join('')}</nav>`
       + section("island-picks", c.islandTitle, [viator("43454P373"), ex("klook_yakuzaru_day")])
-      + section("forest-picks", c.forestTitle, [viator("43454P391"), viator("13441P80"), viator("13441P81"), item("hiking")])
-      + (forestExtra ? `<details class="travel-extras travel-secondary"><summary>${c.otherForest}</summary><div class="travel-mini-grid">${forestExtra}</div></details>` : "")
+      + section("forest-picks", c.forestTitle, [viator("43454P391"), viator("13441P80"), viator("13441P81"), item("hiking")], forestExtra ? `<div class="travel-alternatives">${forestExtra}</div>` : "")
       + section("island-stays", c.stayTitle, [item("samanaHotel"), item("iwasakiHotel")])
-      + section("kagoshima-stop", c.gatewayTitle, [viator("43454P739"), viator("424579P1"), item("senganEn"), item("senganSpecial")])
-      + (gatewayExtra ? `<details class="travel-extras travel-secondary"><summary>${c.otherGateway}</summary><div class="travel-mini-grid">${gatewayExtra}</div></details>` : "")
-      + `<details class="travel-extras travel-secondary"><summary>${c.extrasLabel}</summary><div class="travel-mini-grid">${mini("kagoshimaKitchen")}${mini("ibusukiHotel")}</div></details>`;
+      + section("kagoshima-stop", c.gatewayTitle, [viator("43454P739"), viator("424579P1"), item("senganEn"), item("senganSpecial")], `<div class="travel-alternatives">${gatewayExtra}${mini("kagoshimaKitchen")}${mini("ibusukiHotel")}</div>`);
   }
 
   function bookingNotesHtml(lang) {
     const c = {
-      ja: { title: "予約について", proof: "評価・口コミ数・予約件数・参加人数は各サービスの表示を、記載日の時点で確認したものです。地域設定により異なる場合があります。" },
+      ja: { title: "予約について", proof: "評価・口コミ数・参加人数は各サービスの過去の表示です。最新情報は予約ページでご確認ください。" },
       zh: { title: "预订说明", proof: "评分、评价数、预订量和参与人数来自相应平台，截至卡片标注日期；不同地区的显示可能有差异。" },
-      en: { title: "About booking links", proof: "Ratings, review totals, booking counts and participant numbers come from the named platforms as of the dates shown. Figures may vary by region." },
+      en: { title: "About booking links", proof: "Ratings, reviews and participation figures are platform snapshots. Check the booking page for the latest information." },
     }[lang] || { title: "予約について", proof: "" };
     return `<details class="booking-notes"><summary>${c.title}</summary><p>${c.proof}</p><p>${pick(D()?.blocks?.bookingReminder, lang)}</p></details>`;
   }
@@ -158,9 +179,9 @@
           ${partnerBadge(partner)}
         </div>
         ${rating}
-        ${it.features ? `<p class="affiliate-card-features">${pick(it.features,lang)}</p>` : ""}
+        ${it.features ? `<div class="affiliate-card-features">${featureChips(it,lang)}</div>` : ""}
         ${body ? `<p class="affiliate-card-body">${body}</p>` : ""}
-        ${routeAdvisoryHtml(it, lang)}
+        ${routeAdvisoryHtml(it, lang) ? `<details class="trip-access-details"><summary>${pick({ja:"道路・歩道の情報",zh:"道路与步道提示",en:"Road & trail notice"},lang)}</summary>${routeAdvisoryHtml(it,lang)}</details>` : ""}
         ${socialProofHtml(it, lang, false)}
         ${operatorReviewsHtml(it, lang)}
         <div class="affiliate-card-foot">
@@ -244,7 +265,40 @@
     </details>`;
   }
 
+  function restoreTravelFilter(scroll = false) {
+    const guide = document.getElementById('travelGuide');
+    if (!guide) return;
+    const requested = new URL(location.href).searchParams.get('category') || 'all';
+    const options = [...guide.querySelectorAll('[data-travel-filter]')];
+    const key = options.some(el => el.dataset.travelFilter === requested) ? requested : 'all';
+    options.forEach(el => {
+      const active = el.dataset.travelFilter === key;
+      el.classList.toggle('is-active', active);
+      el.setAttribute('aria-current', String(active));
+      if (el.tagName === 'BUTTON') el.setAttribute('aria-pressed', String(active));
+    });
+    guide.querySelectorAll('.travel-section').forEach(el => { el.hidden = key !== 'all' && el.id !== key; });
+    if (scroll) {
+      const target = key === 'hiking-routes' ? document.getElementById(key) : guide.querySelector('.travel-local-nav');
+      target?.scrollIntoView({block:'start', behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+    }
+  }
+  if (typeof document !== 'undefined') {
+    document.addEventListener('click', event => {
+      const target = event.target.closest?.('[data-travel-filter]');
+      if (!target) return;
+      event.preventDefault();
+      const url = new URL(location.href);
+      const key = target.dataset.travelFilter;
+      if (key === 'all') url.searchParams.delete('category'); else url.searchParams.set('category', key);
+      url.hash = '';
+      if (url.href !== location.href) history.pushState(null, '', url);
+      restoreTravelFilter(true);
+    });
+    window.addEventListener('popstate', () => restoreTravelFilter(true));
+  }
   window.AffiliateUI = {
+    restoreTravelFilter,
     localizedUrl,
     pick,
     jetfoilPrimaryHtml,

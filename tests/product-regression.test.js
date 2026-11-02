@@ -128,7 +128,7 @@ test('travel guide groups sourced offers and withholds closed Shiratani booking 
   }
   for (const lang of ['ja','zh','en']) {
     const html=c.window.AffiliateUI.travelGuideHtml(lang);
-    assert.equal((html.match(/href="#/g)||[]).length,1);
+    assert.equal((html.match(/href="#/g)||[]).length,5);
     assert.match(html,/#hiking-routes/);
     for (const id of ['1492158','1492165','1492166','1492169','1492172','1492170','1492174']) assert.match(html,new RegExp(id));
     assert.doesNotMatch(html,/data-affiliate-id="1492163"|data-affiliate-id="1492168"/);

@@ -66,6 +66,21 @@ def evidence_html(path, page, manifest, status, include_alerts):
         summary = ''.join(f'<span data-seo-lang="{lang}"' + ('' if lang == 'ja' else ' hidden') + f'>{escape(COPY[lang]["sources"])}</span>' for lang in LANGS)
         return START + '<details class="guide-sources guide-source-evidence"><summary>' + summary + '</summary>' + ''.join(blocks) + '</details>' + END
     sections = []
+    next_titles = {'ja': '旅の続きを計画', 'zh': '继续规划行程', 'en': 'Plan the rest of your trip'}
+    destinations = [
+        ('/', {'ja': ('バス時刻表', '港・空港から次の便を探す'), 'zh': ('查公交班次', '查询港口、机场与岛内接驳'), 'en': ('Bus timetable', 'Find your next bus from the port or airport')}),
+        ('/fare/', {'ja': ('運賃・乗車券', '区間運賃と乗車券を確認'), 'zh': ('票价与通票', '查询区间票价与乘车通票'), 'en': ('Fares & passes', 'Check section fares and bus passes')}),
+        ('/map/', {'ja': ('島内マップ', 'バス停・温泉・お店を探す'), 'zh': ('查看岛内地图', '寻找公交站、温泉与商店'), 'en': ('Island map', 'Find bus stops, hot springs and shops')}),
+        ('/ferry/', {'ja': ('乗船券・アクセス', '船の時刻・運賃と予約先'), 'zh': ('船票与上岛交通', '查看船班、票价及预约入口'), 'en': ('Ferry tickets & access', 'Compare schedules, fares and booking links')}),
+        ('/without-car/', {'ja': ('レンタカーなし', 'バスと船で旅を組み立てる'), 'zh': ('不租车攻略', '用公交和船运安排行程'), 'en': ('Without a car', 'Plan your trip using buses and ferries')}),
+    ]
+    priorities = {'/ferry/': ['/', '/fare/', '/without-car/'], '/map/': ['/', '/fare/', '/without-car/'], '/': ['/fare/', '/map/', '/ferry/']}
+    wanted = priorities.get(path, ['/', '/map/', '/ferry/'])
+    related = []
+    for lang, tag in LANGS.items():
+        cards = ''.join(f'<a href="{url}?lang={lang}"><strong>{escape(labels[lang][0])}</strong><span>{escape(labels[lang][1])}</span><b aria-hidden="true">↗</b></a>' for url in wanted for target, labels in destinations if target == url and url != path)
+        hidden = '' if lang == 'ja' else ' hidden'
+        related.append(f'<div data-seo-lang="{lang}" lang="{tag}"{hidden}><h2 class="journey-next-title">{next_titles[lang]}</h2><nav class="journey-next-links" aria-label="{next_titles[lang]}">{cards}</nav></div>')
     titles = {'ja': '出典・交通情報の確認', 'zh': '来源与交通信息核查', 'en': 'Sources and transport checks'}
     labels = {'ja': '記録された案内（出発前に再確認）', 'zh': '已记录的公告（出行前复核）', 'en': 'Recorded notices (recheck before travel)'}
     for lang, tag in LANGS.items():
@@ -75,9 +90,9 @@ def evidence_html(path, page, manifest, status, include_alerts):
             season = max(load('sources/access/jetfoil.json')['seasons'], key=lambda s: s['validFrom'])
             dates = season['validFrom'] + '–' + season['validTo']
             note = {
-                'ja': f'掲載資料の高速船最終季節区間: {dates}。利用日を選び、計画休航・入出港地を確認してください。天候等による当日の運航は公式発表で確認が必要です。',
-                'zh': f'所收录高速船资料的最后一个季节区间：{dates}。请选择实际出行日期，核对计划停航及出入港口；天气等导致的当日运行变化须向船公司确认。',
-                'en': f'Last jetfoil season in the published source data: {dates}. Select the travel date and check planned cancellations and arrival ports. Confirm same-day weather and operations with the operator.',
+                'ja': f'掲載資料の高速船最終季節区間: {dates}。入出港地・計画休航を船会社で確認してください。天候等による当日の運航は公式発表で確認が必要です。',
+                'zh': f'所收录高速船资料的最后一个季节区间：{dates}。请向船公司核对计划停航及出入港口；天气等导致的当日运行变化须向船公司确认。',
+                'en': f'Last jetfoil season in the published source data: {dates}. Check planned cancellations and arrival ports with the operator. Confirm same-day weather and operations with the operator.',
             }[lang]
         parts = [f'<p>{escape(copy)}</p>', f'<p data-nosnippet>{escape(note)}</p>']
         for question, answer in page.get('bookingFaq', {}).get(lang, []):
@@ -98,11 +113,11 @@ def evidence_html(path, page, manifest, status, include_alerts):
         if path == '/trekking/':
             source_links.append(('https://yakukan.jp/trekking/', {'ja': '観光協会 登山案内', 'zh': '观光协会登山指南', 'en': 'Tourism association hiking guide'}[lang]))
         parts.append('<p>' + ' · '.join(f'<a href="{escape(url)}">{escape(label)}</a>' for url, label in source_links) + '</p>')
-        parts.append('<p>' + ' · '.join(f'<a href="{url}?lang={lang}">{label}</a>' for url, label in links) + '</p>')
+
         hidden = '' if lang == 'ja' else ' hidden'
         sections.append(f'<div data-seo-lang="{lang}" lang="{tag}"{hidden}>' + ''.join(parts) + '</div>')
     summaries = ''.join(f'<span data-seo-lang="{lang}" lang="{tag}"' + ('' if lang == 'ja' else ' hidden') + f'>{titles[lang]}</span>' for lang, tag in LANGS.items())
-    return f'{START}\n    <details class="aux-block seo-evidence"><summary class="aux-summary">{summaries}</summary><div class="aux-body">' + ''.join(sections) + f'</div></details>\n    {END}'
+    return f'{START}\n    <section class="journey-end"><div class="journey-next">' + ''.join(related) + f'</div><details class="aux-block seo-evidence"><summary class="aux-summary">{summaries}</summary><div class="aux-body">' + ''.join(sections) + f'</div></details></section>\n    {END}'
 
 
 def update_head(text, path, page):

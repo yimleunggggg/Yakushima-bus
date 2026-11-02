@@ -4430,3 +4430,100 @@ button,input,select,textarea { font-family:inherit; }
 
 .affiliate-card-features { margin: 0 0 5px; color: var(--primary-dark); font-size: var(--text-small); font-weight: 600; }
 .affiliate-operator-reviews .affiliate-proof-date { display: block; margin: 3px 0 0; font-size: 11px; }
+
+/* One shared end-of-page hierarchy: next steps, sources, then site footer. */
+.journey-end { min-width: 0; margin-top: 28px; }
+.journey-next { padding: 20px 0; border-top: 1px solid var(--border); }
+.journey-next-title { margin: 0 0 12px; color: var(--primary-dark); font-size: 0.9375rem; font-weight: 650; }
+.journey-next-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.journey-next-links a {
+  position: relative; display: flex; flex-direction: column; gap: 5px; min-width: 0;
+  padding: 15px 32px 15px 15px; border: 1px solid var(--border); border-radius: 9px;
+  background: var(--surface); color: var(--primary-dark); text-decoration: none;
+}
+.journey-next-links strong { font-size: 0.8125rem; font-weight: 650; }
+.journey-next-links span { font-size: 0.75rem; line-height: 1.5; color: var(--muted); }
+.journey-next-links b { position: absolute; right: 12px; top: 15px; font-weight: 400; color: var(--muted); }
+.journey-next-links a:hover { border-color: var(--primary); background: var(--surface-tint); }
+.journey-end .seo-evidence { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.journey-end .seo-evidence > .aux-summary { min-height: 48px; padding: 12px 0; color: var(--muted); font-size: 0.75rem; }
+.journey-end .seo-evidence .aux-body { padding: 0 0 16px; color: var(--muted); font-size: 0.75rem; line-height: 1.65; }
+.journey-end .seo-evidence p + p { margin-top: 10px; }
+.journey-end + .app-footer { margin-top: 0; border-top: none; padding-left: 0; padding-right: 0; }
+.app-footer-links a { display: inline-flex; align-items: center; min-height: 36px; }
+
+/* Consistent action baselines, with the badge out of the flex calculation. */
+.access-booking-actions { align-items: center; padding-top: 7px; }
+.access-booking-btn { min-height: 42px; box-sizing: border-box; }
+.access-booking-btn-klook { margin: 0 8px 0 0; }
+.travel-local-nav { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 10px 0 14px; margin: 0 0 20px; border-bottom: 1px solid var(--border); font-size: var(--text-label); }
+.travel-local-nav a { color: var(--primary-dark); text-decoration: none; padding: 4px 0; }
+.travel-local-nav a:hover { text-decoration: underline; }
+.travel-section .affiliate-card--with-image { display: flex; flex-direction: column; }
+.travel-section .affiliate-card-img { width: 100%; height: 160px; min-height: 0; object-fit: cover; }
+.travel-section .affiliate-card-main { flex: 1; }
+.travel-supplement { padding: 12px 0; margin: -12px 0 22px; border-top: 1px solid var(--border); }
+.travel-supplement h3 { margin: 0 0 8px; }
+.travel-supplement .travel-secondary { margin: 0; }
+.travel-supplement .travel-extras { margin: 0; }
+.page-reference-group { background: transparent; border: 0; padding: 0; }
+.app-footer-booking { margin: 0; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.trek-reference-resources { margin-top: 24px; background: transparent; border: 0; padding: 0; }
+.app-footer-support { border-top: 1px solid var(--border); margin-top: 16px; }
+@media(max-width:700px) { .travel-section .affiliate-card-img { height: 168px; } }
+
+
+
+/* Visual travel catalogue: a clear photograph, a few facts, one action. */
+body.travel-page { overflow-x:clip; overflow-y:visible; }
+.trek-page #travelGuide { display:contents; }
+.travel-local-nav { position:sticky; top:70px; scroll-margin-top:70px; z-index:80; flex-shrink:0; gap:6px; border:0; border-bottom:1px solid var(--border); margin:8px 0 20px; padding:8px 0; background:var(--bg); }
+.travel-local-nav :is(a,button) { display:inline-flex; align-items:center; gap:5px; min-height:30px; padding:5px 9px; box-sizing:border-box; line-height:1.3; border:1px solid var(--border); border-radius:999px; background:var(--surface); color:var(--primary-dark); font:inherit; font-size:13px; font-weight:600; text-decoration:none; cursor:pointer; }
+.travel-local-nav svg { width:14px; height:14px; flex-shrink:0; }
+.travel-local-nav .is-active { background:var(--primary); color:white; border-color:var(--primary); }
+.travel-local-nav :is(a,button):hover { border-color:var(--primary); text-decoration:none; }
+.travel-section[hidden] { display:none; }
+.travel-section { margin-bottom:32px; }
+.travel-card-grid { gap:16px; }
+.travel-section > h2 { font-size:18px; margin-bottom:14px; }
+.travel-section .affiliate-card { border-radius:14px; background:#fffefa; }
+.travel-section .affiliate-card-img { height:180px; width:100%; object-fit:cover; }
+.travel-section .affiliate-card-main { padding:16px; }
+.travel-section .affiliate-card-title { font-size:16px; line-height:1.45; }
+.travel-section .affiliate-card-head { margin-bottom:8px; }
+.travel-section .affiliate-card-body { font-size:13px; line-height:1.65; color:var(--muted); display:block; margin-bottom:8px; }
+.affiliate-card-features { display:flex; flex-wrap:wrap; gap:6px 10px; margin:0 0 9px; }
+.affiliate-card-features span { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:500; color:var(--muted); }
+.affiliate-card-features svg { width:13px; height:13px; flex-shrink:0; }
+.travel-section .affiliate-proof-date { display:none; }
+.affiliate-operator-reviews { display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:12px; line-height:1.5; margin:4px 0; }
+.trip-access-details { font-size:11px; color:var(--muted); margin:4px 0; }
+.trip-access-details summary { cursor:pointer; }
+.trip-access-details .affiliate-card-body { display:block; -webkit-line-clamp:unset; font-size:11px; padding-top:6px; }
+.travel-section .affiliate-card-foot { margin-top:auto; padding-top:12px; }
+.travel-section .affiliate-card-cta { align-self:stretch; justify-content:center; font-size:13px; border-radius:8px; background:var(--surface-tint); }
+.travel-alternatives { display:grid; gap:0; margin-top:14px; border-top:1px solid var(--border); }
+.travel-alternatives .travel-mini-link { border:0; border-radius:0; background:transparent; padding:12px 0; gap:4px; }
+.travel-alternatives .travel-mini-link + .travel-mini-link { border-top:1px solid var(--border); }
+.travel-alternatives .travel-mini-link>span:not(.affiliate-social-proof) { display:none; }
+.travel-alternatives .affiliate-social-proof { font-size:11px; margin:0; }
+#hiking-routes { scroll-margin-top:120px; }
+@media(max-width:700px) {
+  .travel-local-nav { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; gap:6px; margin-bottom:16px; }
+  .travel-local-nav::-webkit-scrollbar { display:none; }
+  .travel-local-nav :is(a,button) { flex-shrink:0; font-size:12px; min-height:30px; padding:5px 9px; }
+  .travel-section .affiliate-card--with-image { display:grid; grid-template-columns:96px minmax(0,1fr); }
+  .travel-section .affiliate-card-media { min-height:100%; height:100%; overflow:hidden; }
+  .travel-section .affiliate-card-img { height:100%; min-height:156px; width:100%; object-fit:cover; }
+  .travel-section .affiliate-card-main { min-width:0; padding:11px; }
+  .travel-section .affiliate-card-title { font-size:14px; line-height:1.4; }
+  .travel-section .affiliate-card-head { flex-wrap:wrap; gap:4px; margin-bottom:6px; }
+  .travel-section .affiliate-partner-badge { font-size:10px; }
+  .travel-section .affiliate-card-body { font-size:12px; line-height:1.5; margin-bottom:6px; }
+  .travel-section .affiliate-card-features { gap:3px 7px; margin-bottom:5px; }
+  .travel-section .affiliate-card-features span { font-size:10px; }
+  .travel-section .affiliate-social-proof, .travel-section .affiliate-operator-reviews { font-size:11px; line-height:1.5; }
+  .travel-section .affiliate-card-foot { padding-top:7px; }
+  .travel-section .affiliate-card-cta { font-size:12px; padding:6px 8px; min-height:30px; }
+  .travel-card-grid { gap:12px; }
+}

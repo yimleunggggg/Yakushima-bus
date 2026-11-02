@@ -30,15 +30,15 @@ const AccessSchedule = {
           zh: `${date}：官方计划停运，当天不显示可乘班次。`,
           en: `${date}: planned suspension. No sailings are shown for this date.`,
         } : ferry.period ? {
-          ja: `${date}：公表済みの計画運休には該当しません。天候等の欠航は出航前に公式で確認してください。`,
-          zh: `${date}：不在已公布的计划停运日期内；天气等临时停航仍须出发前查官网。`,
-          en: `${date}: not listed as a planned suspension. Check the operator for weather and other cancellations.`,
+          ja: `時刻表どおりの運航予定です。変更は公式発表をご確認ください。`,
+          zh: `按时刻表运行，临时变更请查看官方公告。`,
+          en: `Scheduled to operate as timetabled. Check the operator for changes.`,
         } : {
           ja: '選択日の計画運休情報は未確認です。以下は通常時刻で、運航を保証するものではありません。',
           zh: '所选日期的计划停运信息尚未核实。下列为常规时刻，不代表确认当天运行。',
           en: 'Planned suspensions have not been verified for this date. Regular times below do not confirm a sailing.',
         };
-        return { ...s, rows: ferry.suspended || !this.validDate(date) ? [] : s.rows, alert, alertUrl: ferry.period?.sourceUrl || data.meta.sources.ferry };
+        return { ...s, rows: ferry.suspended || !this.validDate(date) ? [] : s.rows, plannedSuspension: ferry.suspended, calendarVerified: !!ferry.period, alert, alertUrl: ferry.period?.sourceUrl || data.meta.sources.ferry };
       }
       if (s.id === 'ferry_fare' && (!this.validDate(date) || date < s.validity?.validFrom || (s.validity?.validTo && date > s.validity.validTo))) {
         return { ...s, rows: [], note: {
