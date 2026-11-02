@@ -1,6 +1,6 @@
 {
   "fetched_at": "2026-11-02",
-  "fetched_at_iso": "2026-11-02T16:17:52.929680+08:00",
+  "fetched_at_iso": "2026-11-02T16:22:20.490010+08:00",
   "gsc_7d": {
     "error": "OAuth refresh 失败: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})"
   },
@@ -209,13 +209,13 @@
       "pageviews": 123
     },
     "last_7d": {
-      "active_users": 382,
-      "new_users": 344,
-      "sessions": 625,
+      "active_users": 383,
+      "new_users": 345,
+      "sessions": 626,
       "engaged_sessions": 436,
-      "engagement_rate": 69.8,
-      "avg_session_sec": 334.9,
-      "pageviews": 1026
+      "engagement_rate": 69.6,
+      "avg_session_sec": 334.4,
+      "pageviews": 1027
     },
     "channels_yesterday": [
       {
@@ -2183,7 +2183,7 @@
   },
   "aligned_period": false,
   "diagnostics": {
-    "collected_at": "2026-11-02T16:18:08.952780+08:00",
+    "collected_at": "2026-11-02T16:22:22.754398+08:00",
     "ga4_landing": {
       "current": {
         "period": {
@@ -2196,7 +2196,7 @@
             "keys": [
               "/"
             ],
-            "sessions": 343
+            "sessions": 344
           },
           {
             "keys": [
@@ -2324,7 +2324,7 @@
             "keys": [
               "google / organic"
             ],
-            "sessions": 306
+            "sessions": 307
           },
           {
             "keys": [
@@ -2513,7 +2513,7 @@
               "/",
               "google / organic"
             ],
-            "sessions": 188
+            "sessions": 189
           },
           {
             "keys": [
@@ -3319,18 +3319,18 @@
     {
       "source": "GA4",
       "metric": "活跃用户·周环比",
-      "current": 382,
+      "current": 383,
       "previous": 479,
-      "change": "-20.3%",
+      "change": "-20.0%",
       "window": "2026-10-26~2026-11-01 对 2026-10-19~2026-10-25",
       "status": "可比较"
     },
     {
       "source": "GA4",
       "metric": "会话·周环比",
-      "current": 625,
+      "current": 626,
       "previous": 762,
-      "change": "-18.0%",
+      "change": "-17.8%",
       "window": "2026-10-26~2026-11-01 对 2026-10-19~2026-10-25",
       "status": "可比较"
     },
@@ -3441,15 +3441,15 @@
   ],
   "analysis": {
     "card_findings": [
-      "首页的减少细分：Google搜索 333→188次；chatgpt.com / ai-assistant 66→38次。",
-      "入口页减少最多：首页 553→343次；/map 63→30次。"
+      "首页的减少细分：Google搜索 333→189次；chatgpt.com / ai-assistant 66→38次。",
+      "入口页减少最多：首页 553→344次；/map 63→30次。"
     ],
     "judgment": "尚不足以判定变化原因；我会继续自动补齐对比数据。",
     "findings": [
-      "本周活跃访客479→382（-20.3%）。",
+      "本周活跃访客479→383（-20.0%）。",
       "减少集中在自然搜索549→407次、AI渠道81→57次；这里比较访问次数，不把各渠道人数相加。",
-      "入口页减少最多：首页 553→343次；/map 63→30次。",
-      "首页的减少细分：Google搜索 333→188次；chatgpt.com / ai-assistant 66→38次。"
+      "入口页减少最多：首页 553→344次；/map 63→30次。",
+      "首页的减少细分：Google搜索 333→189次；chatgpt.com / ai-assistant 66→38次。"
     ],
     "agent_actions": [
       "已核验首页、/map可打开，未见禁止收录标记。",
@@ -3477,9 +3477,9 @@
       },
       {
         "key": "/",
-        "current": 343,
+        "current": 344,
         "previous": 553,
-        "delta": -210,
+        "delta": -209,
         "source": "GA4 landing",
         "metric": "sessions"
       },
@@ -3493,9 +3493,9 @@
       },
       {
         "key": "/ ← google / organic",
-        "current": 188,
+        "current": 189,
         "previous": 333,
-        "delta": -145,
+        "delta": -144,
         "source": "GA4 source + landing",
         "metric": "sessions"
       },
@@ -3532,9 +3532,9 @@
     "landing_source_changes": [
       {
         "key": "/ ← google / organic",
-        "current": 188,
+        "current": 189,
         "previous": 333,
-        "delta": -145
+        "delta": -144
       },
       {
         "key": "/ ← chatgpt.com / ai-assistant",
@@ -3567,15 +3567,15 @@
         "delta": -10
       },
       {
-        "key": "/ ← service.smt.docomo.ne.jp / referral",
-        "current": 1,
-        "previous": 9,
-        "delta": -8
-      },
-      {
         "key": "/map ← (direct) / (none)",
         "current": 9,
         "previous": 17,
+        "delta": -8
+      },
+      {
+        "key": "/ ← service.smt.docomo.ne.jp / referral",
+        "current": 1,
+        "previous": 9,
         "delta": -8
       },
       {
@@ -3603,15 +3603,15 @@
         "delta": -5
       },
       {
-        "key": "/ ← ecosia.org / organic",
-        "current": 1,
-        "previous": 5,
-        "delta": -4
-      },
-      {
         "key": "/map ← m.facebook.com / referral",
         "current": 0,
         "previous": 4,
+        "delta": -4
+      },
+      {
+        "key": "/ ← ecosia.org / organic",
+        "current": 1,
+        "previous": 5,
         "delta": -4
       },
       {
@@ -3627,12 +3627,6 @@
         "delta": -3
       },
       {
-        "key": "/map ← yahoo / organic",
-        "current": 0,
-        "previous": 2,
-        "delta": -2
-      },
-      {
         "key": "/fare ← bing / organic",
         "current": 2,
         "previous": 4,
@@ -3645,7 +3639,13 @@
         "delta": -2
       },
       {
-        "key": "/without-car ← chatgpt.com / ai-assistant",
+        "key": "/map ← yahoo / organic",
+        "current": 0,
+        "previous": 2,
+        "delta": -2
+      },
+      {
+        "key": "/ ← openai / (not set)",
         "current": 0,
         "previous": 1,
         "delta": -1
@@ -3657,15 +3657,9 @@
         "delta": -1
       },
       {
-        "key": "/ ← openai / (not set)",
+        "key": "/without-car ← chatgpt.com / ai-assistant",
         "current": 0,
         "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/fare ← google / organic",
-        "current": 44,
-        "previous": 45,
         "delta": -1
       },
       {
@@ -3687,7 +3681,19 @@
         "delta": -1
       },
       {
+        "key": "/fare ← google / organic",
+        "current": 44,
+        "previous": 45,
+        "delta": -1
+      },
+      {
         "key": "/ ← (not set)",
+        "current": 1,
+        "previous": 1,
+        "delta": 0
+      },
+      {
+        "key": "/fare ← openai / organic",
         "current": 1,
         "previous": 1,
         "delta": 0
@@ -3711,25 +3717,19 @@
         "delta": 0
       },
       {
-        "key": "/fare ← openai / organic",
-        "current": 1,
-        "previous": 1,
-        "delta": 0
-      },
-      {
-        "key": "/guides/yakushima-where-to-stay ← google / organic",
+        "key": "(not set) ← ecosia.org / organic",
         "current": 1,
         "previous": 0,
         "delta": 1
       },
       {
-        "key": "(not set) ← map_popup / (none)",
+        "key": "/intro ← (direct) / (none)",
         "current": 1,
         "previous": 0,
         "delta": 1
       },
       {
-        "key": " ← chatgpt.com / ai-assistant",
+        "key": " ← yahoo / organic",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -3741,39 +3741,9 @@
         "delta": 1
       },
       {
-        "key": "(not set) ← yahoo / organic",
-        "current": 3,
-        "previous": 2,
-        "delta": 1
-      },
-      {
-        "key": " ← yahoo / organic",
+        "key": "/without-car ← bing / organic",
         "current": 1,
         "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "(not set) ← ecosia.org / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/ ← map_popup / ",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/about ← (direct) / (none)",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "(not set) ← (direct) / (none)",
-        "current": 2,
-        "previous": 1,
         "delta": 1
       },
       {
@@ -3783,31 +3753,7 @@
         "delta": 1
       },
       {
-        "key": "/without-car ← bing / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
         "key": "/without-car ← ecosia.org / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/trekking ← (direct) / (none)",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/ ← cn.bing.com / referral",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "(not set) ← duckduckgo / organic",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -3825,7 +3771,31 @@
         "delta": 1
       },
       {
-        "key": "/intro ← (direct) / (none)",
+        "key": "(not set) ← map_popup / (none)",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "(not set) ← duckduckgo / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": " ← chatgpt.com / ai-assistant",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/guides/yakushima-where-to-stay ← google / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/trekking ← (direct) / (none)",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -3837,7 +3807,37 @@
         "delta": 1
       },
       {
+        "key": "/ ← cn.bing.com / referral",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "(not set) ← (direct) / (none)",
+        "current": 2,
+        "previous": 1,
+        "delta": 1
+      },
+      {
+        "key": "/ ← map_popup / ",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "(not set) ← yahoo / organic",
+        "current": 3,
+        "previous": 2,
+        "delta": 1
+      },
+      {
         "key": " ← bing / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/about ← (direct) / (none)",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -3846,12 +3846,6 @@
         "key": "/ferry ← duckduckgo / organic",
         "current": 2,
         "previous": 0,
-        "delta": 2
-      },
-      {
-        "key": "/fare ← chatgpt.com / ai-assistant",
-        "current": 5,
-        "previous": 3,
         "delta": 2
       },
       {
@@ -3879,19 +3873,25 @@
         "delta": 2
       },
       {
+        "key": "/fare ← chatgpt.com / ai-assistant",
+        "current": 5,
+        "previous": 3,
+        "delta": 2
+      },
+      {
         "key": "/ferry ← bing / organic",
         "current": 11,
         "previous": 8,
         "delta": 3
       },
       {
-        "key": " ← map_popup / ",
+        "key": "/fare ← map_popup / (not set)",
         "current": 3,
         "previous": 0,
         "delta": 3
       },
       {
-        "key": "/fare ← map_popup / (not set)",
+        "key": " ← map_popup / ",
         "current": 3,
         "previous": 0,
         "delta": 3
@@ -3903,13 +3903,13 @@
         "delta": 4
       },
       {
-        "key": " ← google / organic",
+        "key": "/fare ← (not set)",
         "current": 4,
         "previous": 0,
         "delta": 4
       },
       {
-        "key": "/fare ← (not set)",
+        "key": " ← google / organic",
         "current": 4,
         "previous": 0,
         "delta": 4
@@ -3933,15 +3933,15 @@
         "delta": 6
       },
       {
-        "key": "/ferry ← (direct) / (none)",
-        "current": 14,
-        "previous": 7,
-        "delta": 7
-      },
-      {
         "key": "/fare ← (direct) / (none)",
         "current": 8,
         "previous": 1,
+        "delta": 7
+      },
+      {
+        "key": "/ferry ← (direct) / (none)",
+        "current": 14,
+        "previous": 7,
         "delta": 7
       },
       {
@@ -3995,9 +3995,9 @@
     "landing_changes": [
       {
         "key": "/",
-        "current": 343,
+        "current": 344,
         "previous": 553,
-        "delta": -210
+        "delta": -209
       },
       {
         "key": "/map",
@@ -4018,12 +4018,6 @@
         "delta": -1
       },
       {
-        "key": "/about",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
         "key": "/intro",
         "current": 1,
         "previous": 0,
@@ -4031,6 +4025,12 @@
       },
       {
         "key": "/guides/yakushima-where-to-stay",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/about",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -4069,9 +4069,9 @@
     "source_changes": [
       {
         "key": "google / organic",
-        "current": 306,
+        "current": 307,
         "previous": 418,
-        "delta": -112
+        "delta": -111
       },
       {
         "key": "bing / organic",
@@ -4104,13 +4104,13 @@
         "delta": -8
       },
       {
-        "key": "m.facebook.com / referral",
+        "key": "facebook.com / referral",
         "current": 0,
         "previous": 4,
         "delta": -4
       },
       {
-        "key": "facebook.com / referral",
+        "key": "m.facebook.com / referral",
         "current": 0,
         "previous": 4,
         "delta": -4
@@ -4174,8 +4174,8 @@
     "gsc_visible_query_changes": []
   },
   "daily_actions": [
-    "首页的减少细分：Google搜索 333→188次；chatgpt.com / ai-assistant 66→38次。",
-    "入口页减少最多：首页 553→343次；/map 63→30次。",
+    "首页的减少细分：Google搜索 333→189次；chatgpt.com / ai-assistant 66→38次。",
+    "入口页减少最多：首页 553→344次；/map 63→30次。",
     "尚不足以判定变化原因；我会继续自动补齐对比数据。",
     "已核验首页、/map可打开，未见禁止收录标记。",
     "页面/搜索词对比尚有缺项，已记录缺口；自动任务下轮继续采集，不需要你查表。"
