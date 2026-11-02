@@ -79,14 +79,14 @@ def evidence_html(path, page, manifest, status, include_alerts):
                 'zh': f'所收录高速船资料的最后一个季节区间：{dates}。请选择实际出行日期，核对计划停航及出入港口；天气等导致的当日运行变化须向船公司确认。',
                 'en': f'Last jetfoil season in the published source data: {dates}. Select the travel date and check planned cancellations and arrival ports. Confirm same-day weather and operations with the operator.',
             }[lang]
-        parts = [f'<p>{escape(copy)}</p>', f'<p>{escape(note)}</p>']
+        parts = [f'<p>{escape(copy)}</p>', f'<p data-nosnippet>{escape(note)}</p>']
         for question, answer in page.get('bookingFaq', {}).get(lang, []):
             parts.append(f'<h3>{escape(question)}</h3><p>{escape(answer)}</p>')
         if include_alerts:
             for alert in [a for a in status['alerts'] if a['validFrom'] <= status['checkedAt'] and (not a.get('validTo') or a['validTo'] >= status['checkedAt'])]:
                 review_label = {'ja': '再確認期限', 'zh': '应复核', 'en': 'review due'}[lang]
                 source_label = {'ja': '公式案内', 'zh': '官方公告', 'en': 'Official notice'}[lang]
-                parts.append(f'<p>{escape(labels[lang])}: {escape(alert["message"][lang])} '
+                parts.append(f'<p data-nosnippet>{escape(labels[lang])}: {escape(alert["message"][lang])} '
                              f'({escape(month_label(alert["checkedAt"],lang))}; {review_label}: {escape(month_label(alert["reviewAfter"],lang))}) '
                              f'<a href="{escape(alert["sourceUrl"])}" rel="noopener">{source_label}</a></p>')
         source_links = [(manifest['sources']['taneyaku']['url'], 'PDF (JA)'),
@@ -113,7 +113,7 @@ def update_head(text, path, page):
         pattern = rf'<meta {attr}="{re.escape(name)}"[^>]*>'
         element = f'<meta {attr}="{name}" content="{escape(value, quote=True)}">'
         return re.sub(pattern, element, text, count=1) if re.search(pattern, text) else text.replace('</head>', f'  {element}\n</head>')
-    for attr, key, value in [('name', 'description', description), ('property', 'og:title', title),
+    for attr, key, value in [('name', 'description', description), ('property', 'og:site_name', 'YakuBus'), ('property', 'og:title', title),
                               ('property', 'og:description', description), ('property', 'og:url', BASE + path),
                               ('name', 'twitter:title', title), ('name', 'twitter:description', description),
                               ('name', 'twitter:card', 'summary_large_image'),
@@ -130,6 +130,10 @@ def update_head(text, path, page):
         nodes = data.get('@graph', [data])
         found = False
         for node in nodes:
+            if node.get('@type') == 'WebSite':
+                node.update(name='YakuBus', alternateName=['Yakushima Bus', '屋久島バス', '屋久岛公交查询', 'yakushimabus.com'])
+            if node.get('@type') == 'Organization' and node.get('url') == BASE + '/':
+                node['name'] = 'YakuBus'
             if node.get('@type') in ('WebPage', 'AboutPage', 'WebApplication'):
                 node.pop('@context', None)
                 node.update(name=title, description=description, url=BASE + path, dateModified=page['modified'], inLanguage=list(LANGS.values()))

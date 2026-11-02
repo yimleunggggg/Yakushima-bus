@@ -1,17 +1,17 @@
 {
   "/": {
-    "modified": "2026-10-24",
+    "modified": "2026-11-02",
     "ja": [
       "屋久島バス時刻表｜次の便・運行状況 | YakuBus",
-      "屋久島の宮之浦港・空港・安房を結ぶバスの次の便を検索。平日・土曜・日祝に対応し、公式PDFの改訂日と運休情報を確認できます。路線図・運賃・登山口への接続も案内する非公式の無料ツールです。"
+      "YakuBusで屋久島の次のバス、時刻表・路線・運賃を検索。宮之浦港・空港・安房や登山口への移動を計画し、島内観光マップ、船券予約、旅行ガイドも確認できます。公式資料をもとにした非公式の無料ツールです。"
     ],
     "zh": [
       "屋久岛公交时刻表｜下一班车与停运信息 | YakuBus",
-      "查询屋久岛宫之浦港、机场、安房等站点的下一班公交，支持工作日、周六与日祝。查看官方PDF改订日期、停运提示、路线票价与登山接驳。本站为独立整理的免费工具，出行请核对运营商公告。"
+      "用YakuBus查询屋久岛下一班公交、时刻表、路线与票价，规划宫之浦港、机场、安房及登山口接驳。结合全岛旅游地图、船票预订和旅行攻略安排行程。本站为依据官方资料整理的非官方免费工具。"
     ],
     "en": [
       "Yakushima Bus Timetable & Service Notices | YakuBus",
-      "Find the next bus between Miyanoura Port, Yakushima Airport and Anbo. Check weekday, Saturday and holiday schedules, official PDF revisions, suspension notices, fares and trailhead connections. Independent travel tool."
+      "Find your next Yakushima bus, timetables, routes and fares with YakuBus. Plan port, airport and trailhead connections, explore the island map, and find ferry booking links and travel guides. Independent free tool based on official sources."
     ]
   },
   "/fare/": {
@@ -89,33 +89,33 @@
     }
   },
   "/map/": {
-    "modified": "2026-10-23",
+    "modified": "2026-11-02",
     "ja": [
-      "屋久島観光マップ｜温泉・買い物・バス停 | YakuBus",
+      "屋久島全島観光マップ｜観光スポット・温泉・バス停 | YakuBus",
       "屋久島の温泉・ビーチ・史跡・スーパー・薬局・ATMとバス停を地図で検索。スポットの説明、ナビ、バス時刻表へのリンクから、現地での移動と買い物を計画できます。"
     ],
     "zh": [
-      "屋久岛地图｜温泉·超市·景点·公交站 | YakuBus",
+      "屋久岛全岛旅游地图｜景点·温泉·商店·公交站 | YakuBus",
       "在地图上查找屋久岛温泉、海滩、史迹、超市、药店、ATM和公交站，查看地点介绍、导航与公交时刻入口。山区目的地请另行核对道路及运营公告。"
     ],
     "en": [
-      "Yakushima Map: Hot Springs, Shops & Bus Stops | YakuBus",
+      "Yakushima Island Map: Attractions, Hot Springs & Bus Stops | YakuBus",
       "Explore Yakushima hot springs, beaches, historic sites, supermarkets, pharmacies, ATMs and bus stops. Read place descriptions, open navigation and follow links to bus timetables. Check road notices for mountain destinations."
     ]
   },
   "/trekking/": {
     "modified": "2026-11-02",
     "ja": [
-      "屋久島の旅と体験｜行程・宿・登山と交通 | YakuBus",
-      "屋久島の英語ガイド観光、白谷・太忠岳の登山、宿と鹿児島発の日帰り旅行。Viator・Klookの行程や口コミ、Tripadvisor事業者評価を確認し、公式道路情報とバス接続で計画。"
+      "屋久島ツアー・体験｜ガイド付き登山・シュノーケリング | YakuBus",
+      "海ガメシュノーケリングとガイド付きの森林散策も紹介。屋久島の英語ガイド観光、白谷・太忠岳の登山、宿と鹿児島発の日帰り旅行。Viator・Klookの行程や口コミ、Tripadvisor事業者評価を確認し、公式道路情報とバス接続で計画。"
     ],
     "zh": [
-      "屋久岛旅行与体验｜行程·住宿·徒步与交通 | YakuBus",
-      "屋久岛英文向导观光、白谷森林与太忠岳徒步、温泉住宿及鹿儿岛出发一日游。比较Viator与Klook行程，查看行程评价与Tripadvisor运营商评价，结合官方道路资料和公交接驳规划。"
+      "屋久岛当地体验｜徒步向导·海龟浮潜·一日游 | YakuBus",
+      "另有海龟浮潜与向导带领的森林徒步体验。屋久岛英文向导观光、白谷森林与太忠岳徒步、温泉住宿及鹿儿岛出发一日游。比较Viator与Klook行程，查看行程评价与Tripadvisor运营商评价，结合官方道路资料和公交接驳规划。"
     ],
     "en": [
-      "Yakushima Travel & Experiences: Hikes, Stays & Transport | YakuBus",
-      "Compare Viator and Klook Yakushima tours, forest walks, Tachudake treks, stays and Kagoshima day trips. See tour reviews separately from Tripadvisor operator reviews, with official road notices and bus connections."
+      "Yakushima Tours: Guided Hikes, Snorkeling & Day Trips | YakuBus",
+      "Also explore sea turtle snorkeling and guided forest walks. Compare Viator and Klook Yakushima tours, forest walks, Tachudake treks, stays and Kagoshima day trips. See tour reviews separately from Tripadvisor operator reviews, with official road notices and bus connections."
     ]
   },
   "/without-car/": {
