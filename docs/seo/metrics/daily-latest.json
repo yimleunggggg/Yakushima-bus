@@ -1,6 +1,6 @@
 {
   "fetched_at": "2026-11-03",
-  "fetched_at_iso": "2026-11-03T16:33:52.678632+08:00",
+  "fetched_at_iso": "2026-11-03T16:38:10.536520+08:00",
   "gsc_7d": {
     "error": "OAuth refresh 失败: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})"
   },
@@ -2102,7 +2102,7 @@
   },
   "aligned_period": false,
   "diagnostics": {
-    "collected_at": "2026-11-03T16:34:00.621602+08:00",
+    "collected_at": "2026-11-03T16:38:12.229970+08:00",
     "ga4_landing": {
       "current": {
         "period": {
@@ -3473,15 +3473,15 @@
         "delta": -19
       },
       {
-        "key": "/map ← (direct) / (none)",
-        "current": 4,
-        "previous": 20,
-        "delta": -16
-      },
-      {
         "key": "/ ← bing / organic",
         "current": 9,
         "previous": 25,
+        "delta": -16
+      },
+      {
+        "key": "/map ← (direct) / (none)",
+        "current": 4,
+        "previous": 20,
         "delta": -16
       },
       {
@@ -3503,15 +3503,9 @@
         "delta": -6
       },
       {
-        "key": "(not set) ← bing / organic",
-        "current": 2,
-        "previous": 7,
-        "delta": -5
-      },
-      {
-        "key": "/guides ← (direct) / (none)",
-        "current": 0,
-        "previous": 5,
+        "key": "/ferry ← chatgpt.com / ai-assistant",
+        "current": 8,
+        "previous": 13,
         "delta": -5
       },
       {
@@ -3521,16 +3515,16 @@
         "delta": -5
       },
       {
-        "key": "/ferry ← chatgpt.com / ai-assistant",
-        "current": 8,
-        "previous": 13,
+        "key": "/guides ← (direct) / (none)",
+        "current": 0,
+        "previous": 5,
         "delta": -5
       },
       {
-        "key": "/map ← m.facebook.com / referral",
-        "current": 0,
-        "previous": 4,
-        "delta": -4
+        "key": "(not set) ← bing / organic",
+        "current": 2,
+        "previous": 7,
+        "delta": -5
       },
       {
         "key": "/ ← ecosia.org / organic",
@@ -3539,9 +3533,15 @@
         "delta": -4
       },
       {
-        "key": "/fare ← chatgpt.com / ai-assistant",
-        "current": 2,
-        "previous": 5,
+        "key": "/map ← m.facebook.com / referral",
+        "current": 0,
+        "previous": 4,
+        "delta": -4
+      },
+      {
+        "key": "/fare ← bing / organic",
+        "current": 1,
+        "previous": 4,
         "delta": -3
       },
       {
@@ -3551,9 +3551,9 @@
         "delta": -3
       },
       {
-        "key": "/fare ← bing / organic",
-        "current": 1,
-        "previous": 4,
+        "key": "/fare ← chatgpt.com / ai-assistant",
+        "current": 2,
+        "previous": 5,
         "delta": -3
       },
       {
@@ -3569,31 +3569,13 @@
         "delta": -2
       },
       {
-        "key": "(not set) ← cn.bing.com / referral",
+        "key": "/ferry ← (not set)",
         "current": 0,
         "previous": 1,
         "delta": -1
       },
       {
-        "key": "/without-car ← openai / organic",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/ ← facebook.com / referral",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/ ← (not set)",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/without-car ← chatgpt.com / ai-assistant",
+        "key": "/ ← openai / (not set)",
         "current": 0,
         "previous": 1,
         "delta": -1
@@ -3605,7 +3587,19 @@
         "delta": -1
       },
       {
-        "key": "/ferry ← (not set)",
+        "key": "(not set) ← cn.bing.com / referral",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/without-car ← chatgpt.com / ai-assistant",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/ ← facebook.com / referral",
         "current": 0,
         "previous": 1,
         "delta": -1
@@ -3617,21 +3611,27 @@
         "delta": -1
       },
       {
-        "key": "/ ← openai / (not set)",
+        "key": "/ ← (not set)",
         "current": 0,
         "previous": 1,
         "delta": -1
       },
       {
-        "key": "/ ← map_popup / (not set)",
-        "current": 14,
-        "previous": 14,
-        "delta": 0
+        "key": "/without-car ← openai / organic",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
       },
       {
         "key": "(not set) ← (not set)",
         "current": 2,
         "previous": 2,
+        "delta": 0
+      },
+      {
+        "key": "/ ← map_popup / (not set)",
+        "current": 14,
+        "previous": 14,
         "delta": 0
       },
       {
@@ -3647,37 +3647,13 @@
         "delta": 1
       },
       {
-        "key": "/intro ← (direct) / (none)",
+        "key": "/trekking ← chatgpt.com / ai-assistant",
         "current": 1,
         "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "(not set) ← google / organic",
-        "current": 21,
-        "previous": 20,
         "delta": 1
       },
       {
         "key": " ← chatgpt.com / ai-assistant",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/without-car ← ecosia.org / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/trekking ← google / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": " ← google / organic",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -3695,25 +3671,7 @@
         "delta": 1
       },
       {
-        "key": "/fare ← service.smt.docomo.ne.jp / referral",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/ferry ← copilot.com / ",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/trekking ← (direct) / (none)",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "(not set) ← chatgpt.com / ai-assistant",
+        "key": "/map ← duckduckgo / organic",
         "current": 3,
         "previous": 2,
         "delta": 1
@@ -3725,19 +3683,13 @@
         "delta": 1
       },
       {
-        "key": "/map ← duckduckgo / organic",
-        "current": 3,
-        "previous": 2,
-        "delta": 1
-      },
-      {
-        "key": "/trekking ← chatgpt.com / ai-assistant",
+        "key": "/trekking ← (direct) / (none)",
         "current": 1,
         "previous": 0,
         "delta": 1
       },
       {
-        "key": "/without-car ← bing / organic",
+        "key": "/trekking ← google / organic",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -3749,7 +3701,61 @@
         "delta": 1
       },
       {
-        "key": "/map ← (not set)",
+        "key": "/fare ← service.smt.docomo.ne.jp / referral",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": " ← google / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/without-car ← ecosia.org / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/intro ← (direct) / (none)",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/without-car ← bing / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "(not set) ← chatgpt.com / ai-assistant",
+        "current": 3,
+        "previous": 2,
+        "delta": 1
+      },
+      {
+        "key": "/ferry ← copilot.com / ",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "(not set) ← google / organic",
+        "current": 21,
+        "previous": 20,
+        "delta": 1
+      },
+      {
+        "key": "/fare ← google / organic",
+        "current": 44,
+        "previous": 42,
+        "delta": 2
+      },
+      {
+        "key": "/guides/yakushima-where-to-stay ← google / organic",
         "current": 2,
         "previous": 0,
         "delta": 2
@@ -3761,15 +3767,15 @@
         "delta": 2
       },
       {
-        "key": "/without-car ← google / organic",
-        "current": 2,
-        "previous": 0,
+        "key": "/fare ← map_popup / (not set)",
+        "current": 3,
+        "previous": 1,
         "delta": 2
       },
       {
-        "key": "/fare ← google / organic",
-        "current": 44,
-        "previous": 42,
+        "key": "/without-car ← google / organic",
+        "current": 2,
+        "previous": 0,
         "delta": 2
       },
       {
@@ -3779,22 +3785,10 @@
         "delta": 2
       },
       {
-        "key": "/guides/yakushima-where-to-stay ← google / organic",
+        "key": "/map ← (not set)",
         "current": 2,
         "previous": 0,
         "delta": 2
-      },
-      {
-        "key": "/fare ← map_popup / (not set)",
-        "current": 3,
-        "previous": 1,
-        "delta": 2
-      },
-      {
-        "key": " ← ecosia.org / organic",
-        "current": 3,
-        "previous": 0,
-        "delta": 3
       },
       {
         "key": "/map ← map_popup / ",
@@ -3809,9 +3803,9 @@
         "delta": 3
       },
       {
-        "key": "(not set) ← yahoo / organic",
-        "current": 4,
-        "previous": 1,
+        "key": " ← ecosia.org / organic",
+        "current": 3,
+        "previous": 0,
         "delta": 3
       },
       {
@@ -3821,16 +3815,16 @@
         "delta": 3
       },
       {
+        "key": "(not set) ← yahoo / organic",
+        "current": 4,
+        "previous": 1,
+        "delta": 3
+      },
+      {
         "key": "/ferry ← (direct) / (none)",
         "current": 12,
         "previous": 8,
         "delta": 4
-      },
-      {
-        "key": "/fare ← (direct) / (none)",
-        "current": 7,
-        "previous": 2,
-        "delta": 5
       },
       {
         "key": "(not set) ← map_popup / (not set)",
@@ -3839,10 +3833,10 @@
         "delta": 5
       },
       {
-        "key": "/ferry ← duckduckgo / organic",
-        "current": 6,
-        "previous": 0,
-        "delta": 6
+        "key": "/fare ← (direct) / (none)",
+        "current": 7,
+        "previous": 2,
+        "delta": 5
       },
       {
         "key": "/ ← duckduckgo / organic",
@@ -3851,13 +3845,19 @@
         "delta": 6
       },
       {
-        "key": " ← (not set)",
+        "key": "/ferry ← duckduckgo / organic",
+        "current": 6,
+        "previous": 0,
+        "delta": 6
+      },
+      {
+        "key": "(not set) ← (direct) / (none)",
         "current": 7,
         "previous": 0,
         "delta": 7
       },
       {
-        "key": "(not set) ← (direct) / (none)",
+        "key": " ← (not set)",
         "current": 7,
         "previous": 0,
         "delta": 7
@@ -3918,13 +3918,13 @@
         "delta": -5
       },
       {
-        "key": "/intro",
+        "key": "/about",
         "current": 1,
         "previous": 0,
         "delta": 1
       },
       {
-        "key": "/about",
+        "key": "/intro",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -4034,13 +4034,13 @@
         "delta": -1
       },
       {
-        "key": "copilot.com / ",
+        "key": "map_popup / (none)",
         "current": 1,
         "previous": 0,
         "delta": 1
       },
       {
-        "key": "map_popup / (none)",
+        "key": "copilot.com / ",
         "current": 1,
         "previous": 0,
         "delta": 1
