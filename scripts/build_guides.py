@@ -19,7 +19,9 @@ UI={
 def actions(L):
  c=COPY[L]
  return '<nav class="guide-actions" aria-label="'+c['actions']+'">'+''.join(f'<a href="{p}?lang={L}">{c[k]} <span aria-hidden="true">→</span></a>' for p,k in [('/','time'),('/map/','map'),('/ferry/','ferry')])+'</nav>'
-def section_id(g,L,i):return f'{g["id"]}-{L}-{i}'
+def section_id(g,L,i):
+ key=g[L]["sections"][i-1].get("id",i)
+ return f'{g["id"]}-{L}-{key}'
 def booking_checklist(text,L):
  # Keep the source wording, turning the existing five checks into a readable list.
  sentence,sep,tail=text.partition('.' if L=='en' else '。')
@@ -29,12 +31,13 @@ def booking_checklist(text,L):
 
 def article(g,L,data,embedded=False):
  c=COPY[L];u=UI[L];v=g[L];heading='h2' if embedded else 'h1'
- year,month=data['modified'][:7].split('-')
+ modified=g.get('modified',data['modified'])
+ year,month=modified[:7].split('-')
  display_date=(f'{year}年{int(month)}月' if L!='en' else f"{['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][int(month)-1]} {year}")
  area={'ja':{'yakushima':'屋久島','kagoshima':'鹿児島'},'zh':{'yakushima':'屋久岛','kagoshima':'鹿儿岛'},'en':{'yakushima':'Yakushima','kagoshima':'Kagoshima'}}[L][g['area']]
  body=f'<article class="guide-article" data-guide-lang="{L}" data-seo-lang="{L}" lang="{LANGS[L]}"'+(' hidden' if L!='ja' else '')+'>'
  body+=f'<header class="guide-article-header"><p class="guide-kicker">{area} / {e(v["card"]["topic"])}</p><{heading}>{e(v["title"])}</{heading}><p class="guide-dek">{e(v["dek"])}</p>'
- body+=f'<p class="guide-date">{c["date"]} <time datetime="{data["modified"]}">{display_date}</time></p><p class="guide-editorial-note">{u["editorial"]}</p></header>'
+ body+=f'<p class="guide-date">{c["date"]} <time datetime="{modified}">{display_date}</time></p><p class="guide-editorial-note">{u["editorial"]}</p></header>'
  body+=f'<div class="guide-reading-layout"><nav class="guide-toc" aria-label="{u["toc"]}"><p>{u["toc"]}</p><ol>'
  for i,s in enumerate(v['sections'],1):
   body+=f'<li><a href="#{section_id(g,L,i)}"><span aria-hidden="true">{i:02}</span>{e(s["nav"])}</a></li>'
@@ -42,12 +45,17 @@ def article(g,L,data,embedded=False):
  for i,s in enumerate(v['sections'],1):
   h='h3' if embedded else 'h2'
   body+=f'<section class="guide-section" id="{section_id(g,L,i)}"><{h}><span class="guide-step" aria-hidden="true">{i:02}</span>{e(s["title"])}</{h}>'
-  if g['id']=='without-car' and i==2:
+  if g['id']=='without-car' and s.get('id')=='2':
    body+='<ol class="guide-days">'
    for day,p in enumerate(s['paragraphs'],1):
     label=f'Day {day}' if L=='en' else (f'第{day}天' if L=='zh' else f'{day}日目')
     body+=f'<li><span class="guide-day-label">{label}</span><p>{e(p)}</p></li>'
    body+='</ol>'
+  elif 'cases' in s:
+   for case in s['cases']:
+    body+=f'<p>{e(case["text"])}</p><div class="guide-actions">'+''.join(
+     f'<a href="{e(link["href"])}">{e(link["label"])} <span aria-hidden="true">→</span></a>'
+     for link in case['links'])+'</div>'
   elif g['id']=='where-to-stay' and i==4:
    body+=booking_checklist(s['paragraphs'][0],L)+''.join('<p>'+e(p)+'</p>' for p in s['paragraphs'][1:])
   else:body+=''.join('<p>'+e(p)+'</p>' for p in s['paragraphs'])

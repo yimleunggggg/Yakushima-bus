@@ -114,12 +114,51 @@
         "dek": "港・宿・一番したい体験を先に決めて、移動に無理のない旅へ。固定の時刻ではなく、予定を組む順番を紹介します。",
         "sections": [
           {
+            "nav": "まず調べたい3つの乗り継ぎ",
+            "title": "バスで行けるか、先に3つの区間を確認",
+            "id": "connections",
+            "cases": [
+              {
+                "text": "宮之浦港から空港方面へ。下船後に荷物を受け取り、バス停まで歩く時間を見込んで便を選びます。宿が空港より先なら、到着停留所を宿の最寄りに変えてください。接続が難しければ宿の送迎を確認します。",
+                "links": [
+                  {
+                    "label": "宮之浦港 → 空港",
+                    "href": "/?lang=ja&from=miyanoura_port&to=airport"
+                  }
+                ]
+              },
+              {
+                "text": "白谷雲水峡では、先に宮之浦港方面への帰りの便を確認します。下山と停留所までの移動に余裕が取れない場合は、短いコースか別の日を選び、当日の通行・運行情報も確認します。",
+                "links": [
+                  {
+                    "label": "白谷雲水峡 → 宮之浦港",
+                    "href": "/?lang=ja&from=shiratani&to=miyanoura_port"
+                  }
+                ]
+              },
+              {
+                "text": "縄文杉へは、安房から屋久杉自然館までの路線バスと、荒川登山口までの登山バスを分けて確認します。登山バスの運行日・乗車券と、下山後に自然館から帰る便も確認してください。",
+                "links": [
+                  {
+                    "label": "安房 → 屋久杉自然館",
+                    "href": "/?lang=ja&from=anbo&to=yakusugi_museum"
+                  },
+                  {
+                    "label": "荒川登山バスの案内",
+                    "href": "/trekking/?lang=ja"
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "title": "まず到着日と帰る日の条件を決める",
             "paragraphs": [
               "到着するのは宮之浦港、安房港、それとも空港でしょうか。宿までの移動を確認してから、初日の予定を決めます。船や飛行機が遅れる可能性も考え、到着日に長い登山を組み込まない方が調整しやすくなります。",
               "帰る日は出発便だけでなく、乗船・搭乗手続きの締切と宿から港までの移動も確認します。同じ日に長い登山と島外への移動を重ねる場合は、下山の遅れや欠航時の代案まで必要です。"
             ],
-            "nav": "到着と出発"
+            "nav": "到着と出発",
+            "id": "1"
           },
           {
             "title": "2泊3日は「到着・主目的・出発」で考える",
@@ -128,7 +167,8 @@
               "2日目は登山、ガイド付き体験、集落散策など、旅の主目的を一つ選びます。往路より先に復路を調べ、現地で過ごせる時間を逆算してください。複数の遠いスポットを一日で回れるとは限りません。",
               "3日目は荷物を回収して港・空港へ。出発まで時間があれば宿や乗船地の近くを回り、山や離れた集落へ出かける予定は慎重に。これは日程の枠組みで、乗継を保証する行程ではありません。"
             ],
-            "nav": "3日間の組み方"
+            "nav": "3日間の組み方",
+            "id": "2"
           },
           {
             "title": "宿と移動手段をセットで選ぶ",
@@ -136,7 +176,8 @@
               "宮之浦・安房などの地区名だけでなく、最寄り停留所までの距離、坂道、夕食、早朝出発、荷物の扱いを宿に確認します。「送迎あり」でも利用時間や対象区間は宿ごとに異なります。",
               "路線バスだけで行きにくい体験は、送迎付きガイドや予約したタクシーを検討します。路線バスは西部林道の栗生〜永田間を走らないため、環島ドライブの行程をそのままバス旅に置き換えることはできません。"
             ],
-            "nav": "宿と交通"
+            "nav": "宿と交通",
+            "id": "3"
           },
           {
             "title": "雨の日の代案を一つ持つ",
@@ -144,7 +185,8 @@
               "雨天用の屋内体験や宿の近くの過ごし方を用意し、変更・取消条件も確認しておきます。少しの雨と、警報・増水・道路規制は別です。",
               "実際の出発日を選んで下の交通ツールを使い、往復の便と運行条件を確認してください。地図や公式資料は出発前に保存しておくと、電波が弱い場所でも役立ちます。"
             ],
-            "nav": "雨の代案"
+            "nav": "雨の代案",
+            "id": "4"
           }
         ],
         "card": {
@@ -163,12 +205,51 @@
         "dek": "先确定抵达地点、住宿和最想做的一件事，再填入每天的活动。这里提供安排顺序，具体班次按实际出行日期查询。",
         "sections": [
           {
+            "nav": "三段接驳怎么查",
+            "title": "不租车，先查清这三段接驳",
+            "id": "connections",
+            "cases": [
+              {
+                "text": "从宫之浦港往机场方向：给下船、取行李、走到公交站留出时间，再挑能赶上的班次。如果住宿在机场以外，把终点换成住宿最近的站；接不上时先问住宿能否接送。",
+                "links": [
+                  {
+                    "label": "宫之浦港 → 机场",
+                    "href": "/?lang=zh&from=miyanoura_port&to=airport"
+                  }
+                ]
+              },
+              {
+                "text": "去白谷云水峡：先查返回宫之浦港方向的车，再倒推最晚几点离开步道。留不出下山和走到站牌的余量，就缩短徒步路线或换一天，并核对出行当天的道路和运营公告。",
+                "links": [
+                  {
+                    "label": "白谷云水峡 → 宫之浦港",
+                    "href": "/?lang=zh&from=shiratani&to=miyanoura_port"
+                  }
+                ]
+              },
+              {
+                "text": "去绳文杉：把安房到屋久杉自然馆的普通公交，和自然馆到荒川登山口的登山巴士分开查。还要确认登山巴士的运行日与车票，以及下山后从自然馆回住宿的班次。",
+                "links": [
+                  {
+                    "label": "安房 → 屋久杉自然馆",
+                    "href": "/?lang=zh&from=anbo&to=yakusugi_museum"
+                  },
+                  {
+                    "label": "查看荒川登山巴士说明",
+                    "href": "/trekking/?lang=zh"
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "title": "先锁定抵达和离岛的条件",
             "paragraphs": [
               "先确认抵达宫之浦港、安房港还是机场，再查询到住宿的交通。抵达当天安排长距离登山，遇到航班或船班延误时很难调整，适合先留作入住、采购和附近散步。",
               "离岛日除了船或飞机的出发时间，还要核对办理手续的截止时间、住宿到港口的交通和取行李的安排。长距离登山后当天离岛，需要额外考虑下山延误和交通中断。"
             ],
-            "nav": "抵达与离岛"
+            "nav": "抵达与离岛",
+            "id": "1"
           },
           {
             "title": "用“抵达—主活动—离岛”搭框架",
@@ -177,7 +258,8 @@
               "第2天：选择一项主活动，例如长距离徒步、向导体验或村落散步。先查回程，再倒推现场能停留多久；相距较远的景点不一定能在一天内靠公交串起来。",
               "第3天：取回行李，前往港口或机场。有余量再安排住宿或乘船点附近活动，不要默认离岛前还能进山。这个框架不保证任何具体换乘。"
             ],
-            "nav": "三天行程框架"
+            "nav": "三天行程框架",
+            "id": "2"
           },
           {
             "title": "住宿和交通一起选",
@@ -185,7 +267,8 @@
               "不要只看“宫之浦”或“安房”的地区名称。还要向住宿确认最近站点、步行距离与坡道、晚餐、早出发和行李处理。“提供接送”也可能有时间及区域限制。",
               "公交难以覆盖的活动，可以考虑有接送的向导或提前预约出租车。官方说明路线上不覆盖西部林道的栗生至永田段，因此不能把自驾环岛攻略直接照搬成公交行程。"
             ],
-            "nav": "住宿与交通"
+            "nav": "住宿与交通",
+            "id": "3"
           },
           {
             "title": "准备一个下雨时的替代方案",
@@ -193,7 +276,8 @@
               "可先留一个室内体验或住宿附近的备选，同时确认预订能否调整。普通小雨与警报、河流涨水、道路封闭是不同情况；不要仅凭天气图标决定进山。",
               "使用下方交通工具选择实际日期，分别核对去程、回程和运行条件。提前保存地图及官方资料，也能减少岛上弱网带来的麻烦。"
             ],
-            "nav": "雨天备选"
+            "nav": "雨天备选",
+            "id": "4"
           }
         ],
         "card": {
@@ -212,12 +296,51 @@
         "dek": "Start with your arrival port, accommodation and one main activity. This guide explains the planning order; use your travel date to look up departures.",
         "sections": [
           {
+            "nav": "Three connections to check",
+            "title": "Check these three bus connections first",
+            "id": "connections",
+            "cases": [
+              {
+                "text": "From Miyanoura Port towards the airport: allow time to get off the ferry, collect luggage and reach the stop. If your lodging is elsewhere, change the destination to its nearest stop. Ask your lodging about pickup if the bus does not connect.",
+                "links": [
+                  {
+                    "label": "Miyanoura Port → Airport",
+                    "href": "/?lang=en&from=miyanoura_port&to=airport"
+                  }
+                ]
+              },
+              {
+                "text": "For Shiratani Unsuikyo, look up the return bus towards Miyanoura Port first. Work back from that departure and allow time to get off the trail and reach the stop. Pick a shorter walk or another day if it is too tight, and check road and service notices.",
+                "links": [
+                  {
+                    "label": "Shiratani Unsuikyo → Miyanoura Port",
+                    "href": "/?lang=en&from=shiratani&to=miyanoura_port"
+                  }
+                ]
+              },
+              {
+                "text": "For Jomon Sugi, check the local bus from Anbo to Yakusugi Museum separately from the shuttle to Arakawa Trailhead. Confirm the shuttle dates and tickets, and check how you will get back from the museum after the hike.",
+                "links": [
+                  {
+                    "label": "Anbo → Yakusugi Museum",
+                    "href": "/?lang=en&from=anbo&to=yakusugi_museum"
+                  },
+                  {
+                    "label": "Arakawa shuttle information",
+                    "href": "/trekking/?lang=en"
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "title": "Fix the arrival and departure constraints first",
             "paragraphs": [
               "Check whether you arrive at Miyanoura Port, Anbo Port or the airport, then work out how to reach your accommodation. An arrival-day hike leaves little room for a delayed boat or flight; check-in, supplies and a nearby walk are easier to adjust.",
               "For departure day, confirm the check-in deadline as well as the departure time, your journey to the terminal and luggage collection. A long hike followed by an off-island connection needs a credible plan for a late descent or disrupted transport."
             ],
-            "nav": "Arrival & departure"
+            "nav": "Arrival & departure",
+            "id": "1"
           },
           {
             "title": "Give each day a clear role",
@@ -226,7 +349,8 @@
               "Day 2: choose one main activity, such as a longer hike, a guided experience or time around a village. Look up the return journey first and work backwards. Distant sights may not fit into one day by bus.",
               "Day 3: collect your bags and travel to your port or airport. Add something nearby only if the timing allows it. This is a planning framework, not a guaranteed connection itinerary."
             ],
-            "nav": "Your three days"
+            "nav": "Your three days",
+            "id": "2"
           },
           {
             "title": "Choose accommodation and transport together",
@@ -234,7 +358,8 @@
               "Ask about the actual walk from the nearest stop, hills, dinner, early departures and luggage. A property advertising a shuttle may limit its hours or service area.",
               "For activities poorly served by buses, consider a guide with transport or a pre-booked taxi. Official guidance says neither bus operator serves the western forest-road section between Kurio and Nagata, so a driving loop cannot simply become a bus itinerary."
             ],
-            "nav": "Base & transport"
+            "nav": "Base & transport",
+            "id": "3"
           },
           {
             "title": "Keep a wet-weather alternative",
@@ -242,7 +367,8 @@
               "Choose an indoor experience or something near your accommodation, and check booking-change conditions. Light rain is different from a warning, rising river or closed road.",
               "Use the tools below with your actual date to check both directions and service conditions. Save maps and official references before travel for places with weak mobile coverage."
             ],
-            "nav": "Wet-weather plan"
+            "nav": "Wet-weather plan",
+            "id": "4"
           }
         ],
         "card": {
@@ -255,7 +381,8 @@
             "Collect bags & leave"
           ]
         }
-      }
+      },
+      "modified": "2026-11-03"
     },
     {
       "id": "where-to-stay",

@@ -74,13 +74,21 @@ def evidence_html(path, page, manifest, status, include_alerts):
         ('/ferry/', {'ja': ('乗船券・アクセス', '船の時刻・運賃と予約先'), 'zh': ('船票与上岛交通', '查看船班、票价及预约入口'), 'en': ('Ferry tickets & access', 'Compare schedules, fares and booking links')}),
         ('/without-car/', {'ja': ('レンタカーなし', 'バスと船で旅を組み立てる'), 'zh': ('不租车攻略', '用公交和船运安排行程'), 'en': ('Without a car', 'Plan your trip using buses and ferries')}),
     ]
-    priorities = {'/ferry/': ['/', '/fare/', '/without-car/'], '/map/': ['/', '/fare/', '/without-car/'], '/': ['/fare/', '/map/', '/ferry/']}
+    priorities = {'/ferry/': ['/', '/fare/', '/without-car/'], '/map/': ['/', '/fare/', '/without-car/'], '/': ['/fare/', '/map/', '/ferry/', '/without-car/']}
     wanted = priorities.get(path, ['/', '/map/', '/ferry/'])
     related = []
     for lang, tag in LANGS.items():
-        cards = ''.join(f'<a href="{url}?lang={lang}"><strong>{escape(labels[lang][0])}</strong><span>{escape(labels[lang][1])}</span><b aria-hidden="true">↗</b></a>' for url in wanted for target, labels in destinations if target == url and url != path)
+        def link(url):
+            anchor = f'#without-car-{lang}-connections' if path == '/' and url == '/without-car/' else ''
+            return f'{url}?lang={lang}{anchor}'
+        def title(url, label):
+            if path == '/' and url == '/without-car/':
+                return {'ja': 'バスでめぐる屋久島', 'zh': '坐公交玩屋久岛', 'en': 'Explore Yakushima by Bus'}[lang]
+            return label
+        cards = ''.join(f'<a href="{link(url)}"><strong>{escape(title(url, labels[lang][0]))}</strong><span>{escape(labels[lang][1])}</span><b aria-hidden="true">↗</b></a>' for url in wanted for target, labels in destinations if target == url and url != path)
         hidden = '' if lang == 'ja' else ' hidden'
-        related.append(f'<div data-seo-lang="{lang}" lang="{tag}"{hidden}><h2 class="journey-next-title">{next_titles[lang]}</h2><nav class="journey-next-links" aria-label="{next_titles[lang]}">{cards}</nav></div>')
+        grid = ' journey-next-links--four' if len(wanted) == 4 else ''
+        related.append(f'<div data-seo-lang="{lang}" lang="{tag}"{hidden}><h2 class="journey-next-title">{next_titles[lang]}</h2><nav class="journey-next-links{grid}" aria-label="{next_titles[lang]}">{cards}</nav></div>')
     titles = {'ja': '出典・交通情報の確認', 'zh': '来源与交通信息核查', 'en': 'Sources and transport checks'}
     labels = {'ja': '記録された案内（出発前に再確認）', 'zh': '已记录的公告（出行前复核）', 'en': 'Recorded notices (recheck before travel)'}
     for lang, tag in LANGS.items():

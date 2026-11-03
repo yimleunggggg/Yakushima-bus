@@ -120,19 +120,19 @@ window.SEO_PAGES = {
     ]
   },
   "/without-car/": {
-    "modified": "2026-11-02",
+    "modified": "2026-11-03",
     "kind": "article",
     "ja": [
       "レンタカーなしで屋久島へ。2泊3日の組み立て方 | YakuBus",
-      "港・宿・一番したい体験を先に決めて、移動に無理のない旅へ。固定の時刻ではなく、予定を組む順番を紹介します。"
+      "屋久島をレンタカーなしで2泊3日。宮之浦港・空港の接続、白谷雲水峡からの帰り、荒川登山バスの乗り継ぎを確認できます。"
     ],
     "zh": [
       "屋久岛不租车，2晚3天怎么安排 | YakuBus",
-      "先确定抵达地点、住宿和最想做的一件事，再填入每天的活动。这里提供安排顺序，具体班次按实际出行日期查询。"
+      "屋久岛不租车的2晚3天攻略：查询宫之浦港到机场、白谷云水峡回程，以及去荒川登山口的公交和登山巴士换乘。"
     ],
     "en": [
       "Yakushima without a car: plan two nights and three days | YakuBus",
-      "Start with your arrival port, accommodation and one main activity. This guide explains the planning order; use your travel date to look up departures."
+      "Plan two nights on Yakushima without a car. Check port-to-airport buses, the return from Shiratani Unsuikyo and the transfer for Arakawa Trailhead."
     ]
   },
   "/about/": {

@@ -4529,3 +4529,8 @@ body.travel-page { overflow-x:clip; overflow-y:visible; }
   .travel-section .affiliate-card-cta { font-size:12px; padding:6px 8px; min-height:30px; }
   .travel-card-grid { gap:12px; }
 }
+
+.journey-next-links--four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 680px) {
+  .journey-next-links--four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
