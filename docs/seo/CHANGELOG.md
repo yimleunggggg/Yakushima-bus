@@ -63,3 +63,11 @@
 - [Rich Results Test](https://search.google.com/test/rich-results) 测首页 JSON-LD
 - GSC URL 检查 → 查看「Google 选择的 canonical」
 - 查看网页源代码确认 `page-lead` 在 HTML 中可见
+
+
+## 公交首页语言网址一致性 — 2026-11-11
+
+- 首页根网址固定日文，不再随浏览器或已保存语言自动改成其他语言；显式中文/英文链接保持原有参数网址，手动切换仍可用。
+- 日文首页 canonical、OG URL、JSON-LD、hreflang、sitemap 与站内返回时刻表链接统一到 `/`。`/?lang=ja` 和 `/index.html` 在客户端归一，保留站点查询参数及片段；不是服务端301重定向。
+- 其他页面语言偏好策略保持原有行为。正文、标题、交通资料未改，因此没有刷新内容修改日或资料核查日。
+- 依据：[Google多语言网址建议](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites)、[canonical一致性](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)。修复声明不一致，不据此承诺排名恢复。

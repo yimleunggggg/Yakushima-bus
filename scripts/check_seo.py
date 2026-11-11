@@ -4,10 +4,10 @@ import json
 import re
 from datetime import date
 from html.parser import HTMLParser
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, parse_qs
 from xml.etree import ElementTree as ET
 
-from build_seo import ADSENSE_CODE, ADS_TXT, BASE, LANGS, ROOT, load, main as check_generated
+from build_seo import ADSENSE_CODE, ADS_TXT, BASE, LANGS, ROOT, language_url, load, main as check_generated
 from sync_transport_assets import main as check_assets
 
 
@@ -44,7 +44,7 @@ def check():
             values = [m['content'] for m in parsed.meta if m.get(attr) == name]
             assert len(values) == 1 and values[0], f'{path}: missing/duplicate {name}'
         alternates = {a['hreflang']: a['href'] for tag, a in parsed.links if tag == 'link' and 'hreflang' in a}
-        expected = {tag: BASE + path + '?lang=' + lang for lang, tag in LANGS.items()}
+        expected = {tag: language_url(path, lang) for lang, tag in LANGS.items()}
         expected['x-default'] = BASE + path
         assert alternates == expected, f'{path}: incomplete hreflang'
         assert date.fromisoformat(copy['modified']) <= date.today(), f'{path}: future modified date'
@@ -58,6 +58,7 @@ def check():
             link = urlsplit(attrs['href'])
             if link.netloc not in ('', 'yakushimabus.com') or link.scheme not in ('', 'http', 'https'):
                 continue
+            assert not (link.path == '/' and parse_qs(link.query).get('lang') == ['ja']), f'{path}: duplicate Japanese homepage link'
             if link.path.startswith('/'):
                 target = ROOT / link.path.lstrip('/')
                 if link.path.endswith('/'):
@@ -65,7 +66,7 @@ def check():
                 assert target.exists(), f'{path}: broken internal link {attrs["href"]}'
 
     ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9', 'x': 'http://www.w3.org/1999/xhtml'}
-    for name, count in [('sitemap.xml', len(pages) * 4), ('sitemap-zh.xml', len(pages))]:
+    for name, count in [('sitemap.xml', len(pages) * 4 - 1), ('sitemap-zh.xml', len(pages))]:
         root = ET.fromstring((ROOT / name).read_text())
         entries = root.findall('s:url', ns)
         urls = [entry.find('s:loc', ns).text for entry in entries]

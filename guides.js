@@ -13,7 +13,11 @@
     // All editorial and related links retain the selected language across pages.
     document.querySelectorAll('.guide-article a, #guideMain a, .guide-toolbar a, .guide-related a').forEach(a=>{
       const u=new URL(a.getAttribute('href'),location.href);
-      if(u.origin===location.origin && u.pathname.endsWith('/')) {u.searchParams.set('lang',lang);a.setAttribute('href',u.pathname+u.search+u.hash);}
+      if(u.origin===location.origin && u.pathname.endsWith('/')) {
+        if(u.pathname==='/' && lang==='ja') u.searchParams.delete('lang');
+        else u.searchParams.set('lang',lang);
+        a.setAttribute('href',u.pathname+u.search+u.hash);
+      }
     });
     const related=document.getElementById('guideRelated');
     if(related){

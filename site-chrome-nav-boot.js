@@ -90,7 +90,7 @@
 
   function langQs(lang, href) {
     const sep = href.includes("?") ? "&" : "?";
-    const withLang = `${href}${sep}lang=${lang}`;
+    const withLang = href === "/" && lang === "ja" ? href : `${href}${sep}lang=${lang}`;
     return typeof window.appendBusGaQs === "function" ? window.appendBusGaQs(withLang) : withLang;
   }
 

@@ -1,8 +1,9 @@
-/** 全站语言：显式 URL 优先；否则手动选择 > 中文搜索来源/爬虫 > storage > 浏览器 > ja */
+/** 首页根网址固定日文；其他页面仍按显式 URL、用户选择和浏览器偏好解析语言。 */
 (function () {
   const LANG_KEY = "yakushima-bus-lang";
   const PICKED_KEY = "yakushima-bus-lang-picked";
   const SUPPORTED = ["ja", "zh", "en"];
+  const IS_HOME = location.pathname === "/" || location.pathname === "/index.html";
 
   const CN_BOT = /Baiduspider|Sogou|360Spider|YisouSpider|Bytespider/i;
   const CN_REF = /(^|\.)baidu\.com|sogou\.com|sm\.cn|so\.com|quark\.sm\.cn/i;
@@ -39,6 +40,7 @@
     const q = new URLSearchParams(location.search).get("lang");
     const stored = localStorage.getItem(LANG_KEY);
     if (SUPPORTED.includes(q)) return q;
+    if (IS_HOME) return "ja";
     if (isUserPicked() && SUPPORTED.includes(stored)) return stored;
     if (!isUserPicked() && isChineseSearchContext()) return "zh";
     if (SUPPORTED.includes(stored)) return stored;
@@ -49,9 +51,10 @@
     try {
       if (location.protocol !== "http:" && location.protocol !== "https:") return;
       const url = new URL(location.href);
-      if (url.searchParams.get("lang") === lang) return;
-      url.searchParams.set("lang", lang);
-      history.replaceState(null, "", url);
+      if (IS_HOME) url.pathname = "/";
+      if (IS_HOME && lang === "ja") url.searchParams.delete("lang");
+      else url.searchParams.set("lang", lang);
+      if (url.href !== location.href) history.replaceState(null, "", url);
     } catch (_) { /* ignore */ }
   }
 
@@ -59,6 +62,14 @@
     const q = new URLSearchParams(location.search).get("lang");
     const stored = localStorage.getItem(LANG_KEY);
     let lang;
+
+    // A stable default URL must not change language or canonical with browser/storage.
+    if (IS_HOME) {
+      lang = SUPPORTED.includes(q) ? q : "ja";
+      localStorage.setItem(LANG_KEY, lang);
+      syncLangUrl(lang);
+      return lang;
+    }
 
     if (SUPPORTED.includes(q)) {
       lang = q;

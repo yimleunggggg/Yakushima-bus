@@ -10,6 +10,13 @@ COPY={
  'zh':{'hub':'旅行攻略','lead':'屋久岛与鹿儿岛：从住宿、天气和交通开始安排行程。','eyebrow':'行前准备','sources':'来源与资料说明','sourceNote':'YakuBus依据官方公开资料独立整理，为非官方攻略。营业、预约和实际运行，请在出发前向相关服务方确认。','date':'正文更新','back':'查看全部攻略','actions':'接着确认交通','time':'查公交时刻','map':'打开地图','ferry':'船运与上岛','notice':'交通和道路信息会变动，请在交通页面选择实际日期，核对运行条件。','cityNote':'整理资料时，鹿儿岛市旅游官网显示维护中。示范路线时长仅作参考，请优先核对设施和运营商公告，也可参阅JNTO资料。'},
  'en':{'hub':'Travel guides','lead':'Yakushima and Kagoshima. Plan around your base, the weather and your transport.','eyebrow':'Before you go','sources':'Sources and editorial note','sourceNote':'An independent, unofficial guide edited by YakuBus using official public references. Confirm opening, bookings and actual operations with each provider before travel.','date':'Article updated','back':'All travel guides','actions':'Check your transport next','time':'Bus timetable','map':'Open the map','ferry':'Ferry and island access','notice':'Transport and road conditions change. Select your actual date on the transport pages and check service conditions.','cityNote':'The Kagoshima City tourism site showed a maintenance notice when these materials were compiled. Model-course durations are references. Prioritize facility and operator notices; JNTO is also linked below.'}}
 START,END='<!-- travel-guide:start -->','<!-- travel-guide:end -->'
+
+def canonical_home_href(href):
+ if href == '/?lang=ja': return '/'
+ if href.startswith('/?lang=ja&'): return '/?' + href[len('/?lang=ja&'):]
+ return href
+
+
 def load():return json.loads((ROOT/'sources/guides.json').read_text())
 UI={
  'ja':{'toc':'このガイドの内容','read':'ガイドを読む','start':'まずはここから','island':'屋久島を旅する','city':'鹿児島に立ち寄る','tools':'日程が決まったら、交通を確認','editorial':'非公式ガイド · 観光協会などの公式資料を参考に編集','day':'日目'},
@@ -18,7 +25,7 @@ UI={
 }
 def actions(L):
  c=COPY[L]
- return '<nav class="guide-actions" aria-label="'+c['actions']+'">'+''.join(f'<a href="{p}?lang={L}">{c[k]} <span aria-hidden="true">→</span></a>' for p,k in [('/','time'),('/map/','map'),('/ferry/','ferry')])+'</nav>'
+ return '<nav class="guide-actions" aria-label="'+c['actions']+'">'+''.join(f'<a href="{canonical_home_href(p+"?lang="+L)}">{c[k]} <span aria-hidden="true">→</span></a>' for p,k in [('/','time'),('/map/','map'),('/ferry/','ferry')])+'</nav>'
 def section_id(g,L,i):
  key=g[L]["sections"][i-1].get("id",i)
  return f'{g["id"]}-{L}-{key}'
@@ -54,7 +61,7 @@ def article(g,L,data,embedded=False):
   elif 'cases' in s:
    for case in s['cases']:
     body+=f'<p>{e(case["text"])}</p><div class="guide-actions">'+''.join(
-     f'<a href="{e(link["href"])}">{e(link["label"])} <span aria-hidden="true">→</span></a>'
+     f'<a href="{e(canonical_home_href(link["href"]))}">{e(link["label"])} <span aria-hidden="true">→</span></a>'
      for link in case['links'])+'</div>'
   elif g['id']=='where-to-stay' and i==4:
    body+=booking_checklist(s['paragraphs'][0],L)+''.join('<p>'+e(p)+'</p>' for p in s['paragraphs'][1:])
@@ -94,7 +101,7 @@ def shell(path,body):
 <script src="/analytics.js" defer></script><script src="/analytics-events.js" defer></script>
 </head><body class="app-page-narrow guide-reading-page"><div class="app travel-guide-page">
 <div class="app-nav-sticky"><nav class="nav nav-main nav-main--6" id="mainNav" aria-label="メインメニュー">
-<a href="/map/?lang=ja">マップ</a><a href="/?lang=ja">時刻表</a><a href="/fare/?lang=ja">運賃</a><a href="/ferry/?lang=ja">フェリー</a><a href="/trekking/?lang=ja">旅と体験</a><a href="/guides/?lang=ja" aria-current="page">旅行ガイド</a>
+<a href="/map/?lang=ja">マップ</a><a href="/">時刻表</a><a href="/fare/?lang=ja">運賃</a><a href="/ferry/?lang=ja">フェリー</a><a href="/trekking/?lang=ja">旅と体験</a><a href="/guides/?lang=ja" aria-current="page">旅行ガイド</a>
 </nav><script src="/site-chrome-nav-boot.js"></script></div>
 <header class="header header-compact guide-toolbar"><a href="/guides/" data-guide-home>旅行ガイド</a><div class="lang-switch" id="langSwitch"><button type="button" data-lang="ja">JA</button><button type="button" data-lang="zh">ZH</button><button type="button" data-lang="en">EN</button></div></header>
 <main id="guideMain">'''+body+'''</main>

@@ -21,7 +21,7 @@
 Timetable revision: 2026-10-01; fare revision: 2024-03-01; checked 2026-11-03; review due 2026-11-17. Recheck official information before travel.
 All times use Japan Standard Time (JST, UTC+9). Choose the actual travel day and check each conditional service note.
 The internal display horizon is a conservative review policy, not an official PDF expiry date.
-Japanese, Simplified Chinese and English are selected using ?lang=ja, ?lang=zh or ?lang=en.
+The bus homepage / is Japanese; use /?lang=zh or /?lang=en for Chinese or English. The legacy /?lang=ja URL resolves to /. Other pages retain their ?lang=ja, ?lang=zh and ?lang=en URLs.
 
 ## Official sources
 

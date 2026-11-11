@@ -7,7 +7,7 @@
   function sync(lang) {
     const selected = page[lang] ? lang : "ja";
     const [title, description] = page[selected];
-    const url = "https://yakushimabus.com" + path + "?lang=" + selected;
+    const url = "https://yakushimabus.com" + path + (path === "/" && selected === "ja" ? "" : "?lang=" + selected);
     document.title = title;
     const values = {
       'meta[name="description"]': description,

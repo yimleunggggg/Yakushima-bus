@@ -3,15 +3,7 @@
   <url>
     <loc>https://yakushimabus.com/</loc>
     <lastmod>2026-11-02</lastmod>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/?lang=ja" />
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/?lang=zh" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/" />
-  </url>
-  <url>
-    <loc>https://yakushimabus.com/?lang=ja</loc>
-    <lastmod>2026-11-02</lastmod>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/?lang=zh" />
     <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/?lang=en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/" />
@@ -19,7 +11,7 @@
   <url>
     <loc>https://yakushimabus.com/?lang=zh</loc>
     <lastmod>2026-11-02</lastmod>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/?lang=zh" />
     <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/?lang=en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/" />
@@ -27,7 +19,7 @@
   <url>
     <loc>https://yakushimabus.com/?lang=en</loc>
     <lastmod>2026-11-02</lastmod>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://yakushimabus.com/" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://yakushimabus.com/?lang=zh" />
     <xhtml:link rel="alternate" hreflang="en" href="https://yakushimabus.com/?lang=en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://yakushimabus.com/" />

@@ -25,6 +25,6 @@ jobs:
       - name: Verify crawlable content, metadata, language URLs and generated facts
         run: bash scripts/seo_check.sh
       - name: Verify language switches update metadata and structured data
-        run: node --test tests/seo-metadata.test.js tests/shiratani-reopening.test.js
+        run: node --test tests/home-language.test.js tests/seo-metadata.test.js tests/shiratani-reopening.test.js
       - name: Verify first-build metadata stability
         run: python tests/test_seo_generator.py

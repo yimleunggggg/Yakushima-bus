@@ -38,8 +38,8 @@ for (const pagePath of Object.keys(pages)) {
         c.events['yakushima-bus-lang']({ detail: { lang: selected } });
         assert.equal(c.document.title, pages[pagePath][selected][0]);
         assert.equal(c.elements.get('meta[name="description"]').attrs.content, pages[pagePath][selected][1]);
-        assert.equal(c.elements.get('link[rel="canonical"]').attrs.href, `https://yakushimabus.com${pagePath}?lang=${selected}`);
-        assert.equal(c.elements.get('meta[property="og:url"]').attrs.content, `https://yakushimabus.com${pagePath}?lang=${selected}`);
+        assert.equal(c.elements.get('link[rel="canonical"]').attrs.href, `https://yakushimabus.com${pagePath}${pagePath === "/" && selected === "ja" ? "" : "?lang=" + selected}`);
+        assert.equal(c.elements.get('meta[property="og:url"]').attrs.content, `https://yakushimabus.com${pagePath}${pagePath === "/" && selected === "ja" ? "" : "?lang=" + selected}`);
         assert.deepEqual(c.evidence.filter(e => !e.hidden).map(e => e.dataset.seoLang), [selected]);
         for (const schema of c.schemas) {
           const data = JSON.parse(schema.textContent);
@@ -50,7 +50,7 @@ for (const pagePath of Object.keys(pages)) {
             }
             if (node['@type'] === 'Article') {
               assert.equal(node.headline, c.document.title);
-              assert.equal(node.url, `https://yakushimabus.com${pagePath}?lang=${selected}`);
+              assert.equal(node.url, `https://yakushimabus.com${pagePath}${pagePath === "/" && selected === "ja" ? "" : "?lang=" + selected}`);
               assert.equal(node.inLanguage, selected === 'zh' ? 'zh-CN' : selected);
             }
           }

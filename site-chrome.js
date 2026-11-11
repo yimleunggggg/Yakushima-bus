@@ -22,7 +22,7 @@
         en: "Historic sites, hot springs, shops, and verified bus stops. Navigate or check timetables.",
       },
       crossHtml: {
-        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/fare/?lang=ja">運賃計算</a>',
+        ja: '<a href="/">時刻表</a> · <a href="/fare/?lang=ja">運賃計算</a>',
         zh: '<a href="/?lang=zh">查班次</a> · <a href="/fare/?lang=zh">查票价</a>',
         en: '<a href="/?lang=en">Timetable</a> · <a href="/fare/?lang=en">Fares</a>',
       },
@@ -48,7 +48,7 @@
         en: "Official route map and section fare estimates. Tap a stop for timetables.",
       },
       crossHtml: {
-        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/without-car/?lang=ja">島内の移動</a>',
+        ja: '<a href="/">時刻表</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/without-car/?lang=ja">島内の移動</a>',
         zh: '<a href="/?lang=zh">查班次</a> · <a href="/map/?lang=zh">便利设施地图</a> · <a href="/without-car/?lang=zh">岛内出行</a>',
         en: '<a href="/?lang=en">Timetable</a> · <a href="/map/?lang=en">POI map</a> · <a href="/without-car/?lang=en">Getting around</a>',
       },
@@ -61,7 +61,7 @@
         en: "Book Kagoshima ↔ Yakushima tickets online. Compare offers, official timetable and fare references, and buses from Miyanoura or Anbo.",
       },
       crossHtml: {
-        ja: '<a href="/?lang=ja">上島後は時刻表で接続便を検索</a>',
+        ja: '<a href="/">上島後は時刻表で接続便を検索</a>',
         zh: '<a href="/?lang=zh">上岛后查公交时刻表</a>',
         en: '<a href="/?lang=en">Bus timetable after you land</a>',
       },
@@ -87,7 +87,7 @@
         en: "Trilingual bus timetables, fares, ferry access, and POI map — built from official sources.",
       },
       crossHtml: {
-        ja: '<a href="/?lang=ja">時刻表</a> · <a href="/fare/?lang=ja">運賃</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">島内の移動</a>',
+        ja: '<a href="/">時刻表</a> · <a href="/fare/?lang=ja">運賃</a> · <a href="/map/?lang=ja">スポット地図</a> · <a href="/ferry/?lang=ja">フェリー</a> · <a href="/without-car/?lang=ja">島内の移動</a>',
         zh: '<a href="/?lang=zh">时刻表</a> · <a href="/fare/?lang=zh">票价</a> · <a href="/map/?lang=zh">便利设施地图</a> · <a href="/ferry/?lang=zh">船运上岛</a> · <a href="/without-car/?lang=zh">岛内出行</a>',
         en: '<a href="/?lang=en">Timetable</a> · <a href="/fare/?lang=en">Fares</a> · <a href="/map/?lang=en">POI map</a> · <a href="/ferry/?lang=en">Ferry</a> · <a href="/without-car/?lang=en">Getting around</a>',
       },
@@ -199,7 +199,7 @@
 
   function langQs(href) {
     const sep = href.includes("?") ? "&" : "?";
-    const withLang = `${href}${sep}lang=${lang}`;
+    const withLang = href === "/" && lang === "ja" ? href : `${href}${sep}lang=${lang}`;
     return typeof window.appendBusGaQs === "function" ? window.appendBusGaQs(withLang) : withLang;
   }
 

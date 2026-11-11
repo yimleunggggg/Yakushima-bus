@@ -33,6 +33,11 @@ def month_label(value, lang):
     return f"{['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][int(month)-1]} {year}" if lang == 'en' else f'{year}年{int(month)}月'
 
 
+def language_url(path, lang):
+    # The bus homepage's Japanese and x-default versions share the stable root.
+    return BASE + path + (f'?lang={lang}' if lang and not (path == '/' and lang == 'ja') else '')
+
+
 def evidence(page, lang, manifest):
     copy = page[lang][1]
     links = [('/', {'ja': '時刻表', 'zh': '公交时刻表', 'en': 'Bus timetable'}[lang]),
@@ -80,7 +85,7 @@ def evidence_html(path, page, manifest, status, include_alerts):
     for lang, tag in LANGS.items():
         def link(url):
             anchor = f'#without-car-{lang}-connections' if path == '/' and url == '/without-car/' else ''
-            return f'{url}?lang={lang}{anchor}'
+            return language_url(url, lang).removeprefix(BASE) + anchor
         def title(url, label):
             if path == '/' and url == '/without-car/':
                 return {'ja': 'バスでめぐる屋久島', 'zh': '坐公交玩屋久岛', 'en': 'Explore Yakushima by Bus'}[lang]
@@ -145,7 +150,7 @@ def update_head(text, path, page):
     if 'application/ld+json' not in text:
         text = text.replace('</head>', '  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage"}</script>\n</head>')
     text = re.sub(r'  <link rel="alternate" hreflang="[^"]+"[^>]*>\n', '', text)
-    alternates = [f'  <link rel="alternate" hreflang="{tag}" href="{BASE}{path}?lang={lang}">' for lang, tag in LANGS.items()]
+    alternates = [f'  <link rel="alternate" hreflang="{tag}" href="{language_url(path, lang)}">' for lang, tag in LANGS.items()]
     alternates.append(f'  <link rel="alternate" hreflang="x-default" href="{BASE}{path}">')
     text = text.replace('</head>', '\n'.join(alternates) + '\n</head>')
     def schema(match):
@@ -195,13 +200,15 @@ def sitemap(pages, chinese=False):
     root = ET.Element(f'{{{ns}}}urlset')
     for path, page in pages.items():
         variants = ['?lang=zh'] if chinese else ['', '?lang=ja', '?lang=zh', '?lang=en']
+        if path == '/' and not chinese:
+            variants.remove('?lang=ja')
         for variant in variants:
             url = ET.SubElement(root, f'{{{ns}}}url')
             ET.SubElement(url, f'{{{ns}}}loc').text = BASE + path + variant
             ET.SubElement(url, f'{{{ns}}}lastmod').text = page['modified']
             for lang, tag in [*LANGS.items(), (None, 'x-default')]:
                 ET.SubElement(url, f'{{{xhtml}}}link', rel='alternate', hreflang=tag,
-                              href=BASE + path + (f'?lang={lang}' if lang else ''))
+                              href=language_url(path, lang))
     ET.indent(root)
     return '<?xml version="1.0" encoding="UTF-8"?>\n' + ET.tostring(root, encoding='unicode') + '\n'
 
@@ -247,7 +254,7 @@ def outputs():
     lines.extend(['', '## Data scope and dates', '', f'Timetable revision: {manifest["revision"]}; fare revision: {manifest["sources"]["fare"]["revision"]}; checked {manifest["checkedAt"]}; review due {manifest["reviewAfter"]}. Recheck official information before travel.',
                   'All times use Japan Standard Time (JST, UTC+9). Choose the actual travel day and check each conditional service note.',
                   'The internal display horizon is a conservative review policy, not an official PDF expiry date.',
-                  'Japanese, Simplified Chinese and English are selected using ?lang=ja, ?lang=zh or ?lang=en.',
+                  'The bus homepage / is Japanese; use /?lang=zh or /?lang=en for Chinese or English. The legacy /?lang=ja URL resolves to /. Other pages retain their ?lang=ja, ?lang=zh and ?lang=en URLs.',
                   '', '## Official sources', ''])
     for key in ('taneyaku', 'taneyakuEn', 'fare', 'notice'):
         source = manifest['sources'][key]
