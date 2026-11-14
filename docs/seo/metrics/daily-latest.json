@@ -1,6 +1,6 @@
 {
-  "fetched_at": "2026-11-13",
-  "fetched_at_iso": "2026-11-13T16:49:45.314693+08:00",
+  "fetched_at": "2026-11-14",
+  "fetched_at_iso": "2026-11-14T16:04:11.557058+08:00",
   "gsc_7d": {
     "error": "OAuth refresh 失败: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})"
   },
@@ -12,56 +12,56 @@
     "error": null,
     "timezone": "America/Los_Angeles",
     "previous_7d": {
-      "active_users": 394,
-      "new_users": 354,
-      "sessions": 631,
-      "engaged_sessions": 427,
-      "engagement_rate": 67.7,
-      "avg_session_sec": 343.5,
-      "pageviews": 1010
+      "active_users": 374,
+      "new_users": 329,
+      "sessions": 609,
+      "engaged_sessions": 418,
+      "engagement_rate": 68.6,
+      "avg_session_sec": 391.8,
+      "pageviews": 1036
     },
     "channels_previous_7d": [
       {
-        "active_users": 274,
-        "new_users": 237,
-        "sessions": 393,
-        "engaged_sessions": 297,
-        "engagement_rate": 75.6,
-        "avg_session_sec": 368.3,
-        "pageviews": 651,
+        "active_users": 265,
+        "new_users": 227,
+        "sessions": 385,
+        "engaged_sessions": 289,
+        "engagement_rate": 75.1,
+        "avg_session_sec": 385.0,
+        "pageviews": 660,
         "sessionDefaultChannelGroup": "Organic Search",
         "dimension": "Organic Search"
       },
       {
-        "active_users": 77,
-        "new_users": 76,
-        "sessions": 112,
-        "engaged_sessions": 45,
-        "engagement_rate": 40.2,
-        "avg_session_sec": 146.5,
-        "pageviews": 143,
+        "active_users": 68,
+        "new_users": 64,
+        "sessions": 99,
+        "engaged_sessions": 41,
+        "engagement_rate": 41.4,
+        "avg_session_sec": 163.9,
+        "pageviews": 130,
         "sessionDefaultChannelGroup": "Direct",
         "dimension": "Direct"
       },
       {
-        "active_users": 43,
-        "new_users": 39,
-        "sessions": 68,
+        "active_users": 40,
+        "new_users": 36,
+        "sessions": 65,
         "engaged_sessions": 47,
-        "engagement_rate": 69.1,
-        "avg_session_sec": 315.0,
-        "pageviews": 91,
+        "engagement_rate": 72.3,
+        "avg_session_sec": 452.6,
+        "pageviews": 98,
         "sessionDefaultChannelGroup": "AI Assistant",
         "dimension": "AI Assistant"
       },
       {
         "active_users": 15,
         "new_users": 1,
-        "sessions": 56,
-        "engaged_sessions": 36,
-        "engagement_rate": 64.3,
-        "avg_session_sec": 608.9,
-        "pageviews": 123,
+        "sessions": 59,
+        "engaged_sessions": 39,
+        "engagement_rate": 66.1,
+        "avg_session_sec": 757.6,
+        "pageviews": 146,
         "sessionDefaultChannelGroup": "Unassigned",
         "dimension": "Unassigned"
       },
@@ -80,82 +80,86 @@
     "events_yesterday": [
       {
         "event_name": "timetable_search",
-        "event_count": 75
-      },
-      {
-        "event_name": "page_view",
-        "event_count": 71
-      },
-      {
-        "event_name": "session_start",
-        "event_count": 43
+        "event_count": 138
       },
       {
         "event_name": "fare_lookup",
-        "event_count": 34
+        "event_count": 108
+      },
+      {
+        "event_name": "page_view",
+        "event_count": 97
+      },
+      {
+        "event_name": "session_start",
+        "event_count": 66
       },
       {
         "event_name": "first_visit",
-        "event_count": 27
+        "event_count": 39
       },
       {
         "event_name": "user_engagement",
-        "event_count": 26
+        "event_count": 38
+      },
+      {
+        "event_name": "timetable_day_tab",
+        "event_count": 25
       },
       {
         "event_name": "scroll",
-        "event_count": 15
-      },
-      {
-        "event_name": "lang_switch",
-        "event_count": 9
-      },
-      {
-        "event_name": "timetable_preset",
-        "event_count": 7
-      },
-      {
-        "event_name": "click",
-        "event_count": 6
+        "event_count": 19
       },
       {
         "event_name": "nav_click",
-        "event_count": 6
+        "event_count": 18
       },
       {
         "event_name": "timetable_swap",
-        "event_count": 5
+        "event_count": 16
       },
       {
-        "event_name": "timetable_upcoming_toggle",
-        "event_count": 5
+        "event_name": "timetable_preset",
+        "event_count": 13
       },
       {
         "event_name": "file_download",
-        "event_count": 4
+        "event_count": 7
       },
       {
         "event_name": "guide_filter",
-        "event_count": 4
-      },
-      {
-        "event_name": "internal_link",
-        "event_count": 4
+        "event_count": 6
       },
       {
         "event_name": "timetable_time_open",
+        "event_count": 6
+      },
+      {
+        "event_name": "click",
+        "event_count": 5
+      },
+      {
+        "event_name": "internal_link",
+        "event_count": 5
+      },
+      {
+        "event_name": "lang_switch",
+        "event_count": 4
+      },
+      {
+        "event_name": "open_timetable",
         "event_count": 4
       },
       {
         "event_name": "section_open",
+        "event_count": 4
+      },
+      {
+        "event_name": "timetable_upcoming_toggle",
         "event_count": 3
       },
       {
-        "event_name": "timetable_day_tab",
-        "event_count": 3
-      },
-      {
-        "event_name": "affiliate_click",
+        "event_name": "pdf_lang_switch",
         "event_count": 2
       },
       {
@@ -163,160 +167,171 @@
         "event_count": 1
       },
       {
-        "event_name": "pdf_lang_switch",
+        "event_name": "open_maps",
         "event_count": 1
       }
     ],
     "yesterday": {
-      "active_users": 35,
-      "new_users": 27,
-      "sessions": 43,
-      "engaged_sessions": 33,
-      "engagement_rate": 76.7,
-      "avg_session_sec": 138.7,
-      "pageviews": 71
+      "active_users": 48,
+      "new_users": 39,
+      "sessions": 66,
+      "engaged_sessions": 42,
+      "engagement_rate": 63.6,
+      "avg_session_sec": 141.2,
+      "pageviews": 97
     },
     "day_before": {
-      "active_users": 68,
-      "new_users": 58,
-      "sessions": 84,
-      "engaged_sessions": 53,
-      "engagement_rate": 63.1,
-      "avg_session_sec": 152.0,
-      "pageviews": 132
+      "active_users": 57,
+      "new_users": 48,
+      "sessions": 75,
+      "engaged_sessions": 52,
+      "engagement_rate": 69.3,
+      "avg_session_sec": 164.8,
+      "pageviews": 122
     },
     "last_7d": {
-      "active_users": 350,
-      "new_users": 322,
-      "sessions": 512,
-      "engaged_sessions": 376,
-      "engagement_rate": 73.4,
-      "avg_session_sec": 272.2,
-      "pageviews": 861
+      "active_users": 314,
+      "new_users": 292,
+      "sessions": 460,
+      "engaged_sessions": 334,
+      "engagement_rate": 72.6,
+      "avg_session_sec": 228.9,
+      "pageviews": 728
     },
     "channels_yesterday": [
       {
-        "active_users": 30,
-        "new_users": 22,
-        "sessions": 38,
-        "engaged_sessions": 30,
-        "engagement_rate": 78.9,
-        "avg_session_sec": 144.4,
-        "pageviews": 62,
+        "active_users": 36,
+        "new_users": 28,
+        "sessions": 46,
+        "engaged_sessions": 32,
+        "engagement_rate": 69.6,
+        "avg_session_sec": 154.6,
+        "pageviews": 70,
         "sessionDefaultChannelGroup": "Organic Search",
         "dimension": "Organic Search"
       },
       {
-        "active_users": 4,
-        "new_users": 0,
-        "sessions": 4,
-        "engaged_sessions": 0,
-        "engagement_rate": 0.0,
-        "avg_session_sec": 22.3,
-        "pageviews": 2,
-        "sessionDefaultChannelGroup": "Unassigned",
-        "dimension": "Unassigned"
+        "active_users": 5,
+        "new_users": 4,
+        "sessions": 12,
+        "engaged_sessions": 8,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 53.8,
+        "pageviews": 12,
+        "sessionDefaultChannelGroup": "AI Assistant",
+        "dimension": "AI Assistant"
       },
       {
-        "active_users": 3,
-        "new_users": 3,
-        "sessions": 3,
-        "engaged_sessions": 1,
-        "engagement_rate": 33.3,
-        "avg_session_sec": 3.4,
-        "pageviews": 3,
+        "active_users": 7,
+        "new_users": 7,
+        "sessions": 7,
+        "engaged_sessions": 2,
+        "engagement_rate": 28.6,
+        "avg_session_sec": 28.4,
+        "pageviews": 10,
         "sessionDefaultChannelGroup": "Direct",
         "dimension": "Direct"
       },
       {
-        "active_users": 2,
-        "new_users": 2,
-        "sessions": 2,
-        "engaged_sessions": 2,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 188.5,
-        "pageviews": 4,
-        "sessionDefaultChannelGroup": "AI Assistant",
-        "dimension": "AI Assistant"
+        "active_users": 3,
+        "new_users": 0,
+        "sessions": 4,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 341.5,
+        "pageviews": 5,
+        "sessionDefaultChannelGroup": "Unassigned",
+        "dimension": "Unassigned"
       }
     ],
     "countries_yesterday": [
       {
-        "active_users": 26,
-        "new_users": 20,
-        "sessions": 31,
-        "engaged_sessions": 26,
-        "engagement_rate": 83.9,
-        "avg_session_sec": 121.9,
-        "pageviews": 46,
+        "active_users": 36,
+        "new_users": 30,
+        "sessions": 50,
+        "engaged_sessions": 33,
+        "engagement_rate": 66.0,
+        "avg_session_sec": 110.1,
+        "pageviews": 72,
         "country": "Japan",
         "dimension": "Japan"
       },
       {
-        "active_users": 2,
-        "new_users": 0,
+        "active_users": 3,
+        "new_users": 1,
         "sessions": 3,
-        "engaged_sessions": 1,
-        "engagement_rate": 33.3,
-        "avg_session_sec": 5.4,
-        "pageviews": 1,
-        "country": "India",
-        "dimension": "India"
+        "engaged_sessions": 3,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 412.0,
+        "pageviews": 8,
+        "country": "France",
+        "dimension": "France"
       },
       {
         "active_users": 2,
         "new_users": 2,
+        "sessions": 3,
+        "engaged_sessions": 1,
+        "engagement_rate": 33.3,
+        "avg_session_sec": 18.7,
+        "pageviews": 5,
+        "country": "Singapore",
+        "dimension": "Singapore"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 832.2,
+        "pageviews": 3,
+        "country": "India",
+        "dimension": "India"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
         "sessions": 2,
         "engaged_sessions": 1,
         "engagement_rate": 50.0,
-        "avg_session_sec": 2.6,
+        "avg_session_sec": 205.5,
         "pageviews": 2,
+        "country": "Romania",
+        "dimension": "Romania"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 4.1,
+        "pageviews": 1,
+        "country": "Canada",
+        "dimension": "Canada"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 0.0,
+        "pageviews": 1,
         "country": "China",
         "dimension": "China"
       },
       {
         "active_users": 1,
         "new_users": 1,
-        "sessions": 2,
-        "engaged_sessions": 2,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 826.1,
-        "pageviews": 11,
-        "country": "France",
-        "dimension": "France"
-      },
-      {
-        "active_users": 1,
-        "new_users": 1,
-        "sessions": 2,
-        "engaged_sessions": 1,
-        "engagement_rate": 50.0,
-        "avg_session_sec": 37.7,
-        "pageviews": 5,
-        "country": "Switzerland",
-        "dimension": "Switzerland"
-      },
-      {
-        "active_users": 1,
-        "new_users": 1,
         "sessions": 1,
         "engaged_sessions": 1,
         "engagement_rate": 100.0,
-        "avg_session_sec": 349.8,
+        "avg_session_sec": 310.6,
         "pageviews": 3,
-        "country": "Hong Kong",
-        "dimension": "Hong Kong"
-      },
-      {
-        "active_users": 1,
-        "new_users": 1,
-        "sessions": 1,
-        "engaged_sessions": 1,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 81.1,
-        "pageviews": 2,
-        "country": "Latvia",
-        "dimension": "Latvia"
+        "country": "Germany",
+        "dimension": "Germany"
       },
       {
         "active_users": 1,
@@ -324,89 +339,122 @@
         "sessions": 1,
         "engaged_sessions": 0,
         "engagement_rate": 0.0,
-        "avg_session_sec": 5.0,
+        "avg_session_sec": 0.0,
         "pageviews": 1,
-        "country": "Singapore",
-        "dimension": "Singapore"
+        "country": "New Zealand",
+        "dimension": "New Zealand"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 134.9,
+        "pageviews": 1,
+        "country": "United Kingdom",
+        "dimension": "United Kingdom"
+      },
+      {
+        "active_users": 0,
+        "new_users": 0,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 0.0,
+        "pageviews": 0,
+        "country": "Latvia",
+        "dimension": "Latvia"
       }
     ],
     "source_medium_yesterday": [
       {
-        "active_users": 26,
-        "new_users": 18,
-        "sessions": 34,
-        "engaged_sessions": 26,
-        "engagement_rate": 76.5,
-        "avg_session_sec": 149.3,
-        "pageviews": 58,
+        "active_users": 32,
+        "new_users": 26,
+        "sessions": 42,
+        "engaged_sessions": 29,
+        "engagement_rate": 69.0,
+        "avg_session_sec": 135.2,
+        "pageviews": 62,
         "sessionSourceMedium": "google / organic",
         "dimension": "google / organic"
       },
       {
-        "active_users": 4,
+        "active_users": 5,
+        "new_users": 4,
+        "sessions": 12,
+        "engaged_sessions": 8,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 53.8,
+        "pageviews": 12,
+        "sessionSourceMedium": "chatgpt.com / ai-assistant",
+        "dimension": "chatgpt.com / ai-assistant"
+      },
+      {
+        "active_users": 7,
+        "new_users": 7,
+        "sessions": 7,
+        "engaged_sessions": 2,
+        "engagement_rate": 28.6,
+        "avg_session_sec": 28.4,
+        "pageviews": 10,
+        "sessionSourceMedium": "(direct) / (none)",
+        "dimension": "(direct) / (none)"
+      },
+      {
+        "active_users": 3,
         "new_users": 0,
-        "sessions": 4,
+        "sessions": 3,
         "engaged_sessions": 0,
         "engagement_rate": 0.0,
-        "avg_session_sec": 22.3,
-        "pageviews": 2,
+        "avg_session_sec": 455.4,
+        "pageviews": 4,
         "sessionSourceMedium": "(not set)",
         "dimension": "(not set)"
       },
       {
         "active_users": 3,
-        "new_users": 3,
+        "new_users": 2,
         "sessions": 3,
-        "engaged_sessions": 1,
-        "engagement_rate": 33.3,
-        "avg_session_sec": 3.4,
-        "pageviews": 3,
-        "sessionSourceMedium": "(direct) / (none)",
-        "dimension": "(direct) / (none)"
+        "engaged_sessions": 2,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 245.9,
+        "pageviews": 5,
+        "sessionSourceMedium": "yahoo / organic",
+        "dimension": "yahoo / organic"
       },
       {
-        "active_users": 2,
-        "new_users": 2,
-        "sessions": 2,
-        "engaged_sessions": 2,
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 1,
+        "engaged_sessions": 1,
         "engagement_rate": 100.0,
-        "avg_session_sec": 138.5,
-        "pageviews": 2,
+        "avg_session_sec": 694.1,
+        "pageviews": 3,
         "sessionSourceMedium": "bing / organic",
         "dimension": "bing / organic"
       },
       {
-        "active_users": 2,
-        "new_users": 2,
-        "sessions": 2,
-        "engaged_sessions": 2,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 188.5,
-        "pageviews": 4,
-        "sessionSourceMedium": "chatgpt.com / ai-assistant",
-        "dimension": "chatgpt.com / ai-assistant"
-      },
-      {
-        "active_users": 2,
-        "new_users": 2,
-        "sessions": 2,
-        "engaged_sessions": 2,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 67.2,
-        "pageviews": 2,
-        "sessionSourceMedium": "yahoo / organic",
-        "dimension": "yahoo / organic"
+        "active_users": 0,
+        "new_users": 0,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 0.0,
+        "pageviews": 1,
+        "sessionSourceMedium": "map_popup / ",
+        "dimension": "map_popup / "
       }
     ],
     "landing_pages_yesterday": [
       {
-        "active_users": 21,
-        "new_users": 16,
-        "sessions": 25,
-        "engaged_sessions": 18,
-        "engagement_rate": 72.0,
-        "avg_session_sec": 72.7,
-        "pageviews": 35,
+        "active_users": 34,
+        "new_users": 28,
+        "sessions": 44,
+        "engaged_sessions": 24,
+        "engagement_rate": 54.5,
+        "avg_session_sec": 107.5,
+        "pageviews": 65,
         "landingPage": "/",
         "dimension": "/"
       },
@@ -416,18 +464,18 @@
         "sessions": 9,
         "engaged_sessions": 9,
         "engagement_rate": 100.0,
-        "avg_session_sec": 176.4,
+        "avg_session_sec": 340.0,
         "pageviews": 15,
         "landingPage": "/fare",
         "dimension": "/fare"
       },
       {
-        "active_users": 3,
+        "active_users": 2,
         "new_users": 0,
-        "sessions": 5,
-        "engaged_sessions": 0,
-        "engagement_rate": 0.0,
-        "avg_session_sec": 3.9,
+        "sessions": 7,
+        "engaged_sessions": 1,
+        "engagement_rate": 14.3,
+        "avg_session_sec": 8.5,
         "pageviews": 0,
         "landingPage": "",
         "dimension": ""
@@ -438,100 +486,111 @@
         "sessions": 3,
         "engaged_sessions": 3,
         "engagement_rate": 100.0,
-        "avg_session_sec": 620.5,
-        "pageviews": 11,
+        "avg_session_sec": 196.2,
+        "pageviews": 3,
         "landingPage": "/ferry",
         "dimension": "/ferry"
       },
       {
+        "active_users": 3,
+        "new_users": 2,
+        "sessions": 3,
+        "engaged_sessions": 2,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 182.8,
+        "pageviews": 8,
+        "landingPage": "/without-car",
+        "dimension": "/without-car"
+      },
+      {
         "active_users": 2,
-        "new_users": 1,
+        "new_users": 0,
         "sessions": 2,
-        "engaged_sessions": 1,
-        "engagement_rate": 50.0,
-        "avg_session_sec": 48.3,
-        "pageviews": 5,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 143.6,
+        "pageviews": 4,
         "landingPage": "/map",
         "dimension": "/map"
       },
       {
-        "active_users": 2,
-        "new_users": 2,
-        "sessions": 2,
-        "engaged_sessions": 2,
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
         "engagement_rate": 100.0,
-        "avg_session_sec": 290.9,
-        "pageviews": 5,
-        "landingPage": "/without-car",
-        "dimension": "/without-car"
+        "avg_session_sec": 50.0,
+        "pageviews": 2,
+        "landingPage": "/guides",
+        "dimension": "/guides"
       }
     ],
     "pages_yesterday": [
       {
-        "active_users": 24,
-        "new_users": 16,
-        "sessions": 29,
-        "engaged_sessions": 23,
-        "engagement_rate": 79.3,
-        "avg_session_sec": 98.0,
-        "pageviews": 43,
+        "active_users": 39,
+        "new_users": 28,
+        "sessions": 52,
+        "engaged_sessions": 31,
+        "engagement_rate": 59.6,
+        "avg_session_sec": 80.2,
+        "pageviews": 60,
         "pagePath": "/",
         "dimension": "/"
       },
       {
-        "active_users": 9,
+        "active_users": 15,
         "new_users": 6,
-        "sessions": 10,
-        "engaged_sessions": 10,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 154.4,
-        "pageviews": 12,
+        "sessions": 17,
+        "engaged_sessions": 16,
+        "engagement_rate": 94.1,
+        "avg_session_sec": 204.1,
+        "pageviews": 20,
         "pagePath": "/fare/",
         "dimension": "/fare/"
       },
       {
         "active_users": 4,
         "new_users": 2,
-        "sessions": 6,
-        "engaged_sessions": 3,
-        "engagement_rate": 50.0,
-        "avg_session_sec": 83.6,
-        "pageviews": 6,
+        "sessions": 5,
+        "engaged_sessions": 4,
+        "engagement_rate": 80.0,
+        "avg_session_sec": 105.7,
+        "pageviews": 5,
         "pagePath": "/ferry/",
         "dimension": "/ferry/"
       },
       {
-        "active_users": 3,
-        "new_users": 1,
-        "sessions": 4,
-        "engaged_sessions": 3,
-        "engagement_rate": 75.0,
-        "avg_session_sec": 15.5,
-        "pageviews": 4,
+        "active_users": 4,
+        "new_users": 0,
+        "sessions": 5,
+        "engaged_sessions": 5,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 140.3,
+        "pageviews": 5,
         "pagePath": "/map/",
         "dimension": "/map/"
       },
       {
-        "active_users": 2,
+        "active_users": 3,
         "new_users": 2,
-        "sessions": 3,
-        "engaged_sessions": 3,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 307.0,
-        "pageviews": 3,
+        "sessions": 4,
+        "engaged_sessions": 2,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 107.2,
+        "pageviews": 5,
         "pagePath": "/without-car/",
         "dimension": "/without-car/"
       },
       {
         "active_users": 1,
-        "new_users": 0,
-        "sessions": 2,
-        "engaged_sessions": 2,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
         "engagement_rate": 100.0,
-        "avg_session_sec": 27.9,
-        "pageviews": 2,
-        "pagePath": "/trekking/",
-        "dimension": "/trekking/"
+        "avg_session_sec": 11.4,
+        "pageviews": 1,
+        "pagePath": "/guides/",
+        "dimension": "/guides/"
       },
       {
         "active_users": 1,
@@ -539,113 +598,157 @@
         "sessions": 1,
         "engaged_sessions": 1,
         "engagement_rate": 100.0,
-        "avg_session_sec": 36.3,
+        "avg_session_sec": 10.0,
         "pageviews": 1,
-        "pagePath": "/about/",
-        "dimension": "/about/"
+        "pagePath": "/trekking/",
+        "dimension": "/trekking/"
       }
     ],
     "devices_yesterday": [
       {
-        "active_users": 21,
-        "new_users": 14,
-        "sessions": 25,
-        "engaged_sessions": 21,
-        "engagement_rate": 84.0,
-        "avg_session_sec": 135.4,
-        "pageviews": 48,
+        "active_users": 32,
+        "new_users": 29,
+        "sessions": 41,
+        "engaged_sessions": 30,
+        "engagement_rate": 73.2,
+        "avg_session_sec": 102.6,
+        "pageviews": 62,
         "deviceCategory": "mobile",
         "dimension": "mobile"
       },
       {
-        "active_users": 12,
-        "new_users": 10,
-        "sessions": 15,
-        "engaged_sessions": 9,
-        "engagement_rate": 60.0,
-        "avg_session_sec": 157.9,
-        "pageviews": 16,
+        "active_users": 14,
+        "new_users": 8,
+        "sessions": 23,
+        "engaged_sessions": 10,
+        "engagement_rate": 43.5,
+        "avg_session_sec": 188.0,
+        "pageviews": 31,
         "deviceCategory": "desktop",
         "dimension": "desktop"
       },
       {
-        "active_users": 3,
-        "new_users": 3,
-        "sessions": 4,
-        "engaged_sessions": 3,
-        "engagement_rate": 75.0,
-        "avg_session_sec": 52.5,
-        "pageviews": 7,
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 394.4,
+        "pageviews": 4,
         "deviceCategory": "tablet",
         "dimension": "tablet"
       }
     ],
     "country_channel_yesterday": [
       {
-        "active_users": 25,
-        "new_users": 19,
-        "sessions": 30,
-        "engaged_sessions": 25,
-        "engagement_rate": 83.3,
-        "avg_session_sec": 122.1,
-        "pageviews": 44,
+        "active_users": 28,
+        "new_users": 23,
+        "sessions": 34,
+        "engaged_sessions": 24,
+        "engagement_rate": 70.6,
+        "avg_session_sec": 140.4,
+        "pageviews": 53,
         "country": "Japan",
         "sessionDefaultChannelGroup": "Organic Search"
       },
       {
-        "active_users": 3,
-        "new_users": 0,
-        "sessions": 3,
-        "engaged_sessions": 0,
-        "engagement_rate": 0.0,
-        "avg_session_sec": 29.8,
-        "pageviews": 1,
+        "active_users": 4,
+        "new_users": 3,
+        "sessions": 11,
+        "engaged_sessions": 7,
+        "engagement_rate": 63.6,
+        "avg_session_sec": 30.4,
+        "pageviews": 9,
         "country": "Japan",
-        "sessionDefaultChannelGroup": "Unassigned"
+        "sessionDefaultChannelGroup": "AI Assistant"
       },
       {
-        "active_users": 2,
-        "new_users": 0,
+        "active_users": 4,
+        "new_users": 4,
+        "sessions": 4,
+        "engaged_sessions": 2,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 48.8,
+        "pageviews": 7,
+        "country": "Japan",
+        "sessionDefaultChannelGroup": "Direct"
+      },
+      {
+        "active_users": 3,
+        "new_users": 1,
         "sessions": 3,
-        "engaged_sessions": 1,
-        "engagement_rate": 33.3,
-        "avg_session_sec": 5.4,
-        "pageviews": 1,
-        "country": "India",
+        "engaged_sessions": 3,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 412.0,
+        "pageviews": 8,
+        "country": "France",
         "sessionDefaultChannelGroup": "Organic Search"
       },
       {
         "active_users": 2,
         "new_users": 2,
+        "sessions": 3,
+        "engaged_sessions": 1,
+        "engagement_rate": 33.3,
+        "avg_session_sec": 18.7,
+        "pageviews": 5,
+        "country": "Singapore",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 249.5,
+        "pageviews": 1,
+        "country": "India",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 0,
+        "sessions": 2,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 100.4,
+        "pageviews": 3,
+        "country": "Japan",
+        "sessionDefaultChannelGroup": "Unassigned"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
         "sessions": 2,
         "engaged_sessions": 1,
         "engagement_rate": 50.0,
-        "avg_session_sec": 2.6,
+        "avg_session_sec": 205.5,
         "pageviews": 2,
-        "country": "China",
+        "country": "Romania",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 4.1,
+        "pageviews": 1,
+        "country": "Canada",
         "sessionDefaultChannelGroup": "Direct"
       },
       {
         "active_users": 1,
         "new_users": 1,
-        "sessions": 2,
-        "engaged_sessions": 2,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 826.1,
-        "pageviews": 10,
-        "country": "France",
-        "sessionDefaultChannelGroup": "Organic Search"
-      },
-      {
-        "active_users": 1,
-        "new_users": 1,
-        "sessions": 2,
-        "engaged_sessions": 1,
-        "engagement_rate": 50.0,
-        "avg_session_sec": 37.7,
-        "pageviews": 5,
-        "country": "Switzerland",
-        "sessionDefaultChannelGroup": "Organic Search"
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 0.0,
+        "pageviews": 1,
+        "country": "China",
+        "sessionDefaultChannelGroup": "Direct"
       },
       {
         "active_users": 1,
@@ -654,7 +757,7 @@
         "engaged_sessions": 0,
         "engagement_rate": 0.0,
         "avg_session_sec": 0.0,
-        "pageviews": 1,
+        "pageviews": 0,
         "country": "France",
         "sessionDefaultChannelGroup": "Unassigned"
       },
@@ -664,32 +767,21 @@
         "sessions": 1,
         "engaged_sessions": 1,
         "engagement_rate": 100.0,
-        "avg_session_sec": 349.8,
+        "avg_session_sec": 310.6,
         "pageviews": 3,
-        "country": "Hong Kong",
+        "country": "Germany",
         "sessionDefaultChannelGroup": "AI Assistant"
       },
       {
         "active_users": 1,
-        "new_users": 1,
+        "new_users": 0,
         "sessions": 1,
-        "engaged_sessions": 1,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 27.2,
-        "pageviews": 1,
-        "country": "Japan",
-        "sessionDefaultChannelGroup": "AI Assistant"
-      },
-      {
-        "active_users": 1,
-        "new_users": 1,
-        "sessions": 1,
-        "engaged_sessions": 1,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 81.1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 1165.3,
         "pageviews": 2,
-        "country": "Latvia",
-        "sessionDefaultChannelGroup": "Organic Search"
+        "country": "India",
+        "sessionDefaultChannelGroup": "Unassigned"
       },
       {
         "active_users": 1,
@@ -697,54 +789,76 @@
         "sessions": 1,
         "engaged_sessions": 0,
         "engagement_rate": 0.0,
-        "avg_session_sec": 5.0,
+        "avg_session_sec": 0.0,
         "pageviews": 1,
-        "country": "Singapore",
+        "country": "New Zealand",
         "sessionDefaultChannelGroup": "Direct"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 134.9,
+        "pageviews": 1,
+        "country": "United Kingdom",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 0,
+        "new_users": 0,
+        "sessions": 1,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 0.0,
+        "pageviews": 0,
+        "country": "Latvia",
+        "sessionDefaultChannelGroup": "Organic Search"
       }
     ],
     "channels_7d": [
       {
-        "active_users": 229,
-        "new_users": 205,
-        "sessions": 337,
-        "engaged_sessions": 264,
-        "engagement_rate": 78.3,
-        "avg_session_sec": 263.8,
-        "pageviews": 572,
+        "active_users": 205,
+        "new_users": 186,
+        "sessions": 304,
+        "engaged_sessions": 234,
+        "engagement_rate": 77.0,
+        "avg_session_sec": 248.2,
+        "pageviews": 482,
         "sessionDefaultChannelGroup": "Organic Search",
         "dimension": "Organic Search"
       },
       {
-        "active_users": 82,
-        "new_users": 85,
-        "sessions": 92,
-        "engaged_sessions": 46,
-        "engagement_rate": 50.0,
-        "avg_session_sec": 111.6,
-        "pageviews": 149,
+        "active_users": 69,
+        "new_users": 73,
+        "sessions": 75,
+        "engaged_sessions": 42,
+        "engagement_rate": 56.0,
+        "avg_session_sec": 96.2,
+        "pageviews": 128,
         "sessionDefaultChannelGroup": "Direct",
         "dimension": "Direct"
       },
       {
-        "active_users": 38,
-        "new_users": 30,
-        "sessions": 67,
-        "engaged_sessions": 54,
-        "engagement_rate": 80.6,
-        "avg_session_sec": 385.8,
-        "pageviews": 96,
+        "active_users": 37,
+        "new_users": 31,
+        "sessions": 71,
+        "engaged_sessions": 53,
+        "engagement_rate": 74.6,
+        "avg_session_sec": 229.9,
+        "pageviews": 91,
         "sessionDefaultChannelGroup": "AI Assistant",
         "dimension": "AI Assistant"
       },
       {
-        "active_users": 13,
+        "active_users": 16,
         "new_users": 1,
-        "sessions": 21,
-        "engaged_sessions": 11,
-        "engagement_rate": 52.4,
-        "avg_session_sec": 684.8,
-        "pageviews": 43,
+        "sessions": 18,
+        "engaged_sessions": 5,
+        "engagement_rate": 27.8,
+        "avg_session_sec": 350.5,
+        "pageviews": 26,
         "sessionDefaultChannelGroup": "Unassigned",
         "dimension": "Unassigned"
       },
@@ -762,114 +876,103 @@
     ],
     "sources_7d": [
       {
-        "active_users": 191,
-        "new_users": 170,
-        "sessions": 293,
-        "engaged_sessions": 227,
-        "engagement_rate": 77.5,
-        "avg_session_sec": 260.7,
-        "pageviews": 489,
+        "active_users": 174,
+        "new_users": 157,
+        "sessions": 270,
+        "engaged_sessions": 206,
+        "engagement_rate": 76.3,
+        "avg_session_sec": 255.2,
+        "pageviews": 430,
         "sessionSource": "google",
         "dimension": "google"
       },
       {
-        "active_users": 82,
-        "new_users": 85,
-        "sessions": 92,
-        "engaged_sessions": 46,
-        "engagement_rate": 50.0,
-        "avg_session_sec": 111.6,
-        "pageviews": 149,
+        "active_users": 69,
+        "new_users": 73,
+        "sessions": 75,
+        "engaged_sessions": 42,
+        "engagement_rate": 56.0,
+        "avg_session_sec": 96.2,
+        "pageviews": 128,
         "sessionSource": "(direct)",
         "dimension": "(direct)"
       },
       {
-        "active_users": 38,
-        "new_users": 30,
-        "sessions": 67,
-        "engaged_sessions": 54,
-        "engagement_rate": 80.6,
-        "avg_session_sec": 385.8,
-        "pageviews": 96,
+        "active_users": 37,
+        "new_users": 31,
+        "sessions": 71,
+        "engaged_sessions": 53,
+        "engagement_rate": 74.6,
+        "avg_session_sec": 229.9,
+        "pageviews": 91,
         "sessionSource": "chatgpt.com",
         "dimension": "chatgpt.com"
       },
       {
-        "active_users": 18,
+        "active_users": 17,
         "new_users": 16,
-        "sessions": 22,
-        "engaged_sessions": 19,
-        "engagement_rate": 86.4,
-        "avg_session_sec": 221.8,
-        "pageviews": 43,
+        "sessions": 19,
+        "engaged_sessions": 16,
+        "engagement_rate": 84.2,
+        "avg_session_sec": 138.5,
+        "pageviews": 27,
         "sessionSource": "yahoo",
         "dimension": "yahoo"
       },
       {
-        "active_users": 5,
+        "active_users": 10,
         "new_users": 0,
-        "sessions": 13,
-        "engaged_sessions": 11,
-        "engagement_rate": 84.6,
-        "avg_session_sec": 1099.3,
-        "pageviews": 38,
-        "sessionSource": "map_popup",
-        "dimension": "map_popup"
-      },
-      {
-        "active_users": 8,
-        "new_users": 8,
-        "sessions": 8,
-        "engaged_sessions": 7,
-        "engagement_rate": 87.5,
-        "avg_session_sec": 361.1,
-        "pageviews": 16,
-        "sessionSource": "bing",
-        "dimension": "bing"
-      },
-      {
-        "active_users": 7,
-        "new_users": 0,
-        "sessions": 7,
+        "sessions": 10,
         "engaged_sessions": 0,
         "engagement_rate": 0.0,
-        "avg_session_sec": 13.1,
-        "pageviews": 4,
+        "avg_session_sec": 324.4,
+        "pageviews": 14,
         "sessionSource": "(not set)",
         "dimension": "(not set)"
       },
       {
+        "active_users": 8,
+        "new_users": 7,
+        "sessions": 9,
+        "engaged_sessions": 7,
+        "engagement_rate": 77.8,
+        "avg_session_sec": 396.7,
+        "pageviews": 18,
+        "sessionSource": "bing",
+        "dimension": "bing"
+      },
+      {
         "active_users": 5,
-        "new_users": 5,
-        "sessions": 5,
-        "engaged_sessions": 4,
-        "engagement_rate": 80.0,
-        "avg_session_sec": 59.4,
-        "pageviews": 6,
+        "new_users": 0,
+        "sessions": 7,
+        "engaged_sessions": 5,
+        "engagement_rate": 71.4,
+        "avg_session_sec": 438.0,
+        "pageviews": 11,
+        "sessionSource": "map_popup",
+        "dimension": "map_popup"
+      },
+      {
+        "active_users": 4,
+        "new_users": 4,
+        "sessions": 4,
+        "engaged_sessions": 3,
+        "engagement_rate": 75.0,
+        "avg_session_sec": 59.3,
+        "pageviews": 5,
         "sessionSource": "openai",
         "dimension": "openai"
       },
       {
-        "active_users": 4,
-        "new_users": 3,
-        "sessions": 5,
-        "engaged_sessions": 3,
-        "engagement_rate": 60.0,
-        "avg_session_sec": 369.4,
-        "pageviews": 7,
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 2,
+        "engaged_sessions": 1,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 40.0,
+        "pageviews": 2,
         "sessionSource": "duckduckgo",
         "dimension": "duckduckgo"
-      },
-      {
-        "active_users": 3,
-        "new_users": 3,
-        "sessions": 4,
-        "engaged_sessions": 3,
-        "engagement_rate": 75.0,
-        "avg_session_sec": 645.1,
-        "pageviews": 9,
-        "sessionSource": "ecosia.org",
-        "dimension": "ecosia.org"
       },
       {
         "active_users": 1,
@@ -877,10 +980,10 @@
         "sessions": 1,
         "engaged_sessions": 1,
         "engagement_rate": 100.0,
-        "avg_session_sec": 11.2,
-        "pageviews": 3,
-        "sessionSource": "cn.bing.com",
-        "dimension": "cn.bing.com"
+        "avg_session_sec": 20.5,
+        "pageviews": 1,
+        "sessionSource": "ecosia.org",
+        "dimension": "ecosia.org"
       },
       {
         "active_users": 1,
@@ -896,114 +999,103 @@
     ],
     "source_medium_7d": [
       {
-        "active_users": 191,
-        "new_users": 170,
-        "sessions": 293,
-        "engaged_sessions": 227,
-        "engagement_rate": 77.5,
-        "avg_session_sec": 260.7,
-        "pageviews": 489,
+        "active_users": 174,
+        "new_users": 157,
+        "sessions": 270,
+        "engaged_sessions": 206,
+        "engagement_rate": 76.3,
+        "avg_session_sec": 255.2,
+        "pageviews": 430,
         "sessionSourceMedium": "google / organic",
         "dimension": "google / organic"
       },
       {
-        "active_users": 82,
-        "new_users": 85,
-        "sessions": 92,
-        "engaged_sessions": 46,
-        "engagement_rate": 50.0,
-        "avg_session_sec": 111.6,
-        "pageviews": 149,
+        "active_users": 69,
+        "new_users": 73,
+        "sessions": 75,
+        "engaged_sessions": 42,
+        "engagement_rate": 56.0,
+        "avg_session_sec": 96.2,
+        "pageviews": 128,
         "sessionSourceMedium": "(direct) / (none)",
         "dimension": "(direct) / (none)"
       },
       {
-        "active_users": 38,
-        "new_users": 30,
-        "sessions": 67,
-        "engaged_sessions": 54,
-        "engagement_rate": 80.6,
-        "avg_session_sec": 385.8,
-        "pageviews": 96,
+        "active_users": 37,
+        "new_users": 31,
+        "sessions": 71,
+        "engaged_sessions": 53,
+        "engagement_rate": 74.6,
+        "avg_session_sec": 229.9,
+        "pageviews": 91,
         "sessionSourceMedium": "chatgpt.com / ai-assistant",
         "dimension": "chatgpt.com / ai-assistant"
       },
       {
-        "active_users": 18,
+        "active_users": 17,
         "new_users": 16,
-        "sessions": 22,
-        "engaged_sessions": 19,
-        "engagement_rate": 86.4,
-        "avg_session_sec": 221.8,
-        "pageviews": 43,
+        "sessions": 19,
+        "engaged_sessions": 16,
+        "engagement_rate": 84.2,
+        "avg_session_sec": 138.5,
+        "pageviews": 27,
         "sessionSourceMedium": "yahoo / organic",
         "dimension": "yahoo / organic"
       },
       {
-        "active_users": 5,
+        "active_users": 10,
         "new_users": 0,
-        "sessions": 12,
-        "engaged_sessions": 11,
-        "engagement_rate": 91.7,
-        "avg_session_sec": 1190.9,
-        "pageviews": 37,
-        "sessionSourceMedium": "map_popup / (not set)",
-        "dimension": "map_popup / (not set)"
-      },
-      {
-        "active_users": 8,
-        "new_users": 8,
-        "sessions": 8,
-        "engaged_sessions": 7,
-        "engagement_rate": 87.5,
-        "avg_session_sec": 361.1,
-        "pageviews": 16,
-        "sessionSourceMedium": "bing / organic",
-        "dimension": "bing / organic"
-      },
-      {
-        "active_users": 7,
-        "new_users": 0,
-        "sessions": 7,
+        "sessions": 10,
         "engaged_sessions": 0,
         "engagement_rate": 0.0,
-        "avg_session_sec": 13.1,
-        "pageviews": 4,
+        "avg_session_sec": 324.4,
+        "pageviews": 14,
         "sessionSourceMedium": "(not set)",
         "dimension": "(not set)"
       },
       {
-        "active_users": 4,
-        "new_users": 3,
-        "sessions": 5,
-        "engaged_sessions": 3,
-        "engagement_rate": 60.0,
-        "avg_session_sec": 369.4,
-        "pageviews": 7,
-        "sessionSourceMedium": "duckduckgo / organic",
-        "dimension": "duckduckgo / organic"
+        "active_users": 8,
+        "new_users": 7,
+        "sessions": 9,
+        "engaged_sessions": 7,
+        "engagement_rate": 77.8,
+        "avg_session_sec": 396.7,
+        "pageviews": 18,
+        "sessionSourceMedium": "bing / organic",
+        "dimension": "bing / organic"
       },
       {
-        "active_users": 4,
-        "new_users": 4,
-        "sessions": 4,
-        "engaged_sessions": 4,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 74.2,
-        "pageviews": 5,
-        "sessionSourceMedium": "openai / organic",
-        "dimension": "openai / organic"
+        "active_users": 5,
+        "new_users": 0,
+        "sessions": 6,
+        "engaged_sessions": 5,
+        "engagement_rate": 83.3,
+        "avg_session_sec": 511.0,
+        "pageviews": 10,
+        "sessionSourceMedium": "map_popup / (not set)",
+        "dimension": "map_popup / (not set)"
       },
       {
         "active_users": 3,
         "new_users": 3,
-        "sessions": 4,
+        "sessions": 3,
         "engaged_sessions": 3,
-        "engagement_rate": 75.0,
-        "avg_session_sec": 645.1,
-        "pageviews": 9,
-        "sessionSourceMedium": "ecosia.org / organic",
-        "dimension": "ecosia.org / organic"
+        "engagement_rate": 100.0,
+        "avg_session_sec": 79.1,
+        "pageviews": 4,
+        "sessionSourceMedium": "openai / organic",
+        "dimension": "openai / organic"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 2,
+        "engaged_sessions": 1,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 40.0,
+        "pageviews": 2,
+        "sessionSourceMedium": "duckduckgo / organic",
+        "dimension": "duckduckgo / organic"
       },
       {
         "active_users": 1,
@@ -1011,10 +1103,10 @@
         "sessions": 1,
         "engaged_sessions": 1,
         "engagement_rate": 100.0,
-        "avg_session_sec": 11.2,
-        "pageviews": 3,
-        "sessionSourceMedium": "cn.bing.com / referral",
-        "dimension": "cn.bing.com / referral"
+        "avg_session_sec": 20.5,
+        "pageviews": 1,
+        "sessionSourceMedium": "ecosia.org / organic",
+        "dimension": "ecosia.org / organic"
       },
       {
         "active_users": 1,
@@ -1052,81 +1144,81 @@
     ],
     "landing_pages_7d": [
       {
-        "active_users": 225,
-        "new_users": 199,
-        "sessions": 305,
-        "engaged_sessions": 210,
-        "engagement_rate": 68.9,
-        "avg_session_sec": 335.7,
-        "pageviews": 561,
+        "active_users": 206,
+        "new_users": 185,
+        "sessions": 278,
+        "engaged_sessions": 187,
+        "engagement_rate": 67.3,
+        "avg_session_sec": 257.2,
+        "pageviews": 471,
         "landingPage": "/",
         "dimension": "/"
       },
       {
-        "active_users": 81,
-        "new_users": 65,
-        "sessions": 101,
-        "engaged_sessions": 100,
-        "engagement_rate": 99.0,
-        "avg_session_sec": 209.7,
-        "pageviews": 176,
+        "active_users": 70,
+        "new_users": 56,
+        "sessions": 84,
+        "engaged_sessions": 83,
+        "engagement_rate": 98.8,
+        "avg_session_sec": 222.3,
+        "pageviews": 133,
         "landingPage": "/fare",
         "dimension": "/fare"
       },
       {
-        "active_users": 32,
-        "new_users": 30,
-        "sessions": 34,
-        "engaged_sessions": 27,
-        "engagement_rate": 79.4,
-        "avg_session_sec": 195.5,
-        "pageviews": 55,
+        "active_users": 31,
+        "new_users": 27,
+        "sessions": 32,
+        "engaged_sessions": 28,
+        "engagement_rate": 87.5,
+        "avg_session_sec": 203.2,
+        "pageviews": 54,
         "landingPage": "/ferry",
         "dimension": "/ferry"
       },
       {
-        "active_users": 13,
+        "active_users": 9,
         "new_users": 0,
-        "sessions": 27,
-        "engaged_sessions": 10,
-        "engagement_rate": 37.0,
-        "avg_session_sec": 147.7,
+        "sessions": 23,
+        "engaged_sessions": 9,
+        "engagement_rate": 39.1,
+        "avg_session_sec": 164.8,
         "pageviews": 0,
         "landingPage": "(not set)",
         "dimension": "(not set)"
       },
       {
         "active_users": 14,
-        "new_users": 10,
-        "sessions": 21,
-        "engaged_sessions": 14,
-        "engagement_rate": 66.7,
-        "avg_session_sec": 122.3,
-        "pageviews": 42,
+        "new_users": 9,
+        "sessions": 19,
+        "engaged_sessions": 15,
+        "engagement_rate": 78.9,
+        "avg_session_sec": 153.4,
+        "pageviews": 43,
         "landingPage": "/map",
         "dimension": "/map"
       },
       {
-        "active_users": 14,
-        "new_users": 14,
-        "sessions": 14,
-        "engaged_sessions": 9,
-        "engagement_rate": 64.3,
-        "avg_session_sec": 118.0,
-        "pageviews": 21,
-        "landingPage": "/without-car",
-        "dimension": "/without-car"
-      },
-      {
-        "active_users": 8,
+        "active_users": 7,
         "new_users": 0,
-        "sessions": 11,
-        "engaged_sessions": 2,
-        "engagement_rate": 18.2,
-        "avg_session_sec": 72.8,
+        "sessions": 16,
+        "engaged_sessions": 1,
+        "engagement_rate": 6.2,
+        "avg_session_sec": 9.6,
         "pageviews": 0,
         "landingPage": "",
         "dimension": ""
+      },
+      {
+        "active_users": 11,
+        "new_users": 11,
+        "sessions": 12,
+        "engaged_sessions": 8,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 130.8,
+        "pageviews": 22,
+        "landingPage": "/without-car",
+        "dimension": "/without-car"
       },
       {
         "active_users": 2,
@@ -1145,10 +1237,10 @@
         "sessions": 1,
         "engaged_sessions": 1,
         "engagement_rate": 100.0,
-        "avg_session_sec": 25.2,
-        "pageviews": 1,
-        "landingPage": "/guides/yakushima-rainy-day",
-        "dimension": "/guides/yakushima-rainy-day"
+        "avg_session_sec": 50.0,
+        "pageviews": 2,
+        "landingPage": "/guides",
+        "dimension": "/guides"
       },
       {
         "active_users": 1,
@@ -1156,122 +1248,100 @@
         "sessions": 1,
         "engaged_sessions": 1,
         "engagement_rate": 100.0,
-        "avg_session_sec": 11.2,
-        "pageviews": 3,
-        "landingPage": "/trekking",
-        "dimension": "/trekking"
+        "avg_session_sec": 25.2,
+        "pageviews": 1,
+        "landingPage": "/guides/yakushima-rainy-day",
+        "dimension": "/guides/yakushima-rainy-day"
       }
     ],
     "pages_7d": [
       {
-        "active_users": 243,
-        "new_users": 199,
-        "sessions": 357,
-        "engaged_sessions": 252,
-        "engagement_rate": 70.6,
-        "avg_session_sec": 265.7,
-        "pageviews": 490,
+        "active_users": 225,
+        "new_users": 185,
+        "sessions": 325,
+        "engaged_sessions": 226,
+        "engagement_rate": 69.5,
+        "avg_session_sec": 217.0,
+        "pageviews": 413,
         "pagePath": "/",
         "dimension": "/"
       },
       {
-        "active_users": 109,
-        "new_users": 65,
-        "sessions": 144,
-        "engaged_sessions": 140,
-        "engagement_rate": 97.2,
-        "avg_session_sec": 135.6,
-        "pageviews": 184,
+        "active_users": 95,
+        "new_users": 56,
+        "sessions": 123,
+        "engaged_sessions": 118,
+        "engagement_rate": 95.9,
+        "avg_session_sec": 151.2,
+        "pageviews": 152,
         "pagePath": "/fare/",
         "dimension": "/fare/"
       },
       {
-        "active_users": 43,
-        "new_users": 10,
-        "sessions": 71,
-        "engaged_sessions": 62,
-        "engagement_rate": 87.3,
-        "avg_session_sec": 225.2,
-        "pageviews": 84,
+        "active_users": 42,
+        "new_users": 9,
+        "sessions": 59,
+        "engaged_sessions": 53,
+        "engagement_rate": 89.8,
+        "avg_session_sec": 121.6,
+        "pageviews": 73,
         "pagePath": "/map/",
         "dimension": "/map/"
       },
       {
         "active_users": 41,
-        "new_users": 30,
-        "sessions": 48,
-        "engaged_sessions": 35,
-        "engagement_rate": 72.9,
-        "avg_session_sec": 133.1,
-        "pageviews": 53,
+        "new_users": 27,
+        "sessions": 49,
+        "engaged_sessions": 37,
+        "engagement_rate": 75.5,
+        "avg_session_sec": 126.3,
+        "pageviews": 54,
         "pagePath": "/ferry/",
         "dimension": "/ferry/"
       },
       {
-        "active_users": 19,
-        "new_users": 14,
-        "sessions": 21,
-        "engaged_sessions": 16,
-        "engagement_rate": 76.2,
-        "avg_session_sec": 80.3,
-        "pageviews": 22,
+        "active_users": 15,
+        "new_users": 11,
+        "sessions": 19,
+        "engaged_sessions": 14,
+        "engagement_rate": 73.7,
+        "avg_session_sec": 104.6,
+        "pageviews": 21,
         "pagePath": "/without-car/",
         "dimension": "/without-car/"
       },
       {
-        "active_users": 6,
-        "new_users": 1,
-        "sessions": 7,
-        "engaged_sessions": 7,
+        "active_users": 5,
+        "new_users": 0,
+        "sessions": 6,
+        "engaged_sessions": 6,
         "engagement_rate": 100.0,
-        "avg_session_sec": 88.3,
-        "pageviews": 11,
+        "avg_session_sec": 101.5,
+        "pageviews": 8,
         "pagePath": "/trekking/",
         "dimension": "/trekking/"
       },
       {
         "active_users": 3,
-        "new_users": 0,
+        "new_users": 1,
         "sessions": 3,
         "engaged_sessions": 3,
         "engagement_rate": 100.0,
-        "avg_session_sec": 14.3,
-        "pageviews": 5,
+        "avg_session_sec": 11.6,
+        "pageviews": 3,
         "pagePath": "/guides/",
         "dimension": "/guides/"
       },
       {
-        "active_users": 3,
+        "active_users": 2,
         "new_users": 2,
-        "sessions": 3,
-        "engaged_sessions": 2,
-        "engagement_rate": 66.7,
-        "avg_session_sec": 58.6,
-        "pageviews": 4,
+        "sessions": 2,
+        "engaged_sessions": 1,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 60.0,
+        "pageviews": 2,
         "pagePath": "/guides/yakushima-where-to-stay/",
         "dimension": "/guides/yakushima-where-to-stay/"
-      },
-      {
-        "active_users": 2,
-        "new_users": 0,
-        "sessions": 2,
-        "engaged_sessions": 2,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 27.4,
-        "pageviews": 5,
-        "pagePath": "/about/",
-        "dimension": "/about/"
-      },
-      {
-        "active_users": 2,
-        "new_users": 1,
-        "sessions": 2,
-        "engaged_sessions": 2,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 22.0,
-        "pageviews": 2,
-        "pagePath": "/guides/yakushima-rainy-day/",
-        "dimension": "/guides/yakushima-rainy-day/"
       },
       {
         "active_users": 1,
@@ -1279,177 +1349,188 @@
         "sessions": 1,
         "engaged_sessions": 1,
         "engagement_rate": 100.0,
-        "avg_session_sec": 9.0,
+        "avg_session_sec": 36.3,
         "pageviews": 1,
-        "pagePath": "/intro/",
-        "dimension": "/intro/"
-      }
-    ],
-    "countries_7d": [
-      {
-        "active_users": 223,
-        "new_users": 196,
-        "sessions": 345,
-        "engaged_sessions": 282,
-        "engagement_rate": 81.7,
-        "avg_session_sec": 304.0,
-        "pageviews": 549,
-        "country": "Japan",
-        "dimension": "Japan"
-      },
-      {
-        "active_users": 42,
-        "new_users": 47,
-        "sessions": 46,
-        "engaged_sessions": 26,
-        "engagement_rate": 56.5,
-        "avg_session_sec": 152.4,
-        "pageviews": 81,
-        "country": "United States",
-        "dimension": "United States"
-      },
-      {
-        "active_users": 23,
-        "new_users": 23,
-        "sessions": 23,
-        "engaged_sessions": 9,
-        "engagement_rate": 39.1,
-        "avg_session_sec": 213.6,
-        "pageviews": 60,
-        "country": "China",
-        "dimension": "China"
+        "pagePath": "/about/",
+        "dimension": "/about/"
       },
       {
         "active_users": 1,
         "new_users": 1,
+        "sessions": 1,
+        "engaged_sessions": 1,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 25.2,
+        "pageviews": 1,
+        "pagePath": "/guides/yakushima-rainy-day/",
+        "dimension": "/guides/yakushima-rainy-day/"
+      }
+    ],
+    "countries_7d": [
+      {
+        "active_users": 211,
+        "new_users": 191,
+        "sessions": 319,
+        "engaged_sessions": 249,
+        "engagement_rate": 78.1,
+        "avg_session_sec": 242.0,
+        "pageviews": 482,
+        "country": "Japan",
+        "dimension": "Japan"
+      },
+      {
+        "active_users": 40,
+        "new_users": 45,
+        "sessions": 45,
+        "engaged_sessions": 26,
+        "engagement_rate": 57.8,
+        "avg_session_sec": 119.2,
+        "pageviews": 80,
+        "country": "United States",
+        "dimension": "United States"
+      },
+      {
+        "active_users": 7,
+        "new_users": 7,
         "sessions": 10,
+        "engaged_sessions": 5,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 73.3,
+        "pageviews": 13,
+        "country": "Singapore",
+        "dimension": "Singapore"
+      },
+      {
+        "active_users": 5,
+        "new_users": 4,
+        "sessions": 8,
+        "engaged_sessions": 7,
+        "engagement_rate": 87.5,
+        "avg_session_sec": 232.5,
+        "pageviews": 15,
+        "country": "Netherlands",
+        "dimension": "Netherlands"
+      },
+      {
+        "active_users": 3,
+        "new_users": 1,
+        "sessions": 8,
         "engaged_sessions": 3,
-        "engagement_rate": 30.0,
-        "avg_session_sec": 252.9,
-        "pageviews": 14,
+        "engagement_rate": 37.5,
+        "avg_session_sec": 210.1,
+        "pageviews": 6,
+        "country": "India",
+        "dimension": "India"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 8,
+        "engaged_sessions": 3,
+        "engagement_rate": 37.5,
+        "avg_session_sec": 316.1,
+        "pageviews": 12,
         "country": "Thailand",
         "dimension": "Thailand"
       },
       {
-        "active_users": 8,
-        "new_users": 7,
-        "sessions": 9,
-        "engaged_sessions": 7,
-        "engagement_rate": 77.8,
-        "avg_session_sec": 567.1,
-        "pageviews": 33,
+        "active_users": 5,
+        "new_users": 5,
+        "sessions": 6,
+        "engaged_sessions": 4,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 561.6,
+        "pageviews": 20,
         "country": "South Korea",
         "dimension": "South Korea"
       },
       {
         "active_users": 5,
-        "new_users": 4,
-        "sessions": 9,
-        "engaged_sessions": 7,
-        "engagement_rate": 77.8,
-        "avg_session_sec": 206.7,
-        "pageviews": 16,
-        "country": "Netherlands",
-        "dimension": "Netherlands"
-      },
-      {
-        "active_users": 6,
-        "new_users": 6,
-        "sessions": 8,
-        "engaged_sessions": 4,
-        "engagement_rate": 50.0,
-        "avg_session_sec": 84.6,
-        "pageviews": 9,
-        "country": "Singapore",
-        "dimension": "Singapore"
-      },
-      {
-        "active_users": 6,
         "new_users": 5,
-        "sessions": 8,
-        "engaged_sessions": 6,
-        "engagement_rate": 75.0,
-        "avg_session_sec": 74.5,
+        "sessions": 5,
+        "engaged_sessions": 3,
+        "engagement_rate": 60.0,
+        "avg_session_sec": 251.7,
         "pageviews": 9,
-        "country": "Taiwan",
-        "dimension": "Taiwan"
+        "country": "China",
+        "dimension": "China"
       },
       {
-        "active_users": 6,
-        "new_users": 6,
-        "sessions": 6,
+        "active_users": 5,
+        "new_users": 5,
+        "sessions": 5,
         "engaged_sessions": 4,
-        "engagement_rate": 66.7,
-        "avg_session_sec": 103.3,
-        "pageviews": 7,
+        "engagement_rate": 80.0,
+        "avg_session_sec": 51.0,
+        "pageviews": 5,
         "country": "United Kingdom",
         "dimension": "United Kingdom"
       },
       {
         "active_users": 4,
-        "new_users": 2,
-        "sessions": 6,
-        "engaged_sessions": 6,
+        "new_users": 1,
+        "sessions": 5,
+        "engaged_sessions": 5,
         "engagement_rate": 100.0,
-        "avg_session_sec": 309.3,
-        "pageviews": 7,
+        "avg_session_sec": 290.4,
+        "pageviews": 6,
         "country": "Russia",
         "dimension": "Russia"
       },
       {
         "active_users": 3,
-        "new_users": 3,
-        "sessions": 6,
-        "engaged_sessions": 3,
-        "engagement_rate": 50.0,
-        "avg_session_sec": 474.6,
-        "pageviews": 10,
-        "country": "Germany",
-        "dimension": "Germany"
-      },
-      {
-        "active_users": 4,
-        "new_users": 4,
-        "sessions": 5,
-        "engaged_sessions": 4,
-        "engagement_rate": 80.0,
-        "avg_session_sec": 132.8,
-        "pageviews": 6,
-        "country": "Australia",
-        "dimension": "Australia"
-      },
-      {
-        "active_users": 3,
-        "new_users": 1,
-        "sessions": 5,
-        "engaged_sessions": 1,
-        "engagement_rate": 20.0,
-        "avg_session_sec": 3.3,
-        "pageviews": 3,
-        "country": "India",
-        "dimension": "India"
-      },
-      {
-        "active_users": 3,
         "new_users": 2,
-        "sessions": 4,
-        "engaged_sessions": 3,
-        "engagement_rate": 75.0,
-        "avg_session_sec": 425.2,
-        "pageviews": 13,
+        "sessions": 5,
+        "engaged_sessions": 5,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 577.7,
+        "pageviews": 19,
         "country": "France",
         "dimension": "France"
       },
       {
         "active_users": 3,
-        "new_users": 2,
+        "new_users": 3,
         "sessions": 4,
         "engaged_sessions": 3,
         "engagement_rate": 75.0,
-        "avg_session_sec": 133.4,
+        "avg_session_sec": 145.7,
+        "pageviews": 5,
+        "country": "Australia",
+        "dimension": "Australia"
+      },
+      {
+        "active_users": 3,
+        "new_users": 2,
+        "sessions": 3,
+        "engaged_sessions": 3,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 202.6,
         "pageviews": 6,
+        "country": "Germany",
+        "dimension": "Germany"
+      },
+      {
+        "active_users": 3,
+        "new_users": 3,
+        "sessions": 3,
+        "engaged_sessions": 3,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 492.0,
+        "pageviews": 7,
         "country": "Hong Kong",
         "dimension": "Hong Kong"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 3,
+        "engaged_sessions": 2,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 16.3,
+        "pageviews": 2,
+        "country": "Taiwan",
+        "dimension": "Taiwan"
       },
       {
         "active_users": 1,
@@ -1461,6 +1542,17 @@
         "pageviews": 11,
         "country": "Estonia",
         "dimension": "Estonia"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 2,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 2.0,
+        "pageviews": 2,
+        "country": "Canada",
+        "dimension": "Canada"
       },
       {
         "active_users": 1,
@@ -1490,43 +1582,32 @@
         "sessions": 2,
         "engaged_sessions": 1,
         "engagement_rate": 50.0,
-        "avg_session_sec": 37.7,
-        "pageviews": 5,
-        "country": "Switzerland",
-        "dimension": "Switzerland"
-      },
-      {
-        "active_users": 1,
-        "new_users": 1,
-        "sessions": 1,
-        "engaged_sessions": 0,
-        "engagement_rate": 0.0,
-        "avg_session_sec": 0.0,
-        "pageviews": 1,
-        "country": "Argentina",
-        "dimension": "Argentina"
+        "avg_session_sec": 40.5,
+        "pageviews": 2,
+        "country": "Latvia",
+        "dimension": "Latvia"
       }
     ],
     "devices_7d": [
       {
-        "active_users": 217,
-        "new_users": 197,
-        "sessions": 346,
-        "engaged_sessions": 264,
-        "engagement_rate": 76.3,
-        "avg_session_sec": 290.3,
-        "pageviews": 575,
+        "active_users": 191,
+        "new_users": 176,
+        "sessions": 298,
+        "engaged_sessions": 233,
+        "engagement_rate": 78.2,
+        "avg_session_sec": 232.2,
+        "pageviews": 478,
         "deviceCategory": "mobile",
         "dimension": "mobile"
       },
       {
-        "active_users": 129,
-        "new_users": 120,
-        "sessions": 160,
-        "engaged_sessions": 106,
-        "engagement_rate": 66.2,
-        "avg_session_sec": 231.7,
-        "pageviews": 249,
+        "active_users": 119,
+        "new_users": 111,
+        "sessions": 156,
+        "engaged_sessions": 96,
+        "engagement_rate": 61.5,
+        "avg_session_sec": 225.0,
+        "pageviews": 239,
         "deviceCategory": "desktop",
         "dimension": "desktop"
       },
@@ -1536,32 +1617,32 @@
         "sessions": 6,
         "engaged_sessions": 5,
         "engagement_rate": 83.3,
-        "avg_session_sec": 310.3,
-        "pageviews": 37,
+        "avg_session_sec": 166.4,
+        "pageviews": 11,
         "deviceCategory": "tablet",
         "dimension": "tablet"
       }
     ],
     "country_channel_7d": [
       {
-        "active_users": 176,
-        "new_users": 158,
-        "sessions": 255,
-        "engaged_sessions": 215,
-        "engagement_rate": 84.3,
-        "avg_session_sec": 244.2,
-        "pageviews": 395,
+        "active_users": 163,
+        "new_users": 150,
+        "sessions": 232,
+        "engaged_sessions": 188,
+        "engagement_rate": 81.0,
+        "avg_session_sec": 233.5,
+        "pageviews": 356,
         "country": "Japan",
         "sessionDefaultChannelGroup": "Organic Search"
       },
       {
-        "active_users": 30,
-        "new_users": 23,
-        "sessions": 55,
+        "active_users": 29,
+        "new_users": 24,
+        "sessions": 60,
         "engaged_sessions": 44,
-        "engagement_rate": 80.0,
-        "avg_session_sec": 402.4,
-        "pageviews": 74,
+        "engagement_rate": 73.3,
+        "avg_session_sec": 213.8,
+        "pageviews": 68,
         "country": "Japan",
         "sessionDefaultChannelGroup": "AI Assistant"
       },
@@ -1577,124 +1658,91 @@
         "sessionDefaultChannelGroup": "Direct"
       },
       {
-        "active_users": 16,
-        "new_users": 14,
-        "sessions": 24,
+        "active_users": 17,
+        "new_users": 16,
+        "sessions": 22,
         "engaged_sessions": 15,
-        "engagement_rate": 62.5,
-        "avg_session_sec": 266.3,
-        "pageviews": 42,
+        "engagement_rate": 68.2,
+        "avg_session_sec": 242.9,
+        "pageviews": 39,
         "country": "Japan",
         "sessionDefaultChannelGroup": "Direct"
       },
       {
-        "active_users": 20,
-        "new_users": 20,
-        "sessions": 20,
-        "engaged_sessions": 6,
-        "engagement_rate": 30.0,
-        "avg_session_sec": 125.8,
-        "pageviews": 26,
-        "country": "China",
-        "sessionDefaultChannelGroup": "Direct"
-      },
-      {
-        "active_users": 8,
+        "active_users": 10,
         "new_users": 1,
-        "sessions": 16,
-        "engaged_sessions": 8,
-        "engagement_rate": 50.0,
-        "avg_session_sec": 881.8,
-        "pageviews": 38,
+        "sessions": 12,
+        "engaged_sessions": 2,
+        "engagement_rate": 16.7,
+        "avg_session_sec": 406.0,
+        "pageviews": 19,
         "country": "Japan",
         "sessionDefaultChannelGroup": "Unassigned"
       },
       {
         "active_users": 1,
         "new_users": 1,
-        "sessions": 10,
+        "sessions": 8,
         "engaged_sessions": 3,
-        "engagement_rate": 30.0,
-        "avg_session_sec": 252.9,
-        "pageviews": 14,
+        "engagement_rate": 37.5,
+        "avg_session_sec": 316.1,
+        "pageviews": 12,
         "country": "Thailand",
         "sessionDefaultChannelGroup": "Organic Search"
       },
       {
-        "active_users": 6,
-        "new_users": 5,
-        "sessions": 8,
-        "engaged_sessions": 6,
-        "engagement_rate": 75.0,
-        "avg_session_sec": 74.5,
-        "pageviews": 9,
-        "country": "Taiwan",
-        "sessionDefaultChannelGroup": "Organic Search"
-      },
-      {
-        "active_users": 6,
-        "new_users": 6,
+        "active_users": 2,
+        "new_users": 0,
         "sessions": 7,
-        "engaged_sessions": 5,
-        "engagement_rate": 71.4,
-        "avg_session_sec": 707.5,
-        "pageviews": 9,
-        "country": "United States",
-        "sessionDefaultChannelGroup": "Organic Search"
-      },
-      {
-        "active_users": 4,
-        "new_users": 2,
-        "sessions": 6,
-        "engaged_sessions": 6,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 309.3,
-        "pageviews": 7,
-        "country": "Russia",
-        "sessionDefaultChannelGroup": "Organic Search"
-      },
-      {
-        "active_users": 5,
-        "new_users": 4,
-        "sessions": 5,
-        "engaged_sessions": 5,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 979.6,
-        "pageviews": 28,
-        "country": "South Korea",
-        "sessionDefaultChannelGroup": "Organic Search"
-      },
-      {
-        "active_users": 3,
-        "new_users": 3,
-        "sessions": 5,
-        "engaged_sessions": 2,
-        "engagement_rate": 40.0,
-        "avg_session_sec": 546.5,
-        "pageviews": 8,
-        "country": "Germany",
-        "sessionDefaultChannelGroup": "Organic Search"
-      },
-      {
-        "active_users": 3,
-        "new_users": 1,
-        "sessions": 5,
-        "engaged_sessions": 1,
-        "engagement_rate": 20.0,
-        "avg_session_sec": 3.3,
+        "engaged_sessions": 3,
+        "engagement_rate": 42.9,
+        "avg_session_sec": 73.6,
         "pageviews": 3,
         "country": "India",
         "sessionDefaultChannelGroup": "Organic Search"
       },
       {
+        "active_users": 4,
+        "new_users": 4,
+        "sessions": 6,
+        "engaged_sessions": 5,
+        "engagement_rate": 83.3,
+        "avg_session_sec": 550.8,
+        "pageviews": 8,
+        "country": "United States",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 3,
+        "new_users": 3,
+        "sessions": 6,
+        "engaged_sessions": 2,
+        "engagement_rate": 33.3,
+        "avg_session_sec": 30.4,
+        "pageviews": 7,
+        "country": "Singapore",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 4,
+        "new_users": 1,
+        "sessions": 5,
+        "engaged_sessions": 5,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 290.4,
+        "pageviews": 6,
+        "country": "Russia",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
         "active_users": 3,
         "new_users": 2,
         "sessions": 5,
-        "engaged_sessions": 3,
-        "engagement_rate": 60.0,
-        "avg_session_sec": 126.6,
-        "pageviews": 7,
-        "country": "Netherlands",
+        "engaged_sessions": 5,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 577.7,
+        "pageviews": 18,
+        "country": "France",
         "sessionDefaultChannelGroup": "Organic Search"
       },
       {
@@ -1703,9 +1751,9 @@
         "sessions": 4,
         "engaged_sessions": 2,
         "engagement_rate": 50.0,
-        "avg_session_sec": 101.0,
-        "pageviews": 6,
-        "country": "Singapore",
+        "avg_session_sec": 127.4,
+        "pageviews": 7,
+        "country": "China",
         "sessionDefaultChannelGroup": "Direct"
       },
       {
@@ -1714,9 +1762,9 @@
         "sessions": 4,
         "engaged_sessions": 3,
         "engagement_rate": 75.0,
-        "avg_session_sec": 425.2,
-        "pageviews": 12,
-        "country": "France",
+        "avg_session_sec": 158.2,
+        "pageviews": 6,
+        "country": "Netherlands",
         "sessionDefaultChannelGroup": "Organic Search"
       },
       {
@@ -1734,23 +1782,12 @@
         "active_users": 3,
         "new_users": 3,
         "sessions": 3,
-        "engaged_sessions": 3,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 174.6,
-        "pageviews": 4,
-        "country": "Australia",
-        "sessionDefaultChannelGroup": "Organic Search"
-      },
-      {
-        "active_users": 3,
-        "new_users": 3,
-        "sessions": 3,
-        "engaged_sessions": 3,
-        "engagement_rate": 100.0,
-        "avg_session_sec": 799.1,
-        "pageviews": 34,
-        "country": "China",
-        "sessionDefaultChannelGroup": "Organic Search"
+        "engaged_sessions": 2,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 134.6,
+        "pageviews": 5,
+        "country": "Singapore",
+        "sessionDefaultChannelGroup": "Direct"
       },
       {
         "active_users": 3,
@@ -1764,6 +1801,17 @@
         "sessionDefaultChannelGroup": "Direct"
       },
       {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 3,
+        "engaged_sessions": 2,
+        "engagement_rate": 66.7,
+        "avg_session_sec": 16.3,
+        "pageviews": 2,
+        "country": "Taiwan",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
         "active_users": 1,
         "new_users": 1,
         "sessions": 3,
@@ -1772,17 +1820,6 @@
         "avg_session_sec": 201.2,
         "pageviews": 11,
         "country": "Estonia",
-        "sessionDefaultChannelGroup": "Organic Search"
-      },
-      {
-        "active_users": 1,
-        "new_users": 1,
-        "sessions": 3,
-        "engaged_sessions": 1,
-        "engagement_rate": 33.3,
-        "avg_session_sec": 42.1,
-        "pageviews": 2,
-        "country": "Singapore",
         "sessionDefaultChannelGroup": "Organic Search"
       },
       {
@@ -1798,22 +1835,55 @@
       },
       {
         "active_users": 2,
-        "new_users": 1,
+        "new_users": 2,
         "sessions": 2,
         "engaged_sessions": 2,
         "engagement_rate": 100.0,
-        "avg_session_sec": 190.2,
+        "avg_session_sec": 221.2,
         "pageviews": 3,
-        "country": "Hong Kong",
-        "sessionDefaultChannelGroup": "AI Assistant"
+        "country": "Australia",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 2,
+        "new_users": 0,
+        "sessions": 2,
+        "engaged_sessions": 0,
+        "engagement_rate": 0.0,
+        "avg_session_sec": 0.0,
+        "pageviews": 1,
+        "country": "France",
+        "sessionDefaultChannelGroup": "Unassigned"
       },
       {
         "active_users": 2,
         "new_users": 2,
         "sessions": 2,
-        "engaged_sessions": 1,
-        "engagement_rate": 50.0,
-        "avg_session_sec": 60.0,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 563.1,
+        "pageviews": 4,
+        "country": "Hong Kong",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 1581.9,
+        "pageviews": 15,
+        "country": "South Korea",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 2,
+        "new_users": 2,
+        "sessions": 2,
+        "engaged_sessions": 2,
+        "engagement_rate": 100.0,
+        "avg_session_sec": 127.5,
         "pageviews": 2,
         "country": "United Kingdom",
         "sessionDefaultChannelGroup": "Organic Search"
@@ -1844,6 +1914,17 @@
         "active_users": 1,
         "new_users": 1,
         "sessions": 2,
+        "engaged_sessions": 1,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 40.5,
+        "pageviews": 2,
+        "country": "Latvia",
+        "sessionDefaultChannelGroup": "Organic Search"
+      },
+      {
+        "active_users": 1,
+        "new_users": 1,
+        "sessions": 2,
         "engaged_sessions": 2,
         "engagement_rate": 100.0,
         "avg_session_sec": 282.1,
@@ -1857,40 +1938,40 @@
         "sessions": 2,
         "engaged_sessions": 1,
         "engagement_rate": 50.0,
-        "avg_session_sec": 37.7,
-        "pageviews": 5,
-        "country": "Switzerland",
+        "avg_session_sec": 205.5,
+        "pageviews": 2,
+        "country": "Romania",
         "sessionDefaultChannelGroup": "Organic Search"
       },
       {
         "active_users": 1,
         "new_users": 1,
-        "sessions": 1,
-        "engaged_sessions": 0,
-        "engagement_rate": 0.0,
-        "avg_session_sec": 0.0,
-        "pageviews": 1,
-        "country": "Argentina",
-        "sessionDefaultChannelGroup": "Direct"
+        "sessions": 2,
+        "engaged_sessions": 1,
+        "engagement_rate": 50.0,
+        "avg_session_sec": 37.7,
+        "pageviews": 5,
+        "country": "Switzerland",
+        "sessionDefaultChannelGroup": "Organic Search"
       }
     ],
     "period": {
-      "yesterday": "2026-11-12",
-      "previous_7d": "2026-10-30~2026-11-05",
-      "day_before": "2026-11-11",
-      "last_7d_start": "2026-11-06",
-      "last_7d_end": "2026-11-12",
-      "last_7d": "2026-11-06~2026-11-12"
+      "yesterday": "2026-11-13",
+      "previous_7d": "2026-10-31~2026-11-06",
+      "day_before": "2026-11-12",
+      "last_7d_start": "2026-11-07",
+      "last_7d_end": "2026-11-13",
+      "last_7d": "2026-11-07~2026-11-13"
     }
   },
   "aligned_period": false,
   "diagnostics": {
-    "collected_at": "2026-11-13T16:49:50.636646+08:00",
+    "collected_at": "2026-11-14T16:04:17.693638+08:00",
     "ga4_landing": {
       "current": {
         "period": {
-          "start": "2026-11-06",
-          "end": "2026-11-12"
+          "start": "2026-11-07",
+          "end": "2026-11-13"
         },
         "complete": true,
         "rows": [
@@ -1898,43 +1979,43 @@
             "keys": [
               "/"
             ],
-            "sessions": 305
+            "sessions": 278
           },
           {
             "keys": [
               "/fare"
             ],
-            "sessions": 101
+            "sessions": 84
           },
           {
             "keys": [
               "/ferry"
             ],
-            "sessions": 34
+            "sessions": 32
           },
           {
             "keys": [
               "(not set)"
             ],
-            "sessions": 27
+            "sessions": 23
           },
           {
             "keys": [
               "/map"
             ],
-            "sessions": 21
-          },
-          {
-            "keys": [
-              "/without-car"
-            ],
-            "sessions": 14
+            "sessions": 19
           },
           {
             "keys": [
               ""
             ],
-            "sessions": 11
+            "sessions": 16
+          },
+          {
+            "keys": [
+              "/without-car"
+            ],
+            "sessions": 12
           },
           {
             "keys": [
@@ -1944,13 +2025,13 @@
           },
           {
             "keys": [
-              "/guides/yakushima-rainy-day"
+              "/guides"
             ],
             "sessions": 1
           },
           {
             "keys": [
-              "/trekking"
+              "/guides/yakushima-rainy-day"
             ],
             "sessions": 1
           }
@@ -1958,8 +2039,8 @@
       },
       "previous": {
         "period": {
-          "start": "2026-10-30",
-          "end": "2026-11-05"
+          "start": "2026-10-31",
+          "end": "2026-11-06"
         },
         "complete": true,
         "rows": [
@@ -1967,37 +2048,37 @@
             "keys": [
               "/"
             ],
-            "sessions": 387
+            "sessions": 374
           },
           {
             "keys": [
               "/fare"
             ],
-            "sessions": 73
+            "sessions": 70
           },
           {
             "keys": [
               "/ferry"
             ],
-            "sessions": 67
+            "sessions": 63
           },
           {
             "keys": [
               "(not set)"
             ],
-            "sessions": 53
-          },
-          {
-            "keys": [
-              "/without-car"
-            ],
-            "sessions": 23
+            "sessions": 54
           },
           {
             "keys": [
               "/map"
             ],
             "sessions": 22
+          },
+          {
+            "keys": [
+              "/without-car"
+            ],
+            "sessions": 21
           },
           {
             "keys": [
@@ -2023,8 +2104,8 @@
     "ga4_source": {
       "current": {
         "period": {
-          "start": "2026-11-06",
-          "end": "2026-11-12"
+          "start": "2026-11-07",
+          "end": "2026-11-13"
         },
         "complete": true,
         "rows": [
@@ -2032,65 +2113,59 @@
             "keys": [
               "google / organic"
             ],
-            "sessions": 293
+            "sessions": 270
           },
           {
             "keys": [
               "(direct) / (none)"
             ],
-            "sessions": 92
+            "sessions": 75
           },
           {
             "keys": [
               "chatgpt.com / ai-assistant"
             ],
-            "sessions": 67
+            "sessions": 71
           },
           {
             "keys": [
               "yahoo / organic"
             ],
-            "sessions": 22
-          },
-          {
-            "keys": [
-              "map_popup / (not set)"
-            ],
-            "sessions": 12
-          },
-          {
-            "keys": [
-              "bing / organic"
-            ],
-            "sessions": 8
+            "sessions": 19
           },
           {
             "keys": [
               "(not set)"
             ],
-            "sessions": 7
+            "sessions": 10
           },
           {
             "keys": [
-              "duckduckgo / organic"
+              "bing / organic"
             ],
-            "sessions": 5
+            "sessions": 9
           },
           {
             "keys": [
-              "ecosia.org / organic"
+              "map_popup / (not set)"
             ],
-            "sessions": 4
+            "sessions": 6
           },
           {
             "keys": [
               "openai / organic"
             ],
-            "sessions": 4
+            "sessions": 3
           },
           {
             "keys": [
-              "cn.bing.com / referral"
+              "duckduckgo / organic"
+            ],
+            "sessions": 2
+          },
+          {
+            "keys": [
+              "ecosia.org / organic"
             ],
             "sessions": 1
           },
@@ -2116,8 +2191,8 @@
       },
       "previous": {
         "period": {
-          "start": "2026-10-30",
-          "end": "2026-11-05"
+          "start": "2026-10-31",
+          "end": "2026-11-06"
         },
         "complete": true,
         "rows": [
@@ -2125,43 +2200,43 @@
             "keys": [
               "google / organic"
             ],
-            "sessions": 292
+            "sessions": 289
           },
           {
             "keys": [
               "(direct) / (none)"
             ],
-            "sessions": 112
+            "sessions": 99
           },
           {
             "keys": [
               "chatgpt.com / ai-assistant"
             ],
-            "sessions": 67
+            "sessions": 64
           },
           {
             "keys": [
               "yahoo / organic"
             ],
-            "sessions": 57
+            "sessions": 51
           },
           {
             "keys": [
               "map_popup / (not set)"
             ],
-            "sessions": 48
+            "sessions": 50
           },
           {
             "keys": [
               "duckduckgo / organic"
             ],
-            "sessions": 17
+            "sessions": 16
           },
           {
             "keys": [
               "bing / organic"
             ],
-            "sessions": 15
+            "sessions": 14
           },
           {
             "keys": [
@@ -2173,17 +2248,17 @@
             "keys": [
               "ecosia.org / organic"
             ],
-            "sessions": 5
-          },
-          {
-            "keys": [
-              "cn.bing.com / referral"
-            ],
-            "sessions": 3
+            "sessions": 7
           },
           {
             "keys": [
               "openai / organic"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "cn.bing.com / referral"
             ],
             "sessions": 3
           },
@@ -2217,8 +2292,8 @@
     "ga4_source_landing": {
       "current": {
         "period": {
-          "start": "2026-11-06",
-          "end": "2026-11-12"
+          "start": "2026-11-07",
+          "end": "2026-11-13"
         },
         "complete": true,
         "rows": [
@@ -2227,42 +2302,42 @@
               "/",
               "google / organic"
             ],
-            "sessions": 151
-          },
-          {
-            "keys": [
-              "/fare",
-              "google / organic"
-            ],
-            "sessions": 68
-          },
-          {
-            "keys": [
-              "/",
-              "(direct) / (none)"
-            ],
-            "sessions": 66
+            "sessions": 147
           },
           {
             "keys": [
               "/",
               "chatgpt.com / ai-assistant"
             ],
-            "sessions": 53
+            "sessions": 56
           },
           {
             "keys": [
-              "(not set)",
+              "/fare",
               "google / organic"
             ],
-            "sessions": 21
+            "sessions": 55
+          },
+          {
+            "keys": [
+              "/",
+              "(direct) / (none)"
+            ],
+            "sessions": 49
           },
           {
             "keys": [
               "/ferry",
               "google / organic"
             ],
-            "sessions": 21
+            "sessions": 19
+          },
+          {
+            "keys": [
+              "(not set)",
+              "google / organic"
+            ],
+            "sessions": 17
           },
           {
             "keys": [
@@ -2276,13 +2351,6 @@
               "/without-car",
               "google / organic"
             ],
-            "sessions": 12
-          },
-          {
-            "keys": [
-              "/",
-              "yahoo / organic"
-            ],
             "sessions": 11
           },
           {
@@ -2290,21 +2358,28 @@
               "/fare",
               "yahoo / organic"
             ],
-            "sessions": 11
+            "sessions": 10
+          },
+          {
+            "keys": [
+              "/",
+              "yahoo / organic"
+            ],
+            "sessions": 9
           },
           {
             "keys": [
               "/map",
               "google / organic"
             ],
-            "sessions": 11
+            "sessions": 9
           },
           {
             "keys": [
-              "/",
-              "map_popup / (not set)"
+              "",
+              "google / organic"
             ],
-            "sessions": 7
+            "sessions": 8
           },
           {
             "keys": [
@@ -2312,13 +2387,6 @@
               "(direct) / (none)"
             ],
             "sessions": 7
-          },
-          {
-            "keys": [
-              "",
-              "google / organic"
-            ],
-            "sessions": 6
           },
           {
             "keys": [
@@ -2329,6 +2397,13 @@
           },
           {
             "keys": [
+              "",
+              "(not set)"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
               "/",
               "bing / organic"
             ],
@@ -2336,8 +2411,22 @@
           },
           {
             "keys": [
-              "",
+              "/ferry",
+              "(direct) / (none)"
+            ],
+            "sessions": 5
+          },
+          {
+            "keys": [
+              "/",
               "(not set)"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "/",
+              "map_popup / (not set)"
             ],
             "sessions": 4
           },
@@ -2350,50 +2439,22 @@
           },
           {
             "keys": [
-              "/ferry",
-              "(direct) / (none)"
-            ],
-            "sessions": 4
-          },
-          {
-            "keys": [
-              "/",
-              "duckduckgo / organic"
-            ],
-            "sessions": 3
-          },
-          {
-            "keys": [
-              "/",
-              "openai / organic"
-            ],
-            "sessions": 3
-          },
-          {
-            "keys": [
-              "/fare",
-              "map_popup / (not set)"
-            ],
-            "sessions": 3
-          },
-          {
-            "keys": [
-              "/ferry",
-              "bing / organic"
-            ],
-            "sessions": 3
-          },
-          {
-            "keys": [
-              "/",
-              "(not set)"
+              "",
+              "chatgpt.com / ai-assistant"
             ],
             "sessions": 2
           },
           {
             "keys": [
               "/",
-              "ecosia.org / organic"
+              "openai / organic"
+            ],
+            "sessions": 2
+          },
+          {
+            "keys": [
+              "/ferry",
+              "bing / organic"
             ],
             "sessions": 2
           },
@@ -2427,15 +2488,8 @@
           },
           {
             "keys": [
-              "/without-car",
-              "(direct) / (none)"
-            ],
-            "sessions": 2
-          },
-          {
-            "keys": [
               "",
-              "chatgpt.com / ai-assistant"
+              "bing / organic"
             ],
             "sessions": 1
           },
@@ -2470,7 +2524,7 @@
           {
             "keys": [
               "/fare",
-              "ecosia.org / organic"
+              "bing / organic"
             ],
             "sessions": 1
           },
@@ -2485,6 +2539,13 @@
             "keys": [
               "/ferry",
               "openai / organic"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/guides",
+              "google / organic"
             ],
             "sessions": 1
           },
@@ -2504,8 +2565,8 @@
           },
           {
             "keys": [
-              "/trekking",
-              "cn.bing.com / referral"
+              "/without-car",
+              "(direct) / (none)"
             ],
             "sessions": 1
           }
@@ -2513,8 +2574,8 @@
       },
       "previous": {
         "period": {
-          "start": "2026-10-30",
-          "end": "2026-11-05"
+          "start": "2026-10-31",
+          "end": "2026-11-06"
         },
         "complete": true,
         "rows": [
@@ -2523,35 +2584,35 @@
               "/",
               "google / organic"
             ],
-            "sessions": 189
+            "sessions": 185
           },
           {
             "keys": [
               "/",
               "(direct) / (none)"
             ],
-            "sessions": 74
+            "sessions": 70
           },
           {
             "keys": [
               "/",
               "chatgpt.com / ai-assistant"
             ],
-            "sessions": 45
+            "sessions": 43
           },
           {
             "keys": [
               "/fare",
               "google / organic"
             ],
-            "sessions": 42
+            "sessions": 39
           },
           {
             "keys": [
               "/",
               "yahoo / organic"
             ],
-            "sessions": 34
+            "sessions": 30
           },
           {
             "keys": [
@@ -2569,37 +2630,30 @@
           },
           {
             "keys": [
-              "/fare",
-              "yahoo / organic"
+              "(not set)",
+              "google / organic"
             ],
             "sessions": 21
           },
           {
             "keys": [
-              "(not set)",
-              "google / organic"
+              "/fare",
+              "yahoo / organic"
             ],
-            "sessions": 18
+            "sessions": 19
           },
           {
             "keys": [
               "/without-car",
               "(direct) / (none)"
             ],
-            "sessions": 14
+            "sessions": 12
           },
           {
             "keys": [
               "/ferry",
               "duckduckgo / organic"
             ],
-            "sessions": 10
-          },
-          {
-            "keys": [
-              "/ferry",
-              "(direct) / (none)"
-            ],
             "sessions": 9
           },
           {
@@ -2608,20 +2662,6 @@
               "map_popup / (not set)"
             ],
             "sessions": 9
-          },
-          {
-            "keys": [
-              "(not set)",
-              "chatgpt.com / ai-assistant"
-            ],
-            "sessions": 8
-          },
-          {
-            "keys": [
-              "(not set)",
-              "map_popup / (not set)"
-            ],
-            "sessions": 8
           },
           {
             "keys": [
@@ -2639,6 +2679,13 @@
           },
           {
             "keys": [
+              "/map",
+              "google / organic"
+            ],
+            "sessions": 8
+          },
+          {
+            "keys": [
               "(not set)",
               "(direct) / (none)"
             ],
@@ -2646,8 +2693,8 @@
           },
           {
             "keys": [
-              "/map",
-              "google / organic"
+              "(not set)",
+              "map_popup / (not set)"
             ],
             "sessions": 7
           },
@@ -2660,10 +2707,24 @@
           },
           {
             "keys": [
-              "/",
-              "bing / organic"
+              "(not set)",
+              "chatgpt.com / ai-assistant"
             ],
-            "sessions": 5
+            "sessions": 6
+          },
+          {
+            "keys": [
+              "/fare",
+              "map_popup / (not set)"
+            ],
+            "sessions": 6
+          },
+          {
+            "keys": [
+              "/ferry",
+              "(direct) / (none)"
+            ],
+            "sessions": 6
           },
           {
             "keys": [
@@ -2681,8 +2742,29 @@
           },
           {
             "keys": [
+              "/",
+              "bing / organic"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "/",
+              "ecosia.org / organic"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
+              "/",
+              "openai / organic"
+            ],
+            "sessions": 4
+          },
+          {
+            "keys": [
               "/fare",
-              "(direct) / (none)"
+              "chatgpt.com / ai-assistant"
             ],
             "sessions": 4
           },
@@ -2690,27 +2772,6 @@
             "keys": [
               "(not set)",
               "ecosia.org / organic"
-            ],
-            "sessions": 3
-          },
-          {
-            "keys": [
-              "/",
-              "openai / organic"
-            ],
-            "sessions": 3
-          },
-          {
-            "keys": [
-              "/fare",
-              "chatgpt.com / ai-assistant"
-            ],
-            "sessions": 3
-          },
-          {
-            "keys": [
-              "/fare",
-              "map_popup / (not set)"
             ],
             "sessions": 3
           },
@@ -2744,8 +2805,8 @@
           },
           {
             "keys": [
-              "/",
-              "ecosia.org / organic"
+              "/fare",
+              "(direct) / (none)"
             ],
             "sessions": 2
           },
@@ -2753,13 +2814,6 @@
             "keys": [
               "/ferry",
               "cn.bing.com / referral"
-            ],
-            "sessions": 2
-          },
-          {
-            "keys": [
-              "/map",
-              "(direct) / (none)"
             ],
             "sessions": 2
           },
@@ -2781,13 +2835,6 @@
             "keys": [
               "(not set)",
               "map_popup / (none)"
-            ],
-            "sessions": 1
-          },
-          {
-            "keys": [
-              "/",
-              "cn.bing.com / referral"
             ],
             "sessions": 1
           },
@@ -2829,6 +2876,13 @@
           {
             "keys": [
               "/map",
+              "(direct) / (none)"
+            ],
+            "sessions": 1
+          },
+          {
+            "keys": [
+              "/map",
               "bing / organic"
             ],
             "sessions": 1
@@ -2836,14 +2890,14 @@
           {
             "keys": [
               "/trekking",
-              "(direct) / (none)"
+              "chatgpt.com / ai-assistant"
             ],
             "sessions": 1
           },
           {
             "keys": [
               "/trekking",
-              "chatgpt.com / ai-assistant"
+              "cn.bing.com / referral"
             ],
             "sessions": 1
           }
@@ -2871,73 +2925,73 @@
     {
       "source": "GA4",
       "metric": "活跃用户·日环比",
-      "current": 35,
-      "previous": 68,
-      "change": "-48.5%",
-      "window": "2026-11-12 对 2026-11-11（America/Los_Angeles）",
+      "current": 48,
+      "previous": 57,
+      "change": "-15.8%",
+      "window": "2026-11-13 对 2026-11-12（America/Los_Angeles）",
       "status": "可比较"
     },
     {
       "source": "GA4",
       "metric": "会话·日环比",
-      "current": 43,
-      "previous": 84,
-      "change": "-48.8%",
-      "window": "2026-11-12 对 2026-11-11（America/Los_Angeles）",
+      "current": 66,
+      "previous": 75,
+      "change": "-12.0%",
+      "window": "2026-11-13 对 2026-11-12（America/Los_Angeles）",
       "status": "可比较"
     },
     {
       "source": "GA4",
       "metric": "页面浏览·日环比",
-      "current": 71,
-      "previous": 132,
-      "change": "-46.2%",
-      "window": "2026-11-12 对 2026-11-11（America/Los_Angeles）",
+      "current": 97,
+      "previous": 122,
+      "change": "-20.5%",
+      "window": "2026-11-13 对 2026-11-12（America/Los_Angeles）",
       "status": "可比较"
     },
     {
       "source": "GA4",
       "metric": "参与率·日环比",
-      "current": 76.7,
-      "previous": 63.1,
-      "change": "+13.60个百分点",
-      "window": "2026-11-12 对 2026-11-11（America/Los_Angeles）",
+      "current": 63.6,
+      "previous": 69.3,
+      "change": "-5.70个百分点",
+      "window": "2026-11-13 对 2026-11-12（America/Los_Angeles）",
       "status": "可比较"
     },
     {
       "source": "GA4",
       "metric": "活跃用户·周环比",
-      "current": 350,
-      "previous": 394,
-      "change": "-11.2%",
-      "window": "2026-11-06~2026-11-12 对 2026-10-30~2026-11-05",
+      "current": 314,
+      "previous": 374,
+      "change": "-16.0%",
+      "window": "2026-11-07~2026-11-13 对 2026-10-31~2026-11-06",
       "status": "可比较"
     },
     {
       "source": "GA4",
       "metric": "会话·周环比",
-      "current": 512,
-      "previous": 631,
-      "change": "-18.9%",
-      "window": "2026-11-06~2026-11-12 对 2026-10-30~2026-11-05",
+      "current": 460,
+      "previous": 609,
+      "change": "-24.5%",
+      "window": "2026-11-07~2026-11-13 对 2026-10-31~2026-11-06",
       "status": "可比较"
     },
     {
       "source": "GA4",
       "metric": "自然搜索会话·周环比",
-      "current": 337,
-      "previous": 393,
-      "change": "-14.2%",
-      "window": "2026-11-06~2026-11-12 对 2026-10-30~2026-11-05",
+      "current": 304,
+      "previous": 385,
+      "change": "-21.0%",
+      "window": "2026-11-07~2026-11-13 对 2026-10-31~2026-11-06",
       "status": "可比较"
     },
     {
       "source": "GA4",
       "metric": "AI渠道活跃用户·周环比",
-      "current": 38,
-      "previous": 43,
-      "change": "-11.6%",
-      "window": "2026-11-06~2026-11-12 对 2026-10-30~2026-11-05",
+      "current": 37,
+      "previous": 40,
+      "change": "-7.5%",
+      "window": "2026-11-07~2026-11-13 对 2026-10-31~2026-11-06",
       "status": "可比较"
     },
     {
@@ -2999,7 +3053,7 @@
     {
       "service": "GA4",
       "status": "已取数",
-      "evidence": "属性538426834；时区America/Los_Angeles；完整日2026-11-12",
+      "evidence": "属性538426834；时区America/Los_Angeles；完整日2026-11-13",
       "action": "按完整周期比较，不把活跃用户直接称作真人"
     },
     {
@@ -3023,21 +3077,21 @@
     {
       "service": "Klook等分销",
       "status": "GA4点击可查；订单收益未接入",
-      "evidence": "最新完整日affiliate_click=2；不等同订单或佣金",
+      "evidence": "最新完整日affiliate_click=0；不等同订单或佣金",
       "action": "看分销点击变化；订单/佣金必须来自平台后台"
     }
   ],
   "analysis": {
     "card_findings": [
-      "首页的减少细分：Google搜索 189→151次；Yahoo搜索 34→11次。",
-      "入口页减少最多：首页 387→305次；/ferry 67→34次。"
+      "首页的减少细分：Google搜索 185→147次；map_popup / (not set) 27→4次。",
+      "入口页减少最多：首页 374→278次；/ferry 63→32次。"
     ],
     "judgment": "尚不足以判定变化原因；我会继续自动补齐对比数据。",
     "findings": [
-      "本周活跃访客394→350（-11.2%）。",
-      "减少集中在自然搜索393→337次、未归类56→21次；这里比较访问次数，不把各渠道人数相加。",
-      "入口页减少最多：首页 387→305次；/ferry 67→34次。",
-      "首页的减少细分：Google搜索 189→151次；Yahoo搜索 34→11次。"
+      "本周活跃访客374→314（-16.0%）。",
+      "减少集中在自然搜索385→304次、未归类59→18次；这里比较访问次数，不把各渠道人数相加。",
+      "入口页减少最多：首页 374→278次；/ferry 63→32次。",
+      "首页的减少细分：Google搜索 185→147次；map_popup / (not set) 27→4次。"
     ],
     "agent_actions": [
       "已核验首页、/ferry可打开，未见禁止收录标记。",
@@ -3049,48 +3103,48 @@
     "evidence": [
       {
         "key": "Organic Search",
-        "current": 337,
-        "previous": 393,
-        "delta": -56,
+        "current": 304,
+        "previous": 385,
+        "delta": -81,
         "source": "GA4 channel",
         "metric": "sessions"
       },
       {
         "key": "Unassigned",
-        "current": 21,
-        "previous": 56,
-        "delta": -35,
+        "current": 18,
+        "previous": 59,
+        "delta": -41,
         "source": "GA4 channel",
         "metric": "sessions"
       },
       {
         "key": "/",
-        "current": 305,
-        "previous": 387,
-        "delta": -82,
+        "current": 278,
+        "previous": 374,
+        "delta": -96,
         "source": "GA4 landing",
         "metric": "sessions"
       },
       {
         "key": "/ferry",
-        "current": 34,
-        "previous": 67,
-        "delta": -33,
+        "current": 32,
+        "previous": 63,
+        "delta": -31,
         "source": "GA4 landing",
         "metric": "sessions"
       },
       {
         "key": "/ ← google / organic",
-        "current": 151,
-        "previous": 189,
+        "current": 147,
+        "previous": 185,
         "delta": -38,
         "source": "GA4 source + landing",
         "metric": "sessions"
       },
       {
-        "key": "/ ← yahoo / organic",
-        "current": 11,
-        "previous": 34,
+        "key": "/ ← map_popup / (not set)",
+        "current": 4,
+        "previous": 27,
         "delta": -23,
         "source": "GA4 source + landing",
         "metric": "sessions"
@@ -3120,51 +3174,51 @@
     "landing_source_changes": [
       {
         "key": "/ ← google / organic",
-        "current": 151,
-        "previous": 189,
+        "current": 147,
+        "previous": 185,
         "delta": -38
       },
       {
-        "key": "/ ← yahoo / organic",
-        "current": 11,
-        "previous": 34,
+        "key": "/ ← map_popup / (not set)",
+        "current": 4,
+        "previous": 27,
         "delta": -23
       },
       {
-        "key": "/ ← map_popup / (not set)",
-        "current": 7,
-        "previous": 27,
-        "delta": -20
-      },
-      {
-        "key": "/without-car ← (direct) / (none)",
-        "current": 2,
-        "previous": 14,
-        "delta": -12
-      },
-      {
-        "key": "/fare ← yahoo / organic",
-        "current": 11,
-        "previous": 21,
-        "delta": -10
+        "key": "/ ← yahoo / organic",
+        "current": 9,
+        "previous": 30,
+        "delta": -21
       },
       {
         "key": "/ ← (direct) / (none)",
-        "current": 66,
-        "previous": 74,
-        "delta": -8
+        "current": 49,
+        "previous": 70,
+        "delta": -21
       },
       {
-        "key": "/ferry ← duckduckgo / organic",
-        "current": 2,
-        "previous": 10,
+        "key": "/without-car ← (direct) / (none)",
+        "current": 1,
+        "previous": 12,
+        "delta": -11
+      },
+      {
+        "key": "/fare ← yahoo / organic",
+        "current": 10,
+        "previous": 19,
+        "delta": -9
+      },
+      {
+        "key": "/ferry ← google / organic",
+        "current": 19,
+        "previous": 27,
         "delta": -8
       },
       {
         "key": "(not set) ← map_popup / (not set)",
         "current": 0,
-        "previous": 8,
-        "delta": -8
+        "previous": 7,
+        "delta": -7
       },
       {
         "key": "/map ← map_popup / (not set)",
@@ -3179,28 +3233,46 @@
         "delta": -7
       },
       {
+        "key": "/ferry ← duckduckgo / organic",
+        "current": 2,
+        "previous": 9,
+        "delta": -7
+      },
+      {
         "key": "/ferry ← chatgpt.com / ai-assistant",
         "current": 2,
         "previous": 8,
         "delta": -6
       },
       {
-        "key": "/ferry ← google / organic",
-        "current": 21,
-        "previous": 27,
+        "key": "/ferry ← bing / organic",
+        "current": 2,
+        "previous": 8,
         "delta": -6
       },
       {
-        "key": "/ferry ← bing / organic",
-        "current": 3,
-        "previous": 8,
+        "key": "/fare ← map_popup / (not set)",
+        "current": 0,
+        "previous": 6,
+        "delta": -6
+      },
+      {
+        "key": "/ ← duckduckgo / organic",
+        "current": 0,
+        "previous": 5,
         "delta": -5
       },
       {
-        "key": "/ferry ← (direct) / (none)",
-        "current": 4,
-        "previous": 9,
-        "delta": -5
+        "key": "/ ← ecosia.org / organic",
+        "current": 0,
+        "previous": 4,
+        "delta": -4
+      },
+      {
+        "key": "(not set) ← google / organic",
+        "current": 17,
+        "previous": 21,
+        "delta": -4
       },
       {
         "key": "(not set) ← (not set)",
@@ -3209,34 +3281,16 @@
         "delta": -4
       },
       {
-        "key": "(not set) ← ecosia.org / organic",
-        "current": 0,
-        "previous": 3,
-        "delta": -3
-      },
-      {
         "key": "/map ← (not set)",
         "current": 0,
         "previous": 3,
         "delta": -3
       },
       {
-        "key": "(not set) ← chatgpt.com / ai-assistant",
-        "current": 6,
-        "previous": 8,
-        "delta": -2
-      },
-      {
-        "key": "/ferry ← cn.bing.com / referral",
+        "key": "(not set) ← ecosia.org / organic",
         "current": 0,
-        "previous": 2,
-        "delta": -2
-      },
-      {
-        "key": "/ ← duckduckgo / organic",
-        "current": 3,
-        "previous": 5,
-        "delta": -2
+        "previous": 3,
+        "delta": -3
       },
       {
         "key": "(not set) ← yahoo / organic",
@@ -3245,7 +3299,7 @@
         "delta": -2
       },
       {
-        "key": "(not set) ← duckduckgo / organic",
+        "key": "/ferry ← cn.bing.com / referral",
         "current": 0,
         "previous": 2,
         "delta": -2
@@ -3257,25 +3311,19 @@
         "delta": -2
       },
       {
-        "key": "/ ← service.smt.docomo.ne.jp / referral",
+        "key": "(not set) ← duckduckgo / organic",
         "current": 0,
-        "previous": 1,
-        "delta": -1
+        "previous": 2,
+        "delta": -2
       },
       {
-        "key": "/ferry ← map_popup / (not set)",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
+        "key": "/ ← openai / organic",
+        "current": 2,
+        "previous": 4,
+        "delta": -2
       },
       {
-        "key": "/trekking ← chatgpt.com / ai-assistant",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/trekking ← (direct) / (none)",
+        "key": "(not set) ← bing / organic",
         "current": 0,
         "previous": 1,
         "delta": -1
@@ -3287,31 +3335,7 @@
         "delta": -1
       },
       {
-        "key": "/ ← cn.bing.com / referral",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/guides/yakushima-where-to-stay ← google / organic",
-        "current": 2,
-        "previous": 3,
-        "delta": -1
-      },
-      {
-        "key": "(not set) ← map_popup / (none)",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "(not set) ← bing / organic",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/ferry ← copilot.com / (not set)",
+        "key": "/intro ← (direct) / (none)",
         "current": 0,
         "previous": 1,
         "delta": -1
@@ -3323,94 +3347,64 @@
         "delta": -1
       },
       {
-        "key": "/intro ← (direct) / (none)",
+        "key": "/guides/yakushima-where-to-stay ← google / organic",
+        "current": 2,
+        "previous": 3,
+        "delta": -1
+      },
+      {
+        "key": "/trekking ← chatgpt.com / ai-assistant",
         "current": 0,
         "previous": 1,
         "delta": -1
       },
       {
-        "key": "/ ← openai / organic",
-        "current": 3,
-        "previous": 3,
-        "delta": 0
+        "key": "(not set) ← map_popup / (none)",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
       },
       {
-        "key": "/fare ← map_popup / (not set)",
-        "current": 3,
-        "previous": 3,
-        "delta": 0
+        "key": "/ ← service.smt.docomo.ne.jp / referral",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
       },
       {
-        "key": "/ ← ecosia.org / organic",
-        "current": 2,
-        "previous": 2,
-        "delta": 0
-      },
-      {
-        "key": "/ ← bing / organic",
-        "current": 5,
-        "previous": 5,
-        "delta": 0
+        "key": "/ferry ← copilot.com / (not set)",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
       },
       {
         "key": "/trekking ← cn.bing.com / referral",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
+        "current": 0,
+        "previous": 1,
+        "delta": -1
       },
       {
-        "key": " ← chatgpt.com / ai-assistant",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
+        "key": "/ferry ← map_popup / (not set)",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
       },
       {
-        "key": "/ ← map_popup / ",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/ferry ← ecosia.org / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
+        "key": "/ferry ← (direct) / (none)",
+        "current": 5,
+        "previous": 6,
+        "delta": -1
       },
       {
         "key": "/fare ← chatgpt.com / ai-assistant",
         "current": 4,
-        "previous": 3,
-        "delta": 1
+        "previous": 4,
+        "delta": 0
       },
       {
-        "key": "/ ← openai / (not set)",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/fare ← ecosia.org / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/map ← chatgpt.com / ai-assistant",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/fare ← (not set)",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/ ← my.feishu.cn / referral",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
+        "key": "(not set) ← chatgpt.com / ai-assistant",
+        "current": 6,
+        "previous": 6,
+        "delta": 0
       },
       {
         "key": "/ferry ← openai / organic",
@@ -3425,113 +3419,173 @@
         "delta": 1
       },
       {
-        "key": "/ ← (not set)",
+        "key": "/fare ← (not set)",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": " ← bing / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/map ← chatgpt.com / ai-assistant",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/guides ← google / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/ ← bing / organic",
+        "current": 5,
+        "previous": 4,
+        "delta": 1
+      },
+      {
+        "key": "/ ← map_popup / ",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/ ← openai / (not set)",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/fare ← bing / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/map ← google / organic",
+        "current": 9,
+        "previous": 8,
+        "delta": 1
+      },
+      {
+        "key": "/ferry ← ecosia.org / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/ ← my.feishu.cn / referral",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": " ← chatgpt.com / ai-assistant",
         "current": 2,
         "previous": 0,
         "delta": 2
       },
       {
-        "key": "(not set) ← google / organic",
-        "current": 21,
-        "previous": 18,
-        "delta": 3
-      },
-      {
-        "key": " ← (not set)",
+        "key": "/ ← (not set)",
         "current": 4,
         "previous": 0,
         "delta": 4
       },
       {
-        "key": "/map ← google / organic",
+        "key": "/without-car ← google / organic",
         "current": 11,
         "previous": 7,
         "delta": 4
       },
       {
-        "key": "/without-car ← google / organic",
-        "current": 12,
-        "previous": 7,
+        "key": " ← (not set)",
+        "current": 5,
+        "previous": 0,
         "delta": 5
       },
       {
         "key": "/map ← (direct) / (none)",
         "current": 7,
-        "previous": 2,
-        "delta": 5
-      },
-      {
-        "key": " ← google / organic",
-        "current": 6,
-        "previous": 0,
+        "previous": 1,
         "delta": 6
       },
       {
-        "key": "/ ← chatgpt.com / ai-assistant",
-        "current": 53,
-        "previous": 45,
+        "key": " ← google / organic",
+        "current": 8,
+        "previous": 0,
         "delta": 8
       },
       {
         "key": "/fare ← (direct) / (none)",
         "current": 13,
-        "previous": 4,
-        "delta": 9
+        "previous": 2,
+        "delta": 11
+      },
+      {
+        "key": "/ ← chatgpt.com / ai-assistant",
+        "current": 56,
+        "previous": 43,
+        "delta": 13
       },
       {
         "key": "/fare ← google / organic",
-        "current": 68,
-        "previous": 42,
-        "delta": 26
+        "current": 55,
+        "previous": 39,
+        "delta": 16
       }
     ],
     "periods": {
       "ga4": {
-        "yesterday": "2026-11-12",
-        "previous_7d": "2026-10-30~2026-11-05",
-        "day_before": "2026-11-11",
-        "last_7d_start": "2026-11-06",
-        "last_7d_end": "2026-11-12",
-        "last_7d": "2026-11-06~2026-11-12"
+        "yesterday": "2026-11-13",
+        "previous_7d": "2026-10-31~2026-11-06",
+        "day_before": "2026-11-12",
+        "last_7d_start": "2026-11-07",
+        "last_7d_end": "2026-11-13",
+        "last_7d": "2026-11-07~2026-11-13"
       },
       "gsc": {}
     },
     "landing_changes": [
       {
         "key": "/",
-        "current": 305,
-        "previous": 387,
-        "delta": -82
+        "current": 278,
+        "previous": 374,
+        "delta": -96
       },
       {
         "key": "/ferry",
-        "current": 34,
-        "previous": 67,
-        "delta": -33
+        "current": 32,
+        "previous": 63,
+        "delta": -31
       },
       {
         "key": "(not set)",
-        "current": 27,
-        "previous": 53,
-        "delta": -26
+        "current": 23,
+        "previous": 54,
+        "delta": -31
       },
       {
         "key": "/without-car",
-        "current": 14,
-        "previous": 23,
+        "current": 12,
+        "previous": 21,
         "delta": -9
       },
       {
         "key": "/map",
-        "current": 21,
+        "current": 19,
         "previous": 22,
-        "delta": -1
+        "delta": -3
       },
       {
         "key": "/trekking",
-        "current": 1,
+        "current": 0,
         "previous": 2,
-        "delta": -1
+        "delta": -2
       },
       {
         "key": "/intro",
@@ -3552,54 +3606,72 @@
         "delta": 1
       },
       {
-        "key": "",
-        "current": 11,
+        "key": "/guides",
+        "current": 1,
         "previous": 0,
-        "delta": 11
+        "delta": 1
       },
       {
         "key": "/fare",
-        "current": 101,
-        "previous": 73,
-        "delta": 28
+        "current": 84,
+        "previous": 70,
+        "delta": 14
+      },
+      {
+        "key": "",
+        "current": 16,
+        "previous": 0,
+        "delta": 16
       }
     ],
     "source_changes": [
       {
         "key": "map_popup / (not set)",
-        "current": 12,
-        "previous": 48,
-        "delta": -36
+        "current": 6,
+        "previous": 50,
+        "delta": -44
       },
       {
         "key": "yahoo / organic",
-        "current": 22,
-        "previous": 57,
-        "delta": -35
+        "current": 19,
+        "previous": 51,
+        "delta": -32
       },
       {
         "key": "(direct) / (none)",
-        "current": 92,
-        "previous": 112,
-        "delta": -20
+        "current": 75,
+        "previous": 99,
+        "delta": -24
+      },
+      {
+        "key": "google / organic",
+        "current": 270,
+        "previous": 289,
+        "delta": -19
       },
       {
         "key": "duckduckgo / organic",
-        "current": 5,
-        "previous": 17,
-        "delta": -12
+        "current": 2,
+        "previous": 16,
+        "delta": -14
+      },
+      {
+        "key": "ecosia.org / organic",
+        "current": 1,
+        "previous": 7,
+        "delta": -6
       },
       {
         "key": "bing / organic",
-        "current": 8,
-        "previous": 15,
-        "delta": -7
+        "current": 9,
+        "previous": 14,
+        "delta": -5
       },
       {
         "key": "cn.bing.com / referral",
-        "current": 1,
+        "current": 0,
         "previous": 3,
-        "delta": -2
+        "delta": -3
       },
       {
         "key": "copilot.com / (not set)",
@@ -3614,34 +3686,22 @@
         "delta": -1
       },
       {
-        "key": "service.smt.docomo.ne.jp / referral",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
         "key": "gemini.google.com / ai-assistant",
         "current": 0,
         "previous": 1,
         "delta": -1
       },
       {
-        "key": "ecosia.org / organic",
-        "current": 4,
-        "previous": 5,
+        "key": "openai / organic",
+        "current": 3,
+        "previous": 4,
         "delta": -1
       },
       {
-        "key": "chatgpt.com / ai-assistant",
-        "current": 67,
-        "previous": 67,
-        "delta": 0
-      },
-      {
-        "key": "(not set)",
-        "current": 7,
-        "previous": 7,
-        "delta": 0
+        "key": "service.smt.docomo.ne.jp / referral",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
       },
       {
         "key": "openai / (not set)",
@@ -3650,9 +3710,9 @@
         "delta": 1
       },
       {
-        "key": "google / organic",
-        "current": 293,
-        "previous": 292,
+        "key": "map_popup / ",
+        "current": 1,
+        "previous": 0,
         "delta": 1
       },
       {
@@ -3662,24 +3722,24 @@
         "delta": 1
       },
       {
-        "key": "openai / organic",
-        "current": 4,
-        "previous": 3,
-        "delta": 1
+        "key": "(not set)",
+        "current": 10,
+        "previous": 7,
+        "delta": 3
       },
       {
-        "key": "map_popup / ",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
+        "key": "chatgpt.com / ai-assistant",
+        "current": 71,
+        "previous": 64,
+        "delta": 7
       }
     ],
     "gsc_page_changes": [],
     "gsc_visible_query_changes": []
   },
   "daily_actions": [
-    "首页的减少细分：Google搜索 189→151次；Yahoo搜索 34→11次。",
-    "入口页减少最多：首页 387→305次；/ferry 67→34次。",
+    "首页的减少细分：Google搜索 185→147次；map_popup / (not set) 27→4次。",
+    "入口页减少最多：首页 374→278次；/ferry 63→32次。",
     "尚不足以判定变化原因；我会继续自动补齐对比数据。",
     "已核验首页、/ferry可打开，未见禁止收录标记。",
     "页面/搜索词对比尚有缺项，已记录缺口；自动任务下轮继续采集，不需要你查表。"
