@@ -1,6 +1,6 @@
 {
   "fetched_at": "2026-11-16",
-  "fetched_at_iso": "2026-11-16T16:34:57.714030+08:00",
+  "fetched_at_iso": "2026-11-16T16:40:01.841099+08:00",
   "gsc_7d": {
     "error": "OAuth refresh 失败: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})"
   },
@@ -1936,7 +1936,7 @@
   },
   "aligned_period": false,
   "diagnostics": {
-    "collected_at": "2026-11-16T16:35:06.222274+08:00",
+    "collected_at": "2026-11-16T16:40:11.052776+08:00",
     "ga4_landing": {
       "current": {
         "period": {
@@ -3231,27 +3231,21 @@
         "delta": -5
       },
       {
-        "key": "/ ← openai / organic",
-        "current": 1,
-        "previous": 5,
-        "delta": -4
-      },
-      {
         "key": "/ ← ecosia.org / organic",
         "current": 0,
         "previous": 4,
         "delta": -4
       },
       {
-        "key": "(not set) ← google / organic",
-        "current": 19,
-        "previous": 22,
-        "delta": -3
+        "key": "/ ← openai / organic",
+        "current": 1,
+        "previous": 5,
+        "delta": -4
       },
       {
-        "key": "(not set) ← map_popup / (not set)",
-        "current": 0,
-        "previous": 3,
+        "key": "/ ← yahoo / organic",
+        "current": 23,
+        "previous": 26,
         "delta": -3
       },
       {
@@ -3261,27 +3255,27 @@
         "delta": -3
       },
       {
+        "key": "(not set) ← google / organic",
+        "current": 19,
+        "previous": 22,
+        "delta": -3
+      },
+      {
         "key": "/guides/yakushima-where-to-stay ← google / organic",
         "current": 0,
         "previous": 3,
         "delta": -3
       },
       {
-        "key": "/ ← yahoo / organic",
-        "current": 23,
-        "previous": 26,
+        "key": "(not set) ← map_popup / (not set)",
+        "current": 0,
+        "previous": 3,
         "delta": -3
       },
       {
-        "key": "/ferry ← chatgpt.com / ai-assistant",
-        "current": 5,
-        "previous": 7,
-        "delta": -2
-      },
-      {
-        "key": "/fare ← chatgpt.com / ai-assistant",
-        "current": 4,
-        "previous": 6,
+        "key": "(not set) ← (not set)",
+        "current": 0,
+        "previous": 2,
         "delta": -2
       },
       {
@@ -3291,9 +3285,9 @@
         "delta": -2
       },
       {
-        "key": "(not set) ← (not set)",
-        "current": 0,
-        "previous": 2,
+        "key": "/ferry ← chatgpt.com / ai-assistant",
+        "current": 5,
+        "previous": 7,
         "delta": -2
       },
       {
@@ -3303,22 +3297,10 @@
         "delta": -2
       },
       {
-        "key": "/intro ← (direct) / (none)",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/map ← bing / organic",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/trekking ← chatgpt.com / ai-assistant",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
+        "key": "/fare ← chatgpt.com / ai-assistant",
+        "current": 4,
+        "previous": 6,
+        "delta": -2
       },
       {
         "key": "/ferry ← copilot.com / (not set)",
@@ -3327,13 +3309,19 @@
         "delta": -1
       },
       {
-        "key": "/ferry ← map_popup / (not set)",
+        "key": "/intro ← (direct) / (none)",
         "current": 0,
         "previous": 1,
         "delta": -1
       },
       {
         "key": "/ferry ← gemini.google.com / ai-assistant",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/ferry ← cn.bing.com / referral",
         "current": 0,
         "previous": 1,
         "delta": -1
@@ -3351,7 +3339,7 @@
         "delta": -1
       },
       {
-        "key": "/ferry ← cn.bing.com / referral",
+        "key": "/trekking ← chatgpt.com / ai-assistant",
         "current": 0,
         "previous": 1,
         "delta": -1
@@ -3363,16 +3351,22 @@
         "delta": -1
       },
       {
-        "key": "(not set) ← yahoo / organic",
+        "key": "/map ← bing / organic",
         "current": 0,
         "previous": 1,
         "delta": -1
       },
       {
-        "key": "(not set) ← duckduckgo / organic",
-        "current": 1,
+        "key": "/ferry ← map_popup / (not set)",
+        "current": 0,
         "previous": 1,
-        "delta": 0
+        "delta": -1
+      },
+      {
+        "key": "(not set) ← yahoo / organic",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
       },
       {
         "key": "(not set) ← chatgpt.com / ai-assistant",
@@ -3381,49 +3375,13 @@
         "delta": 0
       },
       {
-        "key": "/map ← duckduckgo / organic",
+        "key": "(not set) ← duckduckgo / organic",
         "current": 1,
-        "previous": 0,
-        "delta": 1
+        "previous": 1,
+        "delta": 0
       },
       {
-        "key": "/without-car ← yahoo / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/ ← my.feishu.cn / referral",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": " ← yahoo / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/ ← gemini.google.com / ai-assistant",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": " ← chatgpt.com / ai-assistant",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/ ← weixin / social",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": " ← duckduckgo / organic",
+        "key": "/map ← map_popup / ",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -3435,37 +3393,13 @@
         "delta": 1
       },
       {
-        "key": "/map ← map_popup / ",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/guides ← google / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/map ← (not set)",
-        "current": 2,
-        "previous": 1,
-        "delta": 1
-      },
-      {
-        "key": "/ ← openai / (not set)",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "(not set) ← bing / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
         "key": "/ ← websearch.rakuten.co.jp / referral",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": " ← chatgpt.com / ai-assistant",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -3477,13 +3411,43 @@
         "delta": 1
       },
       {
+        "key": "/ferry ← openai / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "(not set) ← bing / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
         "key": "/guides/yakushima-rainy-day ← google / organic",
         "current": 1,
         "previous": 0,
         "delta": 1
       },
       {
-        "key": "/about ← duckduckgo / organic",
+        "key": "/ ← openai / (not set)",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/map ← duckduckgo / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/ ← gemini.google.com / ai-assistant",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/ ← my.feishu.cn / referral",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -3495,16 +3459,46 @@
         "delta": 1
       },
       {
-        "key": "/ferry ← openai / organic",
+        "key": "/guides ← google / organic",
         "current": 1,
         "previous": 0,
         "delta": 1
       },
       {
-        "key": "/fare ← bing / organic",
-        "current": 2,
+        "key": "/ ← weixin / social",
+        "current": 1,
         "previous": 0,
-        "delta": 2
+        "delta": 1
+      },
+      {
+        "key": "/without-car ← yahoo / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": " ← duckduckgo / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/about ← duckduckgo / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/map ← (not set)",
+        "current": 2,
+        "previous": 1,
+        "delta": 1
+      },
+      {
+        "key": " ← yahoo / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
       },
       {
         "key": "/ferry ← (direct) / (none)",
@@ -3519,13 +3513,19 @@
         "delta": 2
       },
       {
-        "key": " ← map_popup / ",
+        "key": "/fare ← bing / organic",
+        "current": 2,
+        "previous": 0,
+        "delta": 2
+      },
+      {
+        "key": " ← google / organic",
         "current": 3,
         "previous": 0,
         "delta": 3
       },
       {
-        "key": " ← google / organic",
+        "key": " ← map_popup / ",
         "current": 3,
         "previous": 0,
         "delta": 3
@@ -3543,9 +3543,9 @@
         "delta": 4
       },
       {
-        "key": "/without-car ← google / organic",
-        "current": 14,
-        "previous": 9,
+        "key": "/ ← (direct) / (none)",
+        "current": 61,
+        "previous": 56,
         "delta": 5
       },
       {
@@ -3555,16 +3555,10 @@
         "delta": 5
       },
       {
-        "key": "/ ← (direct) / (none)",
-        "current": 61,
-        "previous": 56,
+        "key": "/without-car ← google / organic",
+        "current": 14,
+        "previous": 9,
         "delta": 5
-      },
-      {
-        "key": "/ ← chatgpt.com / ai-assistant",
-        "current": 57,
-        "previous": 51,
-        "delta": 6
       },
       {
         "key": "/ ← bing / organic",
@@ -3573,13 +3567,19 @@
         "delta": 6
       },
       {
-        "key": " ← (not set)",
+        "key": "/ ← chatgpt.com / ai-assistant",
+        "current": 57,
+        "previous": 51,
+        "delta": 6
+      },
+      {
+        "key": "/ ← (not set)",
         "current": 7,
         "previous": 0,
         "delta": 7
       },
       {
-        "key": "/ ← (not set)",
+        "key": " ← (not set)",
         "current": 7,
         "previous": 0,
         "delta": 7
@@ -3652,7 +3652,7 @@
         "delta": -1
       },
       {
-        "key": "/guides/yakushima-rainy-day",
+        "key": "/guides",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -3664,7 +3664,7 @@
         "delta": 1
       },
       {
-        "key": "/guides",
+        "key": "/guides/yakushima-rainy-day",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -3714,27 +3714,27 @@
         "delta": -4
       },
       {
-        "key": "openai / organic",
-        "current": 2,
-        "previous": 5,
-        "delta": -3
-      },
-      {
         "key": "(direct) / (none)",
         "current": 81,
         "previous": 84,
         "delta": -3
       },
       {
-        "key": "cn.bing.com / referral",
-        "current": 0,
-        "previous": 2,
-        "delta": -2
+        "key": "openai / organic",
+        "current": 2,
+        "previous": 5,
+        "delta": -3
       },
       {
         "key": "duckduckgo / organic",
         "current": 12,
         "previous": 14,
+        "delta": -2
+      },
+      {
+        "key": "cn.bing.com / referral",
+        "current": 0,
+        "previous": 2,
         "delta": -2
       },
       {
@@ -3750,12 +3750,6 @@
         "delta": 0
       },
       {
-        "key": "my.feishu.cn / referral",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
         "key": "websearch.rakuten.co.jp / referral",
         "current": 1,
         "previous": 0,
@@ -3763,6 +3757,12 @@
       },
       {
         "key": "openai / (not set)",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "my.feishu.cn / referral",
         "current": 1,
         "previous": 0,
         "delta": 1
