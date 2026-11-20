@@ -1,0 +1,10 @@
+{
+  "business_date": "2026-11-20",
+  "slot": "10:00",
+  "recipient_fingerprint": "fc66b7686da9eda3f576978016cb19bc67f08d6dd888b29d5d365294a1a7eabe",
+  "accepted_at": "2026-11-20T17:18:33.402075+08:00",
+  "message_id": "om_x100b7f3548433c84b4ccca25b34224d",
+  "report_fetched_at": "2026-11-20T17:15:02.881463+08:00",
+  "run_id": "44708428619",
+  "event": "schedule"
+}
