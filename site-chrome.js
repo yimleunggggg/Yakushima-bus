@@ -475,7 +475,7 @@
   }
 
   window.SiteChrome = { refresh, t, getLang, readLang, langQs, applyPageHead, PAGE_HEAD };
-  const referenceHub = document.createElement('script'); referenceHub.src='/reference-hub.js'; document.head.appendChild(referenceHub);
+  const referenceHub = document.createElement('script'); referenceHub.src='/reference-hub.js?v=20261125-compat'; document.head.appendChild(referenceHub);
   const footerStyle = document.createElement('link');
   footerStyle.rel = 'stylesheet'; footerStyle.href = '/site-footer.css?v=20261123b';
   document.head.appendChild(footerStyle);

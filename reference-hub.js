@@ -21,7 +21,7 @@
   const refs=document.getElementById('sourceLinks');
   if(refs&&!refs.closest('.references-kept')){
    const container=refs.closest('details')||refs.closest('section')||refs.parentElement;
-   if(container&&!done.has(container)){done.add(container);container.remove()}
+   if(container&&!done.has(container)){done.add(container);container.classList.add('references-kept');container.hidden=true;container.style.setProperty('display','none','important')}
   }
   if(['/ferry/','/trekking/'].includes(path))document.querySelectorAll('.app-footer-booking').forEach(el=>el.remove());
   // Existing component may rerender after language switches; remove only now-empty wrappers.
