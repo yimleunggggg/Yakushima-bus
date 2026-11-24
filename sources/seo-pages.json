@@ -1,6 +1,6 @@
 {
   "/": {
-    "modified": "2026-11-02",
+    "modified": "2026-11-24",
     "ja": [
       "屋久島バス時刻表 2026｜次の便・料金 | YakuBus",
       "YakuBusで屋久島の次のバス、時刻表・路線・運賃を検索。宮之浦港・空港・安房や登山口への移動を計画し、島内観光マップ、船券予約、旅行ガイドも確認できます。公式資料をもとにした非公式の無料ツールです。"
@@ -15,7 +15,7 @@
     ]
   },
   "/fare/": {
-    "modified": "2026-11-02",
+    "modified": "2026-11-24",
     "ja": [
       "屋久島バス料金 2026｜路線図・運賃・乗車券 | YakuBus",
       "屋久島バスの公式路線図・運賃表PDFと区間運賃検索。宮之浦港・空港・安房などの大人片道運賃の目安、乗車券と運休中の区間を確認できます。料金の改定日は出典で確認してください。"
@@ -30,7 +30,7 @@
     ]
   },
   "/ferry/": {
-    "modified": "2026-11-02",
+    "modified": "2026-11-24",
     "ja": [
       "屋久島の船券予約｜鹿児島発の高速船・時刻・特典 | YakuBus",
       "鹿児島〜屋久島のトッピー・ロケット船券をKlookで手軽に予約、特典条件を確認。HIS予約先、公式の時刻・運賃資料、宮之浦・安房の港とバス接続を案内する非公式ガイドです。当日の運航は船会社へご確認ください。"
@@ -89,7 +89,7 @@
     }
   },
   "/map/": {
-    "modified": "2026-11-02",
+    "modified": "2026-11-24",
     "ja": [
       "屋久島全島観光マップ｜観光スポット・温泉・バス停 | YakuBus",
       "屋久島の温泉・ビーチ・史跡・スーパー・薬局・ATMとバス停を地図で検索。スポットの説明、ナビ、バス時刻表へのリンクから、現地での移動と買い物を計画できます。"
@@ -104,7 +104,7 @@
     ]
   },
   "/trekking/": {
-    "modified": "2026-11-02",
+    "modified": "2026-11-24",
     "ja": [
       "屋久島ツアー・体験｜ガイド付き登山・シュノーケリング | YakuBus",
       "海ガメシュノーケリングとガイド付きの森林散策も紹介。屋久島の英語ガイド観光、白谷・太忠岳の登山、宿と鹿児島発の日帰り旅行。Viator・Klookの行程や口コミ、Tripadvisor事業者評価を確認し、公式道路情報とバス接続で計画。"
@@ -119,7 +119,7 @@
     ]
   },
   "/without-car/": {
-    "modified": "2026-11-03",
+    "modified": "2026-11-24",
     "kind": "article",
     "ja": [
       "レンタカーなしで屋久島へ。2泊3日の組み立て方 | YakuBus",
@@ -135,7 +135,7 @@
     ]
   },
   "/about/": {
-    "modified": "2026-11-02",
+    "modified": "2026-11-24",
     "ja": [
       "YakuBusについて｜屋久島交通の出典・連絡先",
       "YakuBusは屋久島のバス時刻表・運賃・船運を整理する非公式サイトです。公式PDF、観光協会や運行会社の情報源と連絡先を掲載。計画ダイヤと臨時運休を区別し、出発前の公式確認を案内します。"
@@ -150,7 +150,7 @@
     ]
   },
   "/guides/yakushima-where-to-stay/": {
-    "modified": "2026-10-25",
+    "modified": "2026-11-24",
     "kind": "article",
     "ja": [
       "宮之浦か安房か。車なし旅の宿選び | YakuBus",
@@ -166,7 +166,7 @@
     ]
   },
   "/guides/yakushima-rainy-day/": {
-    "modified": "2026-10-25",
+    "modified": "2026-11-24",
     "kind": "article",
     "ja": [
       "屋久島の雨の日。予定を変えるときの考え方 | YakuBus",
@@ -182,7 +182,7 @@
     ]
   },
   "/guides/kagoshima-half-day/": {
-    "modified": "2026-10-25",
+    "modified": "2026-11-24",
     "kind": "article",
     "ja": [
       "屋久島の前後に、鹿児島で半日 | YakuBus",
@@ -198,7 +198,7 @@
     ]
   },
   "/guides/": {
-    "modified": "2026-10-25",
+    "modified": "2026-11-24",
     "ja": [
       "屋久島・鹿児島の旅行ガイド | YakuBus",
       "屋久島と鹿児島。宿・雨の日・車なしの行程・船旅の前後を、公式資料と交通ツールで計画。非公式の三語旅行ガイド。"
@@ -210,6 +210,21 @@
     "en": [
       "Yakushima & Kagoshima Travel Guides | YakuBus",
       "Practical Yakushima and Kagoshima guides: plan a car-free stay, choose a base, prepare for rain and use a half-day around your ferry journey. Official references and transport tools."
+    ]
+  },
+  "/resources/": {
+    "modified": "2026-11-24",
+    "ja": [
+      "屋久島の交通・登山 資料と参考リンク | YakuBus",
+      "屋久島の公式バス時刻表、運賃、船、登山情報の出典を目的別に確認。資料の確認日と注意事項を掲載する非公式の参考ページです。"
+    ],
+    "zh": [
+      "屋久岛交通与徒步资料、参考链接 | YakuBus",
+      "按主题查找屋久岛公交时刻、票价、船运与徒步资料，查看原始发布方、核查日期和注意事项。本站为非官方参考工具，出行前请核对当日公告。"
+    ],
+    "en": [
+      "Yakushima Transport & Hiking Sources | YakuBus",
+      "Find official Yakushima bus timetables, fare documents, ferry and hiking references by topic. Review source dates and caveats; confirm current conditions with the original publisher."
     ]
   }
 }

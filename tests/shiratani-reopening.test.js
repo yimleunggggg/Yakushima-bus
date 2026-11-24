@@ -21,7 +21,7 @@ test('Taneyaku reopens on official date while Matsubanda Shiratani stays suspend
     assert.equal(w.TransportStatus.blocked(taneyaku,date),false);
     assert.equal(w.TransportStatus.blocked(matsubanda,date),true);
     assert.ok(w.TransportStatus.forStop('shiratani',date).every(a=>a.status!=='suspended'));
-    assert.match(w.TransportStatus.forCourse('taikoiwa',date).find(a=>a.status==='notice').message.en,/some trail sections|Parts of the Yayoi-sugi/);
+    assert.match(w.TransportStatus.forCourse('taikoiwa',date).find(a=>a.status==='notice').message.en,/remain closed/);
   }
 });
 test('reopened Shiratani searches return the four official departures both ways on every day type', () => {
@@ -62,4 +62,17 @@ test('update labels use months while exact source and effective dates stay machi
   const llms=fs.readFileSync(path.join(root,'llms.txt'),'utf8');
   assert.match(llms,/partially reopened/);
   assert.doesNotMatch(llms,/Shiratani Unsuikyo is closed to access|all-day suspension/);
+});
+
+// Current evidence must not recommend an accessible course while reporting its closure.
+test('November 24 closure appears consistently in notice and course advice', () => {
+  const {window:w}=runtime();
+  const a=w.TRANSPORT_DATA.alerts.find(a=>a.id==='shiratani-reopened-partial-trails');
+  assert.equal(a.checkedAt,'2026-11-24');
+  for(const field of ['message','courseMessage']) {
+    assert.match(a[field].en,/temporary high-water closure/);
+    assert.match(a[field].zh,/涨水临时封闭/);
+    assert.match(a[field].ja,/一時通行止め/);
+    assert.doesNotMatch(a[field].en,/routes are accessible/);
+  }
 });

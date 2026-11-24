@@ -55,7 +55,7 @@ def evidence(page, lang, manifest):
     return copy, links, note
 
 
-def evidence_html(path, page, manifest, status, include_alerts):
+def full_reference_html(path, page, manifest, status, include_alerts):
     if path.startswith('/guides/'):
         from build_guides import COPY, load as guide_data
         data = guide_data()
@@ -131,6 +131,27 @@ def evidence_html(path, page, manifest, status, include_alerts):
         sections.append(f'<div data-seo-lang="{lang}" lang="{tag}"{hidden}>' + ''.join(parts) + '</div>')
     summaries = ''.join(f'<span data-seo-lang="{lang}" lang="{tag}"' + ('' if lang == 'ja' else ' hidden') + f'>{titles[lang]}</span>' for lang, tag in LANGS.items())
     return f'{START}\n    <section class="journey-end"><div class="journey-next">' + ''.join(related) + f'</div><details class="aux-block seo-evidence"><summary class="aux-summary">{summaries}</summary><div class="aux-body">' + ''.join(sections) + f'</div></details></section>\n    {END}'
+
+
+
+def evidence_html(path, page, manifest, status, include_alerts):
+    if path == '/resources/':
+        return START + END
+    original = full_reference_html(path, page, manifest, status, include_alerts)
+    if path.startswith('/guides/'):
+        return START + END
+    # Keep actual FAQs on the original page so FAQ schema and visible answers stay aligned.
+    questions = []
+    for lang, tag in LANGS.items():
+        qa = page.get('bookingFaq', {}).get(lang, [])
+        if not qa:
+            continue
+        title = {'ja': 'よくある質問', 'zh': '常见问题', 'en': 'Common questions'}[lang]
+        hidden = '' if lang == 'ja' else ' hidden'
+        body = ''.join(f'<h3>{escape(q)}</h3><p>{escape(a)}</p>' for q, a in qa)
+        questions.append(f'<div data-seo-lang="{lang}" lang="{tag}"{hidden}><details class="reference-faq"><summary>{title}</summary>{body}</details></div>')
+    # Provenance is centralized, while the full dated records remain crawlable in /resources/.
+    return re.sub(r'<details class="aux-block seo-evidence">.*?</details>', lambda _: ''.join(questions), original, flags=re.S)
 
 
 def update_head(text, path, page):
@@ -241,6 +262,10 @@ def outputs():
         if path.startswith('/guides/'):
             text = text.replace('</main>', block + '</main>') if START not in text else text
         result[filename] = text
+    from build_resources import outputs as resource_outputs
+    result.update(resource_outputs(pages, manifest, status, full_reference_html, guide_pages))
+    if '/resources/' in pages:
+        result['resources/index.html'] = update_head(result['resources/index.html'], '/resources/', pages['/resources/'])
     # Intro remains noindex; it shares the publisher code without entering SEO copy or sitemaps.
     result['intro/index.html'] = with_adsense((ROOT / 'intro/index.html').read_text())
     result['ads.txt'] = ADS_TXT

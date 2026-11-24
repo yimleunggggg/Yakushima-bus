@@ -83,24 +83,25 @@
       ],
       "validFrom": "2026-10-18",
       "validTo": null,
-      "checkedAt": "2026-11-03",
-      "reviewAfter": "2026-11-17",
+      "checkedAt": "2026-11-24",
+      "reviewAfter": "2026-11-25",
       "sourceUrl": "https://y-rekumori.com/",
       "corroboratingUrl": "https://www.iwasaki-corp.com/kagoshima_kotsu/",
       "message": {
-        "ja": "白谷雲水峡は一部開園し、太鼓岩・苔むす森・奉行杉コースは通行可能です。種子島・屋久島交通の白谷線は運行再開。弥生杉コース等の一部は通行止めが続きます。",
-        "zh": "白谷云水峡部分开放，太鼓岩、苔之森、奉行杉路线可通行；种子岛·屋久岛交通白谷线已恢复。弥生杉等部分路段仍封闭。",
-        "en": "Shiratani has partially reopened: Taiko-iwa, the moss forest and Bugyosugi routes are accessible. Taneyaku buses have resumed. Parts of the Yayoi-sugi course and other sections remain closed."
+        "zh": "白谷已恢复部分开放，飞流桥、飞流步道及第二停车场入口至⑫的部分路段仍封闭。园方11月24日另报奉行杉路线因涨水临时封闭；出发前请核对当日公告。",
+        "en": "Shiratani has partially reopened. Hiryu Bridge, Hiryu Walkway and the section from the second-parking entrance to point 12 remain closed. The forest office also reported a temporary high-water closure of the Bugyosugi course on November 24; check its daily notice before travel.",
+        "ja": "白谷雲水峡は一部開園しています。飛流橋・飛流歩道と第2駐車場先入口から⑫までの一部区間は通行止めです。11月24日は増水による奉行杉コースの一時通行止めも発表されています。出発前に当日の案内をご確認ください。"
       },
       "courseMessage": {
-        "ja": "太鼓岩往復・奉行杉は通行可能。一部歩道の閉鎖が続いています。管理者の案内と当日の状況を確認してください。",
-        "zh": "太鼓岩往返与奉行杉路线可通行，部分步道仍封闭；请核对管理方公告及当日条件。",
-        "en": "Taiko-iwa and Bugyo-sugi routes are accessible; other trail sections remain closed. Check the manager’s notices and conditions."
+        "ja": "一部歩道は通行止め。11月24日は増水により奉行杉コースも一時通行止めと発表されています。出発前に管理者の当日案内を確認してください。",
+        "zh": "部分步道仍封闭；园方11月24日公告奉行杉路线因涨水临时封闭，出发前请核对当日公告。",
+        "en": "Some trail sections remain closed. The forest office reported a temporary high-water closure of Bugyosugi on November 24; check its daily notice before travel."
       },
       "sourceUrls": [
         "https://yakukan.jp/topics/19316.html",
         "https://y-rekumori.com/",
-        "https://www.iwasaki-corp.com/kagoshima_kotsu/"
+        "https://www.iwasaki-corp.com/kagoshima_kotsu/",
+        "https://y-rekumori.com/shiratani/49790/"
       ]
     },
     {
@@ -111,8 +112,8 @@
       ],
       "validFrom": "2026-10-24",
       "validTo": null,
-      "checkedAt": "2026-11-03",
-      "reviewAfter": "2026-11-17",
+      "checkedAt": "2026-11-24",
+      "reviewAfter": "2026-11-25",
       "sourceUrl": "https://yakushima.co.jp/route_bus/",
       "message": {
         "ja": "まつばんだ交通の白谷雲水峡線は公式時刻欄で運休表示。種子島・屋久島交通の再開案内とは別会社です。まつばんだ全路線の運休を意味しません。",

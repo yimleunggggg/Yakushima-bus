@@ -2,7 +2,7 @@
 (function () {
   const LANG_KEY = "yakushima-bus-lang";
   const STORE_KEY = "yakushima-bus-feedback-v1";
-  const SKIP_FEEDBACK = /^\/(intro|about)\/?$/i.test(location.pathname);
+  const SKIP_FEEDBACK = /^\/(intro|about|privacy|newsletter)\/?$/i.test(location.pathname);
 
   const MAIN_NAV = [
     { href: "/map/", key: "navGuide", active: /^\/map\/?$/i },
@@ -243,44 +243,58 @@
     }).join("");
   }
 
+  const FOOTER = {
+    zh: { brand: '屋久岛的独立交通与旅行工具。', explore: '探索屋久岛', trust: '关于与来源', touch: '保持联系', times: '公交时刻表', fares: '票价与乘车券', map: '岛内地图', ferry: '船票与上岛交通', guides: '旅行攻略', activities: '徒步与体验', about: '关于 YakuBus', sources: '来源与信息核查', contact: '联系运营者', privacy: '隐私政策', affiliate: '分销关系说明', newsletter: '订阅旅行邮件', notes: '不定期的屋久岛旅行来信，目前以英文发送。', support: '支持本站的日常维护 ↗', independent: '独立运营，非当地交通运营商官方网站。出行前请以官方公告为准。' },
+    en: { brand: 'Independent transport and travel tools for Yakushima.', explore: 'Explore', trust: 'About & trust', touch: 'Stay in touch', times: 'Bus timetables', fares: 'Fares & passes', map: 'Island map', ferry: 'Ferries & access', guides: 'Travel guides', activities: 'Hikes & experiences', about: 'About YakuBus', sources: 'Sources & updates', contact: 'Contact', privacy: 'Privacy policy', affiliate: 'Affiliate disclosure', newsletter: 'Get travel emails', notes: 'Occasional Yakushima travel notes. Currently sent in English.', support: 'Support the upkeep ↗', independent: 'Independently run. Not affiliated with local transport operators. Check official notices before you travel.' },
+    ja: { brand: '屋久島の交通と旅を調べる、独立したツール。', explore: '屋久島を探す', trust: 'サイトと出典', touch: 'つながる', times: 'バス時刻表', fares: '運賃・乗車券', map: '島内マップ', ferry: 'フェリー・アクセス', guides: '旅行ガイド', activities: '登山・体験', about: 'YakuBusについて', sources: '出典・情報の確認', contact: 'お問い合わせ', privacy: 'プライバシーポリシー', affiliate: 'アフィリエイトについて', newsletter: 'メールを購読する', notes: '屋久島の旅の情報を不定期に。現在、配信は英語です。', support: 'サイトの維持を応援する ↗', independent: '個人運営の非公式サイトです。交通事業者とは関係ありません。出発前に公式情報をご確認ください。' },
+  };
+
   function renderFooter() {
-    const footer = document.querySelector(".app-footer");
+    const footer = document.querySelector('.app-footer');
     if (!footer) return;
+    footer.id = 'site-footer';
     lang = readLang();
-    footer.querySelector("#footerMetaLinks")?.remove();
-    footer.querySelector(".app-footer-support")?.remove();
-    let nav = footer.querySelector(".app-footer-links");
-    if (!nav) {
-      nav = document.createElement("nav");
-      nav.className = "app-footer-links";
-      footer.appendChild(nav);
+    const copy = FOOTER[lang] || FOOTER.en;
+    const page = location.pathname.split('/')[1] || 'bus';
+    const newsletterHref = langQs('/newsletter/') + '&from=' + encodeURIComponent(page);
+    footer.querySelectorAll('#footerMetaLinks, .app-footer-support, .app-footer-affiliate').forEach(el => el.remove());
+    footer.querySelectorAll(':scope > .app-footer-links').forEach(el => el.remove());
+    let grid = footer.querySelector('.footer-grid');
+    if (!grid) { grid = document.createElement('div'); grid.className = 'footer-grid'; footer.appendChild(grid); }
+    const source = document.querySelector(`[data-guide-lang="${lang}"] .guide-sources`) || document.querySelector('.seo-evidence');
+    document.querySelectorAll('#sources-and-updates').forEach(el => { if (el !== source) el.removeAttribute('id'); });
+    if (source) source.id = 'sources-and-updates';
+    const sourceHref = source ? '#sources-and-updates' : langQs('/about/') + '#sources-and-updates';
+    const footerFoldOpen = matchMedia('(min-width:701px)').matches ? ' open' : '';
+    grid.innerHTML = `<div class="footer-brand"><a class="footer-wordmark" href="${langQs('/')}">YakuBus<span aria-hidden="true">.</span></a><p>${copy.brand}</p></div>
+      <nav class="footer-group" aria-labelledby="footer-explore"><details${footerFoldOpen}><summary id="footer-explore">${copy.explore}</summary><div class="v4-nav-links app-footer-links"><a href="${langQs('/')}">${copy.times}</a><a href="${langQs('/fare/')}">${copy.fares}</a><a href="${langQs('/map/')}">${copy.map}</a><a href="${langQs('/ferry/')}">${copy.ferry}</a><a href="${langQs('/guides/')}">${copy.guides}</a><a href="${langQs('/trekking/')}">${copy.activities}</a></div></details></nav>
+      <nav class="footer-group" aria-labelledby="footer-trust"><details${footerFoldOpen}><summary id="footer-trust">${copy.trust}</summary><div class="v4-nav-links"><a href="${langQs('/about/')}">${copy.about}</a><a class="footer-source-link" href="${sourceHref}">${copy.sources}</a><a href="mailto:yimleung.ly@gmail.com">${copy.contact}</a><a href="${langQs('/privacy/')}">${copy.privacy}</a><a class="footer-support-link" href="https://ko-fi.com/yimleung" target="_blank" rel="noopener noreferrer">${copy.support}</a></div></details></nav>
+      <div class="footer-group footer-touch"></div>`;
+    let bottom = footer.querySelector('.footer-bottom');
+    if (!bottom) {
+      bottom = document.createElement('div'); bottom.className = 'footer-bottom';
+      bottom.innerHTML = '<p class="footer-independent"></p><div class="footer-feedback-slot"></div><small class="footer-copyright"></small>';
+      footer.appendChild(bottom);
     }
-    nav.setAttribute("aria-label", t("footerNavAria"));
-    const supportInCard = !/^\/(intro|about)\/?$/i.test(location.pathname);
-    nav.innerHTML = `<a href="${langQs("/")}">${t("navTime")}</a>
-      <span class="footer-sep" aria-hidden="true">·</span>
-      <a href="${langQs("/fare/")}">${t("navMap")}</a>
-      <span class="footer-sep" aria-hidden="true">·</span>
-      <a href="${langQs("/map/")}">${t("navGuide")}</a>
-      <span class="footer-sep" aria-hidden="true">·</span>
-      <a href="${langQs("/ferry/")}">${t("navAccess")}</a>
-      <span class="footer-sep" aria-hidden="true">·</span>
-      <a href="${langQs("/guides/")}">${t("navTravelGuides")}</a><span class="footer-sep" aria-hidden="true">·</span><a href="${langQs("/intro/")}">${t("navIntro")}</a><span class="footer-sep" aria-hidden="true">·</span><a href="${langQs("/about/")}">${t("navAbout")}</a>
-      ${supportInCard ? '' : `<span class="footer-sep" aria-hidden="true">·</span><a href="https://ko-fi.com/yimleung" target="_blank" rel="noopener noreferrer">${t("supportKofi")}</a>`}`;
-    if (supportInCard) {
-      const support = document.createElement('section');
-      support.className = 'app-footer-support';
-      support.innerHTML = `<div class="app-footer-support-copy"><strong>${t('supportTitle')}</strong><p>${t('supportBody')}</p></div><a class="app-footer-support-cta" href="https://ko-fi.com/yimleung" target="_blank" rel="noopener noreferrer">☕ ${t('supportKofi')} ↗</a>`;
-      footer.appendChild(support);
-    }
-    footer.querySelector(".app-footer-affiliate")?.remove();
-    document.querySelectorAll(".app-footer-booking").forEach(el=>el.remove());
+    bottom.querySelector('.footer-independent').textContent = copy.independent;
+    bottom.querySelector('.footer-copyright').textContent = `© ${new Date().getFullYear()} YakuBus`;
+    const openSource = () => {
+      if (!source) return;
+      source.open = true;
+      source.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      source.querySelector('summary')?.focus({ preventScroll: true });
+    };
+    grid.querySelector('.footer-source-link').addEventListener('click', event => {
+      if (source) { event.preventDefault(); history.replaceState(null, '', '#sources-and-updates'); openSource(); }
+    });
+    if (location.hash === '#sources-and-updates') requestAnimationFrame(openSource);
+    if (location.hash === '#site-footer') requestAnimationFrame(() => footer.scrollIntoView({ block: 'start' }));
+    document.querySelectorAll('.app-footer-booking').forEach(el => el.remove());
     if (window.AffiliateUI?.bookingNotesHtml) {
-      const notes = document.createElement("div");
-      notes.className = "app-footer-booking";
+      const notes = document.createElement('div'); notes.className = 'app-footer-booking';
       notes.innerHTML = window.AffiliateUI.bookingNotesHtml(lang);
-      const sources = document.querySelector(".journey-end");
-      if (sources) sources.appendChild(notes); else footer.insertBefore(notes, footer.firstChild);
+      const sources = document.querySelector('.journey-end');
+      if (sources) sources.appendChild(notes);
     }
   }
 
@@ -289,8 +303,8 @@
       feedbackEl = document.createElement("section");
       feedbackEl.className = "site-feedback";
       feedbackEl.id = "siteFeedback";
-      const nav = footer.querySelector(".app-footer-links");
-      footer.insertBefore(feedbackEl, nav || null);
+      const slot = footer.querySelector(".footer-feedback-slot") || footer;
+      slot.appendChild(feedbackEl);
     }
     return feedbackEl;
   }
@@ -461,4 +475,19 @@
   }
 
   window.SiteChrome = { refresh, t, getLang, readLang, langQs, applyPageHead, PAGE_HEAD };
+  const referenceHub = document.createElement('script'); referenceHub.src='/reference-hub.js'; document.head.appendChild(referenceHub);
+  const footerStyle = document.createElement('link');
+  footerStyle.rel = 'stylesheet'; footerStyle.href = '/site-footer.css?v=20261123b';
+  document.head.appendChild(footerStyle);
+  // Shared newsletter loads once, after the existing page chrome.
+  const newsletterStyle = document.createElement('link');
+  newsletterStyle.rel = 'stylesheet'; newsletterStyle.href = '/newsletter-v4.css?v=20261124-footer2';
+  document.head.appendChild(newsletterStyle);
+  const newsletterConfig = document.createElement('script');
+  newsletterConfig.src = '/newsletter-config.js?v=20261123';
+  newsletterConfig.onload = () => {
+    const script = document.createElement('script'); script.src = '/newsletter-v4.js?v=20261124';
+    document.head.appendChild(script);
+  };
+  document.head.appendChild(newsletterConfig);
 })();

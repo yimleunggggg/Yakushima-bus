@@ -59,10 +59,12 @@ def article(g,L,data,embedded=False):
     body+=f'<li><span class="guide-day-label">{label}</span><p>{e(p)}</p></li>'
    body+='</ol>'
   elif 'cases' in s:
-   for case in s['cases']:
+   for case_index,case in enumerate(s['cases']):
+    if g['id']=='without-car':body+=f'<div class="guide-connection-case"><span class="guide-case-index" aria-hidden="true">{chr(65+case_index)}</span><div class="guide-case-body">'
     body+=f'<p>{e(case["text"])}</p><div class="guide-actions">'+''.join(
      f'<a href="{e(canonical_home_href(link["href"]))}">{e(link["label"])} <span aria-hidden="true">→</span></a>'
      for link in case['links'])+'</div>'
+    if g['id']=='without-car':body+='</div></div>'
   elif g['id']=='where-to-stay' and i==4:
    body+=booking_checklist(s['paragraphs'][0],L)+''.join('<p>'+e(p)+'</p>' for p in s['paragraphs'][1:])
   else:body+=''.join('<p>'+e(p)+'</p>' for p in s['paragraphs'])

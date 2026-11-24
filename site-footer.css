@@ -1,0 +1,23 @@
+/* Light, grouped site footer. This file does not style the transport tools. */
+.app-footer{--footer-text:var(--text,#17201c);--footer-muted:var(--muted,#5d6c64);--footer-primary:var(--primary,#24584d);--footer-border:var(--border,#d8ddd6);text-align:left;color:var(--footer-text);padding:0 0 22px;margin-top:24px;border-top:0;min-width:0;font-family:inherit}
+.footer-grid{display:grid;grid-template-columns:1.15fr .9fr 1fr 1.15fr;gap:26px;padding:30px 0 26px;border-top:1px solid var(--footer-border)}
+.footer-brand .footer-wordmark{display:inline-block;margin-bottom:10px;font-size:27px;font-weight:720;line-height:1;letter-spacing:-1.2px;color:var(--footer-primary);text-decoration:none}.footer-wordmark span{color:var(--moss,#8f9a3a)}
+.footer-brand p,.footer-touch p{font-size:12px;line-height:1.85;color:var(--footer-muted);max-width:24em;margin:0}
+.footer-group{min-width:0}.footer-group h2{font-size:12px;font-weight:700;letter-spacing:.02em;line-height:1.5;margin:0 0 10px;color:var(--footer-text)}
+.app-footer .footer-group a{display:flex;align-items:center;min-height:30px;width:fit-content;max-width:100%;color:var(--footer-muted);text-decoration:none;font-size:12px;line-height:1.7;padding:3px 0;overflow-wrap:anywhere}
+.app-footer .footer-group a:hover{color:var(--footer-primary);text-decoration:underline;text-underline-offset:3px}
+.footer-grid .app-footer-links{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin:0;padding:0;font-size:inherit;line-height:inherit}
+.app-footer .footer-newsletter-link{margin-top:10px;color:var(--footer-primary);font-weight:650;gap:7px;text-decoration:underline;text-underline-offset:4px}
+.app-footer .footer-support-link{margin-top:15px;font-size:11px;color:var(--footer-muted)}
+.footer-bottom{display:grid;grid-template-columns:1fr auto;column-gap:20px;align-items:center;border-top:1px solid var(--footer-border);padding-top:16px}
+.footer-independent{grid-column:1/-1;color:var(--footer-muted);font-size:10px;line-height:1.8;margin:0 0 10px;max-width:72em}
+.footer-copyright{font-size:10px;white-space:nowrap;color:var(--footer-muted)}
+.footer-feedback-slot{min-width:0}.app-footer .footer-feedback-slot .site-feedback{display:flex;align-items:center;flex-wrap:wrap;gap:4px 12px;margin:0;padding:0;border:0;text-align:left;background:none}
+.app-footer .footer-feedback-slot .site-feedback-q{font-size:11px;line-height:1.6;color:var(--footer-muted);margin:0;font-weight:400}
+.app-footer .footer-feedback-slot .site-feedback-stars{margin:0;gap:0}.app-footer .footer-feedback-slot .site-feedback-star{width:28px;min-width:28px;min-height:36px;height:36px;font-size:19px;padding:0}
+.app-footer .footer-feedback-slot .site-feedback-low{flex-basis:100%;max-width:32em;margin-top:8px}
+.app-footer :is(a,button):focus-visible{outline:2px solid var(--footer-primary);outline-offset:3px}
+@media(max-width:1000px){.footer-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.footer-brand{grid-column:1/-1;display:flex;align-items:center;gap:18px}.footer-brand .footer-wordmark{margin:0}.footer-brand p{max-width:none;font-size:11px}}
+@media(max-width:600px){.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 20px;padding:24px 0}.footer-brand{grid-column:1/-1;display:block}.footer-brand .footer-wordmark{font-size:25px;margin-bottom:8px}.footer-brand p{max-width:28em}.footer-touch{grid-column:1/-1;padding-top:16px;border-top:1px solid var(--footer-border)}.footer-touch p{max-width:none}.app-footer .footer-group a{min-height:38px}.app-footer .footer-support-link{margin-top:6px}.footer-bottom{grid-template-columns:1fr;gap:5px}.footer-copyright{padding-top:6px}.app-footer .footer-feedback-slot .site-feedback-star{width:36px;min-width:36px;min-height:44px;height:44px}.footer-independent{margin-bottom:2px}}
+.app-footer{container-type:inline-size;container-name:site-footer}
+@container site-footer (max-width:700px){.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 20px}.footer-brand{grid-column:1/-1;display:block}.footer-brand .footer-wordmark{margin-bottom:8px}.footer-touch{grid-column:1/-1;padding-top:16px;border-top:1px solid var(--footer-border)}.footer-touch p{max-width:none}.footer-bottom{grid-template-columns:1fr;gap:5px}.footer-copyright{padding-top:6px}}

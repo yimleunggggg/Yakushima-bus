@@ -2,7 +2,7 @@
 const META_DATA = {
   "revision": "2026",
   "updatedAt": "2026-05-20",
-  "builtAt": "2026-11-02",
+  "builtAt": "2026-11-24",
   "holidays": [
     "2026-01-01",
     "2026-01-12",
@@ -45,7 +45,9 @@ const META_DATA = {
       "seasonTo": "2027-02-28"
     }
   },
-  "warnings": [],
+  "warnings": [
+    "公交时刻表将于 2026-11-30 到期（剩 6 天）"
+  ],
   "errors": [],
   "stopSearchClusters": {
     "miyanoura_port": [

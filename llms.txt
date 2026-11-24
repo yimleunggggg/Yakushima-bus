@@ -15,10 +15,11 @@
 - [Rain in Yakushima: alternatives and changing plans | YakuBus](https://yakushimabus.com/guides/yakushima-rainy-day/): Check the roads, transport and activity location first. Keep one indoor option or a plan near your accommodation instead of filling every day.
 - [A half-day in Kagoshima before or after Yakushima | YakuBus](https://yakushimabus.com/guides/kagoshima-half-day/): Stay by the waterfront or choose one city sight. Work out your usable time after luggage, travel and boarding formalities before deciding how far to go.
 - [Yakushima & Kagoshima Travel Guides | YakuBus](https://yakushimabus.com/guides/): Practical Yakushima and Kagoshima guides: plan a car-free stay, choose a base, prepare for rain and use a half-day around your ferry journey. Official references and transport tools.
+- [Yakushima Transport & Hiking Sources | YakuBus](https://yakushimabus.com/resources/): Find official Yakushima bus timetables, fare documents, ferry and hiking references by topic. Review source dates and caveats; confirm current conditions with the original publisher.
 
 ## Data scope and dates
 
-Timetable revision: 2026-10-01; fare revision: 2024-03-01; checked 2026-11-03; review due 2026-11-17. Recheck official information before travel.
+Timetable revision: 2026-10-01; fare revision: 2024-03-01; checked 2026-11-24; review due 2026-11-30. Recheck official information before travel.
 All times use Japan Standard Time (JST, UTC+9). Choose the actual travel day and check each conditional service note.
 The internal display horizon is a conservative review policy, not an official PDF expiry date.
 The bus homepage / is Japanese; use /?lang=zh or /?lang=en for Chinese or English. The legacy /?lang=ja URL resolves to /. Other pages retain their ?lang=ja, ?lang=zh and ?lang=en URLs.
@@ -38,8 +39,8 @@ The bus homepage / is Japanese; use /?lang=zh or /?lang=en for Chinese or Englis
 These are dated source records, not live confirmation. An overdue review does not establish that a suspended route has reopened.
 
 - Some town roads close for bridge inspections Oct 16–28, including access toward Senpiro Falls. Check the official notice for each location, date and detour. Checked 2026-10-26; review due 2026-11-02; notice scope 2026-10-09 to 2026-10-28. Source: https://yakukan.jp/topics/19545.html
-- Shiratani has partially reopened: Taiko-iwa, the moss forest and Bugyosugi routes are accessible. Taneyaku buses have resumed. Parts of the Yayoi-sugi course and other sections remain closed. Checked 2026-11-03; review due 2026-11-17; notice scope 2026-10-18 to until further notice. Source: https://y-rekumori.com/
-- Matsubanda’s Shiratani timetable still shows suspension. This is a different operator from the reopened Taneyaku service and does not mean every Matsubanda route is suspended. Checked 2026-11-03; review due 2026-11-17; notice scope 2026-10-24 to until further notice. Source: https://yakushima.co.jp/route_bus/
+- Shiratani has partially reopened. Hiryu Bridge, Hiryu Walkway and the section from the second-parking entrance to point 12 remain closed. The forest office also reported a temporary high-water closure of the Bugyosugi course on November 24; check its daily notice before travel. Checked 2026-11-24; review due 2026-11-25; notice scope 2026-10-18 to until further notice. Source: https://y-rekumori.com/
+- Matsubanda’s Shiratani timetable still shows suspension. This is a different operator from the reopened Taneyaku service and does not mean every Matsubanda route is suspended. Checked 2026-11-24; review due 2026-11-25; notice scope 2026-10-24 to until further notice. Source: https://yakushima.co.jp/route_bus/
 
 ## Optional
 
