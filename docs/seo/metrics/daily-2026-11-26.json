@@ -1,6 +1,6 @@
 {
   "fetched_at": "2026-11-26",
-  "fetched_at_iso": "2026-11-26T18:02:07.916589+08:00",
+  "fetched_at_iso": "2026-11-26T18:06:47.773582+08:00",
   "gsc_7d": {
     "error": "OAuth refresh 失败: ('invalid_grant: Bad Request', {'error': 'invalid_grant', 'error_description': 'Bad Request'})"
   },
@@ -2140,7 +2140,7 @@
   },
   "aligned_period": false,
   "diagnostics": {
-    "collected_at": "2026-11-26T18:02:18.856604+08:00",
+    "collected_at": "2026-11-26T18:06:55.755444+08:00",
     "ga4_landing": {
       "current": {
         "period": {
@@ -3196,18 +3196,18 @@
     },
     "page_checks": [
       {
-        "page": "/without-car",
-        "url": "https://yakushimabus.com/without-car/",
-        "status": 200,
-        "noindex": false,
-        "canonical": "https://yakushimabus.com/without-car/"
-      },
-      {
         "page": "/fare",
         "url": "https://yakushimabus.com/fare/",
         "status": 200,
         "noindex": false,
         "canonical": "https://yakushimabus.com/fare/"
+      },
+      {
+        "page": "/without-car",
+        "url": "https://yakushimabus.com/without-car/",
+        "status": 200,
+        "noindex": false,
+        "canonical": "https://yakushimabus.com/without-car/"
       }
     ]
   },
@@ -3383,7 +3383,7 @@
       "/fare的减少细分：Google搜索 69→59次。"
     ],
     "agent_actions": [
-      "已核验/without-car、/fare可打开，未见禁止收录标记。",
+      "已核验/fare、/without-car可打开，未见禁止收录标记。",
       "页面/搜索词对比尚有缺项，已记录缺口；自动任务下轮继续采集，不需要你查表。"
     ],
     "user_actions": [
@@ -3414,18 +3414,18 @@
     ],
     "page_checks": [
       {
-        "page": "/without-car",
-        "url": "https://yakushimabus.com/without-car/",
-        "status": 200,
-        "noindex": false,
-        "canonical": "https://yakushimabus.com/without-car/"
-      },
-      {
         "page": "/fare",
         "url": "https://yakushimabus.com/fare/",
         "status": 200,
         "noindex": false,
         "canonical": "https://yakushimabus.com/fare/"
+      },
+      {
+        "page": "/without-car",
+        "url": "https://yakushimabus.com/without-car/",
+        "status": 200,
+        "noindex": false,
+        "canonical": "https://yakushimabus.com/without-car/"
       }
     ],
     "landing_source_changes": [
@@ -3436,15 +3436,15 @@
         "delta": -10
       },
       {
-        "key": "/without-car ← google / organic",
-        "current": 4,
-        "previous": 12,
-        "delta": -8
-      },
-      {
         "key": "/ ← yahoo / organic",
         "current": 33,
         "previous": 41,
+        "delta": -8
+      },
+      {
+        "key": "/without-car ← google / organic",
+        "current": 4,
+        "previous": 12,
         "delta": -8
       },
       {
@@ -3460,7 +3460,7 @@
         "delta": -5
       },
       {
-        "key": "/without-car ← (direct) / (none)",
+        "key": "/ ← websearch.rakuten.co.jp / referral",
         "current": 0,
         "previous": 3,
         "delta": -3
@@ -3478,13 +3478,13 @@
         "delta": -3
       },
       {
-        "key": "/ ← websearch.rakuten.co.jp / referral",
+        "key": "/without-car ← (direct) / (none)",
         "current": 0,
         "previous": 3,
         "delta": -3
       },
       {
-        "key": "(not set) ← bing / organic",
+        "key": "(not set) ← duckduckgo / organic",
         "current": 0,
         "previous": 2,
         "delta": -2
@@ -3496,15 +3496,27 @@
         "delta": -2
       },
       {
-        "key": "(not set) ← duckduckgo / organic",
+        "key": "(not set) ← bing / organic",
         "current": 0,
         "previous": 2,
         "delta": -2
       },
       {
-        "key": "/guides ← google / organic",
+        "key": "/ ← ecosia.org / organic",
         "current": 0,
         "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/ferry ← (direct) / (none)",
+        "current": 4,
+        "previous": 5,
+        "delta": -1
+      },
+      {
+        "key": "/fare ← bing / organic",
+        "current": 2,
+        "previous": 3,
         "delta": -1
       },
       {
@@ -3514,7 +3526,19 @@
         "delta": -1
       },
       {
-        "key": "/ferry ← (direct) / (none)",
+        "key": "/guides ← google / organic",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/ ← weixin / social",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "/ferry ← chatgpt.com / ai-assistant",
         "current": 4,
         "previous": 5,
         "delta": -1
@@ -3532,30 +3556,6 @@
         "delta": -1
       },
       {
-        "key": "/fare ← bing / organic",
-        "current": 2,
-        "previous": 3,
-        "delta": -1
-      },
-      {
-        "key": "/fare ← duckduckgo / organic",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
-        "key": "/ferry ← chatgpt.com / ai-assistant",
-        "current": 4,
-        "previous": 5,
-        "delta": -1
-      },
-      {
-        "key": "/ ← weixin / social",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
         "key": "/ferry ← duckduckgo / organic",
         "current": 0,
         "previous": 1,
@@ -3568,15 +3568,15 @@
         "delta": -1
       },
       {
-        "key": "/ ← ecosia.org / organic",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
         "key": "/fare ← chatgpt.com / ai-assistant",
         "current": 3,
         "previous": 4,
+        "delta": -1
+      },
+      {
+        "key": "/fare ← duckduckgo / organic",
+        "current": 0,
+        "previous": 1,
         "delta": -1
       },
       {
@@ -3586,28 +3586,16 @@
         "delta": 0
       },
       {
-        "key": "(not set) ← yahoo / organic",
-        "current": 2,
-        "previous": 2,
-        "delta": 0
-      },
-      {
         "key": "/intro ← (direct) / (none)",
         "current": 1,
         "previous": 1,
         "delta": 0
       },
       {
-        "key": "/map ← (not set)",
+        "key": "(not set) ← yahoo / organic",
         "current": 2,
-        "previous": 1,
-        "delta": 1
-      },
-      {
-        "key": "(not set) ← (not set)",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
+        "previous": 2,
+        "delta": 0
       },
       {
         "key": "(not set) ← map_popup / (not set)",
@@ -3622,9 +3610,21 @@
         "delta": 1
       },
       {
-        "key": "/fare ← (direct) / (none)",
-        "current": 12,
-        "previous": 11,
+        "key": "/ ← openai / organic",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/map ← (not set)",
+        "current": 2,
+        "previous": 1,
+        "delta": 1
+      },
+      {
+        "key": "/ ← bing / organic",
+        "current": 15,
+        "previous": 14,
         "delta": 1
       },
       {
@@ -3634,7 +3634,13 @@
         "delta": 1
       },
       {
-        "key": "(not set) ← gemini.google.com / ai-assistant",
+        "key": "/without-car ← gemini.google.com / ai-assistant",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/about ← google / organic",
         "current": 1,
         "previous": 0,
         "delta": 1
@@ -3646,15 +3652,27 @@
         "delta": 1
       },
       {
-        "key": "/fare ← service.smt.docomo.ne.jp / referral",
+        "key": "(not set) ← (not set)",
         "current": 1,
         "previous": 0,
         "delta": 1
       },
       {
-        "key": "/ ← bing / organic",
-        "current": 15,
-        "previous": 14,
+        "key": "(not set) ← gemini.google.com / ai-assistant",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/guides ← (direct) / (none)",
+        "current": 1,
+        "previous": 0,
+        "delta": 1
+      },
+      {
+        "key": "/fare ← service.smt.docomo.ne.jp / referral",
+        "current": 1,
+        "previous": 0,
         "delta": 1
       },
       {
@@ -3670,31 +3688,13 @@
         "delta": 1
       },
       {
-        "key": "/ ← openai / organic",
-        "current": 1,
-        "previous": 0,
+        "key": "/fare ← (direct) / (none)",
+        "current": 12,
+        "previous": 11,
         "delta": 1
       },
       {
-        "key": "/about ← google / organic",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/guides ← (direct) / (none)",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": "/without-car ← gemini.google.com / ai-assistant",
-        "current": 1,
-        "previous": 0,
-        "delta": 1
-      },
-      {
-        "key": " ← (direct) / (none)",
+        "key": "/ ← map_popup / ",
         "current": 2,
         "previous": 0,
         "delta": 2
@@ -3706,7 +3706,13 @@
         "delta": 2
       },
       {
-        "key": "/ ← map_popup / ",
+        "key": "/map ← duckduckgo / organic",
+        "current": 3,
+        "previous": 1,
+        "delta": 2
+      },
+      {
+        "key": "/trekking ← google / organic",
         "current": 2,
         "previous": 0,
         "delta": 2
@@ -3718,19 +3724,13 @@
         "delta": 2
       },
       {
-        "key": "/trekking ← google / organic",
+        "key": "/ ← search.brave.com / referral",
         "current": 2,
         "previous": 0,
         "delta": 2
       },
       {
-        "key": "/map ← duckduckgo / organic",
-        "current": 3,
-        "previous": 1,
-        "delta": 2
-      },
-      {
-        "key": "/ ← search.brave.com / referral",
+        "key": " ← (direct) / (none)",
         "current": 2,
         "previous": 0,
         "delta": 2
@@ -3754,12 +3754,6 @@
         "delta": 3
       },
       {
-        "key": "(not set) ← google / organic",
-        "current": 26,
-        "previous": 22,
-        "delta": 4
-      },
-      {
         "key": "/ ← (not set)",
         "current": 4,
         "previous": 0,
@@ -3772,15 +3766,21 @@
         "delta": 4
       },
       {
+        "key": "(not set) ← google / organic",
+        "current": 26,
+        "previous": 22,
+        "delta": 4
+      },
+      {
         "key": "(not set) ← chatgpt.com / ai-assistant",
         "current": 7,
         "previous": 3,
         "delta": 4
       },
       {
-        "key": "/fare ← map_popup / (not set)",
-        "current": 6,
-        "previous": 1,
+        "key": " ← map_popup / ",
+        "current": 5,
+        "previous": 0,
         "delta": 5
       },
       {
@@ -3790,7 +3790,7 @@
         "delta": 5
       },
       {
-        "key": " ← map_popup / ",
+        "key": "/map ← map_popup / ",
         "current": 5,
         "previous": 0,
         "delta": 5
@@ -3802,9 +3802,9 @@
         "delta": 5
       },
       {
-        "key": "/map ← map_popup / ",
-        "current": 5,
-        "previous": 0,
+        "key": "/fare ← map_popup / (not set)",
+        "current": 6,
+        "previous": 1,
         "delta": 5
       },
       {
@@ -3857,15 +3857,15 @@
     },
     "landing_changes": [
       {
-        "key": "/without-car",
-        "current": 6,
-        "previous": 17,
-        "delta": -11
-      },
-      {
         "key": "/fare",
         "current": 90,
         "previous": 101,
+        "delta": -11
+      },
+      {
+        "key": "/without-car",
+        "current": 6,
+        "previous": 17,
         "delta": -11
       },
       {
@@ -3875,13 +3875,13 @@
         "delta": 0
       },
       {
-        "key": "/guides",
+        "key": "/about",
         "current": 1,
         "previous": 1,
         "delta": 0
       },
       {
-        "key": "/about",
+        "key": "/guides",
         "current": 1,
         "previous": 1,
         "delta": 0
@@ -3949,12 +3949,6 @@
         "delta": -3
       },
       {
-        "key": "gemini.google.com / ai-assistant",
-        "current": 2,
-        "previous": 3,
-        "delta": -1
-      },
-      {
         "key": "weixin / social",
         "current": 0,
         "previous": 1,
@@ -3967,25 +3961,31 @@
         "delta": -1
       },
       {
-        "key": "chatgpt.com / (none)",
-        "current": 0,
-        "previous": 1,
-        "delta": -1
-      },
-      {
         "key": "ecosia.org / organic",
         "current": 0,
         "previous": 1,
         "delta": -1
       },
       {
-        "key": "search.brave.com / referral",
+        "key": "chatgpt.com / (none)",
+        "current": 0,
+        "previous": 1,
+        "delta": -1
+      },
+      {
+        "key": "gemini.google.com / ai-assistant",
+        "current": 2,
+        "previous": 3,
+        "delta": -1
+      },
+      {
+        "key": "openai / organic",
         "current": 2,
         "previous": 0,
         "delta": 2
       },
       {
-        "key": "openai / organic",
+        "key": "search.brave.com / referral",
         "current": 2,
         "previous": 0,
         "delta": 2
@@ -3997,15 +3997,15 @@
         "delta": 3
       },
       {
-        "key": "service.smt.docomo.ne.jp / referral",
-        "current": 4,
-        "previous": 0,
-        "delta": 4
-      },
-      {
         "key": "bing / organic",
         "current": 24,
         "previous": 20,
+        "delta": 4
+      },
+      {
+        "key": "service.smt.docomo.ne.jp / referral",
+        "current": 4,
+        "previous": 0,
         "delta": 4
       },
       {
@@ -4052,7 +4052,7 @@
     "/fare的减少细分：Google搜索 69→59次。",
     "入口页减少最多：/fare 101→90次。",
     "尚不足以判定变化原因；我会继续自动补齐对比数据。",
-    "已核验/without-car、/fare可打开，未见禁止收录标记。",
+    "已核验/fare、/without-car可打开，未见禁止收录标记。",
     "页面/搜索词对比尚有缺项，已记录缺口；自动任务下轮继续采集，不需要你查表。"
   ]
 }
